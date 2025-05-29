@@ -7,27 +7,27 @@ const About = () => {
   const founders = [
     {
       name: "Jovaniel Rodriguez",
-      role: "CEO & Co-Founder",
-      bio: "Former McKinsey consultant with 15+ years in enterprise analytics. Sarah leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
+      role: "Co-Founder, Operations & Growth",
+      bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
       expertise: ["Strategic Consulting", "Digital Transformation", "Enterprise Architecture"],
-      linkedin: "https://linkedin.com/in/sarahchen",
-      email: "sarah@stratumpr.com"
-    },
-    {
-      name: "Genesis Rodriguez",
-      role: "CTO & Co-Founder",
-      bio: "Ex-Google data scientist and ML engineer. Marcus oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
-      expertise: ["Machine Learning", "Big Data", "AI Implementation"],
-      linkedin: "https://linkedin.com/in/marcusrodriguez",
-      email: "marcus@stratumpr.com"
+      linkedin: "https://linkedin.com/in/jovanielrodriguez",
+      email: "j.rodriguez@stratumpr.com"
     },
     {
       name: "Roberto Otero",
-      role: "Chief Analytics Officer & Co-Founder",
-      bio: "PhD in Statistics from Stanford, former lead data scientist at Uber. Emily drives our analytical methodologies and ensures scientific rigor in all modeling approaches.",
+      role: "Co-Founder, Tech & Build",
+      bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
+      expertise: ["Machine Learning", "Big Data", "AI Implementation"],
+      linkedin: "https://linkedin.com/in/robertootero",
+      email: "r.otero@stratumpr.com"
+    },
+    {
+      name: "Genesis Rodriguez",
+      role: "Co-Founder, Data & Insights",
+      bio: "Biostatistician, lead research scientist at the Puerto Rico Comprehensive Cancer Center (CCC). Genesis drives our analytical methodologies and ensures scientific rigor in all modeling approaches.",
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
-      linkedin: "https://linkedin.com/in/emilythompson",
-      email: "emily@stratumpr.com"
+      linkedin: "https://linkedin.com/in/genesisrodriguez",
+      email: "g.rodriguez@stratumpr.com"
     }
   ];
 
