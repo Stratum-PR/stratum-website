@@ -74,7 +74,7 @@ const Home = () => {
               asChild
               variant="outline" 
               size="lg"
-              className="border-2 border-white text-black hover:bg-accent hover:border-primary hover:text-white font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300"
+              className="border-2 border-white text-black hover:bg-accent hover:border-primary hover:text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300"
             >
               <Link to="/services">
                 Explore Services
