@@ -20,7 +20,7 @@ export const Footer = () => {
               <a href="https://linkedin.com/company/stratumpr" target="_blank" rel="noopener noreferrer" className="text-primary-200 hover:text-accent transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="mailto:hello@stratumpr.com" className="text-primary-200 hover:text-accent transition-colors">
+              <a href="mailto:contact@stratumpr.com" className="text-primary-200 hover:text-accent transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
@@ -60,17 +60,13 @@ export const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-primary-200" />
                 <a href="mailto:hello@stratumpr.com" className="text-primary-200 hover:text-accent transition-colors font-telegraf text-sm">
-                  hello@stratumpr.com
+                  contact@stratumpr.com
                 </a>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary-200" />
-                <span className="text-primary-200 font-telegraf text-sm">+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-primary-200" />
                 <span className="text-primary-200 font-telegraf text-sm">
-                  San Francisco, CA
+                  Trujillo Alto, P.R.
                 </span>
               </div>
             </div>
