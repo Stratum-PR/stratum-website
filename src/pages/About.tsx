@@ -6,7 +6,7 @@ import { Linkedin, Mail } from "lucide-react";
 const About = () => {
   const founders = [
     {
-      name: "Sarah Chen",
+      name: "Jovaniel Rodriguez",
       role: "CEO & Co-Founder",
       bio: "Former McKinsey consultant with 15+ years in enterprise analytics. Sarah leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
       expertise: ["Strategic Consulting", "Digital Transformation", "Enterprise Architecture"],
@@ -14,7 +14,7 @@ const About = () => {
       email: "sarah@stratumpr.com"
     },
     {
-      name: "Marcus Rodriguez",
+      name: "Genesis Rodriguez",
       role: "CTO & Co-Founder",
       bio: "Ex-Google data scientist and ML engineer. Marcus oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
@@ -22,7 +22,7 @@ const About = () => {
       email: "marcus@stratumpr.com"
     },
     {
-      name: "Dr. Emily Thompson",
+      name: "Roberto Otero",
       role: "Chief Analytics Officer & Co-Founder",
       bio: "PhD in Statistics from Stanford, former lead data scientist at Uber. Emily drives our analytical methodologies and ensures scientific rigor in all modeling approaches.",
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
