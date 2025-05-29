@@ -138,7 +138,7 @@ const About = () => {
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
               Our founding team brings together more than a decade of experience from leading 
-              top Fortune 500 companies, consulting firms, technology companies, and academic institutions.
+             Fortune 500 companies, consulting firms, technology companies, and academic institutions.
             </p>
           </div>
 
