@@ -51,13 +51,17 @@ npm run build
 vercel --prod
 
 ## Project Structure
+<pre>
 src/
 │
-├── components/        → Reusable UI (Button, Input, etc.)
-├── hooks/             → Custom hooks (useToast)
-├── pages/ or app/     → Route-level layout
-├── public/            → Static files (logo, favicon, screenshots)
-└── styles/            → Tailwind + Fonts config
+├── <a href="https://github.com/Jovaniel4917/stratum-decision-architect/tree/main/src/components">components/</a>        → Reusable UI (Button, Input, etc.)
+├── <a href="https://github.com/Jovaniel4917/stratum-decision-architect/tree/main/src/hooks">hooks/</a>             → Custom hooks (useToast)
+├── <a href="https://github.com/Jovaniel4917/stratum-decision-architect/tree/main/src/lib">lib/</a>               → Shared logic/utilities
+├── <a href="https://github.com/Jovaniel4917/stratum-decision-architect/tree/main/src/pages">pages/</a>             → Route-level layout components
+├── <a href="https://github.com/Jovaniel4917/stratum-decision-architect/blob/main/src/App.tsx">App.tsx</a>             → Root app component
+├── <a href="https://github.com/Jovaniel4917/stratum-decision-architect/blob/main/src/main.tsx">main.tsx</a>            → App entry point
+└── <a href="https://github.com/Jovaniel4917/stratum-decision-architect/tree/main/public">public/</a>              → Static assets (logo, map, etc.)
+</pre>
 
 
 
