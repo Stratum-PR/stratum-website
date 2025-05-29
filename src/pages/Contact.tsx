@@ -63,23 +63,16 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@stratumpr.com",
-      href: "mailto:hello@stratumpr.com",
+      value: "contact@stratumpr.com",
+      href: "mailto:contact@stratumpr.com",
       description: "Send us a message anytime"
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
-      description: "Mon-Fri, 9 AM - 6 PM PST"
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Trujillo Alto, P.R.",
       href: "#",
-      description: "Bay Area headquarters"
+      description: "Our Main Headquarters"
     },
     {
       icon: Linkedin,
