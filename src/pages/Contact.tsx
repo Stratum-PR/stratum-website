@@ -33,10 +33,42 @@ const Contact = () => {
     setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch("https://formspree.io/f/xyzjgyzq", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
     
-    console.log("Form submitted:", formData);
+      if (response.ok) {
+        setIsSubmitted(true);
+        toast({
+          title: "Message Sent Successfully!",
+          description: "We'll get back to you within 24 hours.",
+        });
     
+        setTimeout(() => {
+          setFormData({ name: "", email: "", subject: "", message: "" });
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+    }
     setIsSubmitting(false);
     setIsSubmitted(true);
     
