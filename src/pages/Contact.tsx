@@ -173,7 +173,7 @@ const Contact = () => {
                           value={formData.subject}
                           onChange={handleChange}
                           className="mt-2 font-telegraf"
-                          placeholder="CRM Implementation Inquiry"
+                          placeholder="Enterprise Solutions Inquiry"
                         />
                       </div>
                       
@@ -291,7 +291,7 @@ const Contact = () => {
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0197887363287!2d-122.39492668468118!3d37.78810861975844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807c057a5b27%3A0x3be14d24a2b6f355!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1635534799142!5m2!1sen!2sus"
+                src="https://www.google.com/maps/place/SB4+Urb.+Primavera,+Encantada,+Trujillo+Alto/@18.3483583,-65.9943341,16.46z/data=!4m6!3m5!1s0x8c03673d7dc0bc1d:0xc6e3891ab18662f2!8m2!3d18.3481136!4d-65.990898!16s%2Fg%2F11gpgh5f30?entry=ttu&g_ep=EgoyMDI1MDUyOC4wIKXMDSoASAFQAw%3D%3D"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
