@@ -10,7 +10,7 @@ const About = () => {
       role: "Co-Founder, Operations & Growth",
       bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
       expertise: ["Strategic Consulting", "Digital Transformation", "Enterprise Architecture"],
-      linkedin: "https://linkedin.com/in/jovanielrodriguez",
+      linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com"
     },
     {
@@ -18,7 +18,7 @@ const About = () => {
       role: "Co-Founder, Tech & Build",
       bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
-      linkedin: "https://linkedin.com/in/robertootero",
+      linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com"
     },
     {
@@ -26,7 +26,7 @@ const About = () => {
       role: "Co-Founder, Data & Insights",
       bio: "Biostatistician, lead research scientist at the Puerto Rico Comprehensive Cancer Center (CCC). Genesis drives our analytical methodologies and ensures scientific rigor in all modeling approaches.",
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
-      linkedin: "https://linkedin.com/in/genesisrodriguez",
+      linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com"
     }
   ];
