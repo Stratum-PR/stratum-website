@@ -59,7 +59,7 @@ const About = () => {
             About Stratum PR
           </h1>
           <p className="font-telegraf text-xl text-gray-600 leading-relaxed">
-            Founded in 2020, Stratum PR emerged from a simple observation: most organizations 
+            Founded in 2025, Stratum PR emerged from a simple observation: most organizations 
             have access to more data than ever before, yet struggle to make better decisions. 
             We bridge this gap by architecting solutions that transform complex information 
             into strategic advantage.
@@ -137,8 +137,8 @@ const About = () => {
               Meet the Team
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-              Our founding team brings together decades of experience from leading 
-              consulting firms, technology companies, and academic institutions.
+              Our founding team brings together more than a decade of experience from leading 
+              top Fortune 500 companies, consulting firms, technology companies, and academic institutions.
             </p>
           </div>
 
