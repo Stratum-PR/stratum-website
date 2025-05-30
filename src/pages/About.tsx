@@ -24,7 +24,7 @@ const About = () => {
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
       linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com",
-      image: "../img/Roberto.PNG" // Add image path here
+      image: "Jovaniel4917/stratum-decision-architect/src/img/Roberto.PNG" // Add image path here
     },
     {
       key: "genesis",
