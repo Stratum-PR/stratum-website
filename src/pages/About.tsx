@@ -3,6 +3,9 @@ import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
 import ValuesSection from "@/components/ValuesSection";
 import TeamSection from "@/components/TeamSection";
+import JovanielImage from "@/img/Jovaniel.jpg";
+import RobertoImage from "@/img/Roberto.PNG"; 
+import GenesisImage from "@/img/Genesis.PNG";
 
 const About = () => {
   const founders = [
@@ -14,7 +17,7 @@ const About = () => {
       expertise: ["Strategic Consulting", "Digital Transformation", "Enterprise Architecture"],
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
-      image: "https://raw.githubusercontent.com/Jovaniel4917/stratum-decision-architect/main/src/img/Jovaniel.jpg" // Add image path here
+      image: "JovanielImage" // Add image path here
     },
     {
       key: "roberto",
@@ -24,7 +27,7 @@ const About = () => {
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
       linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com",
-      image: "https://raw.githubusercontent.com/Jovaniel4917/stratum-decision-architect/main/src/img/Roberto.PNG" // Add image path here
+      image: "RobertoImage" // Add image path here
     },
     {
       key: "genesis",
@@ -34,7 +37,7 @@ const About = () => {
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
-      image: "https://raw.githubusercontent.com/Jovaniel4917/stratum-decision-architect/main/src/img/Genesis.PNG"  // Add image path here
+      image: "GenesisImage"  // Add image path here
     }
   ];
 
