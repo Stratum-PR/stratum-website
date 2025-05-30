@@ -26,7 +26,7 @@ const TeamSection: React.FC<TeamSectionProps> = ({ founders }) => {
             Meet the Team
           </h2>
           <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-            Our founding team brings together more than a decade of experience from leading 
+            Our founding team brings together more than a decade of experience from leading projects at
            Fortune 500 companies, consulting firms, technology companies, and academic institutions.
           </p>
         </div>
