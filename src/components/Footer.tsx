@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-import { StratumLogo } from "./StratumLogo";
+// import { StratumLogo } from "./StratumLogo"; // Removed since we're using an <img> now
 import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  return <footer className="bg-primary text-white">
+  return (
+    <footer className="bg-primary text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <StratumLogo className="h-8 w-8" />
+              <img src="/img/Icon 1.png" alt="Stratum PR Logo" className="h-8 w-8 object-contain" />
               <span className="font-telegraf font-bold text-xl text-left px-0">Stratum PR</span>
             </div>
             <p className="text-primary-100 mb-4 font-telegraf">
@@ -79,5 +81,6 @@ export const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
