@@ -149,7 +149,7 @@ const Home = () => {
             size="lg"
             className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105"
           >
-            <a href="https://calendly.com/stratumpr" target="_blank" rel="noopener noreferrer">
+            <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
               Get Started Today
               <TrendingUp className="ml-2 h-5 w-5" />
             </a>
