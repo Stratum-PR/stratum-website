@@ -29,10 +29,10 @@ const Home = () => {
 
   const stats = [
     { value: "16+", label: "Years of Experience" },
-    { value: "F500", label: "Built by veterans of Fortune Top 5 Companies" },
     { value: "100%", label: "Client Satisfaction" },
     { value: "30+", label: "Project Solutions Delivered" },
-    { value: "PR", label: "Island Based Team" }
+    { value: "PR", label: "Island Based Team" },
+    { value: "Top 5", label: "Built by veterans of Fortune Top 5 Companies" }
   ];
 
   return (
