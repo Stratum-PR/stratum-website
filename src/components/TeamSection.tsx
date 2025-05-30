@@ -23,7 +23,7 @@ const TeamSection: React.FC<TeamSectionProps> = ({ founders }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
-            Meet the Team
+            Meet Our Leadership Team
           </h2>
           <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
             Our founding team brings together more than a decade of experience from leading projects at
