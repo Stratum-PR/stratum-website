@@ -30,7 +30,7 @@ const About = () => {
       key: "genesis",
       name: "Genesis Rodriguez",
       role: "Co-Founder, Data & Insights",
-      bio: "Biostatistician and Applied Researcher, Genesis has a strong background in predictive modeling and health analytics, driving our analytical methodologies to ensures scientific rigor in all modeling approaches",
+      bio: "Biostatistician and Applied Researcher, Genesis has a strong background in predictive modeling and health analytics, driving our analytical methodologies to ensures scientific rigor in all modeling approaches.",
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
