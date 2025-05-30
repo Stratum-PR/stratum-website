@@ -100,13 +100,6 @@ const Contact = () => {
       description: "Send us a message anytime"
     },
     {
-      icon: MapPin,
-      title: "Location",
-      value: "Trujillo Alto, P.R.",
-      href: "#",
-      description: "Our Main Headquarters"
-    },
-    {
       icon: Linkedin,
       title: "LinkedIn",
       value: "linkedin.com/company/stratumpr",
@@ -288,50 +281,6 @@ const Contact = () => {
                   ))}
                 </CardContent>
               </Card>
-
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-primary to-secondary text-white">
-                <CardContent className="p-8">
-                  <Clock className="h-8 w-8 mb-4" />
-                  <h3 className="font-telegraf font-semibold text-xl mb-2">
-                    Response Time
-                  </h3>
-                  <p className="font-telegraf text-primary-100 mb-4">
-                    We typically respond to all inquiries within 24 hours during business days.
-                  </p>
-                  <p className="font-telegraf text-sm text-primary-200">
-                    For urgent matters, please call us directly.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-telegraf font-bold text-4xl text-primary mb-4">
-              Visit Our Office
-            </h2>
-            <p className="font-telegraf text-xl text-gray-600">
-              Located in the heart of San Francisco's tech district
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/place/SB4+Urb.+Primavera,+Encantada,+Trujillo+Alto/@18.3483583,-65.9943341,16.46z/data=!4m6!3m5!1s0x8c03673d7dc0bc1d:0xc6e3891ab18662f2!8m2!3d18.3481136!4d-65.990898!16s%2Fg%2F11gpgh5f30?entry=ttu&g_ep=EgoyMDI1MDUyOC4wIKXMDSoASAFQAw%3D%3D"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Stratum PR Office Location"
-              ></iframe>
             </div>
           </div>
         </div>
