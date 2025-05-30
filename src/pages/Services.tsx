@@ -5,6 +5,12 @@ import { Database, BarChart3, Settings, TrendingUp, Brain, Zap, ArrowRight, Chec
 import { Link } from "react-router-dom";
 const Services = () => {
   const services = [{
+    icon: Zap,
+    title: "Enterprise Software Integration",
+    description: "Seamlessly connect disparate systems to create unified, efficient business processes across your organization.",
+    features: ["API Development & Integration", "Legacy System Modernization", "Cloud Migration Strategies", "Microservices Architecture", "Security & Compliance"],
+    deliverables: "Fully integrated ecosystem with reduced operational complexity"
+  }, {
     icon: Settings,
     title: "CRM Implementation & Optimization",
     description: "Streamline customer relationships with integrated CRM solutions that drive sales efficiency and customer satisfaction.",
@@ -17,12 +23,6 @@ const Services = () => {
     features: ["Data Warehouse Architecture", "ETL Pipeline Development", "Interactive Dashboards", "Real-time Analytics", "Custom Reporting Solutions"],
     deliverables: "Comprehensive analytics platform with 24/7 monitoring"
   }, {
-    icon: Zap,
-    title: "Enterprise Software Integration",
-    description: "Seamlessly connect disparate systems to create unified, efficient business processes across your organization.",
-    features: ["API Development & Integration", "Legacy System Modernization", "Cloud Migration Strategies", "Microservices Architecture", "Security & Compliance"],
-    deliverables: "Fully integrated ecosystem with reduced operational complexity"
-  }, {
     icon: TrendingUp,
     title: "Forecasting & Predictive Modeling",
     description: "Leverage statistical models and machine learning to predict trends, optimize resources, and mitigate risks.",
@@ -30,13 +30,13 @@ const Services = () => {
     deliverables: "Predictive models with 85%+ accuracy and automated reporting"
   }, {
     icon: Brain,
-    title: "AI & Machine Learning Solutions",
-    description: "Implement cutting-edge AI technologies to automate processes, enhance decision-making, and drive innovation.",
+    title: "Process Automation & ETL",
+    description: "Implement cutting-edge technologies to automate processes, enhance decision-making, and drive innovation.",
     features: ["Natural Language Processing", "Computer Vision Applications", "Recommendation Systems", "Anomaly Detection", "Automated Decision Systems"],
     deliverables: "Custom AI solutions with continuous learning capabilities"
   }, {
     icon: BarChart3,
-    title: "Decision Intelligence & Strategic Automation",
+    title: "AI & Decision Intelligence",
     description: "Create intelligent systems that automate complex business decisions while maintaining strategic oversight and control.",
     features: ["Automated Decision Workflows", "Business Rule Engines", "Strategic Planning Tools", "Performance Monitoring", "Optimization Algorithms"],
     deliverables: "Intelligent automation platform with strategic decision support"
