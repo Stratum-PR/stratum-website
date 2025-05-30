@@ -14,7 +14,7 @@ const About = () => {
       expertise: ["Strategic Consulting", "Digital Transformation", "Enterprise Architecture"],
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
-      image: "../img/Jovaniel.jpg" // Add image path here
+      image: "https://raw.githubusercontent.com/Jovaniel4917/stratum-decision-architect/main/src/img/Jovaniel.jpg" // Add image path here
     },
     {
       key: "roberto",
@@ -24,7 +24,7 @@ const About = () => {
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
       linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com",
-      image: "Jovaniel4917/stratum-decision-architect/src/img/Roberto.PNG" // Add image path here
+      image: "https://raw.githubusercontent.com/Jovaniel4917/stratum-decision-architect/main/src/img/Roberto.PNG" // Add image path here
     },
     {
       key: "genesis",
@@ -34,7 +34,7 @@ const About = () => {
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
-      image: "https://github.com/Jovaniel4917/stratum-decision-architect/blob/2aaa609d544bf1eac9dcbd828bf2928ef491a1b6/src/img/Genesis.PNG" // Add image path here
+      image: "https://raw.githubusercontent.com/Jovaniel4917/stratum-decision-architect/main/src/img/Genesis.PNG"  // Add image path here
     }
   ];
 
