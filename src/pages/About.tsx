@@ -11,7 +11,7 @@ const About = () => {
       name: "Jovaniel Rodriguez",
       role: "Co-Founder, Operations & Growth",
       bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
-      expertise: ["Strategic Consulting", "Digital Transformation", "Enterprise Architecture"],
+      expertise: ["Strategic Consulting", "Digital Transformation & Modernization", "Data Governance"],
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
       image: "/img/Jovaniel.jpg" // Add image path here
@@ -31,7 +31,6 @@ const About = () => {
       name: "Genesis Rodriguez",
       role: "Co-Founder, Data & Insights",
       bio: "Biostatistician and Applied Researcher, Genesis has a strong background in predictive modeling and health analytics, driving our analytical methodologies to ensures scientific rigor in all modeling approaches",
-      .
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
