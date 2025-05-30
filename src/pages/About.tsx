@@ -34,7 +34,7 @@ const About = () => {
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
-      image: "../img/Genesis.PNG" // Add image path here
+      image: "https://github.com/Jovaniel4917/stratum-decision-architect/blob/2aaa609d544bf1eac9dcbd828bf2928ef491a1b6/src/img/Genesis.PNG" // Add image path here
     }
   ];
 
