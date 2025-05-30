@@ -29,10 +29,12 @@ const Home = () => {
   ];
 
   const stats = [
-    { value: "150+", label: "Projects Completed" },
-    { value: "98%", label: "Client Satisfaction" },
-    { value: "3.2x", label: "Average ROI Increase" },
-    { value: "24/7", label: "Support Available" }
+    { value: "16+", label: "Years of Experience" },
+    { value: "Fortune Top 5", label: "Built by veterans of top U.S. Companies" },
+    { value: "100%", label: "Client Satisfaction" },
+    { value: "30+", label: "Project Solutions Delivered" },
+    { value: "PR", label: "Island Based Team" }
+
   ];
 
   return (
