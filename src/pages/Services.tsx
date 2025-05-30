@@ -248,7 +248,7 @@ const Services = () => {
               asChild
               variant="outline"
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-primary font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300"
+              className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105"
             >
               <Link to="/contact">Contact Our Team</Link>
             </Button>
