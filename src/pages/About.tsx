@@ -1,11 +1,46 @@
 
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Linkedin, Mail, Edit } from "lucide-react";
+import ImageUpload from "@/components/ImageUpload";
 
 const About = () => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [teamImages, setTeamImages] = useState<{ [key: string]: string }>({});
+
+  // Load saved images from localStorage
+  useEffect(() => {
+    const savedImages = localStorage.getItem('stratumTeamImages');
+    if (savedImages) {
+      setTeamImages(JSON.parse(savedImages));
+    }
+  }, []);
+
+  // Save images to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('stratumTeamImages', JSON.stringify(teamImages));
+  }, [teamImages]);
+
+  const handleImageUpload = (memberKey: string, imageData: string) => {
+    setTeamImages(prev => ({
+      ...prev,
+      [memberKey]: imageData
+    }));
+  };
+
+  const handleImageRemove = (memberKey: string) => {
+    setTeamImages(prev => {
+      const updated = { ...prev };
+      delete updated[memberKey];
+      return updated;
+    });
+  };
+
   const founders = [
     {
+      key: "jovaniel",
       name: "Jovaniel Rodriguez",
       role: "Co-Founder, Operations & Growth",
       bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
@@ -14,6 +49,7 @@ const About = () => {
       email: "j.rodriguez@stratumpr.com"
     },
     {
+      key: "roberto",
       name: "Roberto Otero",
       role: "Co-Founder, Tech & Build",
       bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
@@ -22,6 +58,7 @@ const About = () => {
       email: "r.otero@stratumpr.com"
     },
     {
+      key: "genesis",
       name: "Genesis Rodriguez",
       role: "Co-Founder, Data & Insights",
       bio: "Biostatistician, lead research scientist at the Puerto Rico Comprehensive Cancer Center (CCC). Genesis drives our analytical methodologies and ensures scientific rigor in all modeling approaches.",
@@ -133,9 +170,20 @@ const About = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
-              Meet the Team
-            </h2>
+            <div className="flex justify-center items-center gap-4 mb-6">
+              <h2 className="font-telegraf font-bold text-4xl text-primary">
+                Meet the Team
+              </h2>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsEditMode(!isEditMode)}
+                className="text-primary border-primary hover:bg-primary hover:text-white"
+              >
+                <Edit className="h-4 w-4 mr-2" />
+                {isEditMode ? 'Done' : 'Edit Photos'}
+              </Button>
+            </div>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
               Our founding team brings together more than a decade of experience from leading 
              Fortune 500 companies, consulting firms, technology companies, and academic institutions.
@@ -146,11 +194,26 @@ const About = () => {
             {founders.map((founder, index) => (
               <Card key={index} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden">
                 <div className="aspect-w-1 aspect-h-1 bg-gradient-to-br from-primary to-secondary p-8">
-                  <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center">
-                    <span className="text-4xl font-telegraf font-bold text-white">
-                      {founder.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
+                  {isEditMode ? (
+                    <ImageUpload
+                      currentImage={teamImages[founder.key]}
+                      onImageUpload={(imageData) => handleImageUpload(founder.key, imageData)}
+                      onImageRemove={() => handleImageRemove(founder.key)}
+                      memberName={founder.name}
+                    />
+                  ) : teamImages[founder.key] ? (
+                    <img
+                      src={teamImages[founder.key]}
+                      alt={`${founder.name} profile`}
+                      className="w-32 h-32 mx-auto rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center">
+                      <span className="text-4xl font-telegraf font-bold text-white">
+                        {founder.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <CardContent className="p-8">
                   <h3 className="font-telegraf font-bold text-2xl text-primary mb-2">
