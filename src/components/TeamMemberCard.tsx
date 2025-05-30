@@ -2,9 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Linkedin, Mail, Camera, X } from "lucide-react";
-import ImageUpload from "@/components/ImageUpload";
+import { Linkedin, Mail } from "lucide-react";
 
 interface TeamMember {
   key: string;
@@ -14,36 +12,20 @@ interface TeamMember {
   expertise: string[];
   linkedin: string;
   email: string;
+  image?: string;
 }
 
 interface TeamMemberCardProps {
   founder: TeamMember;
-  isEditMode: boolean;
-  currentImage?: string;
-  onImageUpload: (imageData: string) => void;
-  onImageRemove: () => void;
 }
 
-const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
-  founder,
-  isEditMode,
-  currentImage,
-  onImageUpload,
-  onImageRemove
-}) => {
+const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden">
       <div className="aspect-w-1 aspect-h-1 bg-gradient-to-br from-primary to-secondary p-8">
-        {isEditMode ? (
-          <ImageUpload
-            currentImage={currentImage}
-            onImageUpload={onImageUpload}
-            onImageRemove={onImageRemove}
-            memberName={founder.name}
-          />
-        ) : currentImage ? (
+        {founder.image ? (
           <img
-            src={currentImage}
+            src={founder.image}
             alt={`${founder.name} profile`}
             className="w-32 h-32 mx-auto rounded-full object-cover"
           />
