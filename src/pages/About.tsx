@@ -17,7 +17,7 @@ const About = () => {
       expertise: ["Strategic Consulting", "Digital Transformation", "Enterprise Architecture"],
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
-      image: "JovanielImage" // Add image path here
+      image: JovanielImage // Add image path here
     },
     {
       key: "roberto",
@@ -27,7 +27,7 @@ const About = () => {
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
       linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com",
-      image: "RobertoImage" // Add image path here
+      image: RobertoImage // Add image path here
     },
     {
       key: "genesis",
@@ -37,7 +37,7 @@ const About = () => {
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
-      image: "GenesisImage"  // Add image path here
+      image: GenesisImage  // Add image path here
     }
   ];
 
