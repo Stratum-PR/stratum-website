@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap } from "lucide-react";
@@ -13,7 +12,7 @@ const Home = () => {
     },
     {
       icon: Brain,
-      title: "AI & Machine Learning",
+      title: "AI & Decision Intelligence",
       description: "Intelligent automation for strategic decisions"
     },
     {
@@ -34,7 +33,6 @@ const Home = () => {
     { value: "100%", label: "Client Satisfaction" },
     { value: "30+", label: "Project Solutions Delivered" },
     { value: "PR", label: "Island Based Team" }
-
   ];
 
   return (
@@ -42,7 +40,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary-700 to-secondary min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
-        
+
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-float"></div>
@@ -54,7 +52,7 @@ const Home = () => {
             The Architecture of
             <span className="block text-accent">Better Decisions</span>
           </h1>
-          
+
           <p className="font-telegraf text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto animate-slide-up">
             We build the foundation for strategic excellence through advanced analytics, 
             AI solutions, and data-driven consulting that transforms how businesses operate.
@@ -71,7 +69,7 @@ const Home = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            
+
             <Button 
               asChild
               variant="outline" 
@@ -89,7 +87,7 @@ const Home = () => {
       {/* Stats Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-2">
