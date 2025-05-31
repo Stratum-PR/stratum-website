@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useFormSecurity } from "@/hooks/useFormSecurity";
+import { sanitizeInput, validateEmail, validateRequired } from "@/utils/security";
 import { 
   Mail, 
   Phone, 
@@ -14,7 +16,8 @@ import {
   MessageSquare,
   Clock,
   Send,
-  CheckCircle
+  CheckCircle,
+  Shield
 } from "lucide-react";
 
 const Contact = () => {
@@ -26,13 +29,90 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const { toast } = useToast();
+  
+  const {
+    honeypotField,
+    honeypotValue,
+    setHoneypotValue,
+    mathCaptcha,
+    captchaAnswer,
+    setCaptchaAnswer,
+    validateSecurity,
+    throttleSubmission,
+    resetCaptcha,
+    isSubmissionThrottled
+  } = useFormSecurity();
+
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    if (!validateRequired(formData.name, 2)) {
+      newErrors.name = "Name must be at least 2 characters long";
+    }
+
+    if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!validateRequired(formData.subject, 3)) {
+      newErrors.subject = "Subject must be at least 3 characters long";
+    }
+
+    if (!validateRequired(formData.message, 10)) {
+      newErrors.message = "Message must be at least 10 characters long";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    // Prevent double submission
+    if (isSubmitting || isSubmissionThrottled) return;
 
-    // Simulate form submission
+    // Validate form
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fix the errors in the form",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Security validation
+    const securityCheck = validateSecurity();
+    if (!securityCheck.isValid) {
+      toast({
+        title: "Security Check Failed",
+        description: securityCheck.error,
+        variant: "destructive",
+      });
+      resetCaptcha();
+      return;
+    }
+
+    setIsSubmitting(true);
+    throttleSubmission();
+
+    // Sanitize inputs
+    const sanitizedData = {
+      name: sanitizeInput(formData.name),
+      email: sanitizeInput(formData.email),
+      subject: sanitizeInput(formData.subject),
+      message: sanitizeInput(formData.message),
+    };
+
+    console.log("Secure form submission:", {
+      ...sanitizedData,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent.substring(0, 100),
+    });
+
     try {
       const response = await fetch("https://formspree.io/f/xyzjgyzq", {
         method: "POST",
@@ -40,10 +120,11 @@ const Contact = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
+          ...sanitizedData,
+          _subject: `Contact Form: ${sanitizedData.subject}`,
+          _replyto: sanitizedData.email,
+          _format: "plain",
+          timestamp: new Date().toISOString(),
         }),
       });
     
@@ -57,6 +138,7 @@ const Contact = () => {
         setTimeout(() => {
           setFormData({ name: "", email: "", subject: "", message: "" });
           setIsSubmitted(false);
+          resetCaptcha();
         }, 3000);
       } else {
         throw new Error("Form submission failed");
@@ -68,27 +150,23 @@ const Contact = () => {
         description: "Something went wrong. Please try again later.",
         variant: "destructive",
       });
+      resetCaptcha();
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    toast({
-      title: "Message Sent Successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
-
-    // Reset form after showing success
-    setTimeout(() => {
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setIsSubmitted(false);
-    }, 3000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
   };
 
   const contactInfo = [
@@ -139,6 +217,10 @@ const Contact = () => {
                   <p className="font-telegraf text-gray-600 mt-2">
                     Fill out the form below and we'll get back to you within 24 hours.
                   </p>
+                  <div className="flex items-center text-sm text-gray-500 mt-2">
+                    <Shield className="h-4 w-4 mr-1" />
+                    This form is protected against spam and automated submissions
+                  </div>
                 </CardHeader>
                 <CardContent>
                   {isSubmitted ? (
@@ -153,6 +235,17 @@ const Contact = () => {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* Honeypot Field - Hidden from users */}
+                      <input
+                        type="text"
+                        name={honeypotField}
+                        value={honeypotValue}
+                        onChange={(e) => setHoneypotValue(e.target.value)}
+                        style={{ display: 'none' }}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <Label htmlFor="name" className="font-telegraf font-medium">
@@ -165,9 +258,11 @@ const Contact = () => {
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="mt-2 font-telegraf"
+                            className={`mt-2 font-telegraf ${errors.name ? 'border-red-500' : ''}`}
                             placeholder="John Smith"
+                            maxLength={100}
                           />
+                          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                         </div>
                         <div>
                           <Label htmlFor="email" className="font-telegraf font-medium">
@@ -180,9 +275,11 @@ const Contact = () => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="mt-2 font-telegraf"
+                            className={`mt-2 font-telegraf ${errors.email ? 'border-red-500' : ''}`}
                             placeholder="john@company.com"
+                            maxLength={254}
                           />
+                          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                         </div>
                       </div>
                       
@@ -197,9 +294,11 @@ const Contact = () => {
                           required
                           value={formData.subject}
                           onChange={handleChange}
-                          className="mt-2 font-telegraf"
+                          className={`mt-2 font-telegraf ${errors.subject ? 'border-red-500' : ''}`}
                           placeholder="Enterprise Solutions Inquiry"
+                          maxLength={200}
                         />
+                        {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
                       </div>
                       
                       <div>
@@ -213,15 +312,34 @@ const Contact = () => {
                           value={formData.message}
                           onChange={handleChange}
                           rows={6}
-                          className="mt-2 font-telegraf resize-none"
+                          className={`mt-2 font-telegraf resize-none ${errors.message ? 'border-red-500' : ''}`}
                           placeholder="Tell us about your project, goals, and timeline..."
+                          maxLength={2000}
+                        />
+                        {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                      </div>
+
+                      {/* Math CAPTCHA */}
+                      <div>
+                        <Label htmlFor="captcha" className="font-telegraf font-medium">
+                          Security Question *
+                        </Label>
+                        <p className="text-sm text-gray-600 mb-2">{mathCaptcha.question}</p>
+                        <Input
+                          id="captcha"
+                          type="number"
+                          required
+                          value={captchaAnswer}
+                          onChange={(e) => setCaptchaAnswer(e.target.value)}
+                          className="mt-2 font-telegraf max-w-32"
+                          placeholder="Answer"
                         />
                       </div>
                       
                       <Button 
                         type="submit" 
-                        disabled={isSubmitting}
-                        className="w-full bg-primary hover:bg-primary-800 font-telegraf font-semibold py-3 transition-all duration-300 hover:shadow-lg"
+                        disabled={isSubmitting || isSubmissionThrottled}
+                        className="w-full bg-primary hover:bg-primary-800 font-telegraf font-semibold py-3 transition-all duration-300 hover:shadow-lg disabled:opacity-50"
                       >
                         {isSubmitting ? (
                           <>
