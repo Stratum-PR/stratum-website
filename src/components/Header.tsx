@@ -53,7 +53,7 @@ export const Header = () => {
                   {item.name}
                 </Link>)}
               <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold mx-4 mt-2">
-                <a href="https://calendly.com/stratumpr" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                   Schedule Consultation
                 </a>
               </Button>
