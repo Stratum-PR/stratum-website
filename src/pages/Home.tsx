@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap } from "lucide-react";
@@ -38,16 +39,36 @@ const Home = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary-700 to-secondary min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+      <section className="relative bg-gradient-to-br from-primary via-primary-800 to-secondary min-h-screen flex items-center overflow-hidden">
+        {/* Sophisticated Overlay with Multiple Gradients */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary-700/85 to-secondary/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-primary-800/30 to-accent/10"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        {/* Enhanced Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Primary floating element */}
+          <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-gradient-to-br from-accent/15 to-accent/5 rounded-full blur-3xl animate-float opacity-70"></div>
+          
+          {/* Secondary floating element */}
+          <div className="absolute bottom-1/3 right-1/5 w-80 h-80 bg-gradient-to-tl from-secondary/20 to-primary-600/15 rounded-full blur-3xl animate-float opacity-60" style={{ animationDelay: '1.5s' }}></div>
+          
+          {/* Tertiary accent element */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-accent/10 to-transparent rounded-full blur-2xl animate-float opacity-50" style={{ animationDelay: '3s' }}></div>
+          
+          {/* Geometric accent lines */}
+          <div className="absolute top-1/4 right-1/4 w-px h-32 bg-gradient-to-b from-transparent via-accent/30 to-transparent animate-pulse opacity-40"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-px h-24 bg-gradient-to-b from-transparent via-accent/20 to-transparent animate-pulse opacity-30" style={{ animationDelay: '2s' }}></div>
+          
+          {/* Subtle mesh pattern */}
+          <div className="absolute inset-0 opacity-5" style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, ${getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#E6E08E'}40 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
           <h1 className="font-telegraf font-bold text-5xl md:text-7xl mb-6 animate-fade-in">
             The Architecture of
             <span className="block text-accent">Better Decisions</span>
