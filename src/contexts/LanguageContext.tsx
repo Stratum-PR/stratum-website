@@ -43,6 +43,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'nav.about': 'About',
         'nav.services': 'Services',
         'nav.contact': 'Contact',
+        'nav.casestudies': 'Case Studies',
         'nav.schedule': 'Schedule Consultation',
         
         // Home page
@@ -58,6 +59,30 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'stats.projects': 'Project Solutions Delivered',
         'stats.team': 'Island Based Team',
         'stats.fortune': 'Built by veterans of Fortune Top 5 Companies',
+        
+        // Services Grid
+        'services.grid.title': 'Strategic Solutions for Data Analytics Puerto Rico',
+        'services.grid.subtitle': 'Explore the capabilities we bring to government, nonprofit, and enterprise clients across the island.',
+        
+        // Meet Our Team
+        'meetteam.title': 'Meet Our Team',
+        'meetteam.description': 'We\'re a small but mighty team of data professionals, strategists, and technologists driven by a shared mission—to build systems that make decisions smarter and lives easier.',
+        'meetteam.button': 'Meet Our Team',
+
+        // Why Work With Us
+        'whyworkwithus.title': 'Why Work With Us',
+        'whyworkwithus.description': 'Stratum PR may be new, but our team is not. Founded by senior consultants and data specialists with years of experience delivering results for Fortune 500 companies, federal recovery programs, and Puerto Rico government agencies, we bring the discipline of enterprise work into a focused, agile firm built for impact.',
+        'whyworkwithus.expertise.title': 'Proven Expertise',
+        'whyworkwithus.expertise.description': 'We\'ve designed systems, dashboards, and automation tools for organizations like ICF, UnitedHealth Group, and the Puerto Rico Department of Health. We know the stakes—and how to deliver.',
+        'whyworkwithus.process.title': 'Process-Driven Clarity',
+        'whyworkwithus.process.description': 'We don\'t just build dashboards—we help clients untangle messy data and implement frameworks that actually support decision-making, planning, and accountability.',
+        'whyworkwithus.partnership.title': 'Personalized Partnership',
+        'whyworkwithus.partnership.description': 'We take on fewer clients so we can work with you, not just for you. Our size means you\'ll always be working directly with decision-makers, not just junior staff or vendors.',
+        
+        // CTA
+        'cta.title': 'Ready to Transform Your Business?',
+        'cta.description': 'Let\'s discuss how Stratum PR can architect better decisions for your organization through data analytics Puerto Rico expertise.',
+        'cta.button': 'Get Started Today',
         
         // Features
         'features.title': 'Strategic Solutions for Data Analytics Puerto Rico',
@@ -261,6 +286,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'nav.about': 'Acerca de',
         'nav.services': 'Servicios',
         'nav.contact': 'Contacto',
+        'nav.casestudies': 'Casos de Estudio',
         'nav.schedule': 'Programar Consulta',
         
         // Home page
@@ -276,6 +302,30 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'stats.projects': 'Soluciones de Proyectos Entregadas',
         'stats.team': 'Equipo Basado en la Isla',
         'stats.fortune': 'Construido por veteranos de las 5 mejores empresas Fortune',
+        
+        // Services Grid
+        'services.grid.title': 'Soluciones Estratégicas para Análisis de Datos Puerto Rico',
+        'services.grid.subtitle': 'Explora las capacidades que brindamos a clientes gubernamentales, sin fines de lucro y empresariales en toda la isla.',
+        
+        // Meet Our Team
+        'meetteam.title': 'Conoce a Nuestro Equipo',
+        'meetteam.description': 'Somos un equipo pequeño pero poderoso de profesionales de datos, estrategas y tecnólogos impulsados por una misión compartida: construir sistemas que hagan las decisiones más inteligentes y la vida más fácil.',
+        'meetteam.button': 'Conoce a Nuestro Equipo',
+
+        // Why Work With Us
+        'whyworkwithus.title': 'Por Qué Trabajar Con Nosotros',
+        'whyworkwithus.description': 'Stratum PR puede ser nueva, pero nuestro equipo no. Fundada por consultores senior y especialistas en datos con años de experiencia entregando resultados para empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico, traemos la disciplina del trabajo empresarial a una firma enfocada y ágil construida para el impacto.',
+        'whyworkwithus.expertise.title': 'Experiencia Comprobada',
+        'whyworkwithus.expertise.description': 'Hemos diseñado sistemas, dashboards y herramientas de automatización para organizaciones como ICF, UnitedHealth Group y el Departamento de Salud de Puerto Rico. Conocemos lo que está en juego—y cómo entregar.',
+        'whyworkwithus.process.title': 'Claridad Basada en Procesos',
+        'whyworkwithus.process.description': 'No solo construimos dashboards—ayudamos a los clientes a desenredar datos desordenados e implementar marcos que realmente apoyen la toma de decisiones, planificación y responsabilidad.',
+        'whyworkwithus.partnership.title': 'Asociación Personalizada',
+        'whyworkwithus.partnership.description': 'Tomamos menos clientes para poder trabajar contigo, no solo para ti. Nuestro tamaño significa que siempre trabajarás directamente con los tomadores de decisiones, no solo con personal junior o proveedores.',
+        
+        // CTA
+        'cta.title': '¿Listo para Transformar tu Negocio?',
+        'cta.description': 'Hablemos sobre cómo Stratum PR puede arquitectar mejores decisiones para tu organización a través de nuestra experiencia en análisis de datos Puerto Rico.',
+        'cta.button': 'Comenzar Hoy',
         
         // Features
         'features.title': 'Soluciones Estratégicas para Análisis de Datos Puerto Rico',

@@ -1,6 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap } from "lucide-react";
+import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Cpu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -38,22 +39,30 @@ const Home = () => {
     }
   }, "home");
 
-  const features = [{
-    icon: Database,
-    title: t('features.bigdata.title'),
-    description: t('features.bigdata.description')
-  }, {
-    icon: Brain,
-    title: t('features.ai.title'),
-    description: t('features.ai.description')
+  const services = [{
+    icon: Layers,
+    title: t('services.integration.title'),
+    description: t('services.integration.description')
   }, {
     icon: BarChart3,
-    title: t('features.crm.title'),
-    description: t('features.crm.description')
+    title: t('services.crm.title'),
+    description: t('services.crm.description')
+  }, {
+    icon: Database,
+    title: t('services.bigdata.title'),
+    description: t('services.bigdata.description')
   }, {
     icon: Target,
-    title: t('features.predictive.title'),
-    description: t('features.predictive.description')
+    title: t('services.forecasting.title'),
+    description: t('services.forecasting.description')
+  }, {
+    icon: Zap,
+    title: t('services.automation.title'),
+    description: t('services.automation.description')
+  }, {
+    icon: Brain,
+    title: t('services.decision.title'),
+    description: t('services.decision.description')
   }];
 
   const stats = [{
@@ -157,33 +166,35 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20" aria-labelledby="features-heading">
+      {/* Services Grid Section */}
+      <section className="py-20" aria-labelledby="services-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 id="features-heading" className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
-              {t('features.title')}
+            <h2 id="services-heading" className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
+              {t('services.grid.title')}
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-              {t('features.description')}
+              {t('services.grid.subtitle')}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
-                <CardContent className="p-8 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-xl mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <feature.icon className="h-8 w-8 text-primary group-hover:text-white" aria-hidden="true" />
-                  </div>
-                  <h3 className="font-telegraf font-semibold text-xl text-primary mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="font-telegraf text-gray-600">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Link to="/services" key={index} className="block">
+                <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer">
+                  <CardContent className="p-8 text-center h-full flex flex-col">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-xl mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <service.icon className="h-8 w-8 text-primary group-hover:text-white" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-telegraf font-semibold text-xl text-primary mb-4 group-hover:text-secondary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="font-telegraf text-gray-600 flex-grow">
+                      {service.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
@@ -191,6 +202,24 @@ const Home = () => {
 
       {/* Why Work With Us Section */}
       <WhyWorkWithUsSection />
+
+      {/* Meet Our Team Section */}
+      <section className="py-20 bg-gray-50" aria-labelledby="team-heading">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 id="team-heading" className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
+            {t('meetteam.title')}
+          </h2>
+          <p className="font-telegraf text-xl text-gray-600 mb-8 leading-relaxed">
+            {t('meetteam.description')}
+          </p>
+          <Button asChild size="lg" className="bg-primary hover:bg-primary-700 text-white font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105" aria-label="Learn more about the Stratum PR team">
+            <Link to="/about">
+              {t('meetteam.button')}
+              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+            </Link>
+          </Button>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-secondary" aria-labelledby="cta-heading">
