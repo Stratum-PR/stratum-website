@@ -2,6 +2,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ContactFormFieldsProps {
   formData: {
@@ -15,12 +16,14 @@ interface ContactFormFieldsProps {
 }
 
 const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProps) => {
+  const { t } = useLanguage();
+  
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="name" className="font-telegraf font-medium">
-            Full Name *
+            {t('contact.form.name')} *
           </Label>
           <Input 
             id="name" 
@@ -37,7 +40,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
         </div>
         <div>
           <Label htmlFor="email" className="font-telegraf font-medium">
-            Email Address *
+            {t('contact.form.email')} *
           </Label>
           <Input 
             id="email" 
@@ -56,7 +59,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       
       <div>
         <Label htmlFor="subject" className="font-telegraf font-medium">
-          Subject *
+          {t('contact.form.subject')} *
         </Label>
         <Input 
           id="subject" 
@@ -74,7 +77,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       
       <div>
         <Label htmlFor="message" className="font-telegraf font-medium">
-          Message *
+          {t('contact.form.message')} *
         </Label>
         <Textarea 
           id="message" 

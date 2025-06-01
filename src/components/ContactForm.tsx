@@ -9,8 +9,10 @@ import { MessageSquare, Send, Shield } from "lucide-react";
 import ContactFormFields from "./ContactFormFields";
 import SecurityCaptcha from "./SecurityCaptcha";
 import ContactFormSuccess from "./ContactFormSuccess";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactForm = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -110,8 +112,8 @@ const ContactForm = () => {
       if (response.ok) {
         setIsSubmitted(true);
         toast({
-          title: "Message Sent Successfully!",
-          description: "We'll get back to you within 24 hours."
+          title: t('contact.form.success.title'),
+          description: t('contact.form.success.description')
         });
         setTimeout(() => {
           setFormData({
@@ -158,14 +160,14 @@ const ContactForm = () => {
       <CardHeader>
         <CardTitle className="font-telegraf text-3xl text-primary flex items-center">
           <MessageSquare className="h-8 w-8 mr-3" />
-          Send us a Message
+          {t('contact.form.title')}
         </CardTitle>
         <p className="font-telegraf text-gray-600 mt-2">
-          Fill out the form below and we'll get back to you within 24 hours.
+          {t('contact.form.description')}
         </p>
         <div className="flex items-center text-sm text-gray-500 mt-2">
           <Shield className="h-4 w-4 mr-1" />
-          This form is protected against spam and automated submissions
+          {t('contact.form.security')}
         </div>
       </CardHeader>
       <CardContent>
@@ -193,11 +195,11 @@ const ContactForm = () => {
               {isSubmitting ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  Sending Message...
+                  {t('contact.form.sending')}
                 </>
               ) : (
                 <>
-                  Send Message
+                  {t('contact.form.submit')}
                   <Send className="ml-2 h-4 w-4" />
                 </>
               )}

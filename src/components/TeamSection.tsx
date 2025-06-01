@@ -1,6 +1,7 @@
 
 import React from 'react';
 import TeamMemberCard from "./TeamMemberCard";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface TeamMember {
   key: string;
@@ -18,16 +19,17 @@ interface TeamSectionProps {
 }
 
 const TeamSection: React.FC<TeamSectionProps> = ({ founders }) => {
+  const { t } = useLanguage();
+  
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
-            Meet Our Leadership Team
+            {t('about.team.title')}
           </h2>
           <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-            Our founding team brings together more than a decade of experience from leading projects at
-           Fortune 500 companies, consulting firms, technology companies, and academic institutions.
+            {t('about.team.description')}
           </p>
         </div>
 

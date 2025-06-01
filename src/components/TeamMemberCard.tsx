@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Linkedin, Mail } from "lucide-react";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface TeamMember {
   key: string;
@@ -20,6 +21,8 @@ interface TeamMemberCardProps {
 }
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
+  const { t } = useLanguage();
+  
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden">
       <div className="aspect-w-1 aspect-h-1 bg-gradient-to-br from-primary to-secondary p-8">
@@ -50,7 +53,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
         
         <div className="mb-6">
           <h4 className="font-telegraf font-semibold text-sm text-gray-800 mb-3">
-            EXPERTISE
+            {t('about.team.expertise')}
           </h4>
           <div className="flex flex-wrap gap-2">
             {founder.expertise.map((skill, skillIndex) => (

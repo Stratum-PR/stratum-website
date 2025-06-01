@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Value {
   title: string;
@@ -12,15 +13,17 @@ interface ValuesSectionProps {
 }
 
 const ValuesSection: React.FC<ValuesSectionProps> = ({ values }) => {
+  const { t } = useLanguage();
+  
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
-            Our Values
+            {t('about.values.title')}
           </h2>
           <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-            These principles guide every decision we make and every solution we deliver.
+            {t('about.values.description')}
           </p>
         </div>
 

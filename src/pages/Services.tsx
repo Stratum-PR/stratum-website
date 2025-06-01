@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,8 +14,11 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
+  
   // SEO optimization for services page
   useSEO({
     title: "Data Analytics Services Puerto Rico | CRM Implementation | AI Business Automation - Stratum PR",
@@ -50,104 +54,104 @@ const Services = () => {
   const services = [
     {
       icon: Zap,
-      title: "Enterprise Software Integration",
-      description: "Seamlessly connect disparate systems to create unified, efficient business processes across your organization.",
+      title: t('services.integration.title'),
+      description: t('services.integration.description'),
       features: [
-        "API Development & Integration",
-        "Legacy System Modernization",
-        "Cloud Migration Strategies",
-        "Microservices Architecture",
-        "Security & Compliance"
+        t('services.integration.feature1'),
+        t('services.integration.feature2'),
+        t('services.integration.feature3'),
+        t('services.integration.feature4'),
+        t('services.integration.feature5')
       ],
-      deliverables: "Fully integrated ecosystem with reduced operational complexity"
+      deliverables: t('services.integration.deliverable')
     },
     {
       icon: Settings,
-      title: "CRM Implementation & Optimization",
-      description: "Streamline customer relationships with integrated CRM solutions that drive sales efficiency and customer satisfaction.",
+      title: t('services.crm.title'),
+      description: t('services.crm.description'),
       features: [
-        "Salesforce & HubSpot Implementation",
-        "Custom CRM Development",
-        "Data Migration & Integration",
-        "Workflow Automation",
-        "Performance Analytics"
+        t('services.crm.feature1'),
+        t('services.crm.feature2'),
+        t('services.crm.feature3'),
+        t('services.crm.feature4'),
+        t('services.crm.feature5')
       ],
-      deliverables: "90-day implementation timeline with full training and support"
+      deliverables: t('services.crm.deliverable')
     },
     {
       icon: Database,
-      title: "Big Data Analytics & Visualization",
-      description: "Transform massive datasets into actionable insights through advanced analytics and intuitive visualization platforms.",
+      title: t('services.bigdata.title'),
+      description: t('services.bigdata.description'),
       features: [
-        "Data Warehouse Architecture",
-        "ETL Pipeline Development",
-        "Interactive Dashboards",
-        "Real-time Analytics",
-        "Custom Reporting Solutions"
+        t('services.bigdata.feature1'),
+        t('services.bigdata.feature2'),
+        t('services.bigdata.feature3'),
+        t('services.bigdata.feature4'),
+        t('services.bigdata.feature5')
       ],
-      deliverables: "Comprehensive analytics platform with 24/7 monitoring"
+      deliverables: t('services.bigdata.deliverable')
     },
     {
       icon: TrendingUp,
-      title: "Forecasting & Predictive Modeling",
-      description: "Leverage statistical models and machine learning to predict trends, optimize resources, and mitigate risks.",
+      title: t('services.forecasting.title'),
+      description: t('services.forecasting.description'),
       features: [
-        "Demand Forecasting Models",
-        "Risk Assessment Analytics",
-        "Market Trend Analysis",
-        "Resource Optimization",
-        "Scenario Planning Tools"
+        t('services.forecasting.feature1'),
+        t('services.forecasting.feature2'),
+        t('services.forecasting.feature3'),
+        t('services.forecasting.feature4'),
+        t('services.forecasting.feature5')
       ],
-      deliverables: "Predictive models with 85%+ accuracy and automated reporting"
+      deliverables: t('services.forecasting.deliverable')
     },
     {
       icon: Brain,
-      title: "Process Automation & ETL",
-      description: "Implement cutting-edge technologies to automate processes, enhance decision-making, and drive innovation.",
+      title: t('services.automation.title'),
+      description: t('services.automation.description'),
       features: [
-        "Natural Language Processing",
-        "Computer Vision Applications",
-        "Recommendation Systems",
-        "Anomaly Detection",
-        "Automated Decision Systems"
+        t('services.automation.feature1'),
+        t('services.automation.feature2'),
+        t('services.automation.feature3'),
+        t('services.automation.feature4'),
+        t('services.automation.feature5')
       ],
-      deliverables: "Custom AI solutions with continuous learning capabilities"
+      deliverables: t('services.automation.deliverable')
     },
     {
       icon: BarChart3,
-      title: "AI & Decision Intelligence",
-      description: "Create intelligent systems that automate complex business decisions while maintaining strategic oversight and control.",
+      title: t('services.decision.title'),
+      description: t('services.decision.description'),
       features: [
-        "Automated Decision Workflows",
-        "Business Rule Engines",
-        "Strategic Planning Tools",
-        "Performance Monitoring",
-        "Optimization Algorithms"
+        t('services.decision.feature1'),
+        t('services.decision.feature2'),
+        t('services.decision.feature3'),
+        t('services.decision.feature4'),
+        t('services.decision.feature5')
       ],
-      deliverables: "Intelligent automation platform with strategic decision support"
+      deliverables: t('services.decision.deliverable')
     }
   ];
 
   const process = [
     {
       step: "01",
-      title: "Discovery & Assessment",
-      description: "We begin with a comprehensive analysis of your current systems, data landscape, and business objectives."
+      title: t('services.process.step1.title'),
+      description: t('services.process.step1.description')
     },
     {
       step: "02",
-      title: "Strategic Architecture",
-      description: "Our team designs a tailored solution architecture that aligns with your goals and integrates with existing infrastructure."
+      title: t('services.process.step2.title'),
+      description: t('services.process.step2.description')
     },
     {
       step: "03",
-      title: "Implementation & Integration",
-      description: "We execute the solution with minimal disruption to your operations, ensuring seamless integration and user adoption."
+      title: t('services.process.step3.title'),
+      description: t('services.process.step3.description')
     },
     {
       step: "04",
-      title: "Training & Optimization",
-      description: "Comprehensive training programs and ongoing optimization ensure maximum value from your investment."
+      title: t('services.process.step4.title'),
+      description: t('services.process.step4.description')
     }
   ];
 
@@ -157,14 +161,14 @@ const Services = () => {
       <section className="py-20 bg-gradient-to-br from-primary via-primary-700 to-secondary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-5xl md:text-6xl mb-6">
-            Data Analytics Services Puerto Rico
+            {t('services.hero.title')}
           </h1>
           <p className="font-telegraf text-xl text-primary-100 leading-relaxed mb-8">
-            We architect comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from CRM implementation consulting to AI business automation.
+            {t('services.hero.description')}
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
             <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule consultation for data analytics services">
-              Schedule Consultation
+              {t('services.hero.cta')}
               <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </a>
           </Button>
@@ -176,10 +180,10 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 id="services-heading" className="font-telegraf font-bold text-4xl text-primary mb-6">
-              Our Core Services
+              {t('services.core.title')}
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-              Each service is designed to deliver measurable business value while building the foundation for long-term strategic advantage.
+              {t('services.core.description')}
             </p>
           </div>
 
@@ -207,7 +211,7 @@ const Services = () => {
                 <CardContent className="p-6 flex-grow flex flex-col justify-between">
                   <div className="mb-6">
                     <h4 className="font-telegraf font-semibold text-sm text-gray-800 mb-3 uppercase tracking-wide">
-                      Key Features
+                      {t('services.features')}
                     </h4>
                     <ul className="space-y-2" role="list">
                       {service.features.map((feature, featureIndex) => (
@@ -235,10 +239,10 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 id="process-heading" className="font-telegraf font-bold text-4xl text-primary mb-6">
-              Our Process
+              {t('services.process.title')}
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-              We follow a proven methodology that ensures successful delivery and sustainable long-term value.
+              {t('services.process.description')}
             </p>
           </div>
 
@@ -266,15 +270,15 @@ const Services = () => {
       <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white" aria-labelledby="cta-heading">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 id="cta-heading" className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            Ready to Get Started?
+            {t('services.cta.title')}
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            Let's discuss how our data analytics services can transform your business operations and drive strategic growth in Puerto Rico.
+            {t('services.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
-                Schedule Free Consultation
+                {t('services.cta.consultation')}
               </a>
             </Button>
             <Button
@@ -283,7 +287,7 @@ const Services = () => {
               size="lg"
               className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105"
             >
-              <Link to="/contact" aria-label="Contact Stratum PR team for data analytics consulting">Contact Our Team</Link>
+              <Link to="/contact" aria-label="Contact Stratum PR team for data analytics consulting">{t('services.cta.contact')}</Link>
             </Button>
           </div>
         </div>
