@@ -229,6 +229,31 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'common.error': 'Error',
         'common.submit': 'Submit',
         'common.cancel': 'Cancel',
+        
+        // Case Studies page
+        'casestudies.hero.title': 'Case Studies',
+        'casestudies.hero.description': 'A look inside our impact—real clients, real results.',
+        'casestudies.filter.all': 'All',
+        'casestudies.readmore': 'Read More',
+        'casestudies.cta.title': 'Ready to Create Your Success Story?',
+        'casestudies.cta.description': 'Let\'s discuss how we can help transform your data into actionable insights.',
+        'casestudies.cta.button': 'Schedule Consultation',
+        
+        // Case study examples
+        'casestudies.healthcare.title': 'Healthcare Data Integration Platform',
+        'casestudies.healthcare.client': 'Regional Healthcare Network',
+        'casestudies.healthcare.sector': 'Healthcare',
+        'casestudies.healthcare.summary': 'Streamlined patient data across 12 facilities, reducing administrative overhead by 40% and improving care coordination.',
+        
+        'casestudies.municipal.title': 'Municipal Budget Transparency Dashboard',
+        'casestudies.municipal.client': 'Puerto Rico Municipality',
+        'casestudies.municipal.sector': 'Government',
+        'casestudies.municipal.summary': 'Created real-time budget tracking system that increased citizen engagement and improved fiscal accountability.',
+        
+        'casestudies.sales.title': 'Sales Performance Analytics Suite',
+        'casestudies.sales.client': 'Fortune 500 Technology Company',
+        'casestudies.sales.sector': 'Technology',
+        'casestudies.sales.summary': 'Automated sales reporting pipeline that reduced manual work by 60% and improved forecast accuracy by 25%.',
       },
       es: {
         // Navigation
@@ -422,6 +447,31 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'common.error': 'Error',
         'common.submit': 'Enviar',
         'common.cancel': 'Cancelar',
+        
+        // Case Studies page
+        'casestudies.hero.title': 'Casos de Estudio',
+        'casestudies.hero.description': 'Una mirada al interior de nuestro impacto—clientes reales, resultados reales.',
+        'casestudies.filter.all': 'Todos',
+        'casestudies.readmore': 'Leer Más',
+        'casestudies.cta.title': '¿Listo para Crear tu Historia de Éxito?',
+        'casestudies.cta.description': 'Hablemos sobre cómo podemos ayudarte a transformar tus datos en conocimientos accionables.',
+        'casestudies.cta.button': 'Programar Consulta',
+        
+        // Case study examples
+        'casestudies.healthcare.title': 'Plataforma de Integración de Datos de Salud',
+        'casestudies.healthcare.client': 'Red de Salud Regional',
+        'casestudies.healthcare.sector': 'Salud',
+        'casestudies.healthcare.summary': 'Optimizó datos de pacientes en 12 instalaciones, reduciendo la sobrecarga administrativa en 40% y mejorando la coordinación de atención.',
+        
+        'casestudies.municipal.title': 'Dashboard de Transparencia Presupuestaria Municipal',
+        'casestudies.municipal.client': 'Municipio de Puerto Rico',
+        'casestudies.municipal.sector': 'Gobierno',
+        'casestudies.municipal.summary': 'Creó sistema de seguimiento presupuestario en tiempo real que aumentó la participación ciudadana y mejoró la responsabilidad fiscal.',
+        
+        'casestudies.sales.title': 'Suite de Análisis de Rendimiento de Ventas',
+        'casestudies.sales.client': 'Empresa Tecnológica Fortune 500',
+        'casestudies.sales.sector': 'Tecnología',
+        'casestudies.sales.summary': 'Automatizó pipeline de reportes de ventas que redujo el trabajo manual en 60% y mejoró la precisión de pronósticos en 25%.',
       }
     };
 

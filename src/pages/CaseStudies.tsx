@@ -21,37 +21,48 @@ const CaseStudies = () => {
   const caseStudies = [
     {
       id: 1,
-      title: "Healthcare Data Integration Platform",
-      client: "Regional Healthcare Network",
-      sector: "Healthcare",
-      summary: "Streamlined patient data across 12 facilities, reducing administrative overhead by 40% and improving care coordination.",
-      tags: ["Healthcare", "Integration", "Dashboards"],
+      title: t('casestudies.healthcare.title'),
+      client: t('casestudies.healthcare.client'),
+      sector: t('casestudies.healthcare.sector'),
+      summary: t('casestudies.healthcare.summary'),
+      tags: [t('casestudies.healthcare.sector'), "Integration", "Dashboards"],
       icon: Heart,
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=300&fit=crop"
     },
     {
       id: 2,
-      title: "Municipal Budget Transparency Dashboard",
-      client: "Puerto Rico Municipality",
-      sector: "Government",
-      summary: "Created real-time budget tracking system that increased citizen engagement and improved fiscal accountability.",
-      tags: ["Government", "Transparency", "Dashboards"],
+      title: t('casestudies.municipal.title'),
+      client: t('casestudies.municipal.client'),
+      sector: t('casestudies.municipal.sector'),
+      summary: t('casestudies.municipal.summary'),
+      tags: [t('casestudies.municipal.sector'), "Transparency", "Dashboards"],
       icon: Building2,
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop"
     },
     {
       id: 3,
-      title: "Sales Performance Analytics Suite",
-      client: "Fortune 500 Technology Company",
-      sector: "Technology",
-      summary: "Automated sales reporting pipeline that reduced manual work by 60% and improved forecast accuracy by 25%.",
-      tags: ["Technology", "Automation", "Analytics"],
+      title: t('casestudies.sales.title'),
+      client: t('casestudies.sales.client'),
+      sector: t('casestudies.sales.sector'),
+      summary: t('casestudies.sales.summary'),
+      tags: [t('casestudies.sales.sector'), "Automation", "Analytics"],
       icon: BarChart3,
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop"
     }
   ];
 
-  const allTags = ["All", "Healthcare", "Government", "Technology", "Dashboards", "Integration", "Automation", "Analytics", "Transparency"];
+  const allTags = [t('casestudies.filter.all'), t('casestudies.healthcare.sector'), t('casestudies.municipal.sector'), t('casestudies.sales.sector'), "Dashboards", "Integration", "Automation", "Analytics", "Transparency"];
+
+  const handleReadMore = (studyId: number) => {
+    // For now, scroll to contact section or show a modal
+    // In the future, this could navigate to /case-studies/{id}
+    console.log(`Opening case study ${studyId}`);
+    // Scroll to contact section as a temporary solution
+    const contactSection = document.querySelector('footer');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="pt-20">
@@ -59,10 +70,10 @@ const CaseStudies = () => {
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-5xl md:text-6xl text-primary mb-6">
-            Case Studies
+            {t('casestudies.hero.title')}
           </h1>
           <p className="font-telegraf text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            A look inside our impact—real clients, real results.
+            {t('casestudies.hero.description')}
           </p>
         </div>
       </section>
@@ -118,8 +129,9 @@ const CaseStudies = () => {
                   <Button 
                     variant="ghost" 
                     className="p-0 h-auto font-telegraf text-primary hover:text-secondary transition-colors group"
+                    onClick={() => handleReadMore(study.id)}
                   >
-                    Read More
+                    {t('casestudies.readmore')}
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
@@ -133,14 +145,14 @@ const CaseStudies = () => {
       <section className="py-20 bg-gradient-to-r from-primary to-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            Ready to Create Your Success Story?
+            {t('casestudies.cta.title')}
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            Let's discuss how we can help transform your data into actionable insights.
+            {t('casestudies.cta.description')}
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
             <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-              Schedule Consultation
+              {t('casestudies.cta.button')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>

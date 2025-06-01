@@ -21,7 +21,7 @@ export const Header = () => {
     name: t('nav.services'),
     href: '/services'
   }, {
-    name: 'Case Studies',
+    name: t('casestudies.hero.title'),
     href: '/case-studies'
   }, {
     name: t('nav.contact'),
