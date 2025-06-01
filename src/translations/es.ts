@@ -6,7 +6,7 @@ export const esTranslations = {
   'nav.services': 'Servicios',
   'nav.contact': 'Contacto',
   'nav.casestudies': 'Casos de Estudio',
-  'nav.schedule': 'Programar Consulta',
+  'nav.schedule': 'Programar Consulta Gratuita',
   
   // Home page
   'home.hero.title': 'La Arquitectura de',
@@ -97,7 +97,7 @@ export const esTranslations = {
   // Services page
   'services.hero.title': 'Servicios de Análisis de Datos Puerto Rico',
   'services.hero.description': 'Arquitectamos soluciones integrales que transforman datos complejos en ventajas estratégicas de negocio. Nuestros servicios abarcan todo el ecosistema de análisis, desde consultoría de implementación de CRM hasta automatización empresarial con IA.',
-  'services.hero.cta': 'Programar Consulta',
+  'services.hero.cta': 'Programar Consulta Gratuita',
   'services.core.title': 'Nuestros Servicios Principales',
   'services.core.description': 'Cada servicio está diseñado para entregar valor de negocio medible mientras construye la base para ventaja estratégica a largo plazo.',
   'services.integration.title': 'Integración de Software Empresarial',
@@ -209,7 +209,7 @@ export const esTranslations = {
   'casestudies.readmore': 'Leer Más',
   'casestudies.cta.title': '¿Listo para Crear tu Historia de Éxito?',
   'casestudies.cta.description': 'Hablemos sobre cómo podemos ayudarte a transformar tus datos en conocimientos accionables.',
-  'casestudies.cta.button': 'Programar Consulta',
+  'casestudies.cta.button': 'Programar Consulta Gratuita',
   
   // Case study examples
   'casestudies.healthcare.title': 'Plataforma de Integración de Datos de Salud',

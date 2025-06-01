@@ -6,7 +6,7 @@ export const enTranslations = {
   'nav.services': 'Services',
   'nav.contact': 'Contact',
   'nav.casestudies': 'Case Studies',
-  'nav.schedule': 'Schedule Consultation',
+  'nav.schedule': 'Schedule Free Consultation',
   
   // Home page
   'home.hero.title': 'The Architecture of',
@@ -97,7 +97,7 @@ export const enTranslations = {
   // Services page
   'services.hero.title': 'Data Analytics Services Puerto Rico',
   'services.hero.description': 'We architect comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from CRM implementation consulting to AI business automation.',
-  'services.hero.cta': 'Schedule Consultation',
+  'services.hero.cta': 'Schedule Free Consultation',
   'services.core.title': 'Our Core Services',
   'services.core.description': 'Each service is designed to deliver measurable business value while building the foundation for long-term strategic advantage.',
   'services.integration.title': 'Enterprise Software Integration',
@@ -209,7 +209,7 @@ export const enTranslations = {
   'casestudies.readmore': 'Read More',
   'casestudies.cta.title': 'Ready to Create Your Success Story?',
   'casestudies.cta.description': 'Let\'s discuss how we can help transform your data into actionable insights.',
-  'casestudies.cta.button': 'Schedule Consultation',
+  'casestudies.cta.button': 'Schedule Free Consultation',
   
   // Case study examples
   'casestudies.healthcare.title': 'Healthcare Data Integration Platform',
