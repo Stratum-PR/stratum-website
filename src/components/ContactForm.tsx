@@ -1,13 +1,15 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useFormSecurity } from "@/hooks/useFormSecurity";
 import { sanitizeInput, validateEmail, validateRequired } from "@/utils/security";
-import { MessageSquare, Send, CheckCircle, Shield } from "lucide-react";
+import { MessageSquare, Send, Shield } from "lucide-react";
+import ContactFormFields from "./ContactFormFields";
+import SecurityCaptcha from "./SecurityCaptcha";
+import ContactFormSuccess from "./ContactFormSuccess";
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -18,9 +20,7 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const {
     honeypotField,
     honeypotValue,
@@ -33,6 +33,7 @@ const ContactForm = () => {
     resetCaptcha,
     isSubmissionThrottled
   } = useFormSecurity();
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
     if (!validateRequired(formData.name, 2)) {
@@ -50,6 +51,7 @@ const ContactForm = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -77,6 +79,7 @@ const ContactForm = () => {
       resetCaptcha();
       return;
     }
+    
     setIsSubmitting(true);
     throttleSubmission();
 
@@ -87,11 +90,13 @@ const ContactForm = () => {
       subject: sanitizeInput(formData.subject),
       message: sanitizeInput(formData.message)
     };
+
     console.log("Secure form submission:", {
       ...sanitizedData,
       timestamp: new Date().toISOString(),
       userAgent: navigator.userAgent.substring(0, 100)
     });
+
     try {
       const response = await fetch("https://formspree.io/f/xyzjgyzq", {
         method: "POST",
@@ -106,6 +111,7 @@ const ContactForm = () => {
           timestamp: new Date().toISOString()
         })
       });
+
       if (response.ok) {
         setIsSubmitted(true);
         toast({
@@ -137,11 +143,9 @@ const ContactForm = () => {
       setIsSubmitting(false);
     }
   };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value
@@ -155,7 +159,9 @@ const ContactForm = () => {
       });
     }
   };
-  return <Card className="border-0 shadow-xl">
+
+  return (
+    <Card className="border-0 shadow-xl">
       <CardHeader>
         <CardTitle className="font-telegraf text-3xl text-primary flex items-center">
           <MessageSquare className="h-8 w-8 mr-3" />
@@ -170,67 +176,44 @@ const ContactForm = () => {
         </div>
       </CardHeader>
       <CardContent>
-        {isSubmitted ? <div className="text-center py-12">
-            <CheckCircle className="h-16 w-16 text-accent mx-auto mb-4" />
-            <h3 className="font-telegraf font-semibold text-2xl text-primary mb-2">
-              Message Sent Successfully!
-            </h3>
-            <p className="font-telegraf text-gray-600">
-              Thank you for reaching out. We'll get back to you within 24 hours.
-            </p>
-          </div> : <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Honeypot Field - Hidden from users */}
-            <input type="text" name={honeypotField} value={honeypotValue} onChange={e => setHoneypotValue(e.target.value)} style={{
-          display: 'none'
-        }} tabIndex={-1} autoComplete="off" />
+        {isSubmitted ? (
+          <ContactFormSuccess />
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <SecurityCaptcha 
+              honeypotField={honeypotField}
+              honeypotValue={honeypotValue}
+              setHoneypotValue={setHoneypotValue}
+            />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <Label htmlFor="name" className="font-telegraf font-medium">
-                  Full Name *
-                </Label>
-                <Input id="name" name="name" type="text" required value={formData.name} onChange={handleChange} className={`mt-2 font-telegraf ${errors.name ? 'border-red-500' : ''}`} placeholder="John Smith" maxLength={100} />
-                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-              </div>
-              <div>
-                <Label htmlFor="email" className="font-telegraf font-medium">
-                  Email Address *
-                </Label>
-                <Input id="email" name="email" type="email" required value={formData.email} onChange={handleChange} className={`mt-2 font-telegraf ${errors.email ? 'border-red-500' : ''}`} placeholder="john@company.com" maxLength={254} />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-              </div>
-            </div>
+            <ContactFormFields 
+              formData={formData}
+              errors={errors}
+              onChange={handleChange}
+            />
             
-            <div>
-              <Label htmlFor="subject" className="font-telegraf font-medium">
-                Subject *
-              </Label>
-              <Input id="subject" name="subject" type="text" required value={formData.subject} onChange={handleChange} className={`mt-2 font-telegraf ${errors.subject ? 'border-red-500' : ''}`} placeholder="Enterprise Solutions Inquiry" maxLength={200} />
-              {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
-            </div>
-            
-            <div>
-              <Label htmlFor="message" className="font-telegraf font-medium">
-                Message *
-              </Label>
-              <Textarea id="message" name="message" required value={formData.message} onChange={handleChange} rows={6} className={`mt-2 font-telegraf resize-none ${errors.message ? 'border-red-500' : ''}`} placeholder="Tell us about your project, goals, and timeline..." maxLength={2000} />
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-            </div>
-
-            {/* Math CAPTCHA */}
-            
-            
-            <Button type="submit" disabled={isSubmitting || isSubmissionThrottled} className="w-full bg-primary hover:bg-primary-800 font-telegraf font-semibold py-3 transition-all duration-300 hover:shadow-lg disabled:opacity-50">
-              {isSubmitting ? <>
+            <Button 
+              type="submit" 
+              disabled={isSubmitting || isSubmissionThrottled} 
+              className="w-full bg-primary hover:bg-primary-800 font-telegraf font-semibold py-3 transition-all duration-300 hover:shadow-lg disabled:opacity-50"
+            >
+              {isSubmitting ? (
+                <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
                   Sending Message...
-                </> : <>
+                </>
+              ) : (
+                <>
                   Send Message
                   <Send className="ml-2 h-4 w-4" />
-                </>}
+                </>
+              )}
             </Button>
-          </form>}
+          </form>
+        )}
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };
+
 export default ContactForm;
