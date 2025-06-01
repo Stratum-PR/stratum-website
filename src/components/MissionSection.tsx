@@ -7,7 +7,7 @@ const MissionSection: React.FC = () => {
             <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
               Our Mission
             </h2>
-            <p className="font-telegraf text-lg text-gray-600 mb-8 leading-relaxed">TEST. We exist to democratize advanced analytics and AI capabilities for businesses of all sizes. By combining deep technical expertise with strategic business acumen, we help organizations build the foundation for sustained competitive advantage in an increasingly data-driven world.</p>
+            <p className="font-telegraf text-lg text-gray-600 mb-8 leading-relaxed">We exist to democratize advanced analytics and AI capabilities for businesses of all sizes. By combining deep technical expertise with strategic business acumen, we help organizations build the foundation for sustained competitive advantage in an increasingly data-driven world.</p>
             <p className="font-telegraf text-lg text-gray-600 leading-relaxed">
               Our approach goes beyond traditional consulting. We don't just provide recommendations—we 
               architect and implement complete solutions that integrate seamlessly with your existing 
