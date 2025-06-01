@@ -30,7 +30,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
           <img
             src={founder.image}
             alt={`${founder.name} profile`}
-            className="w-40 h-40 mx-auto rounded-full object-cover"
+            className="w-40 h-40 mx-auto rounded-full object-cover scale-95 transition-transform duration-300"
           />
         ) : (
           <div className="w-40 h-40 mx-auto bg-white/20 rounded-full flex items-center justify-center">
