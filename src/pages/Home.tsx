@@ -133,7 +133,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{animationDelay: '0.3s'}}>
             <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105" aria-label="Schedule free consultation with Stratum PR data analytics experts">
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                {t('home.hero.cta.primary')}
+                {t('nav.schedule')}
                 <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </a>
             </Button>
