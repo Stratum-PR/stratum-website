@@ -25,12 +25,8 @@ const ContactForm = () => {
     honeypotField,
     honeypotValue,
     setHoneypotValue,
-    mathCaptcha,
-    captchaAnswer,
-    setCaptchaAnswer,
     validateSecurity,
     throttleSubmission,
-    resetCaptcha,
     isSubmissionThrottled
   } = useFormSecurity();
 
@@ -76,7 +72,6 @@ const ContactForm = () => {
         description: securityCheck.error,
         variant: "destructive"
       });
-      resetCaptcha();
       return;
     }
     
@@ -126,7 +121,6 @@ const ContactForm = () => {
             message: ""
           });
           setIsSubmitted(false);
-          resetCaptcha();
         }, 3000);
       } else {
         throw new Error("Form submission failed");
@@ -138,7 +132,6 @@ const ContactForm = () => {
         description: "Something went wrong. Please try again later.",
         variant: "destructive"
       });
-      resetCaptcha();
     } finally {
       setIsSubmitting(false);
     }

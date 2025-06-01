@@ -42,13 +42,3 @@ export const checkRateLimit = (): { allowed: boolean; timeLeft?: number } => {
   
   return { allowed: true };
 };
-
-// Simple math CAPTCHA
-export const generateMathCaptcha = (): { question: string; answer: number } => {
-  const num1 = Math.floor(Math.random() * 10) + 1;
-  const num2 = Math.floor(Math.random() * 10) + 1;
-  return {
-    question: `What is ${num1} + ${num2}?`,
-    answer: num1 + num2
-  };
-};
