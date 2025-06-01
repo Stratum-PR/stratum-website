@@ -44,7 +44,7 @@ export const enTranslations = {
   // CTA
   'cta.title': 'Ready to Transform Your Business?',
   'cta.description': 'Let\'s discuss how Stratum PR can architect better decisions for your organization through data analytics Puerto Rico expertise.',
-  'cta.button': 'Get Started Today',
+  'cta.button': 'Schedule Free Consultation',
   
   // Features
   'features.title': 'Strategic Solutions for Data Analytics Puerto Rico',
