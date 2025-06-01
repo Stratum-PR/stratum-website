@@ -1,4 +1,9 @@
 
+// Add global gtag declaration for TypeScript
+declare global {
+  function gtag(...args: any[]): void;
+}
+
 export interface SEOData {
   title: string;
   description: string;
@@ -14,7 +19,7 @@ export const updateSEO = (seoData: SEOData) => {
   document.title = seoData.title;
 
   // Update or create meta tags
-  const updateMetaTag = (name: string, content: string, property?: string) => {
+  const updateMetaTag = (name: string, content: string, property?: boolean) => {
     const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
     let meta = document.querySelector(selector) as HTMLMetaElement;
     
