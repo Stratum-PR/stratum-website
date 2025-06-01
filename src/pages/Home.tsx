@@ -3,8 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
+import { useLanguage } from "@/contexts/LanguageContext";
 import SEOImage from "@/components/SEOImage";
+
 const Home = () => {
+  const { t } = useLanguage();
+  
   // SEO optimization for home page
   useSEO({
     title: "Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico",
@@ -32,40 +36,44 @@ const Home = () => {
       }
     }
   }, "home");
+
   const features = [{
     icon: Database,
-    title: "Big Data Analytics",
-    description: "Transform complex data into actionable insights"
+    title: t('features.bigdata.title'),
+    description: t('features.bigdata.description')
   }, {
     icon: Brain,
-    title: "AI & Decision Intelligence",
-    description: "Intelligent automation for strategic decisions"
+    title: t('features.ai.title'),
+    description: t('features.ai.description')
   }, {
     icon: BarChart3,
-    title: "CRM Optimization",
-    description: "Streamline customer relationships and processes"
+    title: t('features.crm.title'),
+    description: t('features.crm.description')
   }, {
     icon: Target,
-    title: "Predictive Modeling",
-    description: "Forecast trends and optimize outcomes"
+    title: t('features.predictive.title'),
+    description: t('features.predictive.description')
   }];
+
   const stats = [{
     value: "16+",
-    label: "Years of Experience"
+    label: t('stats.experience')
   }, {
     value: "100%",
-    label: "Client Satisfaction"
+    label: t('stats.satisfaction')
   }, {
     value: "30+",
-    label: "Project Solutions Delivered"
+    label: t('stats.projects')
   }, {
     value: "PR",
-    label: "Island Based Team"
+    label: t('stats.team')
   }, {
     value: "Top 5",
-    label: "Built by veterans of Fortune Top 5 Companies"
+    label: t('stats.fortune')
   }];
-  return <div className="pt-20">
+
+  return (
+    <div className="pt-20">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary-800 to-secondary min-h-screen flex items-center overflow-hidden">
         {/* Sophisticated Overlay with Multiple Gradients */}
@@ -104,25 +112,25 @@ const Home = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
           <h1 className="font-telegraf font-bold text-5xl md:text-7xl mb-6 animate-fade-in">
-            The Architecture of
-            <span className="block text-accent">Better Decisions</span>
+            {t('home.hero.title')}
+            <span className="block text-accent">{t('home.hero.subtitle')}</span>
           </h1>
 
-          <p className="font-telegraf text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto animate-slide-up">We build the foundation for strategic excellence through advanced analytics, AI solutions, and data-driven consulting that transforms how businesses operate in Puerto Rico and beyond.</p>
+          <p className="font-telegraf text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto animate-slide-up">
+            {t('home.hero.description')}
+          </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{
-          animationDelay: '0.3s'
-        }}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{animationDelay: '0.3s'}}>
             <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105" aria-label="Schedule free consultation with Stratum PR data analytics experts">
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                Schedule Free Consultation
+                {t('home.hero.cta.primary')}
                 <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </a>
             </Button>
 
             <Button asChild variant="outline" size="lg" className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105" aria-label="Explore Stratum PR data analytics and AI automation services">
               <Link to="/services">
-                Explore Services
+                {t('home.hero.cta.secondary')}
               </Link>
             </Button>
           </div>
@@ -134,14 +142,16 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 id="stats-heading" className="sr-only">Company Statistics and Achievements</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
-            {stats.map((stat, index) => <div key={index} className="text-center">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
                 <div className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-2">
                   {stat.value}
                 </div>
                 <div className="font-telegraf text-gray-600">
                   {stat.label}
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -151,16 +161,16 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 id="features-heading" className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
-              Strategic Solutions for Data Analytics Puerto Rico
+              {t('features.title')}
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
-              We architect comprehensive solutions that bridge the gap between complex data 
-              and strategic business outcomes through AI business automation and CRM implementation consulting.
+              {t('features.description')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
+            {features.map((feature, index) => (
+              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
                 <CardContent className="p-8 text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-xl mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                     <feature.icon className="h-8 w-8 text-primary group-hover:text-white" aria-hidden="true" />
@@ -172,7 +182,8 @@ const Home = () => {
                     {feature.description}
                   </p>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -181,19 +192,21 @@ const Home = () => {
       <section className="py-20 bg-gradient-to-r from-primary to-secondary" aria-labelledby="cta-heading">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 id="cta-heading" className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            Ready to Transform Your Business?
+            {t('cta.title')}
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            Let's discuss how Stratum PR can architect better decisions for your organization through data analytics Puerto Rico expertise.
+            {t('cta.description')}
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105" aria-label="Get started with Stratum PR data analytics and AI consulting services today">
             <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-              Get Started Today
+              {t('cta.button')}
               <TrendingUp className="ml-2 h-5 w-5" aria-hidden="true" />
             </a>
           </Button>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default Home;
