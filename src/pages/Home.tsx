@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEOImage from "@/components/SEOImage";
+import WhyWorkWithUsSection from "@/components/WhyWorkWithUsSection";
 
 const Home = () => {
   const { t } = useLanguage();
@@ -187,6 +188,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Why Work With Us Section */}
+      <WhyWorkWithUsSection />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-secondary" aria-labelledby="cta-heading">

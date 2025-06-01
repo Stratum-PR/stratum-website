@@ -70,6 +70,16 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'features.crm.description': 'Streamline customer relationships and processes',
         'features.predictive.title': 'Predictive Modeling',
         'features.predictive.description': 'Forecast trends and optimize outcomes',
+
+        // Why Work With Us
+        'whyworkwithus.title': 'Why Work With Us',
+        'whyworkwithus.description': 'Stratum PR may be new, but our team is not. Founded by senior consultants and data specialists with years of experience delivering results for Fortune 500 companies, federal recovery programs, and Puerto Rico government agencies, we bring the discipline of enterprise work into a focused, agile firm built for impact.',
+        'whyworkwithus.expertise.title': 'Proven Expertise',
+        'whyworkwithus.expertise.description': 'We\'ve designed systems, dashboards, and automation tools for organizations like ICF, UnitedHealth Group, and the Puerto Rico Department of Health. We know the stakes—and how to deliver.',
+        'whyworkwithus.process.title': 'Process-Driven Clarity',
+        'whyworkwithus.process.description': 'We don\'t just build dashboards—we help clients untangle messy data and implement frameworks that actually support decision-making, planning, and accountability.',
+        'whyworkwithus.partnership.title': 'Personalized Partnership',
+        'whyworkwithus.partnership.description': 'We take on fewer clients so we can work with you, not just for you. Our size means you\'ll always be working directly with decision-makers, not just junior staff or vendors.',
         
         // CTA
         'cta.title': 'Ready to Transform Your Business?',
@@ -253,6 +263,16 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'features.crm.description': 'Optimizar relaciones con clientes y procesos',
         'features.predictive.title': 'Modelado Predictivo',
         'features.predictive.description': 'Pronosticar tendencias y optimizar resultados',
+
+        // Why Work With Us
+        'whyworkwithus.title': 'Por Qué Trabajar Con Nosotros',
+        'whyworkwithus.description': 'Stratum PR puede ser nueva, pero nuestro equipo no. Fundada por consultores senior y especialistas en datos con años de experiencia entregando resultados para empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico, traemos la disciplina del trabajo empresarial a una firma enfocada y ágil construida para el impacto.',
+        'whyworkwithus.expertise.title': 'Experiencia Comprobada',
+        'whyworkwithus.expertise.description': 'Hemos diseñado sistemas, dashboards y herramientas de automatización para organizaciones como ICF, UnitedHealth Group y el Departamento de Salud de Puerto Rico. Conocemos lo que está en juego—y cómo entregar.',
+        'whyworkwithus.process.title': 'Claridad Basada en Procesos',
+        'whyworkwithus.process.description': 'No solo construimos dashboards—ayudamos a los clientes a desenredar datos desordenados e implementar marcos que realmente apoyen la toma de decisiones, planificación y responsabilidad.',
+        'whyworkwithus.partnership.title': 'Asociación Personalizada',
+        'whyworkwithus.partnership.description': 'Tomamos menos clientes para poder trabajar contigo, no solo para ti. Nuestro tamaño significa que siempre trabajarás directamente con los tomadores de decisiones, no solo con personal junior o proveedores.',
         
         // CTA
         'cta.title': '¿Listo para Transformar tu Negocio?',
