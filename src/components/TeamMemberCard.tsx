@@ -33,7 +33,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
             className="w-40 h-40 mx-auto rounded-full object-cover"
           />
         ) : (
-          <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center">
+          <div className="w-40 h-40 mx-auto bg-white/20 rounded-full flex items-center justify-center">
             <span className="text-4xl font-telegraf font-bold text-white">
               {founder.name.split(' ').map(n => n[0]).join('')}
             </span>
