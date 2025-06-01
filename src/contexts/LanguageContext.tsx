@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export type Language = 'en' | 'es';
@@ -18,11 +17,15 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
 
-  // Load language from localStorage on mount
+  // Load language from localStorage on mount, defaulting to English
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language') as Language;
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
       setLanguageState(savedLanguage);
+    } else {
+      // If no saved language or invalid value, default to English
+      setLanguageState('en');
+      localStorage.setItem('preferred-language', 'en');
     }
   }, []);
 
@@ -92,6 +95,22 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'about.team.title': 'Meet Our Leadership Team',
         'about.team.description': 'Our founding team brings together more than a decade of experience from leading projects at Fortune 500 companies, consulting firms, technology companies, and academic institutions.',
         'about.team.expertise': 'EXPERTISE',
+        
+        // Team member data
+        'team.jovaniel.name': 'Jovaniel Agosto',
+        'team.jovaniel.role': 'Chief Executive Officer',
+        'team.jovaniel.bio': 'Jovaniel brings over 10 years of experience in strategic consulting and data analytics, having led transformational projects at Fortune 500 companies. His expertise spans business intelligence, process optimization, and organizational change management.',
+        'team.jovaniel.expertise': 'Strategic Consulting, Business Intelligence, Change Management, Data Analytics',
+        
+        'team.genesis.name': 'Genesis Tavarez',
+        'team.genesis.role': 'Chief Technology Officer',
+        'team.genesis.bio': 'Genesis is a seasoned technology leader with extensive experience in AI implementation, software architecture, and digital transformation. She has successfully delivered enterprise-scale solutions across multiple industries.',
+        'team.genesis.expertise': 'AI Implementation, Software Architecture, Digital Transformation, Enterprise Solutions',
+        
+        'team.roberto.name': 'Roberto Santiago',
+        'team.roberto.role': 'Chief Operating Officer',
+        'team.roberto.bio': 'Roberto specializes in operational excellence and system integration, with a proven track record of optimizing business processes and implementing scalable solutions for growing organizations.',
+        'team.roberto.expertise': 'Operations Management, System Integration, Process Optimization, Scalable Solutions',
         
         // Services page
         'services.hero.title': 'Data Analytics Services Puerto Rico',
@@ -259,6 +278,22 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         'about.team.title': 'Conoce a Nuestro Equipo de Liderazgo',
         'about.team.description': 'Nuestro equipo fundador reúne más de una década de experiencia liderando proyectos en empresas Fortune 500, firmas consultoras, empresas tecnológicas e instituciones académicas.',
         'about.team.expertise': 'EXPERIENCIA',
+        
+        // Team member data
+        'team.jovaniel.name': 'Jovaniel Agosto',
+        'team.jovaniel.role': 'Director Ejecutivo',
+        'team.jovaniel.bio': 'Jovaniel aporta más de 10 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado proyectos transformacionales en empresas Fortune 500. Su experiencia abarca inteligencia empresarial, optimización de procesos y gestión del cambio organizacional.',
+        'team.jovaniel.expertise': 'Consultoría Estratégica, Inteligencia Empresarial, Gestión del Cambio, Análisis de Datos',
+        
+        'team.genesis.name': 'Genesis Tavarez',
+        'team.genesis.role': 'Directora de Tecnología',
+        'team.genesis.bio': 'Genesis es una líder tecnológica experimentada con amplia experiencia en implementación de IA, arquitectura de software y transformación digital. Ha entregado exitosamente soluciones a escala empresarial en múltiples industrias.',
+        'team.genesis.expertise': 'Implementación de IA, Arquitectura de Software, Transformación Digital, Soluciones Empresariales',
+        
+        'team.roberto.name': 'Roberto Santiago',
+        'team.roberto.role': 'Director de Operaciones',
+        'team.roberto.bio': 'Roberto se especializa en excelencia operacional e integración de sistemas, con un historial comprobado de optimizar procesos de negocio e implementar soluciones escalables para organizaciones en crecimiento.',
+        'team.roberto.expertise': 'Gestión de Operaciones, Integración de Sistemas, Optimización de Procesos, Soluciones Escalables',
         
         // Services page
         'services.hero.title': 'Servicios de Análisis de Datos Puerto Rico',
