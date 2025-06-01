@@ -18,11 +18,11 @@ const ValuesSection: React.FC<ValuesSectionProps> = ({ values }) => {
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="mb-16">
           <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
             {t('about.values.title')}
           </h2>
-          <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="font-telegraf text-xl text-gray-600 max-w-3xl text-justify">
             {t('about.values.description')}
           </p>
         </div>
@@ -34,7 +34,7 @@ const ValuesSection: React.FC<ValuesSectionProps> = ({ values }) => {
                 <h3 className="font-telegraf font-semibold text-2xl text-primary mb-4">
                   {value.title}
                 </h3>
-                <p className="font-telegraf text-gray-600 leading-relaxed">
+                <p className="font-telegraf text-gray-600 leading-relaxed text-justify">
                   {value.description}
                 </p>
               </CardContent>

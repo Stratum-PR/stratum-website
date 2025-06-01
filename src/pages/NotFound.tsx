@@ -16,9 +16,9 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
+      <div>
         <h1 className="text-4xl font-bold mb-4">{t('notfound.title')}</h1>
-        <p className="text-xl text-gray-600 mb-4">{t('notfound.description')}</p>
+        <p className="text-xl text-gray-600 mb-4 text-justify">{t('notfound.description')}</p>
         <Link to="/" className="text-blue-500 hover:text-blue-700 underline">
           {t('notfound.home')}
         </Link>

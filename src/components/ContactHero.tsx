@@ -7,11 +7,11 @@ const ContactHero = () => {
   
   return (
     <section className="py-20 bg-gradient-to-br from-primary via-primary-700 to-secondary text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="font-telegraf font-bold text-5xl md:text-6xl mb-6">
           {t('contact.hero.title')}
         </h1>
-        <p className="font-telegraf text-xl text-primary-100 leading-relaxed">
+        <p className="font-telegraf text-xl text-primary-100 leading-relaxed text-justify">
           {t('contact.hero.description')}
         </p>
       </div>

@@ -6,12 +6,12 @@ const ContactFormSuccess = () => {
   const { t } = useLanguage();
   
   return (
-    <div className="text-center py-12">
+    <div className="py-12">
       <CheckCircle className="h-16 w-16 text-accent mx-auto mb-4" />
       <h3 className="font-telegraf font-semibold text-2xl text-primary mb-2">
         {t('contact.form.success.title')}
       </h3>
-      <p className="font-telegraf text-gray-600">
+      <p className="font-telegraf text-gray-600 text-justify">
         {t('contact.form.success.description')}
       </p>
     </div>

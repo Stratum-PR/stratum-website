@@ -13,10 +13,10 @@ const MissionSection: React.FC = () => {
             <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
               {t('about.mission.title')}
             </h2>
-            <p className="font-telegraf text-lg text-gray-600 mb-8 leading-relaxed">
+            <p className="font-telegraf text-lg text-gray-600 mb-8 leading-relaxed text-justify">
               {t('about.mission.description1')}
             </p>
-            <p className="font-telegraf text-lg text-gray-600 leading-relaxed">
+            <p className="font-telegraf text-lg text-gray-600 leading-relaxed text-justify">
               {t('about.mission.description2')}
             </p>
           </div>
