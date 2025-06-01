@@ -12,8 +12,41 @@ import {
   CheckCircle
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSEO } from "@/hooks/useSEO";
 
 const Services = () => {
+  // SEO optimization for services page
+  useSEO({
+    title: "Data Analytics Services Puerto Rico | CRM Implementation | AI Business Automation - Stratum PR",
+    description: "Comprehensive data analytics services in Puerto Rico. Specializing in CRM implementation consulting, AI business automation, predictive modeling, and big data analytics. Transform your business with Stratum PR.",
+    keywords: "data analytics services Puerto Rico, CRM implementation consulting, AI business automation, big data analytics, Salesforce implementation, predictive modeling services, business intelligence consulting, machine learning Puerto Rico",
+    canonical: "https://www.stratumpr.com/services",
+    ogType: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "https://www.stratumpr.com/services#services",
+      "name": "Data Analytics and Business Automation Services",
+      "description": "Comprehensive analytics, CRM implementation, AI solutions, and business automation services in Puerto Rico",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Stratum PR"
+      },
+      "serviceType": [
+        "Data Analytics",
+        "CRM Implementation",
+        "AI Solutions", 
+        "Business Automation",
+        "Predictive Modeling",
+        "Big Data Analytics"
+      ],
+      "areaServed": {
+        "@type": "Place",
+        "name": "Puerto Rico"
+      }
+    }
+  }, "services");
+
   const services = [
     {
       icon: Zap,
@@ -124,25 +157,25 @@ const Services = () => {
       <section className="py-20 bg-gradient-to-br from-primary via-primary-700 to-secondary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-5xl md:text-6xl mb-6">
-            Strategic Solutions
+            Data Analytics Services Puerto Rico
           </h1>
           <p className="font-telegraf text-xl text-primary-100 leading-relaxed mb-8">
-            We architect comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from implementation to optimization.
+            We architect comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from CRM implementation consulting to AI business automation.
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-            <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
+            <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule consultation for data analytics services">
               Schedule Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </a>
           </Button>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20">
+      <section className="py-20" aria-labelledby="services-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
+            <h2 id="services-heading" className="font-telegraf font-bold text-4xl text-primary mb-6">
               Our Core Services
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
@@ -157,7 +190,7 @@ const Services = () => {
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-primary text-white rounded-xl group-hover:bg-secondary transition-colors duration-300">
-                        <service.icon className="h-6 w-6" />
+                        <service.icon className="h-6 w-6" aria-hidden="true" />
                       </div>
                     </div>
                     <div className="flex-1">
@@ -176,10 +209,10 @@ const Services = () => {
                     <h4 className="font-telegraf font-semibold text-sm text-gray-800 mb-3 uppercase tracking-wide">
                       Key Features
                     </h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2" role="list">
                       {service.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center space-x-3">
-                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" aria-hidden="true" />
                           <span className="font-telegraf text-gray-600">{feature}</span>
                         </li>
                       ))}
@@ -198,10 +231,10 @@ const Services = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50" aria-labelledby="process-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
+            <h2 id="process-heading" className="font-telegraf font-bold text-4xl text-primary mb-6">
               Our Process
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
@@ -230,17 +263,17 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white">
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white" aria-labelledby="cta-heading">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
+          <h2 id="cta-heading" className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
             Ready to Get Started?
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            Let's discuss how our services can transform your business operations and drive strategic growth.
+            Let's discuss how our data analytics services can transform your business operations and drive strategic growth in Puerto Rico.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-              <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
                 Schedule Free Consultation
               </a>
             </Button>
@@ -250,7 +283,7 @@ const Services = () => {
               size="lg"
               className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105"
             >
-              <Link to="/contact">Contact Our Team</Link>
+              <Link to="/contact" aria-label="Contact Stratum PR team for data analytics consulting">Contact Our Team</Link>
             </Button>
           </div>
         </div>

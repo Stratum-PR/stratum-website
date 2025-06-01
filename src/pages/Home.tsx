@@ -3,8 +3,38 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSEO } from "@/hooks/useSEO";
+import SEOImage from "@/components/SEOImage";
 
 const Home = () => {
+  // SEO optimization for home page
+  useSEO({
+    title: "Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico",
+    description: "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation. Transform your business with data-driven decisions.",
+    keywords: "data analytics Puerto Rico, AI business automation, CRM implementation consulting, big data analytics, business intelligence Puerto Rico, Salesforce implementation, predictive modeling, machine learning consulting, digital transformation Puerto Rico",
+    canonical: "https://www.stratumpr.com/",
+    ogType: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://www.stratumpr.com/#webpage",
+      "url": "https://www.stratumpr.com/",
+      "name": "Stratum PR - The Architecture of Better Decisions",
+      "description": "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation.",
+      "isPartOf": {
+        "@id": "https://www.stratumpr.com/#website"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Data Analytics and Business Automation Consulting"
+      },
+      "mainEntity": {
+        "@type": "LocalBusiness",
+        "name": "Stratum PR"
+      }
+    }
+  }, "home");
+
   const features = [
     {
       icon: Database,
@@ -13,7 +43,7 @@ const Home = () => {
     },
     {
       icon: Brain,
-      title: "AI & Decision Intelligence",
+      title: "AI & Decision Intelligence", 
       description: "Intelligent automation for strategic decisions"
     },
     {
@@ -76,7 +106,7 @@ const Home = () => {
 
           <p className="font-telegraf text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto animate-slide-up">
             We build the foundation for strategic excellence through advanced analytics, 
-            AI solutions, and data-driven consulting that transforms how businesses operate.
+            AI solutions, and data-driven consulting that transforms how businesses operate in Puerto Rico and beyond.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
@@ -84,10 +114,11 @@ const Home = () => {
               asChild
               size="lg" 
               className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105"
+              aria-label="Schedule free consultation with Stratum PR data analytics experts"
             >
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                 Schedule Free Consultation
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </a>
             </Button>
 
@@ -96,6 +127,7 @@ const Home = () => {
               variant="outline" 
               size="lg"
               className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105"
+              aria-label="Explore Stratum PR data analytics and AI automation services"
             >
               <Link to="/services">
                 Explore Services
@@ -106,8 +138,9 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50" aria-labelledby="stats-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="stats-heading" className="sr-only">Company Statistics and Achievements</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
@@ -124,15 +157,15 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-20" aria-labelledby="features-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
-              Strategic Solutions
+            <h2 id="features-heading" className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
+              Strategic Solutions for Data Analytics Puerto Rico
             </h2>
             <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
               We architect comprehensive solutions that bridge the gap between complex data 
-              and strategic business outcomes.
+              and strategic business outcomes through AI business automation and CRM implementation consulting.
             </p>
           </div>
 
@@ -141,7 +174,7 @@ const Home = () => {
               <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
                 <CardContent className="p-8 text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-xl mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    <feature.icon className="h-8 w-8 text-primary group-hover:text-white" />
+                    <feature.icon className="h-8 w-8 text-primary group-hover:text-white" aria-hidden="true" />
                   </div>
                   <h3 className="font-telegraf font-semibold text-xl text-primary mb-4">
                     {feature.title}
@@ -157,22 +190,23 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary" aria-labelledby="cta-heading">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
+          <h2 id="cta-heading" className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
             Ready to Transform Your Business?
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            Let's discuss how Stratum PR can architect better decisions for your organization.
+            Let's discuss how Stratum PR can architect better decisions for your organization through data analytics Puerto Rico expertise.
           </p>
           <Button 
             asChild
             size="lg"
             className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105"
+            aria-label="Get started with Stratum PR data analytics and AI consulting services today"
           >
             <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
               Get Started Today
-              <TrendingUp className="ml-2 h-5 w-5" />
+              <TrendingUp className="ml-2 h-5 w-5" aria-hidden="true" />
             </a>
           </Button>
         </div>

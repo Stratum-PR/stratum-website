@@ -3,8 +3,32 @@ import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
 import ValuesSection from "@/components/ValuesSection";
 import TeamSection from "@/components/TeamSection";
+import { useSEO } from "@/hooks/useSEO";
 
 const About = () => {
+  // SEO optimization for about page
+  useSEO({
+    title: "About Stratum PR - Expert Data Analytics Team Puerto Rico | AI Consulting Founders",
+    description: "Meet the expert team behind Stratum PR. Founded in 2025 by experienced data scientists and consultants specializing in AI business automation, CRM implementation, and predictive modeling in Puerto Rico.",
+    keywords: "Stratum PR team, data analytics experts Puerto Rico, AI consulting founders, business intelligence consultants, CRM implementation specialists, machine learning experts Caribbean",
+    canonical: "https://www.stratumpr.com/about",
+    ogType: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "@id": "https://www.stratumpr.com/about#webpage",
+      "url": "https://www.stratumpr.com/about",
+      "name": "About Stratum PR - Data Analytics Consulting Team",
+      "description": "Meet the expert team behind Stratum PR, specializing in data analytics, AI solutions, and business automation consulting in Puerto Rico.",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Stratum PR",
+        "foundingDate": "2025",
+        "description": "Analytics and consulting firm specializing in data-driven business solutions."
+      }
+    }
+  }, "about");
+
   const founders = [
     {
       key: "jovaniel",
@@ -14,17 +38,17 @@ const About = () => {
       expertise: ["Strategic Consulting", "Digital Transformation & Modernization", "Data Governance"],
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
-      image: "/img/Jovaniel.jpg" // Add image path here
+      image: "/img/Jovaniel.jpg"
     },
     {
-      key: "roberto",
+      key: "roberto", 
       name: "Roberto Otero",
       role: "Co-Founder, Tech & Build",
       bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
       linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com",
-      image: "/img/Roberto.png" // Add image path here
+      image: "/img/Roberto.png"
     },
     {
       key: "genesis",
@@ -34,7 +58,7 @@ const About = () => {
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
-      image: "/img/Genesis.png"  // Add image path here
+      image: "/img/Genesis.png"
     }
   ];
 
@@ -48,7 +72,7 @@ const About = () => {
       description: "Every solution is designed with clear business outcomes and measurable impact."
     },
     {
-      title: "Client Partnership",
+      title: "Client Partnership", 
       description: "We work as an extension of your team, not just another vendor."
     },
     {
