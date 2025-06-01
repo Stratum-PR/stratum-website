@@ -1,17 +1,23 @@
+
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+
 const MissionSection: React.FC = () => {
-  return <section className="py-20">
+  const { t } = useLanguage();
+  
+  return (
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
-              Our Mission
+              {t('about.mission.title')}
             </h2>
-            <p className="font-telegraf text-lg text-gray-600 mb-8 leading-relaxed">We exist to democratize advanced analytics and AI capabilities for businesses of all sizes. By combining deep technical expertise with strategic business acumen, we help organizations build the foundation for sustained competitive advantage in an increasingly data-driven world.</p>
+            <p className="font-telegraf text-lg text-gray-600 mb-8 leading-relaxed">
+              {t('about.mission.description1')}
+            </p>
             <p className="font-telegraf text-lg text-gray-600 leading-relaxed">
-              Our approach goes beyond traditional consulting. We don't just provide recommendations—we 
-              architect and implement complete solutions that integrate seamlessly with your existing 
-              operations while positioning you for future growth.
+              {t('about.mission.description2')}
             </p>
           </div>
           <div className="relative">
@@ -21,6 +27,8 @@ const MissionSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default MissionSection;

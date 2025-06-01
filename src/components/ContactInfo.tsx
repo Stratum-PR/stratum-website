@@ -1,22 +1,25 @@
 
 import { Mail, Linkedin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactInfo = () => {
+  const { t } = useLanguage();
+  
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
+      title: t('contact.info.email'),
       value: "contact@stratumpr.com",
       href: "mailto:contact@stratumpr.com",
-      description: "Send us a message anytime"
+      description: t('contact.info.email.desc')
     },
     {
       icon: Linkedin,
-      title: "LinkedIn",
+      title: t('contact.info.linkedin'),
       value: "linkedin.com/company/stratumpr",
       href: "https://linkedin.com/company/stratumpr",
-      description: "Connect with our team"
+      description: t('contact.info.linkedin.desc')
     }
   ];
 
@@ -24,10 +27,10 @@ const ContactInfo = () => {
     <Card className="border-0 shadow-lg">
       <CardHeader>
         <CardTitle className="font-telegraf text-2xl text-primary">
-          Get in Touch
+          {t('contact.info.title')}
         </CardTitle>
         <p className="font-telegraf text-gray-600">
-          Multiple ways to reach our team
+          {t('contact.info.description')}
         </p>
       </CardHeader>
       <CardContent className="space-y-4">

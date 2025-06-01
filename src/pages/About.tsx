@@ -4,8 +4,11 @@ import MissionSection from "@/components/MissionSection";
 import ValuesSection from "@/components/ValuesSection";
 import TeamSection from "@/components/TeamSection";
 import { useSEO } from "@/hooks/useSEO";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+  
   // SEO optimization for about page
   useSEO({
     title: "About Stratum PR - Expert Data Analytics Team Puerto Rico | AI Consulting Founders",
@@ -64,20 +67,20 @@ const About = () => {
 
   const values = [
     {
-      title: "Technical Excellence",
-      description: "We maintain the highest standards in analytical rigor and technical implementation."
+      title: t('about.values.technical'),
+      description: t('about.values.technical.desc')
     },
     {
-      title: "Strategic Clarity",
-      description: "Every solution is designed with clear business outcomes and measurable impact."
+      title: t('about.values.strategic'),
+      description: t('about.values.strategic.desc')
     },
     {
-      title: "Client Partnership", 
-      description: "We work as an extension of your team, not just another vendor."
+      title: t('about.values.partnership'), 
+      description: t('about.values.partnership.desc')
     },
     {
-      title: "Innovation Focus",
-      description: "Continuously exploring emerging technologies to deliver competitive advantages."
+      title: t('about.values.innovation'),
+      description: t('about.values.innovation.desc')
     }
   ];
 
