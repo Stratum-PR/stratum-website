@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -72,32 +73,22 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Optimize font rendering and performance */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-display: swap;
-    /* Enable hardware acceleration for better performance */
-    transform: translateZ(0);
   }
 
-  /* Performance optimizations */
   img {
     content-visibility: auto;
-    /* Optimize image decoding */
     image-rendering: optimizeQuality;
   }
 
-  /* Prevent layout shift and optimize hero performance */
   .hero-section {
     min-height: 100vh;
     contain: layout style paint;
-    /* Enable GPU acceleration for animations */
-    transform: translateZ(0);
-    backface-visibility: hidden;
   }
 
-  /* Optimize animations for mobile performance */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -109,19 +100,16 @@
     }
   }
 
-  /* Critical font display optimization */
   @font-face {
     font-family: 'Inter';
     font-display: swap;
     src: local('Inter');
   }
 
-  /* Improve scrolling performance on mobile */
   * {
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Optimize will-change for better GPU acceleration */
   .animate-float,
   .hover\\:scale-105:hover,
   .hover\\:-translate-y-2:hover {
@@ -130,28 +118,23 @@
     perspective: 1000px;
   }
 
-  /* Remove will-change after animation completes to save memory */
   .animate-float:not(:hover),
   .hover\\:scale-105:not(:hover),
   .hover\\:-translate-y-2:not(:hover) {
     will-change: auto;
   }
 
-  /* Optimize transitions for better performance */
   .transition-all {
     transition-property: transform, opacity, background-color, border-color, color, fill, stroke;
   }
 }
 
-/* Mobile-specific performance optimizations */
 @media (max-width: 768px) {
-  /* Reduce animation complexity on mobile for better performance */
   .animate-float {
     animation-duration: 6s;
     animation-timing-function: ease-in-out;
   }
   
-  /* Optimize touch targets for better UX */
   button,
   a[role="button"],
   .cursor-pointer {
@@ -160,7 +143,6 @@
     touch-action: manipulation;
   }
   
-  /* Reduce blur effects on mobile for better performance */
   .blur-3xl {
     filter: blur(20px);
   }
@@ -169,12 +151,10 @@
     filter: blur(12px);
   }
 
-  /* Optimize backdrop blur for mobile */
   .backdrop-blur-md {
     backdrop-filter: blur(8px);
   }
 
-  /* Reduce gradient complexity on mobile */
   .bg-gradient-to-br,
   .bg-gradient-to-tr,
   .bg-gradient-to-r {
@@ -182,7 +162,6 @@
   }
 }
 
-/* Enhanced loading placeholder */
 .img-loading {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
@@ -198,14 +177,12 @@
   }
 }
 
-/* Optimize card hover effects for mobile */
 @media (hover: hover) and (pointer: fine) {
   .group:hover .group-hover\\:shadow-xl {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
 
-/* Disable hover effects on touch devices */
 @media (hover: none) {
   .hover\\:scale-105:hover,
   .hover\\:-translate-y-2:hover,
@@ -217,41 +194,15 @@
   }
 }
 
-/* Popover positioning fixes */
-[data-radix-popper-content-wrapper] {
-  position: relative !important;
-  z-index: 9999 !important;
-}
-
-/* Ensure cards maintain positioning context for popovers */
-.group {
-  position: relative;
-  transform: translateZ(0);
-}
-
-/* Fix popover positioning on mobile */
-@media (max-width: 768px) {
-  [data-radix-popper-content-wrapper] {
-    max-width: calc(100vw - 32px) !important;
-  }
-  
-  /* Optimize popover content for mobile */
-  [data-radix-popper-content-wrapper] > div {
-    max-width: 320px !important;
-    margin: 0 auto;
-  }
-}
-
-/* Content visibility optimization for better rendering performance */
 .section-container {
   content-visibility: auto;
   contain-intrinsic-size: auto 400px;
 }
 
-/* Optimize focus states for accessibility */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
 }
+

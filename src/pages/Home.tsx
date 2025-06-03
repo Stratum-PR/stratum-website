@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -112,59 +111,61 @@ const Home = () => {
   const ServiceCardWithPopover = ({ service }: { service: any }) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
+    const handleCardClick = () => {
+      // Navigate to services page when clicking the card area
+      window.location.href = '/services';
+    };
+
+    const handlePopoverToggle = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setIsPopoverOpen(!isPopoverOpen);
+    };
+
     return (
-      <Link to="/services" className="block">
-        <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer overflow-visible relative">
-          <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
-            <div className="flex justify-center mb-6">
-              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-primary group-hover:text-white" aria-hidden="true" />
-              </div>
+      <Card 
+        className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer"
+        onClick={handleCardClick}
+      >
+        <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-primary group-hover:text-white" aria-hidden="true" />
             </div>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <h3 className="font-telegraf font-semibold text-lg sm:text-xl text-primary group-hover:text-secondary transition-colors">
-                {service.title}
-              </h3>
-              {isClient && (
-                <div className="relative">
-                  <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                    <PopoverTrigger asChild>
-                      <button 
-                        className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100 touch-manipulation relative z-10"
-                        aria-label={`Learn more about ${service.title}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setIsPopoverOpen(!isPopoverOpen);
-                        }}
-                        type="button"
-                      >
-                        <Info className="h-4 w-4" />
-                      </button>
-                    </PopoverTrigger>
-                    <PopoverContent 
-                      className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg"
-                      side="top"
-                      sideOffset={8}
-                      align="start"
-                      alignOffset={-20}
-                      avoidCollisions={true}
-                      collisionPadding={16}
-                    >
-                      <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
-                        {service.simpleExplanation}
-                      </p>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              )}
-            </div>
-            <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base">
-              {service.description}
-            </p>
-          </CardContent>
-        </Card>
-      </Link>
+          </div>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <h3 className="font-telegraf font-semibold text-lg sm:text-xl text-primary group-hover:text-secondary transition-colors">
+              {service.title}
+            </h3>
+            <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+              <PopoverTrigger asChild>
+                <button 
+                  className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100"
+                  aria-label={`Learn more about ${service.title}`}
+                  onClick={handlePopoverToggle}
+                  type="button"
+                >
+                  <Info className="h-4 w-4" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent 
+                className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg z-50"
+                side="top"
+                sideOffset={8}
+                align="center"
+                avoidCollisions={true}
+                collisionPadding={20}
+              >
+                <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
+                  {service.simpleExplanation}
+                </p>
+              </PopoverContent>
+            </Popover>
+          </div>
+          <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base">
+            {service.description}
+          </p>
+        </CardContent>
+      </Card>
     );
   };
 
