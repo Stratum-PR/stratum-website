@@ -17,7 +17,7 @@ export const enTranslations = {
   
   // Stats
   'stats.experience': 'Years of Experience',
-  'stats.satisfaction': 'Client Satisfaction',
+  'stats.satisfaction': 'Return on Investment',
   'stats.projects': 'Solutions Delivered',
   'stats.team': 'Local PR Based Team',
   
