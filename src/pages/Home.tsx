@@ -81,7 +81,7 @@ const Home = () => {
     value: "30+",
     label: t('stats.projects')
   }, {
-    value: "PR",
+    value: "100%",
     label: t('stats.team')
   }];
 
