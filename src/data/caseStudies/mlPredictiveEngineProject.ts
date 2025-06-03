@@ -1,3 +1,4 @@
+
 export const mlPredictiveEngineProject = {
   slug: 'adaptive-ml-analytics-tool',
   id: 4,
@@ -55,7 +56,7 @@ export const mlPredictiveEngineProject = {
   },
   tags: ['Machine Learning', 'Automation', 'Research'],
   icon: 'Brain',
-  image: 'https://images.unsplash.com/photo-1534759846116-5799c3cd1461?w=800&h=600&fit=crop',
+  image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&crop=center',
   featured: true,
   publishDate: '2025-01-12'
 };
