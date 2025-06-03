@@ -2,7 +2,7 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/" },
-    { "source": "/en", "destination": "/", "permanent": true },
-    { "source": "/en/", "destination": "/", "permanent": true }
+    { "source": "/en", "destination": "/" },
+    { "source": "/en/", "destination": "/" }
   ]
 }
