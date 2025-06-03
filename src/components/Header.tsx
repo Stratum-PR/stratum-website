@@ -84,7 +84,7 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} py-4 border-t border-gray-100`}>
+          <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} py-4 border-t border-gray-100 bg-white/98 backdrop-blur-md rounded-b-lg shadow-lg`}>
             <nav className="flex flex-col space-y-4">
               {navigation.map(item => (
                 <Link

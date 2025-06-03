@@ -1,5 +1,4 @@
 
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ServicesHero } from "@/components/ServicesHero";
@@ -43,14 +42,12 @@ const Services = () => {
   }, "services");
 
   return (
-    <TooltipProvider delayDuration={300} skipDelayDuration={100}>
-      <div className="pt-20">
-        <ServicesHero />
-        <ServicesGrid />
-        <ProcessSection />
-        <ServicesCTA />
-      </div>
-    </TooltipProvider>
+    <div className="pt-20">
+      <ServicesHero />
+      <ServicesGrid />
+      <ProcessSection />
+      <ServicesCTA />
+    </div>
   );
 };
 
