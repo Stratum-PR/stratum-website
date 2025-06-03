@@ -36,7 +36,6 @@
     <priority>0.4</priority>
   </url>
 
-  <!-- Example project pages (add more as needed) -->
   <url>
     <loc>https://www.stratumpr.com/projects/island-health-data-exchange</loc>
     <priority>0.7</priority>
