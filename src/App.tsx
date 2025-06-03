@@ -19,6 +19,19 @@ import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Component {...pageProps} />
+      <SpeedInsights />
+    </>
+  );
+}
+
+export default MyApp;
+
 
 const queryClient = new QueryClient();
 
