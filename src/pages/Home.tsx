@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -14,8 +13,8 @@ const Home = () => {
   
   // SEO optimization for home page
   useSEO({
-    title: "Stratum PR – The Architecture of Better Decisions",
-    description: "Stratum PR helps organizations make smarter decisions through analytics, AI, and modern automation.",
+    title: "Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico",
+    description: "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation. Transform your business with data-driven decisions.",
     keywords: "data analytics Puerto Rico, AI business automation, CRM implementation consulting, big data analytics, business intelligence Puerto Rico, Salesforce implementation, predictive modeling, machine learning consulting, digital transformation Puerto Rico",
     canonical: "https://www.stratumpr.com/",
     ogType: "website",
@@ -24,8 +23,8 @@ const Home = () => {
       "@type": "WebPage",
       "@id": "https://www.stratumpr.com/#webpage",
       "url": "https://www.stratumpr.com/",
-      "name": "Stratum PR – The Architecture of Better Decisions",
-      "description": "Stratum PR helps organizations make smarter decisions through analytics, AI, and modern automation.",
+      "name": "Stratum PR - The Architecture of Better Decisions",
+      "description": "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation.",
       "isPartOf": {
         "@id": "https://www.stratumpr.com/#website"
       },
