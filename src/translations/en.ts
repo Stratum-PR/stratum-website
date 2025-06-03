@@ -1,4 +1,3 @@
-
 export const en = {
   nav: {
     home: "Home",
@@ -89,20 +88,20 @@ export const en = {
       description: "To empower organizations with the insights and tools they need to make smarter decisions and achieve their business goals through data analytics, AI, and modern automation."
     },
     values: {
+      technical: "Technical Excellence",
       technical: {
-        title: "Technical Excellence",
         desc: "We are committed to providing our clients with the highest quality technical solutions and services."
       },
+      strategic: "Strategic Partnership",
       strategic: {
-        title: "Strategic Partnership", 
         desc: "We work closely with our clients to understand their business goals and develop customized solutions that meet their specific needs."
       },
+      partnership: "Collaborative Partnership",
       partnership: {
-        title: "Collaborative Partnership",
         desc: "We believe in building long-term relationships with our clients based on trust, transparency, and mutual success."
       },
+      innovation: "Innovation & Research",
       innovation: {
-        title: "Innovation & Research",
         desc: "We are constantly exploring new technologies and approaches to help our clients stay ahead of the curve."
       }
     },
@@ -136,6 +135,12 @@ export const en = {
       button: "Contact Us"
     }
   },
+  "faq.hero.title": "Frequently Asked Questions",
+  "faq.hero.description": "Find answers to common questions about our services, expertise, and approach to data analytics and AI consulting.",
+  "faq.cta.title": "Still Have Questions?",
+  "faq.cta.description": "Contact us to learn more about how we can help you achieve your business goals.",
+  "faq.cta.button": "Contact Us",
+  "nav.faq": "FAQ",
 
   // Privacy & Cookie Policy
   privacy: {
