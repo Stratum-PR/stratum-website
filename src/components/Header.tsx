@@ -44,8 +44,9 @@ export const Header = () => {
         <div className={`flex justify-between items-center ${headerHeight}`}>
           {/* Logo - Always visible */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 z-50 relative">
-            <img src="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" alt="Stratum Logo" className="h-10 w-auto" />
+            <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-10 w-auto" />
           </Link>
+
 
           {/* Desktop Navigation - Show hamburger menu earlier for Spanish */}
           <nav className={`hidden ${language === 'es' ? 'xl:flex' : 'lg:flex'} items-center ${navSpacing}`}>
