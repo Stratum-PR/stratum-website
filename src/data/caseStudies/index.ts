@@ -1,5 +1,5 @@
 
-import { healthcareIntegrationCaseStudy } from './healthcare-integration';
+import { healthDataExchangeProject } from './healthcare-integration';
 import { municipalBudgetDashboardCaseStudy } from './municipal-budget-dashboard';
 import { salesPerformanceAnalyticsCaseStudy } from './sales-performance-analytics';
 
