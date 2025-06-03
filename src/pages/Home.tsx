@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SEOImage from "@/components/SEOImage";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 
 // Lazy load non-critical components
 const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSection"));
@@ -100,6 +101,62 @@ const Home = () => {
     }
   ];
 
+  // Component for service card with popover functionality
+  const ServiceCardWithPopover = ({ service }: { service: any }) => {
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+    const handlePopoverToggle = () => {
+      setIsPopoverOpen(!isPopoverOpen);
+    };
+
+    return (
+      <Link to="/services" className="block">
+        <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer overflow-visible">
+          <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
+            <div className="flex justify-center mb-6">
+              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-primary group-hover:text-white" aria-hidden="true" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <h3 className="font-telegraf font-semibold text-lg sm:text-xl text-primary group-hover:text-secondary transition-colors">
+                {service.title}
+              </h3>
+              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                <PopoverTrigger asChild>
+                  <button 
+                    className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100 touch-manipulation"
+                    aria-label={`Learn more about ${service.title}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handlePopoverToggle();
+                    }}
+                  >
+                    <Info className="h-4 w-4" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent 
+                  className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg z-50"
+                  side="top"
+                  sideOffset={8}
+                  align="center"
+                >
+                  <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
+                    {service.simpleExplanation}
+                  </p>
+                </PopoverContent>
+              </Popover>
+            </div>
+            <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base">
+              {service.description}
+            </p>
+          </CardContent>
+        </Card>
+      </Link>
+    );
+  };
+
   return (
     <TooltipProvider>
       <div className="pt-20">
@@ -188,45 +245,7 @@ const Home = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {services.map((service, index) => (
-                <Link key={index} to="/services" className="block">
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer">
-                    <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
-                      <div className="flex justify-center mb-6">
-                        <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                          <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-primary group-hover:text-white" aria-hidden="true" />
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-center gap-2 mb-4">
-                        <h3 className="font-telegraf font-semibold text-lg sm:text-xl text-primary group-hover:text-secondary transition-colors">
-                          {service.title}
-                        </h3>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <button 
-                              className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100"
-                              aria-label={`Learn more about ${service.title}`}
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              <Info className="h-4 w-4" />
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent 
-                            className="max-w-xs p-3 bg-white border border-gray-200 shadow-lg rounded-lg"
-                            side="top"
-                            sideOffset={5}
-                          >
-                            <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
-                              {service.simpleExplanation}
-                            </p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </div>
-                      <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base">
-                        {service.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <ServiceCardWithPopover key={index} service={service} />
               ))}
             </div>
           </div>
