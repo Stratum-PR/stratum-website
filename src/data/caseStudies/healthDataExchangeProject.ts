@@ -55,7 +55,7 @@ export const healthDataExchangeProject = {
   },
   tags: ['Public Health', 'Data Integration', 'Automation'],
   icon: 'ActivitySquare',
-  image: 'https://images.unsplash.com/photo-1588776814546-1f3a6a6f33b1?w=800&h=600&fit=crop',
+  image: 'https://unsplash.com/photos/person-wearing-lavatory-gown-with-green-stethoscope-on-neck-using-phone-while-standing-L8tWZT4CcVQ?w=800&h=600&fit=crop',
   featured: true,
   publishDate: '2024-12-10'
 };
