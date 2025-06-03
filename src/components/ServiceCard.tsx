@@ -20,12 +20,14 @@ export const ServiceCard = ({ icon: Icon, title, description, features, delivera
   const { t } = useLanguage();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const handlePopoverToggle = () => {
+  const handlePopoverToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsPopoverOpen(!isPopoverOpen);
   };
 
   return (
-    <Card className="group flex flex-col justify-between h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-visible">
+    <Card className="group flex flex-col justify-between h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-visible relative">
       <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5 pb-6">
         <div className="flex items-start space-x-4">
           <div className="flex-shrink-0">
@@ -38,27 +40,33 @@ export const ServiceCard = ({ icon: Icon, title, description, features, delivera
               <CardTitle className="font-telegraf text-2xl text-primary">
                 {title}
               </CardTitle>
-              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                <PopoverTrigger asChild>
-                  <button 
-                    className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100 touch-manipulation"
-                    aria-label={`Learn more about ${title}`}
-                    onClick={handlePopoverToggle}
+              <div className="relative">
+                <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                  <PopoverTrigger asChild>
+                    <button 
+                      className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100 touch-manipulation relative z-10"
+                      aria-label={`Learn more about ${title}`}
+                      onClick={handlePopoverToggle}
+                      type="button"
+                    >
+                      <Info className="h-4 w-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent 
+                    className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg"
+                    side="top"
+                    sideOffset={8}
+                    align="start"
+                    alignOffset={-20}
+                    avoidCollisions={true}
+                    collisionPadding={16}
                   >
-                    <Info className="h-4 w-4" />
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent 
-                  className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg z-50"
-                  side="top"
-                  sideOffset={8}
-                  align="center"
-                >
-                  <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
-                    {simpleExplanation}
-                  </p>
-                </PopoverContent>
-              </Popover>
+                    <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
+                      {simpleExplanation}
+                    </p>
+                  </PopoverContent>
+                </Popover>
+              </div>
             </div>
             <p className="font-telegraf text-gray-600 leading-relaxed">
               {description}
