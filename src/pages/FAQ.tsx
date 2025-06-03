@@ -17,6 +17,7 @@ const FAQ: React.FC = () => {
     title: `${t('nav.faq')} | Stratum PR`,
     description: t('faq.hero.description'),
     keywords: 'FAQ, questions, data analytics, Puerto Rico, consulting, AI, CRM',
+    canonical: `${window.location.origin}/faq`,
   }, 'FAQ');
 
   const getFAQsByCategory = (category: string): FAQItem[] => {
