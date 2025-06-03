@@ -1,4 +1,3 @@
-
 export const esTranslations = {
   // Navigation
   'nav.home': 'Inicio',
@@ -7,6 +6,7 @@ export const esTranslations = {
   'nav.contact': 'Contacto',
   'nav.projects': 'Proyectos',
   'nav.schedule': 'Programar Consulta Gratuita',
+  'nav.faq': 'Preguntas Frecuentes',
   
   // Home page
   'home.hero.title': 'La Arquitectura de',
@@ -226,4 +226,57 @@ export const esTranslations = {
   'projects.sales.client': 'Empresa Tecnológica Fortune 500',
   'projects.sales.sector': 'Tecnología',
   'projects.sales.summary': 'Automatizó pipeline de reportes de ventas que redujo el trabajo manual en 60% y mejoró la precisión de pronósticos en 25%.',
+  
+  // FAQ page
+  'nav.faq': 'Preguntas Frecuentes',
+  'faq.hero.title': 'Preguntas Frecuentes',
+  'faq.hero.description': 'Encuentra respuestas a preguntas comunes sobre nuestros servicios de análisis de datos, enfoque y cómo podemos ayudar a transformar tu negocio en Puerto Rico.',
+  
+  // FAQ Categories
+  'faq.categories.company': 'Acerca de Stratum PR',
+  'faq.categories.services': 'Nuestros Servicios Explicados',
+  'faq.categories.basics': 'Comenzando',
+  'faq.categories.impact': 'Impacto Real',
+  
+  // Company FAQs
+  'faq.company.who.question': '¿Quién es Stratum PR y qué los hace diferentes?',
+  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas estratégicas de negocio. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico. No somos solo consultores—somos arquitectos de mejores sistemas de toma de decisiones.',
+  
+  'faq.company.why.question': '¿Por qué debería contratar a Stratum PR en lugar de una firma consultora más grande?',
+  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Nuestro tamaño más pequeño significa atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, traemos experiencia de nivel Fortune 500 a una escala y costo más accesibles.',
+  
+  'faq.company.experience.question': '¿Qué experiencia tiene su equipo?',
+  'faq.company.experience.answer': 'Nuestro equipo fundador aporta más de una década de experiencia combinada liderando proyectos en empresas Fortune 500 como UnitedHealth Group, firmas consultoras como ICF, y agencias gubernamentales incluyendo el Departamento de Salud de Puerto Rico. Hemos diseñado sistemas, dashboards y herramientas de automatización que han entregado resultados medibles para organizaciones de todos los tamaños.',
+  
+  // Services FAQs
+  'faq.services.crm.question': '¿Qué es la implementación de CRM y por qué la necesito?',
+  'faq.services.crm.answer': 'La implementación de CRM (Gestión de Relaciones con Clientes) significa configurar un sistema para organizar y rastrear todas tus interacciones con clientes, ventas y relaciones en un solo lugar. Piénsalo como actualizar de hojas de cálculo dispersas y correos electrónicos a un sistema unificado que te ayuda a servir mejor a los clientes, cerrar más ventas y nunca perder información importante.',
+  
+  'faq.services.bigdata.question': '¿Qué es el análisis de big data en términos simples?',
+  'faq.services.bigdata.answer': 'El análisis de big data es el proceso de examinar grandes cantidades de información para descubrir patrones e insights que te ayudan a tomar mejores decisiones de negocio. Por ejemplo, analizar datos de ventas para predecir qué productos serán populares el próximo mes, o entender el comportamiento del cliente para mejorar tu marketing. Convertimos tus datos en insights accionables.',
+  
+  'faq.services.ai.question': '¿Cómo puede la IA y automatización realmente ayudar a mi negocio?',
+  'faq.services.ai.answer': 'La IA y automatización pueden manejar tareas repetitivas, analizar datos más rápido que los humanos y ayudarte a tomar decisiones más informadas. Por ejemplo, clasificar automáticamente consultas de clientes, predecir necesidades de inventario, o identificar qué clientes tienen más probabilidad de hacer una compra. Esto libera a tu equipo para enfocarse en estrategia y relaciones con clientes mientras reduce errores y costos.',
+  
+  // Basics FAQs
+  'faq.basics.notech.question': 'No tengo experiencia técnica. ¿Aún pueden ayudarme?',
+  'faq.basics.notech.answer': '¡Absolutamente! Nos especializamos en trabajar con líderes de negocio no técnicos. Traducimos conceptos técnicos complejos a lenguaje de negocio claro y nos enfocamos en resultados que te importan—mayor eficiencia, mejor servicio al cliente, mayores ganancias e insights más claros. No necesitas entender la tecnología; solo necesitas entender los resultados.',
+  
+  'faq.basics.started.question': '¿Cómo comenzamos a trabajar juntos?',
+  'faq.basics.started.answer': 'Comenzamos con una consulta gratuita para entender los desafíos y objetivos de tu negocio. Luego realizamos una evaluación integral de tus sistemas actuales y panorama de datos. Basado en esto, diseñamos una arquitectura de solución estratégica y te presentamos una hoja de ruta clara, cronograma y resultados esperados antes de que comience cualquier implementación.',
+  
+  'faq.basics.timeline.question': '¿Cuánto tiempo toma un proyecto típico?',
+  'faq.basics.timeline.answer': 'Los cronogramas de proyectos varían según el alcance y complejidad. Las implementaciones simples de CRM pueden completarse en 30-90 días, mientras que las plataformas integrales de análisis de datos pueden tomar 3-6 meses. Proporcionamos cronogramas detallados durante la fase de planificación y te mantenemos actualizado durante todo el proceso con hitos regulares e informes de progreso.',
+  
+  // Impact FAQs
+  'faq.impact.results.question': '¿Qué tipo de resultados reales puedo esperar?',
+  'faq.impact.results.answer': 'Nuestros clientes típicamente ven mejoras medibles dentro de 90 días: 25-60% de reducción en trabajo manual de datos, 15-40% de mejora en velocidad de toma de decisiones, mejores puntuaciones de satisfacción del cliente y mayor visibilidad del rendimiento del negocio. Por ejemplo, hemos ayudado a reducir la sobrecarga administrativa en 40% en salud y mejorar la precisión de pronósticos en 25% en empresas tecnológicas.',
+  
+  'faq.impact.roi.question': '¿Cómo miden el retorno de inversión (ROI)?',
+  'faq.impact.roi.answer': 'Establecemos métricas de éxito claras antes de comenzar cualquier proyecto—como tiempo ahorrado, ingresos aumentados, costos reducidos o eficiencia ganada. Rastreamos estos durante la implementación y proporcionamos informes regulares mostrando tu ROI. La mayoría de los clientes ven retornos positivos dentro de 6-12 meses, con beneficios que continúan componiéndose con el tiempo mientras tu equipo se vuelve más orientado a datos.',
+  
+  // FAQ CTA
+  'faq.cta.title': '¿Aún Tienes Preguntas?',
+  'faq.cta.description': 'Estamos aquí para ayudar. Programa una consulta gratuita para discutir tus necesidades específicas y cómo podemos ayudar a transformar tu negocio.',
+  'faq.cta.button': 'Programar Consulta Gratuita',
 };

@@ -1,4 +1,3 @@
-
 export const enTranslations = {
   // Navigation
   'nav.home': 'Home',
@@ -7,6 +6,7 @@ export const enTranslations = {
   'nav.contact': 'Contact',
   'nav.projects': 'Projects',
   'nav.schedule': 'Schedule Free Consultation',
+  'nav.faq': 'FAQ',
   
   // Home page
   'home.hero.title': 'The Architecture of',
@@ -189,6 +189,58 @@ export const enTranslations = {
   'notfound.title': '404',
   'notfound.description': 'Oops! Page not found',
   'notfound.home': 'Return to Home',
+  
+  // FAQ page
+  'faq.hero.title': 'Frequently Asked Questions',
+  'faq.hero.description': 'Find answers to common questions about our data analytics services, approach, and how we can help transform your business in Puerto Rico.',
+  
+  // FAQ Categories
+  'faq.categories.company': 'About Stratum PR',
+  'faq.categories.services': 'Our Services Explained',
+  'faq.categories.basics': 'Getting Started',
+  'faq.categories.impact': 'Real-World Impact',
+  
+  // Company FAQs
+  'faq.company.who.question': 'Who is Stratum PR and what makes you different?',
+  'faq.company.who.answer': 'Stratum PR is a data analytics and consulting firm founded in 2025, specializing in transforming complex data into strategic business advantages. What makes us different is our team\'s proven track record with Fortune 500 companies, federal recovery programs, and Puerto Rico government agencies. We\'re not just consultants—we\'re architects of better decision-making systems.',
+  
+  'faq.company.why.question': 'Why should I hire Stratum PR instead of a larger consulting firm?',
+  'faq.company.why.answer': 'While larger firms often assign junior staff to your project, at Stratum PR you work directly with senior consultants and decision-makers. Our smaller size means personalized attention, faster response times, and solutions tailored specifically to your needs. Plus, we bring Fortune 500-level expertise at a more accessible scale and cost.',
+  
+  'faq.company.experience.question': 'What experience does your team have?',
+  'faq.company.experience.answer': 'Our founding team brings over a decade of combined experience from leading projects at Fortune 500 companies like UnitedHealth Group, consulting firms like ICF, and government agencies including the Puerto Rico Department of Health. We\'ve designed systems, dashboards, and automation tools that have delivered measurable results for organizations of all sizes.',
+  
+  // Services FAQs
+  'faq.services.crm.question': 'What is CRM implementation and why do I need it?',
+  'faq.services.crm.answer': 'CRM (Customer Relationship Management) implementation means setting up a system to organize and track all your customer interactions, sales, and relationships in one place. Think of it as upgrading from scattered spreadsheets and emails to a unified system that helps you serve customers better, close more sales, and never lose track of important information.',
+  
+  'faq.services.bigdata.question': 'What is big data analytics in simple terms?',
+  'faq.services.bigdata.answer': 'Big data analytics is the process of examining large amounts of information to discover patterns and insights that help you make better business decisions. For example, analyzing sales data to predict which products will be popular next month, or understanding customer behavior to improve your marketing. We turn your data into actionable insights.',
+  
+  'faq.services.ai.question': 'How can AI and automation actually help my business?',
+  'faq.services.ai.answer': 'AI and automation can handle repetitive tasks, analyze data faster than humans, and help you make more informed decisions. For example, automatically sorting customer inquiries, predicting inventory needs, or identifying which customers are most likely to make a purchase. This frees up your team to focus on strategy and customer relationships while reducing errors and costs.',
+  
+  // Basics FAQs
+  'faq.basics.notech.question': 'I don\'t have a technical background. Can you still help me?',
+  'faq.basics.notech.answer': 'Absolutely! We specialize in working with non-technical business leaders. We translate complex technical concepts into clear business language and focus on outcomes that matter to you—increased efficiency, better customer service, higher profits, and clearer insights. You don\'t need to understand the technology; you just need to understand the results.',
+  
+  'faq.basics.started.question': 'How do we get started working together?',
+  'faq.basics.started.answer': 'We begin with a free consultation to understand your business challenges and goals. Then we conduct a comprehensive assessment of your current systems and data landscape. Based on this, we design a strategic solution architecture and present you with a clear roadmap, timeline, and expected outcomes before any implementation begins.',
+  
+  'faq.basics.timeline.question': 'How long does a typical project take?',
+  'faq.basics.timeline.answer': 'Project timelines vary based on scope and complexity. Simple CRM implementations can be completed in 30-90 days, while comprehensive data analytics platforms may take 3-6 months. We provide detailed timelines during the planning phase and keep you updated throughout the process with regular milestones and progress reports.',
+  
+  // Impact FAQs
+  'faq.impact.results.question': 'What kind of real-world results can I expect?',
+  'faq.impact.results.answer': 'Our clients typically see measurable improvements within 90 days: 25-60% reduction in manual data work, 15-40% improvement in decision-making speed, better customer satisfaction scores, and clearer visibility into business performance. For example, we\'ve helped reduce administrative overhead by 40% in healthcare and improved forecast accuracy by 25% in technology companies.',
+  
+  'faq.impact.roi.question': 'How do you measure return on investment (ROI)?',
+  'faq.impact.roi.answer': 'We establish clear success metrics before starting any project—such as time saved, revenue increased, costs reduced, or efficiency gained. We track these throughout implementation and provide regular reports showing your ROI. Most clients see positive returns within 6-12 months, with benefits continuing to compound over time as your team becomes more data-driven.',
+  
+  // FAQ CTA
+  'faq.cta.title': 'Still Have Questions?',
+  'faq.cta.description': 'We\'re here to help. Schedule a free consultation to discuss your specific needs and how we can help transform your business.',
+  'faq.cta.button': 'Schedule Free Consultation',
   
   // Footer
   'footer.tagline': 'The Architecture of Better Decisions. We specialize in analytics and consulting solutions that drive strategic business outcomes.',
