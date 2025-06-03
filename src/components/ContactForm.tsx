@@ -16,6 +16,9 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
+    company: "",
+    industry: "",
     subject: "",
     message: ""
   });
@@ -39,6 +42,12 @@ const ContactForm = () => {
     }
     if (!validateEmail(formData.email)) {
       newErrors.email = "Please enter a valid email address";
+    }
+    if (!validateRequired(formData.company, 2)) {
+      newErrors.company = "Company name must be at least 2 characters long";
+    }
+    if (!validateRequired(formData.industry, 2)) {
+      newErrors.industry = "Industry must be at least 2 characters long";
     }
     if (!validateRequired(formData.subject, 3)) {
       newErrors.subject = "Subject must be at least 3 characters long";
@@ -84,6 +93,9 @@ const ContactForm = () => {
     const sanitizedData = {
       name: sanitizeInput(formData.name),
       email: sanitizeInput(formData.email),
+      phone: sanitizeInput(formData.phone),
+      company: sanitizeInput(formData.company),
+      industry: sanitizeInput(formData.industry),
       subject: sanitizeInput(formData.subject),
       message: sanitizeInput(formData.message)
     };
@@ -119,6 +131,9 @@ const ContactForm = () => {
           setFormData({
             name: "",
             email: "",
+            phone: "",
+            company: "",
+            industry: "",
             subject: "",
             message: ""
           });

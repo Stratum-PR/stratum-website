@@ -8,6 +8,9 @@ interface ContactFormFieldsProps {
   formData: {
     name: string;
     email: string;
+    phone: string;
+    company: string;
+    industry: string;
     subject: string;
     message: string;
   };
@@ -54,6 +57,60 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             maxLength={254} 
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+        </div>
+      </div>
+
+      <div>
+        <Label htmlFor="phone" className="font-telegraf font-medium">
+          Phone Number
+        </Label>
+        <Input 
+          id="phone" 
+          name="phone" 
+          type="tel" 
+          value={formData.phone} 
+          onChange={onChange} 
+          className={`mt-2 font-telegraf ${errors.phone ? 'border-red-500' : ''}`} 
+          placeholder="+1 (555) 123-4567" 
+          maxLength={20} 
+        />
+        {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <Label htmlFor="company" className="font-telegraf font-medium">
+            Company Name *
+          </Label>
+          <Input 
+            id="company" 
+            name="company" 
+            type="text" 
+            required 
+            value={formData.company} 
+            onChange={onChange} 
+            className={`mt-2 font-telegraf ${errors.company ? 'border-red-500' : ''}`} 
+            placeholder="Acme Corporation" 
+            maxLength={100} 
+          />
+          {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company}</p>}
+        </div>
+        <div>
+          <Label htmlFor="industry" className="font-telegraf font-medium">
+            Industry *
+          </Label>
+          <Input 
+            id="industry" 
+            name="industry" 
+            type="text" 
+            required 
+            value={formData.industry} 
+            onChange={onChange} 
+            className={`mt-2 font-telegraf ${errors.industry ? 'border-red-500' : ''}`} 
+            placeholder="Healthcare, Finance, Technology..." 
+            maxLength={100} 
+          />
+          {errors.industry && <p className="text-red-500 text-sm mt-1">{errors.industry}</p>}
         </div>
       </div>
       
