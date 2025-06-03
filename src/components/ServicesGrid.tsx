@@ -5,7 +5,8 @@ import {
   Settings,
   TrendingUp,
   Brain,
-  Zap
+  Zap,
+  Info
 } from "lucide-react";
 import { ServiceCard } from "./ServiceCard";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -26,7 +27,8 @@ export const ServicesGrid = () => {
         t('services.integration.feature5')
       ],
       deliverables: t('services.integration.deliverable'),
-      tooltip: "Streamline your business operations by connecting different software systems and automating data flow between platforms, reducing manual work and improving efficiency."
+      tooltip: "Streamline your business operations by connecting different software systems and automating data flow between platforms, reducing manual work and improving efficiency.",
+      simpleExplanation: "We connect all your business software so they work together seamlessly."
     },
     {
       icon: Settings,
@@ -40,7 +42,8 @@ export const ServicesGrid = () => {
         t('services.crm.feature5')
       ],
       deliverables: t('services.crm.deliverable'),
-      tooltip: "Transform your customer relationships with properly configured CRM systems that help you track leads, manage sales pipelines, and improve customer satisfaction through better data organization."
+      tooltip: "Transform your customer relationships with properly configured CRM systems that help you track leads, manage sales pipelines, and improve customer satisfaction through better data organization.",
+      simpleExplanation: "We help you organize and track customers more easily so you never miss opportunities."
     },
     {
       icon: Database,
@@ -54,7 +57,8 @@ export const ServicesGrid = () => {
         t('services.bigdata.feature5')
       ],
       deliverables: t('services.bigdata.deliverable'),
-      tooltip: "Unlock the power of your large datasets by implementing robust data processing systems that can handle massive volumes of information and extract meaningful insights for strategic decisions."
+      tooltip: "Unlock the power of your large datasets by implementing robust data processing systems that can handle massive volumes of information and extract meaningful insights for strategic decisions.",
+      simpleExplanation: "We turn massive datasets into easy-to-understand insights that guide your decisions."
     },
     {
       icon: TrendingUp,
@@ -68,7 +72,8 @@ export const ServicesGrid = () => {
         t('services.forecasting.feature5')
       ],
       deliverables: t('services.forecasting.deliverable'),
-      tooltip: "Predict future trends and outcomes using advanced statistical models and machine learning algorithms, helping you make proactive business decisions and stay ahead of market changes."
+      tooltip: "Predict future trends and outcomes using advanced statistical models and machine learning algorithms, helping you make proactive business decisions and stay ahead of market changes.",
+      simpleExplanation: "We use your data to forecast future trends so you can plan ahead confidently."
     },
     {
       icon: Brain,
@@ -82,7 +87,8 @@ export const ServicesGrid = () => {
         t('services.automation.feature5')
       ],
       deliverables: t('services.automation.deliverable'),
-      tooltip: "Implement intelligent automation solutions that use AI to handle repetitive tasks, make smart decisions, and optimize workflows, freeing up your team for strategic work."
+      tooltip: "Implement intelligent automation solutions that use AI to handle repetitive tasks, make smart decisions, and optimize workflows, freeing up your team for strategic work.",
+      simpleExplanation: "We automate repetitive tasks so your team can focus on what really matters."
     },
     {
       icon: BarChart3,
@@ -96,7 +102,8 @@ export const ServicesGrid = () => {
         t('services.decision.feature5')
       ],
       deliverables: t('services.decision.deliverable'),
-      tooltip: "Build comprehensive business intelligence systems with interactive dashboards and reporting tools that transform raw data into actionable insights for better decision-making."
+      tooltip: "Build comprehensive business intelligence systems with interactive dashboards and reporting tools that transform raw data into actionable insights for better decision-making.",
+      simpleExplanation: "We automate complex decisions using smart algorithms that learn from your data."
     }
   ];
 

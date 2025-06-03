@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers } from "lucide-react";
+import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -48,37 +47,37 @@ const Home = () => {
       icon: Layers,
       title: t('services.integration.title'),
       description: t('services.integration.description'),
-      hoverDescription: "Connect all your business systems seamlessly. We integrate CRMs, ERPs, and custom applications to eliminate data silos and create a unified digital ecosystem that saves time and reduces errors."
+      simpleExplanation: "We connect all your business software so they work together seamlessly."
     },
     {
       icon: BarChart3,
       title: t('services.crm.title'),
       description: t('services.crm.description'),
-      hoverDescription: "Transform how you manage customer relationships. Our CRM solutions streamline sales processes, improve customer service, and provide actionable insights that drive revenue growth and customer satisfaction."
+      simpleExplanation: "We help you organize and track customers more easily so you never miss opportunities."
     },
     {
       icon: Database,
       title: t('services.bigdata.title'),
       description: t('services.bigdata.description'),
-      hoverDescription: "Turn your data into competitive advantage. We build robust analytics platforms that process large datasets, create interactive dashboards, and deliver real-time insights for better business decisions."
+      simpleExplanation: "We turn massive datasets into easy-to-understand insights that guide your decisions."
     },
     {
       icon: Target,
       title: t('services.forecasting.title'),
       description: t('services.forecasting.description'),
-      hoverDescription: "Predict the future with confidence. Our advanced forecasting models help you anticipate market trends, optimize inventory, plan resources, and make proactive decisions that keep you ahead of the competition."
+      simpleExplanation: "We use your data to forecast future trends so you can plan ahead confidently."
     },
     {
       icon: Zap,
       title: t('services.automation.title'),
       description: t('services.automation.description'),
-      hoverDescription: "Eliminate repetitive tasks and human error. We implement intelligent automation solutions that handle routine processes, allowing your team to focus on strategic work that drives growth."
+      simpleExplanation: "We automate repetitive tasks so your team can focus on what really matters."
     },
     {
       icon: Brain,
       title: t('services.decision.title'),
       description: t('services.decision.description'),
-      hoverDescription: "Make smarter decisions faster. Our AI-powered decision intelligence systems analyze complex scenarios, provide recommendations, and automate routine decisions while keeping humans in control of strategic choices."
+      simpleExplanation: "We automate complex decisions using smart algorithms that learn from your data."
     }
   ];
 
@@ -189,32 +188,45 @@ const Home = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {services.map((service, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <Link to="/services" className="block">
-                      <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer">
-                        <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
-                          <div className="flex justify-center mb-6">
-                            <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                              <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-primary group-hover:text-white" aria-hidden="true" />
-                            </div>
-                          </div>
-                          <h3 className="font-telegraf font-semibold text-lg sm:text-xl text-primary mb-4 group-hover:text-secondary transition-colors">
-                            {service.title}
-                          </h3>
-                          <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base">
-                            {service.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent className="max-w-xs p-4 bg-white border shadow-lg">
-                    <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
-                      {service.hoverDescription}
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
+                <Link key={index} to="/services" className="block">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer">
+                    <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
+                      <div className="flex justify-center mb-6">
+                        <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                          <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-primary group-hover:text-white" aria-hidden="true" />
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-center gap-2 mb-4">
+                        <h3 className="font-telegraf font-semibold text-lg sm:text-xl text-primary group-hover:text-secondary transition-colors">
+                          {service.title}
+                        </h3>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button 
+                              className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100"
+                              aria-label={`Learn more about ${service.title}`}
+                              onClick={(e) => e.preventDefault()}
+                            >
+                              <Info className="h-4 w-4" />
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent 
+                            className="max-w-xs p-3 bg-white border border-gray-200 shadow-lg rounded-lg"
+                            side="top"
+                            sideOffset={5}
+                          >
+                            <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
+                              {service.simpleExplanation}
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                      <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base">
+                        {service.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
