@@ -56,7 +56,7 @@ export const healthDataExchangeProject = {
   },
   tags: ['Public Health', 'Data Integration', 'Automation'],
   icon: 'ActivitySquare',
-  image: 'image: https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop&crop=center?w=800&h=600&fit=crop&crop=center',
+  image: 'image: https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop&crop=center',
   featured: true,
   publishDate: '2024-12-10'
 };
