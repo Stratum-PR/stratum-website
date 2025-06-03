@@ -8,22 +8,22 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { getAllCaseStudies } from "@/data/caseStudies";
 import * as LucideIcons from "lucide-react";
 
-const CaseStudies = () => {
+const Projects = () => {
   const { t, language } = useLanguage();
   const caseStudies = getAllCaseStudies();
 
-  // SEO optimization for case studies page
+  // SEO optimization for projects page
   useSEO({
-    title: "Case Studies - Stratum PR Data Analytics Success Stories",
+    title: "Projects - Stratum PR Data Analytics Success Stories",
     description: "Explore real-world examples of how Stratum PR delivers data analytics, automation, and strategic decision systems for clients across Puerto Rico and beyond.",
-    keywords: "case studies Puerto Rico, data analytics success stories, business intelligence examples, CRM implementation results, automation case studies, digital transformation examples",
-    canonical: "https://www.stratumpr.com/case-studies",
+    keywords: "projects Puerto Rico, data analytics success stories, business intelligence examples, CRM implementation results, automation projects, digital transformation examples",
+    canonical: "https://www.stratumpr.com/projects",
     ogType: "website"
-  }, "case-studies");
+  }, "projects");
 
   const handleReadMore = (slug: string) => {
-    // Navigate to the individual case study page
-    window.location.href = `/case-studies/${slug}`;
+    // Navigate to the individual project page
+    window.location.href = `/projects/${slug}`;
   };
 
   return (
@@ -32,15 +32,15 @@ const CaseStudies = () => {
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-5xl md:text-6xl text-primary mb-6">
-            {t('casestudies.hero.title')}
+            {t('projects.hero.title')}
           </h1>
           <p className="font-telegraf text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            {t('casestudies.hero.description')}
+            {t('projects.hero.description')}
           </p>
         </div>
       </section>
 
-      {/* Case Studies Grid */}
+      {/* Projects Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -72,8 +72,8 @@ const CaseStudies = () => {
                       {content.summary}
                     </p>
                     <Button asChild variant="ghost" className="p-0 h-auto font-telegraf text-primary hover:text-secondary transition-colors group">
-                      <Link to={`/case-studies/${study.slug}`}>
-                        {t('casestudies.readmore')}
+                      <Link to={`/projects/${study.slug}`}>
+                        {t('projects.readmore')}
                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </Button>
@@ -89,14 +89,14 @@ const CaseStudies = () => {
       <section className="py-20 bg-gradient-to-r from-primary to-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            {t('casestudies.cta.title')}
+            {t('projects.cta.title')}
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            {t('casestudies.cta.description')}
+            {t('projects.cta.description')}
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
             <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-              {t('casestudies.cta.button')}
+              {t('projects.cta.button')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
@@ -106,4 +106,4 @@ const CaseStudies = () => {
   );
 };
 
-export default CaseStudies;
+export default Projects;

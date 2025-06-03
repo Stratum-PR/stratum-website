@@ -11,8 +11,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import CaseStudies from "./pages/CaseStudies";
-import CaseStudyDetail from "./pages/CaseStudyDetail";
+import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -33,8 +33,11 @@ const App = () => (
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/case-studies" element={<CaseStudies />} />
-                <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:slug" element={<ProjectDetail />} />
+                {/* Legacy redirects for case-studies URLs */}
+                <Route path="/case-studies" element={<Projects />} />
+                <Route path="/case-studies/:slug" element={<ProjectDetail />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

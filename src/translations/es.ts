@@ -5,7 +5,7 @@ export const esTranslations = {
   'nav.about': 'Acerca de',
   'nav.services': 'Servicios',
   'nav.contact': 'Contacto',
-  'nav.casestudies': 'Casos de Estudio',
+  'nav.projects': 'Proyectos',
   'nav.schedule': 'Programar Consulta Gratuita',
   
   // Home page
@@ -202,28 +202,28 @@ export const esTranslations = {
   'common.submit': 'Enviar',
   'common.cancel': 'Cancelar',
   
-  // Case Studies page
-  'casestudies.hero.title': 'Casos de Estudio',
-  'casestudies.hero.description': 'Una mirada al interior de nuestro impacto—clientes reales, resultados reales.',
-  'casestudies.filter.all': 'Todos',
-  'casestudies.readmore': 'Leer Más',
-  'casestudies.cta.title': '¿Listo para Crear tu Historia de Éxito?',
-  'casestudies.cta.description': 'Hablemos sobre cómo podemos ayudarte a transformar tus datos en conocimientos accionables.',
-  'casestudies.cta.button': 'Programar Consulta Gratuita',
+  // Projects page
+  'projects.hero.title': 'Proyectos',
+  'projects.hero.description': 'Una mirada al interior de nuestro impacto—clientes reales, resultados reales.',
+  'projects.filter.all': 'Todos',
+  'projects.readmore': 'Leer Más',
+  'projects.cta.title': '¿Listo para Crear tu Historia de Éxito?',
+  'projects.cta.description': 'Hablemos sobre cómo podemos ayudarte a transformar tus datos en conocimientos accionables.',
+  'projects.cta.button': 'Programar Consulta Gratuita',
   
-  // Case study examples
-  'casestudies.healthcare.title': 'Plataforma de Integración de Datos de Salud',
-  'casestudies.healthcare.client': 'Red de Salud Regional',
-  'casestudies.healthcare.sector': 'Salud',
-  'casestudies.healthcare.summary': 'Optimizó datos de pacientes en 12 instalaciones, reduciendo la sobrecarga administrativa en 40% y mejorando la coordinación de atención.',
+  // Project examples
+  'projects.healthcare.title': 'Plataforma de Integración de Datos de Salud',
+  'projects.healthcare.client': 'Red de Salud Regional',
+  'projects.healthcare.sector': 'Salud',
+  'projects.healthcare.summary': 'Optimizó datos de pacientes en 12 instalaciones, reduciendo la sobrecarga administrativa en 40% y mejorando la coordinación de atención.',
   
-  'casestudies.municipal.title': 'Dashboard de Transparencia Presupuestaria Municipal',
-  'casestudies.municipal.client': 'Municipio de Puerto Rico',
-  'casestudies.municipal.sector': 'Gobierno',
-  'casestudies.municipal.summary': 'Creó sistema de seguimiento presupuestario en tiempo real que aumentó la participación ciudadana y mejoró la responsabilidad fiscal.',
+  'projects.municipal.title': 'Dashboard de Transparencia Presupuestaria Municipal',
+  'projects.municipal.client': 'Municipio de Puerto Rico',
+  'projects.municipal.sector': 'Gobierno',
+  'projects.municipal.summary': 'Creó sistema de seguimiento presupuestario en tiempo real que aumentó la participación ciudadana y mejoró la responsabilidad fiscal.',
   
-  'casestudies.sales.title': 'Suite de Análisis de Rendimiento de Ventas',
-  'casestudies.sales.client': 'Empresa Tecnológica Fortune 500',
-  'casestudies.sales.sector': 'Tecnología',
-  'casestudies.sales.summary': 'Automatizó pipeline de reportes de ventas que redujo el trabajo manual en 60% y mejoró la precisión de pronósticos en 25%.',
+  'projects.sales.title': 'Suite de Análisis de Rendimiento de Ventas',
+  'projects.sales.client': 'Empresa Tecnológica Fortune 500',
+  'projects.sales.sector': 'Tecnología',
+  'projects.sales.summary': 'Automatizó pipeline de reportes de ventas que redujo el trabajo manual en 60% y mejoró la precisión de pronósticos en 25%.',
 };

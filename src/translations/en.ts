@@ -5,7 +5,7 @@ export const enTranslations = {
   'nav.about': 'About',
   'nav.services': 'Services',
   'nav.contact': 'Contact',
-  'nav.casestudies': 'Case Studies',
+  'nav.projects': 'Projects',
   'nav.schedule': 'Schedule Free Consultation',
   
   // Home page
@@ -202,28 +202,28 @@ export const enTranslations = {
   'common.submit': 'Submit',
   'common.cancel': 'Cancel',
   
-  // Case Studies page
-  'casestudies.hero.title': 'Case Studies',
-  'casestudies.hero.description': 'A look inside our impact—real clients, real results.',
-  'casestudies.filter.all': 'All',
-  'casestudies.readmore': 'Read More',
-  'casestudies.cta.title': 'Ready to Create Your Success Story?',
-  'casestudies.cta.description': 'Let\'s discuss how we can help transform your data into actionable insights.',
-  'casestudies.cta.button': 'Schedule Free Consultation',
+  // Projects page
+  'projects.hero.title': 'Projects',
+  'projects.hero.description': 'A look inside our impact—real clients, real results.',
+  'projects.filter.all': 'All',
+  'projects.readmore': 'Read More',
+  'projects.cta.title': 'Ready to Create Your Success Story?',
+  'projects.cta.description': 'Let\'s discuss how we can help transform your data into actionable insights.',
+  'projects.cta.button': 'Schedule Free Consultation',
   
-  // Case study examples
-  'casestudies.healthcare.title': 'Healthcare Data Integration Platform',
-  'casestudies.healthcare.client': 'Regional Healthcare Network',
-  'casestudies.healthcare.sector': 'Healthcare',
-  'casestudies.healthcare.summary': 'Streamlined patient data across 12 facilities, reducing administrative overhead by 40% and improving care coordination.',
+  // Project examples
+  'projects.healthcare.title': 'Healthcare Data Integration Platform',
+  'projects.healthcare.client': 'Regional Healthcare Network',
+  'projects.healthcare.sector': 'Healthcare',
+  'projects.healthcare.summary': 'Streamlined patient data across 12 facilities, reducing administrative overhead by 40% and improving care coordination.',
   
-  'casestudies.municipal.title': 'Municipal Budget Transparency Dashboard',
-  'casestudies.municipal.client': 'Puerto Rico Municipality',
-  'casestudies.municipal.sector': 'Government',
-  'casestudies.municipal.summary': 'Created real-time budget tracking system that increased citizen engagement and improved fiscal accountability.',
+  'projects.municipal.title': 'Municipal Budget Transparency Dashboard',
+  'projects.municipal.client': 'Puerto Rico Municipality',
+  'projects.municipal.sector': 'Government',
+  'projects.municipal.summary': 'Created real-time budget tracking system that increased citizen engagement and improved fiscal accountability.',
   
-  'casestudies.sales.title': 'Sales Performance Analytics Suite',
-  'casestudies.sales.client': 'Fortune 500 Technology Company',
-  'casestudies.sales.sector': 'Technology',
-  'casestudies.sales.summary': 'Automated sales reporting pipeline that reduced manual work by 60% and improved forecast accuracy by 25%.',
+  'projects.sales.title': 'Sales Performance Analytics Suite',
+  'projects.sales.client': 'Fortune 500 Technology Company',
+  'projects.sales.sector': 'Technology',
+  'projects.sales.summary': 'Automated sales reporting pipeline that reduced manual work by 60% and improved forecast accuracy by 25%.',
 };

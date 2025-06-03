@@ -8,28 +8,28 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { getCaseStudyBySlug } from "@/data/caseStudies";
 import * as LucideIcons from "lucide-react";
 
-const CaseStudyDetail = () => {
+const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   
-  const caseStudy = slug ? getCaseStudyBySlug(slug) : null;
+  const project = slug ? getCaseStudyBySlug(slug) : null;
 
-  // Handle case study not found
-  if (!caseStudy) {
+  // Handle project not found
+  if (!project) {
     return (
       <div className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="font-telegraf font-bold text-4xl text-primary mb-4">
-            Case Study Not Found
+            Project Not Found
           </h1>
           <p className="font-telegraf text-gray-600 mb-6">
-            The case study you're looking for doesn't exist.
+            The project you're looking for doesn't exist.
           </p>
           <Button asChild>
-            <Link to="/case-studies">
+            <Link to="/projects">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Case Studies
+              Back to Projects
             </Link>
           </Button>
         </div>
@@ -37,23 +37,23 @@ const CaseStudyDetail = () => {
     );
   }
 
-  const content = caseStudy.content[language];
-  const metadata = caseStudy.metadata;
+  const content = project.content[language];
+  const metadata = project.metadata;
 
-  // SEO optimization for individual case study
+  // SEO optimization for individual project
   useSEO({
     title: metadata.title[language],
     description: metadata.description[language],
     keywords: metadata.keywords[language],
-    canonical: `https://www.stratumpr.com/case-studies/${caseStudy.slug}`,
+    canonical: `https://www.stratumpr.com/projects/${project.slug}`,
     ogType: "article",
-    ogImage: caseStudy.image,
+    ogImage: project.image,
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": content.title,
       "description": content.summary,
-      "image": caseStudy.image,
+      "image": project.image,
       "author": {
         "@type": "Organization",
         "name": "Stratum PR"
@@ -66,12 +66,12 @@ const CaseStudyDetail = () => {
           "url": "https://www.stratumpr.com/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png"
         }
       },
-      "datePublished": caseStudy.publishDate
+      "datePublished": project.publishDate
     }
-  }, `case-study-${caseStudy.slug}`);
+  }, `project-${project.slug}`);
 
   // Get the icon component dynamically
-  const IconComponent = (LucideIcons as any)[caseStudy.icon] || LucideIcons.FileText;
+  const IconComponent = (LucideIcons as any)[project.icon] || LucideIcons.FileText;
 
   return (
     <div className="pt-20">
@@ -80,11 +80,11 @@ const CaseStudyDetail = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Button 
             variant="ghost" 
-            onClick={() => navigate('/case-studies')}
+            onClick={() => navigate('/projects')}
             className="mb-6 font-telegraf"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            {t('casestudies.hero.title')}
+            {t('projects.hero.title')}
           </Button>
           
           <div className="flex items-center gap-3 mb-6">
@@ -133,7 +133,7 @@ const CaseStudyDetail = () => {
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <img 
-            src={caseStudy.image} 
+            src={project.image} 
             alt={content.title}
             className="w-full h-96 object-cover rounded-xl shadow-lg"
           />
@@ -210,7 +210,7 @@ const CaseStudyDetail = () => {
                     Project Tags
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {caseStudy.tags.map((tag, index) => (
+                    {project.tags.map((tag, index) => (
                       <span 
                         key={index}
                         className="px-3 py-1 text-sm font-telegraf bg-secondary/10 text-secondary rounded-full"
@@ -230,14 +230,14 @@ const CaseStudyDetail = () => {
       <section className="py-20 bg-gradient-to-r from-primary to-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            {t('casestudies.cta.title')}
+            {t('projects.cta.title')}
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            {t('casestudies.cta.description')}
+            {t('projects.cta.description')}
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
             <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-              {t('casestudies.cta.button')}
+              {t('projects.cta.button')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
@@ -247,4 +247,4 @@ const CaseStudyDetail = () => {
   );
 };
 
-export default CaseStudyDetail;
+export default ProjectDetail;
