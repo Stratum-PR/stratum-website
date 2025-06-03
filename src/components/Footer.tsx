@@ -50,6 +50,16 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/projects" className="text-primary-200 hover:text-accent transition-colors font-telegraf">
+                  {t('projects.hero.title')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-primary-200 hover:text-accent transition-colors font-telegraf">
+                  {t('nav.faq')}
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="text-primary-200 hover:text-accent transition-colors font-telegraf">
                   {t('nav.contact')}
                 </Link>

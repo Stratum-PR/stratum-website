@@ -24,6 +24,9 @@ export const Header = () => {
     name: t('projects.hero.title'),
     href: '/projects'
   }, {
+    name: t('nav.faq'),
+    href: '/faq'
+  }, {
     name: t('nav.contact'),
     href: '/contact'
   }];

@@ -1,12 +1,10 @@
-
 export const esTranslations = {
   // Navigation
   'nav.home': 'Inicio',
-  'nav.about': 'Acerca de',
+  'nav.about': 'Nosotros',
   'nav.services': 'Servicios',
   'nav.contact': 'Contacto',
-  'nav.projects': 'Proyectos',
-  'nav.schedule': 'Programar Consulta Gratuita',
+  'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'Preguntas Frecuentes',
   
   // Home page
