@@ -1,6 +1,6 @@
 
-import { healthDataExchangeProject } from './healthcare-integration';
-import { mlPredictiveEngineProject } from './municipal-budget-dashboard';
+import { healthDataExchangeProject } from './healthDataExchangeProject';
+import { mlPredictiveEngineProject } from './mlPredictiveEngineProject';
 
 export const caseStudiesData = [
   healthDataExchangeProject,
@@ -15,4 +15,4 @@ export const getAllCaseStudies = () => {
   return caseStudiesData;
 };
 
-export type CaseStudy = typeof healthcareIntegrationCaseStudy;
+export type CaseStudy = typeof healthDataExchangeProject;
