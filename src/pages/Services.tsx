@@ -43,7 +43,7 @@ const Services = () => {
   }, "services");
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={300} skipDelayDuration={100}>
       <div className="pt-20">
         <ServicesHero />
         <ServicesGrid />
