@@ -83,9 +83,6 @@ const Home = () => {
   }, {
     value: "PR",
     label: t('stats.team')
-  }, {
-    value: "Top 5",
-    label: t('stats.fortune')
   }];
 
   return (
