@@ -10,7 +10,7 @@ export const enTranslations = {
   'nav.faq': 'FAQ',
   
   // Home page
-  'home.hero.title': 'The Architecture of',
+  'home.hero.title': 'CACA2 The Architecture of',
   'home.hero.subtitle': 'Better Decisions',
   'home.hero.description': 'We build the foundation for strategic excellence through advanced analytics, AI solutions, and data-driven consulting that transforms how businesses operate in Puerto Rico and beyond.',
   'home.hero.cta.primary': 'Schedule Free Consultation',
