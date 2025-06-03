@@ -36,7 +36,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             value={formData.name} 
             onChange={onChange} 
             className={`mt-2 font-telegraf ${errors.name ? 'border-red-500' : ''}`} 
-            placeholder="John Smith" 
+            placeholder={t('contact.form.name.placeholder')}
             maxLength={100} 
           />
           {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
@@ -53,7 +53,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             value={formData.email} 
             onChange={onChange} 
             className={`mt-2 font-telegraf ${errors.email ? 'border-red-500' : ''}`} 
-            placeholder="john@company.com" 
+            placeholder={t('contact.form.email.placeholder')}
             maxLength={254} 
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
@@ -62,7 +62,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
 
       <div>
         <Label htmlFor="phone" className="font-telegraf font-medium">
-          Phone Number
+          {t('contact.form.phone')}
         </Label>
         <Input 
           id="phone" 
@@ -71,7 +71,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           value={formData.phone} 
           onChange={onChange} 
           className={`mt-2 font-telegraf ${errors.phone ? 'border-red-500' : ''}`} 
-          placeholder="+1 (555) 123-4567" 
+          placeholder={t('contact.form.phone.placeholder')}
           maxLength={20} 
         />
         {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
@@ -80,7 +80,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="company" className="font-telegraf font-medium">
-            Company Name *
+            {t('contact.form.company')} *
           </Label>
           <Input 
             id="company" 
@@ -90,14 +90,14 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             value={formData.company} 
             onChange={onChange} 
             className={`mt-2 font-telegraf ${errors.company ? 'border-red-500' : ''}`} 
-            placeholder="Acme Corporation" 
+            placeholder={t('contact.form.company.placeholder')}
             maxLength={100} 
           />
           {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company}</p>}
         </div>
         <div>
           <Label htmlFor="industry" className="font-telegraf font-medium">
-            Industry *
+            {t('contact.form.industry')} *
           </Label>
           <Input 
             id="industry" 
@@ -107,7 +107,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             value={formData.industry} 
             onChange={onChange} 
             className={`mt-2 font-telegraf ${errors.industry ? 'border-red-500' : ''}`} 
-            placeholder="Healthcare, Finance, Technology..." 
+            placeholder={t('contact.form.industry.placeholder')}
             maxLength={100} 
           />
           {errors.industry && <p className="text-red-500 text-sm mt-1">{errors.industry}</p>}
@@ -126,7 +126,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           value={formData.subject} 
           onChange={onChange} 
           className={`mt-2 font-telegraf ${errors.subject ? 'border-red-500' : ''}`} 
-          placeholder="Enterprise Solutions Inquiry" 
+          placeholder={t('contact.form.subject.placeholder')}
           maxLength={200} 
         />
         {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
@@ -144,7 +144,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           onChange={onChange} 
           rows={6} 
           className={`mt-2 font-telegraf resize-none ${errors.message ? 'border-red-500' : ''}`} 
-          placeholder="Tell us about your project, goals, and timeline..." 
+          placeholder={t('contact.form.message.placeholder')}
           maxLength={2000} 
         />
         {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}

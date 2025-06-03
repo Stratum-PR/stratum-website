@@ -1,3 +1,4 @@
+
 export const esTranslations = {
   // Navigation
   'nav.home': 'Inicio',
@@ -170,9 +171,19 @@ export const esTranslations = {
   'contact.form.description': 'Completa el formulario a continuación y te responderemos dentro de 24 horas.',
   'contact.form.security': 'Este formulario está protegido contra spam y envíos automatizados',
   'contact.form.name': 'Nombre Completo',
+  'contact.form.name.placeholder': 'Juan Pérez',
   'contact.form.email': 'Dirección de Correo',
+  'contact.form.email.placeholder': 'juan@empresa.com',
+  'contact.form.phone': 'Número de Teléfono',
+  'contact.form.phone.placeholder': '+1 (555) 123-4567',
+  'contact.form.company': 'Nombre de la Empresa',
+  'contact.form.company.placeholder': 'Corporación Acme',
+  'contact.form.industry': 'Industria',
+  'contact.form.industry.placeholder': 'Salud, Finanzas, Tecnología...',
   'contact.form.subject': 'Asunto',
+  'contact.form.subject.placeholder': 'Ayúdame a entender cómo mis datos pueden ayudarme a generar más ingresos',
   'contact.form.message': 'Mensaje',
+  'contact.form.message.placeholder': 'Tengo muchos datos y no sé qué hacer con ellos...',
   'contact.form.submit': 'Enviar Mensaje',
   'contact.form.sending': 'Enviando Mensaje...',
   'contact.form.success.title': '¡Mensaje Enviado Exitosamente!',

@@ -1,3 +1,4 @@
+
 export const enTranslations = {
   // Navigation
   'nav.home': 'Home',
@@ -170,9 +171,19 @@ export const enTranslations = {
   'contact.form.description': 'Fill out the form below and we\'ll get back to you within 24 hours.',
   'contact.form.security': 'This form is protected against spam and automated submissions',
   'contact.form.name': 'Full Name',
+  'contact.form.name.placeholder': 'John Smith',
   'contact.form.email': 'Email Address',
+  'contact.form.email.placeholder': 'john@company.com',
+  'contact.form.phone': 'Phone Number',
+  'contact.form.phone.placeholder': '+1 (555) 123-4567',
+  'contact.form.company': 'Company Name',
+  'contact.form.company.placeholder': 'Acme Corporation',
+  'contact.form.industry': 'Industry',
+  'contact.form.industry.placeholder': 'Healthcare, Finance, Technology...',
   'contact.form.subject': 'Subject',
+  'contact.form.subject.placeholder': 'Help me understand how my data can help me generate more income',
   'contact.form.message': 'Message',
+  'contact.form.message.placeholder': 'I have a lot of data and don\'t know what to do with it...',
   'contact.form.submit': 'Send Message',
   'contact.form.sending': 'Sending Message...',
   'contact.form.success.title': 'Message Sent Successfully!',
