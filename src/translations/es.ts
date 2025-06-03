@@ -1,3 +1,4 @@
+
 export const esTranslations = {
   // Navigation
   'nav.home': 'Inicio',
@@ -228,7 +229,6 @@ export const esTranslations = {
   'projects.sales.summary': 'Automatizó pipeline de reportes de ventas que redujo el trabajo manual en 60% y mejoró la precisión de pronósticos en 25%.',
   
   // FAQ page
-  'nav.faq': 'Preguntas Frecuentes',
   'faq.hero.title': 'Preguntas Frecuentes',
   'faq.hero.description': 'Encuentra respuestas a preguntas comunes sobre nuestros servicios de análisis de datos, enfoque y cómo podemos ayudar a transformar tu negocio en Puerto Rico.',
   
