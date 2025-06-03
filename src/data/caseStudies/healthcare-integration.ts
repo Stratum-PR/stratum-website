@@ -1,62 +1,61 @@
-
-export const healthcareIntegrationCaseStudy = {
-  slug: 'healthcare-integration',
-  id: 1,
+export const healthDataExchangeProject = {
+  slug: 'island-health-data-exchange',
+  id: 3,
   metadata: {
     title: {
-      en: 'Healthcare Data Integration Platform - Stratum PR Case Study',
-      es: 'Plataforma de Integración de Datos de Salud - Caso de Estudio Stratum PR'
+      en: 'Island-Wide Health Data Exchange Infrastructure - Public Health Data Project',
+      es: 'Infraestructura de Intercambio de Datos de Salud a Nivel Isla - Proyecto de Datos de Salud Pública'
     },
     description: {
-      en: 'Learn how Stratum PR streamlined patient data across 12 healthcare facilities, reducing administrative overhead by 40% and improving care coordination.',
-      es: 'Descubre cómo Stratum PR optimizó los datos de pacientes en 12 instalaciones de salud, reduciendo los gastos administrativos en un 40% y mejorando la coordinación de atención.'
+      en: 'How Stratum PR helped the Puerto Rico Department of Health automate and unify its COVID-19 lab reporting, case tracking, and public health response systems.',
+      es: 'Cómo Stratum PR ayudó al Departamento de Salud de Puerto Rico a automatizar y unificar sus sistemas de reporte de laboratorio, seguimiento de casos y respuesta de salud pública para COVID-19.'
     },
     keywords: {
-      en: 'healthcare data integration, patient data management, healthcare analytics Puerto Rico, medical data systems',
-      es: 'integración de datos de salud, gestión de datos de pacientes, análisis de salud Puerto Rico, sistemas de datos médicos'
+      en: 'public health, data exchange, pandemic response, government data automation, Puerto Rico health system',
+      es: 'salud pública, intercambio de datos, respuesta a pandemia, automatización de datos gubernamentales, sistema de salud de Puerto Rico'
     }
   },
   content: {
     en: {
-      title: 'Healthcare Data Integration Platform',
-      client: 'Regional Healthcare Network',
-      sector: 'Healthcare',
-      summary: 'Streamlined patient data across 12 facilities, reducing administrative overhead by 40% and improving care coordination.',
-      challenge: 'The regional healthcare network was struggling with fragmented patient data across 12 different facilities, each using different electronic health record (EHR) systems. This led to duplicate tests, delayed care, and significant administrative overhead.',
-      solution: 'We designed and implemented a comprehensive data integration platform that unified patient records across all facilities. The solution included real-time data synchronization, automated duplicate detection, and a centralized dashboard for healthcare providers.',
+      title: 'Island-Wide Health Data Exchange Infrastructure',
+      client: 'Puerto Rico Department of Health',
+      sector: 'Public Health',
+      summary: 'Designed a real-time data pipeline integrating lab results, case management, and contact tracing across the island.',
+      challenge: 'COVID-19 exposed deep fragmentation in the health department’s data systems. Delays, duplication, and data silos impaired outbreak response and resource allocation.',
+      solution: 'Stratum designed and implemented a centralized cloud system that connected all laboratories, hospitals, and contact tracing platforms with automated validation, deduplication, and dashboard-ready reporting.',
       results: [
-        '40% reduction in administrative overhead',
-        '60% decrease in duplicate medical tests',
-        '30% improvement in patient care coordination',
-        '99.9% system uptime achieved',
-        '$2.3M annual cost savings'
+        'Case reporting delay reduced by 90%',
+        'Real-time dashboards fed from over 100 integrated data sources',
+        'Automated tracking of outbreak clusters and public health actions',
+        'System expanded to include flu and RSV surveillance',
+        'Recognized as a core data infrastructure by PRDOH leadership'
       ],
-      technologies: ['HL7 FHIR', 'Microsoft Azure', 'Power BI', 'SQL Server', 'RESTful APIs'],
-      timeline: '8 months',
-      teamSize: '5 specialists'
+      technologies: ['Python', 'SQL Server', 'Power BI', 'Azure', 'Custom APIs'],
+      timeline: '5 months',
+      teamSize: '6 specialists'
     },
     es: {
-      title: 'Plataforma de Integración de Datos de Salud',
-      client: 'Red de Salud Regional',
-      sector: 'Salud',
-      summary: 'Optimizamos los datos de pacientes en 12 instalaciones, reduciendo los gastos administrativos en un 40% y mejorando la coordinación de atención.',
-      challenge: 'La red de salud regional luchaba con datos de pacientes fragmentados en 12 instalaciones diferentes, cada una usando diferentes sistemas de registros electrónicos de salud (EHR). Esto llevó a pruebas duplicadas, atención retrasada y gastos administrativos significativos.',
-      solution: 'Diseñamos e implementamos una plataforma integral de integración de datos que unificó los registros de pacientes en todas las instalaciones. La solución incluyó sincronización de datos en tiempo real, detección automática de duplicados y un panel centralizado para proveedores de atención médica.',
+      title: 'Infraestructura de Intercambio de Datos de Salud a Nivel Isla',
+      client: 'Departamento de Salud de Puerto Rico',
+      sector: 'Salud Pública',
+      summary: 'Diseñamos una canalización de datos en tiempo real que integra resultados de laboratorio, gestión de casos y rastreo de contactos en toda la isla.',
+      challenge: 'La pandemia de COVID-19 reveló una fragmentación crítica en los sistemas de datos de salud del gobierno. Retrasos, duplicación y silos de información afectaban la respuesta efectiva.',
+      solution: 'Stratum diseñó e implementó un sistema centralizado en la nube que conecta laboratorios, hospitales y plataformas de rastreo con validación automatizada y paneles en tiempo real.',
       results: [
-        '40% de reducción en gastos administrativos',
-        '60% de disminución en pruebas médicas duplicadas',
-        '30% de mejora en coordinación de atención al paciente',
-        '99.9% de tiempo de actividad del sistema logrado',
-        '$2.3M en ahorros anuales de costos'
+        'Reducción del 90% en el retraso del reporte de casos',
+        'Paneles actualizados en tiempo real desde más de 100 fuentes',
+        'Seguimiento automatizado de brotes y respuestas de salud pública',
+        'Sistema ampliado para incluir vigilancia de influenza y RSV',
+        'Reconocido como infraestructura clave por el DS de Puerto Rico'
       ],
-      technologies: ['HL7 FHIR', 'Microsoft Azure', 'Power BI', 'SQL Server', 'APIs RESTful'],
-      timeline: '8 meses',
-      teamSize: '5 especialistas'
+      technologies: ['Python', 'SQL Server', 'Power BI', 'Azure', 'APIs Personalizadas'],
+      timeline: '5 meses',
+      teamSize: '6 especialistas'
     }
   },
-  tags: ['Healthcare', 'Integration', 'Dashboards'],
-  icon: 'Heart',
-  image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop',
+  tags: ['Public Health', 'Data Integration', 'Automation'],
+  icon: 'ActivitySquare',
+  image: 'https://images.unsplash.com/photo-1588776814546-1f3a6a6f33b1?w=800&h=600&fit=crop',
   featured: true,
-  publishDate: '2024-12-01'
+  publishDate: '2024-12-10'
 };
