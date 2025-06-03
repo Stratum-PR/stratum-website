@@ -1,12 +1,10 @@
 
 import { healthDataExchangeProject } from './healthcare-integration';
-import { municipalBudgetDashboardCaseStudy } from './municipal-budget-dashboard';
-import { salesPerformanceAnalyticsCaseStudy } from './sales-performance-analytics';
+import { mlPredictiveEngineProject } from './municipal-budget-dashboard';
 
 export const caseStudiesData = [
-  healthcareIntegrationCaseStudy,
-  municipalBudgetDashboardCaseStudy,
-  salesPerformanceAnalyticsCaseStudy
+  healthDataExchangeProject,
+  mlPredictiveEngineProject,
 ];
 
 export const getCaseStudyBySlug = (slug: string) => {
