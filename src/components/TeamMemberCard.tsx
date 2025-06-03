@@ -25,15 +25,15 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden">
-      <div className="aspect-w-1 aspect-h-1 bg-gradient-to-br from-primary to-secondary p-8">
+      <div className="aspect-square bg-gradient-to-br from-primary to-secondary">
         {founder.image ? (
           <img
             src={founder.image}
             alt={`${founder.name} profile`}
-            className="w-40 h-40 md:w-48 md:h-48 mx-auto rounded-full object-cover scale-90"
+            className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-40 h-40 mx-auto bg-white/20 rounded-full flex items-center justify-center">
+          <div className="w-full h-full bg-white/20 flex items-center justify-center">
             <span className="text-4xl font-telegraf font-bold text-white">
               {founder.name.split(' ').map(n => n[0]).join('')}
             </span>
