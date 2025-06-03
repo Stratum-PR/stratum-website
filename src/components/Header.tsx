@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -37,12 +36,14 @@ export const Header = () => {
   const navSpacing = language === 'es' ? 'space-x-4 xl:space-x-6' : 'space-x-6 xl:space-x-8';
   const headerHeight = language === 'es' ? 'h-24 lg:h-20' : 'h-20';
   
+  const closeMenu = () => setIsMenuOpen(false);
+  
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex justify-between items-center ${headerHeight}`}>
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
+          {/* Logo - Always visible */}
+          <Link to="/" className="flex items-center space-x-3 flex-shrink-0 z-50 relative">
             <img src="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" alt="Stratum Logo" className="h-10 w-auto" />
           </Link>
 
@@ -89,17 +90,17 @@ export const Header = () => {
             {/* Backdrop */}
             <div 
               className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={closeMenu}
               aria-hidden="true"
             />
             
-            {/* Mobile Navigation Menu */}
-            <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-xl animate-in slide-in-from-top duration-300`}>
-              {/* Header space to match main header height */}
-              <div className={headerHeight}></div>
+            {/* Mobile Navigation Menu - positioned below the header */}
+            <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} fixed top-0 left-0 right-0 z-45 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
+              {/* Header space to match main header height - keeps logo visible */}
+              <div className={`${headerHeight} border-b border-gray-100`}></div>
               
               {/* Navigation Content */}
-              <div className="bg-white px-4 py-6 border-t border-gray-100">
+              <div className="bg-white px-4 py-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
                 <nav className="flex flex-col space-y-1">
                   {navigation.map(item => (
                     <Link
@@ -110,7 +111,7 @@ export const Header = () => {
                           ? 'text-primary bg-primary/10 border-l-4 border-primary'
                           : 'text-gray-700 hover:text-primary hover:bg-gray-50'
                       }`}
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={closeMenu}
                     >
                       {item.name}
                     </Link>
@@ -129,7 +130,7 @@ export const Header = () => {
                     <Button 
                       asChild 
                       className="w-full bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold py-3 rounded-lg transition-all duration-200 hover:shadow-lg"
-                      onClick={() => setIsMenuOpen(false)}
+                      onClick={closeMenu}
                     >
                       <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                         {t('nav.schedule')}
