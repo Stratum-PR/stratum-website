@@ -1,18 +1,14 @@
 
 import { useEffect } from 'react';
-import { generateSitemapXml } from '@/utils/sitemapGenerator';
+import { generateSitemapFile } from '@/utils/sitemapGenerator';
 
 const Sitemap = () => {
   useEffect(() => {
-    // Generate the sitemap XML
-    const sitemapXml = generateSitemapXml();
+    // Generate the sitemap XML file in public folder
+    generateSitemapFile();
     
-    // Create a response with proper XML content-type
-    const blob = new Blob([sitemapXml], { type: 'application/xml' });
-    const url = URL.createObjectURL(blob);
-    
-    // Redirect to the XML content
-    window.location.replace(url);
+    // Redirect to the generated XML file
+    window.location.replace('/sitemap.xml');
   }, []);
 
   // Show a loading message while redirecting

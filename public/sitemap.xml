@@ -1,45 +1,52 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- This is a static fallback. The dynamic sitemap is available at /sitemap.xml -->
   <url>
     <loc>https://www.stratumpr.com/</loc>
-    <priority>1.0</priority>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.stratumpr.com/about</loc>
-    <priority>0.8</priority>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.stratumpr.com/services</loc>
-    <priority>0.9</priority>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.stratumpr.com/projects</loc>
-    <priority>0.8</priority>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.stratumpr.com/contact</loc>
-    <priority>0.8</priority>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.stratumpr.com/faq</loc>
-    <priority>0.7</priority>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.stratumpr.com/projects/island-health-data-exchange</loc>
-    <priority>0.7</priority>
+    <lastmod>2024-11-15</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.stratumpr.com/projects/adaptive-ml-analytics-tool</loc>
-    <priority>0.7</priority>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

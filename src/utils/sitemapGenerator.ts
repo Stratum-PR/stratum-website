@@ -1,5 +1,7 @@
 
 import { getAllCaseStudies } from '@/data/caseStudies';
+import { writeFileSync } from 'fs';
+import { join } from 'path';
 
 export interface SitemapEntry {
   loc: string;
@@ -81,4 +83,16 @@ export const generateSitemapXml = (): string => {
   xml += '</urlset>';
   
   return xml;
+};
+
+export const generateSitemapFile = (): void => {
+  const sitemapXml = generateSitemapXml();
+  const publicPath = join(process.cwd(), 'public', 'sitemap.xml');
+  
+  try {
+    writeFileSync(publicPath, sitemapXml, 'utf8');
+    console.log('Sitemap generated successfully at:', publicPath);
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
+  }
 };
