@@ -17,23 +17,52 @@
     <!-- Critical CSS inlined for faster FCP -->
     <style>
       /* Critical above-the-fold styles */
-      html { font-family: Inter, system-ui, sans-serif; }
-      body { margin: 0; background: white; }
+      html { 
+        font-family: Inter, system-ui, sans-serif; 
+        font-display: swap;
+      }
+      body { 
+        margin: 0; 
+        background: white; 
+        font-display: swap;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
       #root { min-height: 100vh; }
       .font-telegraf { font-family: Inter, system-ui, sans-serif; }
       /* Prevent layout shift for header */
       header { height: 80px; }
       @media (max-width: 1024px) { header { height: 96px; } }
       /* Prevent hero section layout shift */
-      .hero-section { min-height: 100vh; }
+      .hero-section { 
+        min-height: 100vh; 
+        contain: layout style paint;
+      }
+      /* Optimize animations for performance */
+      .animate-float {
+        will-change: transform;
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
+      /* Loading placeholder for images */
+      .img-loading {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
     </style>
 
-    <!-- Optimized font loading with font-display: swap -->
+    <!-- Optimized font loading with font-display: swap and faster loading -->
     <link 
+      rel="preload" 
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
-      rel="stylesheet" 
-      media="print" 
-      onload="this.media='all'"
+      as="style" 
+      onload="this.onload=null;this.rel='stylesheet'"
     >
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -86,9 +115,14 @@
     <meta name="geo.position" content="18.2208;-66.5901" />
     <meta name="ICBM" content="18.2208, -66.5901" />
 
-    <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" />
-    <link rel="preload" as="image" href="/img/Icon 1.png" />
+    <!-- Preload critical assets for faster LCP -->
+    <link rel="preload" as="image" href="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/Icon 1.png" fetchpriority="high" />
+
+    <!-- Resource hints for better performance -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+    <link rel="prefetch" href="/src/pages/Services.tsx" />
+    <link rel="prefetch" href="/src/pages/About.tsx" />
 
     <!-- Structured Data - JSON-LD -->
     <script type="application/ld+json">
@@ -147,16 +181,35 @@
     }
     </script>
 
-    <!-- Google Analytics 4 with async loading -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Defer Google Analytics for better performance -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX', {
-        page_title: document.title,
-        page_location: window.location.href
-      });
+      function loadGA() {
+        if (typeof gtag === 'undefined') {
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX', {
+              page_title: document.title,
+              page_location: window.location.href
+            });
+          };
+        }
+      }
+      
+      // Load GA after page load to not block rendering
+      if (document.readyState === 'complete') {
+        setTimeout(loadGA, 1000);
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(loadGA, 1000);
+        });
+      }
     </script>
 
     <!-- Verification tags -->
@@ -166,6 +219,6 @@
   <body>
     <div id="root"></div>
     <!-- Load main script with defer for better performance -->
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

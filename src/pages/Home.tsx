@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -6,14 +7,20 @@ import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
-import SEOImage from "@/components/SEOImage";
-import { lazy, Suspense, useState } from "react";
+import OptimizedImage from "@/components/OptimizedImage";
+import { lazy, Suspense, useState, useEffect } from "react";
 
-// Lazy load non-critical components
+// Lazy load non-critical components with better loading states
 const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSection"));
 
 const Home = () => {
   const { t } = useLanguage();
+  const [isClient, setIsClient] = useState(false);
+  
+  // Hydration optimization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   
   // SEO optimization for home page
   useSEO({
@@ -101,13 +108,9 @@ const Home = () => {
     }
   ];
 
-  // Component for service card with popover functionality
+  // Optimized service card component with better performance
   const ServiceCardWithPopover = ({ service }: { service: any }) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-    const handlePopoverToggle = () => {
-      setIsPopoverOpen(!isPopoverOpen);
-    };
 
     return (
       <Link to="/services" className="block">
@@ -122,31 +125,33 @@ const Home = () => {
               <h3 className="font-telegraf font-semibold text-lg sm:text-xl text-primary group-hover:text-secondary transition-colors">
                 {service.title}
               </h3>
-              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                <PopoverTrigger asChild>
-                  <button 
-                    className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100 touch-manipulation"
-                    aria-label={`Learn more about ${service.title}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      handlePopoverToggle();
-                    }}
+              {isClient && (
+                <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                  <PopoverTrigger asChild>
+                    <button 
+                      className="text-gray-400 hover:text-primary transition-colors p-1 rounded-full hover:bg-gray-100 touch-manipulation"
+                      aria-label={`Learn more about ${service.title}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setIsPopoverOpen(!isPopoverOpen);
+                      }}
+                    >
+                      <Info className="h-4 w-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent 
+                    className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg z-50"
+                    side="top"
+                    sideOffset={8}
+                    align="center"
                   >
-                    <Info className="h-4 w-4" />
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent 
-                  className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg z-50"
-                  side="top"
-                  sideOffset={8}
-                  align="center"
-                >
-                  <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
-                    {service.simpleExplanation}
-                  </p>
-                </PopoverContent>
-              </Popover>
+                    <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
+                      {service.simpleExplanation}
+                    </p>
+                  </PopoverContent>
+                </Popover>
+              )}
             </div>
             <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base">
               {service.description}
@@ -161,11 +166,11 @@ const Home = () => {
     <TooltipProvider>
       <div className="pt-20">
         {/* Hero Section - Optimized for FCP and LCP */}
-        <section className="hero-section relative bg-gradient-to-br from-primary via-primary-800 to-secondary flex items-center overflow-hidden">
-          {/* Simplified background for better performance */}
+        <section className="hero-section relative bg-gradient-to-br from-primary via-primary-800 to-secondary flex items-center overflow-hidden section-container">
+          {/* Optimized background for better performance */}
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary-700/85 to-secondary/90"></div>
           
-          {/* Reduced animation elements for mobile performance */}
+          {/* Optimized animation elements for mobile performance */}
           <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
             <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-gradient-to-br from-accent/15 to-accent/5 rounded-full blur-3xl animate-float opacity-70 will-change-transform"></div>
             <div 
@@ -213,7 +218,7 @@ const Home = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-12 sm:py-16 bg-gray-50" aria-labelledby="stats-heading">
+        <section className="py-12 sm:py-16 bg-gray-50 section-container" aria-labelledby="stats-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 id="stats-heading" className="sr-only">Company Statistics and Achievements</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 items-center">
@@ -232,7 +237,7 @@ const Home = () => {
         </section>
 
         {/* Services Grid Section */}
-        <section className="py-16 sm:py-20" aria-labelledby="services-heading">
+        <section className="py-16 sm:py-20 section-container" aria-labelledby="services-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 sm:mb-16">
               <h2 id="services-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-6">
@@ -252,7 +257,7 @@ const Home = () => {
         </section>
 
         {/* Meet Our Team Section */}
-        <section className="py-16 sm:py-20 bg-gray-50" aria-labelledby="team-heading">
+        <section className="py-16 sm:py-20 bg-gray-50 section-container" aria-labelledby="team-heading">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 id="team-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-6">
               {t('meetteam.title')}
@@ -274,13 +279,17 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Lazy loaded sections for better initial load performance */}
-        <Suspense fallback={<div className="h-32 bg-gray-50"></div>}>
+        {/* Lazy loaded sections with optimized loading */}
+        <Suspense fallback={
+          <div className="h-96 bg-gray-50 section-container flex items-center justify-center">
+            <div className="img-loading w-32 h-8 rounded"></div>
+          </div>
+        }>
           <WhyWorkWithUsSection />
         </Suspense>
 
         {/* CTA Section */}
-        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary to-secondary" aria-labelledby="cta-heading">
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary to-secondary section-container" aria-labelledby="cta-heading">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
             <h2 id="cta-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl mb-6">
               {t('cta.title')}
