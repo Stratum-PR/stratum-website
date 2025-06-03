@@ -1,3 +1,4 @@
+
 export const es = {
   nav: {
     home: "Inicio",
@@ -82,20 +83,20 @@ export const es = {
   },
   about: {
     values: {
-      technical: "Excelencia Técnica",
       technical: {
+        title: "Excelencia Técnica",
         desc: "Nos comprometemos a ofrecer soluciones de la más alta calidad, aprovechando las últimas tecnologías y metodologías para superar las expectativas de nuestros clientes."
       },
-      strategic: "Visión Estratégica",
       strategic: {
+        title: "Visión Estratégica",
         desc: "Alineamos cada proyecto con los objetivos generales de nuestros clientes, asegurando que nuestras soluciones impulsen el crecimiento y la ventaja competitiva."
       },
-      partnership: "Colaboración en Asocio",
       partnership: {
+        title: "Colaboración en Asocio",
         desc: "Construimos relaciones sólidas y duraderas con nuestros clientes, trabajando como una extensión de su equipo para lograr el éxito mutuo."
       },
-      innovation: "Innovación Continua",
       innovation: {
+        title: "Innovación Continua",
         desc: "Fomentamos una cultura de innovación, explorando constantemente nuevas ideas y enfoques para ofrecer soluciones de vanguardia que impulsen el éxito de nuestros clientes."
       }
     }
