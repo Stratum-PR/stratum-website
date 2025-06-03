@@ -75,7 +75,7 @@ const Home = () => {
     value: "16+",
     label: t('stats.experience')
   }, {
-    value: "100%",
+    value: "3.2x",
     label: t('stats.satisfaction')
   }, {
     value: "30+",
