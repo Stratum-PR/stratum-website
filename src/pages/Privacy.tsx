@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
@@ -10,6 +9,7 @@ const Privacy: React.FC = () => {
     title: t('privacy.page.title'),
     description: t('privacy.page.description'),
     keywords: t('privacy.page.keywords'),
+    canonical: window.location.origin + '/privacy',
   });
 
   return (
