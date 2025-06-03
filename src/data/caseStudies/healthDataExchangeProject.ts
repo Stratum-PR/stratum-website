@@ -22,7 +22,7 @@ export const healthDataExchangeProject = {
       client: 'Puerto Rico Department of Health',
       sector: 'Public Health',
       summary: 'Designed a real-time data pipeline integrating lab results, case management, and contact tracing across the island.',
-      challenge: 'COVID-19 exposed deep fragmentation in the health department's data systems. Delays, duplication, and data silos impaired outbreak response and resource allocation.',
+      challenge: 'COVID-19 exposed deep fragmentation in the health department\'s data systems. Delays, duplication, and data silos impaired outbreak response and resource allocation.',
       solution: 'Stratum designed and implemented a centralized cloud system that connected all laboratories, hospitals, and contact tracing platforms with automated validation, deduplication, and dashboard-ready reporting.',
       results: [
         'Case reporting delay reduced by 90%',
