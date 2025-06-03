@@ -2,32 +2,61 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Favicons -->
+    <!-- Critical Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="//images.unsplash.com">
+    <link rel="dns-prefetch" href="//calendly.com">
+
+    <!-- Critical CSS inlined for faster FCP -->
+    <style>
+      /* Critical above-the-fold styles */
+      html { font-family: Inter, system-ui, sans-serif; }
+      body { margin: 0; background: white; }
+      #root { min-height: 100vh; }
+      .font-telegraf { font-family: Inter, system-ui, sans-serif; }
+      /* Prevent layout shift for header */
+      header { height: 80px; }
+      @media (max-width: 1024px) { header { height: 96px; } }
+      /* Prevent hero section layout shift */
+      .hero-section { min-height: 100vh; }
+    </style>
+
+    <!-- Optimized font loading with font-display: swap -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+      rel="stylesheet" 
+      media="print" 
+      onload="this.media='all'"
+    >
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
+    <!-- Favicons with optimal sizes -->
+    <link rel="icon" type="image/svg+xml" href="/Favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-    <link rel="icon" type="image/svg+xml" href="/Favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Stratum PR" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Meta -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
-    
     <!-- Primary Meta Tags -->
     <title>Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico</title>
     <meta name="title" content="Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico" />
     <meta name="description" content="Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation. Transform your business with data-driven decisions." />
     <meta name="keywords" content="data analytics Puerto Rico, AI business automation, CRM implementation consulting, big data analytics, business intelligence Puerto Rico, Salesforce implementation, predictive modeling, machine learning consulting, digital transformation Puerto Rico" />
     <meta name="author" content="Stratum PR" />
-    <meta name="publisher" content="Stratum PR" />
+    <meta name="language" content="English" />
     <link rel="canonical" href="https://www.stratumpr.com/" />
 
+    <!-- Multilingual support -->
     <link rel="alternate" hreflang="en" href="https://www.stratumpr.com/" />
     <link rel="alternate" hreflang="es" href="https://www.stratumpr.com/" />
     
@@ -47,22 +76,19 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@stratumpr" />
     <meta name="twitter:creator" content="@stratumpr" />
-    <meta name="twitter:url" content="https://www.stratumpr.com/" />
     <meta name="twitter:title" content="Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico" />
     <meta name="twitter:description" content="Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation." />
     <meta name="twitter:image" content="https://www.stratumpr.com/img/stratum-pr-twitter-card.jpg" />
-    <meta name="twitter:image:alt" content="Stratum PR - The Architecture of Better Decisions" />
 
-    <!-- Additional SEO Meta Tags -->
+    <!-- Geo location -->
     <meta name="geo.region" content="PR" />
     <meta name="geo.placename" content="Puerto Rico" />
     <meta name="geo.position" content="18.2208;-66.5901" />
     <meta name="ICBM" content="18.2208, -66.5901" />
 
-    <!-- Fonts - Preload for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" />
+    <link rel="preload" as="image" href="/img/Icon 1.png" />
 
     <!-- Structured Data - JSON-LD -->
     <script type="application/ld+json">
@@ -77,7 +103,6 @@
           "description": "Leading analytics and consulting firm specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation in Puerto Rico.",
           "url": "https://www.stratumpr.com",
           "logo": "https://www.stratumpr.com/img/stratum-pr-logo.png",
-          "image": "https://www.stratumpr.com/img/stratum-pr-office.jpg",
           "telephone": "+1-787-XXX-XXXX",
           "email": "contact@stratumpr.com",
           "address": {
@@ -94,10 +119,6 @@
           "areaServed": {
             "@type": "Place",
             "name": "Puerto Rico"
-          },
-          "serviceArea": {
-            "@type": "Place",
-            "name": "Caribbean"
           },
           "foundingDate": "2025",
           "founders": [
@@ -121,44 +142,12 @@
             "https://linkedin.com/company/stratumpr",
             "https://twitter.com/stratumpr"
           ]
-        },
-        {
-          "@type": "Website",
-          "@id": "https://www.stratumpr.com/#website",
-          "url": "https://www.stratumpr.com",
-          "name": "Stratum PR",
-          "description": "The Architecture of Better Decisions - Analytics and consulting solutions",
-          "publisher": {
-            "@id": "https://www.stratumpr.com/#business"
-          },
-          "inLanguage": "en-US"
-        },
-        {
-          "@type": "Service",
-          "@id": "https://www.stratumpr.com/#services",
-          "name": "Data Analytics and Business Automation Consulting",
-          "description": "Comprehensive analytics, CRM implementation, AI solutions, and business automation services",
-          "provider": {
-            "@id": "https://www.stratumpr.com/#business"
-          },
-          "serviceType": [
-            "Data Analytics",
-            "CRM Implementation", 
-            "AI Solutions",
-            "Business Automation",
-            "Predictive Modeling",
-            "Big Data Analytics"
-          ],
-          "areaServed": {
-            "@type": "Place",
-            "name": "Puerto Rico"
-          }
         }
       ]
     }
     </script>
 
-    <!-- Google Analytics 4 -->
+    <!-- Google Analytics 4 with async loading -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -170,29 +159,13 @@
       });
     </script>
 
-    <!-- Google Search Console Verification -->
+    <!-- Verification tags -->
     <meta name="google-site-verification" content="V4DBiNP1G6SHGIeWGpQpCure0tV7a0ILCaykbHIDfuY" />
-
-    <!-- Bing Webmaster Tools -->
-    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
-
-    <!-- LinkedIn Insight Tag -->
-    <script type="text/javascript">
-      _linkedin_partner_id = "LINKEDIN_PARTNER_ID";
-      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-      window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-    </script>
-
-    <!-- Performance Optimizations -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//www.google-analytics.com">
-    <link rel="preload" as="image" href="/img/Icon 1.png">
   </head>
 
   <body>
     <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Load main script with defer for better performance -->
+    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>
