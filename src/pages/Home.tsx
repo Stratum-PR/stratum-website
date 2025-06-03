@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -218,9 +217,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
-        {/* Why Work With Us Section */}
-        <WhyWorkWithUsSection />
 
         {/* Meet Our Team Section */}
         <section className="py-20 bg-gray-50" aria-labelledby="team-heading">

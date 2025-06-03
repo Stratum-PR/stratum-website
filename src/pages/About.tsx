@@ -1,8 +1,8 @@
-
 import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
 import ValuesSection from "@/components/ValuesSection";
 import TeamSection from "@/components/TeamSection";
+import WhyWorkWithUsSection from "@/components/WhyWorkWithUsSection";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -90,6 +90,7 @@ const About = () => {
       <MissionSection />
       <ValuesSection values={values} />
       <TeamSection founders={founders} />
+      <WhyWorkWithUsSection />
     </div>
   );
 };
