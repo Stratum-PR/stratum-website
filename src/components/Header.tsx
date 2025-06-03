@@ -71,8 +71,9 @@ export const Header = () => {
 
           {/* Mobile menu button - Show earlier for Spanish */}
           <button
-            className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} p-2 rounded-lg hover:bg-gray-100 transition-colors`}
+            className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle navigation menu"
           >
             {isMenuOpen ? (
               <X className="h-6 w-6 text-gray-700" />
@@ -82,34 +83,63 @@ export const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Overlay */}
         {isMenuOpen && (
-          <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} py-4 border-t border-gray-100 bg-white/98 backdrop-blur-md rounded-b-lg shadow-lg`}>
-            <nav className="flex flex-col space-y-4">
-              {navigation.map(item => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`font-telegraf font-medium py-2 px-4 rounded-lg transition-colors ${
-                    isActive(item.href)
-                      ? 'text-primary bg-primary/10'
-                      : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="px-4">
-                <LanguageToggle />
+          <>
+            {/* Backdrop */}
+            <div 
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+              onClick={() => setIsMenuOpen(false)}
+              aria-hidden="true"
+            />
+            
+            {/* Mobile Navigation Menu */}
+            <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-xl animate-in slide-in-from-top duration-300`}>
+              {/* Header space to match main header height */}
+              <div className={headerHeight}></div>
+              
+              {/* Navigation Content */}
+              <div className="bg-white px-4 py-6 border-t border-gray-100">
+                <nav className="flex flex-col space-y-1">
+                  {navigation.map(item => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base ${
+                        isActive(item.href)
+                          ? 'text-primary bg-primary/10 border-l-4 border-primary'
+                          : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                  
+                  {/* Language Toggle in Mobile Menu */}
+                  <div className="px-4 py-2 border-t border-gray-100 mt-4 pt-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-telegraf font-medium text-gray-700">Language</span>
+                      <LanguageToggle />
+                    </div>
+                  </div>
+                  
+                  {/* CTA Button in Mobile Menu */}
+                  <div className="px-4 pt-4">
+                    <Button 
+                      asChild 
+                      className="w-full bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold py-3 rounded-lg transition-all duration-200 hover:shadow-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
+                        {t('nav.schedule')}
+                      </a>
+                    </Button>
+                  </div>
+                </nav>
               </div>
-              <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold mx-4 mt-2">
-                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                  {t('nav.schedule')}
-                </a>
-              </Button>
-            </nav>
-          </div>
+            </div>
+          </>
         )}
       </div>
     </header>
