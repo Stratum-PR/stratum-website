@@ -18,9 +18,8 @@ export const enTranslations = {
   // Stats
   'stats.experience': 'Years of Experience',
   'stats.satisfaction': 'Client Satisfaction',
-  'stats.projects': 'Project Solutions Delivered',
-  'stats.team': 'Island Based Team',
-  'stats.fortune': 'Built by veterans of Fortune Top 5 Companies',
+  'stats.projects': 'Solutions Delivered',
+  'stats.team': 'Local PR Based Team',
   
   // Services Grid
   'services.grid.title': 'Strategic Solutions for Data Analytics Puerto Rico',
