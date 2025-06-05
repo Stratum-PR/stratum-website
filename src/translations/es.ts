@@ -1,10 +1,13 @@
-
 export const esTranslations = {
   // Navigation
   'nav.home': 'Inicio',
   'nav.about': 'Nosotros',
   'nav.services': 'Servicios',
   'nav.contact': 'Contacto',
+  'nav.projects': 'Proyectos',
+  'nav.solutions': 'Soluciones',
+  'nav.resources': 'Recursos',
+  'nav.blog': 'Blog',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'Preguntas Frecuentes',
   
@@ -325,4 +328,21 @@ export const esTranslations = {
   'privacy.compliance.description': 'No vendemos tus datos. Todos los procesos cumplen con GDPR, CCPA y otras leyes de privacidad aplicables.',
   'privacy.contact.title': 'Contáctanos:',
   'privacy.contact.description': 'Para más información, contáctanos en',
+
+  // Resources page
+  'resources.hero.title': 'Recursos y Herramientas',
+  'resources.hero.description': 'Accede a nuestra colección integral de guías, plantillas, documentos técnicos y herramientas diseñadas para ayudarte a aprovechar el análisis de datos de manera efectiva.',
+  'resources.download': 'Descargar Recurso',
+  'resources.visit': 'Visitar Recurso',
+  'resources.cta.title': '¿Necesitas Recursos Personalizados?',
+  'resources.cta.description': 'Nuestro equipo puede ayudarte a desarrollar soluciones y herramientas de análisis adaptadas a tus necesidades específicas.',
+  'resources.cta.button': 'Programar Consulta Gratuita',
+
+  // Blog page
+  'blog.hero.title': 'Perspectivas y Actualizaciones',
+  'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas de expertos en análisis de datos, automatización con IA y transformación digital.',
+  'blog.readmore': 'Leer Artículo',
+  'blog.cta.title': '¿Tienes un Tema en Mente?',
+  'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
+  'blog.cta.button': 'Contactar a Nuestro Equipo',
 };
