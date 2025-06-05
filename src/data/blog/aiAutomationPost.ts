@@ -1,4 +1,4 @@
-export const aiAutomationStrategies2024 = {
+export const aiAutomationPost = {
   slug: 'ai-automation-strategies-2024',
   id: 5,
   metadata: {
