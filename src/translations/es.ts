@@ -1,3 +1,4 @@
+
 export default {
   nav: {
     home: 'Inicio',
@@ -157,16 +158,4 @@ export default {
     decline: 'Rechazar',
     learnMore: 'Más información',
   },
-  resources: {
-    hero: {
-      title: "Recursos",
-      description: "Herramientas poderosas y evaluaciones para ayudarte a evaluar y mejorar las capacidades de datos de tu organización."
-    },
-    readmore: "Iniciar Evaluación",
-    cta: {
-      title: "¿Necesitas Orientación Personalizada?",
-      description: "Nuestros expertos pueden proporcionar recomendaciones personalizadas basadas en los resultados de tu evaluación.",
-      button: "Programar Consulta"
-    }
-  }
 };

@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { getAllResources } from "@/data/resources";
 
 const Resources = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const resources = getAllResources();
 
   // SEO optimization for resources page
@@ -20,16 +20,45 @@ const Resources = () => {
     ogType: "website"
   }, "resources");
 
+  const pageContent = {
+    en: {
+      hero: {
+        title: "Resources",
+        description: "Powerful tools and assessments to help you evaluate and improve your organization's data management capabilities."
+      },
+      readmore: "Start Assessment",
+      cta: {
+        title: "Need Personalized Guidance?",
+        description: "Our experts can provide personalized recommendations based on your assessment results.",
+        button: "Schedule Consultation"
+      }
+    },
+    es: {
+      hero: {
+        title: "Recursos",
+        description: "Herramientas poderosas y evaluaciones para ayudarte a evaluar y mejorar las capacidades de datos de tu organización."
+      },
+      readmore: "Iniciar Evaluación",
+      cta: {
+        title: "¿Necesitas Orientación Personalizada?",
+        description: "Nuestros expertos pueden proporcionar recomendaciones personalizadas basadas en los resultados de tu evaluación.",
+        button: "Programar Consulta"
+      }
+    }
+  };
+
+  const content = pageContent[language];
+
   return (
     <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-5xl md:text-6xl text-primary mb-6">
-            {t('resources.hero.title')}
+            {content.hero.title}
           </h1>
           <p className="font-telegraf text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            {t('resources.hero.description')}
+            {content.hero.description}
           </p>
         </div>
       </section>
@@ -39,7 +68,7 @@ const Resources = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {resources.map(resource => {
-              const content = resource.content[language];
+              const resourceContent = resource.content[language];
               
               return (
                 <Link key={resource.id} to={`/resources/${resource.slug}`}>
@@ -47,7 +76,7 @@ const Resources = () => {
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={resource.image} 
-                        alt={content.title}
+                        alt={resourceContent.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
@@ -61,18 +90,18 @@ const Resources = () => {
                         ))}
                       </div>
                       <h3 className="font-telegraf font-semibold text-xl text-primary mb-2 group-hover:text-secondary transition-colors">
-                        {content.title}
+                        {resourceContent.title}
                       </h3>
                       <p className="font-telegraf text-gray-600 mb-4 leading-relaxed">
-                        {content.description}
+                        {resourceContent.description}
                       </p>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center text-gray-500">
                           <CheckSquare className="h-4 w-4 mr-1" />
-                          <span className="font-telegraf text-sm">{content.items.length} items</span>
+                          <span className="font-telegraf text-sm">{resourceContent.items.length} items</span>
                         </div>
                         <div className="flex items-center text-primary hover:text-secondary transition-colors group/link">
-                          <span className="font-telegraf">{t('resources.readmore')}</span>
+                          <span className="font-telegraf">{content.readmore}</span>
                           <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -89,14 +118,14 @@ const Resources = () => {
       <section className="py-20 bg-gradient-to-r from-primary to-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            {t('resources.cta.title')}
+            {content.cta.title}
           </h2>
           <p className="font-telegraf text-xl mb-8 text-primary-100">
-            {t('resources.cta.description')}
+            {content.cta.description}
           </p>
           <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
             <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-              {t('resources.cta.button')}
+              {content.cta.button}
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
