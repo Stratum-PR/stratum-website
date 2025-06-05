@@ -1,6 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Clock, User } from "lucide-react";
+import { ArrowRight, Clock, User, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -41,46 +42,60 @@ const Blog = () => {
               const content = post.content[language];
               
               return (
-                <Link key={post.id} to={`/blog/${post.slug}`}>
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full">
-                    <div className="relative h-48 overflow-hidden">
+                <Link key={post.id} to={`/blog/${post.slug}`} className="group">
+                  <Card className="group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg overflow-hidden cursor-pointer h-full bg-white rounded-2xl">
+                    <div className="relative h-56 overflow-hidden">
                       <img 
-                        src={post.image} 
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&crop=center"
                         alt={content.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
-                    </div>
-                    <CardContent className="p-6">
-                      <div className="flex flex-wrap gap-1 mb-3">
-                        <span className="px-2 py-1 text-xs font-telegraf bg-primary/10 text-primary rounded-full capitalize">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 text-xs font-telegraf font-semibold bg-primary text-white rounded-full uppercase tracking-wide">
                           {post.category}
                         </span>
+                      </div>
+                    </div>
+                    <CardContent className="p-6 space-y-4">
+                      <div className="flex flex-wrap gap-2">
                         {post.tags.slice(0, 2).map(tag => (
-                          <span key={tag} className="px-2 py-1 text-xs font-telegraf bg-secondary/10 text-secondary rounded-full">
+                          <span key={tag} className="px-2 py-1 text-xs font-telegraf bg-gray-100 text-gray-600 rounded-md hover:bg-primary/10 hover:text-primary transition-colors">
                             {tag}
                           </span>
                         ))}
                       </div>
-                      <h3 className="font-telegraf font-semibold text-xl text-primary mb-2 group-hover:text-secondary transition-colors">
+                      
+                      <h3 className="font-telegraf font-bold text-xl text-gray-900 leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
                         {content.title}
                       </h3>
-                      <p className="font-telegraf text-gray-600 mb-4 leading-relaxed">
+                      
+                      <p className="font-telegraf text-gray-600 leading-relaxed text-sm line-clamp-3">
                         {content.summary}
                       </p>
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                        <div className="flex items-center">
-                          <User className="h-4 w-4 mr-1" />
-                          <span>{content.author.name}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="h-4 w-4 mr-1" />
-                          <span>{content.readTime} min read</span>
+                      
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div className="flex items-center space-x-4 text-sm text-gray-500">
+                          <div className="flex items-center">
+                            <User className="h-4 w-4 mr-1.5" />
+                            <span className="font-medium">{content.author.name}</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Clock className="h-4 w-4 mr-1.5" />
+                            <span>{content.readTime} min</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex items-center text-primary hover:text-secondary transition-colors group/link">
-                        <span className="font-telegraf">{t('blog.readmore')}</span>
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                      
+                      <div className="flex items-center justify-between pt-2">
+                        <div className="flex items-center text-xs text-gray-400">
+                          <Calendar className="h-3 w-3 mr-1" />
+                          <span>{new Date(post.publishDate).toLocaleDateString()}</span>
+                        </div>
+                        <div className="flex items-center text-primary group-hover:text-secondary transition-colors font-telegraf font-semibold text-sm">
+                          <span>{t('blog.readmore')}</span>
+                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
