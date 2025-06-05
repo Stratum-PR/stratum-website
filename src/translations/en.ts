@@ -1,4 +1,4 @@
-export const enTranslations = {
+export const enTranslations: Record<string, string> = {
   // Navigation
   'nav.home': 'Home',
   'nav.about': 'About',
@@ -327,7 +327,7 @@ export const enTranslations = {
   'privacy.compliance.description': 'We do not sell your data. All data processing aligns with GDPR, CCPA, and other applicable data protection laws.',
   'privacy.contact.title': 'Contact Us:',
   'privacy.contact.description': 'For more details, contact us at',
-
+  
   // Resources page
   'resources.hero.title': 'Resources & Tools',
   'resources.hero.description': 'Access our comprehensive collection of guides, templates, whitepapers, and toolkits designed to help you leverage data analytics effectively.',
@@ -336,7 +336,7 @@ export const enTranslations = {
   'resources.cta.title': 'Need Custom Resources?',
   'resources.cta.description': 'Our team can help you develop tailored analytics solutions and tools for your specific needs.',
   'resources.cta.button': 'Schedule Free Consultation',
-
+  
   // Blog page
   'blog.hero.title': 'Insights & Updates',
   'blog.hero.description': 'Stay informed with the latest trends, best practices, and expert insights in data analytics, AI automation, and digital transformation.',
@@ -344,4 +344,14 @@ export const enTranslations = {
   'blog.cta.title': 'Have a Topic in Mind?',
   'blog.cta.description': 'Let us know what you\'d like to learn more about. We\'re always looking to create content that helps our community.',
   'blog.cta.button': 'Contact Our Team',
+  
+  // Resources modal
+  'resources.modal.downloadDescription': 'Download the complete template to use in your projects',
+  'resources.downloadTemplate': 'Download Template',
+  'resources.visitExternal': 'Visit External Link',
+  'resources.viewPreview': 'View Preview',
+  'resources.modal.loading': 'Loading preview...',
+  'resources.modal.error': 'Preview not available',
+  'resources.modal.pdfNotSupported': 'PDF preview not supported in this browser',
+  'resources.modal.downloadPdf': 'Download PDF',
 };

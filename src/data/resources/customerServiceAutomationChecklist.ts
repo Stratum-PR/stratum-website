@@ -24,6 +24,7 @@ export const customerServiceAutomationChecklist: Resource = {
       summary: 'Complete 10-step implementation guide for automating your customer service operations with proven strategies and best practices.',
       description: 'Transform your customer service with our comprehensive automation checklist. This guide covers everything from initial assessment to launch optimization, including chatbot setup, email automation, knowledge base creation, and performance monitoring.',
       type: 'checklist',
+      fileType: 'markdown',
       downloadUrl: '/resources/customer-service-automation-checklist.md'
     },
     es: {
@@ -31,6 +32,7 @@ export const customerServiceAutomationChecklist: Resource = {
       summary: 'Guía completa de implementación de 10 pasos para automatizar tus operaciones de servicio al cliente con estrategias y mejores prácticas probadas.',
       description: 'Transforma tu servicio al cliente con nuestra lista de verificación integral de automatización. Esta guía cubre todo desde la evaluación inicial hasta la optimización del lanzamiento, incluyendo configuración de chatbot, automatización de email, creación de base de conocimientos y monitoreo de rendimiento.',
       type: 'checklist',
+      fileType: 'markdown',
       downloadUrl: '/resources/customer-service-automation-checklist.md'
     }
   },

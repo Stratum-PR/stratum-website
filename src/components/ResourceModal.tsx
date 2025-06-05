@@ -5,6 +5,8 @@ import { Download, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Resource } from "@/data/resources";
 import { MarkdownRenderer } from "./MarkdownRenderer";
+import { PDFViewer } from "./PDFViewer";
+import { TablePreview } from "./TablePreview";
 
 interface ResourceModalProps {
   resource: Resource | null;
@@ -19,19 +21,45 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
 
   const content = resource.content[language];
 
+  const getFileExtension = (url: string) => {
+    return url.split('.').pop()?.toLowerCase();
+  };
+
   const renderPreview = () => {
-    if (content.type === 'guide' || content.type === 'checklist' || content.type === 'worksheet') {
-      return <MarkdownRenderer resourceSlug={resource.slug} />;
+    const fileType = content.fileType;
+    const downloadUrl = content.downloadUrl;
+
+    // Handle different file types
+    if (fileType === 'pdf' && downloadUrl) {
+      return <PDFViewer pdfUrl={downloadUrl} title={content.title} />;
     }
     
-    if (content.type === 'toolkit') {
+    if (fileType === 'csv' || fileType === 'excel') {
+      if (content.previewData) {
+        return <TablePreview data={content.previewData} />;
+      }
+      // Fallback for CSV/Excel without preview data
+      return (
+        <div className="text-center py-12">
+          <p className="font-telegraf text-gray-600 mb-4">
+            {content.description}
+          </p>
+          <p className="font-telegraf text-sm text-gray-500">
+            Download the file to view the complete data
+          </p>
+        </div>
+      );
+    }
+
+    // Default to markdown rendering for guides, checklists, toolkits, worksheets
+    if (content.type === 'guide' || content.type === 'checklist' || content.type === 'worksheet' || content.type === 'toolkit') {
       return <MarkdownRenderer resourceSlug={resource.slug} />;
     }
 
-    // For other types, show description
+    // Fallback for other types
     return (
-      <div className="prose prose-lg max-w-none">
-        <p className="text-gray-600 leading-relaxed">
+      <div className="prose prose-lg max-w-none markdown">
+        <p className="font-telegraf text-gray-600 leading-relaxed">
           {content.description}
         </p>
       </div>
@@ -40,8 +68,8 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
-        <DialogHeader className="pb-4 border-b">
+      <DialogContent className="max-w-5xl max-h-[95vh] overflow-hidden flex flex-col">
+        <DialogHeader className="pb-4 border-b shrink-0">
           <DialogTitle className="font-telegraf font-bold text-2xl text-primary">
             {content.title}
           </DialogTitle>
@@ -57,16 +85,16 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
           </div>
         </DialogHeader>
         
-        <div className="flex-1 overflow-y-auto py-6">
+        <div className="flex-1 overflow-y-auto py-6 min-h-0">
           {renderPreview()}
         </div>
         
-        <div className="pt-4 border-t bg-gray-50 -mx-6 -mb-6 px-6 py-4">
+        <div className="pt-4 border-t bg-gray-50 -mx-6 -mb-6 px-6 py-4 shrink-0">
           <div className="flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
             <p className="text-sm text-gray-600 font-telegraf">
               {t('resources.modal.downloadDescription')}
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {content.downloadUrl && (
                 <Button 
                   asChild
