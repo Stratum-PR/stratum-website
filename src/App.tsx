@@ -15,6 +15,7 @@ import Projects from "./pages/Projects";
 import Solutions from "./pages/Solutions";
 import Resources from "./pages/Resources";
 import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
@@ -43,6 +44,7 @@ const App = () => (
                 <Route path="/solutions" element={<Solutions />} />
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogDetail />} />
                 <Route path="/projects/:slug" element={<ProjectDetail />} />
                 {/* Legacy redirects for case-studies URLs */}
                 <Route path="/case-studies" element={<Projects />} />
