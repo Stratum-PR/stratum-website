@@ -1,9 +1,15 @@
+
 import { Resource } from './types';
 import { dataAnalyticsGuide } from './dataAnalyticsGuide';
+import { customerServiceAutomationChecklist } from './customerServiceAutomationChecklist';
+import { processAutomationWorksheet } from './processAutomationWorksheet';
+import { aiImplementationToolkit } from './aiImplementationToolkit';
 
 export const resourcesData = [
   dataAnalyticsGuide,
-  // Add more resources here
+  customerServiceAutomationChecklist,
+  processAutomationWorksheet,
+  aiImplementationToolkit,
 ];
 
 export const getResourceBySlug = (slug: string) => {
@@ -14,4 +20,4 @@ export const getAllResources = () => {
   return resourcesData;
 };
 
-export type { Resource, ResourceContent } from './types'; 
+export type { Resource, ResourceContent } from './types';
