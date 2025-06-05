@@ -1,4 +1,3 @@
-
 export const enTranslations = {
   // Navigation
   'nav.home': 'Home',
@@ -6,6 +5,9 @@ export const enTranslations = {
   'nav.services': 'Services',
   'nav.contact': 'Contact',
   'nav.projects': 'Projects',
+  'nav.solutions': 'Solutions',
+  'nav.resources': 'Resources',
+  'nav.blog': 'Blog',
   'nav.schedule': 'Schedule Free Consultation',
   'nav.faq': 'FAQ',
   
@@ -325,4 +327,21 @@ export const enTranslations = {
   'privacy.compliance.description': 'We do not sell your data. All data processing aligns with GDPR, CCPA, and other applicable data protection laws.',
   'privacy.contact.title': 'Contact Us:',
   'privacy.contact.description': 'For more details, contact us at',
+
+  // Resources page
+  'resources.hero.title': 'Resources & Tools',
+  'resources.hero.description': 'Access our comprehensive collection of guides, templates, whitepapers, and toolkits designed to help you leverage data analytics effectively.',
+  'resources.download': 'Download Resource',
+  'resources.visit': 'Visit Resource',
+  'resources.cta.title': 'Need Custom Resources?',
+  'resources.cta.description': 'Our team can help you develop tailored analytics solutions and tools for your specific needs.',
+  'resources.cta.button': 'Schedule Free Consultation',
+
+  // Blog page
+  'blog.hero.title': 'Insights & Updates',
+  'blog.hero.description': 'Stay informed with the latest trends, best practices, and expert insights in data analytics, AI automation, and digital transformation.',
+  'blog.readmore': 'Read Article',
+  'blog.cta.title': 'Have a Topic in Mind?',
+  'blog.cta.description': 'Let us know what you\'d like to learn more about. We\'re always looking to create content that helps our community.',
+  'blog.cta.button': 'Contact Our Team',
 };
