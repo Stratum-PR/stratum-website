@@ -2,7 +2,7 @@ export interface ResourceContent {
   title: string;
   summary: string;
   description: string;
-  type: 'guide' | 'template' | 'whitepaper' | 'toolkit';
+  type: 'guide' | 'template' | 'whitepaper' | 'toolkit' | 'checklist' | 'worksheet';
   downloadUrl?: string;
   externalUrl?: string;
 }
@@ -33,4 +33,4 @@ export interface Resource {
   image: string;
   featured: boolean;
   publishDate: string;
-} 
+}
