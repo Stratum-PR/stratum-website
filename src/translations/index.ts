@@ -1,5 +1,5 @@
 
-import enTranslations from './en';
+import { enTranslations } from './en';
 import esTranslations from './es';
 import type { Language } from '@/types/language';
 
