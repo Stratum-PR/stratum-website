@@ -1,15 +1,19 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Download, ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getAllResources } from "@/data/resources";
+import { getAllResources, Resource } from "@/data/resources";
+import { ResourceModal } from "@/components/ResourceModal";
 import * as LucideIcons from "lucide-react";
 
 const Resources = () => {
   const { t, language } = useLanguage();
   const resources = getAllResources();
+  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // SEO optimization for resources page
   useSEO({
@@ -19,6 +23,16 @@ const Resources = () => {
     canonical: "https://www.stratumpr.com/resources",
     ogType: "website"
   }, "resources");
+
+  const handleResourceClick = (resource: Resource) => {
+    setSelectedResource(resource);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedResource(null);
+  };
 
   return (
     <div className="pt-20">
@@ -43,7 +57,11 @@ const Resources = () => {
               const IconComponent = (LucideIcons as any)[resource.icon] || LucideIcons.FileText;
               
               return (
-                <Card key={resource.id} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full">
+                <Card 
+                  key={resource.id} 
+                  className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full"
+                  onClick={() => handleResourceClick(resource)}
+                >
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={resource.image} 
@@ -69,28 +87,10 @@ const Resources = () => {
                     <p className="font-telegraf text-gray-600 mb-4 leading-relaxed">
                       {content.summary}
                     </p>
-                    {content.downloadUrl && (
-                      <a 
-                        href={content.downloadUrl}
-                        className="flex items-center text-primary hover:text-secondary transition-colors group/link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <span className="font-telegraf">{t('resources.download')}</span>
-                        <Download className="ml-2 h-4 w-4 group-hover/link:translate-y-1 transition-transform" />
-                      </a>
-                    )}
-                    {content.externalUrl && (
-                      <a 
-                        href={content.externalUrl}
-                        className="flex items-center text-primary hover:text-secondary transition-colors group/link mt-2"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <span className="font-telegraf">{t('resources.visit')}</span>
-                        <ExternalLink className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                      </a>
-                    )}
+                    <div className="flex items-center text-primary hover:text-secondary transition-colors group/link">
+                      <span className="font-telegraf">{t('resources.viewPreview')}</span>
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                    </div>
                   </CardContent>
                 </Card>
               );
@@ -98,6 +98,13 @@ const Resources = () => {
           </div>
         </div>
       </section>
+
+      {/* Resource Modal */}
+      <ResourceModal 
+        resource={selectedResource}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-secondary">
