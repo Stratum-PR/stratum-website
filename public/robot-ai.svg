@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="600px" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>AI Robot</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="robotGradient">
+            <stop stop-color="#6366F1" offset="0%"></stop>
+            <stop stop-color="#4F46E5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Background -->
+        <rect fill="#F8FAFC" x="0" y="0" width="800" height="600"></rect>
+        
+        <!-- Robot Body -->
+        <rect fill="url(#robotGradient)" x="300" y="200" width="200" height="250" rx="20"></rect>
+        
+        <!-- Robot Head -->
+        <rect fill="url(#robotGradient)" x="325" y="100" width="150" height="120" rx="15"></rect>
+        
+        <!-- Robot Eyes -->
+        <circle fill="#FFFFFF" cx="370" cy="150" r="15"></circle>
+        <circle fill="#FFFFFF" cx="430" cy="150" r="15"></circle>
+        <circle fill="#111827" cx="370" cy="150" r="7"></circle>
+        <circle fill="#111827" cx="430" cy="150" r="7"></circle>
+        
+        <!-- Robot Antenna -->
+        <rect fill="url(#robotGradient)" x="385" y="60" width="30" height="40" rx="5"></rect>
+        <circle fill="#FFFFFF" cx="400" cy="50" r="10"></circle>
+        
+        <!-- Robot Panel -->
+        <rect fill="#FFFFFF" x="340" y="250" width="120" height="60" rx="5"></rect>
+        <circle fill="#4ADE80" cx="370" cy="280" r="10"></circle>
+        <circle fill="#F43F5E" cx="400" cy="280" r="10"></circle>
+        <circle fill="#3B82F6" cx="430" cy="280" r="10"></circle>
+        
+        <!-- Robot Arms -->
+        <rect fill="url(#robotGradient)" x="250" y="220" width="50" height="150" rx="10"></rect>
+        <rect fill="url(#robotGradient)" x="500" y="220" width="50" height="150" rx="10"></rect>
+        
+        <!-- Binary Code Background -->
+        <text font-family="monospace" font-size="14" fill="#CBD5E1" x="50" y="50">
+            <tspan x="50" dy="20">01001001 01000001</tspan>
+            <tspan x="50" dy="20">10100110 11100101</tspan>
+            <tspan x="50" dy="20">01001001 01000001</tspan>
+        </text>
+        <text font-family="monospace" font-size="14" fill="#CBD5E1" x="600" y="400">
+            <tspan x="600" dy="20">01001001 01000001</tspan>
+            <tspan x="600" dy="20">10100110 11100101</tspan>
+            <tspan x="600" dy="20">01001001 01000001</tspan>
+        </text>
+    </g>
+</svg> 

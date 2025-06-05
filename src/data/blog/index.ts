@@ -1,21 +1,21 @@
 import { BlogPost } from './types';
 import { aiAutomationPost } from './aiAutomationPost';
 
-export const blogPostsData = [
+const blogPosts: BlogPost[] = [
   aiAutomationPost,
   // Add more blog posts here
 ];
 
-export const getBlogPostBySlug = (slug: string) => {
-  return blogPostsData.find(post => post.slug === slug);
+export const getAllBlogPosts = (): BlogPost[] => {
+  return blogPosts;
 };
 
-export const getAllBlogPosts = () => {
-  return blogPostsData;
+export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
+  return blogPosts.find(post => post.slug === slug);
 };
 
 export const getBlogPostsByCategory = (category: BlogPost['category']) => {
-  return blogPostsData.filter(post => post.category === category);
+  return blogPosts.filter(post => post.category === category);
 };
 
 export type { BlogPost, BlogPostContent } from './types'; 

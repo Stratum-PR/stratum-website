@@ -30,7 +30,7 @@ export const dataAnalyticsGuide: Resource = {
       summary: 'Su introducción completa al análisis de datos empresariales',
       description: 'Aprenda cómo comenzar su viaje de análisis de datos con esta guía práctica. Cubre fundamentos de recolección, limpieza, análisis y visualización de datos.',
       type: 'guide',
-      downloadUrl: '/resources/data-analytics-guide-es.pdf'
+      downloadUrl: '/data-analytics-guide-es.pdf'
     }
   },
   tags: ['Analytics', 'Business Intelligence', 'Data Visualization'],
