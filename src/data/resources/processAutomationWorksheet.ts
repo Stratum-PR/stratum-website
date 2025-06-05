@@ -24,6 +24,7 @@ export const processAutomationWorksheet: Resource = {
       summary: 'Strategic planning tool with ROI calculator, risk assessment matrix, and implementation roadmap for business process automation.',
       description: 'Systematically identify and prioritize your automation opportunities with this comprehensive worksheet. Features process inventory templates, ROI calculations, risk assessment matrices, and implementation planning tools to ensure successful automation projects.',
       type: 'worksheet',
+      fileType: 'markdown',
       downloadUrl: '/resources/process-automation-worksheet.md'
     },
     es: {
@@ -31,6 +32,7 @@ export const processAutomationWorksheet: Resource = {
       summary: 'Herramienta de planificación estratégica con calculadora ROI, matriz de evaluación de riesgos y hoja de ruta de implementación para automatización de procesos empresariales.',
       description: 'Identifica y prioriza sistemáticamente tus oportunidades de automatización con esta hoja de trabajo integral. Incluye plantillas de inventario de procesos, cálculos de ROI, matrices de evaluación de riesgos y herramientas de planificación de implementación para asegurar proyectos de automatización exitosos.',
       type: 'worksheet',
+      fileType: 'markdown',
       downloadUrl: '/resources/process-automation-worksheet.md'
     }
   },

@@ -5,6 +5,8 @@ export interface ResourceContent {
   type: 'guide' | 'template' | 'whitepaper' | 'toolkit' | 'checklist' | 'worksheet';
   downloadUrl?: string;
   externalUrl?: string;
+  fileType?: 'pdf' | 'markdown' | 'excel' | 'csv';
+  previewData?: Array<Array<string>>; // For CSV/Excel preview data
 }
 
 export interface Resource {

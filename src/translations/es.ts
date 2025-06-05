@@ -1,4 +1,4 @@
-export const esTranslations = {
+export const esTranslations: Record<string, string> = {
   // Navigation
   'nav.home': 'Inicio',
   'nav.about': 'Nosotros',
@@ -328,7 +328,7 @@ export const esTranslations = {
   'privacy.compliance.description': 'No vendemos tus datos. Todos los procesos cumplen con GDPR, CCPA y otras leyes de privacidad aplicables.',
   'privacy.contact.title': 'Contáctanos:',
   'privacy.contact.description': 'Para más información, contáctanos en',
-
+  
   // Resources page
   'resources.hero.title': 'Recursos y Herramientas',
   'resources.hero.description': 'Accede a nuestra colección integral de guías, plantillas, documentos técnicos y herramientas diseñadas para ayudarte a aprovechar el análisis de datos de manera efectiva.',
@@ -337,7 +337,7 @@ export const esTranslations = {
   'resources.cta.title': '¿Necesitas Recursos Personalizados?',
   'resources.cta.description': 'Nuestro equipo puede ayudarte a desarrollar soluciones y herramientas de análisis adaptadas a tus necesidades específicas.',
   'resources.cta.button': 'Programar Consulta Gratuita',
-
+  
   // Blog page
   'blog.hero.title': 'Perspectivas y Actualizaciones',
   'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas de expertos en análisis de datos, automatización con IA y transformación digital.',
@@ -345,4 +345,14 @@ export const esTranslations = {
   'blog.cta.title': '¿Tienes un Tema en Mente?',
   'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
   'blog.cta.button': 'Contactar a Nuestro Equipo',
+  
+  // Resources modal
+  'resources.modal.downloadDescription': 'Descarga la plantilla completa para usar en tus proyectos',
+  'resources.downloadTemplate': 'Descargar Plantilla',
+  'resources.visitExternal': 'Visitar Enlace Externo',
+  'resources.viewPreview': 'Ver Vista Previa',
+  'resources.modal.loading': 'Cargando vista previa...',
+  'resources.modal.error': 'Vista previa no disponible',
+  'resources.modal.pdfNotSupported': 'Vista previa de PDF no compatible en este navegador',
+  'resources.modal.downloadPdf': 'Descargar PDF',
 };

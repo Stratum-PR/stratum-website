@@ -24,6 +24,7 @@ export const aiImplementationToolkit: Resource = {
       summary: 'Complete resource package with assessment tools, planning templates, implementation guides, and evaluation frameworks for AI projects.',
       description: 'Everything you need to successfully implement AI in your organization. This comprehensive toolkit includes readiness assessments, project charter templates, technical implementation checklists, performance evaluation frameworks, and best practices from real-world AI deployments.',
       type: 'toolkit',
+      fileType: 'markdown',
       downloadUrl: '/resources/ai-implementation-toolkit.md'
     },
     es: {
@@ -31,6 +32,7 @@ export const aiImplementationToolkit: Resource = {
       summary: 'Paquete completo de recursos con herramientas de evaluación, plantillas de planificación, guías de implementación y marcos de evaluación para proyectos IA.',
       description: 'Todo lo que necesitas para implementar exitosamente IA en tu organización. Este kit integral incluye evaluaciones de preparación, plantillas de carta de proyecto, listas de verificación de implementación técnica, marcos de evaluación de rendimiento y mejores prácticas de despliegues reales de IA.',
       type: 'toolkit',
+      fileType: 'markdown',
       downloadUrl: '/resources/ai-implementation-toolkit.md'
     }
   },
