@@ -1,9 +1,16 @@
+
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +28,13 @@ export const Header = () => {
     href: '/services'
   }, {
     name: t('projects.hero.title'),
-    href: '/projects'
+    href: '/projects',
+    hasDropdown: true,
+    dropdownItems: [
+      { name: t('projects.hero.title'), href: '/projects' },
+      { name: t('nav.resources'), href: '/resources' },
+      { name: t('nav.blog'), href: '/blog' }
+    ]
   }, {
     name: t('nav.faq'),
     href: '/faq'
@@ -47,21 +60,49 @@ export const Header = () => {
             <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-10 w-auto" />
           </Link>
 
-
           {/* Desktop Navigation - Show hamburger menu earlier for Spanish */}
           <nav className={`hidden ${language === 'es' ? 'xl:flex' : 'lg:flex'} items-center ${navSpacing}`}>
             {navigation.map(item => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
-                  isActive(item.href)
-                    ? 'text-primary border-b-2 border-primary pb-1'
-                    : 'text-gray-700 hover:text-primary'
-                }`}
-              >
-                {item.name}
-              </Link>
+              item.hasDropdown ? (
+                <DropdownMenu key={item.name}>
+                  <DropdownMenuTrigger className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap flex items-center gap-1 ${
+                    isActive(item.href) || (item.dropdownItems && item.dropdownItems.some(dropItem => isActive(dropItem.href)))
+                      ? 'text-primary border-b-2 border-primary pb-1'
+                      : 'text-gray-700 hover:text-primary'
+                  }`}>
+                    {item.name}
+                    <ChevronDown className="h-4 w-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50">
+                    {item.dropdownItems?.map(dropItem => (
+                      <DropdownMenuItem key={dropItem.name} asChild>
+                        <Link
+                          to={dropItem.href}
+                          className={`font-telegraf font-medium transition-colors duration-200 text-sm cursor-pointer ${
+                            isActive(dropItem.href)
+                              ? 'text-primary bg-primary/10'
+                              : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                          }`}
+                        >
+                          {dropItem.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
+                    isActive(item.href)
+                      ? 'text-primary border-b-2 border-primary pb-1'
+                      : 'text-gray-700 hover:text-primary'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             <LanguageToggle />
             <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 lg:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg text-sm lg:text-base whitespace-nowrap">
@@ -104,18 +145,40 @@ export const Header = () => {
               <div className="bg-white px-4 py-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
                 <nav className="flex flex-col space-y-1">
                   {navigation.map(item => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base ${
-                        isActive(item.href)
-                          ? 'text-primary bg-primary/10 border-l-4 border-primary'
-                          : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                      }`}
-                      onClick={closeMenu}
-                    >
-                      {item.name}
-                    </Link>
+                    item.hasDropdown ? (
+                      <div key={item.name} className="space-y-1">
+                        <div className="font-telegraf font-medium py-3 px-4 text-base text-gray-700 border-b border-gray-100">
+                          {item.name}
+                        </div>
+                        {item.dropdownItems?.map(dropItem => (
+                          <Link
+                            key={dropItem.name}
+                            to={dropItem.href}
+                            className={`font-telegraf font-medium py-2 px-8 rounded-lg transition-all duration-200 text-sm block ${
+                              isActive(dropItem.href)
+                                ? 'text-primary bg-primary/10 border-l-4 border-primary'
+                                : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+                            }`}
+                            onClick={closeMenu}
+                          >
+                            {dropItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base ${
+                          isActive(item.href)
+                            ? 'text-primary bg-primary/10 border-l-4 border-primary'
+                            : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                        }`}
+                        onClick={closeMenu}
+                      >
+                        {item.name}
+                      </Link>
+                    )
                   ))}
                   
                   {/* Language Toggle in Mobile Menu */}
