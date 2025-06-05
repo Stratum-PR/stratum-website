@@ -1,4 +1,3 @@
-
 export const enTranslations = {
   // Navigation
   'nav.home': 'Home',
@@ -325,4 +324,18 @@ export const enTranslations = {
   'privacy.compliance.description': 'We do not sell your data. All data processing aligns with GDPR, CCPA, and other applicable data protection laws.',
   'privacy.contact.title': 'Contact Us:',
   'privacy.contact.description': 'For more details, contact us at',
+  
+  // Resources
+  'resources': {
+    hero: {
+      title: "Resources",
+      description: "Powerful tools and assessments to help you evaluate and improve your organization's data capabilities."
+    },
+    readmore: "Start Assessment",
+    cta: {
+      title: "Need Personalized Guidance?",
+      description: "Our experts can provide customized recommendations based on your assessment results.",
+      button: "Schedule Consultation"
+    }
+  }
 };
