@@ -2,7 +2,7 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, Calendar, User, Clock, Tag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, User, Clock, Tag, CheckCircle } from "lucide-react";
 import { useSEO } from '@/hooks/useSEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getBlogPostBySlug } from '@/data/blog';
@@ -29,6 +29,12 @@ const BlogDetail = () => {
     canonical: `https://www.stratumpr.com/blog/${post.slug}`,
     ogType: 'article'
   }, `blog-${post.slug}`);
+
+  // Split content into sections for structured display
+  const contentSections = content.content.split('\n\n');
+  const introduction = contentSections.slice(0, 2).join('\n\n');
+  const keyInsights = contentSections.slice(2, -2).join('\n\n');
+  const takeaways = contentSections.slice(-2).join('\n\n');
 
   return (
     <div className="pt-20">
@@ -102,9 +108,54 @@ const BlogDetail = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-2">
-              <div className="prose prose-lg prose-primary max-w-none">
-                <ReactMarkdown>{content.content}</ReactMarkdown>
+            <div className="lg:col-span-2 space-y-12">
+              {/* Introduction */}
+              <div>
+                <h2 className="font-telegraf font-bold text-3xl text-primary mb-6">
+                  Introduction
+                </h2>
+                <div className="font-telegraf text-gray-600 leading-relaxed text-justify">
+                  <ReactMarkdown>{introduction || content.summary}</ReactMarkdown>
+                </div>
+              </div>
+
+              {/* Key Insights */}
+              <div>
+                <h2 className="font-telegraf font-bold text-3xl text-primary mb-6">
+                  Key Insights
+                </h2>
+                <div className="font-telegraf text-gray-600 leading-relaxed text-justify">
+                  <ReactMarkdown>{keyInsights || content.content}</ReactMarkdown>
+                </div>
+              </div>
+
+              {/* Takeaways & Actions */}
+              <div>
+                <h2 className="font-telegraf font-bold text-3xl text-primary mb-6">
+                  Takeaways & Actions
+                </h2>
+                <div className="space-y-4">
+                  {takeaways ? (
+                    <div className="font-telegraf text-gray-600 leading-relaxed text-justify">
+                      <ReactMarkdown>{takeaways}</ReactMarkdown>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <p className="font-telegraf text-gray-600">Consider how these insights apply to your organization's data strategy</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <p className="font-telegraf text-gray-600">Evaluate your current analytics capabilities and identify improvement areas</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <p className="font-telegraf text-gray-600">Contact our team to discuss implementation strategies for your specific needs</p>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -130,11 +181,11 @@ const BlogDetail = () => {
                 </CardContent>
               </Card>
 
-              {/* Tags */}
+              {/* Article Tags */}
               <Card>
                 <CardContent className="p-6">
                   <h3 className="font-telegraf font-semibold text-lg text-primary mb-4">
-                    Tags
+                    Article Tags
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag, index) => (
