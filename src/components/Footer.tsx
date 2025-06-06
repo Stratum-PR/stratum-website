@@ -12,7 +12,7 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <img src="Icon 1.svg" alt="Stratum PR Logo" className="h-8 w-8 object-contain" />
+              <img src="/Stratum_Icon Whiteline.svg" alt="Stratum PR Logo" className="h-8 w-8 object-contain" />
               <span className="font-telegraf font-bold text-xl text-left px-0">Stratum PR</span>
             </div>
             <p className="text-primary-100 mb-4 font-telegraf">
