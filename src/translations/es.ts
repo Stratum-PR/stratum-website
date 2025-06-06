@@ -1,3 +1,4 @@
+
 const es = {
   meta: {
     title: 'Stratum PR',
@@ -107,6 +108,27 @@ const es = {
       description: 'Si no encuentras la respuesta que buscas, no dudes en ponerte en contacto con nosotros.',
       button: 'Contáctanos',
     },
+    categories: {
+      general: 'General',
+      services: 'Servicios',
+      data: 'Análisis de Datos',
+    },
+    general: {
+      question1: '¿Qué es Stratum PR?',
+      answer1: 'Stratum PR es una agencia de relaciones públicas impulsada por datos que se especializa en ayudar a las empresas a alcanzar sus objetivos de negocio a través de estrategias de comunicación innovadoras y basadas en datos.',
+      question2: '¿En qué se diferencia Stratum PR de otras agencias de relaciones públicas?',
+      answer2: 'En Stratum PR, combinamos el arte de las relaciones públicas con la ciencia de los datos para crear campañas impactantes y medibles. Utilizamos análisis de datos avanzados para comprender a tu audiencia, medir el impacto de tus campañas y optimizar tus estrategias de relaciones públicas.',
+    },
+    services: {
+      question1: '¿Qué servicios ofrece Stratum PR?',
+      answer1: 'Ofrecemos una gama completa de servicios de relaciones públicas, incluyendo análisis de datos, relaciones con los medios, gestión de crisis y estrategia digital.',
+      question2: '¿Cómo puede Stratum PR ayudar a mi empresa?',
+      answer2: 'Podemos ayudarte a aumentar tu visibilidad en línea, atraer a tu público objetivo, construir relaciones sólidas con los medios de comunicación y proteger tu reputación en situaciones de crisis.',
+    },
+    data: {
+      question1: '¿Cómo utiliza Stratum PR el análisis de datos?',
+      answer1: 'Utilizamos análisis de datos avanzados para comprender a tu audiencia, medir el impacto de tus campañas y optimizar tus estrategias de relaciones públicas. Esto nos permite tomar decisiones informadas y asegurar que tus campañas sean lo más efectivas posible.',
+    },
   },
   privacy: {
     policy: {
@@ -127,7 +149,7 @@ const es = {
     about: 'Nosotros',
     services: 'Servicios',
     contact: 'Contacto',
-    faq: 'FAQ', // Changed from 'Preguntas Frecuentes' to 'FAQ'
+    faq: 'FAQ',
     resources: 'Recursos',
     blog: 'Blog',
     schedule: 'Agendar Consulta'
@@ -178,29 +200,7 @@ const es = {
       titleKey: 'faq.categories.data',
     },
   ],
-  faq: {
-    categories: {
-      general: 'General',
-      services: 'Servicios',
-      data: 'Análisis de Datos',
-    },
-    general: {
-      question1: '¿Qué es Stratum PR?',
-      answer1: 'Stratum PR es una agencia de relaciones públicas impulsada por datos que se especializa en ayudar a las empresas a alcanzar sus objetivos de negocio a través de estrategias de comunicación innovadoras y basadas en datos.',
-      question2: '¿En qué se diferencia Stratum PR de otras agencias de relaciones públicas?',
-      answer2: 'En Stratum PR, combinamos el arte de las relaciones públicas con la ciencia de los datos para crear campañas impactantes y medibles. Utilizamos análisis de datos avanzados para comprender a tu audiencia, medir el impacto de tus campañas y optimizar tus estrategias de relaciones públicas.',
-    },
-    services: {
-      question1: '¿Qué servicios ofrece Stratum PR?',
-      answer1: 'Ofrecemos una gama completa de servicios de relaciones públicas, incluyendo análisis de datos, relaciones con los medios, gestión de crisis y estrategia digital.',
-      question2: '¿Cómo puede Stratum PR ayudar a mi empresa?',
-      answer2: 'Podemos ayudarte a aumentar tu visibilidad en línea, atraer a tu público objetivo, construir relaciones sólidas con los medios de comunicación y proteger tu reputación en situaciones de crisis.',
-    },
-    data: {
-      question1: '¿Cómo utiliza Stratum PR el análisis de datos?',
-      answer1: 'Utilizamos análisis de datos avanzados para comprender a tu audiencia, medir el impacto de tus campañas y optimizar tus estrategias de relaciones públicas. Esto nos permite tomar decisiones informadas y asegurar que tus campañas sean lo más efectivas posible.',
-    },
-  },
 };
 
 export default es;
+export const esTranslations = es;
