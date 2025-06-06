@@ -1,5 +1,5 @@
 
-import { createClient, Entry, Asset } from 'contentful';
+import { createClient, Entry, Asset, EntrySkeletonType } from 'contentful';
 import type { Language } from '@/types/language';
 
 // Contentful client configuration
@@ -8,20 +8,30 @@ const client = createClient({
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || 'demo-token',
 });
 
-// Contentful content type interfaces
-export interface ContentfulAuthor {
+// Contentful content type interfaces following EntrySkeletonType structure
+export interface ContentfulAuthorFields {
   name: string;
   role: string;
   image: Asset;
   bio?: string;
 }
 
-export interface ContentfulTag {
+export interface ContentfulAuthor extends EntrySkeletonType {
+  contentTypeId: 'author';
+  fields: ContentfulAuthorFields;
+}
+
+export interface ContentfulTagFields {
   name: string;
   displayName: string;
 }
 
-export interface ContentfulBlogPost {
+export interface ContentfulTag extends EntrySkeletonType {
+  contentTypeId: 'tag';
+  fields: ContentfulTagFields;
+}
+
+export interface ContentfulBlogPostFields {
   title: string;
   slug: string;
   summary: string;
@@ -38,17 +48,17 @@ export interface ContentfulBlogPost {
   seoKeywords: string;
 }
 
+export interface ContentfulBlogPost extends EntrySkeletonType {
+  contentTypeId: 'blogPost';
+  fields: ContentfulBlogPostFields;
+}
+
 // Helper function to extract asset URL
 export const getAssetUrl = (asset?: Asset): string => {
   if (!asset?.fields?.file?.url) {
     return 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&crop=center';
   }
   return `https:${asset.fields.file.url}`;
-};
-
-// Helper function to get localized content
-const getLocalizedField = (fields: any, fieldName: string, locale: Language): any => {
-  return fields[fieldName]?.[locale] || fields[fieldName]?.['en-US'] || fields[fieldName];
 };
 
 // Fetch all blog posts
