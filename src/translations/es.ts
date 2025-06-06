@@ -1,3 +1,4 @@
+
 export const esTranslations: Record<string, string> = {
   // Navigation
   'nav.home': 'Inicio',
@@ -8,76 +9,75 @@ export const esTranslations: Record<string, string> = {
   'nav.solutions': 'Soluciones',
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
-  'nav.schedule': 'Agendar Consulta',
+  'nav.schedule': 'Agendar Consulta Gratuita',
   'nav.faq': 'Preguntas Frecuentes',
   
   // Home page
   'home.hero.title': 'La Arquitectura de',
   'home.hero.subtitle': 'Mejores Decisiones',
-  'home.hero.description': 'Construimos la base para la excelencia estratégica a través de análisis avanzados, soluciones de IA y consultoría basada en datos que transforma cómo operan las empresas en Puerto Rico y más allá.',
-  'home.hero.cta.primary': 'Programar Consulta Gratuita',
+  'home.hero.description': 'Construimos la base para la excelencia estratégica a través de análisis avanzado, soluciones de IA y consultoría basada en datos que transforma cómo operan las empresas en Puerto Rico y más allá.',
+  'home.hero.cta.primary': 'Agendar Consulta Gratuita',
   'home.hero.cta.secondary': 'Explorar Servicios',
   
   // Stats
   'stats.experience': 'Años de Experiencia',
-  'stats.satisfaction': 'Satisfacción del Cliente',
-  'stats.projects': 'Soluciones de Proyectos Entregadas',
-  'stats.team': 'Equipo Basado en la Isla',
-  'stats.fortune': 'Construido por veteranos de las 5 mejores empresas Fortune',
+  'stats.satisfaction': 'Retorno de Inversión',
+  'stats.projects': 'Soluciones Entregadas',
+  'stats.team': 'Equipo Local de PR',
   
   // Services Grid
   'services.grid.title': 'Soluciones Estratégicas para Análisis de Datos Puerto Rico',
   'services.grid.subtitle': 'Explora las capacidades que brindamos a clientes gubernamentales, sin fines de lucro y empresariales en toda la isla.',
   
   // Meet Our Team
-  'meetteam.title': 'Conoce a Nuestro Equipo',
-  'meetteam.description': 'Somos un equipo pequeño pero poderoso de profesionales de datos, estrategas y tecnólogos impulsados por una misión compartida: construir sistemas que hagan las decisiones más inteligentes y la vida más fácil.',
-  'meetteam.button': 'Conoce a Nuestro Equipo',
+  'meetteam.title': 'Conoce Nuestro Equipo',
+  'meetteam.description': 'Somos un equipo pequeño pero poderoso de profesionales de datos, estrategas y tecnólogos unidos por una misión compartida: construir sistemas que hagan las decisiones más inteligentes y las vidas más fáciles.',
+  'meetteam.button': 'Conoce Nuestro Equipo',
 
   // Why Work With Us
   'whyworkwithus.title': 'Por Qué Trabajar Con Nosotros',
-  'whyworkwithus.description': 'Stratum PR puede ser nueva, pero nuestro equipo no. Fundada por consultores senior y especialistas en datos con años de experiencia entregando resultados para empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico, traemos la disciplina del trabajo empresarial a una firma enfocada y ágil construida para el impacto.',
+  'whyworkwithus.description': 'Stratum PR puede ser nueva, pero nuestro equipo no. Fundada por consultores senior y especialistas en datos con años de experiencia entregando resultados para empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico, traemos la disciplina del trabajo empresarial en una firma enfocada y ágil construida para el impacto.',
   'whyworkwithus.expertise.title': 'Experiencia Comprobada',
-  'whyworkwithus.expertise.description': 'Hemos diseñado sistemas, dashboards y herramientas de automatización para organizaciones como ICF, UnitedHealth Group y el Departamento de Salud de Puerto Rico. Conocemos lo que está en juego—y cómo entregar.',
-  'whyworkwithus.process.title': 'Claridad Basada en Procesos',
-  'whyworkwithus.process.description': 'No solo construimos dashboards—ayudamos a los clientes a desenredar datos desordenados e implementar marcos que realmente apoyen la toma de decisiones, planificación y responsabilidad.',
+  'whyworkwithus.expertise.description': 'Hemos diseñado sistemas, tableros y herramientas de automatización para organizaciones como ICF, UnitedHealth Group y el Departamento de Salud de Puerto Rico. Conocemos los riesgos—y cómo entregar.',
+  'whyworkwithus.process.title': 'Claridad Impulsada por Procesos',
+  'whyworkwithus.process.description': 'No solo construimos tableros—ayudamos a los clientes a desenredar datos desordenados e implementar marcos que realmente apoyen la toma de decisiones, planificación y responsabilidad.',
   'whyworkwithus.partnership.title': 'Asociación Personalizada',
-  'whyworkwithus.partnership.description': 'Tomamos menos clientes para poder trabajar contigo, no solo para ti. Nuestro tamaño significa que siempre trabajarás directamente con los tomadores de decisiones, no solo con personal junior o proveedores.',
+  'whyworkwithus.partnership.description': 'Tomamos menos clientes para poder trabajar contigo, no solo para ti. Nuestro tamaño significa que siempre trabajarás directamente con tomadores de decisiones, no solo personal junior o proveedores.',
   
   // CTA
-  'cta.title': '¿Listo para Transformar tu Negocio?',
-  'cta.description': 'Hablemos sobre cómo Stratum PR puede arquitectar mejores decisiones para tu organización a través de nuestra experiencia en análisis de datos Puerto Rico.',
-  'cta.button': 'Programar Consulta',
+  'cta.title': '¿Listo para Transformar Tu Negocio?',
+  'cta.description': 'Discutamos cómo Stratum PR puede arquitecturar mejores decisiones para tu organización a través de la experiencia en análisis de datos Puerto Rico.',
+  'cta.button': 'Agendar Consulta Gratuita',
   
   // Features
   'features.title': 'Soluciones Estratégicas para Análisis de Datos Puerto Rico',
-  'features.description': 'Arquitectamos soluciones integrales que conectan datos complejos con resultados estratégicos de negocio a través de automatización empresarial con IA y consultoría de implementación de CRM.',
+  'features.description': 'Arquitecturamos soluciones integrales que conectan la brecha entre datos complejos y resultados empresariales estratégicos a través de automatización empresarial de IA e implementación de CRM.',
   'features.bigdata.title': 'Análisis de Big Data',
-  'features.bigdata.description': 'Transformar datos complejos en conocimientos accionables',
+  'features.bigdata.description': 'Transforma datos complejos en ideas accionables',
   'features.ai.title': 'IA e Inteligencia de Decisiones',
   'features.ai.description': 'Automatización inteligente para decisiones estratégicas',
   'features.crm.title': 'Optimización de CRM',
-  'features.crm.description': 'Optimizar relaciones con clientes y procesos',
+  'features.crm.description': 'Optimiza relaciones y procesos con clientes',
   'features.predictive.title': 'Modelado Predictivo',
-  'features.predictive.description': 'Pronosticar tendencias y optimizar resultados',
+  'features.predictive.description': 'Predice tendencias y optimiza resultados',
   
   // About page
   'about.hero.title': 'Acerca de Stratum PR',
-  'about.hero.description': 'Fundada en 2025, Stratum PR surgió de una observación simple: la mayoría de las organizaciones tienen acceso a más datos que nunca, pero luchan por tomar mejores decisiones. Cerramos esta brecha arquitectando soluciones que transforman información compleja en ventaja estratégica.',
+  'about.hero.description': 'Fundada en 2025, Stratum PR surgió de una observación simple: la mayoría de las organizaciones tienen acceso a más datos que nunca, pero luchan por tomar mejores decisiones. Cerramos esta brecha arquitecturando soluciones que transforman información compleja en ventaja estratégica.',
   'about.mission.title': 'Nuestra Misión',
-  'about.mission.description1': 'Existimos para democratizar las capacidades avanzadas de análisis e IA para empresas de todos los tamaños. Al combinar experiencia técnica profunda con conocimiento estratégico de negocios, ayudamos a las organizaciones a construir la base para una ventaja competitiva sostenida en un mundo cada vez más basado en datos.',
-  'about.mission.description2': 'Nuestro enfoque va más allá de la consultoría tradicional. No solo proporcionamos recomendaciones—arquitectamos e implementamos soluciones completas que se integran perfectamente con sus operaciones existentes mientras los posicionamos para el crecimiento futuro.',
+  'about.mission.description1': 'Existimos para democratizar las capacidades avanzadas de análisis e IA para empresas de todos los tamaños. Al combinar experiencia técnica profunda con perspicacia empresarial estratégica, ayudamos a las organizaciones a construir la base para una ventaja competitiva sostenida en un mundo cada vez más impulsado por datos.',
+  'about.mission.description2': 'Nuestro enfoque va más allá de la consultoría tradicional. No solo proporcionamos recomendaciones—arquitecturamos e implementamos soluciones completas que se integran perfectamente con tus operaciones existentes mientras te posicionan para el crecimiento futuro.',
   'about.values.title': 'Nuestros Valores',
   'about.values.description': 'Estos principios guían cada decisión que tomamos y cada solución que entregamos.',
   'about.values.technical': 'Excelencia Técnica',
   'about.values.technical.desc': 'Mantenemos los más altos estándares en rigor analítico e implementación técnica.',
   'about.values.strategic': 'Claridad Estratégica',
-  'about.values.strategic.desc': 'Cada solución está diseñada con resultados de negocio claros e impacto medible.',
+  'about.values.strategic.desc': 'Cada solución está diseñada con resultados empresariales claros e impacto medible.',
   'about.values.partnership': 'Asociación con Clientes',
-  'about.values.partnership.desc': 'Trabajamos como una extensión de su equipo, no solo otro proveedor.',
+  'about.values.partnership.desc': 'Trabajamos como una extensión de tu equipo, no solo otro proveedor.',
   'about.values.innovation': 'Enfoque en Innovación',
   'about.values.innovation.desc': 'Exploramos continuamente tecnologías emergentes para entregar ventajas competitivas.',
-  'about.team.title': 'Conoce a Nuestro Equipo de Liderazgo',
+  'about.team.title': 'Conoce Nuestro Equipo de Liderazgo',
   'about.team.description': 'Nuestro equipo fundador reúne más de una década de experiencia liderando proyectos en empresas Fortune 500, firmas consultoras, empresas tecnológicas e instituciones académicas.',
   'about.team.expertise': 'EXPERIENCIA',
   
@@ -94,19 +94,19 @@ export const esTranslations: Record<string, string> = {
   
   'team.roberto.name': 'Roberto Santiago',
   'team.roberto.role': 'Director de Operaciones',
-  'team.roberto.bio': 'Roberto se especializa en excelencia operacional e integración de sistemas, con un historial comprobado de optimizar procesos de negocio e implementar soluciones escalables para organizaciones en crecimiento.',
+  'team.roberto.bio': 'Roberto se especializa en excelencia operacional e integración de sistemas, con un historial comprobado de optimización de procesos empresariales e implementación de soluciones escalables para organizaciones en crecimiento.',
   'team.roberto.expertise': 'Gestión de Operaciones, Integración de Sistemas, Optimización de Procesos, Soluciones Escalables',
   
   // Services page
   'services.hero.title': 'Servicios de Análisis de Datos Puerto Rico',
-  'services.hero.description': 'Arquitectamos soluciones integrales que transforman datos complejos en ventajas estratégicas de negocio. Nuestros servicios abarcan todo el ecosistema de análisis, desde consultoría de implementación de CRM hasta automatización empresarial con IA.',
-  'services.hero.cta': 'Programar Consulta Gratuita',
+  'services.hero.description': 'Arquitecturamos soluciones integrales que transforman datos complejos en ventajas empresariales estratégicas. Nuestros servicios abarcan todo el ecosistema de análisis, desde consultoría de implementación de CRM hasta automatización empresarial de IA.',
+  'services.hero.cta': 'Agendar Consulta Gratuita',
   'services.core.title': 'Nuestros Servicios Principales',
-  'services.core.description': 'Cada servicio está diseñado para entregar valor de negocio medible mientras construye la base para ventaja estratégica a largo plazo.',
+  'services.core.description': 'Cada servicio está diseñado para entregar valor empresarial medible mientras construye la base para una ventaja estratégica a largo plazo.',
   'services.integration.title': 'Integración de Software Empresarial',
-  'services.integration.description': 'Conecta sistemas dispares de manera fluida para crear procesos de negocio unificados y eficientes en toda tu organización.',
+  'services.integration.description': 'Conecta sistemas dispares sin problemas para crear procesos empresariales unificados y eficientes en toda tu organización.',
   'services.integration.feature1': 'Desarrollo e Integración de API',
-  'services.integration.feature2': 'Modernización de Sistemas Legados',
+  'services.integration.feature2': 'Modernización de Sistemas Legacy',
   'services.integration.feature3': 'Estrategias de Migración a la Nube',
   'services.integration.feature4': 'Arquitectura de Microservicios',
   'services.integration.feature5': 'Seguridad y Cumplimiento',
@@ -118,17 +118,17 @@ export const esTranslations: Record<string, string> = {
   'services.crm.feature3': 'Migración e Integración de Datos',
   'services.crm.feature4': 'Automatización de Flujos de Trabajo',
   'services.crm.feature5': 'Análisis de Rendimiento',
-  'services.crm.deliverable': 'Cronograma de implementación de 90 días con entrenamiento y soporte completo',
+  'services.crm.deliverable': 'Cronograma de implementación de 90 días con capacitación completa y soporte',
   'services.bigdata.title': 'Análisis de Big Data y Visualización',
-  'services.bigdata.description': 'Transforma conjuntos de datos masivos en insights accionables a través de análisis avanzados y plataformas de visualización intuitivas.',
-  'services.bigdata.feature1': 'Arquitectura de Almacén de Datos',
+  'services.bigdata.description': 'Transforma conjuntos de datos masivos en ideas accionables a través de análisis avanzado y plataformas de visualización intuitivas.',
+  'services.bigdata.feature1': 'Arquitectura de Data Warehouse',
   'services.bigdata.feature2': 'Desarrollo de Pipelines ETL',
-  'services.bigdata.feature3': 'Dashboards Interactivos',
+  'services.bigdata.feature3': 'Tableros Interactivos',
   'services.bigdata.feature4': 'Análisis en Tiempo Real',
   'services.bigdata.feature5': 'Soluciones de Reportes Personalizados',
   'services.bigdata.deliverable': 'Plataforma de análisis integral con monitoreo 24/7',
   'services.forecasting.title': 'Pronósticos y Modelado Predictivo',
-  'services.forecasting.description': 'Aprovecha modelos estadísticos y aprendizaje automático para predecir tendencias, optimizar recursos y mitigar riesgos.',
+  'services.forecasting.description': 'Aprovecha modelos estadísticos y machine learning para predecir tendencias, optimizar recursos y mitigar riesgos.',
   'services.forecasting.feature1': 'Modelos de Pronóstico de Demanda',
   'services.forecasting.feature2': 'Análisis de Evaluación de Riesgos',
   'services.forecasting.feature3': 'Análisis de Tendencias de Mercado',
@@ -144,9 +144,9 @@ export const esTranslations: Record<string, string> = {
   'services.automation.feature5': 'Sistemas de Decisión Automatizados',
   'services.automation.deliverable': 'Soluciones de IA personalizadas con capacidades de aprendizaje continuo',
   'services.decision.title': 'IA e Inteligencia de Decisiones',
-  'services.decision.description': 'Crea sistemas inteligentes que automatizan decisiones de negocio complejas mientras mantienen supervisión estratégica y control.',
+  'services.decision.description': 'Crea sistemas inteligentes que automatizan decisiones empresariales complejas mientras mantienen supervisión y control estratégicos.',
   'services.decision.feature1': 'Flujos de Trabajo de Decisión Automatizados',
-  'services.decision.feature2': 'Motores de Reglas de Negocio',
+  'services.decision.feature2': 'Motores de Reglas Empresariales',
   'services.decision.feature3': 'Herramientas de Planificación Estratégica',
   'services.decision.feature4': 'Monitoreo de Rendimiento',
   'services.decision.feature5': 'Algoritmos de Optimización',
@@ -154,28 +154,28 @@ export const esTranslations: Record<string, string> = {
   'services.process.title': 'Nuestro Proceso',
   'services.process.description': 'Seguimos una metodología probada que asegura entrega exitosa y valor sostenible a largo plazo.',
   'services.process.step1.title': 'Descubrimiento y Evaluación',
-  'services.process.step1.description': 'Comenzamos con un análisis integral de tus sistemas actuales, panorama de datos y objetivos de negocio.',
+  'services.process.step1.description': 'Comenzamos con un análisis integral de tus sistemas actuales, panorama de datos y objetivos empresariales.',
   'services.process.step2.title': 'Arquitectura Estratégica',
-  'services.process.step2.description': 'Nuestro equipo diseña una arquitectura de solución personalizada que se alinea con tus objetivos e integra con la infraestructura existente.',
+  'services.process.step2.description': 'Nuestro equipo diseña una arquitectura de solución personalizada que se alinea con tus objetivos y se integra con la infraestructura existente.',
   'services.process.step3.title': 'Implementación e Integración',
-  'services.process.step3.description': 'Ejecutamos la solución con mínima interrupción a tus operaciones, asegurando integración fluida y adopción del usuario.',
-  'services.process.step4.title': 'Entrenamiento y Optimización',
-  'services.process.step4.description': 'Programas de entrenamiento integral y optimización continua aseguran el máximo valor de tu inversión.',
+  'services.process.step3.description': 'Ejecutamos la solución con mínima interrupción a tus operaciones, asegurando integración perfecta y adopción del usuario.',
+  'services.process.step4.title': 'Capacitación y Optimización',
+  'services.process.step4.description': 'Programas de capacitación integral y optimización continua aseguran el máximo valor de tu inversión.',
   'services.cta.title': '¿Listo para Comenzar?',
-  'services.cta.description': 'Hablemos sobre cómo nuestros servicios de análisis de datos pueden transformar las operaciones de tu negocio e impulsar el crecimiento estratégico en Puerto Rico.',
-  'services.cta.consultation': 'Programar Consulta Gratuita',
-  'services.cta.contact': 'Contactar a Nuestro Equipo',
-  'services.features': 'Características Clave',
+  'services.cta.description': 'Discutamos cómo nuestros servicios de análisis de datos pueden transformar tus operaciones empresariales e impulsar el crecimiento estratégico en Puerto Rico.',
+  'services.cta.consultation': 'Agendar Consulta Gratuita',
+  'services.cta.contact': 'Contactar Nuestro Equipo',
+  'services.features': 'Características Principales',
   
   // Contact page
   'contact.hero.title': 'Contáctanos',
-  'contact.hero.description': '¿Listo para transformar tu negocio con análisis estratégicos? Comencemos la conversación sobre tus objetivos y cómo podemos ayudarte a alcanzarlos.',
+  'contact.hero.description': '¿Listo para transformar tu negocio con análisis estratégico? Comencemos la conversación sobre tus objetivos y cómo podemos ayudarte a alcanzarlos.',
   'contact.form.title': 'Envíanos un Mensaje',
   'contact.form.description': 'Completa el formulario a continuación y te responderemos dentro de 24 horas.',
   'contact.form.security': 'Este formulario está protegido contra spam y envíos automatizados',
   'contact.form.name': 'Nombre Completo',
   'contact.form.name.placeholder': 'Juan Pérez',
-  'contact.form.email': 'Dirección de Correo',
+  'contact.form.email': 'Dirección de Email',
   'contact.form.email.placeholder': 'juan@empresa.com',
   'contact.form.phone': 'Número de Teléfono',
   'contact.form.phone.placeholder': '+1 (555) 123-4567',
@@ -184,7 +184,7 @@ export const esTranslations: Record<string, string> = {
   'contact.form.industry': 'Industria',
   'contact.form.industry.placeholder': 'Salud, Finanzas, Tecnología...',
   'contact.form.subject': 'Asunto',
-  'contact.form.subject.placeholder': 'Ayúdame a entender cómo mis datos pueden ayudarme a generar más ingresos',
+  'contact.form.subject.placeholder': 'Ayúdame a entender cómo mis datos pueden generar más ingresos',
   'contact.form.message': 'Mensaje',
   'contact.form.message.placeholder': 'Tengo muchos datos y no sé qué hacer con ellos...',
   'contact.form.submit': 'Enviar Mensaje',
@@ -192,8 +192,8 @@ export const esTranslations: Record<string, string> = {
   'contact.form.success.title': '¡Mensaje Enviado Exitosamente!',
   'contact.form.success.description': 'Gracias por contactarnos. Te responderemos dentro de 24 horas.',
   'contact.info.title': 'Ponte en Contacto',
-  'contact.info.description': 'Múltiples formas de contactar a nuestro equipo',
-  'contact.info.email': 'Correo Electrónico',
+  'contact.info.description': 'Múltiples formas de contactar nuestro equipo',
+  'contact.info.email': 'Email',
   'contact.info.email.desc': 'Envíanos un mensaje en cualquier momento',
   'contact.info.linkedin': 'LinkedIn',
   'contact.info.linkedin.desc': 'Conéctate con nuestro equipo',
@@ -203,8 +203,60 @@ export const esTranslations: Record<string, string> = {
   'notfound.description': '¡Ups! Página no encontrada',
   'notfound.home': 'Volver al Inicio',
   
+  // FAQ page
+  'faq.hero.title': 'Preguntas Frecuentes',
+  'faq.hero.description': 'Encuentra respuestas a preguntas comunes sobre nuestros servicios de análisis de datos, enfoque y cómo podemos ayudar a transformar tu negocio en Puerto Rico.',
+  
+  // FAQ Categories
+  'faq.categories.company': 'Acerca de Stratum PR',
+  'faq.categories.services': 'Nuestros Servicios Explicados',
+  'faq.categories.basics': 'Primeros Pasos',
+  'faq.categories.impact': 'Impacto en el Mundo Real',
+  
+  // Company FAQs
+  'faq.company.who.question': '¿Quién es Stratum PR y qué los hace diferentes?',
+  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas empresariales estratégicas. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico. No somos solo consultores—somos arquitectos de mejores sistemas de toma de decisiones.',
+  
+  'faq.company.why.question': '¿Por qué debería contratar a Stratum PR en lugar de una firma consultora más grande?',
+  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Nuestro tamaño más pequeño significa atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, brindamos experiencia de nivel Fortune 500 a una escala y costo más accesibles.',
+  
+  'faq.company.experience.question': '¿Qué experiencia tiene su equipo?',
+  'faq.company.experience.answer': 'Nuestro equipo fundador aporta más de una década de experiencia combinada liderando proyectos en empresas Fortune 500 como UnitedHealth Group, firmas consultoras como ICF y agencias gubernamentales incluyendo el Departamento de Salud de Puerto Rico. Hemos diseñado sistemas, tableros y herramientas de automatización que han entregado resultados medibles para organizaciones de todos los tamaños.',
+  
+  // Services FAQs
+  'faq.services.crm.question': '¿Qué es la implementación de CRM y por qué la necesito?',
+  'faq.services.crm.answer': 'La implementación de CRM (Gestión de Relaciones con Clientes) significa configurar un sistema para organizar y rastrear todas las interacciones, ventas y relaciones con clientes en un solo lugar. Piénsalo como actualizar de hojas de cálculo dispersas y emails a un sistema unificado que te ayuda a servir mejor a los clientes, cerrar más ventas y nunca perder información importante.',
+  
+  'faq.services.bigdata.question': '¿Qué es el análisis de big data en términos simples?',
+  'faq.services.bigdata.answer': 'El análisis de big data es el proceso de examinar grandes cantidades de información para descubrir patrones e ideas que te ayuden a tomar mejores decisiones empresariales. Por ejemplo, analizar datos de ventas para predecir qué productos serán populares el próximo mes, o entender el comportamiento del cliente para mejorar tu marketing. Convertimos tus datos en ideas accionables.',
+  
+  'faq.services.ai.question': '¿Cómo pueden la IA y la automatización realmente ayudar a mi negocio?',
+  'faq.services.ai.answer': 'La IA y la automatización pueden manejar tareas repetitivas, analizar datos más rápido que los humanos y ayudarte a tomar decisiones más informadas. Por ejemplo, clasificar automáticamente consultas de clientes, predecir necesidades de inventario o identificar qué clientes tienen más probabilidades de hacer una compra. Esto libera a tu equipo para enfocarse en estrategia y relaciones con clientes mientras reduce errores y costos.',
+  
+  // Basics FAQs
+  'faq.basics.notech.question': 'No tengo experiencia técnica. ¿Aún pueden ayudarme?',
+  'faq.basics.notech.answer': '¡Absolutamente! Nos especializamos en trabajar con líderes empresariales no técnicos. Traducimos conceptos técnicos complejos a un lenguaje empresarial claro y nos enfocamos en resultados que te importan—mayor eficiencia, mejor servicio al cliente, mayores ganancias y ideas más claras. No necesitas entender la tecnología; solo necesitas entender los resultados.',
+  
+  'faq.basics.started.question': '¿Cómo comenzamos a trabajar juntos?',
+  'faq.basics.started.answer': 'Comenzamos con una consulta gratuita para entender los desafíos y objetivos de tu negocio. Luego realizamos una evaluación integral de tus sistemas actuales y panorama de datos. Basándose en esto, diseñamos una arquitectura de solución estratégica y te presentamos una hoja de ruta clara, cronograma y resultados esperados antes de que comience cualquier implementación.',
+  
+  'faq.basics.timeline.question': '¿Cuánto tiempo toma un proyecto típico?',
+  'faq.basics.timeline.answer': 'Los cronogramas de proyectos varían según el alcance y la complejidad. Las implementaciones simples de CRM pueden completarse en 30-90 días, mientras que las plataformas integrales de análisis de datos pueden tomar 3-6 meses. Proporcionamos cronogramas detallados durante la fase de planificación y te mantenemos actualizado durante todo el proceso con hitos regulares y reportes de progreso.',
+  
+  // Impact FAQs
+  'faq.impact.results.question': '¿Qué tipo de resultados del mundo real puedo esperar?',
+  'faq.impact.results.answer': 'Nuestros clientes típicamente ven mejoras medibles dentro de 90 días: 25-60% de reducción en trabajo manual de datos, 15-40% de mejora en velocidad de toma de decisiones, mejores puntuaciones de satisfacción del cliente y mayor visibilidad del rendimiento empresarial. Por ejemplo, hemos ayudado a reducir la sobrecarga administrativa en un 40% en salud y mejorado la precisión de pronósticos en un 25% en empresas tecnológicas.',
+  
+  'faq.impact.roi.question': '¿Cómo miden el retorno de inversión (ROI)?',
+  'faq.impact.roi.answer': 'Establecemos métricas de éxito claras antes de comenzar cualquier proyecto—como tiempo ahorrado, ingresos aumentados, costos reducidos o eficiencia ganada. Rastreamos esto durante la implementación y proporcionamos reportes regulares mostrando tu ROI. La mayoría de los clientes ven retornos positivos dentro de 6-12 meses, con beneficios que continúan componiéndose con el tiempo a medida que tu equipo se vuelve más impulsado por datos.',
+  
+  // FAQ CTA
+  'faq.cta.title': '¿Aún Tienes Preguntas?',
+  'faq.cta.description': 'Estamos aquí para ayudar. Agenda una consulta gratuita para discutir tus necesidades específicas y cómo podemos ayudar a transformar tu negocio.',
+  'faq.cta.button': 'Agendar Consulta Gratuita',
+  
   // Footer
-  'footer.tagline': 'La Arquitectura de Mejores Decisiones. Nos especializamos en soluciones de análisis y consultoría que impulsan resultados estratégicos de negocio.',
+  'footer.tagline': 'La Arquitectura de Mejores Decisiones. Nos especializamos en soluciones de análisis y consultoría que impulsan resultados empresariales estratégicos.',
   'footer.quicklinks': 'Enlaces Rápidos',
   'footer.contact': 'Contacto',
   'footer.copyright': 'Todos los derechos reservados.',
@@ -217,20 +269,20 @@ export const esTranslations: Record<string, string> = {
   
   // Projects page
   'projects.hero.title': 'Proyectos',
-  'projects.hero.description': 'Una mirada al interior de nuestro impacto—clientes reales, resultados reales.',
+  'projects.hero.description': 'Una mirada dentro de nuestro impacto—clientes reales, resultados reales.',
   'projects.filter.all': 'Todos',
   'projects.readmore': 'Leer Más',
-  'projects.cta.title': '¿Listo para Crear tu Historia de Éxito?',
-  'projects.cta.description': 'Hablemos sobre cómo podemos ayudarte a transformar tus datos en conocimientos accionables.',
-  'projects.cta.button': 'Programar Consulta Gratuita',
+  'projects.cta.title': '¿Listo para Crear Tu Historia de Éxito?',
+  'projects.cta.description': 'Discutamos cómo podemos ayudar a transformar tus datos en ideas accionables.',
+  'projects.cta.button': 'Agendar Consulta Gratuita',
   
   // Project examples
   'projects.healthcare.title': 'Plataforma de Integración de Datos de Salud',
   'projects.healthcare.client': 'Red de Salud Regional',
   'projects.healthcare.sector': 'Salud',
-  'projects.healthcare.summary': 'Optimizó datos de pacientes en 12 instalaciones, reduciendo la sobrecarga administrativa en 40% y mejorando la coordinación de atención.',
+  'projects.healthcare.summary': 'Optimizó datos de pacientes en 12 instalaciones, reduciendo la sobrecarga administrativa en un 40% y mejorando la coordinación de atención.',
   
-  'projects.municipal.title': 'Dashboard de Transparencia Presupuestaria Municipal',
+  'projects.municipal.title': 'Tablero de Transparencia Presupuestaria Municipal',
   'projects.municipal.client': 'Municipio de Puerto Rico',
   'projects.municipal.sector': 'Gobierno',
   'projects.municipal.summary': 'Creó sistema de seguimiento presupuestario en tiempo real que aumentó la participación ciudadana y mejoró la responsabilidad fiscal.',
@@ -238,113 +290,61 @@ export const esTranslations: Record<string, string> = {
   'projects.sales.title': 'Suite de Análisis de Rendimiento de Ventas',
   'projects.sales.client': 'Empresa Tecnológica Fortune 500',
   'projects.sales.sector': 'Tecnología',
-  'projects.sales.summary': 'Automatizó pipeline de reportes de ventas que redujo el trabajo manual en 60% y mejoró la precisión de pronósticos en 25%.',
-  
-  // FAQ page
-  'faq.hero.title': 'Preguntas Frecuentes',
-  'faq.hero.description': 'Encuentra respuestas a preguntas comunes sobre nuestros servicios de análisis de datos, enfoque y cómo podemos ayudar a transformar tu negocio en Puerto Rico.',
-  
-  // FAQ Categories
-  'faq.categories.company': 'Acerca de Stratum PR',
-  'faq.categories.services': 'Nuestros Servicios Explicados',
-  'faq.categories.basics': 'Comenzando',
-  'faq.categories.impact': 'Impacto Real',
-  
-  // Company FAQs
-  'faq.company.who.question': '¿Quién es Stratum PR y qué los hace diferentes?',
-  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas estratégicas de negocio. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico. No somos solo consultores—somos arquitectos de mejores sistemas de toma de decisiones.',
-  
-  'faq.company.why.question': '¿Por qué debería contratar a Stratum PR en lugar de una firma consultora más grande?',
-  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Nuestro tamaño más pequeño significa atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, traemos experiencia de nivel Fortune 500 a una escala y costo más accesibles.',
-  
-  'faq.company.experience.question': '¿Qué experiencia tiene su equipo?',
-  'faq.company.experience.answer': 'Nuestro equipo fundador aporta más de una década de experiencia combinada liderando proyectos en empresas Fortune 500 como UnitedHealth Group, firmas consultoras como ICF, y agencias gubernamentales incluyendo el Departamento de Salud de Puerto Rico. Hemos diseñado sistemas, dashboards y herramientas de automatización que han entregado resultados medibles para organizaciones de todos los tamaños.',
-  
-  // Services FAQs
-  'faq.services.crm.question': '¿Qué es la implementación de CRM y por qué la necesito?',
-  'faq.services.crm.answer': 'La implementación de CRM (Gestión de Relaciones con Clientes) significa configurar un sistema para organizar y rastrear todas tus interacciones con clientes, ventas y relaciones en un solo lugar. Piénsalo como actualizar de hojas de cálculo dispersas y correos electrónicos a un sistema unificado que te ayuda a servir mejor a los clientes, cerrar más ventas y nunca perder información importante.',
-  
-  'faq.services.bigdata.question': '¿Qué es el análisis de big data en términos simples?',
-  'faq.services.bigdata.answer': 'El análisis de big data es el proceso de examinar grandes cantidades de información para descubrir patrones e insights que te ayudan a tomar mejores decisiones de negocio. Por ejemplo, analizar datos de ventas para predecir qué productos serán populares el próximo mes, o entender el comportamiento del cliente para mejorar tu marketing. Convertimos tus datos en insights accionables.',
-  
-  'faq.services.ai.question': '¿Cómo puede la IA y automatización realmente ayudar a mi negocio?',
-  'faq.services.ai.answer': 'La IA y automatización pueden manejar tareas repetitivas, analizar datos más rápido que los humanos y ayudarte a tomar decisiones más informadas. Por ejemplo, clasificar automáticamente consultas de clientes, predecir necesidades de inventario, o identificar qué clientes tienen más probabilidad de hacer una compra. Esto libera a tu equipo para enfocarse en estrategia y relaciones con clientes mientras reduce errores y costos.',
-  
-  // Basics FAQs
-  'faq.basics.notech.question': 'No tengo experiencia técnica. ¿Aún pueden ayudarme?',
-  'faq.basics.notech.answer': '¡Absolutamente! Nos especializamos en trabajar con líderes de negocio no técnicos. Traducimos conceptos técnicos complejos a lenguaje de negocio claro y nos enfocamos en resultados que te importan—mayor eficiencia, mejor servicio al cliente, mayores ganancias e insights más claros. No necesitas entender la tecnología; solo necesitas entender los resultados.',
-  
-  'faq.basics.started.question': '¿Cómo comenzamos a trabajar juntos?',
-  'faq.basics.started.answer': 'Comenzamos con una consulta gratuita para entender los desafíos y objetivos de tu negocio. Luego realizamos una evaluación integral de tus sistemas actuales y panorama de datos. Basado en esto, diseñamos una arquitectura de solución estratégica y te presentamos una hoja de ruta clara, cronograma y resultados esperados antes de que comience cualquier implementación.',
-  
-  'faq.basics.timeline.question': '¿Cuánto tiempo toma un proyecto típico?',
-  'faq.basics.timeline.answer': 'Los cronogramas de proyectos varían según el alcance y complejidad. Las implementaciones simples de CRM pueden completarse en 30-90 días, mientras que las plataformas integrales de análisis de datos pueden tomar 3-6 meses. Proporcionamos cronogramas detallados durante la fase de planificación y te mantenemos actualizado durante todo el proceso con hitos regulares e informes de progreso.',
-  
-  // Impact FAQs
-  'faq.impact.results.question': '¿Qué tipo de resultados reales puedo esperar?',
-  'faq.impact.results.answer': 'Nuestros clientes típicamente ven mejoras medibles dentro de 90 días: 25-60% de reducción en trabajo manual de datos, 15-40% de mejora en velocidad de toma de decisiones, mejores puntuaciones de satisfacción del cliente y mayor visibilidad del rendimiento del negocio. Por ejemplo, hemos ayudado a reducir la sobrecarga administrativa en 40% en salud y mejorar la precisión de pronósticos en 25% en empresas tecnológicas.',
-  
-  'faq.impact.roi.question': '¿Cómo miden el retorno de inversión (ROI)?',
-  'faq.impact.roi.answer': 'Establecemos métricas de éxito claras antes de comenzar cualquier proyecto—como tiempo ahorrado, ingresos aumentados, costos reducidos o eficiencia ganada. Rastreamos estos durante la implementación y proporcionamos informes regulares mostrando tu ROI. La mayoría de los clientes ven retornos positivos dentro de 6-12 meses, con beneficios que continúan componiéndose con el tiempo mientras tu equipo se vuelve más orientado a datos.',
-  
-  // FAQ CTA
-  'faq.cta.title': '¿Aún Tienes Preguntas?',
-  'faq.cta.description': 'Estamos aquí para ayudar. Programa una consulta gratuita para discutir tus necesidades específicas y cómo podemos ayudar a transformar tu negocio.',
-  'faq.cta.button': 'Programar Consulta Gratuita',
+  'projects.sales.summary': 'Pipeline de reportes de ventas automatizado que redujo el trabajo manual en un 60% y mejoró la precisión de pronósticos en un 25%.',
   
   // Cookie Consent
   'cookie.title': 'Usamos cookies',
-  'cookie.description': 'Utilizamos cookies para mejorar tu experiencia de navegación, analizar el tráfico y ofrecer contenido personalizado. Algunas cookies son esenciales para el funcionamiento del sitio; otras requieren tu consentimiento.',
+  'cookie.description': 'Usamos cookies para mejorar tu experiencia de navegación, analizar tráfico y ofrecer contenido personalizado. Algunas cookies son necesarias para que el sitio funcione; otras son opcionales y requieren tu consentimiento.',
   'cookie.privacy.link': 'Política de Privacidad y Cookies',
   'cookie.accept.all': 'Aceptar Todas',
   'cookie.reject.all': 'Rechazar Todas',
   'cookie.customize': 'Personalizar',
   'cookie.save.preferences': 'Guardar Preferencias',
   'cookie.essential.title': 'Cookies esenciales',
-  'cookie.essential.description': 'Necesarias para el funcionamiento del sitio',
+  'cookie.essential.description': 'Requeridas para la funcionalidad del sitio',
   'cookie.analytics.title': 'Cookies de análisis',
-  'cookie.analytics.description': 'Nos permiten entender patrones de uso',
+  'cookie.analytics.description': 'Nos ayudan a entender patrones de uso',
   'cookie.marketing.title': 'Cookies de marketing',
-  'cookie.marketing.description': 'Personalizan contenido o publicidad',
+  'cookie.marketing.description': 'Usadas para personalizar contenido o anuncios',
   
   // Privacy Policy Page
   'privacy.page.title': 'Política de Privacidad y Cookies - Stratum PR',
-  'privacy.page.description': 'Conoce cómo Stratum PR maneja tu privacidad y utiliza cookies en nuestro sitio web.',
+  'privacy.page.description': 'Aprende sobre cómo Stratum PR maneja tu privacidad y usa cookies en nuestro sitio web.',
   'privacy.page.keywords': 'política de privacidad, política de cookies, protección de datos, GDPR, CCPA, Stratum PR',
   'privacy.title': 'Política de Privacidad y Cookies',
-  'privacy.intro': 'En Stratum PR valoramos tu privacidad. Este sitio web utiliza cookies para mejorar tu experiencia de navegación, analizar el tráfico y ofrecer contenido personalizado. Algunas cookies son esenciales; otras requieren tu consentimiento.',
-  'privacy.cookies.what.title': '¿Qué son las cookies?',
-  'privacy.cookies.what.description': 'Son archivos de texto pequeños que se almacenan en tu dispositivo al visitar un sitio web. Nos ayudan a recordar tus preferencias, entender cómo usas nuestro sitio y mejorar nuestros servicios.',
-  'privacy.cookies.types.title': 'Tipos de cookies que usamos:',
+  'privacy.intro': 'Stratum PR valora tu privacidad. Este sitio web usa cookies para mejorar tu experiencia de navegación, analizar tráfico y ofrecer contenido personalizado. Algunas cookies son necesarias para que el sitio funcione; otras son opcionales y requieren tu consentimiento.',
+  'privacy.cookies.what.title': '¿Qué Son las Cookies?',
+  'privacy.cookies.what.description': 'Las cookies son pequeños archivos de texto almacenados en tu dispositivo cuando visitas un sitio web. Nos ayudan a recordar preferencias, entender cómo interactúas con nuestro sitio y mejorar nuestros servicios.',
+  'privacy.cookies.types.title': 'Tipos de Cookies que Usamos:',
   'privacy.cookies.types.essential.title': 'Cookies esenciales',
-  'privacy.cookies.types.essential.description': 'necesarias para el funcionamiento del sitio',
+  'privacy.cookies.types.essential.description': 'requeridas para la funcionalidad del sitio',
   'privacy.cookies.types.analytics.title': 'Cookies de análisis',
-  'privacy.cookies.types.analytics.description': 'nos permiten entender patrones de uso',
+  'privacy.cookies.types.analytics.description': 'nos ayudan a entender patrones de uso',
   'privacy.cookies.types.marketing.title': 'Cookies de marketing',
-  'privacy.cookies.types.marketing.description': 'personalizan contenido o publicidad (actualmente no utilizadas, pero podrían aplicarse en el futuro)',
-  'privacy.choices.title': 'Tus opciones:',
-  'privacy.choices.description': 'Puedes aceptar todas las cookies, rechazar las no esenciales o personalizar tus preferencias. También puedes cambiar o retirar tu consentimiento en cualquier momento desde la configuración de tu navegador.',
-  'privacy.compliance.title': 'Almacenamiento de datos y cumplimiento:',
-  'privacy.compliance.description': 'No vendemos tus datos. Todos los procesos cumplen con GDPR, CCPA y otras leyes de privacidad aplicables.',
+  'privacy.cookies.types.marketing.description': 'usadas para personalizar contenido o anuncios (actualmente no se usan, pero pueden usarse en el futuro)',
+  'privacy.choices.title': 'Tus Opciones:',
+  'privacy.choices.description': 'Puedes aceptar todas las cookies, rechazar las no esenciales o personalizar tus preferencias. También puedes cambiar o retirar el consentimiento en cualquier momento a través de la configuración del navegador.',
+  'privacy.compliance.title': 'Almacenamiento de Datos y Cumplimiento:',
+  'privacy.compliance.description': 'No vendemos tus datos. Todo el procesamiento de datos se alinea con GDPR, CCPA y otras leyes aplicables de protección de datos.',
   'privacy.contact.title': 'Contáctanos:',
-  'privacy.contact.description': 'Para más información, contáctanos en',
+  'privacy.contact.description': 'Para más detalles, contáctanos en',
   
   // Resources page
   'resources.hero.title': 'Recursos y Herramientas',
-  'resources.hero.description': 'Accede a nuestra colección integral de guías, plantillas, documentos técnicos y herramientas diseñadas para ayudarte a aprovechar el análisis de datos de manera efectiva.',
+  'resources.hero.description': 'Accede a nuestra colección integral de guías, plantillas, documentos técnicos y kits de herramientas diseñados para ayudarte a aprovechar el análisis de datos de manera efectiva.',
   'resources.download': 'Descargar Recurso',
   'resources.visit': 'Visitar Recurso',
   'resources.cta.title': '¿Necesitas Recursos Personalizados?',
-  'resources.cta.description': 'Nuestro equipo puede ayudarte a desarrollar soluciones y herramientas de análisis adaptadas a tus necesidades específicas.',
-  'resources.cta.button': 'Programar Consulta Gratuita',
+  'resources.cta.description': 'Nuestro equipo puede ayudarte a desarrollar soluciones y herramientas de análisis personalizadas para tus necesidades específicas.',
+  'resources.cta.button': 'Agendar Consulta Gratuita',
   
   // Blog page
   'blog.hero.title': 'Perspectivas y Actualizaciones',
-  'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas de expertos en análisis de datos, automatización con IA y transformación digital.',
+  'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas expertas en análisis de datos, automatización de IA y transformación digital.',
   'blog.readmore': 'Leer Artículo',
   'blog.cta.title': '¿Tienes un Tema en Mente?',
   'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
-  'blog.cta.button': 'Contactar a Nuestro Equipo',
+  'blog.cta.button': 'Contactar Nuestro Equipo',
   
   // Resources modal
   'resources.modal.downloadDescription': 'Descarga la plantilla completa para usar en tus proyectos',
@@ -353,6 +353,6 @@ export const esTranslations: Record<string, string> = {
   'resources.viewPreview': 'Ver Vista Previa',
   'resources.modal.loading': 'Cargando vista previa...',
   'resources.modal.error': 'Vista previa no disponible',
-  'resources.modal.pdfNotSupported': 'Vista previa de PDF no compatible en este navegador',
+  'resources.modal.pdfNotSupported': 'Vista previa de PDF no soportada en este navegador',
   'resources.modal.downloadPdf': 'Descargar PDF',
 };

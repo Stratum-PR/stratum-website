@@ -7,6 +7,9 @@ interface MarkdownRendererProps {
   resourceSlug: string;
 }
 
+// Simple in-memory cache for markdown content
+const contentCache = new Map<string, string>();
+
 export const MarkdownRenderer = ({ resourceSlug }: MarkdownRendererProps) => {
   const { t } = useLanguage();
   const [content, setContent] = useState<string>('');
@@ -18,13 +21,27 @@ export const MarkdownRenderer = ({ resourceSlug }: MarkdownRendererProps) => {
       try {
         setLoading(true);
         setError(null);
+        
+        const cacheKey = `${resourceSlug}.md`;
+        
+        // Check cache first
+        if (contentCache.has(cacheKey)) {
+          setContent(contentCache.get(cacheKey)!);
+          setLoading(false);
+          return;
+        }
+        
         const response = await fetch(`/resources/${resourceSlug}.md`);
         if (!response.ok) {
-          throw new Error('Failed to fetch resource content');
+          throw new Error(`Failed to fetch resource content: ${response.status}`);
         }
         const text = await response.text();
+        
+        // Cache the content
+        contentCache.set(cacheKey, text);
         setContent(text);
       } catch (err) {
+        console.error('Error loading markdown content:', err);
         setError(err instanceof Error ? err.message : 'Failed to load content');
       } finally {
         setLoading(false);
@@ -48,6 +65,12 @@ export const MarkdownRenderer = ({ resourceSlug }: MarkdownRendererProps) => {
       <div className="text-center py-12">
         <p className="font-telegraf text-gray-600 mb-4">{t('resources.modal.error')}</p>
         <p className="font-telegraf text-sm text-gray-500">{error}</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-4 px-4 py-2 bg-primary text-white rounded font-telegraf hover:bg-primary/90"
+        >
+          Retry
+        </button>
       </div>
     );
   }

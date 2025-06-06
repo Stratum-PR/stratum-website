@@ -7,6 +7,7 @@ import { Resource } from "@/data/resources";
 import { MarkdownRenderer } from "./MarkdownRenderer";
 import { PDFViewer } from "./PDFViewer";
 import { TablePreview } from "./TablePreview";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 interface ResourceModalProps {
   resource: Resource | null;
@@ -21,22 +22,26 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
 
   const content = resource.content[language];
 
-  const getFileExtension = (url: string) => {
-    return url.split('.').pop()?.toLowerCase();
-  };
-
   const renderPreview = () => {
     const fileType = content.fileType;
     const downloadUrl = content.downloadUrl;
 
     // Handle different file types
     if (fileType === 'pdf' && downloadUrl) {
-      return <PDFViewer pdfUrl={downloadUrl} title={content.title} />;
+      return (
+        <ErrorBoundary>
+          <PDFViewer pdfUrl={downloadUrl} title={content.title} />
+        </ErrorBoundary>
+      );
     }
     
     if (fileType === 'csv' || fileType === 'excel') {
       if (content.previewData) {
-        return <TablePreview data={content.previewData} />;
+        return (
+          <ErrorBoundary>
+            <TablePreview data={content.previewData} />
+          </ErrorBoundary>
+        );
       }
       // Fallback for CSV/Excel without preview data
       return (
@@ -53,7 +58,11 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
 
     // Default to markdown rendering for guides, checklists, toolkits, worksheets
     if (content.type === 'guide' || content.type === 'checklist' || content.type === 'worksheet' || content.type === 'toolkit') {
-      return <MarkdownRenderer resourceSlug={resource.slug} />;
+      return (
+        <ErrorBoundary>
+          <MarkdownRenderer resourceSlug={resource.slug} />
+        </ErrorBoundary>
+      );
     }
 
     // Fallback for other types
@@ -68,9 +77,9 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl max-h-[95vh] overflow-hidden flex flex-col">
+      <DialogContent className="max-w-5xl w-[95vw] max-h-[95vh] overflow-hidden flex flex-col">
         <DialogHeader className="pb-4 border-b shrink-0">
-          <DialogTitle className="font-telegraf font-bold text-2xl text-primary">
+          <DialogTitle className="font-telegraf font-bold text-xl sm:text-2xl text-primary line-clamp-2">
             {content.title}
           </DialogTitle>
           <div className="flex flex-wrap gap-2 mt-2">
@@ -94,11 +103,11 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
             <p className="text-sm text-gray-600 font-telegraf">
               {t('resources.modal.downloadDescription')}
             </p>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap w-full sm:w-auto">
               {content.downloadUrl && (
                 <Button 
                   asChild
-                  className="bg-primary hover:bg-primary/90 text-white font-telegraf"
+                  className="bg-primary hover:bg-primary/90 text-white font-telegraf flex-1 sm:flex-none"
                 >
                   <a 
                     href={content.downloadUrl}
@@ -114,7 +123,7 @@ export const ResourceModal = ({ resource, isOpen, onClose }: ResourceModalProps)
                 <Button 
                   asChild
                   variant="outline"
-                  className="font-telegraf"
+                  className="font-telegraf flex-1 sm:flex-none"
                 >
                   <a 
                     href={content.externalUrl}
