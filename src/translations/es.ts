@@ -1,4 +1,3 @@
-
 export const esTranslations: Record<string, string> = {
   // Navigation
   'nav.home': 'Inicio',
@@ -355,4 +354,25 @@ export const esTranslations: Record<string, string> = {
   'resources.modal.error': 'Vista previa no disponible',
   'resources.modal.pdfNotSupported': 'Vista previa de PDF no soportada en este navegador',
   'resources.modal.downloadPdf': 'Descargar PDF',
+  
+  // Privacy Policy Modal
+  'privacy.policy.title': 'Política de Privacidad',
+  'privacy.policy.intro': 'En Stratum PR, estamos comprometidos con proteger la privacidad de nuestros usuarios. Esta política de privacidad describe los tipos de información personal que recopilamos, cómo la usamos y compartimos, y los pasos que tomamos para protegerla.',
+  'privacy.policy.types.title': 'Tipos de Información Recopilada:',
+  'privacy.policy.types.contact': 'Información de contacto, como nombre, correo electrónico, empresa y número de teléfono',
+  'privacy.policy.types.usage': 'Información relacionada con el uso de nuestros servicios, como patrones de uso y preferencias',
+  'privacy.policy.use.title': 'Uso de la Información:',
+  'privacy.policy.use.provide': 'Para proporcionar y mejorar nuestros productos y servicios',
+  'privacy.policy.use.communicate': 'Para comunicarnos con los usuarios sobre actualizaciones, promociones y otra información',
+  'privacy.policy.use.personalize': 'Para personalizar la experiencia del usuario',
+  'privacy.policy.use.comply': 'Para cumplir con los requisitos legales',
+  'privacy.policy.sharing.title': 'Compartir Información:',
+  'privacy.policy.sharing.providers': 'Podemos compartir información personal con proveedores de servicios de terceros para ayudarnos a proporcionar nuestros servicios',
+  'privacy.policy.sharing.legal': 'También podemos divulgar información personal si es requerido por ley o para proteger nuestros derechos y los derechos de otros',
+  'privacy.policy.protection.title': 'Protección de la Información:',
+  'privacy.policy.protection.measures': 'Implementamos medidas técnicas y organizacionales apropiadas para proteger la información personal del acceso, uso, divulgación, alteración o destrucción no autorizados',
+  'privacy.policy.changes.title': 'Cambios a la Política de Privacidad:',
+  'privacy.policy.changes.updates': 'Podemos actualizar esta política de privacidad de vez en cuando para reflejar cambios en nuestras prácticas o leyes. Notificaremos a los usuarios de cualquier cambio significativo',
+  'privacy.policy.contact.title': 'Contáctanos:',
+  'privacy.policy.contact.info': 'Si tienes alguna pregunta o inquietud sobre nuestra política de privacidad, por favor contáctanos en',
 };
