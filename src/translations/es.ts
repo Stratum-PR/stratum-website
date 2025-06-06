@@ -9,7 +9,7 @@ export const esTranslations: Record<string, string> = {
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
   'nav.schedule': 'Agendar Consulta Gratuita',
-  'nav.faq': 'Preguntas Frecuentes',
+  'nav.faq': 'FAQ',
   
   // Home page
   'home.hero.title': 'La Arquitectura de',
