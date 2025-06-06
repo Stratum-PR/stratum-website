@@ -1,23 +1,21 @@
 import { BlogPost } from './types';
 import { aiAutomationPost } from './aiAutomationPost';
 
-// Static blog posts as fallback
-const staticBlogPosts: BlogPost[] = [
+const blogPosts: BlogPost[] = [
   aiAutomationPost,
-  // Add more static blog posts here as needed
+  // Add more blog posts here
 ];
 
-// Keep original functions for backward compatibility and fallback
 export const getAllBlogPosts = (): BlogPost[] => {
-  return staticBlogPosts;
+  return blogPosts;
 };
 
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
-  return staticBlogPosts.find(post => post.slug === slug);
+  return blogPosts.find(post => post.slug === slug);
 };
 
 export const getBlogPostsByCategory = (category: BlogPost['category']) => {
-  return staticBlogPosts.filter(post => post.category === category);
+  return blogPosts.filter(post => post.category === category);
 };
 
-export type { BlogPost, BlogPostContent } from './types';
+export type { BlogPost, BlogPostContent } from './types'; 
