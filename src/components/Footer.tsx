@@ -1,26 +1,24 @@
-
 import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
 import { TermsOfUseModal } from "./TermsOfUseModal";
 import { useState } from "react";
-
 export const Footer = () => {
-  const { t } = useLanguage();
+  const {
+    t
+  } = useLanguage();
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const currentYear = new Date().getFullYear();
-  
-  return (
-    <>
+  return <>
       <footer className="text-white bg-[#000953]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <img src="/img/Icon 1.png" alt="Stratum PR Logo" className="h-8 w-8 object-contain" />
+                <img alt="Stratum PR Logo" className="h-8 w-8 object-contain" src="/lovable-uploads/ac19a564-35de-4313-95d9-9afe2c15a257.png" />
                 <span className="font-telegraf font-bold text-xl text-left px-0">Stratum PR</span>
               </div>
               <p className="text-primary-100 mb-4 font-telegraf">
@@ -71,18 +69,12 @@ export const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <button 
-                    onClick={() => setIsPrivacyModalOpen(true)}
-                    className="text-primary-200 hover:text-accent transition-colors font-telegraf text-left"
-                  >
+                  <button onClick={() => setIsPrivacyModalOpen(true)} className="text-primary-200 hover:text-accent transition-colors font-telegraf text-left">
                     {t('privacy.policy.title')}
                   </button>
                 </li>
                 <li>
-                  <button 
-                    onClick={() => setIsTermsModalOpen(true)}
-                    className="text-primary-200 hover:text-accent transition-colors font-telegraf text-left"
-                  >
+                  <button onClick={() => setIsTermsModalOpen(true)} className="text-primary-200 hover:text-accent transition-colors font-telegraf text-left">
                     {t('terms.title')}
                   </button>
                 </li>
@@ -117,15 +109,8 @@ export const Footer = () => {
         </div>
       </footer>
       
-      <PrivacyPolicyModal 
-        isOpen={isPrivacyModalOpen}
-        onClose={() => setIsPrivacyModalOpen(false)}
-      />
+      <PrivacyPolicyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
       
-      <TermsOfUseModal 
-        isOpen={isTermsModalOpen}
-        onClose={() => setIsTermsModalOpen(false)}
-      />
-    </>
-  );
+      <TermsOfUseModal isOpen={isTermsModalOpen} onClose={() => setIsTermsModalOpen(false)} />
+    </>;
 };
