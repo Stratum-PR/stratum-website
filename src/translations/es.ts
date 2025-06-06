@@ -1,206 +1,421 @@
+export const esTranslations: Record<string, string> = {
+  // Navigation
+  'nav.home': 'Inicio',
+  'nav.about': 'Nosotros',
+  'nav.services': 'Servicios',
+  'nav.contact': 'Contacto',
+  'nav.projects': 'Proyectos',
+  'nav.solutions': 'Soluciones',
+  'nav.resources': 'Recursos',
+  'nav.blog': 'Blog',
+  'nav.schedule': 'Agendar Consulta Gratuita',
+  'nav.faq': 'Preguntas Frecuentes',
+  
+  // Home page
+  'home.hero.title': 'La Arquitectura de',
+  'home.hero.subtitle': 'Mejores Decisiones',
+  'home.hero.description': 'Construimos la base para la excelencia estratégica a través de análisis avanzado, soluciones de IA y consultoría basada en datos que transforma cómo operan las empresas en Puerto Rico y más allá.',
+  'home.hero.cta.primary': 'Agendar Consulta Gratuita',
+  'home.hero.cta.secondary': 'Explorar Servicios',
+  
+  // Stats
+  'stats.experience': 'Años de Experiencia',
+  'stats.satisfaction': 'Retorno de Inversión',
+  'stats.projects': 'Soluciones Entregadas',
+  'stats.team': 'Equipo Local de PR',
+  
+  // Services Grid
+  'services.grid.title': 'Soluciones Estratégicas para Análisis de Datos Puerto Rico',
+  'services.grid.subtitle': 'Explora las capacidades que brindamos a clientes gubernamentales, sin fines de lucro y empresariales en toda la isla.',
+  
+  // Meet Our Team
+  'meetteam.title': 'Conoce Nuestro Equipo',
+  'meetteam.description': 'Somos un equipo pequeño pero poderoso de profesionales de datos, estrategas y tecnólogos unidos por una misión compartida: construir sistemas que hagan las decisiones más inteligentes y las vidas más fáciles.',
+  'meetteam.button': 'Conoce Nuestro Equipo',
 
-const es = {
-  meta: {
-    title: 'Stratum PR',
-    description: 'Impulsando el éxito a través de estrategias de relaciones públicas innovadoras y basadas en datos.',
-    keywords: 'relaciones públicas, datos, estrategia, comunicación, Puerto Rico',
-  },
-  home: {
-    hero: {
-      title: 'Impulsando el Éxito con Datos y Estrategia',
-      description: 'En Stratum PR, combinamos el arte de las relaciones públicas con la ciencia de los datos para crear campañas impactantes y medibles.',
-      button: 'Descubre Cómo',
-    },
-    services: {
-      title: 'Nuestros Servicios',
-      description: 'Ofrecemos una gama completa de servicios de relaciones públicas diseñados para impulsar tu marca y alcanzar tus objetivos de negocio.',
-      dataAnalytics: 'Análisis de Datos',
-      mediaRelations: 'Relaciones con los Medios',
-      crisisManagement: 'Gestión de Crisis',
-      digitalStrategy: 'Estrategia Digital',
-    },
-    projects: {
-      title: 'Proyectos Destacados',
-      description: 'Explora algunos de nuestros proyectos más exitosos y descubre cómo hemos ayudado a nuestros clientes a alcanzar sus metas.',
-    },
-    testimonials: {
-      title: 'Lo Que Dicen Nuestros Clientes',
-      description: 'Descubre por qué nuestros clientes confían en nosotros para sus necesidades de relaciones públicas.',
-    },
-    contact: {
-      title: '¿Listo para Empezar?',
-      description: 'Ponte en contacto con nosotros hoy mismo para discutir tus necesidades de relaciones públicas y descubrir cómo podemos ayudarte a alcanzar tus objetivos.',
-      button: 'Contáctanos',
-    },
-  },
-  about: {
-    hero: {
-      title: 'Acerca de Nosotros',
-      description: 'Conoce a Stratum PR: una agencia de relaciones públicas impulsada por datos y dedicada a impulsar el éxito de nuestros clientes.',
-    },
-    mission: {
-      title: 'Nuestra Misión',
-      description: 'Nuestra misión es proporcionar estrategias de relaciones públicas innovadoras y basadas en datos que impulsen el crecimiento y el éxito de nuestros clientes.',
-    },
-    team: {
-      title: 'Nuestro Equipo',
-      description: 'Conoce a los expertos detrás de Stratum PR. Nuestro equipo está formado por profesionales experimentados en relaciones públicas, análisis de datos y estrategia digital.',
-    },
-    values: {
-      title: 'Nuestros Valores',
-      description: 'En Stratum PR, nos guiamos por nuestros valores fundamentales de integridad, innovación, colaboración y excelencia.',
-    },
-  },
-  services: {
-    hero: {
-      title: 'Nuestros Servicios',
-      description: 'Descubre nuestra gama completa de servicios de relaciones públicas diseñados para impulsar tu marca y alcanzar tus objetivos de negocio.',
-    },
-    dataAnalytics: {
-      title: 'Análisis de Datos',
-      description: 'Utilizamos análisis de datos avanzados para comprender a tu audiencia, medir el impacto de tus campañas y optimizar tus estrategias de relaciones públicas.',
-    },
-    mediaRelations: {
-      title: 'Relaciones con los Medios',
-      description: 'Construimos relaciones sólidas con los medios de comunicación para asegurar que tu historia sea contada de manera efectiva y llegue a tu público objetivo.',
-    },
-    crisisManagement: {
-      title: 'Gestión de Crisis',
-      description: 'Te ayudamos a prepararte para y a gestionar situaciones de crisis, protegiendo tu reputación y minimizando el impacto en tu negocio.',
-    },
-    digitalStrategy: {
-      title: 'Estrategia Digital',
-      description: 'Desarrollamos estrategias digitales integrales que aprovechan las últimas tendencias y tecnologías para aumentar tu visibilidad en línea y atraer a tu público objetivo.',
-    },
-  },
-  projects: {
-    hero: {
-      title: 'Nuestros Proyectos',
-      description: 'Explora algunos de nuestros proyectos más exitosos y descubre cómo hemos ayudado a nuestros clientes a alcanzar sus metas.',
-    },
-  },
-  contact: {
-    hero: {
-      title: 'Contáctanos',
-      description: 'Ponte en contacto con nosotros hoy mismo para discutir tus necesidades de relaciones públicas y descubrir cómo podemos ayudarte a alcanzar tus objetivos.',
-    },
-    form: {
-      name: 'Nombre',
-      email: 'Correo Electrónico',
-      message: 'Mensaje',
-      button: 'Enviar Mensaje',
-      success: '¡Gracias! Tu mensaje ha sido enviado.',
-      error: 'Lo sentimos, ha habido un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.',
-    },
-    info: {
-      address: 'Dirección',
-      phone: 'Teléfono',
-      email: 'Correo Electrónico',
-    },
-  },
-  faq: {
-    hero: {
-      title: 'Preguntas Frecuentes',
-      description: 'Encuentra respuestas a las preguntas más comunes sobre nuestros servicios y cómo podemos ayudarte.',
-    },
-    cta: {
-      title: '¿Aún Tienes Preguntas?',
-      description: 'Si no encuentras la respuesta que buscas, no dudes en ponerte en contacto con nosotros.',
-      button: 'Contáctanos',
-    },
-    categories: {
-      general: 'General',
-      services: 'Servicios',
-      data: 'Análisis de Datos',
-    },
-    general: {
-      question1: '¿Qué es Stratum PR?',
-      answer1: 'Stratum PR es una agencia de relaciones públicas impulsada por datos que se especializa en ayudar a las empresas a alcanzar sus objetivos de negocio a través de estrategias de comunicación innovadoras y basadas en datos.',
-      question2: '¿En qué se diferencia Stratum PR de otras agencias de relaciones públicas?',
-      answer2: 'En Stratum PR, combinamos el arte de las relaciones públicas con la ciencia de los datos para crear campañas impactantes y medibles. Utilizamos análisis de datos avanzados para comprender a tu audiencia, medir el impacto de tus campañas y optimizar tus estrategias de relaciones públicas.',
-    },
-    services: {
-      question1: '¿Qué servicios ofrece Stratum PR?',
-      answer1: 'Ofrecemos una gama completa de servicios de relaciones públicas, incluyendo análisis de datos, relaciones con los medios, gestión de crisis y estrategia digital.',
-      question2: '¿Cómo puede Stratum PR ayudar a mi empresa?',
-      answer2: 'Podemos ayudarte a aumentar tu visibilidad en línea, atraer a tu público objetivo, construir relaciones sólidas con los medios de comunicación y proteger tu reputación en situaciones de crisis.',
-    },
-    data: {
-      question1: '¿Cómo utiliza Stratum PR el análisis de datos?',
-      answer1: 'Utilizamos análisis de datos avanzados para comprender a tu audiencia, medir el impacto de tus campañas y optimizar tus estrategias de relaciones públicas. Esto nos permite tomar decisiones informadas y asegurar que tus campañas sean lo más efectivas posible.',
-    },
-  },
-  privacy: {
-    policy: {
-      title: 'Política de Privacidad',
-    },
-  },
-  terms: {
-    title: 'Términos de Uso',
-  },
-  footer: {
-    tagline: 'Impulsando el éxito a través de estrategias de relaciones públicas innovadoras y basadas en datos.',
-    quicklinks: 'Enlaces Rápidos',
-    contact: 'Contacto',
-    copyright: 'Todos los derechos reservados.',
-  },
-  nav: {
-    home: 'Inicio',
-    about: 'Nosotros',
-    services: 'Servicios',
-    contact: 'Contacto',
-    faq: 'FAQ',
-    resources: 'Recursos',
-    blog: 'Blog',
-    schedule: 'Agendar Consulta'
-  },
-  faqData: [
-    {
-      id: 'faq-1',
-      category: 'general',
-      question: 'faq.general.question1',
-      answer: 'faq.general.answer1',
-    },
-    {
-      id: 'faq-2',
-      category: 'general',
-      question: 'faq.general.question2',
-      answer: 'faq.general.answer2',
-    },
-    {
-      id: 'faq-3',
-      category: 'services',
-      question: 'faq.services.question1',
-      answer: 'faq.services.answer1',
-    },
-    {
-      id: 'faq-4',
-      category: 'services',
-      question: 'faq.services.question2',
-      answer: 'faq.services.answer2',
-    },
-    {
-      id: 'faq-5',
-      category: 'data',
-      question: 'faq.data.question1',
-      answer: 'faq.data.answer1',
-    },
-  ],
-  faqCategories: [
-    {
-      id: 'general',
-      titleKey: 'faq.categories.general',
-    },
-    {
-      id: 'services',
-      titleKey: 'faq.categories.services',
-    },
-    {
-      id: 'data',
-      titleKey: 'faq.categories.data',
-    },
-  ],
+  // Why Work With Us
+  'whyworkwithus.title': 'Por Qué Trabajar Con Nosotros',
+  'whyworkwithus.description': 'Stratum PR puede ser nueva, pero nuestro equipo no. Fundada por consultores senior y especialistas en datos con años de experiencia entregando resultados para empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico, traemos la disciplina del trabajo empresarial en una firma enfocada y ágil construida para el impacto.',
+  'whyworkwithus.expertise.title': 'Experiencia Comprobada',
+  'whyworkwithus.expertise.description': 'Hemos diseñado sistemas, tableros y herramientas de automatización para organizaciones como ICF, UnitedHealth Group y el Departamento de Salud de Puerto Rico. Conocemos los riesgos—y cómo entregar.',
+  'whyworkwithus.process.title': 'Claridad Impulsada por Procesos',
+  'whyworkwithus.process.description': 'No solo construimos tableros—ayudamos a los clientes a desenredar datos desordenados e implementar marcos que realmente apoyen la toma de decisiones, planificación y responsabilidad.',
+  'whyworkwithus.partnership.title': 'Asociación Personalizada',
+  'whyworkwithus.partnership.description': 'Tomamos menos clientes para poder trabajar contigo, no solo para ti. Nuestro tamaño significa que siempre trabajarás directamente con tomadores de decisiones, no solo personal junior o proveedores.',
+  
+  // CTA
+  'cta.title': '¿Listo para Transformar Tu Negocio?',
+  'cta.description': 'Discutamos cómo Stratum PR puede arquitecturar mejores decisiones para tu organización a través de la experiencia en análisis de datos Puerto Rico.',
+  'cta.button': 'Agendar Consulta Gratuita',
+  
+  // Features
+  'features.title': 'Soluciones Estratégicas para Análisis de Datos Puerto Rico',
+  'features.description': 'Arquitecturamos soluciones integrales que conectan la brecha entre datos complejos y resultados empresariales estratégicos a través de automatización empresarial de IA e implementación de CRM.',
+  'features.bigdata.title': 'Análisis de Big Data',
+  'features.bigdata.description': 'Transforma datos complejos en ideas accionables',
+  'features.ai.title': 'IA e Inteligencia de Decisiones',
+  'features.ai.description': 'Automatización inteligente para decisiones estratégicas',
+  'features.crm.title': 'Optimización de CRM',
+  'features.crm.description': 'Optimiza relaciones y procesos con clientes',
+  'features.predictive.title': 'Modelado Predictivo',
+  'features.predictive.description': 'Predice tendencias y optimiza resultados',
+  
+  // About page
+  'about.hero.title': 'Acerca de Stratum PR',
+  'about.hero.description': 'Fundada en 2025, Stratum PR surgió de una observación simple: la mayoría de las organizaciones tienen acceso a más datos que nunca, pero luchan por tomar mejores decisiones. Cerramos esta brecha arquitecturando soluciones que transforman información compleja en ventaja estratégica.',
+  'about.mission.title': 'Nuestra Misión',
+  'about.mission.description1': 'Existimos para democratizar las capacidades avanzadas de análisis e IA para empresas de todos los tamaños. Al combinar experiencia técnica profunda con perspicacia empresarial estratégica, ayudamos a las organizaciones a construir la base para una ventaja competitiva sostenida en un mundo cada vez más impulsado por datos.',
+  'about.mission.description2': 'Nuestro enfoque va más allá de la consultoría tradicional. No solo proporcionamos recomendaciones—arquitecturamos e implementamos soluciones completas que se integran perfectamente con tus operaciones existentes mientras te posicionan para el crecimiento futuro.',
+  'about.values.title': 'Nuestros Valores',
+  'about.values.description': 'Estos principios guían cada decisión que tomamos y cada solución que entregamos.',
+  'about.values.technical': 'Excelencia Técnica',
+  'about.values.technical.desc': 'Mantenemos los más altos estándares en rigor analítico e implementación técnica.',
+  'about.values.strategic': 'Claridad Estratégica',
+  'about.values.strategic.desc': 'Cada solución está diseñada con resultados empresariales claros e impacto medible.',
+  'about.values.partnership': 'Asociación con Clientes',
+  'about.values.partnership.desc': 'Trabajamos como una extensión de tu equipo, no solo otro proveedor.',
+  'about.values.innovation': 'Enfoque en Innovación',
+  'about.values.innovation.desc': 'Exploramos continuamente tecnologías emergentes para entregar ventajas competitivas.',
+  'about.team.title': 'Conoce Nuestro Equipo de Liderazgo',
+  'about.team.description': 'Nuestro equipo fundador reúne más de una década de experiencia liderando proyectos en empresas Fortune 500, firmas consultoras, empresas tecnológicas e instituciones académicas.',
+  'about.team.expertise': 'EXPERIENCIA',
+  
+  // Team member data
+  'team.jovaniel.name': 'Jovaniel Agosto',
+  'team.jovaniel.role': 'Director Ejecutivo',
+  'team.jovaniel.bio': 'Jovaniel aporta más de 10 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado proyectos transformacionales en empresas Fortune 500. Su experiencia abarca inteligencia empresarial, optimización de procesos y gestión del cambio organizacional.',
+  'team.jovaniel.expertise': 'Consultoría Estratégica, Inteligencia Empresarial, Gestión del Cambio, Análisis de Datos',
+  
+  'team.genesis.name': 'Genesis Tavarez',
+  'team.genesis.role': 'Directora de Tecnología',
+  'team.genesis.bio': 'Genesis es una líder tecnológica experimentada con amplia experiencia en implementación de IA, arquitectura de software y transformación digital. Ha entregado exitosamente soluciones a escala empresarial en múltiples industrias.',
+  'team.genesis.expertise': 'Implementación de IA, Arquitectura de Software, Transformación Digital, Soluciones Empresariales',
+  
+  'team.roberto.name': 'Roberto Santiago',
+  'team.roberto.role': 'Director de Operaciones',
+  'team.roberto.bio': 'Roberto se especializa en excelencia operacional e integración de sistemas, con un historial comprobado de optimización de procesos empresariales e implementación de soluciones escalables para organizaciones en crecimiento.',
+  'team.roberto.expertise': 'Gestión de Operaciones, Integración de Sistemas, Optimización de Procesos, Soluciones Escalables',
+  
+  // Services page
+  'services.hero.title': 'Servicios de Análisis de Datos Puerto Rico',
+  'services.hero.description': 'Arquitecturamos soluciones integrales que transforman datos complejos en ventajas empresariales estratégicas. Nuestros servicios abarcan todo el ecosistema de análisis, desde consultoría de implementación de CRM hasta automatización empresarial de IA.',
+  'services.hero.cta': 'Agendar Consulta Gratuita',
+  'services.core.title': 'Nuestros Servicios Principales',
+  'services.core.description': 'Cada servicio está diseñado para entregar valor empresarial medible mientras construye la base para una ventaja estratégica a largo plazo.',
+  'services.integration.title': 'Integración de Software Empresarial',
+  'services.integration.description': 'Conecta sistemas dispares sin problemas para crear procesos empresariales unificados y eficientes en toda tu organización.',
+  'services.integration.feature1': 'Desarrollo e Integración de API',
+  'services.integration.feature2': 'Modernización de Sistemas Legacy',
+  'services.integration.feature3': 'Estrategias de Migración a la Nube',
+  'services.integration.feature4': 'Arquitectura de Microservicios',
+  'services.integration.feature5': 'Seguridad y Cumplimiento',
+  'services.integration.deliverable': 'Ecosistema completamente integrado con complejidad operacional reducida',
+  'services.crm.title': 'Implementación y Optimización de CRM',
+  'services.crm.description': 'Optimiza las relaciones con clientes con soluciones CRM integradas que impulsan la eficiencia de ventas y la satisfacción del cliente.',
+  'services.crm.feature1': 'Implementación de Salesforce y HubSpot',
+  'services.crm.feature2': 'Desarrollo de CRM Personalizado',
+  'services.crm.feature3': 'Migración e Integración de Datos',
+  'services.crm.feature4': 'Automatización de Flujos de Trabajo',
+  'services.crm.feature5': 'Análisis de Rendimiento',
+  'services.crm.deliverable': 'Cronograma de implementación de 90 días con capacitación completa y soporte',
+  'services.bigdata.title': 'Análisis de Big Data y Visualización',
+  'services.bigdata.description': 'Transforma conjuntos de datos masivos en ideas accionables a través de análisis avanzado y plataformas de visualización intuitivas.',
+  'services.bigdata.feature1': 'Arquitectura de Data Warehouse',
+  'services.bigdata.feature2': 'Desarrollo de Pipelines ETL',
+  'services.bigdata.feature3': 'Tableros Interactivos',
+  'services.bigdata.feature4': 'Análisis en Tiempo Real',
+  'services.bigdata.feature5': 'Soluciones de Reportes Personalizados',
+  'services.bigdata.deliverable': 'Plataforma de análisis integral con monitoreo 24/7',
+  'services.forecasting.title': 'Pronósticos y Modelado Predictivo',
+  'services.forecasting.description': 'Aprovecha modelos estadísticos y machine learning para predecir tendencias, optimizar recursos y mitigar riesgos.',
+  'services.forecasting.feature1': 'Modelos de Pronóstico de Demanda',
+  'services.forecasting.feature2': 'Análisis de Evaluación de Riesgos',
+  'services.forecasting.feature3': 'Análisis de Tendencias de Mercado',
+  'services.forecasting.feature4': 'Optimización de Recursos',
+  'services.forecasting.feature5': 'Herramientas de Planificación de Escenarios',
+  'services.forecasting.deliverable': 'Modelos predictivos con 85%+ de precisión y reportes automatizados',
+  'services.automation.title': 'Automatización de Procesos y ETL',
+  'services.automation.description': 'Implementa tecnologías de vanguardia para automatizar procesos, mejorar la toma de decisiones e impulsar la innovación.',
+  'services.automation.feature1': 'Procesamiento de Lenguaje Natural',
+  'services.automation.feature2': 'Aplicaciones de Visión Computacional',
+  'services.automation.feature3': 'Sistemas de Recomendación',
+  'services.automation.feature4': 'Detección de Anomalías',
+  'services.automation.feature5': 'Sistemas de Decisión Automatizados',
+  'services.automation.deliverable': 'Soluciones de IA personalizadas con capacidades de aprendizaje continuo',
+  'services.decision.title': 'IA e Inteligencia de Decisiones',
+  'services.decision.description': 'Crea sistemas inteligentes que automatizan decisiones empresariales complejas mientras mantienen supervisión y control estratégicos.',
+  'services.decision.feature1': 'Flujos de Trabajo de Decisión Automatizados',
+  'services.decision.feature2': 'Motores de Reglas Empresariales',
+  'services.decision.feature3': 'Herramientas de Planificación Estratégica',
+  'services.decision.feature4': 'Monitoreo de Rendimiento',
+  'services.decision.feature5': 'Algoritmos de Optimización',
+  'services.decision.deliverable': 'Plataforma de automatización inteligente con soporte de decisiones estratégicas',
+  'services.process.title': 'Nuestro Proceso',
+  'services.process.description': 'Seguimos una metodología probada que asegura entrega exitosa y valor sostenible a largo plazo.',
+  'services.process.step1.title': 'Descubrimiento y Evaluación',
+  'services.process.step1.description': 'Comenzamos con un análisis integral de tus sistemas actuales, panorama de datos y objetivos empresariales.',
+  'services.process.step2.title': 'Arquitectura Estratégica',
+  'services.process.step2.description': 'Nuestro equipo diseña una arquitectura de solución personalizada que se alinea con tus objetivos y se integra con la infraestructura existente.',
+  'services.process.step3.title': 'Implementación e Integración',
+  'services.process.step3.description': 'Ejecutamos la solución con mínima interrupción a tus operaciones, asegurando integración perfecta y adopción del usuario.',
+  'services.process.step4.title': 'Capacitación y Optimización',
+  'services.process.step4.description': 'Programas de capacitación integral y optimización continua aseguran el máximo valor de tu inversión.',
+  'services.cta.title': '¿Listo para Comenzar?',
+  'services.cta.description': 'Discutamos cómo nuestros servicios de análisis de datos pueden transformar tus operaciones empresariales e impulsar el crecimiento estratégico en Puerto Rico.',
+  'services.cta.consultation': 'Agendar Consulta Gratuita',
+  'services.cta.contact': 'Contactar Nuestro Equipo',
+  'services.features': 'Características Principales',
+  
+  // Contact page
+  'contact.hero.title': 'Contáctanos',
+  'contact.hero.description': '¿Listo para transformar tu negocio con análisis estratégico? Comencemos la conversación sobre tus objetivos y cómo podemos ayudarte a alcanzarlos.',
+  'contact.form.title': 'Envíanos un Mensaje',
+  'contact.form.description': 'Completa el formulario a continuación y te responderemos dentro de 24 horas.',
+  'contact.form.security': 'Este formulario está protegido contra spam y envíos automatizados',
+  'contact.form.name': 'Nombre Completo',
+  'contact.form.name.placeholder': 'Juan Pérez',
+  'contact.form.email': 'Dirección de Email',
+  'contact.form.email.placeholder': 'juan@empresa.com',
+  'contact.form.phone': 'Número de Teléfono',
+  'contact.form.phone.placeholder': '+1 (555) 123-4567',
+  'contact.form.company': 'Nombre de la Empresa',
+  'contact.form.company.placeholder': 'Corporación Acme',
+  'contact.form.industry': 'Industria',
+  'contact.form.industry.placeholder': 'Salud, Finanzas, Tecnología...',
+  'contact.form.subject': 'Asunto',
+  'contact.form.subject.placeholder': 'Ayúdame a entender cómo mis datos pueden generar más ingresos',
+  'contact.form.message': 'Mensaje',
+  'contact.form.message.placeholder': 'Tengo muchos datos y no sé qué hacer con ellos...',
+  'contact.form.submit': 'Enviar Mensaje',
+  'contact.form.sending': 'Enviando Mensaje...',
+  'contact.form.success.title': '¡Mensaje Enviado Exitosamente!',
+  'contact.form.success.description': 'Gracias por contactarnos. Te responderemos dentro de 24 horas.',
+  'contact.info.title': 'Ponte en Contacto',
+  'contact.info.description': 'Múltiples formas de contactar nuestro equipo',
+  'contact.info.email': 'Email',
+  'contact.info.email.desc': 'Envíanos un mensaje en cualquier momento',
+  'contact.info.linkedin': 'LinkedIn',
+  'contact.info.linkedin.desc': 'Conéctate con nuestro equipo',
+  
+  // 404 page
+  'notfound.title': '404',
+  'notfound.description': '¡Ups! Página no encontrada',
+  'notfound.home': 'Volver al Inicio',
+  
+  // FAQ page
+  'faq.hero.title': 'Preguntas Frecuentes',
+  'faq.hero.description': 'Encuentra respuestas a preguntas comunes sobre nuestros servicios de análisis de datos, enfoque y cómo podemos ayudar a transformar tu negocio en Puerto Rico.',
+  
+  // FAQ Categories
+  'faq.categories.company': 'Acerca de Stratum PR',
+  'faq.categories.services': 'Nuestros Servicios Explicados',
+  'faq.categories.basics': 'Primeros Pasos',
+  'faq.categories.impact': 'Impacto en el Mundo Real',
+  
+  // Company FAQs
+  'faq.company.who.question': '¿Quién es Stratum PR y qué los hace diferentes?',
+  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas empresariales estratégicas. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico. No somos solo consultores—somos arquitectos de mejores sistemas de toma de decisiones.',
+  
+  'faq.company.why.question': '¿Por qué debería contratar a Stratum PR en lugar de una firma consultora más grande?',
+  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Nuestro tamaño más pequeño significa atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, brindamos experiencia de nivel Fortune 500 a una escala y costo más accesibles.',
+  
+  'faq.company.experience.question': '¿Qué experiencia tiene su equipo?',
+  'faq.company.experience.answer': 'Nuestro equipo fundador aporta más de una década de experiencia combinada liderando proyectos en empresas Fortune 500 como UnitedHealth Group, firmas consultoras como ICF y agencias gubernamentales incluyendo el Departamento de Salud de Puerto Rico. Hemos diseñado sistemas, tableros y herramientas de automatización que han entregado resultados medibles para organizaciones de todos los tamaños.',
+  
+  // Services FAQs
+  'faq.services.crm.question': '¿Qué es la implementación de CRM y por qué la necesito?',
+  'faq.services.crm.answer': 'La implementación de CRM (Gestión de Relaciones con Clientes) significa configurar un sistema para organizar y rastrear todas las interacciones, ventas y relaciones con clientes en un solo lugar. Piénsalo como actualizar de hojas de cálculo dispersas y emails a un sistema unificado que te ayuda a servir mejor a los clientes, cerrar más ventas y nunca perder información importante.',
+  
+  'faq.services.bigdata.question': '¿Qué es el análisis de big data en términos simples?',
+  'faq.services.bigdata.answer': 'El análisis de big data es el proceso de examinar grandes cantidades de información para descubrir patrones e ideas que te ayuden a tomar mejores decisiones empresariales. Por ejemplo, analizar datos de ventas para predecir qué productos serán populares el próximo mes, o entender el comportamiento del cliente para mejorar tu marketing. Convertimos tus datos en ideas accionables.',
+  
+  'faq.services.ai.question': '¿Cómo pueden la IA y la automatización realmente ayudar a mi negocio?',
+  'faq.services.ai.answer': 'La IA y la automatización pueden manejar tareas repetitivas, analizar datos más rápido que los humanos y ayudarte a tomar decisiones más informadas. Por ejemplo, clasificar automáticamente consultas de clientes, predecir necesidades de inventario o identificar qué clientes tienen más probabilidades de hacer una compra. Esto libera a tu equipo para enfocarse en estrategia y relaciones con clientes mientras reduce errores y costos.',
+  
+  // Basics FAQs
+  'faq.basics.notech.question': 'No tengo experiencia técnica. ¿Aún pueden ayudarme?',
+  'faq.basics.notech.answer': '¡Absolutamente! Nos especializamos en trabajar con líderes empresariales no técnicos. Traducimos conceptos técnicos complejos a un lenguaje empresarial claro y nos enfocamos en resultados que te importan—mayor eficiencia, mejor servicio al cliente, mayores ganancias y ideas más claras. No necesitas entender la tecnología; solo necesitas entender los resultados.',
+  
+  'faq.basics.started.question': '¿Cómo comenzamos a trabajar juntos?',
+  'faq.basics.started.answer': 'Comenzamos con una consulta gratuita para entender los desafíos y objetivos de tu negocio. Luego realizamos una evaluación integral de tus sistemas actuales y panorama de datos. Basándose en esto, diseñamos una arquitectura de solución estratégica y te presentamos una hoja de ruta clara, cronograma y resultados esperados antes de que comience cualquier implementación.',
+  
+  'faq.basics.timeline.question': '¿Cuánto tiempo toma un proyecto típico?',
+  'faq.basics.timeline.answer': 'Los cronogramas de proyectos varían según el alcance y la complejidad. Las implementaciones simples de CRM pueden completarse en 30-90 días, mientras que las plataformas integrales de análisis de datos pueden tomar 3-6 meses. Proporcionamos cronogramas detallados durante la fase de planificación y te mantenemos actualizado durante todo el proceso con hitos regulares y reportes de progreso.',
+  
+  // Impact FAQs
+  'faq.impact.results.question': '¿Qué tipo de resultados del mundo real puedo esperar?',
+  'faq.impact.results.answer': 'Nuestros clientes típicamente ven mejoras medibles dentro de 90 días: 25-60% de reducción en trabajo manual de datos, 15-40% de mejora en velocidad de toma de decisiones, mejores puntuaciones de satisfacción del cliente y mayor visibilidad del rendimiento empresarial. Por ejemplo, hemos ayudado a reducir la sobrecarga administrativa en un 40% en salud y mejorado la precisión de pronósticos en un 25% en empresas tecnológicas.',
+  
+  'faq.impact.roi.question': '¿Cómo miden el retorno de inversión (ROI)?',
+  'faq.impact.roi.answer': 'Establecemos métricas de éxito claras antes de comenzar cualquier proyecto—como tiempo ahorrado, ingresos aumentados, costos reducidos o eficiencia ganada. Rastreamos esto durante la implementación y proporcionamos reportes regulares mostrando tu ROI. La mayoría de los clientes ven retornos positivos dentro de 6-12 meses, con beneficios que continúan componiéndose con el tiempo a medida que tu equipo se vuelve más impulsado por datos.',
+  
+  // FAQ CTA
+  'faq.cta.title': '¿Aún Tienes Preguntas?',
+  'faq.cta.description': 'Estamos aquí para ayudar. Agenda una consulta gratuita para discutir tus necesidades específicas y cómo podemos ayudar a transformar tu negocio.',
+  'faq.cta.button': 'Agendar Consulta Gratuita',
+  
+  // Footer
+  'footer.tagline': 'La Arquitectura de Mejores Decisiones. Nos especializamos en soluciones de análisis y consultoría que impulsan resultados empresariales estratégicos.',
+  'footer.quicklinks': 'Enlaces Rápidos',
+  'footer.contact': 'Contacto',
+  'footer.copyright': 'Todos los derechos reservados.',
+  
+  // Common
+  'common.loading': 'Cargando...',
+  'common.error': 'Error',
+  'common.submit': 'Enviar',
+  'common.cancel': 'Cancelar',
+  
+  // Projects page
+  'projects.hero.title': 'Proyectos',
+  'projects.hero.description': 'Una mirada dentro de nuestro impacto—clientes reales, resultados reales.',
+  'projects.filter.all': 'Todos',
+  'projects.readmore': 'Leer Más',
+  'projects.cta.title': '¿Listo para Crear Tu Historia de Éxito?',
+  'projects.cta.description': 'Discutamos cómo podemos ayudar a transformar tus datos en ideas accionables.',
+  'projects.cta.button': 'Agendar Consulta Gratuita',
+  
+  // Project examples
+  'projects.healthcare.title': 'Plataforma de Integración de Datos de Salud',
+  'projects.healthcare.client': 'Red de Salud Regional',
+  'projects.healthcare.sector': 'Salud',
+  'projects.healthcare.summary': 'Optimizó datos de pacientes en 12 instalaciones, reduciendo la sobrecarga administrativa en un 40% y mejorando la coordinación de atención.',
+  
+  'projects.municipal.title': 'Tablero de Transparencia Presupuestaria Municipal',
+  'projects.municipal.client': 'Municipio de Puerto Rico',
+  'projects.municipal.sector': 'Gobierno',
+  'projects.municipal.summary': 'Creó sistema de seguimiento presupuestario en tiempo real que aumentó la participación ciudadana y mejoró la responsabilidad fiscal.',
+  
+  'projects.sales.title': 'Suite de Análisis de Rendimiento de Ventas',
+  'projects.sales.client': 'Empresa Tecnológica Fortune 500',
+  'projects.sales.sector': 'Tecnología',
+  'projects.sales.summary': 'Pipeline de reportes de ventas automatizado que redujo el trabajo manual en un 60% y mejoró la precisión de pronósticos en un 25%.',
+  
+  // Cookie Consent
+  'cookie.title': 'Usamos cookies',
+  'cookie.description': 'Usamos cookies para mejorar tu experiencia de navegación, analizar tráfico y ofrecer contenido personalizado. Algunas cookies son necesarias para que el sitio funcione; otras son opcionales y requieren tu consentimiento.',
+  'cookie.privacy.link': 'Política de Privacidad y Cookies',
+  'cookie.accept.all': 'Aceptar Todas',
+  'cookie.reject.all': 'Rechazar Todas',
+  'cookie.customize': 'Personalizar',
+  'cookie.save.preferences': 'Guardar Preferencias',
+  'cookie.essential.title': 'Cookies esenciales',
+  'cookie.essential.description': 'Requeridas para la funcionalidad del sitio',
+  'cookie.analytics.title': 'Cookies de análisis',
+  'cookie.analytics.description': 'Nos ayudan a entender patrones de uso',
+  'cookie.marketing.title': 'Cookies de marketing',
+  'cookie.marketing.description': 'Usadas para personalizar contenido o anuncios',
+  
+  // Privacy Policy Page
+  'privacy.page.title': 'Política de Privacidad y Cookies - Stratum PR',
+  'privacy.page.description': 'Aprende sobre cómo Stratum PR maneja tu privacidad y usa cookies en nuestro sitio web.',
+  'privacy.page.keywords': 'política de privacidad, política de cookies, protección de datos, GDPR, CCPA, Stratum PR',
+  'privacy.title': 'Política de Privacidad y Cookies',
+  'privacy.intro': 'Stratum PR valora tu privacidad. Este sitio web usa cookies para mejorar tu experiencia de navegación, analizar tráfico y ofrecer contenido personalizado. Algunas cookies son necesarias para que el sitio funcione; otras son opcionales y requieren tu consentimiento.',
+  'privacy.cookies.what.title': '¿Qué Son las Cookies?',
+  'privacy.cookies.what.description': 'Las cookies son pequeños archivos de texto almacenados en tu dispositivo cuando visitas un sitio web. Nos ayudan a recordar preferencias, entender cómo interactúas con nuestro sitio y mejorar nuestros servicios.',
+  'privacy.cookies.types.title': 'Tipos de Cookies que Usamos:',
+  'privacy.cookies.types.essential.title': 'Cookies esenciales',
+  'privacy.cookies.types.essential.description': 'requeridas para la funcionalidad del sitio',
+  'privacy.cookies.types.analytics.title': 'Cookies de análisis',
+  'privacy.cookies.types.analytics.description': 'nos ayudan a entender patrones de uso',
+  'privacy.cookies.types.marketing.title': 'Cookies de marketing',
+  'privacy.cookies.types.marketing.description': 'usadas para personalizar contenido o anuncios (actualmente no se usan, pero pueden usarse en el futuro)',
+  'privacy.choices.title': 'Tus Opciones:',
+  'privacy.choices.description': 'Puedes aceptar todas las cookies, rechazar las no esenciales o personalizar tus preferencias. También puedes cambiar o retirar el consentimiento en cualquier momento a través de la configuración del navegador.',
+  'privacy.compliance.title': 'Almacenamiento de Datos y Cumplimiento:',
+  'privacy.compliance.description': 'No vendemos tus datos. Todo el procesamiento de datos se alinea con GDPR, CCPA y otras leyes aplicables de protección de datos.',
+  'privacy.contact.title': 'Contáctanos:',
+  'privacy.contact.description': 'Para más detalles, contáctanos en',
+  
+  // Resources page
+  'resources.hero.title': 'Recursos y Herramientas',
+  'resources.hero.description': 'Accede a nuestra colección integral de guías, plantillas, documentos técnicos y kits de herramientas diseñados para ayudarte a aprovechar el análisis de datos de manera efectiva.',
+  'resources.download': 'Descargar Recurso',
+  'resources.visit': 'Visitar Recurso',
+  'resources.cta.title': '¿Necesitas Recursos Personalizados?',
+  'resources.cta.description': 'Nuestro equipo puede ayudarte a desarrollar soluciones y herramientas de análisis personalizadas para tus necesidades específicas.',
+  'resources.cta.button': 'Agendar Consulta Gratuita',
+  
+  // Blog page
+  'blog.hero.title': 'Perspectivas y Actualizaciones',
+  'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas expertas en análisis de datos, automatización de IA y transformación digital.',
+  'blog.readmore': 'Leer Artículo',
+  'blog.cta.title': '¿Tienes un Tema en Mente?',
+  'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
+  'blog.cta.button': 'Contactar Nuestro Equipo',
+  
+  // Resources modal
+  'resources.modal.downloadDescription': 'Descarga la plantilla completa para usar en tus proyectos',
+  'resources.downloadTemplate': 'Descargar Plantilla',
+  'resources.visitExternal': 'Visitar Enlace Externo',
+  'resources.viewPreview': 'Ver Vista Previa',
+  'resources.modal.loading': 'Cargando vista previa...',
+  'resources.modal.error': 'Vista previa no disponible',
+  'resources.modal.pdfNotSupported': 'Vista previa de PDF no soportada en este navegador',
+  'resources.modal.downloadPdf': 'Descargar PDF',
+  
+  // Privacy Policy Modal
+  'privacy.policy.title': 'Política de Privacidad',
+  'privacy.policy.intro': 'En Stratum PR, estamos comprometidos con proteger la privacidad de nuestros usuarios. Esta política de privacidad describe los tipos de información personal que recopilamos, cómo la usamos y compartimos, y los pasos que tomamos para protegerla.',
+  'privacy.policy.types.title': 'Tipos de Información Recopilada:',
+  'privacy.policy.types.contact': 'Información de contacto, como nombre, correo electrónico, empresa y número de teléfono',
+  'privacy.policy.types.usage': 'Información relacionada con el uso de nuestros servicios, como patrones de uso y preferencias',
+  'privacy.policy.use.title': 'Uso de la Información:',
+  'privacy.policy.use.provide': 'Para proporcionar y mejorar nuestros productos y servicios',
+  'privacy.policy.use.communicate': 'Para comunicarnos con los usuarios sobre actualizaciones, promociones y otra información',
+  'privacy.policy.use.personalize': 'Para personalizar la experiencia del usuario',
+  'privacy.policy.use.comply': 'Para cumplir con los requisitos legales',
+  'privacy.policy.sharing.title': 'Compartir Información:',
+  'privacy.policy.sharing.providers': 'Podemos compartir información personal con proveedores de servicios de terceros para ayudarnos a proporcionar nuestros servicios',
+  'privacy.policy.sharing.legal': 'También podemos divulgar información personal si es requerido por ley o para proteger nuestros derechos y los derechos de otros',
+  'privacy.policy.protection.title': 'Protección de la Información:',
+  'privacy.policy.protection.measures': 'Implementamos medidas técnicas y organizacionales apropiadas para proteger la información personal del acceso, uso, divulgación, alteración o destrucción no autorizados',
+  'privacy.policy.changes.title': 'Cambios a la Política de Privacidad:',
+  'privacy.policy.changes.updates': 'Podemos actualizar esta política de privacidad de vez en cuando para reflejar cambios en nuestras prácticas o leyes. Notificaremos a los usuarios de cualquier cambio significativo',
+  'privacy.policy.contact.title': 'Contáctanos:',
+  'privacy.policy.contact.info': 'Si tienes alguna pregunta o inquietud sobre nuestra política de privacidad, por favor contáctanos en',
+  
+  // Terms of Use Modal
+  'terms.title': 'Términos de Uso',
+  'terms.intro': 'Estos términos y condiciones y todos los demás documentos legales incorporados por referencia (colectivamente, los "Términos") son un contrato legal entre "usted" y Stratum PR LLC (colectivamente "Stratum PR", "nosotros", "nuestro" o "nos") con respecto al acceso y uso de nuestras propiedades de internet asociadas (incluyendo sin limitación https://www.stratumpr.com/) como están vinculadas y ofrecidas por nosotros, nuestras subsidiarias y/o empresas afiliadas, y cualquier software que le proporcionemos para descargar en sus dispositivos (cada una una "aplicación") (todas estas colectivamente, el "Sitio").',
+  'terms.important': 'IMPORTANTE – LEA CUIDADOSAMENTE – ESTOS TÉRMINOS GOBIERNAN SU USO DE ESTE SITIO. AL ACCEDER, VER, NAVEGAR, VISITAR O USAR ESTE SITIO USTED ACEPTA Y ACEPTA ESTAR OBLIGADO, SIN LIMITACIÓN O CALIFICACIÓN, POR ESTOS TÉRMINOS. SI NO ACEPTA ALGUNO DE ESTOS TÉRMINOS, POR FAVOR NO USE ESTE SITIO. STRATUM PR PUEDE, A SU SOLA DISCRECIÓN, MODIFICAR O REVISAR ESTOS TÉRMINOS EN CUALQUIER MOMENTO ACTUALIZANDO ESTE DOCUMENTO. USTED ESTÁ OBLIGADO POR CUALQUIER MODIFICACIÓN O REVISIÓN Y POR LO TANTO DEBE VISITAR ESTA PÁGINA PERIÓDICAMENTE PARA REVISAR ESTOS TÉRMINOS.',
+  'terms.authorized.title': 'Uso Autorizado',
+  'terms.authorized.content': 'Sujeto a estos Términos, le autorizamos a ver y descargar la información y otros materiales en o a través de este Sitio solo para su uso personal y no comercial, siempre que conserve todos los derechos de autor y otros avisos de propiedad contenidos en los materiales originales en cualquier copia de los materiales. No puede, sin el permiso previo por escrito de Stratum PR, "reflejar" cualquier material contenido en este Sitio en cualquier otro servidor.',
+  'terms.authorized.additional': 'El Sitio puede permitir que ciertos usuarios registrados accedan a servicios adicionales, que están sujetos a términos adicionales aplicables a dichos portales o servicios y que por la presente se incorporan por referencia si accede y/o contrata dichos servicios adicionales ("Términos Adicionales").',
+  'terms.privacy.title': 'Privacidad',
+  'terms.privacy.content': 'La información personal recopilada sobre usted por este Sitio se trata de acuerdo con la Política de Privacidad, que por la presente se incorpora a estos Términos por referencia. Si no está de acuerdo con estos Términos o la Política de Privacidad, debe discontinuar el uso de este Sitio.',
+  'terms.ownership.title': 'Propiedad',
+  'terms.ownership.content': 'Usted reconoce y acepta que el contenido mostrado en o a través de este Sitio, incluyendo sin limitación toda la información, datos, texto, software, fotografías, gráficos, video u otros materiales (el "Contenido") tiene derechos de autor de nosotros o nuestros licenciantes bajo las leyes de derechos de autor de los Estados Unidos de América e internacionales.',
+  'terms.ownership.copyright': 'Nuestros Derechos de Autor: © 2025 Stratum PR LLC. Todos los derechos reservados.',
+  'terms.ownership.trademarks': 'El logo de Stratum PR y ciertas otras palabras y logos mostrados en este Sitio constituyen marcas comerciales, nombres comerciales o marcas de servicio de Stratum PR u otras entidades. No está autorizado a usar dichas Marcas sin nuestro consentimiento previo por escrito.',
+  'terms.disclaimers.title': 'Descargos de Responsabilidad',
+  'terms.disclaimers.content': 'USTED ACEPTA EXPRESAMENTE QUE SU USO DE ESTE SITIO O EL CONTENIDO SERÁ A SU SOLA DISCRECIÓN Y RIESGO. ESTE SITIO Y EL CONTENIDO SE PROPORCIONAN "TAL COMO ESTÁN" Y "SEGÚN DISPONIBILIDAD" SIN GARANTÍAS DE NINGÚN TIPO. EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, STRATUM PR RENUNCIA A TODAS LAS GARANTÍAS.',
+  'terms.liability.title': 'Limitación de Responsabilidad',
+  'terms.liability.content': 'EN NINGÚN EVENTO STRATUM PR O SUS AFILIADOS, EMPLEADOS, AGENTES O LICENCIANTES SERÁN RESPONSABLES POR CUALQUIER DAÑO DIRECTO, INDIRECTO, INCIDENTAL, ESPECIAL O CONSECUENCIAL QUE RESULTE DEL USO O LA INCAPACIDAD DE USAR ESTE SITIO O EL CONTENIDO.',
+  'terms.conduct.title': 'Conducta Prohibida',
+  'terms.conduct.intro': 'Al usar el Sitio, acepta no:',
+  'terms.conduct.item1': 'Difamar, abusar, acosar, acechar, amenazar o violar los derechos legales de otros',
+  'terms.conduct.item2': 'Usar lenguaje ofensivo, odioso o explícito',
+  'terms.conduct.item3': 'Discutir o incitar actividad ilegal',
+  'terms.conduct.item4': 'Publicar cualquier cosa que explote menores o represente crueldad',
+  'terms.conduct.item5': 'Publicar materiales con derechos de autor/marca registrada sin permiso',
+  'terms.conduct.item6': 'Diseminar spam o material promocional',
+  'terms.conduct.item7': 'Usar herramientas automatizadas para rastrear el Sitio',
+  'terms.conduct.item8': 'Sobrecargar nuestra infraestructura',
+  'terms.conduct.item9': 'Alterar las publicaciones de otros',
+  'terms.conduct.item10': 'Publicar contenido falso o engañoso',
+  'terms.conduct.item11': 'Publicar contenido no relacionado o que dañe la reputación',
+  'terms.conduct.enforcement': 'Esta lista no es exhaustiva. Stratum PR se reserva el derecho de terminar el acceso o reportar violaciones a las autoridades.',
+  'terms.indemnity.title': 'Indemnización',
+  'terms.indemnity.content': 'En la medida permitida por la ley, usted acepta defender, indemnizar y mantener indemne a Stratum PR, sus funcionarios, directores, empleados y agentes de cualquier reclamo o demanda resultante de su uso del Sitio o violación de estos Términos.',
+  'terms.links.title': 'Enlaces a Otros Sitios',
+  'terms.links.content': 'Este Sitio puede enlazar a sitios de terceros. Dichos sitios tienen sus propios términos y políticas, y Stratum PR no es responsable por su contenido, servicios o cualquier daño que surja de su uso.',
+  'terms.california.title': 'Aviso para Consumidores de California',
+  'terms.california.content': 'Bajo el Código Civil de California Sección 1789.3, los usuarios de California tienen derecho al siguiente aviso: Este Sitio es proporcionado por Stratum PR LLC, 400 Calaf Street PMB #155, San Juan, Puerto Rico 00918. Para quejas o preguntas, contacte Servicio al Cliente en contact@stratumpr.com.',
+  'terms.general.title': 'General',
+  'terms.general.content': 'Estos Términos se rigen por las leyes del Estado Libre Asociado de Puerto Rico. Las disputas se someterán a arbitraje confidencial en Puerto Rico, excepto donde busquemos medidas cautelares por violaciones de PI.',
+  'terms.contact.title': 'Contáctanos',
+  'terms.contact.content': 'Para preguntas sobre estos Términos, contáctanos en',
+  'terms.copyright': '© 2025 Stratum PR, LLC',
 };
-
-export default es;
-export const esTranslations = es;
