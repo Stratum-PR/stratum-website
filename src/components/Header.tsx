@@ -16,7 +16,7 @@ import {
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   
   const navigation = [{
     name: t('nav.home'),
@@ -49,32 +49,29 @@ export const Header = () => {
   const isActive = (path: string) => location.pathname === path;
   const isProjectsActive = () => projectsDropdown.some(item => isActive(item.href));
   
-  // Dynamic spacing based on language
-  const navSpacing = language === 'es' ? 'space-x-4 xl:space-x-6' : 'space-x-6 xl:space-x-8';
-  const headerHeight = language === 'es' ? 'h-24 lg:h-20' : 'h-20';
-  
   const closeMenu = () => setIsMenuOpen(false);
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex justify-between items-center ${headerHeight}`}>
+        <div className="flex justify-between items-center h-20">
           {/* Logo - Always visible */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 z-50 relative">
             <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-10 w-auto" />
           </Link>
 
-          {/* Desktop Navigation - Show hamburger menu earlier for Spanish */}
-          <nav className={`hidden ${language === 'es' ? 'xl:flex' : 'lg:flex'} items-center ${navSpacing}`}>
+          {/* Desktop Navigation - Standardized breakpoint */}
+          <nav className="hidden lg:flex items-center space-x-6">
             {navigation.slice(0, 3).map(item => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
+                className={`font-telegraf font-medium transition-colors duration-200 text-base whitespace-nowrap truncate max-w-[120px] ${
                   isActive(item.href)
                     ? 'text-primary border-b-2 border-primary pb-1'
                     : 'text-gray-700 hover:text-primary'
                 }`}
+                title={item.name}
               >
                 {item.name}
               </Link>
@@ -85,11 +82,12 @@ export const Header = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger 
-                    className={`font-telegraf font-medium text-sm lg:text-base whitespace-nowrap ${
+                    className={`font-telegraf font-medium text-base whitespace-nowrap truncate max-w-[120px] ${
                       isProjectsActive()
                         ? 'text-primary'
                         : 'text-gray-700 hover:text-primary'
                     }`}
+                    title={t('projects.hero.title')}
                   >
                     {t('projects.hero.title')}
                   </NavigationMenuTrigger>
@@ -119,27 +117,28 @@ export const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
+                className={`font-telegraf font-medium transition-colors duration-200 text-base whitespace-nowrap truncate max-w-[120px] ${
                   isActive(item.href)
                     ? 'text-primary border-b-2 border-primary pb-1'
                     : 'text-gray-700 hover:text-primary'
                 }`}
+                title={item.name}
               >
                 {item.name}
               </Link>
             ))}
 
             <LanguageToggle />
-            <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 lg:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg text-sm lg:text-base whitespace-nowrap">
+            <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg text-base whitespace-nowrap flex-shrink-0">
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                 {t('nav.schedule')}
               </a>
             </Button>
           </nav>
 
-          {/* Mobile menu button - Show earlier for Spanish */}
+          {/* Mobile menu button - Standardized breakpoint */}
           <button
-            className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative`}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle navigation menu"
           >
@@ -164,7 +163,7 @@ export const Header = () => {
             {/* Mobile Navigation Menu - positioned below the header */}
             <div className="fixed inset-x-0 top-0 z-40 bg-white">
               {/* Header space to match main header height - keeps logo visible */}
-              <div className={`${headerHeight} border-b border-gray-100`}></div>
+              <div className="h-20 border-b border-gray-100"></div>
               
               {/* Navigation Content */}
               <div className="bg-white px-4 py-6 max-h-[calc(100vh-5rem)] overflow-y-auto">
