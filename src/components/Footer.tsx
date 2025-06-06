@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PrivacyPolicyModal } from "./PrivacyPolicyModal";
+import { TermsOfUseModal } from "./TermsOfUseModal";
 import { useState } from "react";
 
 export const Footer = () => {
   const { t } = useLanguage();
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const currentYear = new Date().getFullYear();
   
   return (
@@ -76,6 +78,14 @@ export const Footer = () => {
                     {t('privacy.policy.title')}
                   </button>
                 </li>
+                <li>
+                  <button 
+                    onClick={() => setIsTermsModalOpen(true)}
+                    className="text-primary-200 hover:text-accent transition-colors font-telegraf text-left"
+                  >
+                    {t('terms.title')}
+                  </button>
+                </li>
               </ul>
             </div>
 
@@ -110,6 +120,11 @@ export const Footer = () => {
       <PrivacyPolicyModal 
         isOpen={isPrivacyModalOpen}
         onClose={() => setIsPrivacyModalOpen(false)}
+      />
+      
+      <TermsOfUseModal 
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
       />
     </>
   );
