@@ -12,9 +12,17 @@ interface PDFViewerProps {
 export const PDFViewer = ({ pdfUrl, title }: PDFViewerProps) => {
   const { t } = useLanguage();
   const [pdfError, setPdfError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handlePdfError = () => {
+    console.log('PDF failed to load:', pdfUrl);
     setPdfError(true);
+    setIsLoading(false);
+  };
+
+  const handlePdfLoad = () => {
+    setIsLoading(false);
+    setPdfError(false);
   };
 
   if (pdfError) {
@@ -33,12 +41,19 @@ export const PDFViewer = ({ pdfUrl, title }: PDFViewerProps) => {
 
   return (
     <div className="w-full">
-      <div className="relative w-full h-[500px] border rounded-lg overflow-hidden">
+      {isLoading && (
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <span className="ml-3 font-telegraf text-gray-600">{t('resources.modal.loading')}</span>
+        </div>
+      )}
+      <div className={`relative w-full h-[500px] border rounded-lg overflow-hidden ${isLoading ? 'hidden' : ''}`}>
         <iframe
           src={`${pdfUrl}#view=FitH`}
           title={title}
           className="w-full h-full"
           onError={handlePdfError}
+          onLoad={handlePdfLoad}
         />
       </div>
     </div>
