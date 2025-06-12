@@ -61,7 +61,7 @@ const About = () => {
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",
       email: "g.rodriguez@stratumpr.com",
-      image: "/img/Genesis.png"
+      image: "/img/Genesis.jpg"
     }
   ];
 
