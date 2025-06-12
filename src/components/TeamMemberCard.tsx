@@ -63,23 +63,6 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
             ))}
           </div>
         </div>
-
-        <div className="flex space-x-4">
-          <a
-            href={founder.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:text-secondary transition-colors"
-          >
-            <Linkedin className="h-5 w-5" />
-          </a>
-          <a
-            href={`mailto:${founder.email}`}
-            className="text-primary hover:text-secondary transition-colors"
-          >
-            <Mail className="h-5 w-5" />
-          </a>
-        </div>
       </CardContent>
     </Card>
   );
