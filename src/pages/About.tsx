@@ -38,7 +38,8 @@ const About = () => {
       name: "Jovaniel Rodriguez",
       role: "Co-Founder, Operations & Growth",
       bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
-      expertise: ["Strategic Consulting", "Digital Transformation & Modernization", "Data Governance"],
+      expertise: ["Strategic Consulting", "AI/ML", "Digital Modernization", "Data Governance", "Systems Architechture"],
+
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
       image: "/img/Jovaniel.jpg"
@@ -48,7 +49,7 @@ const About = () => {
       name: "Roberto Otero",
       role: "Co-Founder, Tech & Build",
       bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
-      expertise: ["Machine Learning", "Big Data", "AI Implementation"],
+      expertise: ["Data Vizualization", "Big Data", "Database Management"],
       linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com",
       image: "/img/Roberto.jpg"
