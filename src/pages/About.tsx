@@ -51,7 +51,7 @@ const About = () => {
       expertise: ["Machine Learning", "Big Data", "AI Implementation"],
       linkedin: "https://www.linkedin.com/in/roberto-otero/",
       email: "r.otero@stratumpr.com",
-      image: "/img/Roberto.png"
+      image: "/img/Roberto.jpg"
     },
     {
       key: "genesis",
