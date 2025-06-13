@@ -79,18 +79,18 @@ export const enTranslations = {
   'about.team.expertise': 'EXPERTISE',
   
   // Team member data
-  'team.jovaniel.name': 'Jovaniel Agosto',
-  'team.jovaniel.role': 'Chief Executive Officer',
+  'team.jovaniel.name': 'Jovaniel Rodriguez',
+  'team.jovaniel.role': 'Chief Operations Officer',
   'team.jovaniel.bio': 'Jovaniel brings over 10 years of experience in strategic consulting and data analytics, having led transformational projects at Fortune 500 companies. His expertise spans business intelligence, process optimization, and organizational change management.',
   'team.jovaniel.expertise': 'Strategic Consulting, Business Intelligence, Change Management, Data Analytics',
   
-  'team.genesis.name': 'Genesis Tavarez',
-  'team.genesis.role': 'Chief Technology Officer',
+  'team.genesis.name': 'Genesis Rodriguez',
+  'team.genesis.role': 'Chief Data Officer',
   'team.genesis.bio': 'Genesis is a seasoned technology leader with extensive experience in AI implementation, software architecture, and digital transformation. She has successfully delivered enterprise-scale solutions across multiple industries.',
   'team.genesis.expertise': 'AI Implementation, Software Architecture, Digital Transformation, Enterprise Solutions',
   
-  'team.roberto.name': 'Roberto Santiago',
-  'team.roberto.role': 'Chief Operating Officer',
+  'team.roberto.name': 'Roberto Otero',
+  'team.roberto.role': 'Chief Technology Officer',
   'team.roberto.bio': 'Roberto specializes in operational excellence and system integration, with a proven track record of optimizing business processes and implementing scalable solutions for growing organizations.',
   'team.roberto.expertise': 'Operations Management, System Integration, Process Optimization, Scalable Solutions',
   
