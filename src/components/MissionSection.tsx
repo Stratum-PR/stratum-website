@@ -1,10 +1,39 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const MissionSection: React.FC = () => {
   const { t } = useLanguage();
-  
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  const images = [
+    "/img/IMG_6762.jpg",
+    "/img/IMG_6832.jpg",
+    "/img/IMG_6873.jpg",
+    "/img/IMG_6825.jpg"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setFade(true);
+      }, 500); // fade out duration
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleDotClick = (index: number) => {
+    if (index !== currentImageIndex) {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImageIndex(index);
+        setFade(true);
+      }, 500);
+    }
+  };
+
   return (
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +51,22 @@ const MissionSection: React.FC = () => {
           </div>
           <div className="relative">
             <div className="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden shadow-2xl">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Team collaboration" className="w-full h-full object-cover" />
+              <img
+                src={images[currentImageIndex]}
+                alt="Team collaboration"
+                className={`w-full h-full object-cover transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}
+              />
+            </div>
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                    index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                  }`}
+                  onClick={() => handleDotClick(index)}
+                />
+              ))}
             </div>
           </div>
         </div>
