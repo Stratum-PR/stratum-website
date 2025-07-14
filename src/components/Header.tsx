@@ -32,8 +32,13 @@ export const Header = () => {
   
   const isActive = (path: string) => location.pathname === path;
   
-  // Dynamic spacing based on language
-  const navSpacing = language === 'es' ? 'space-x-4 xl:space-x-6' : 'space-x-6 xl:space-x-8';
+  // Dynamic spacing and font size for nav items
+  // Responsive spacing and font size
+  const navSpacing = language === 'es'
+    ? 'space-x-2 sm:space-x-3 md:space-x-4 lg:space-x-6'
+    : 'space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8';
+  // Responsive font size
+  const navFontSize = 'text-xs sm:text-sm md:text-base lg:text-lg';
   const headerHeight = language === 'es' ? 'h-24 lg:h-20' : 'h-20';
   
   const closeMenu = () => setIsMenuOpen(false);
@@ -48,13 +53,13 @@ export const Header = () => {
           </Link>
 
 
-          {/* Desktop Navigation - Show hamburger menu earlier for Spanish */}
-          <nav className={`hidden ${language === 'es' ? 'xl:flex' : 'lg:flex'} items-center ${navSpacing}`}>
+          {/* Desktop Navigation - Responsive font/spacing, never scrolls, switches to hamburger if too small */}
+          <nav className={`hidden 2xl:flex items-center ${navSpacing}`}>
             {navigation.map(item => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
+                className={`font-telegraf font-medium transition-colors duration-200 whitespace-nowrap ${navFontSize} ${
                   isActive(item.href)
                     ? 'text-primary border-b-2 border-primary pb-1'
                     : 'text-gray-700 hover:text-primary'
@@ -64,16 +69,16 @@ export const Header = () => {
               </Link>
             ))}
             <LanguageToggle />
-            <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 lg:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg text-sm lg:text-base whitespace-nowrap">
+            <Button asChild className={`bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-2 sm:px-3 md:px-4 lg:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg whitespace-nowrap ${navFontSize}`}>
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                 {t('nav.schedule')}
               </a>
             </Button>
           </nav>
 
-          {/* Mobile menu button - Show earlier for Spanish */}
+          {/* Hamburger menu button: show below 2xl (or adjust as needed) */}
           <button
-            className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative`}
+            className={`2xl:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle navigation menu"
           >
@@ -96,7 +101,7 @@ export const Header = () => {
             />
             
             {/* Mobile Navigation Menu - positioned below the header */}
-            <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} fixed top-0 left-0 right-0 z-45 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
+            <div className={`2xl:hidden fixed top-0 left-0 right-0 z-45 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
               {/* Header space to match main header height - keeps logo visible */}
               <div className={`${headerHeight} border-b border-gray-100`}></div>
               
