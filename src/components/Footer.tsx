@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 export const Footer = () => {
   const {
@@ -22,8 +22,11 @@ export const Footer = () => {
               <a href="https://linkedin.com/company/stratumpr" target="_blank" rel="noopener noreferrer" className="text-primary-200 hover:text-accent transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="mailto:contact@stratumpr.com" className="text-primary-200 hover:text-accent transition-colors">
-                <Mail className="h-5 w-5" />
+              <a href="https://www.facebook.com/profile.php?id=61577145020919" target="_blank" rel="noopener noreferrer" className="text-primary-200 hover:text-accent transition-colors">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="https://www.instagram.com/stratum.pr/" target="_blank" rel="noopener noreferrer" className="text-primary-200 hover:text-accent transition-colors">
+                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -69,12 +72,6 @@ export const Footer = () => {
           <div>
             <h3 className="font-telegraf font-semibold text-lg mb-4">{t('footer.contact')}</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary-200" />
-                <a href="mailto:hello@stratumpr.com" className="text-primary-200 hover:text-accent transition-colors font-telegraf text-sm">
-                  contact@stratumpr.com
-                </a>
-              </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-primary-200" />
                 <span className="text-primary-200 font-telegraf text-sm">

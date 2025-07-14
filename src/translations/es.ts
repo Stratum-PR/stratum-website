@@ -4,9 +4,10 @@ export const esTranslations = {
   'nav.home': 'Inicio',
   'nav.about': 'Nosotros',
   'nav.services': 'Servicios',
+  'nav.projects': 'Proyectos',
   'nav.contact': 'Contacto',
   'nav.schedule': 'Agendar Consulta',
-  'nav.faq': 'Preguntas Frecuentes',
+  'nav.faq': 'Preguntas',
   
   // Home page
   'home.hero.title': 'La Arquitectura de',
