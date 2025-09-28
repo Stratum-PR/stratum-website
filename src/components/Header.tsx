@@ -32,8 +32,13 @@ export const Header = () => {
   
   const isActive = (path: string) => location.pathname === path;
   
-  // Dynamic spacing based on language
-  const navSpacing = language === 'es' ? 'space-x-4 xl:space-x-6' : 'space-x-6 xl:space-x-8';
+  // Dynamic spacing and font size for nav items
+  // Responsive spacing and font size
+  const navSpacing = language === 'es'
+    ? 'space-x-3 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-10'
+    : 'space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-10 xl:space-x-12';
+  // Responsive font size
+  const navFontSize = 'text-sm sm:text-base md:text-lg lg:text-xl';
   const headerHeight = language === 'es' ? 'h-24 lg:h-20' : 'h-20';
   
   const closeMenu = () => setIsMenuOpen(false);
@@ -41,15 +46,17 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex justify-between items-center ${headerHeight}`}>
+        <div className={`flex justify-between items-center ${headerHeight} gap-8`}>
           {/* Logo - Always visible */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 z-50 relative">
             <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-10 w-auto" />
+            {/* Puerto Rico Flag */}
+            <img src="/img/Puerto_rican_Flag.png" alt="Puerto Rico Flag" className="h-3 w-auto" />
           </Link>
 
 
-          {/* Desktop Navigation - Show hamburger menu earlier for Spanish */}
-          <nav className={`hidden ${language === 'es' ? 'xl:flex' : 'lg:flex'} items-center ${navSpacing}`}>
+          {/* Desktop Navigation - Responsive font/spacing, never scrolls, switches to hamburger if too small */}
+          <nav className={`hidden xl:flex items-center ${navSpacing}`}>
             {navigation.map(item => (
               <Link
                 key={item.name}
@@ -71,9 +78,9 @@ export const Header = () => {
             </Button>
           </nav>
 
-          {/* Mobile menu button - Show earlier for Spanish */}
+          {/* Hamburger menu button: show below xl (or adjust as needed) */}
           <button
-            className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative`}
+            className={`xl:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors z-50 relative`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle navigation menu"
           >
@@ -96,7 +103,7 @@ export const Header = () => {
             />
             
             {/* Mobile Navigation Menu - positioned below the header */}
-            <div className={`${language === 'es' ? 'xl:hidden' : 'lg:hidden'} fixed top-0 left-0 right-0 z-45 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
+            <div className={`xl:hidden fixed top-0 left-0 right-0 z-45 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
               {/* Header space to match main header height - keeps logo visible */}
               <div className={`${headerHeight} border-b border-gray-100`}></div>
               
