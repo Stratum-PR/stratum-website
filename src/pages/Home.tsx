@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
+    import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info } from "lucide-react";
+import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info, Clock, HelpCircle, Server, AlertTriangle, XCircle, Network, Wifi, WifiOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -123,7 +123,7 @@ const Home = () => {
 
     return (
       <Card 
-        className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full cursor-pointer"
+        className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full "
         onClick={handleCardClick}
       >
         <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col">
@@ -173,9 +173,10 @@ const Home = () => {
     <TooltipProvider>
       <div className="pt-20">
         {/* Hero Section - Optimized for FCP and LCP */}
-        <section className="hero-section relative bg-gradient-to-br from-primary via-primary-800 to-secondary flex items-center overflow-hidden section-container">
-          {/* Optimized background for better performance */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary/90 via-primary-700/85 to-secondary/90"></div>
+        <section className="hero-section relative flex items-center overflow-hidden h-[80vh]">
+          {/* Analytics background image with dark overlay - cropped from top */}
+          <div className="absolute inset-0 bg-cover bg-center bg-top bg-no-repeat" style={{backgroundImage: 'url("/img/conny-schneider-s8JOKMUiyo4-unsplash.jpg")'}}></div>
+          <div className="absolute inset-0 bg-black/70"></div>
           
           {/* Optimized animation elements for mobile performance */}
           <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -187,12 +188,11 @@ const Home = () => {
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
-            <h1 className="font-telegraf font-bold text-4xl sm:text-5xl md:text-7xl mb-6 animate-fade-in">
+            <h1 className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 animate-fade-in">
               {t('home.hero.title')}
-              <span className="block text-accent mt-2">{t('home.hero.subtitle')}</span>
             </h1>
 
-            <p className="font-telegraf text-lg sm:text-xl md:text-2xl mb-8 text-primary-100 max-w-3xl mx-auto animate-slide-up">
+            <p className="font-telegraf text-base sm:text-lg md:text-xl mb-8 text-primary-100 max-w-4xl mx-auto animate-slide-up">
               {t('home.hero.description')}
             </p>
 
@@ -204,7 +204,7 @@ const Home = () => {
                 aria-label="Schedule free consultation with Stratum PR data analytics experts"
               >
                 <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                  {t('nav.schedule')}
+                  {t('home.hero.cta.primary')}
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
                 </a>
               </Button>
@@ -214,107 +214,350 @@ const Home = () => {
                 variant="outline" 
                 size="lg" 
                 className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
-                aria-label="Explore Stratum PR data analytics and AI automation services"
+                aria-label="Download the Data Health Checklist"
               >
-                <Link to="/services">
+                <a href="#" target="_blank" rel="noopener noreferrer">
                   {t('home.hero.cta.secondary')}
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="py-12 sm:py-16 bg-gray-50 section-container" aria-labelledby="stats-heading">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="stats-heading" className="sr-only">Company Statistics and Achievements</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 items-center">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-2">
-                    {stat.value}
+        {/* Problem Section */}
+        <section className="py-16 sm:py-20 bg-white section-container" aria-labelledby="problem-heading">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="problem-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-12 text-center">
+              {t('home.problem.title')}
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {/* Fragmented Data Box */}
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center group-hover:from-red-200 group-hover:to-red-300 transition-colors">
+                    <div className="flex space-x-1">
+                      <Server className="h-8 w-8 text-red-600 group-hover:text-red-700 stroke-2" />
+                      <Server className="h-8 w-8 text-red-600 group-hover:text-red-700 stroke-2" />
+                    </div>
                   </div>
-                  <div className="font-telegraf text-gray-600 text-sm sm:text-base">
-                    {stat.label}
-                  </div>
+                  <h3 className="font-telegraf font-bold text-xl text-gray-800 mb-3">
+                    {t('home.problem.box1.title')}
+                  </h3>
+                  <p className="font-telegraf text-gray-600 leading-relaxed">
+                    {t('home.problem.box1.subtitle')}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
 
-        {/* Services Grid Section */}
-        <section className="py-16 sm:py-20 section-container" aria-labelledby="services-heading">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 id="services-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-6">
-                {t('services.grid.title')}
-              </h2>
-              <p className="font-telegraf text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                {t('services.grid.subtitle')}
+              {/* Manual Work Box */}
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center group-hover:from-orange-200 group-hover:to-orange-300 transition-colors">
+                    <Clock className="h-10 w-10 text-orange-600 group-hover:text-orange-700 stroke-2" />
+                  </div>
+                  <h3 className="font-telegraf font-bold text-xl text-gray-800 mb-3">
+                    {t('home.problem.box2.title')}
+                  </h3>
+                  <p className="font-telegraf text-gray-600 leading-relaxed">
+                    {t('home.problem.box2.subtitle')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Gut-based Decisions Box */}
+              <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
+                <div className="text-center">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center group-hover:from-yellow-200 group-hover:to-yellow-300 transition-colors">
+                    <div className="flex space-x-1">
+                      <HelpCircle className="h-6 w-6 text-yellow-600 group-hover:text-yellow-700 stroke-2" />
+                      <HelpCircle className="h-6 w-6 text-yellow-600 group-hover:text-yellow-700 stroke-2" />
+                      <HelpCircle className="h-6 w-6 text-yellow-600 group-hover:text-yellow-700 stroke-2" />
+                    </div>
+                  </div>
+                  <h3 className="font-telegraf font-bold text-xl text-gray-800 mb-3">
+                    {t('home.problem.box3.title')}
+                  </h3>
+                  <p className="font-telegraf text-gray-600 leading-relaxed">
+                    {t('home.problem.box3.subtitle')}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Dark Blue Background Message */}
+            <div className="bg-primary text-white rounded-lg p-8 text-center">
+              <p className="font-telegraf text-xl sm:text-2xl font-semibold leading-relaxed">
+                {t('home.problem.conclusion')}
               </p>
             </div>
+          </div>
+        </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* Guide Section */}
+        <section className="py-16 sm:py-20 bg-gray-50 section-container" aria-labelledby="guide-heading">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <p className="font-telegraf text-xl sm:text-2xl text-gray-800 mb-6 leading-relaxed font-semibold">
+                {t('home.guide.description')}
+              </p>
+              <p className="font-telegraf text-base sm:text-lg text-gray-700 mb-8 font-semibold">
+                {t('home.guide.weSpecialize')}
+              </p>
+            </div>
+            
+            {/* Service Boxes */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {services.map((service, index) => (
-                <ServiceCardWithPopover key={index} service={service} />
+                <Link key={index} to="/services" className="group">
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-0 shadow-md">
+                    <CardContent className="p-6 text-center h-full flex flex-col">
+                      <div className="flex justify-center mb-4">
+                        <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                          <service.icon className="h-6 w-6 text-primary group-hover:text-white" aria-hidden="true" />
+                        </div>
+                      </div>
+                      <h3 className="font-telegraf font-semibold text-lg text-primary group-hover:text-secondary transition-colors mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="font-telegraf text-gray-600 text-sm flex-grow">
+                        {service.simpleExplanation}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
+            </div>
+            
+            {/* Conclusion Text */}
+            <div className="text-center">
+              <p className="font-telegraf text-lg text-gray-600 italic mb-4">
+                {t('home.guide.conclusion')}
+              </p>
+              <Link to="/about" className="font-telegraf text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200">
+                Learn more about us.
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Meet Our Team Section */}
-        <section className="py-16 sm:py-20 bg-gray-50 section-container" aria-labelledby="team-heading">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 id="team-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl text-primary mb-6">
-              {t('meetteam.title')}
+        {/* Plan Section */}
+        <section className="py-16 sm:py-20 bg-white section-container" aria-labelledby="plan-heading">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="plan-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-8 text-center whitespace-nowrap">
+              {t('home.plan.title')}
             </h2>
-            <p className="font-telegraf text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed">
-              {t('meetteam.description')}
-            </p>
-            <Button 
-              asChild 
-              size="lg" 
-              className="bg-primary hover:bg-primary-700 text-white font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
-              aria-label="Learn more about the Stratum PR team"
-            >
-              <Link to="/about">
-                {t('meetteam.button')}
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
-              </Link>
-            </Button>
+            <div className="flex flex-col items-center space-y-6">
+              <div className="flex items-center justify-center w-full max-w-6xl">
+                <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-telegraf font-bold text-lg mr-4 flex-shrink-0">1</span>
+                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-600 whitespace-nowrap" dangerouslySetInnerHTML={{ __html: t('home.plan.step1') }}>
+                </p>
+              </div>
+              <div className="flex items-center justify-center w-full max-w-6xl">
+                <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-telegraf font-bold text-lg mr-4 flex-shrink-0">2</span>
+                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-600 whitespace-nowrap" dangerouslySetInnerHTML={{ __html: t('home.plan.step2') }}>
+                </p>
+              </div>
+              <div className="flex items-center justify-center w-full max-w-6xl">
+                <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-telegraf font-bold text-lg mr-4 flex-shrink-0">3</span>
+                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-600 whitespace-nowrap" dangerouslySetInnerHTML={{ __html: t('home.plan.step3') }}>
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Lazy loaded sections with optimized loading */}
-        <Suspense fallback={
-          <div className="h-96 bg-gray-50 section-container flex items-center justify-center">
-            <div className="img-loading w-32 h-8 rounded"></div>
-          </div>
-        }>
-          <WhyWorkWithUsSection />
-        </Suspense>
-
-        {/* CTA Section */}
-        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary to-secondary section-container" aria-labelledby="cta-heading">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h2 id="cta-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl mb-6">
-              {t('cta.title')}
+        {/* Two Paths Forward Section */}
+        <section className="py-20 sm:py-24 bg-gray-50 section-container" aria-labelledby="two-paths-heading">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="two-paths-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-16 text-center">
+              {t('home.twoPaths.title')}
             </h2>
-            <p className="font-telegraf text-lg sm:text-xl mb-8 text-primary-100">
-              {t('cta.description')}
-            </p>
-            <Button 
-              asChild 
-              size="lg" 
-              className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
-              aria-label="Get started with Stratum PR data analytics and AI consulting services today"
-            >
-              <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                {t('cta.button')}
-                <TrendingUp className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
-              </a>
-            </Button>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Without Action Column */}
+              <div className="bg-white rounded-lg p-10 shadow-lg border-l-4" style={{borderLeftColor: '#B26E26'}}>
+                <div className="flex items-center mb-8">
+                  <AlertTriangle className="h-10 w-10 mr-4 stroke-2" style={{color: '#B26E26'}} />
+                  <h3 className="font-telegraf font-bold text-2xl" style={{color: '#B26E26'}}>
+                    {t('home.twoPaths.withoutAction.title')}
+                  </h3>
+                </div>
+                
+                <ul className="font-telegraf text-gray-600 space-y-4">
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withoutAction.point1.title')}</strong> – {t('home.twoPaths.withoutAction.point1.description')}
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withoutAction.point2.title')}</strong> – {t('home.twoPaths.withoutAction.point2.description')}
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withoutAction.point3.title')}</strong> – {t('home.twoPaths.withoutAction.point3.description')}
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#B26E26'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withoutAction.point4.title')}</strong> – {t('home.twoPaths.withoutAction.point4.description')}
+                    </div>
+                  </li>
+                </ul>
+                
+                {/* Visual: Broken Systems Illustration - Below text */}
+                <div className="mt-8 flex justify-center">
+                  <div className="relative w-40 h-40">
+                    {/* Broken chain/network visualization */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="w-8 h-8 bg-red-200 rounded flex items-center justify-center">
+                          <XCircle className="h-5 w-5 text-red-600" />
+                        </div>
+                        <div className="w-8 h-8 bg-red-200 rounded flex items-center justify-center">
+                          <XCircle className="h-5 w-5 text-red-600" />
+                        </div>
+                        <div className="w-8 h-8 bg-red-200 rounded flex items-center justify-center">
+                          <XCircle className="h-5 w-5 text-red-600" />
+                        </div>
+                        <div className="w-8 h-8 bg-red-200 rounded flex items-center justify-center">
+                          <XCircle className="h-5 w-5 text-red-600" />
+                        </div>
+                      </div>
+                    </div>
+                    {/* Manual work icons scattered around */}
+                    <div className="absolute top-2 left-2">
+                      <Clock className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <div className="absolute top-2 right-2">
+                      <Database className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <div className="absolute bottom-2 left-2">
+                      <Server className="h-5 w-5 text-orange-500" />
+                    </div>
+                    <div className="absolute bottom-2 right-2">
+                      <WifiOff className="h-5 w-5 text-orange-500" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* With Stratum Column */}
+              <div className="bg-white rounded-lg p-10 shadow-lg border-l-4" style={{borderLeftColor: '#266AB2'}}>
+                <div className="flex items-center mb-8">
+                  <TrendingUp className="h-10 w-10 mr-4 stroke-2" style={{color: '#266AB2'}} />
+                  <h3 className="font-telegraf font-bold text-2xl" style={{color: '#266AB2'}}>
+                    {t('home.twoPaths.withStratum.title')}
+                  </h3>
+                </div>
+                
+                <ul className="font-telegraf text-gray-600 space-y-4">
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withStratum.point1.title')}</strong> – {t('home.twoPaths.withStratum.point1.description')}
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withStratum.point2.title')}</strong> – {t('home.twoPaths.withStratum.point2.description')}
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withStratum.point3.title')}</strong> – {t('home.twoPaths.withStratum.point3.description')}
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-3 mt-1" style={{color: '#266AB2'}}>•</span>
+                    <div>
+                      <strong className="text-gray-800">{t('home.twoPaths.withStratum.point4.title')}</strong> – {t('home.twoPaths.withStratum.point4.description')}
+                    </div>
+                  </li>
+                </ul>
+                
+                {/* Visual: Connected Systems Circle - Below text */}
+                <div className="mt-8 flex justify-center">
+                  <div className="relative w-40 h-40">
+                    {/* Central hub */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center z-10">
+                      <Network className="h-6 w-6 text-white" />
+                    </div>
+                    
+                    {/* Connected systems around the circle */}
+                    <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center">
+                      <Database className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <div className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center">
+                      <BarChart3 className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center">
+                      <Server className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <div className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center">
+                      <Brain className="h-4 w-4 text-blue-600" />
+                    </div>
+                    
+                    {/* Connection lines */}
+                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 160 160">
+                      <line x1="80" y1="20" x2="80" y2="40" stroke="#266AB2" strokeWidth="2" />
+                      <line x1="120" y1="80" x2="100" y2="80" stroke="#266AB2" strokeWidth="2" />
+                      <line x1="80" y1="120" x2="80" y2="100" stroke="#266AB2" strokeWidth="2" />
+                      <line x1="40" y1="80" x2="60" y2="80" stroke="#266AB2" strokeWidth="2" />
+                    </svg>
+                    
+                    {/* Speed indicators */}
+                    <div className="absolute -top-1 -right-1">
+                      <Zap className="h-5 w-5 text-yellow-500" />
+                    </div>
+                    <div className="absolute -bottom-1 -left-1">
+                      <Wifi className="h-5 w-5 text-green-500" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-primary to-secondary section-container" aria-labelledby="final-cta-heading">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h2 id="final-cta-heading" className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl mb-8">
+              {t('home.finalCta.title')}
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                asChild 
+                size="lg" 
+                className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
+                aria-label="Schedule free consultation with Stratum PR"
+              >
+                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
+                  {t('home.finalCta.consultation')}
+                </a>
+              </Button>
+
+              <Button 
+                asChild 
+                variant="outline" 
+                size="lg" 
+                className="bg-white text-black border-2 border-white font-telegraf font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-sm sm:text-base" 
+                aria-label="Download the Data Health Checklist"
+              >
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  {t('home.finalCta.checklist')}
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
       </div>
