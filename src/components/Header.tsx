@@ -32,20 +32,20 @@ export const Header = () => {
   
   const isActive = (path: string) => location.pathname === path;
   
-  // Consistent spacing and font size for nav items across all languages
-  const navSpacing = 'space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-10 xl:space-x-12';
-  const navFontSize = 'text-sm sm:text-base md:text-lg lg:text-xl';
-  const headerHeight = 'h-20';
+  // Responsive spacing and font size that adapts to device width
+  const navSpacing = 'space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-10 2xl:space-x-16';
+  const navFontSize = 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl';
+  const headerHeight = 'h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24';
   
   const closeMenu = () => setIsMenuOpen(false);
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12">
         <div className={`flex justify-between items-center ${headerHeight} gap-8`}>
           {/* Logo - Always visible */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 z-50 relative">
-            <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-10 w-auto" />
+            <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-6 sm:h-8 md:h-10 lg:h-12 xl:h-14 w-auto" />
           </Link>
 
 
