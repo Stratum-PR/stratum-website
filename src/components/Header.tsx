@@ -32,14 +32,10 @@ export const Header = () => {
   
   const isActive = (path: string) => location.pathname === path;
   
-  // Dynamic spacing and font size for nav items
-  // Responsive spacing and font size
-  const navSpacing = language === 'es'
-    ? 'space-x-3 sm:space-x-4 md:space-x-6 lg:space-x-8 xl:space-x-10'
-    : 'space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-10 xl:space-x-12';
-  // Responsive font size
+  // Consistent spacing and font size for nav items across all languages
+  const navSpacing = 'space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-10 xl:space-x-12';
   const navFontSize = 'text-sm sm:text-base md:text-lg lg:text-xl';
-  const headerHeight = language === 'es' ? 'h-24 lg:h-20' : 'h-20';
+  const headerHeight = 'h-20';
   
   const closeMenu = () => setIsMenuOpen(false);
   
@@ -50,8 +46,6 @@ export const Header = () => {
           {/* Logo - Always visible */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 z-50 relative">
             <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className="h-10 w-auto" />
-            {/* Puerto Rico Flag */}
-            <img src="/img/Puerto_rican_Flag.png" alt="Puerto Rico Flag" className="h-3 w-auto" />
           </Link>
 
 
@@ -61,7 +55,7 @@ export const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`font-telegraf font-medium transition-colors duration-200 text-sm lg:text-base whitespace-nowrap ${
+                className={`font-telegraf font-medium transition-colors duration-200 ${navFontSize} whitespace-nowrap ${
                   isActive(item.href)
                     ? 'text-primary border-b-2 border-primary pb-1'
                     : 'text-gray-700 hover:text-primary'
@@ -71,7 +65,7 @@ export const Header = () => {
               </Link>
             ))}
             <LanguageToggle />
-            <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 lg:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg text-sm lg:text-base whitespace-nowrap">
+            <Button asChild className={`bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 lg:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-lg ${navFontSize} whitespace-nowrap`}>
               <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                 {t('nav.schedule')}
               </a>
