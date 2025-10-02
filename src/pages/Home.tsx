@@ -237,17 +237,13 @@ const Home = () => {
               {/* Fragmented Data Box */}
               <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
                 <div className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center group-hover:from-red-200 group-hover:to-red-300 transition-colors">
-                    <div className="flex items-center space-x-1">
-                      <Link2 className="h-6 w-6 text-red-600 group-hover:text-red-700 stroke-2" />
-                      <div className="w-1 h-4 bg-red-600"></div>
-                      <Link2 className="h-6 w-6 text-red-600 group-hover:text-red-700 stroke-2 rotate-45" />
-                    </div>
+                  <div className="w-20 h-20 mx-auto mb-4 bg-red-200 rounded-full flex items-center justify-center group-hover:bg-red-300 transition-colors">
+                    <Database className="h-10 w-10 text-red-600" />
                   </div>
-                  <h3 className="font-telegraf font-bold text-xl text-gray-800 mb-3 min-h-[3rem] flex items-center justify-center">
+                  <h3 className="font-telegraf font-bold text-2xl text-gray-800 mb-4 min-h-[3rem] flex items-center justify-center">
                     {t('home.problem.box1.title')}
                   </h3>
-                  <p className="font-telegraf text-gray-600 leading-relaxed">
+                  <p className="font-telegraf text-gray-600 leading-relaxed text-lg">
                     {t('home.problem.box1.subtitle')}
                   </p>
                 </div>
@@ -259,10 +255,10 @@ const Home = () => {
                   <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center group-hover:from-orange-200 group-hover:to-orange-300 transition-colors">
                     <Clock className="h-10 w-10 text-orange-600 group-hover:text-orange-700 stroke-2" />
                   </div>
-                  <h3 className="font-telegraf font-bold text-xl text-gray-800 mb-3 min-h-[3rem] flex items-center justify-center">
+                  <h3 className="font-telegraf font-bold text-2xl text-gray-800 mb-4 min-h-[3rem] flex items-center justify-center">
                     {t('home.problem.box2.title')}
                   </h3>
-                  <p className="font-telegraf text-gray-600 leading-relaxed">
+                  <p className="font-telegraf text-gray-600 leading-relaxed text-lg">
                     {t('home.problem.box2.subtitle')}
                   </p>
                 </div>
@@ -271,25 +267,13 @@ const Home = () => {
               {/* Gut-based Decisions Box */}
               <div className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all duration-300 group ">
                 <div className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center group-hover:from-yellow-200 group-hover:to-yellow-300 transition-colors relative overflow-hidden">
-                    {/* Outer spiral */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full opacity-80 animate-spin" style={{animationDuration: '4s'}}></div>
-                    {/* Middle spiral */}
-                    <div className="absolute inset-2 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full opacity-90 animate-spin" style={{animationDuration: '3s', animationDirection: 'reverse'}}></div>
-                    {/* Inner spiral */}
-                    <div className="absolute inset-4 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-full opacity-95 animate-spin" style={{animationDuration: '2s'}}></div>
-                    {/* Center dot */}
-                    <div className="absolute inset-6 bg-yellow-600 rounded-full animate-pulse"></div>
-                    {/* Spiral lines */}
-                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 80 80">
-                      <path d="M40,40 Q20,20 40,20 Q60,20 60,40 Q60,60 40,60 Q20,60 20,40" stroke="#fbbf24" strokeWidth="2" fill="none" className="animate-spin" style={{animationDuration: '3s'}}/>
-                      <path d="M40,40 Q30,30 40,30 Q50,30 50,40 Q50,50 40,50 Q30,50 30,40" stroke="#f59e0b" strokeWidth="1.5" fill="none" className="animate-spin" style={{animationDuration: '2s', animationDirection: 'reverse'}}/>
-                    </svg>
+                  <div className="w-20 h-20 mx-auto mb-4 bg-yellow-200 rounded-full flex items-center justify-center group-hover:bg-yellow-300 transition-colors">
+                    <HelpCircle className="h-10 w-10 text-yellow-600" />
                   </div>
-                  <h3 className="font-telegraf font-bold text-xl text-gray-800 mb-3 min-h-[3rem] flex items-center justify-center">
+                  <h3 className="font-telegraf font-bold text-2xl text-gray-800 mb-4 min-h-[3rem] flex items-center justify-center">
                     {t('home.problem.box3.title')}
                   </h3>
-                  <p className="font-telegraf text-gray-600 leading-relaxed">
+                  <p className="font-telegraf text-gray-600 leading-relaxed text-lg">
                     {t('home.problem.box3.subtitle')}
                   </p>
                 </div>
@@ -319,24 +303,16 @@ const Home = () => {
                     <Link to="/about" className="text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 font-semibold">
                       More about us here.
                     </Link>
-                  </p>
-                </div>
-                
-                {/* Enhanced Technology Image with Branding Kit Colors */}
-                <div className="w-full h-96 bg-gradient-to-br from-[#E6E09E] via-[#266AB2] to-[#1E2B7E] rounded-2xl flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#E6E09E]/20 to-[#1E2B7E]/30"></div>
-                  <div className="text-center relative z-10">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-[#E6E09E] to-[#266AB2] rounded-full flex items-center justify-center shadow-2xl">
-                      <Brain className="h-12 w-12 text-white" />
-                    </div>
-                    <p className="font-telegraf text-white text-2xl font-bold">Technology & Innovation</p>
-                    <p className="font-telegraf text-white/80 text-lg mt-2">The Architecture of Better Decisions</p>
-                  </div>
-                  
-                  {/* Dynamic geometric shapes */}
-                  <div className="absolute top-4 right-4 w-16 h-16 bg-white/20 rounded-lg rotate-45 animate-pulse"></div>
-                  <div className="absolute bottom-4 left-4 w-12 h-12 bg-white/30 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
-                  <div className="absolute top-1/2 right-8 w-8 h-8 bg-white/25 rounded-lg rotate-12 animate-pulse" style={{animationDelay: '2s'}}></div>
+              </p>
+            </div>
+
+                {/* Working Zoom Image */}
+                <div className="w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
+                  <img 
+                    src="/img/working_zoom.jpeg" 
+                    alt="Technology & Innovation - Working Environment" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
@@ -346,7 +322,7 @@ const Home = () => {
                   {t('home.guide.weSpecialize')}
                 </h2>
                 <div className="grid grid-cols-2 gap-6">
-                  {services.map((service, index) => (
+              {services.map((service, index) => (
                     <Link key={index} to="/services" className="group">
                       <Card className="h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-gradient-to-br from-white to-gray-50">
                         <CardContent className="p-8 text-center h-full flex flex-col justify-center">
@@ -462,12 +438,12 @@ const Home = () => {
                       <BarChart3 className="h-8 w-8 text-red-600 animate-bounce" />
                     </div>
                     <div className="absolute bottom-4 right-4 w-16 h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 animate-pulse" style={{animationDelay: '1.5s'}}>
-                      <Brain className="h-8 w-8 text-red-600 animate-bounce" />
+                      <Network className="h-8 w-8 text-red-600 animate-bounce" />
                     </div>
                     
                     {/* Central chaos indicator with rotation */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center animate-spin">
+                      <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center animate-spin shadow-lg">
                         <Clock className="h-6 w-6 text-white" />
                       </div>
                     </div>
@@ -479,18 +455,10 @@ const Home = () => {
                     
                     {/* Dynamic broken connection lines */}
                     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
-                      <line x1="80" y1="80" x2="160" y2="160" stroke="#ef4444" strokeWidth="3" strokeDasharray="8,4">
-                        <animate attributeName="stroke-dashoffset" values="0;12" dur="1s" repeatCount="indefinite"/>
-                      </line>
-                      <line x1="240" y1="80" x2="160" y2="160" stroke="#ef4444" strokeWidth="3" strokeDasharray="8,4">
-                        <animate attributeName="stroke-dashoffset" values="0;12" dur="1s" repeatCount="indefinite" begin="0.25s"/>
-                      </line>
-                      <line x1="80" y1="240" x2="160" y2="160" stroke="#ef4444" strokeWidth="3" strokeDasharray="8,4">
-                        <animate attributeName="stroke-dashoffset" values="0;12" dur="1s" repeatCount="indefinite" begin="0.5s"/>
-                      </line>
-                      <line x1="240" y1="240" x2="160" y2="160" stroke="#ef4444" strokeWidth="3" strokeDasharray="8,4">
-                        <animate attributeName="stroke-dashoffset" values="0;12" dur="1s" repeatCount="indefinite" begin="0.75s"/>
-                      </line>
+                      <line x1="80" y1="80" x2="140" y2="140" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
+                      <line x1="240" y1="80" x2="180" y2="140" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
+                      <line x1="80" y1="240" x2="140" y2="180" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
+                      <line x1="240" y1="240" x2="180" y2="180" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
                     </svg>
                   </div>
                 </div>
@@ -535,23 +503,23 @@ const Home = () => {
                 {/* Visual: Dynamic Connected Systems Network - Below text */}
                 <div className="mt-12 flex justify-center">
                   <div className="relative w-80 h-80">
-                    {/* Central AI hub with pulsing animation */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center z-10 shadow-2xl animate-pulse">
-                      <Brain className="h-10 w-10 text-white animate-bounce" />
+                    {/* Central AI hub - opaque and static */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center z-10 shadow-2xl">
+                      <Brain className="h-10 w-10 text-white" />
                     </div>
                     
                     {/* Connected systems with dynamic animations */}
-                    <div className="absolute top-4 left-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg animate-pulse">
-                      <Database className="h-8 w-8 text-green-600 animate-bounce" />
+                    <div className="absolute top-4 left-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <Database className="h-8 w-8 text-green-600" />
                     </div>
-                    <div className="absolute top-4 right-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg animate-pulse" style={{animationDelay: '0.3s'}}>
-                      <Server className="h-8 w-8 text-green-600 animate-bounce" />
+                    <div className="absolute top-4 right-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <Server className="h-8 w-8 text-green-600" />
                     </div>
-                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg animate-pulse" style={{animationDelay: '0.6s'}}>
-                      <BarChart3 className="h-8 w-8 text-green-600 animate-bounce" />
+                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <BarChart3 className="h-8 w-8 text-green-600" />
                     </div>
-                    <div className="absolute bottom-4 right-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg animate-pulse" style={{animationDelay: '0.9s'}}>
-                      <Network className="h-8 w-8 text-green-600 animate-bounce" />
+                    <div className="absolute bottom-4 right-4 w-16 h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg">
+                      <Network className="h-8 w-8 text-green-600" />
                     </div>
                     
                     {/* WiFi connectivity with pulsing */}
@@ -559,23 +527,25 @@ const Home = () => {
                       <Wifi className="h-8 w-8 text-green-500 animate-pulse" />
                     </div>
                     
-                    {/* Speed indicators with rotation */}
+                    {/* Speed indicators with zap animation */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-16">
-                      <Zap className="h-8 w-8 text-yellow-500 animate-spin" />
+                      <svg className="h-8 w-8 text-yellow-500 animate-bounce" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                      </svg>
                     </div>
                     
                     {/* Dynamic connection lines with flowing data */}
                     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
-                      <line x1="80" y1="80" x2="160" y2="160" stroke="#10b981" strokeWidth="4">
+                      <line x1="80" y1="80" x2="140" y2="140" stroke="#10b981" strokeWidth="4">
                         <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite"/>
                       </line>
-                      <line x1="240" y1="80" x2="160" y2="160" stroke="#10b981" strokeWidth="4">
+                      <line x1="240" y1="80" x2="180" y2="140" stroke="#10b981" strokeWidth="4">
                         <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite" begin="0.5s"/>
                       </line>
-                      <line x1="80" y1="240" x2="160" y2="160" stroke="#10b981" strokeWidth="4">
+                      <line x1="80" y1="240" x2="140" y2="180" stroke="#10b981" strokeWidth="4">
                         <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite" begin="1s"/>
                       </line>
-                      <line x1="240" y1="240" x2="160" y2="160" stroke="#10b981" strokeWidth="4">
+                      <line x1="240" y1="240" x2="180" y2="180" stroke="#10b981" strokeWidth="4">
                         <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite" begin="1.5s"/>
                       </line>
                       
