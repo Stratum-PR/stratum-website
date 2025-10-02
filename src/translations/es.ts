@@ -4,16 +4,69 @@ export const esTranslations = {
   'nav.home': 'Inicio',
   'nav.about': 'Nosotros',
   'nav.services': 'Servicios',
+  'nav.projects': 'Proyectos',
   'nav.contact': 'Contacto',
   'nav.schedule': 'Agendar Consulta',
-  'nav.faq': 'Preguntas Frecuentes',
+  'nav.faq': 'FAQ',
   
   // Home page
-  'home.hero.title': 'La Arquitectura de',
-  'home.hero.subtitle': 'Mejores Decisiones',
-  'home.hero.description': 'Construimos la base para la excelencia estratégica a través de análisis avanzados, soluciones de IA y consultoría basada en datos que transforma cómo operan las empresas en Puerto Rico y más allá.',
-  'home.hero.cta.primary': 'Programar Consulta Gratuita',
-  'home.hero.cta.secondary': 'Explorar Servicios',
+  'home.hero.title': 'Pasa menos tiempo en administración, más tiempo en crecimiento',
+  'home.hero.subtitle': '',
+  'home.hero.description': 'Con sede en Puerto Rico, Stratum construye y gestiona sistemas de datos inteligentes que reducen el trabajo manual y optimizan las operaciones sin necesidad de un equipo interno de tiempo completo.',
+  'home.hero.cta.primary': 'Programar una Consulta Gratuita',
+  'home.hero.cta.secondary': 'Descargar la Lista de Verificación de Salud de Datos',
+  
+  // Problem Section
+  'home.problem.title': '¿Estos Desafíos Te Están Reteniendo?',
+  'home.problem.box1.title': 'Datos Fragmentados Entre Sistemas',
+  'home.problem.box1.subtitle': 'La información crítica está dispersa en hojas de cálculo, correos electrónicos y herramientas desconectadas, ralentizando la toma de decisiones.',
+  'home.problem.box2.title': 'El Trabajo Manual Te Está Ralentizando',
+  'home.problem.box2.subtitle': 'Tu equipo pasa horas en reportes y tareas administrativas, con menos tiempo para trabajo orientado a resultados.',
+  'home.problem.box3.title': 'Toma de Decisiones Basada en Intuición',
+  'home.problem.box3.subtitle': 'Sin números confiables, las decisiones se basan en información incompleta, aumentando el riesgo de errores.',
+  'home.problem.conclusion': 'Se está gastando tiempo valioso en tareas que los sistemas podrían manejar por ti.',
+  
+  // Guide Section
+  'home.guide.description': 'Stratum PR reúne a un equipo de expertos en datos con sede en Puerto Rico, con antecedentes en análisis, investigación, diseño de sistemas y automatización.',
+  'home.guide.weSpecialize': 'Nos especializamos en:',
+  'home.guide.feature1': 'Dashboards de reportes personalizados diseñados y mantenidos',
+  'home.guide.feature2': 'Implementación y optimización de CRM y ERP',
+  'home.guide.feature3': 'Infraestructura de datos segura y escalable',
+  'home.guide.feature4': 'Optimización y automatización de flujos de trabajo',
+  'home.guide.feature5': 'Entornos de datos centrados en el usuario construidos con requisitos de seguridad y cumplimiento en mente',
+  'home.guide.conclusion': 'Liberamos a los equipos organizacionales de gestionar sistemas complejos, permitiéndoles enfocarse en lo que hacen mejor.',
+  
+  // Plan Section
+  'home.plan.title': 'Comenzar es simple:',
+  'home.plan.step1': 'Completa nuestra <strong>lista de verificación gratuita</strong> para identificar ineficiencias potenciales',
+  'home.plan.step2': 'Programa una <strong>consulta gratuita de 30 minutos</strong> para revisar necesidades y prioridades  ',
+  'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong>, revisado hasta que sea la opción correcta.   ',
+  
+  // Two Paths Forward Section
+  'home.twoPaths.title': 'Dos Caminos Hacia Adelante: ¿Cuál Elegirás?',
+  'home.twoPaths.withoutAction.title': 'Sin Acción: El Costo de Quedarse Quieto',
+  'home.twoPaths.withoutAction.point1.title': 'Quedarse Atrás de Competidores',
+  'home.twoPaths.withoutAction.point1.description': 'Mientras procesas datos manualmente, los competidores ganan ventaja en el mercado con insights impulsados por IA',
+  'home.twoPaths.withoutAction.point2.title': 'Recursos Desperdiciados',
+  'home.twoPaths.withoutAction.point2.description': 'Tu equipo gasta 20+ horas semanales en tareas manuales que podrían automatizarse',
+  'home.twoPaths.withoutAction.point3.title': 'Oportunidades Perdidas',
+  'home.twoPaths.withoutAction.point3.description': 'Decisiones críticas tomadas con información incompleta llevan a errores costosos',
+  'home.twoPaths.withoutAction.point4.title': 'Frustración del Equipo',
+  'home.twoPaths.withoutAction.point4.description': 'El mejor talento se va a organizaciones con sistemas modernos y eficientes',
+  'home.twoPaths.withStratum.title': 'Con Stratum: Tu Futuro Transformado',
+  'home.twoPaths.withStratum.point1.title': 'Decisiones Relámpago',
+  'home.twoPaths.withStratum.point1.description': 'Los dashboards en tiempo real te dan visibilidad instantánea de lo que más importa',
+  'home.twoPaths.withStratum.point2.title': 'Ventaja Estratégica',
+  'home.twoPaths.withStratum.point2.description': 'Los análisis predictivos te ayudan a estar tres pasos adelante de los cambios del mercado',
+  'home.twoPaths.withStratum.point3.title': 'Libertad de Tiempo',
+  'home.twoPaths.withStratum.point3.description': 'Tu equipo se enfoca en trabajo de alto valor mientras la IA maneja tareas rutinarias',
+  'home.twoPaths.withStratum.point4.title': 'Liderazgo en la Industria',
+  'home.twoPaths.withStratum.point4.description': 'Conviértete en la organización a la que otros miran como el referente de innovación',
+  
+  // Final CTA Section
+  'home.finalCta.title': 'Alcanza tu potencial con Stratum.',
+  'home.finalCta.consultation': 'Programar una Consulta Gratuita',
+  'home.finalCta.checklist': 'Descargar la Lista de Verificación de Salud de Datos',
   
   // Stats
   'stats.experience': 'Años de Experiencia',
