@@ -5,6 +5,7 @@ export const esTranslations = {
   'nav.about': 'Nosotros',
   'nav.services': 'Servicios',
   'nav.projects': 'Proyectos',
+  'nav.projects': 'Proyectos',
   'nav.contact': 'Contacto',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'FAQ',
