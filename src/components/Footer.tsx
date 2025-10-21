@@ -6,6 +6,8 @@ export const Footer = () => {
   const {
     t
   } = useLanguage();
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
   const currentYear = new Date().getFullYear();
   
   return (
