@@ -1,10 +1,24 @@
+// ============================================================================
+// ENGLISH TRANSLATIONS FILE
+// ============================================================================
+// EDIT THIS FILE: Change any text on the website by modifying the values below
+// Each key corresponds to a text element on the site
+// Example: 'nav.home': 'Home' controls the "Home" link in navigation
+// ============================================================================
+
 export const enTranslations: Record<string, string> = {
-  // Navigation
+  // ==========================================================================
+  // NAVIGATION - Edit menu items here
+  // ==========================================================================
   'nav.home': 'Home',
   'nav.about': 'About',
   'nav.services': 'Services',
   'nav.contact': 'Contact',
   'nav.projects': 'Projects',
+  'nav.resources': 'Resources',
+  'nav.blog': 'Blog',
+  'nav.newsupdates': 'News & Updates',
+  'nav.checklist': 'IT Readiness Checklist',
   'nav.schedule': 'Book Free Consultation',
   'nav.faq': 'FAQ',
   
@@ -65,6 +79,7 @@ export const enTranslations: Record<string, string> = {
   
   // Final CTA Section
   'home.finalCta.title': 'Reach your potential with Stratum.',
+  'home.finalCta.description': 'Ready to transform your business with data-driven insights?',
   'home.finalCta.consultation': 'Book Free Consultation',
   'home.finalCta.checklist': 'Get System Fit Test',
   
@@ -379,21 +394,29 @@ export const enTranslations: Record<string, string> = {
   'privacy.contact.description': 'For more details, contact us at',
   
   // Resources page
-  'resources.hero.title': 'Resources & Tools',
-  'resources.hero.description': 'Access our comprehensive collection of guides, templates, whitepapers, and toolkits designed to help you leverage data analytics effectively.',
+  'resources.hero.title': 'Resources',
+  'resources.hero.description': 'Explore our projects, stay updated with news and insights, and assess your IT readiness with our free checklist.',
   'resources.download': 'Download Resource',
   'resources.visit': 'Visit Resource',
   'resources.cta.title': 'Need Custom Resources?',
   'resources.cta.description': 'Our team can help you develop tailored analytics solutions and tools for your specific needs.',
   'resources.cta.button': 'Schedule Free Consultation',
   
-  // Blog page
-  'blog.hero.title': 'Insights & Updates',
+  // Blog page (News & Updates)
+  // EDIT THIS SECTION: Change blog title, descriptions, and subscription text
+  'blog.hero.title': 'News and Updates',
   'blog.hero.description': 'Stay informed with the latest trends, best practices, and expert insights in data analytics, AI automation, and digital transformation.',
   'blog.readmore': 'Read Article',
   'blog.cta.title': 'Have a Topic in Mind?',
   'blog.cta.description': 'Let us know what you\'d like to learn more about. We\'re always looking to create content that helps our community.',
   'blog.cta.button': 'Contact Our Team',
+  'blog.subscribe.title': 'Stay Updated',
+  // EDIT THIS LINE: Change subscription description text
+  'blog.subscribe.description': 'Subscribe to our blog to receive the latest articles directly in your inbox.',
+  'blog.subscribe.email.placeholder': 'Enter your email address',
+  'blog.subscribe.button': 'Subscribe',
+  'blog.subscribe.success': 'Thank you for subscribing! You\'ll receive our latest updates via email.',
+  'blog.subscribe.error': 'Something went wrong. Please try again later.',
   
   // Resources modal
   'resources.modal.downloadDescription': 'Download the complete template to use in your projects',

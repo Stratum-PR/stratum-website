@@ -74,55 +74,67 @@ const ProjectDetail = () => {
   const IconComponent = (LucideIcons as any)[project.icon] || LucideIcons.FileText;
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-[50px]">
+      {/* Hero Section with Background */}
+      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div className="absolute inset-0">
+          <img 
+            src="/img/topographic-linear-background.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Button 
             variant="ghost" 
             onClick={() => navigate('/projects')}
-            className="mb-6 font-telegraf"
+            className="mb-6 font-telegraf text-white hover:text-white/80 hover:bg-white/10"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             {t('projects.hero.title')}
           </Button>
           
           <div className="flex items-center gap-3 mb-6">
-            <IconComponent className="h-8 w-8 text-primary" />
-            <span className="font-telegraf text-sm text-gray-500 uppercase tracking-wide">
+            <IconComponent className="h-8 w-8 text-white" />
+            <span className="font-telegraf text-sm text-white/80 uppercase tracking-wide">
               {content.sector}
             </span>
           </div>
 
-          <h1 className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
+          <h1 className="font-telegraf font-bold text-4xl md:text-5xl text-white drop-shadow-lg mb-6">
             {content.title}
           </h1>
           
-          <p className="font-telegraf text-xl text-gray-600 leading-relaxed mb-8">
+          <p className="font-telegraf text-xl text-white/90 drop-shadow-md leading-relaxed mb-8">
             {content.summary}
           </p>
 
           {/* Project Details */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="flex items-center gap-3">
-              <Calendar className="h-5 w-5 text-primary" />
+              <Calendar className="h-5 w-5 text-white" />
               <div>
-                <p className="font-telegraf text-sm text-gray-500">Timeline</p>
-                <p className="font-telegraf font-semibold">{content.timeline}</p>
+                <p className="font-telegraf text-sm text-white/80">Timeline</p>
+                <p className="font-telegraf font-semibold text-white">{content.timeline}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Users className="h-5 w-5 text-primary" />
+              <Users className="h-5 w-5 text-white" />
               <div>
-                <p className="font-telegraf text-sm text-gray-500">Team Size</p>
-                <p className="font-telegraf font-semibold">{content.teamSize}</p>
+                <p className="font-telegraf text-sm text-white/80">Team Size</p>
+                <p className="font-telegraf font-semibold text-white">{content.teamSize}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Clock className="h-5 w-5 text-primary" />
+              <Clock className="h-5 w-5 text-white" />
               <div>
-                <p className="font-telegraf text-sm text-gray-500">Client</p>
-                <p className="font-telegraf font-semibold">{content.client}</p>
+                <p className="font-telegraf text-sm text-white/80">Client</p>
+                <p className="font-telegraf font-semibold text-white">{content.client}</p>
               </div>
             </div>
           </div>

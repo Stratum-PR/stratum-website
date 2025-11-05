@@ -27,14 +27,26 @@ const Projects = () => {
   };
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-5xl md:text-6xl text-primary mb-6">
+    <div className="pt-[50px]">
+      {/* Hero Section with Background */}
+      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div className="absolute inset-0">
+          <img 
+            src="/img/topographic-linear-background.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
             {t('projects.hero.title')}
           </h1>
-          <p className="font-telegraf text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
             {t('projects.hero.description')}
           </p>
         </div>
@@ -88,23 +100,6 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            {t('projects.cta.title')}
-          </h2>
-          <p className="font-telegraf text-xl mb-8 text-primary-100">
-            {t('projects.cta.description')}
-          </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-            <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-              {t('projects.cta.button')}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-          </Button>
-        </div>
-      </section>
     </div>
   );
 };

@@ -26,28 +26,28 @@ const WhyWorkWithUsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50" aria-labelledby="why-work-with-us-heading">
+    <section className="py-12 bg-gray-50" aria-labelledby="why-work-with-us-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 id="why-work-with-us-heading" className="font-telegraf font-bold text-4xl md:text-5xl text-primary mb-6">
+        <div className="text-center mb-10">
+          <h2 id="why-work-with-us-heading" className="font-telegraf font-bold text-2xl md:text-3xl text-primary mb-4">
             {t('whyworkwithus.title')}
           </h2>
-          <p className="font-telegraf text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="font-telegraf text-base text-gray-600 max-w-4xl mx-auto leading-relaxed">
             {t('whyworkwithus.description')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg bg-white">
-              <CardContent className="p-8 text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-xl mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  <feature.icon className="h-8 w-8 text-primary group-hover:text-white" aria-hidden="true" />
+              <CardContent className="p-6 text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-xl mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                  <feature.icon className="h-7 w-7 text-primary group-hover:text-white" aria-hidden="true" />
                 </div>
-                <h3 className="font-telegraf font-semibold text-xl text-primary mb-4">
+                <h3 className="font-telegraf font-semibold text-lg text-primary mb-3">
                   {feature.title}
                 </h3>
-                <p className="font-telegraf text-gray-600 leading-relaxed">
+                <p className="font-telegraf text-gray-600 leading-relaxed text-sm">
                   {feature.description}
                 </p>
               </CardContent>

@@ -1,7 +1,13 @@
 import { BlogPost } from './types';
 import { aiAutomationPost } from './aiAutomationPost';
+import { itNeedsPost } from './itNeedsPost';
+import { erpPost } from './erpPost';
+import { dataPracticesPost } from './dataPracticesPost';
 
 const blogPosts: BlogPost[] = [
+  dataPracticesPost,
+  erpPost,
+  itNeedsPost,
   aiAutomationPost,
   // Add more blog posts here
 ];

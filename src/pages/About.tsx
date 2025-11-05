@@ -32,6 +32,8 @@ const About = () => {
     }
   }, "about");
 
+  // EDIT THIS ARRAY: Add or remove team members here
+  // To hide a member, comment them out or remove from array
   const founders = [
     {
       key: "jovaniel",
@@ -39,21 +41,21 @@ const About = () => {
       role: "Co-Founder, Operations & Growth",
       bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
       expertise: ["Strategic Consulting", "AI/ML", "Digital Modernization", "Data Governance", "Systems Architechture"],
-
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
       image: "/img/Jovaniel.jpg"
     },
-    {
-      key: "roberto", 
-      name: "Roberto Otero",
-      role: "Co-Founder, Tech & Build",
-      bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
-      expertise: ["Data Vizualization", "Big Data", "Database Management"],
-      linkedin: "https://www.linkedin.com/in/roberto-otero/",
-      email: "r.otero@stratumpr.com",
-      image: "/img/Roberto.jpg"
-    },
+    // HIDDEN: Roberto Otero card - uncomment to show
+    // {
+    //   key: "roberto", 
+    //   name: "Roberto Otero",
+    //   role: "Co-Founder, Tech & Build",
+    //   bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
+    //   expertise: ["Data Vizualization", "Big Data", "Database Management"],
+    //   linkedin: "https://www.linkedin.com/in/roberto-otero/",
+    //   email: "r.otero@stratumpr.com",
+    //   image: "/img/Roberto.jpg"
+    // },
     {
       key: "genesis",
       name: "Genesis Rodriguez",
@@ -86,7 +88,7 @@ const About = () => {
   ];
 
   return (
-    <div className="pt-20">
+    <div className="pt-[50px]">
       <HeroSection />
       <MissionSection />
       <ValuesSection values={values} />

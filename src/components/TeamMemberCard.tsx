@@ -40,24 +40,24 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
           </div>
         )}
       </div>
-      <CardContent className="p-8">
-        <h3 className="font-telegraf font-bold text-2xl text-primary mb-2">
+      <CardContent className="p-6">
+        <h3 className="font-telegraf font-bold text-lg text-primary mb-2">
           {founder.name}
         </h3>
-        <p className="font-telegraf font-semibold text-secondary mb-4">
+        <p className="font-telegraf font-semibold text-sm text-secondary mb-3">
           {founder.role}
         </p>
-        <p className="font-telegraf text-gray-600 mb-6 leading-relaxed">
+        <p className="font-telegraf text-sm text-gray-600 mb-4 leading-relaxed">
           {founder.bio}
         </p>
         
-        <div className="mb-6">
-          <h4 className="font-telegraf font-semibold text-sm text-gray-800 mb-3">
+        <div className="mb-4">
+          <h4 className="font-telegraf font-semibold text-xs text-gray-800 mb-2">
             {t('about.team.expertise')}
           </h4>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {founder.expertise.map((skill, skillIndex) => (
-              <Badge key={skillIndex} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary hover:text-white">
+              <Badge key={skillIndex} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary hover:text-white text-xs">
                 {skill}
               </Badge>
             ))}

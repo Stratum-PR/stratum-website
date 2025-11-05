@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
 import {
@@ -25,21 +26,33 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-white py-16 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-telegraf font-bold text-gray-900 mb-6">
+    <div className="pt-[50px]">
+      {/* Hero Section with Background */}
+      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div className="absolute inset-0">
+          <img 
+            src="/img/topographic-linear-background.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
             {t('faq.hero.title')}
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
             {t('faq.hero.description')}
           </p>
         </div>
       </section>
 
       {/* FAQ Content */}
-      <section className="py-16 sm:py-24">
+      <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {faqCategories.map((category) => {
             const categoryFAQs = getFAQsByCategory(category.id);
@@ -75,20 +88,19 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary-600 py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-telegraf font-bold text-white mb-6">
+      <section className="py-12 bg-gradient-to-r from-primary to-secondary">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <h2 className="font-telegraf font-bold text-2xl md:text-3xl mb-4">
             {t('faq.cta.title')}
           </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+          <p className="font-telegraf text-lg mb-6 text-primary-100 max-w-2xl mx-auto">
             {t('faq.cta.description')}
           </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center px-8 py-4 bg-white text-primary-600 font-telegraf font-semibold rounded-lg hover:bg-gray-50 transition-colors text-lg"
-          >
-            {t('faq.cta.button')}
-          </a>
+          <Button asChild className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-2 rounded-lg transition-all duration-300 hover:shadow-lg">
+            <a href="/contact">
+              {t('faq.cta.button')}
+            </a>
+          </Button>
         </div>
       </section>
     </div>
