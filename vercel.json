@@ -1,4 +1,9 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
   "redirects": [
     { "source": "/en", "destination": "/", "permanent": true },
     { "source": "/en/", "destination": "/", "permanent": true },
@@ -6,6 +11,7 @@
     { "source": "/es/", "destination": "/", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
