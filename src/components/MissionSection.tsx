@@ -7,10 +7,9 @@ const MissionSection: React.FC = () => {
   const [fade, setFade] = useState(true);
 
   const images = [
-    "/img/IMG_6762.jpg",
-    "/img/IMG_6832.jpg",
-    "/img/IMG_6873.jpg",
-    "/img/IMG_6825.jpg"
+    "/img/IMG_6772.jpg",
+    "/img/IMG_6837.jpg",
+    "/img/IMG_6847.jpg"
   ];
 
   useEffect(() => {
