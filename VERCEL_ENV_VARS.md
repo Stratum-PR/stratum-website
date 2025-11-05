@@ -1,5 +1,9 @@
 # Vercel Environment Variables Required
 
+⚠️ **IMPORTANT**: Your local `.env` file works for `localhost` but **NOT** for Vercel deployments!
+
+For the blog to work on `dev.stratumpr.com`, you **must** add these environment variables in the Vercel dashboard.
+
 This file documents the environment variables that must be set in Vercel for the website to function correctly.
 
 ## Required Environment Variables
