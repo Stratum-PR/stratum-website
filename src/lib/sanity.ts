@@ -8,15 +8,18 @@ const dataset = import.meta.env.VITE_SANITY_DATASET || 'production'
 export const isSanityConfigured = !!projectId
 
 // Debug logging (in both development and production for troubleshooting)
+// This will appear in browser console on both localhost and production
 const logConfig = {
-  projectId: projectId || 'MISSING',
+  projectId: projectId ? `${projectId.substring(0, 4)}...` : 'MISSING', // Show partial ID for security
   dataset,
   hasProjectId: !!projectId,
   isConfigured: isSanityConfigured,
   env: import.meta.env.MODE,
   isProd: import.meta.env.PROD,
+  allEnvKeys: Object.keys(import.meta.env).filter(key => key.includes('SANITY')),
 }
 console.log('🔍 Sanity Client Config:', logConfig)
+console.log('🔍 Available SANITY env vars:', logConfig.allEnvKeys)
 
 if (!projectId) {
   console.error('❌ CRITICAL: VITE_SANITY_PROJECT_ID is missing!')
