@@ -275,7 +275,7 @@ const BlogDetail = () => {
 
       {/* Hero Image */}
       {post.mainImage && (
-        <section className="py-12">
+        <section className="pb-6">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <img 
               src={mainImageUrl} 
@@ -287,7 +287,7 @@ const BlogDetail = () => {
       )}
 
       {/* Content */}
-      <section className="py-20">
+      <section className="pt-6 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
