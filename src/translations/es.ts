@@ -1,11 +1,24 @@
+// ============================================================================
+// SPANISH TRANSLATIONS FILE (ARCHIVO DE TRADUCCIONES EN ESPAÑOL)
+// ============================================================================
+// EDITAR ESTE ARCHIVO: Cambia cualquier texto del sitio web modificando los valores abajo
+// Cada clave corresponde a un elemento de texto en el sitio
+// Ejemplo: 'nav.home': 'Inicio' controla el enlace "Inicio" en la navegación
+// ============================================================================
+
 export const esTranslations: Record<string, string> = {
-  // Navigation
+  // ==========================================================================
+  // NAVEGACIÓN - Editar elementos del menú aquí
+  // ==========================================================================
   'nav.home': 'Inicio',
   'nav.about': 'Nosotros',
   'nav.services': 'Servicios',
-  'nav.projects': 'Proyectos',
-  'nav.projects': 'Proyectos',
   'nav.contact': 'Contacto',
+  'nav.projects': 'Proyectos',
+  'nav.resources': 'Recursos',
+  'nav.blog': 'Blog',
+  'nav.newsupdates': 'Noticias y Actualizaciones',
+  'nav.checklist': 'Lista de Verificación de TI',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'FAQ',
   
@@ -65,6 +78,7 @@ export const esTranslations: Record<string, string> = {
   
   // Final CTA Section
   'home.finalCta.title': 'Alcanza tu potencial con Stratum.',
+  'home.finalCta.description': '¿Listo para transformar tu negocio con perspectivas basadas en datos?',
   'home.finalCta.consultation': 'Programar una Consulta Gratuita',
   'home.finalCta.checklist': 'Descargar la Lista de Verificación de Salud de Datos',
   
@@ -379,21 +393,29 @@ export const esTranslations: Record<string, string> = {
   'privacy.contact.description': 'Para más detalles, contáctanos en',
   
   // Resources page
-  'resources.hero.title': 'Recursos y Herramientas',
-  'resources.hero.description': 'Accede a nuestra colección integral de guías, plantillas, documentos técnicos y kits de herramientas diseñados para ayudarte a aprovechar el análisis de datos de manera efectiva.',
+  'resources.hero.title': 'Recursos',
+  'resources.hero.description': 'Explora nuestros proyectos, mantente actualizado con noticias y perspectivas, y evalúa tu preparación TI con nuestra lista de verificación gratuita.',
   'resources.download': 'Descargar Recurso',
   'resources.visit': 'Visitar Recurso',
   'resources.cta.title': '¿Necesitas Recursos Personalizados?',
   'resources.cta.description': 'Nuestro equipo puede ayudarte a desarrollar soluciones y herramientas de análisis personalizadas para tus necesidades específicas.',
   'resources.cta.button': 'Agendar Consulta Gratuita',
   
-  // Blog page
-  'blog.hero.title': 'Perspectivas y Actualizaciones',
+  // Blog page (Noticias y Actualizaciones)
+  // EDITAR ESTA SECCIÓN: Cambiar título del blog, descripciones y texto de suscripción
+  'blog.hero.title': 'Noticias y Actualizaciones',
   'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas expertas en análisis de datos, automatización de IA y transformación digital.',
   'blog.readmore': 'Leer Artículo',
   'blog.cta.title': '¿Tienes un Tema en Mente?',
   'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
   'blog.cta.button': 'Contactar Nuestro Equipo',
+  'blog.subscribe.title': 'Mantente Actualizado',
+  // EDITAR ESTA LÍNEA: Cambiar texto de descripción de suscripción
+  'blog.subscribe.description': 'Suscríbete a nuestro blog para recibir los últimos artículos directamente en tu bandeja de entrada.',
+  'blog.subscribe.email.placeholder': 'Ingresa tu dirección de correo electrónico',
+  'blog.subscribe.button': 'Suscribirse',
+  'blog.subscribe.success': '¡Gracias por suscribirte! Recibirás nuestras últimas actualizaciones por correo electrónico.',
+  'blog.subscribe.error': 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.',
   
   // Resources modal
   'resources.modal.downloadDescription': 'Descarga la plantilla completa para usar en tus proyectos',

@@ -23,6 +23,7 @@ import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
 import Sitemap from "./pages/Sitemap";
+import Checklist from "./pages/Checklist";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -45,8 +46,7 @@ const App = () => (
             <ScrollToTop />
             <div className="min-h-screen flex flex-col bg-white">
               <Header />
-              <main className="flex-1">
-                <ErrorBoundary>
+              <main className="flex-1">                <ErrorBoundary>
                   <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
@@ -54,8 +54,12 @@ const App = () => (
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/solutions" element={<Solutions />} />
                     <Route path="/resources" element={<Resources />} />
+                    <Route path="/newsupdates" element={<Blog />} />
+                    <Route path="/newsupdates/:slug" element={<BlogDetail />} />
+                    {/* Legacy redirect for /blog */}
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:slug" element={<BlogDetail />} />
+                    <Route path="/checklist" element={<Checklist />} />
                     <Route path="/projects/:slug" element={<ProjectDetail />} />
                     {/* Legacy redirects for case-studies URLs */}
                     <Route path="/case-studies" element={<Projects />} />

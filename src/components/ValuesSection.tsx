@@ -16,25 +16,25 @@ const ValuesSection: React.FC<ValuesSectionProps> = ({ values }) => {
   const { t } = useLanguage();
   
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-telegraf font-bold text-4xl text-primary mb-6">
+        <div className="text-center mb-12">
+          <h2 className="font-telegraf font-bold text-2xl md:text-3xl text-primary mb-4">
             {t('about.values.title')}
           </h2>
-          <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="font-telegraf text-base text-gray-600 max-w-3xl mx-auto">
             {t('about.values.description')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {values.map((value, index) => (
             <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardContent className="p-8">
-                <h3 className="font-telegraf font-semibold text-2xl text-primary mb-4">
+              <CardContent className="p-6">
+                <h3 className="font-telegraf font-semibold text-lg text-primary mb-3">
                   {value.title}
                 </h3>
-                <p className="font-telegraf text-gray-600 leading-relaxed">
+                <p className="font-telegraf text-base text-gray-600 leading-relaxed">
                   {value.description}
                 </p>
               </CardContent>

@@ -27,16 +27,16 @@ export const ServiceCard = ({ icon: Icon, title, description, features, delivera
 
   return (
     <Card className="group flex flex-col justify-between h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
-      <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5 pb-6">
-        <div className="flex items-start space-x-4">
+      <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5 pb-4">
+        <div className="flex items-start space-x-3">
           <div className="flex-shrink-0">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary text-white rounded-xl group-hover:bg-secondary transition-colors duration-300">
-              <Icon className="h-6 w-6" aria-hidden="true" />
+            <div className="inline-flex items-center justify-center w-10 h-10 bg-primary text-white rounded-xl group-hover:bg-secondary transition-colors duration-300">
+              <Icon className="h-5 w-5" aria-hidden="true" />
             </div>
           </div>
           <div className="flex-1">
-            <div className="flex items-center gap-2 mb-6">
-              <CardTitle className="font-telegraf text-2xl text-primary">
+            <div className="flex items-center gap-2 mb-3">
+              <CardTitle className="font-telegraf text-lg text-primary">
                 {title}
               </CardTitle>
               <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -47,7 +47,7 @@ export const ServiceCard = ({ icon: Icon, title, description, features, delivera
                     onClick={handlePopoverToggle}
                     type="button"
                   >
-                    <Info className="h-4 w-4" />
+                    <Info className="h-3.5 w-3.5" />
                   </button>
                 </PopoverTrigger>
                 <PopoverContent 
@@ -64,29 +64,29 @@ export const ServiceCard = ({ icon: Icon, title, description, features, delivera
                 </PopoverContent>
               </Popover>
             </div>
-            <p className="font-telegraf text-gray-600 leading-relaxed">
+            <p className="font-telegraf text-sm text-gray-600 leading-relaxed">
               {description}
             </p>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="p-6 flex-grow flex flex-col justify-between">
-        <div className="mb-6">
-          <h4 className="font-telegraf font-semibold text-sm text-gray-800 mb-3 uppercase tracking-wide">
+      <CardContent className="p-4 flex-grow flex flex-col justify-between">
+        <div className="mb-4">
+          <h4 className="font-telegraf font-semibold text-xs text-gray-800 mb-2 uppercase tracking-wide">
             {t('services.features')}
           </h4>
-          <ul className="space-y-2" role="list">
+          <ul className="space-y-1.5" role="list">
             {features.map((feature, featureIndex) => (
-              <li key={featureIndex} className="flex items-center space-x-3">
-                <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" aria-hidden="true" />
-                <span className="font-telegraf text-gray-600">{feature}</span>
+              <li key={featureIndex} className="flex items-center space-x-2">
+                <CheckCircle className="h-3.5 w-3.5 text-accent flex-shrink-0" aria-hidden="true" />
+                <span className="font-telegraf text-xs text-gray-600">{feature}</span>
               </li>
             ))}
           </ul>
         </div>
-        <div className="pt-4 border-t border-gray-100 mt-auto">
-          <Badge variant="outline" className="text-primary border-accent/20">
+        <div className="pt-3 border-t border-gray-100 mt-auto">
+          <Badge variant="outline" className="text-primary border-accent/20 text-xs">
             {deliverables}
           </Badge>
         </div>
