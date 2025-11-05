@@ -43,13 +43,15 @@ const ContactForm = () => {
     if (!validateEmail(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
-    if (!validateRequired(formData.company, 2)) {
+    // Company, industry, and subject are now optional
+    // Only validate if they have values
+    if (formData.company && !validateRequired(formData.company, 2)) {
       newErrors.company = "Company name must be at least 2 characters long";
     }
-    if (!validateRequired(formData.industry, 2)) {
+    if (formData.industry && !validateRequired(formData.industry, 2)) {
       newErrors.industry = "Industry must be at least 2 characters long";
     }
-    if (!validateRequired(formData.subject, 3)) {
+    if (formData.subject && !validateRequired(formData.subject, 3)) {
       newErrors.subject = "Subject must be at least 3 characters long";
     }
     if (!validateRequired(formData.message, 10)) {
