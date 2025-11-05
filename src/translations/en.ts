@@ -49,12 +49,14 @@ export const enTranslations: Record<string, string> = {
   'home.guide.feature4': 'Workflow optimization and automation',
   'home.guide.feature5': 'User-centric data environments built with security and compliance requirements in mind',
   'home.guide.conclusion': 'We free up organizational teams from managing complex systems, allowing them to focus on what they do best.',
+  'home.guide.moreAboutUs': 'More about us here.',
+  'home.guide.learnMoreServices': 'Learn more about our Services',
   
   // Plan Section
   'home.plan.title': 'Getting started is simple:',
-  'home.plan.step1': 'Complete our <strong><a href="/checklist" class="text-primary hover:underline">free Systems Assessment</a></strong> to identify potential inefficiencies   ',
-  'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities',
-  'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.  ',
+  'home.plan.step1': 'Complete our <strong><a href="/checklist" class="text-primary hover:underline">free Systems Assessment</a></strong> to identify potential inefficiencies.',
+  'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities.',
+  'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.',
   
   // Two Paths Forward Section
   'home.twoPaths.title': 'Two Paths Forward: Which Will You Choose?',

@@ -299,7 +299,7 @@ const Home = () => {
                   </p>
                   <p className="font-telegraf text-base sm:text-lg text-gray-700 mb-6">
                     <Link to="/about" className="text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 font-semibold">
-                      More about us here.
+                      {t('home.guide.moreAboutUs')}
                     </Link>
               </p>
             </div>
@@ -346,7 +346,7 @@ const Home = () => {
                 {t('home.guide.conclusion')}
               </p>
               <Link to="/services" className="font-telegraf text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 text-base sm:text-lg font-bold">
-                Learn more about our Services
+                {t('home.guide.learnMoreServices')}
               </Link>
             </div>
           </div>
