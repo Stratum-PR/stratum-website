@@ -40,8 +40,8 @@ const Resources = () => {
       href: '/checklist',
       image: '/img/document-review-process-quality-control-600nw-2504481787.jpg.webp',
       description: language === 'en'
-        ? 'Take our free Systems Checklist to discover your technology needs'
-        : 'Realiza nuestra Lista de Verificación de Sistemas gratuita para descubrir tus necesidades tecnológicas'
+        ? 'Take our free Systems Assessment to discover your technology needs'
+        : 'Realiza nuestra Evaluación de Sistemas gratuita para descubrir tus necesidades tecnológicas'
     }
   ];
 
