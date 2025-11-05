@@ -16,7 +16,7 @@ const Home = () => {
   const { t } = useLanguage();
   const [isClient, setIsClient] = useState(false);
   
-  // Hydration optimization
+  // Hydration optimization 
   useEffect(() => {
     setIsClient(true);
   }, []);
