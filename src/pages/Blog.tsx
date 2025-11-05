@@ -39,8 +39,16 @@ const Blog = () => {
         
         // Check if Sanity is configured
         if (!isSanityConfigured || !sanityClient) {
-          console.error('❌ Sanity is not configured - missing VITE_SANITY_PROJECT_ID');
-          setError('Blog is not configured. Please set VITE_SANITY_PROJECT_ID in environment variables.');
+          const errorMsg = 'Blog is not configured. Please set VITE_SANITY_PROJECT_ID and VITE_SANITY_DATASET in Vercel environment variables.';
+          console.error('❌ Sanity is not configured:', {
+            isSanityConfigured,
+            hasClient: !!sanityClient,
+            projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'MISSING',
+            dataset: import.meta.env.VITE_SANITY_DATASET || 'MISSING',
+            envMode: import.meta.env.MODE,
+            isProd: import.meta.env.PROD,
+          });
+          setError(errorMsg);
           setLoading(false);
           return;
         }
