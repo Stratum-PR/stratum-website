@@ -7,15 +7,16 @@ const dataset = import.meta.env.VITE_SANITY_DATASET || 'production'
 // Check if Sanity is properly configured
 export const isSanityConfigured = !!projectId
 
-// Debug logging (only in development)
-if (import.meta.env.DEV) {
-  console.log('🔍 Sanity Client Config:', {
-    projectId: projectId || 'MISSING',
-    dataset,
-    hasProjectId: !!projectId,
-    isConfigured: isSanityConfigured,
-  })
+// Debug logging (in both development and production for troubleshooting)
+const logConfig = {
+  projectId: projectId || 'MISSING',
+  dataset,
+  hasProjectId: !!projectId,
+  isConfigured: isSanityConfigured,
+  env: import.meta.env.MODE,
+  isProd: import.meta.env.PROD,
 }
+console.log('🔍 Sanity Client Config:', logConfig)
 
 if (!projectId) {
   console.error('❌ CRITICAL: VITE_SANITY_PROJECT_ID is missing!')
