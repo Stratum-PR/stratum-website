@@ -25,39 +25,39 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden w-full">
-      <div className="flex items-center justify-center p-8 bg-white">
+      <div className="h-48 bg-white overflow-hidden">
         {founder.image ? (
           <img
             src={founder.image}
             alt={`${founder.name} profile`}
-            className="w-3/4 h-3/4 object-cover rounded-full"
+            className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-full">
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
             <span className="text-4xl font-telegraf font-bold text-gray-600">
               {founder.name.split(' ').map(n => n[0]).join('')}
             </span>
           </div>
         )}
       </div>
-      <CardContent className="p-6">
-        <h3 className="font-telegraf font-bold text-lg text-primary mb-2">
+      <CardContent className="p-4">
+        <h3 className="font-telegraf font-bold text-base text-primary mb-1">
           {founder.name}
         </h3>
-        <p className="font-telegraf font-semibold text-sm text-secondary mb-3">
+        <p className="font-telegraf font-semibold text-xs text-secondary mb-2">
           {founder.role}
         </p>
-        <p className="font-telegraf text-sm text-gray-600 mb-4 leading-relaxed">
+        <p className="font-telegraf text-xs text-gray-600 mb-3 leading-relaxed line-clamp-3">
           {founder.bio}
         </p>
         
-        <div className="mb-4">
-          <h4 className="font-telegraf font-semibold text-xs text-gray-800 mb-2">
+        <div>
+          <h4 className="font-telegraf font-semibold text-xs text-gray-800 mb-1.5">
             {t('about.team.expertise')}
           </h4>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1">
             {founder.expertise.map((skill, skillIndex) => (
-              <Badge key={skillIndex} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary hover:text-white text-xs">
+              <Badge key={skillIndex} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary hover:text-white text-xs px-2 py-0.5">
                 {skill}
               </Badge>
             ))}

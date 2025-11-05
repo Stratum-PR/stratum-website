@@ -18,7 +18,7 @@ export const esTranslations: Record<string, string> = {
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
   'nav.newsupdates': 'Noticias y Actualizaciones',
-  'nav.checklist': 'Lista de Verificación de Sistemas',
+  'nav.checklist': 'Evaluación de Sistemas',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'FAQ',
   
@@ -27,7 +27,7 @@ export const esTranslations: Record<string, string> = {
   'home.hero.subtitle': '',
   'home.hero.description': 'Con sede en Puerto Rico, Stratum construye y gestiona sistemas de datos inteligentes que reducen el trabajo manual y optimizan las operaciones sin necesidad de un equipo interno de tiempo completo.',
   'home.hero.cta.primary': 'Programar una Consulta Gratuita',
-  'home.hero.cta.secondary': 'Descargar la Lista de Verificación de Salud de Datos',
+  'home.hero.cta.secondary': 'Obtener Evaluación de Sistemas',
   
   // Problem Section
   'home.problem.title': '¿Estos Desafíos Te Están Reteniendo?',
@@ -51,7 +51,7 @@ export const esTranslations: Record<string, string> = {
   
   // Plan Section
   'home.plan.title': 'Comenzar es simple:',
-  'home.plan.step1': 'Completa nuestra <strong><a href="/checklist" class="text-primary hover:underline">lista de verificación gratuita</a></strong> para identificar ineficiencias potenciales',
+  'home.plan.step1': 'Completa nuestra <strong><a href="/checklist" class="text-primary hover:underline">Evaluación de Sistemas gratuita</a></strong> para identificar ineficiencias potenciales',
   'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades  ',
   'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong>, revisado hasta que sea la opción correcta.   ',
   
@@ -394,7 +394,7 @@ export const esTranslations: Record<string, string> = {
   
   // Resources page
   'resources.hero.title': 'Recursos',
-  'resources.hero.description': 'Explora nuestros proyectos, mantente actualizado con noticias y perspectivas, y evalúa tu preparación TI con nuestra lista de verificación gratuita.',
+  'resources.hero.description': 'Explora nuestros proyectos, mantente actualizado con noticias y perspectivas, y evalúa tus sistemas con nuestra Evaluación de Sistemas gratuita.',
   'resources.download': 'Descargar Recurso',
   'resources.visit': 'Visitar Recurso',
   'resources.cta.title': '¿Necesitas Recursos Personalizados?',

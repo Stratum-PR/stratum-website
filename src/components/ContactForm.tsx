@@ -174,24 +174,24 @@ const ContactForm = () => {
 
   return (
     <Card className="border-0 shadow-xl">
-      <CardHeader>
-        <CardTitle className="font-telegraf text-3xl text-primary flex items-center">
-          <MessageSquare className="h-8 w-8 mr-3" />
+      <CardHeader className="pb-4">
+        <CardTitle className="font-telegraf text-2xl text-primary flex items-center">
+          <MessageSquare className="h-6 w-6 mr-2" />
           {t('contact.form.title')}
         </CardTitle>
-        <p className="font-telegraf text-gray-600 mt-2">
+        <p className="font-telegraf text-sm text-gray-600 mt-1">
           {t('contact.form.description')}
         </p>
-        <div className="flex items-center text-sm text-gray-500 mt-2">
-          <Shield className="h-4 w-4 mr-1" />
+        <div className="flex items-center text-xs text-gray-500 mt-1">
+          <Shield className="h-3 w-3 mr-1" />
           {t('contact.form.security')}
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-0">
         {isSubmitted ? (
           <ContactFormSuccess />
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <SecurityCaptcha 
               honeypotField={honeypotField}
               honeypotValue={honeypotValue}
@@ -207,7 +207,7 @@ const ContactForm = () => {
             <Button 
               type="submit" 
               disabled={isSubmitting || isSubmissionThrottled} 
-              className="w-full bg-primary hover:bg-primary-800 font-telegraf font-semibold py-3 transition-all duration-300 hover:shadow-lg disabled:opacity-50"
+              className="w-full bg-primary hover:bg-primary-800 font-telegraf font-semibold py-2 text-sm transition-all duration-300 hover:shadow-lg disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>

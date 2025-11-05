@@ -214,7 +214,7 @@ const Home = () => {
                 variant="outline" 
                 size="lg" 
                 className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-sm" 
-                aria-label="Take the Systems Checklist"
+                aria-label="Take the Systems Assessment"
               >
                 <Link to="/checklist">
                   {t('home.hero.cta.secondary')}

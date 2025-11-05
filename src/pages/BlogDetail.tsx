@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, Calendar, User, Tag } from "lucide-react";
+import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
 import { useSEO } from '@/hooks/useSEO';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { sanityClient, blogPostBySlugQuery, urlFor, isSanityConfigured } from '@/lib/sanity';
@@ -331,23 +331,6 @@ const BlogDetail = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="font-telegraf font-bold text-4xl md:text-5xl mb-6">
-            {t('blog.cta.title')}
-          </h2>
-          <p className="font-telegraf text-xl mb-8 text-primary-100">
-            {t('blog.cta.description')}
-          </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-            <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-              {t('blog.cta.button')}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-          </Button>
-        </div>
-      </section>
     </div>
   );
 };

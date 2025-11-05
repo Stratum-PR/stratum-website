@@ -18,7 +18,7 @@ export const enTranslations: Record<string, string> = {
   'nav.resources': 'Resources',
   'nav.blog': 'Blog',
   'nav.newsupdates': 'News & Updates',
-  'nav.checklist': 'Systems Checklist',
+  'nav.checklist': 'Systems Assessment',
   'nav.schedule': 'Book Free Consultation',
   'nav.faq': 'FAQ',
   
@@ -27,7 +27,7 @@ export const enTranslations: Record<string, string> = {
   'home.hero.subtitle': '',
   'home.hero.description': 'Based in Puerto Rico, Stratum builds and manages intelligent data systems that reduce manual work and streamline operations without the need of a full-time internal team.',
   'home.hero.cta.primary': 'Book Free Consultation',
-  'home.hero.cta.secondary': 'Get System Fit Test',
+  'home.hero.cta.secondary': 'Get Systems Assessment',
 
   
   // Problem Section
@@ -52,7 +52,7 @@ export const enTranslations: Record<string, string> = {
   
   // Plan Section
   'home.plan.title': 'Getting started is simple:',
-  'home.plan.step1': 'Complete our <strong><a href="/checklist" class="text-primary hover:underline">free checklist</a></strong> to identify potential inefficiencies   ',
+  'home.plan.step1': 'Complete our <strong><a href="/checklist" class="text-primary hover:underline">free Systems Assessment</a></strong> to identify potential inefficiencies   ',
   'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities',
   'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.  ',
   
@@ -81,7 +81,7 @@ export const enTranslations: Record<string, string> = {
   'home.finalCta.title': 'Reach your potential with Stratum.',
   'home.finalCta.description': 'Ready to transform your business with data-driven insights?',
   'home.finalCta.consultation': 'Book Free Consultation',
-  'home.finalCta.checklist': 'Get System Fit Test',
+  'home.finalCta.checklist': 'Get Systems Assessment',
   
   // Stats
   'stats.experience': 'Years of Experience',
@@ -395,7 +395,7 @@ export const enTranslations: Record<string, string> = {
   
   // Resources page
   'resources.hero.title': 'Resources',
-  'resources.hero.description': 'Explore our projects, stay updated with news and insights, and assess your IT readiness with our free checklist.',
+  'resources.hero.description': 'Explore our projects, stay updated with news and insights, and assess your systems with our free Systems Assessment.',
   'resources.download': 'Download Resource',
   'resources.visit': 'Visit Resource',
   'resources.cta.title': 'Need Custom Resources?',

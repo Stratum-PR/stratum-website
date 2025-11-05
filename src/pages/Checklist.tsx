@@ -249,7 +249,7 @@ const Checklist = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useSEO({
-    title: "Systems Checklist - Free Assessment | Stratum PR",
+    title: "Systems Assessment - Free Evaluation | Stratum PR",
     description: "Take our free 10-question systems assessment to discover how well your technology supports your business goals.",
     keywords: "systems assessment, technology readiness, business systems evaluation, digital readiness checklist",
     canonical: "https://www.stratumpr.com/checklist",
@@ -327,7 +327,7 @@ const Checklist = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-2xl md:text-3xl text-white drop-shadow-lg mb-3">
-            {language === 'en' ? 'Systems Checklist Assessment' : 'Evaluación de Lista de Verificación de Sistemas'}
+            {language === 'en' ? 'Systems Assessment' : 'Evaluación de Sistemas'}
           </h1>
           <p className="font-telegraf text-base md:text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
             {language === 'en' 
