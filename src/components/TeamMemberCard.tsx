@@ -25,7 +25,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden w-full max-w-[280px]">
-      <div className="h-48 bg-white overflow-hidden">
+      <div className="h-64 bg-white overflow-hidden">
         {founder.image ? (
           <img
             src={founder.image}
