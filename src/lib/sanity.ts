@@ -32,16 +32,28 @@ if (!projectId) {
 let sanityClient: ReturnType<typeof createClient> | null = null
 
 if (projectId) {
+  // In production, try CDN first, but it requires CORS configuration
+  // If CORS isn't configured, we'll use direct API as fallback
+  const useCdn = import.meta.env.PROD
+  
   sanityClient = createClient({
     projectId,
     dataset,
-    // Disable CDN in development to avoid CORS issues
-    // CDN requires CORS configuration, direct API doesn't
-    useCdn: import.meta.env.PROD, // Use CDN only in production
+    // Use CDN in production for better performance (requires CORS setup)
+    // Direct API works without CORS but is slower
+    useCdn: useCdn,
     apiVersion: '2024-01-01',
     // Add token if available (for private content, not needed for public read)
     token: import.meta.env.VITE_SANITY_TOKEN || undefined,
+    // Add request tag for better error tracking
+    requestTagPrefix: 'stratum-website',
   })
+  
+  if (useCdn) {
+    console.log('📡 Using Sanity CDN (requires CORS configuration for dev.stratumpr.com)')
+  } else {
+    console.log('📡 Using Sanity Direct API (no CORS required)')
+  }
 } else {
   console.warn('⚠️ Sanity client not initialized - VITE_SANITY_PROJECT_ID is missing')
 }

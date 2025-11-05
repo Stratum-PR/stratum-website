@@ -6,10 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { CookieConsent } from "./components/CookieConsent";
 import ScrollToTop from "./components/ScrollToTop";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -25,6 +23,10 @@ import Privacy from "./pages/Privacy";
 import Sitemap from "./pages/Sitemap";
 import Checklist from "./pages/Checklist";
 import NotFound from "./pages/NotFound";
+import { lazy, Suspense } from "react";
+
+// Lazy load Studio to avoid loading it on every page
+const Studio = lazy(() => import("./pages/Studio"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,37 +46,39 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <ScrollToTop />
-            <div className="min-h-screen flex flex-col bg-white">
-              <Header />
-              <main className="flex-1">                <ErrorBoundary>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/solutions" element={<Solutions />} />
-                    <Route path="/resources" element={<Resources />} />
-                    <Route path="/newsupdates" element={<Blog />} />
-                    <Route path="/newsupdates/:slug" element={<BlogDetail />} />
-                    {/* Legacy redirect for /blog */}
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/blog/:slug" element={<BlogDetail />} />
-                    <Route path="/checklist" element={<Checklist />} />
-                    <Route path="/projects/:slug" element={<ProjectDetail />} />
-                    {/* Legacy redirects for case-studies URLs */}
-                    <Route path="/case-studies" element={<Projects />} />
-                    <Route path="/case-studies/:slug" element={<ProjectDetail />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/faq" element={<FAQ />} />
-                    <Route path="/privacy" element={<Privacy />} />
-                    <Route path="/sitemap.xml" element={<Sitemap />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </ErrorBoundary>
-              </main>
-              <Footer />
-              <CookieConsent />
-            </div>
+            <Routes>
+              <Route 
+                path="/studio/*" 
+                element={
+                  <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading Studio...</div>}>
+                    <Studio />
+                  </Suspense>
+                } 
+              />
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/solutions" element={<Solutions />} />
+                <Route path="/resources" element={<Resources />} />
+                <Route path="/newsupdates" element={<Blog />} />
+                <Route path="/newsupdates/:slug" element={<BlogDetail />} />
+                {/* Legacy redirect for /blog */}
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogDetail />} />
+                <Route path="/checklist" element={<Checklist />} />
+                <Route path="/projects/:slug" element={<ProjectDetail />} />
+                {/* Legacy redirects for case-studies URLs */}
+                <Route path="/case-studies" element={<Projects />} />
+                <Route path="/case-studies/:slug" element={<ProjectDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/sitemap.xml" element={<Sitemap />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
           </BrowserRouter>
         </ErrorBoundary>
       </LanguageProvider>

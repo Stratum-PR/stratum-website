@@ -17,13 +17,32 @@ const dataset = process.env.VITE_SANITY_DATASET || process.env.NEXT_PUBLIC_SANIT
 
 export default defineCliConfig({ 
   api: { projectId, dataset },
-  // Configure Vite to use a separate build directory
-  vite: (config) => ({
-    ...config,
-    build: {
-      ...config.build,
-      outDir: resolve(process.cwd(), '.sanity', 'dist'),
-      emptyOutDir: true,
-    },
-  }),
+  // Configure Vite to use a separate build directory and resolve path aliases
+  vite: (config) => {
+    const srcPath = resolve(process.cwd(), 'src');
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          '@': srcPath,
+        },
+      },
+      build: {
+        ...config.build,
+        outDir: resolve(process.cwd(), '.sanity', 'dist'),
+        emptyOutDir: true,
+      },
+      // Suppress dependency pre-bundling warnings for src files
+      // These are just warnings and won't prevent the studio from running
+      optimizeDeps: {
+        ...config.optimizeDeps,
+        exclude: [
+          ...(config.optimizeDeps?.exclude || []),
+          '@sanity/visual-editing',
+        ],
+      },
+    };
+  },
 })
