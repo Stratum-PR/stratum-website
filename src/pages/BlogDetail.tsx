@@ -275,7 +275,7 @@ const BlogDetail = () => {
 
       {/* Hero Image */}
       {post.mainImage && (
-        <section className="pb-2">
+        <section className="pb-0">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <img 
               src={mainImageUrl} 
@@ -287,12 +287,12 @@ const BlogDetail = () => {
       )}
 
       {/* Content */}
-      <section className="pt-2 pb-20">
+      <section className="pt-0 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <div className="font-telegraf text-gray-700 leading-relaxed prose prose-lg max-w-none [&_h6]:!text-sm [&_h6]:!font-semibold [&_h6]:!mb-1 [&_h6]:!mt-2 [&_h6]:!leading-normal">
+              <div className="font-telegraf text-gray-700 leading-relaxed prose prose-lg max-w-none [&>*:first-child]:!mt-0 [&_h6]:!text-sm [&_h6]:!font-semibold [&_h6]:!mb-1 [&_h6]:!mt-2 [&_h6]:!leading-normal">
                 <PortableText value={content} />
               </div>
             </div>

@@ -64,7 +64,7 @@ const portableTextComponents = {
       </h6>
     ),
     normal: ({ children }: any) => (
-      <p className="font-telegraf text-base text-gray-700 leading-relaxed mb-4">
+      <p className="font-telegraf text-base text-gray-700 leading-relaxed mb-4 first:mt-0">
         {children}
       </p>
     ),
