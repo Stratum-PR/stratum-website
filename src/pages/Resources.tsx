@@ -22,7 +22,7 @@ const Resources = () => {
     {
       name: t('projects.hero.title'),
       href: '/projects',
-      image: '/img/working_zoom.jpeg',
+      image: '/img/abbe-sublett-nxZDMUQhN4o-unsplash.jpg',
       description: language === 'en' 
         ? 'Explore real-world examples of our data analytics and automation solutions'
         : 'Explora ejemplos del mundo real de nuestras soluciones de análisis de datos y automatización'
@@ -30,7 +30,7 @@ const Resources = () => {
     {
       name: t('nav.newsupdates'),
       href: '/newsupdates',
-      image: '/img/conny-schneider-s8JOKMUiyo4-unsplash.jpg',
+      image: '/img/kaja-sariwating-al3wpaonTWc-unsplash.jpeg',
       description: language === 'en'
         ? 'Stay informed with the latest insights, trends, and best practices'
         : 'Mantente informado con las últimas perspectivas, tendencias y mejores prácticas'
@@ -38,7 +38,7 @@ const Resources = () => {
     {
       name: t('nav.checklist'),
       href: '/checklist',
-      image: '/img/hero_poster.png',
+      image: '/img/document-review-process-quality-control-600nw-2504481787.jpg.webp',
       description: language === 'en'
         ? 'Take our free IT readiness assessment to discover your technology needs'
         : 'Realiza nuestra evaluación gratuita de preparación TI para descubrir tus necesidades tecnológicas'

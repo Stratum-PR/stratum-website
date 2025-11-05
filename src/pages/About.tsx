@@ -40,7 +40,7 @@ const About = () => {
       name: "Jovaniel Rodriguez",
       role: "Co-Founder, Operations & Growth",
       bio: "Former consultant with 8+ years in enterprise analytics. Jovaniel leads strategic initiatives and client relationships, specializing in digital transformation and data architecture.",
-      expertise: ["Strategic Consulting", "AI/ML", "Digital Modernization", "Data Governance", "Systems Architechture"],
+      expertise: ["Strategic Consulting", "AI/ML", "Digital Modernization", "Data Governance", "Systems Architecture"],
       linkedin: "https://www.linkedin.com/in/jovanielrodriguez-maldonado/",
       email: "j.rodriguez@stratumpr.com",
       image: "/img/Jovaniel.jpg"

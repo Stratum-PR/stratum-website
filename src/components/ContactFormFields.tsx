@@ -80,13 +80,12 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="company" className="font-telegraf font-medium">
-            {t('contact.form.company')} *
+            {t('contact.form.company')}
           </Label>
           <Input 
             id="company" 
             name="company" 
             type="text" 
-            required 
             value={formData.company} 
             onChange={onChange} 
             className={`mt-2 font-telegraf ${errors.company ? 'border-red-500' : ''}`} 
@@ -97,13 +96,12 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
         </div>
         <div>
           <Label htmlFor="industry" className="font-telegraf font-medium">
-            {t('contact.form.industry')} *
+            {t('contact.form.industry')}
           </Label>
           <Input 
             id="industry" 
             name="industry" 
             type="text" 
-            required 
             value={formData.industry} 
             onChange={onChange} 
             className={`mt-2 font-telegraf ${errors.industry ? 'border-red-500' : ''}`} 
@@ -116,13 +114,12 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       
       <div>
         <Label htmlFor="subject" className="font-telegraf font-medium">
-          {t('contact.form.subject')} *
+          {t('contact.form.subject')}
         </Label>
         <Input 
           id="subject" 
           name="subject" 
           type="text" 
-          required 
           value={formData.subject} 
           onChange={onChange} 
           className={`mt-2 font-telegraf ${errors.subject ? 'border-red-500' : ''}`} 

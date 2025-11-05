@@ -24,13 +24,13 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   const { t } = useLanguage();
   
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden">
-      <div className="aspect-square bg-gradient-to-br from-primary to-secondary">
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden w-full">
+      <div className="aspect-square bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-8">
         {founder.image ? (
           <img
             src={founder.image}
             alt={`${founder.name} profile`}
-            className="w-full h-full object-cover"
+            className="w-3/4 h-3/4 object-cover rounded-full"
           />
         ) : (
           <div className="w-full h-full bg-white/20 flex items-center justify-center">
