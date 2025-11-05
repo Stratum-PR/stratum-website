@@ -18,7 +18,7 @@ export const esTranslations: Record<string, string> = {
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
   'nav.newsupdates': 'Noticias y Actualizaciones',
-  'nav.checklist': 'Lista de Verificación de TI',
+  'nav.checklist': 'Lista de Verificación de Sistemas',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'FAQ',
   
@@ -51,8 +51,8 @@ export const esTranslations: Record<string, string> = {
   
   // Plan Section
   'home.plan.title': 'Comenzar es simple:',
-  'home.plan.step1': 'Completa nuestra <strong>lista de verificación gratuita</strong> para identificar ineficiencias potenciales',
-  'home.plan.step2': 'Programa una <strong>consulta gratuita de 30 minutos</strong> para revisar necesidades y prioridades  ',
+  'home.plan.step1': 'Completa nuestra <strong><a href="/checklist" class="text-primary hover:underline">lista de verificación gratuita</a></strong> para identificar ineficiencias potenciales',
+  'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades  ',
   'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong>, revisado hasta que sea la opción correcta.   ',
   
   // Two Paths Forward Section
