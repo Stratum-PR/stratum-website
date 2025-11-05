@@ -25,7 +25,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden w-full">
-      <div className="aspect-square bg-gradient-to-br from-primary to-secondary flex items-center justify-center p-8">
+      <div className="flex items-center justify-center p-8 bg-white">
         {founder.image ? (
           <img
             src={founder.image}
@@ -33,8 +33,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
             className="w-3/4 h-3/4 object-cover rounded-full"
           />
         ) : (
-          <div className="w-full h-full bg-white/20 flex items-center justify-center">
-            <span className="text-4xl font-telegraf font-bold text-white">
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-full">
+            <span className="text-4xl font-telegraf font-bold text-gray-600">
               {founder.name.split(' ').map(n => n[0]).join('')}
             </span>
           </div>

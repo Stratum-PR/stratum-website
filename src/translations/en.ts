@@ -18,7 +18,7 @@ export const enTranslations: Record<string, string> = {
   'nav.resources': 'Resources',
   'nav.blog': 'Blog',
   'nav.newsupdates': 'News & Updates',
-  'nav.checklist': 'IT Readiness Checklist',
+  'nav.checklist': 'Systems Checklist',
   'nav.schedule': 'Book Free Consultation',
   'nav.faq': 'FAQ',
   
@@ -52,8 +52,8 @@ export const enTranslations: Record<string, string> = {
   
   // Plan Section
   'home.plan.title': 'Getting started is simple:',
-  'home.plan.step1': 'Complete our <strong>free checklist</strong> to identify potential inefficiencies   ',
-  'home.plan.step2': 'Schedule a <strong>free 30-minute consultation</strong> to review needs and priorities',
+  'home.plan.step1': 'Complete our <strong><a href="/checklist" class="text-primary hover:underline">free checklist</a></strong> to identify potential inefficiencies   ',
+  'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities',
   'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.  ',
   
   // Two Paths Forward Section

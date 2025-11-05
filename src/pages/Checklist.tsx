@@ -249,9 +249,9 @@ const Checklist = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useSEO({
-    title: "IT Readiness Checklist - Free Assessment | Stratum PR",
-    description: "Take our free 10-question IT readiness assessment to discover how well your technology supports your business goals.",
-    keywords: "IT assessment, technology readiness, business systems evaluation, digital readiness checklist",
+    title: "Systems Checklist - Free Assessment | Stratum PR",
+    description: "Take our free 10-question systems assessment to discover how well your technology supports your business goals.",
+    keywords: "systems assessment, technology readiness, business systems evaluation, digital readiness checklist",
     canonical: "https://www.stratumpr.com/checklist",
     ogType: "website"
   }, "checklist");
@@ -327,7 +327,7 @@ const Checklist = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-2xl md:text-3xl text-white drop-shadow-lg mb-3">
-            {language === 'en' ? 'IT Readiness Assessment' : 'Evaluación de Preparación TI'}
+            {language === 'en' ? 'Systems Checklist Assessment' : 'Evaluación de Lista de Verificación de Sistemas'}
           </h1>
           <p className="font-telegraf text-base md:text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
             {language === 'en' 
@@ -423,7 +423,7 @@ const Checklist = () => {
                 <CardContent className="p-8">
                   <div className="text-center mb-8">
                     <h2 className="font-telegraf font-bold text-3xl text-primary mb-4">
-                      {language === 'en' ? 'Your IT Readiness Score' : 'Tu Puntuación de Preparación TI'}
+                      {language === 'en' ? 'Your Systems Assessment Score' : 'Tu Puntuación de Evaluación de Sistemas'}
                     </h2>
                     <div className="inline-block">
                       <div className="text-6xl font-bold text-primary mb-2">{score}/30</div>
