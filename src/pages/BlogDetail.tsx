@@ -292,7 +292,7 @@ const BlogDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <div className="font-telegraf text-gray-700 leading-relaxed prose prose-lg max-w-none">
+              <div className="font-telegraf text-gray-700 leading-relaxed prose prose-lg max-w-none [&_h6]:!text-sm [&_h6]:!font-semibold [&_h6]:!mb-1 [&_h6]:!mt-2 [&_h6]:!leading-normal">
                 <PortableText value={content} />
               </div>
             </div>

@@ -32,6 +32,7 @@ const portableTextComponents = {
     },
   },
   block: {
+    // Sanity Portable Text maps style: 'h6' to block.h6
     h1: ({ children }: any) => (
       <h1 className="font-telegraf font-bold text-4xl text-primary mb-6 mt-8 first:mt-0">
         {children}
@@ -58,7 +59,7 @@ const portableTextComponents = {
       </h5>
     ),
     h6: ({ children }: any) => (
-      <h6 className="font-telegraf font-semibold text-sm text-gray-700 mb-2 mt-3">
+      <h6 className="!font-telegraf !font-semibold !text-sm !text-gray-700 !mb-1 !mt-2 !leading-normal">
         {children}
       </h6>
     ),
