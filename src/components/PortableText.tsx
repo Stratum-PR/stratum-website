@@ -52,8 +52,18 @@ const portableTextComponents = {
         {children}
       </h4>
     ),
+    h5: ({ children }: any) => (
+      <h5 className="font-telegraf font-semibold text-lg text-gray-800 mb-2 mt-4">
+        {children}
+      </h5>
+    ),
+    h6: ({ children }: any) => (
+      <h6 className="font-telegraf font-semibold text-sm text-gray-700 mb-2 mt-3">
+        {children}
+      </h6>
+    ),
     normal: ({ children }: any) => (
-      <p className="font-telegraf text-gray-700 leading-relaxed mb-4">
+      <p className="font-telegraf text-base text-gray-700 leading-relaxed mb-4">
         {children}
       </p>
     ),
