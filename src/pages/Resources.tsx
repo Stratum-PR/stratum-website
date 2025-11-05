@@ -61,7 +61,7 @@ const Resources = () => {
         </div>
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
             {t('resources.hero.title')}
           </h1>
