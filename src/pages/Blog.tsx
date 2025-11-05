@@ -5,7 +5,7 @@ import { ArrowRight, Clock, User, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { sanityClient, blogPostsQuery, urlFor } from "@/lib/sanity";
+import { sanityClient, blogPostsQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import { BlogSubscription } from "@/components/BlogSubscription";
 
 interface SanityBlogPost {
@@ -36,6 +36,14 @@ const Blog = () => {
       try {
         setLoading(true);
         setError(null);
+        
+        // Check if Sanity is configured
+        if (!isSanityConfigured || !sanityClient) {
+          console.error('❌ Sanity is not configured - missing VITE_SANITY_PROJECT_ID');
+          setError('Blog is not configured. Please set VITE_SANITY_PROJECT_ID in environment variables.');
+          setLoading(false);
+          return;
+        }
         
         console.log('📡 Fetching blog posts from Sanity...');
         console.log('Query:', blogPostsQuery);
