@@ -48,12 +48,14 @@ export const esTranslations: Record<string, string> = {
   'home.guide.feature4': 'Optimización y automatización de flujos de trabajo',
   'home.guide.feature5': 'Entornos de datos centrados en el usuario construidos con requisitos de seguridad y cumplimiento en mente',
   'home.guide.conclusion': 'Liberamos a los equipos organizacionales de gestionar sistemas complejos, permitiéndoles enfocarse en lo que hacen mejor.',
+  'home.guide.moreAboutUs': 'Más sobre nosotros aquí.',
+  'home.guide.learnMoreServices': 'Más información sobre nuestros Servicios',
   
   // Plan Section
   'home.plan.title': 'Comenzar es simple:',
-  'home.plan.step1': 'Completa nuestra <strong><a href="/checklist" class="text-primary hover:underline">Evaluación de Sistemas gratuita</a></strong> para identificar ineficiencias potenciales',
-  'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades  ',
-  'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong>, revisado hasta que sea la opción correcta.   ',
+  'home.plan.step1': 'Completa nuestra <strong><a href="/checklist" class="text-primary hover:underline">Evaluación de Sistemas gratuita</a></strong> para identificar ineficiencias potenciales.',
+  'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades.',
+  'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong>, revisado hasta que sea la opción correcta.',
   
   // Two Paths Forward Section
   'home.twoPaths.title': 'Dos Caminos Hacia Adelante: ¿Cuál Elegirás?',

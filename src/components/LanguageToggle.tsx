@@ -15,12 +15,18 @@ export const LanguageToggle: React.FC = () => {
     setLanguage(newLanguage);
   };
 
+  const handleToggle = () => {
+    // Immediately toggle language on click
+    handleLanguageChange(language === 'en' ? 'es' : 'en');
+  };
+
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
         <Button
           variant="ghost"
           size="sm"
+          onClick={handleToggle}
           className="flex items-center gap-2 font-telegraf font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors px-2 lg:px-3 flex-shrink-0"
           aria-label={`Current language: ${language === 'en' ? 'English' : 'Spanish'}`}
         >

@@ -70,10 +70,10 @@ export const Header = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
-                  className={`font-telegraf font-medium bg-transparent hover:bg-transparent data-[state=open]:bg-transparent rounded-none ${navFontSize} ${
+                  className={`font-telegraf bg-transparent hover:bg-transparent data-[state=open]:bg-transparent rounded-none ${navFontSize} ${
                     isActive(item.href)
-                      ? 'text-primary border-b-2 border-primary pb-1'
-                      : 'text-gray-700 hover:text-primary'
+                      ? 'text-primary border-b-2 border-primary font-bold'
+                      : 'text-gray-700 hover:text-primary font-medium'
                   }`}
                   onClick={(e) => {
                     // Navigate to resources on click
@@ -105,10 +105,10 @@ export const Header = () => {
         <Link
           key={item.name}
           to={item.href}
-          className={`font-telegraf font-medium transition-colors duration-200 ${navFontSize} whitespace-nowrap ${
+          className={`font-telegraf transition-colors duration-200 ${navFontSize} whitespace-nowrap ${
             isActive(item.href)
-              ? 'text-primary border-b-2 border-primary pb-1'
-              : 'text-gray-700 hover:text-primary'
+              ? 'text-primary border-b-2 border-primary font-bold'
+              : 'text-gray-700 hover:text-primary font-medium'
           }`}
         >
           {item.name}
