@@ -33,7 +33,7 @@ const TeamSection: React.FC<TeamSectionProps> = ({ founders }) => {
           </p>
         </div>
 
-        <div className={`flex flex-wrap justify-center gap-8 max-w-4xl mx-auto`}>
+        <div className={`flex flex-wrap justify-center gap-10 max-w-4xl mx-auto`}>
           {founders.map((founder, index) => (
             <TeamMemberCard
               key={index}
