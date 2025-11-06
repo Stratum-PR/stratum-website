@@ -148,7 +148,7 @@ export const esTranslations: Record<string, string> = {
   
   // Team member data
   'team.jovaniel.name': 'Jovaniel Agosto',
-  'team.jovaniel.role': 'Director Ejecutivo',
+  'team.jovaniel.role': 'Co-Fundador, Infraestructura Tecnológica',
   'team.jovaniel.bio': 'Jovaniel aporta más de 10 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado proyectos transformacionales en empresas Fortune 500. Su experiencia abarca inteligencia empresarial, optimización de procesos y gestión del cambio organizacional.',
   'team.jovaniel.expertise': 'Consultoría Estratégica, Inteligencia Empresarial, Gestión del Cambio, Análisis de Datos',
   

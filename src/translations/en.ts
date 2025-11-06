@@ -149,7 +149,7 @@ export const enTranslations: Record<string, string> = {
   
   // Team member data
   'team.jovaniel.name': 'Jovaniel Rodriguez',
-  'team.jovaniel.role': 'Chief Operations Officer',
+  'team.jovaniel.role': 'Co-Founder, Technology Infrastructure',
   'team.jovaniel.bio': 'Jovaniel brings over 10 years of experience in strategic consulting and data analytics, having led transformational projects at Fortune 500 companies. His expertise spans business intelligence, process optimization, and organizational change management.',
   'team.jovaniel.expertise': 'Strategic Consulting, Business Intelligence, Change Management, Data Analytics',
   
