@@ -187,25 +187,25 @@ const Home = () => {
             ></div>
           </div>
 
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
-            <h1 className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 animate-fade-in leading-tight px-2 sm:px-0" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}}>
+          <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center text-white z-10">
+            <h1 className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 animate-fade-in leading-tight" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}}>
               {t('home.hero.title')}
             </h1>
 
-            <p className="font-telegraf text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 text-primary-100 max-w-3xl mx-auto animate-slide-up leading-relaxed px-2 sm:px-0" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.8)'}}>
+            <p className="font-telegraf text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 text-primary-100 max-w-3xl mx-auto animate-slide-up leading-relaxed" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.8)'}}>
               {t('home.hero.description')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{animationDelay: '0.3s'}}>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center animate-slide-up px-2 sm:px-0" style={{animationDelay: '0.3s'}}>
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base h-12" 
+                className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base h-10 sm:h-12 w-full sm:w-auto max-w-xs sm:max-w-none" 
                 aria-label="Schedule free consultation with Stratum PR data analytics experts"
               >
                 <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                   {t('home.hero.cta.primary')}
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
                 </a>
               </Button>
 
@@ -213,7 +213,7 @@ const Home = () => {
                 asChild 
                 variant="outline" 
                 size="lg" 
-                className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-base h-12" 
+                className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-sm sm:text-base h-10 sm:h-12 w-full sm:w-auto max-w-xs sm:max-w-none" 
                 aria-label="Take the Systems Assessment"
               >
                 <Link to="/checklist">
