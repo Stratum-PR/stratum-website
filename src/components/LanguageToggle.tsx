@@ -28,7 +28,7 @@ export const LanguageToggle: React.FC = () => {
           size="sm"
           onClick={handleToggle}
           className="flex items-center gap-2 font-telegraf font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors px-2 lg:px-3 flex-shrink-0"
-          aria-label={`Current language: ${language === 'en' ? 'English' : 'Spanish'}`}
+          aria-label={`Current language: ${language === 'en' ? 'English' : 'Español'}`}
         >
           {language === 'en' ? (
             <>
@@ -38,7 +38,7 @@ export const LanguageToggle: React.FC = () => {
           ) : (
             <>
               <span className="text-lg">🇵🇷</span>
-              <span className="text-lg font-semibold">Spanish</span>
+              <span className="text-lg font-semibold">Español</span>
             </>
           )}
         </Button>
@@ -50,7 +50,7 @@ export const LanguageToggle: React.FC = () => {
             className="font-telegraf cursor-pointer flex items-center gap-2 w-full px-3 py-2 rounded-md hover:bg-gray-100 transition-colors text-left"
           >
             <span className="text-lg">🇵🇷</span>
-            <span className="font-semibold">Spanish</span>
+            <span className="font-semibold">Español</span>
           </button>
         ) : (
           <button
