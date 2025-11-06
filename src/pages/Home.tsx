@@ -573,15 +573,15 @@ const Home = () => {
         </section>
 
         {/* Final CTA Section - Matching Services Footer */}
-        <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white" aria-labelledby="final-cta-heading">
+        <section className="py-12 sm:py-16 bg-gradient-to-r from-primary to-secondary text-white" aria-labelledby="final-cta-heading">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 id="final-cta-heading" className="font-telegraf font-bold text-2xl md:text-3xl mb-6">
+            <h2 id="final-cta-heading" className="font-telegraf font-bold text-2xl md:text-3xl mb-4 sm:mb-6">
               {t('home.finalCta.title')}
             </h2>
-            <p className="font-telegraf text-base mb-6 text-primary-100">
+            <p className="font-telegraf text-base mb-4 sm:mb-6 text-primary-100">
               {t('home.finalCta.description')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
                 <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
                   {t('services.cta.consultation')}
