@@ -12,15 +12,25 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
 
-  // Load language from localStorage on mount, defaulting to English
+  // Detect browser/device language and load from localStorage
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language') as Language;
+    
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
+      // User has previously selected a language - use it
       setLanguageState(savedLanguage);
     } else {
-      // If no saved language or invalid value, default to English
-      setLanguageState('en');
-      localStorage.setItem('preferred-language', 'en');
+      // First visit: Detect browser/device language
+      const browserLanguage = navigator.language || (navigator as any).userLanguage || 'en';
+      
+      // Extract language code (e.g., 'es' from 'es-PR', 'es-MX', 'es-ES', etc.)
+      const languageCode = browserLanguage.toLowerCase().split('-')[0];
+      
+      // Set to Spanish if browser language starts with 'es', otherwise default to English
+      const detectedLanguage: Language = languageCode === 'es' ? 'es' : 'en';
+      
+      setLanguageState(detectedLanguage);
+      localStorage.setItem('preferred-language', detectedLanguage);
     }
   }, []);
 
