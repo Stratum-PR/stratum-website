@@ -188,7 +188,7 @@ const Home = () => {
           </div>
 
           <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center text-white z-10">
-            <h1 className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 animate-fade-in leading-tight" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}}>
+            <h1 className="font-telegraf font-bold text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 animate-fade-in leading-tight" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}}>
               {t('home.hero.title')}
             </h1>
 
