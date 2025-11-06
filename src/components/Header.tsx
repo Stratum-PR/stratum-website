@@ -19,38 +19,31 @@ export const Header = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   
-  // Navigation items with priority for progressive hiding
-  // Priority order: Lower priority items hide first as window shrinks
+  // Navigation items - simple array, no progressive hiding
   const navigation = [
     {
       name: t('nav.home'),
-      href: '/',
-      priority: 1 // Highest priority - always visible
-    }, 
-    {
-      name: t('nav.services'),
-      href: '/services',
-      priority: 2 // High priority - hide late
-    }, 
-    {
-      name: t('nav.contact'),
-      href: '/contact',
-      priority: 3 // Medium-high priority
+      href: '/'
     },
     {
       name: t('nav.about'),
-      href: '/about',
-      priority: 4 // Medium priority - hide earlier
-    }, 
+      href: '/about'
+    },
     {
-      name: t('nav.resources'),
-      href: '/resources',
-      priority: 5 // Lower priority - hide early
-    }, 
+      name: t('nav.services'),
+      href: '/services'
+    },
+    {
+      name: t('nav.contact'),
+      href: '/contact'
+    },
     {
       name: t('nav.faq'),
-      href: '/faq',
-      priority: 6 // Lowest priority - hide first
+      href: '/faq'
+    },
+    {
+      name: t('nav.resources'),
+      href: '/resources'
     }
   ];
 
@@ -79,26 +72,13 @@ export const Header = () => {
   
   const closeMenu = () => setIsMenuOpen(false);
   
-  // Render navigation items with progressive visibility
-  // Items hide progressively based on priority as window shrinks
+  // Render navigation items - all visible, no progressive hiding
   const renderNavItems = () => {
     return navigation.map(item => {
-      // Progressive visibility classes based on priority
-      // Since parent nav shows at md+, items hide progressively as window shrinks
-      // Lower priority items hide at smaller breakpoints
-      const visibilityClasses = {
-        1: '', // Always visible when nav is visible (no hiding)
-        2: 'hidden 2xl:block', // Hide below 2xl (1536px), show at 2xl+
-        3: 'hidden xl:block', // Hide below xl (1280px), show at xl+
-        4: 'hidden lg:block', // Hide below lg (1024px), show at lg+
-        5: 'hidden lg:block', // Hide below lg, show at lg+ (Resources)
-        6: 'hidden xl:block' // Hide below xl, show at xl+ (FAQ)
-      }[item.priority] || '';
-
       // Check if this is the Resources item - make it clickable with dropdown
       if (item.href === '/resources') {
         return (
-          <NavigationMenu key={item.href} className={visibilityClasses}>
+          <NavigationMenu key={item.href}>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
@@ -137,7 +117,7 @@ export const Header = () => {
         <Link
           key={item.name}
           to={item.href}
-          className={`font-telegraf transition-colors duration-200 ${navFontSize} whitespace-nowrap ${visibilityClasses} ${
+          className={`font-telegraf transition-colors duration-200 ${navFontSize} whitespace-nowrap ${
             isActive(item.href)
               ? 'text-primary border-b-2 border-primary font-bold'
               : 'text-gray-700 hover:text-primary font-medium'
@@ -163,8 +143,8 @@ export const Header = () => {
           </div>
 
           {/* Center: Navigation links - progressively visible based on window size */}
-          {/* Start showing nav items at md breakpoint, center them */}
-          <nav className={`hidden md:flex items-center ${navSpacing} absolute left-1/2 transform -translate-x-1/2`}>
+          {/* Only show navigation menu on desktop (xl+), use hamburger for tablets and mobile */}
+          <nav className={`hidden xl:flex items-center ${navSpacing} absolute left-1/2 transform -translate-x-1/2`}>
             {renderNavItems()}
           </nav>
 
@@ -175,8 +155,8 @@ export const Header = () => {
               <LanguageToggle />
             </div>
             
-            {/* CTA Button - Show progressively: hide on small screens, show from md+ */}
-            <div className="hidden md:block flex-shrink-0">
+            {/* CTA Button - Show only on desktop (xl+) */}
+            <div className="hidden xl:block flex-shrink-0">
               <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 md:px-5 py-2 text-sm rounded-md transition-all duration-200 hover:shadow-lg whitespace-nowrap h-9 md:h-10">
                 <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
                   {t('nav.schedule')}
@@ -184,9 +164,9 @@ export const Header = () => {
               </Button>
             </div>
 
-            {/* Hamburger menu button: Show only when nav items can't fit (below md breakpoint) */}
+            {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
-              className={`md:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors z-50 relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation`}
+              className={`xl:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors z-50 relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}
@@ -211,8 +191,8 @@ export const Header = () => {
               aria-hidden="true"
             />
             
-            {/* Mobile Navigation Menu - positioned below the header */}
-            <div id="mobile-menu" className={`md:hidden fixed top-0 left-0 right-0 z-50 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
+            {/* Mobile/Tablet Navigation Menu - positioned below the header */}
+            <div id="mobile-menu" className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
               {/* Header space to match main header height - keeps logo visible */}
               <div className="h-14 md:h-16 border-b border-gray-100"></div>
               

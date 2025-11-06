@@ -22,26 +22,23 @@ const Resources = () => {
     {
       name: t('projects.hero.title'),
       href: '/projects',
-      image: '/img/abbe-sublett-nxZDMUQhN4o-unsplash.jpg',
-      description: language === 'en' 
-        ? 'Explore real-world examples of our data analytics and automation solutions'
-        : 'Explora ejemplos del mundo real de nuestras soluciones de análisis de datos y automatización'
+      // High-quality professional business/technology image
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=85&auto=format&fit=crop',
+      description: t('resources.projects.description')
     },
     {
       name: t('nav.newsupdates'),
       href: '/newsupdates',
-      image: '/img/kaja-sariwating-al3wpaonTWc-unsplash.jpeg',
-      description: language === 'en'
-        ? 'Stay informed with the latest insights, trends, and best practices'
-        : 'Mantente informado con las últimas perspectivas, tendencias y mejores prácticas'
+      // High-quality modern office/workspace image
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=85&auto=format&fit=crop',
+      description: t('resources.newsupdates.description')
     },
     {
       name: t('nav.checklist'),
       href: '/checklist',
-      image: '/img/document-review-process-quality-control-600nw-2504481787.jpg.webp',
-      description: language === 'en'
-        ? 'Take our free Systems Assessment to discover your technology needs'
-        : 'Realiza nuestra Evaluación de Sistemas gratuita para descubrir tus necesidades tecnológicas'
+      // High-quality technology/dashboard image
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&auto=format&fit=crop',
+      description: t('resources.checklist.description')
     }
   ];
 
@@ -99,7 +96,7 @@ const Resources = () => {
                         {resource.description}
                       </p>
                       <div className="flex items-center justify-center text-primary hover:text-secondary transition-colors group/link">
-                        <span className="font-telegraf">{language === 'en' ? 'Explore' : 'Explorar'}</span>
+                        <span className="font-telegraf">{t('resources.explore')}</span>
                         <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                       </div>
                     </CardContent>

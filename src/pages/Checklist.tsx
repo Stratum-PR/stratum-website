@@ -348,12 +348,10 @@ const Checklist = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-telegraf font-bold text-2xl md:text-3xl text-white drop-shadow-lg mb-3">
-            {language === 'en' ? 'Systems Assessment' : 'Evaluación de Sistemas'}
+            {t('checklist.hero.title')}
           </h1>
           <p className="font-telegraf text-base md:text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
-            {language === 'en' 
-              ? 'Take our free 10-question assessment to discover how well your technology supports your business goals.'
-              : 'Realiza nuestra evaluación gratuita de 10 preguntas para descubrir qué tan bien tu tecnología apoya tus objetivos empresariales.'}
+            {t('checklist.hero.description')}
           </p>
         </div>
       </section>
@@ -368,7 +366,7 @@ const Checklist = () => {
                 <div className="mb-4">
                   <div className="flex justify-between mb-1.5">
                     <span className="font-telegraf text-xs sm:text-sm text-gray-600">
-                      {language === 'en' ? 'Question' : 'Pregunta'} {currentQuestion + 1} / {questions.length}
+                      {t('checklist.progress.question')} {currentQuestion + 1} / {questions.length}
                     </span>
                     <span className="font-telegraf text-xs sm:text-sm text-gray-600">
                       {Math.round(progress)}%
@@ -419,7 +417,7 @@ const Checklist = () => {
                     disabled={currentQuestion === 0}
                     className="font-telegraf"
                   >
-                    ← {language === 'en' ? 'Previous' : 'Anterior'}
+                    ← {t('checklist.button.previous')}
                   </Button>
                   <Button
                     onClick={() => {
@@ -432,7 +430,7 @@ const Checklist = () => {
                     disabled={answers[currentQuestion] === undefined}
                     className="font-telegraf bg-primary hover:bg-primary-800 text-white disabled:bg-gray-300 disabled:cursor-not-allowed"
                   >
-                    {language === 'en' ? 'Next' : 'Siguiente'} →
+                    {t('checklist.button.next')} →
                   </Button>
                 </div>
               </CardContent>
@@ -444,7 +442,7 @@ const Checklist = () => {
                 <CardContent className="p-8">
                   <div className="text-center mb-8">
                     <h2 className="font-telegraf font-bold text-3xl text-primary mb-4">
-                      {language === 'en' ? 'Your Systems Assessment Score' : 'Tu Puntuación de Evaluación de Sistemas'}
+                      {t('checklist.results.title')}
                     </h2>
                     <div className="inline-block">
                       <div className="text-6xl font-bold text-primary mb-2">{score}/30</div>
@@ -467,28 +465,16 @@ const Checklist = () => {
                       
                       <div>
                         <h3 className="font-telegraf font-bold text-xl mb-2">
-                          {scoreCategory === 'critical' && (language === 'en' ? 'Critical: Immediate Action Needed' : 'Crítico: Acción Inmediata Necesaria')}
-                          {scoreCategory === 'needs-improvement' && (language === 'en' ? 'Needs Improvement: Time to Modernize' : 'Necesita Mejoras: Tiempo de Modernizar')}
-                          {scoreCategory === 'good' && (language === 'en' ? 'Good: On the Right Track' : 'Bueno: En el Camino Correcto')}
-                          {scoreCategory === 'excellent' && (language === 'en' ? 'Excellent: Well-Positioned for Growth' : 'Excelente: Bien Posicionado para Crecimiento')}
+                          {scoreCategory === 'critical' && t('checklist.results.critical.title')}
+                          {scoreCategory === 'needs-improvement' && t('checklist.results.needsImprovement.title')}
+                          {scoreCategory === 'good' && t('checklist.results.good.title')}
+                          {scoreCategory === 'excellent' && t('checklist.results.excellent.title')}
                         </h3>
                         <p className="font-telegraf text-gray-700">
-                          {scoreCategory === 'critical' && (language === 'en' 
-                            ? 'Your current IT setup is significantly limiting your business potential. Without immediate improvements, you risk falling behind competitors, data loss, and operational inefficiencies. We recommend a comprehensive IT assessment and modernization plan.'
-                            : 'Tu configuración TI actual está limitando significativamente el potencial de tu negocio. Sin mejoras inmediatas, corres el riesgo de quedarte atrás de competidores, pérdida de datos e ineficiencias operacionales. Recomendamos una evaluación TI integral y plan de modernización.'
-                          )}
-                          {scoreCategory === 'needs-improvement' && (language === 'en'
-                            ? 'You have some technology in place, but there are significant gaps that could be costing you time, money, and opportunities. With targeted improvements, you could significantly boost efficiency and enable growth. Priority areas likely include system integration, automation, and data management.'
-                            : 'Tienes algo de tecnología implementada, pero hay brechas significativas que podrían estar costándote tiempo, dinero y oportunidades. Con mejoras dirigidas, podrías aumentar significativamente la eficiencia y habilitar el crecimiento. Las áreas prioritarias probablemente incluyen integración de sistemas, automatización y gestión de datos.'
-                          )}
-                          {scoreCategory === 'good' && (language === 'en'
-                            ? 'Your IT infrastructure is solid and supporting your business well. There are still opportunities for optimization and automation that could free up your team and improve decision-making. Focus on fine-tuning existing systems and adding strategic capabilities like advanced analytics or AI automation.'
-                            : 'Tu infraestructura TI es sólida y está apoyando bien tu negocio. Todavía hay oportunidades de optimización y automatización que podrían liberar a tu equipo y mejorar la toma de decisiones. Enfócate en ajustar los sistemas existentes y agregar capacidades estratégicas como análisis avanzado o automatización IA.'
-                          )}
-                          {scoreCategory === 'excellent' && (language === 'en'
-                            ? 'Outstanding! Your IT systems are a competitive advantage. You have modern, integrated systems that support data-driven decision-making and growth. Continue to stay ahead by exploring emerging technologies like AI and advanced analytics, and ensure your systems scale smoothly as you grow.'
-                            : '¡Sobresaliente! Tus sistemas TI son una ventaja competitiva. Tienes sistemas modernos e integrados que apoyan la toma de decisiones basada en datos y el crecimiento. Continúa manteniéndote adelante explorando tecnologías emergentes como IA y análisis avanzado, y asegura que tus sistemas escalen sin problemas mientras creces.'
-                          )}
+                          {scoreCategory === 'critical' && t('checklist.results.critical.description')}
+                          {scoreCategory === 'needs-improvement' && t('checklist.results.needsImprovement.description')}
+                          {scoreCategory === 'good' && t('checklist.results.good.description')}
+                          {scoreCategory === 'excellent' && t('checklist.results.excellent.description')}
                         </p>
                       </div>
                     </div>
@@ -500,19 +486,17 @@ const Checklist = () => {
                       <div className="flex items-center gap-3 mb-4">
                         <Mail className="h-5 w-5 text-primary" />
                         <h3 className="font-telegraf font-bold text-lg text-primary">
-                          {language === 'en' ? 'Get Your Detailed Results' : 'Obtén Tus Resultados Detallados'}
+                          {t('checklist.email.title')}
                         </h3>
                       </div>
                       <p className="font-telegraf text-gray-600 mb-4">
-                        {language === 'en'
-                          ? 'Enter your email to receive a personalized report with specific recommendations for your business, plus access to our resource library.'
-                          : 'Ingresa tu correo electrónico para recibir un informe personalizado con recomendaciones específicas para tu negocio, más acceso a nuestra biblioteca de recursos.'}
+                        {t('checklist.email.description')}
                       </p>
                       <form onSubmit={handleEmailSubmit} className="flex flex-col gap-3">
                         <div className="flex flex-col sm:flex-row gap-3">
                           <Input
                             type="email"
-                            placeholder={language === 'en' ? 'Enter your email' : 'Ingresa tu correo electrónico'}
+                            placeholder={t('checklist.email.placeholder')}
                             value={email}
                             onChange={(e) => {
                               setEmail(e.target.value);
@@ -528,8 +512,8 @@ const Checklist = () => {
                             className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-6"
                           >
                             {submitting 
-                              ? (language === 'en' ? 'Sending...' : 'Enviando...') 
-                              : (language === 'en' ? 'Get Results' : 'Obtener Resultados')}
+                              ? t('checklist.email.sending')
+                              : t('checklist.email.button')}
                           </Button>
                         </div>
                         {emailError && (
@@ -549,13 +533,11 @@ const Checklist = () => {
                       <div className="flex items-center gap-3 mb-2">
                         <CheckCircle className="h-5 w-5 text-green-600" />
                         <h3 className="font-telegraf font-bold text-lg text-green-800">
-                          {language === 'en' ? 'Check Your Email!' : '¡Revisa Tu Correo!'}
+                          {t('checklist.email.success.title')}
                         </h3>
                       </div>
                       <p className="font-telegraf text-green-700">
-                        {language === 'en'
-                          ? 'We\'ve sent your detailed results and personalized recommendations to your inbox. Be sure to check your spam folder if you don\'t see it within a few minutes.'
-                          : 'Hemos enviado tus resultados detallados y recomendaciones personalizadas a tu bandeja de entrada. Asegúrate de revisar tu carpeta de spam si no lo ves en unos minutos.'}
+                        {t('checklist.email.success.description')}
                       </p>
                     </div>
                   )}
@@ -567,14 +549,14 @@ const Checklist = () => {
                       variant="outline"
                       className="flex-1 font-telegraf"
                     >
-                      {language === 'en' ? 'Retake Assessment' : 'Volver a Realizar'}
+                      {t('checklist.button.retake')}
                     </Button>
                     <Button
                       asChild
                       className="flex-1 bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold"
                     >
                       <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                        {language === 'en' ? 'Schedule Free Consultation' : 'Agendar Consulta Gratuita'}
+                        {t('checklist.button.consultation')}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
@@ -586,109 +568,58 @@ const Checklist = () => {
               <Card>
                 <CardContent className="p-8">
                   <h3 className="font-telegraf font-bold text-2xl text-primary mb-6">
-                    {language === 'en' ? 'Recommended Next Steps' : 'Próximos Pasos Recomendados'}
+                    {t('checklist.nextSteps.title')}
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-700">
-                        {language === 'en' ? (
-                          <>
-                            Review our blog post on{' '}
-                            <a href="/blog/understanding-your-organizations-it-needs" className="text-primary hover:underline font-semibold">
-                              "Understanding Your Organization's IT Needs"
-                            </a>{' '}
-                            for a deeper dive into assessment frameworks
-                          </>
-                        ) : (
-                          <>
-                            Revisa nuestra publicación de blog sobre{' '}
-                            <a href="/blog/understanding-your-organizations-it-needs" className="text-primary hover:underline font-semibold">
-                              "Entendiendo las Necesidades TI de tu Organización"
-                            </a>{' '}
-                            para una inmersión más profunda en marcos de evaluación
-                          </>
-                        )}
+                        {t('checklist.nextSteps.blog')}{' '}
+                        <a href="/blog/understanding-your-organizations-it-needs" className="text-primary hover:underline font-semibold">
+                          "{t('checklist.nextSteps.blogLink')}"
+                        </a>{' '}
+                        {t('checklist.nextSteps.blogSuffix')}
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-700">
-                        {language === 'en' ? (
-                          <>
-                            Explore our{' '}
-                            <a href="/services" className="text-primary hover:underline font-semibold">
-                              Services
-                            </a>{' '}
-                            to see how we can help optimize your systems
-                          </>
-                        ) : (
-                          <>
-                            Explora nuestros{' '}
-                            <a href="/services" className="text-primary hover:underline font-semibold">
-                              Servicios
-                            </a>{' '}
-                            para ver cómo podemos ayudar a optimizar tus sistemas
-                          </>
-                        )}
+                        {t('checklist.nextSteps.services')}{' '}
+                        <a href="/services" className="text-primary hover:underline font-semibold">
+                          {t('checklist.nextSteps.servicesLink')}
+                        </a>{' '}
+                        {t('checklist.nextSteps.servicesSuffix')}
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-700">
-                        {language === 'en' ? (
-                          <>
-                            Check out our{' '}
-                            <a href="/projects" className="text-primary hover:underline font-semibold">
-                              Case Studies
-                            </a>{' '}
-                            to see real-world examples of successful transformations
-                          </>
-                        ) : (
-                          <>
-                            Revisa nuestros{' '}
-                            <a href="/projects" className="text-primary hover:underline font-semibold">
-                              Casos de Estudio
-                            </a>{' '}
-                            para ver ejemplos del mundo real de transformaciones exitosas
-                          </>
-                        )}
+                        {t('checklist.nextSteps.caseStudies')}{' '}
+                        <a href="/projects" className="text-primary hover:underline font-semibold">
+                          {t('checklist.nextSteps.caseStudiesLink')}
+                        </a>{' '}
+                        {t('checklist.nextSteps.caseStudiesSuffix')}
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-700">
-                        {language === 'en' ? (
-                          <>
-                            <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">
-                              Schedule a free 30-minute consultation
-                            </a>{' '}
-                            to discuss your specific needs and get personalized recommendations
-                          </>
-                        ) : (
-                          <>
-                            <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">
-                              Agenda una consulta gratuita de 30 minutos
-                            </a>{' '}
-                            para discutir tus necesidades específicas y obtener recomendaciones personalizadas
-                          </>
-                        )}
+                        <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">
+                          {t('checklist.nextSteps.consultation')}
+                        </a>{' '}
+                        {t('checklist.nextSteps.consultationSuffix')}
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-700">
-                        {language === 'en'
-                          ? 'Download our free IT Planning Template to start mapping your technology roadmap'
-                          : 'Descarga nuestra plantilla gratuita de Planificación TI para comenzar a mapear tu hoja de ruta tecnológica'}
+                        {t('checklist.nextSteps.template')}
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-700">
-                        {language === 'en'
-                          ? 'Schedule a free 30-minute consultation with our team to discuss your specific situation and opportunities'
-                          : 'Agenda una consulta gratuita de 30 minutos con nuestro equipo para discutir tu situación específica y oportunidades'}
+                        {t('checklist.nextSteps.consultation2')}
                       </p>
                     </div>
                   </div>
