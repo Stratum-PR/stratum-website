@@ -31,7 +31,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Navigation Links - Reordered to match header: Home, About, Services, FAQ, Resources, Contact */}
           <div>
             <h3 className="font-telegraf font-semibold text-lg mb-4">Navigation</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -47,11 +47,11 @@ export const Footer = () => {
                 </Link>
               </div>
               <div className="space-y-2">
-                <Link to="/resources" className="block text-primary-200 hover:text-accent transition-colors font-telegraf">
-                  {t('nav.resources')}
-                </Link>
                 <Link to="/faq" className="block text-primary-200 hover:text-accent transition-colors font-telegraf">
                   {t('nav.faq')}
+                </Link>
+                <Link to="/resources" className="block text-primary-200 hover:text-accent transition-colors font-telegraf">
+                  {t('nav.resources')}
                 </Link>
                 <Link to="/contact" className="block text-primary-200 hover:text-accent transition-colors font-telegraf">
                   {t('nav.contact')}

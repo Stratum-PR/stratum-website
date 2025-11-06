@@ -188,11 +188,11 @@ const Home = () => {
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white z-10">
-            <h1 className="font-telegraf font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 animate-fade-in leading-tight" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}}>
+            <h1 className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 animate-fade-in leading-tight px-2 sm:px-0" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)'}}>
               {t('home.hero.title')}
             </h1>
 
-            <p className="font-telegraf text-base sm:text-lg md:text-xl mb-10 text-primary-100 max-w-3xl mx-auto animate-slide-up leading-relaxed" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.8)'}}>
+            <p className="font-telegraf text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 text-primary-100 max-w-3xl mx-auto animate-slide-up leading-relaxed px-2 sm:px-0" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.8)'}}>
               {t('home.hero.description')}
             </p>
 
@@ -572,36 +572,28 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Final CTA Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-primary to-secondary text-white" aria-labelledby="final-cta-heading">
+        {/* Final CTA Section - Matching Services Footer */}
+        <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white" aria-labelledby="final-cta-heading">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 id="final-cta-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl mb-6 md:mb-8">
+            <h2 id="final-cta-heading" className="font-telegraf font-bold text-2xl md:text-3xl mb-6">
               {t('home.finalCta.title')}
             </h2>
-            <p className="font-telegraf text-base sm:text-lg md:text-xl mb-8 md:mb-10 text-primary-100 max-w-2xl mx-auto leading-relaxed">
+            <p className="font-telegraf text-base mb-6 text-primary-100">
               {t('home.finalCta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 md:px-8 py-3 md:py-4 text-base rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 h-12 md:h-14" 
-                aria-label="Schedule free consultation with Stratum PR"
-              >
-                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
-                  {t('home.finalCta.consultation')}
+              <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
+                  {t('services.cta.consultation')}
                 </a>
               </Button>
-              <Button 
-                asChild 
-                variant="outline" 
-                size="lg" 
-                className="bg-white text-black border-2 border-white font-telegraf font-semibold px-6 md:px-8 py-3 md:py-4 text-base rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 h-12 md:h-14" 
-                aria-label="Contact Stratum PR team"
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105"
               >
-                <Link to="/contact">
-                  {t('services.cta.contact') || 'Contact Us'}
-                </Link>
+                <Link to="/contact" aria-label="Contact Stratum PR team for data analytics consulting">{t('services.cta.contact')}</Link>
               </Button>
             </div>
           </div>

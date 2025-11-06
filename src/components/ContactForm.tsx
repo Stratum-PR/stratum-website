@@ -12,7 +12,7 @@ import ContactFormSuccess from "./ContactFormSuccess";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactForm = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -109,6 +109,7 @@ const ContactForm = () => {
     });
 
     try {
+      // Send to Formspree
       const response = await fetch("https://formspree.io/f/xyzjgyzq", {
         method: "POST",
         headers: {
@@ -116,7 +117,7 @@ const ContactForm = () => {
         },
         body: JSON.stringify({
           ...sanitizedData,
-          _subject: `Contact Form: ${sanitizedData.subject}`,
+          _subject: `Contact Form: ${sanitizedData.subject || 'No Subject'}`,
           _replyto: sanitizedData.email,
           _format: "plain",
           timestamp: new Date().toISOString()
@@ -124,6 +125,41 @@ const ContactForm = () => {
       });
 
       if (response.ok) {
+        // Send confirmation email to user
+        try {
+          const { sendEmail } = await import('@/services/resend');
+          
+          const confirmationSubject = language === 'es'
+            ? 'Hemos recibido tu mensaje - Stratum PR'
+            : 'We received your message - Stratum PR';
+          
+          const confirmationHtml = language === 'es'
+            ? `
+              <h2>Gracias por contactarnos</h2>
+              <p>Hemos recibido tu mensaje y nos pondremos en contacto contigo en 24 horas o menos.</p>
+              <p>Si tienes alguna pregunta urgente, puedes contactarnos directamente en <a href="mailto:contact@stratumpr.com">contact@stratumpr.com</a></p>
+              <br>
+              <p style="color: #666; font-size: 12px;">Stratum PR - La Arquitectura de Mejores Decisiones</p>
+            `
+            : `
+              <h2>Thank you for contacting us</h2>
+              <p>We have received your message and will get back to you within 24 hours or less.</p>
+              <p>If you have an urgent question, you can reach us directly at <a href="mailto:contact@stratumpr.com">contact@stratumpr.com</a></p>
+              <br>
+              <p style="color: #666; font-size: 12px;">Stratum PR - The Architecture of Better Decisions</p>
+            `;
+          
+          await sendEmail({
+            to: sanitizedData.email,
+            subject: confirmationSubject,
+            html: confirmationHtml,
+            from: 'Stratum PR <contact@stratumpr.com>'
+          });
+        } catch (emailError) {
+          console.error('Error sending confirmation email:', emailError);
+          // Don't fail the form submission if confirmation email fails
+        }
+        
         setIsSubmitted(true);
         toast({
           title: t('contact.form.success.title'),
