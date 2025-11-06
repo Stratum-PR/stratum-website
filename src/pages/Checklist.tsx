@@ -247,6 +247,7 @@ const Checklist = () => {
   const [email, setEmail] = useState('');
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [emailError, setEmailError] = useState<string | null>(null);
 
   useSEO({
     title: "Systems Assessment - Free Evaluation | Stratum PR",
@@ -281,6 +282,7 @@ const Checklist = () => {
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setEmailError(null);
 
     try {
       const { sendChecklistResults } = await import('@/services/resend');
@@ -288,10 +290,29 @@ const Checklist = () => {
       await sendChecklistResults(email, calculateScore(), language as 'en' | 'es');
       
       setEmailSubmitted(true);
-    } catch (error) {
+      setEmailError(null);
+    } catch (error: any) {
       console.error('Error submitting email:', error);
-      // Still set as submitted even if error to not block user
-      setEmailSubmitted(true);
+      
+      // Show helpful error message to user
+      let errorMessage = language === 'es'
+        ? 'No se pudo enviar el correo. Por favor, inténtalo de nuevo o contacta a soporte.'
+        : 'Failed to send email. Please try again or contact support.';
+      
+      if (error?.message?.includes('not configured') || error?.message?.includes('RESEND_API_KEY')) {
+        errorMessage = language === 'es'
+          ? 'El servicio de correo no está configurado. Por favor contacta a soporte.'
+          : 'Email service is not configured. Please contact support.';
+      } else if (error?.message?.includes('domain') || error?.message?.includes('not verified')) {
+        errorMessage = language === 'es'
+          ? 'El dominio de correo no está verificado. Por favor contacta a soporte.'
+          : 'Email domain not verified. Please contact support.';
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+      
+      setEmailError(errorMessage);
+      setEmailSubmitted(false); // Don't mark as submitted if there's an error
     } finally {
       setSubmitting(false);
     }
@@ -487,25 +508,40 @@ const Checklist = () => {
                           ? 'Enter your email to receive a personalized report with specific recommendations for your business, plus access to our resource library.'
                           : 'Ingresa tu correo electrónico para recibir un informe personalizado con recomendaciones específicas para tu negocio, más acceso a nuestra biblioteca de recursos.'}
                       </p>
-                      <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
-                        <Input
-                          type="email"
-                          placeholder={language === 'en' ? 'Enter your email' : 'Ingresa tu correo electrónico'}
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                          disabled={submitting}
-                          className="flex-1 font-telegraf"
-                        />
-                        <Button 
-                          type="submit" 
-                          disabled={submitting}
-                          className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-6"
-                        >
-                          {submitting 
-                            ? (language === 'en' ? 'Sending...' : 'Enviando...') 
-                            : (language === 'en' ? 'Get Results' : 'Obtener Resultados')}
-                        </Button>
+                      <form onSubmit={handleEmailSubmit} className="flex flex-col gap-3">
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <Input
+                            type="email"
+                            placeholder={language === 'en' ? 'Enter your email' : 'Ingresa tu correo electrónico'}
+                            value={email}
+                            onChange={(e) => {
+                              setEmail(e.target.value);
+                              setEmailError(null); // Clear error when user types
+                            }}
+                            required
+                            disabled={submitting}
+                            className={`flex-1 font-telegraf ${emailError ? 'border-red-500' : ''}`}
+                          />
+                          <Button 
+                            type="submit" 
+                            disabled={submitting}
+                            className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-6"
+                          >
+                            {submitting 
+                              ? (language === 'en' ? 'Sending...' : 'Enviando...') 
+                              : (language === 'en' ? 'Get Results' : 'Obtener Resultados')}
+                          </Button>
+                        </div>
+                        {emailError && (
+                          <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
+                            <p className="font-telegraf text-sm text-red-700">{emailError}</p>
+                            <p className="font-telegraf text-xs text-red-600 mt-1">
+                              {language === 'en' 
+                                ? 'Please check your email address and try again, or contact support if the problem persists.'
+                                : 'Por favor verifica tu dirección de correo e intenta de nuevo, o contacta a soporte si el problema persiste.'}
+                            </p>
+                          </div>
+                        )}
                       </form>
                     </div>
                   ) : (
