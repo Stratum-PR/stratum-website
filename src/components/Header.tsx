@@ -15,6 +15,8 @@ import {
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuClosing, setIsMenuClosing] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
@@ -34,16 +36,16 @@ export const Header = () => {
       href: '/services'
     },
     {
-      name: t('nav.contact'),
-      href: '/contact'
-    },
-    {
       name: t('nav.faq'),
       href: '/faq'
     },
     {
       name: t('nav.resources'),
       href: '/resources'
+    },
+    {
+      name: t('nav.contact'),
+      href: '/contact'
     }
   ];
 
@@ -70,7 +72,14 @@ export const Header = () => {
   // Logo size: ~26-28px (40-45% of header height, matching Oracle proportions)
   const logoSize = 'h-6 sm:h-6 md:h-7';
   
-  const closeMenu = () => setIsMenuOpen(false);
+  const closeMenu = () => {
+    setIsMenuClosing(true);
+    // After animation completes, close the menu
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      setIsMenuClosing(false);
+    }, 500); // Match the duration of the slide-out animation
+  };
   
   // Render navigation items - all visible, no progressive hiding
   const renderNavItems = () => {
@@ -138,7 +147,11 @@ export const Header = () => {
           <div className="flex items-center flex-shrink-0">
             {/* Logo - Oracle-style sizing: ~26-28px (40-45% of header height) */}
             <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3">
-              <img src="/StratumPR_Logo4.svg" alt="Stratum Logo" className={`${logoSize} w-auto`} />
+              <img 
+                src={isMenuOpen ? "/img/Logo 2.svg" : "/StratumPR_Logo4.svg"} 
+                alt="Stratum Logo" 
+                className={`${logoSize} w-auto transition-opacity duration-300 ease-in-out`} 
+              />
             </Link>
           </div>
 
@@ -166,8 +179,15 @@ export const Header = () => {
 
             {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
-              className={`xl:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors z-50 relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation`}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`xl:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation`}
+              onClick={() => {
+                if (isMenuOpen) {
+                  closeMenu();
+                } else {
+                  setIsMenuOpen(true);
+                  setIsMenuClosing(false);
+                }
+              }}
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
@@ -182,37 +202,92 @@ export const Header = () => {
         </div>
 
         {/* Mobile Navigation Overlay */}
-        {isMenuOpen && (
+        {(isMenuOpen || isMenuClosing) && (
           <>
             {/* Backdrop */}
             <div 
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+              className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300 ease-in-out ${
+                isMenuClosing ? 'opacity-0' : 'opacity-100'
+              }`}
               onClick={closeMenu}
               aria-hidden="true"
             />
             
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
-            <div id="mobile-menu" className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-white shadow-xl animate-in slide-in-from-top duration-300`}>
-              {/* Header space to match main header height - keeps logo visible */}
-              <div className="h-14 md:h-16 border-b border-gray-100"></div>
+            <div 
+              id="mobile-menu" 
+              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-primary shadow-xl transition-all duration-500 ease-in-out ${
+                isMenuClosing 
+                  ? 'opacity-0 -translate-y-full' 
+                  : 'opacity-100 translate-y-0'
+              }`}
+            >
+              {/* Header space with Logo 2.svg when menu is open */}
+              <div className="h-14 md:h-16 border-b border-primary-700/30 flex items-center px-4 sm:px-5 md:px-6 lg:px-8">
+                <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3" onClick={closeMenu}>
+                  <img 
+                    src="/img/Logo 2.svg" 
+                    alt="Stratum Logo" 
+                    className={`${logoSize} w-auto transition-opacity duration-300 ease-in-out`} 
+                  />
+                </Link>
+              </div>
               
               {/* Navigation Content */}
-              <div className="bg-white px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
+              <div className="bg-primary px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
                 <nav className="flex flex-col space-y-1">
-                  {/* Main navigation items - including Resources dropdown items as main items */}
+                  {/* Main navigation items */}
                   {navigation.map(item => {
-                    // If this is Resources, skip it and show its dropdown items as main items instead
+                    // Handle Resources as a dropdown
                     if (item.href === '/resources') {
-                      return null;
+                      return (
+                        <div key={item.href}>
+                          <button
+                            onClick={() => setIsResourcesOpen(!isResourcesOpen)}
+                            className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] w-full flex items-center justify-between touch-manipulation ${
+                              isActive(item.href) || resourcesDropdown.some(subItem => isActive(subItem.href))
+                                ? 'text-white bg-white/20 border-l-4 border-white'
+                                : 'text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20'
+                            }`}
+                          >
+                            <span>{item.name}</span>
+                            <ChevronDown 
+                              className={`h-4 w-4 text-white transition-transform duration-200 ${
+                                isResourcesOpen ? 'transform rotate-180' : ''
+                              }`} 
+                            />
+                          </button>
+                          {/* Resources dropdown items */}
+                          {isResourcesOpen && (
+                            <div className="pl-4 space-y-1 mt-1">
+                              {resourcesDropdown.map(subItem => (
+                                <Link
+                                  key={subItem.name}
+                                  to={subItem.href}
+                                  className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
+                                    isActive(subItem.href)
+                                      ? 'text-white bg-white/20 border-l-4 border-white'
+                                      : 'text-white/80 hover:text-white hover:bg-white/10 active:bg-white/20'
+                                  }`}
+                                  onClick={closeMenu}
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
                     }
+                    // Regular navigation items
                     return (
                       <Link
                         key={item.name}
                         to={item.href}
                         className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                           isActive(item.href)
-                            ? 'text-primary bg-primary/10 border-l-4 border-primary'
-                            : 'text-gray-700 hover:text-primary hover:bg-gray-50 active:bg-gray-100'
+                            ? 'text-white bg-white/20 border-l-4 border-white'
+                            : 'text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20'
                         }`}
                         onClick={closeMenu}
                       >
@@ -220,22 +295,6 @@ export const Header = () => {
                       </Link>
                     );
                   })}
-
-                  {/* Resources dropdown items as main menu items (flattened) */}
-                  {resourcesDropdown.map(item => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
-                        isActive(item.href)
-                          ? 'text-primary bg-primary/10 border-l-4 border-primary'
-                          : 'text-gray-700 hover:text-primary hover:bg-gray-50 active:bg-gray-100'
-                      }`}
-                      onClick={closeMenu}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
                 </nav>
               </div>
             </div>
