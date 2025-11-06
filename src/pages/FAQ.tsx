@@ -28,7 +28,7 @@ const FAQ: React.FC = () => {
   return (
     <div className="pt-[50px]">
       {/* Hero Section with Background  */}
-      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="relative pt-8 pb-6 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
@@ -42,17 +42,17 @@ const FAQ: React.FC = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
+          <h1 className="font-telegraf font-bold text-2xl md:text-3xl text-white drop-shadow-lg mb-3">
             {t('faq.hero.title')}
           </h1>
-          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-base md:text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
             {t('faq.hero.description')}
           </p>
         </div>
       </section>
 
       {/* FAQ Content */}
-      <section className="py-12">
+      <section className="py-6">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {faqCategories.map((category) => {
             const categoryFAQs = getFAQsByCategory(category.id);
@@ -60,8 +60,8 @@ const FAQ: React.FC = () => {
             if (categoryFAQs.length === 0) return null;
 
             return (
-              <div key={category.id} className="mb-12">
-                <h2 className="text-2xl sm:text-3xl font-telegraf font-bold text-gray-900 mb-8">
+              <div key={category.id} className="mb-8">
+                <h2 className="text-2xl font-telegraf font-bold text-primary mb-6">
                   {t(category.titleKey)}
                 </h2>
                 
@@ -70,12 +70,12 @@ const FAQ: React.FC = () => {
                     <AccordionItem 
                       key={faq.id} 
                       value={faq.id}
-                      className="border border-gray-200 rounded-lg px-6 py-2 bg-white shadow-sm hover:shadow-md transition-shadow"
+                      className="border border-gray-200 rounded-lg px-4 sm:px-6 py-2 bg-white shadow-sm hover:shadow-md transition-shadow"
                     >
-                      <AccordionTrigger className="text-left text-lg font-telegraf font-semibold text-gray-900 hover:text-primary-600 transition-colors">
+                      <AccordionTrigger className="text-left text-base sm:text-lg font-telegraf font-semibold text-gray-900 hover:text-primary transition-colors">
                         {t(faq.question)}
                       </AccordionTrigger>
-                      <AccordionContent className="text-gray-700 leading-relaxed pt-2 pb-4">
+                      <AccordionContent className="text-sm sm:text-base text-gray-700 leading-relaxed pt-2 pb-4 font-telegraf">
                         {t(faq.answer)}
                       </AccordionContent>
                     </AccordionItem>
@@ -88,15 +88,15 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 bg-gradient-to-r from-primary to-secondary">
+      <section className="py-8 bg-gradient-to-r from-primary to-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="font-telegraf font-bold text-2xl md:text-3xl mb-4">
             {t('faq.cta.title')}
           </h2>
-          <p className="font-telegraf text-lg mb-6 text-primary-100 max-w-2xl mx-auto">
+          <p className="font-telegraf text-base md:text-lg mb-6 text-primary-100 max-w-2xl mx-auto leading-relaxed">
             {t('faq.cta.description')}
           </p>
-          <Button asChild className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-2 rounded-lg transition-all duration-300 hover:shadow-lg">
+          <Button asChild className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg text-base">
             <a href="/contact">
               {t('faq.cta.button')}
             </a>

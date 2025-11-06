@@ -18,7 +18,7 @@ export const esTranslations: Record<string, string> = {
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
   'nav.newsupdates': 'Noticias y Actualizaciones',
-  'nav.checklist': 'Evaluación de Sistemas',
+  'nav.checklist': 'Toma Tu Evaluación de Salud de Sistemas',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'FAQ',
   
@@ -27,7 +27,7 @@ export const esTranslations: Record<string, string> = {
   'home.hero.subtitle': '',
   'home.hero.description': 'Con sede en Puerto Rico, Stratum construye y gestiona sistemas de datos inteligentes que reducen el trabajo manual y optimizan las operaciones sin necesidad de un equipo interno de tiempo completo.',
   'home.hero.cta.primary': 'Programar una Consulta Gratuita',
-  'home.hero.cta.secondary': 'Obtener Evaluación de Sistemas',
+  'home.hero.cta.secondary': 'Toma nuestra Evaluación de Salud de Sistemas',
   
   // Problem Section
   'home.problem.title': '¿Estos Desafíos Te Están Reteniendo?',
@@ -148,7 +148,7 @@ export const esTranslations: Record<string, string> = {
   
   // Team member data
   'team.jovaniel.name': 'Jovaniel Agosto',
-  'team.jovaniel.role': 'Director Ejecutivo',
+  'team.jovaniel.role': 'Co-Fundador, Infraestructura Tecnológica',
   'team.jovaniel.bio': 'Jovaniel aporta más de 10 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado proyectos transformacionales en empresas Fortune 500. Su experiencia abarca inteligencia empresarial, optimización de procesos y gestión del cambio organizacional.',
   'team.jovaniel.expertise': 'Consultoría Estratégica, Inteligencia Empresarial, Gestión del Cambio, Análisis de Datos',
   
@@ -395,8 +395,6 @@ export const esTranslations: Record<string, string> = {
   'privacy.contact.description': 'Para más detalles, contáctanos en',
   
   // Resources page
-  'resources.hero.title': 'Recursos',
-  'resources.hero.description': 'Explora nuestros proyectos, mantente actualizado con noticias y perspectivas, y evalúa tus sistemas con nuestra Evaluación de Sistemas gratuita.',
   'resources.download': 'Descargar Recurso',
   'resources.visit': 'Visitar Recurso',
   'resources.cta.title': '¿Necesitas Recursos Personalizados?',
@@ -492,4 +490,52 @@ export const esTranslations: Record<string, string> = {
   'terms.contact.title': 'Contáctanos',
   'terms.contact.content': 'Para preguntas sobre estos Términos, contáctanos en',
   'terms.copyright': '© 2025 Stratum PR, LLC',
+
+  // Checklist/Systems Assessment Page - Página de Evaluación de Sistemas
+  'checklist.hero.title': 'Toma Tu Evaluación de Sistemas',
+  'checklist.hero.description': 'Realiza nuestra evaluación gratuita de 10 preguntas para descubrir qué tan bien tu tecnología apoya tus objetivos empresariales.',
+  'checklist.progress.question': 'Pregunta',
+  'checklist.button.previous': 'Anterior',
+  'checklist.button.next': 'Siguiente',
+  'checklist.results.title': 'Tu Puntuación de Evaluación de Sistemas',
+  'checklist.results.score.label': 'Tu Puntuación',
+  'checklist.results.critical.title': 'Crítico: Acción Inmediata Necesaria',
+  'checklist.results.critical.description': 'Tu configuración TI actual está limitando significativamente el potencial de tu negocio. Sin mejoras inmediatas, corres el riesgo de quedarte atrás de competidores, pérdida de datos e ineficiencias operacionales. Recomendamos una evaluación TI integral y plan de modernización.',
+  'checklist.results.needsImprovement.title': 'Necesita Mejoras: Tiempo de Modernizar',
+  'checklist.results.needsImprovement.description': 'Tienes algo de tecnología implementada, pero hay brechas significativas que podrían estar costándote tiempo, dinero y oportunidades. Con mejoras dirigidas, podrías aumentar significativamente la eficiencia y habilitar el crecimiento. Las áreas prioritarias probablemente incluyen integración de sistemas, automatización y gestión de datos.',
+  'checklist.results.good.title': 'Bueno: En el Camino Correcto',
+  'checklist.results.good.description': 'Tu infraestructura TI es sólida y está apoyando bien tu negocio. Todavía hay oportunidades de optimización y automatización que podrían liberar a tu equipo y mejorar la toma de decisiones. Enfócate en ajustar los sistemas existentes y agregar capacidades estratégicas como análisis avanzado o automatización IA.',
+  'checklist.results.excellent.title': 'Excelente: Bien Posicionado para Crecimiento',
+  'checklist.results.excellent.description': '¡Sobresaliente! Tus sistemas TI son una ventaja competitiva. Tienes sistemas modernos e integrados que apoyan la toma de decisiones basada en datos y el crecimiento. Continúa manteniéndote adelante explorando tecnologías emergentes como IA y análisis avanzado, y asegura que tus sistemas escalen sin problemas mientras creces.',
+  'checklist.email.title': 'Obtén Tus Resultados Detallados',
+  'checklist.email.description': 'Ingresa tu correo electrónico para recibir un informe personalizado con recomendaciones específicas para tu negocio, más acceso a nuestra biblioteca de recursos.',
+  'checklist.email.placeholder': 'Ingresa tu correo electrónico',
+  'checklist.email.button': 'Obtener Resultados',
+  'checklist.email.sending': 'Enviando...',
+  'checklist.email.success.title': '¡Revisa Tu Correo!',
+  'checklist.email.success.description': 'Hemos enviado tus resultados detallados y recomendaciones personalizadas a tu bandeja de entrada. Asegúrate de revisar tu carpeta de spam si no lo ves en unos minutos.',
+  'checklist.button.retake': 'Volver a Realizar',
+  'checklist.button.consultation': 'Agendar Consulta Gratuita',
+  'checklist.nextSteps.title': 'Próximos Pasos Recomendados',
+  'checklist.nextSteps.blog': 'Revisa nuestra publicación de blog sobre',
+  'checklist.nextSteps.blogLink': 'Entendiendo las Necesidades TI de tu Organización',
+  'checklist.nextSteps.blogSuffix': 'para una inmersión más profunda en marcos de evaluación',
+  'checklist.nextSteps.services': 'Explora nuestros',
+  'checklist.nextSteps.servicesLink': 'Servicios',
+  'checklist.nextSteps.servicesSuffix': 'para ver cómo podemos ayudar a optimizar tus sistemas',
+  'checklist.nextSteps.caseStudies': 'Revisa nuestros',
+  'checklist.nextSteps.caseStudiesLink': 'Casos de Estudio',
+  'checklist.nextSteps.caseStudiesSuffix': 'para ver ejemplos del mundo real de transformaciones exitosas',
+  'checklist.nextSteps.consultation': 'Agenda una consulta gratuita de 30 minutos',
+  'checklist.nextSteps.consultationSuffix': 'para discutir tus necesidades específicas y obtener recomendaciones personalizadas',
+  'checklist.nextSteps.template': 'Descarga nuestra plantilla gratuita de Planificación TI para comenzar a mapear tu hoja de ruta tecnológica',
+  'checklist.nextSteps.consultation2': 'Agenda una consulta gratuita de 30 minutos con nuestro equipo para discutir tu situación específica y oportunidades',
+
+  // Resources Page - Página de Recursos
+  'resources.hero.title': 'Recursos',
+  'resources.hero.description': 'Accede a nuestros proyectos, noticias y actualizaciones, y lista de verificación de preparación TI para ayudar a tu negocio a aprovechar los datos de manera efectiva.',
+  'resources.projects.description': 'Explora ejemplos del mundo real de nuestras soluciones de análisis de datos y automatización',
+  'resources.newsupdates.description': 'Mantente informado con las últimas perspectivas, tendencias y mejores prácticas',
+  'resources.checklist.description': 'Realiza nuestra Evaluación de Sistemas gratuita para descubrir tus necesidades tecnológicas',
+  'resources.explore': 'Explorar',
 };

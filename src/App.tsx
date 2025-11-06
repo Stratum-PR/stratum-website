@@ -8,25 +8,35 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import ScrollToTop from "./components/ScrollToTop";
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Projects from "./pages/Projects";
-import Solutions from "./pages/Solutions";
-import Resources from "./pages/Resources";
-import Blog from "./pages/Blog";
-import BlogDetail from "./pages/BlogDetail";
-import ProjectDetail from "./pages/ProjectDetail";
-import Contact from "./pages/Contact";
-import FAQ from "./pages/FAQ";
-import Privacy from "./pages/Privacy";
-import Sitemap from "./pages/Sitemap";
-import Checklist from "./pages/Checklist";
-import NotFound from "./pages/NotFound";
 import { lazy, Suspense } from "react";
 
-// Lazy load Studio to avoid loading it on every page
+// Lazy load all pages for better code splitting and initial load performance
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Solutions = lazy(() => import("./pages/Solutions"));
+const Resources = lazy(() => import("./pages/Resources"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogDetail = lazy(() => import("./pages/BlogDetail"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Contact = lazy(() => import("./pages/Contact"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Sitemap = lazy(() => import("./pages/Sitemap"));
+const Checklist = lazy(() => import("./pages/Checklist"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 const Studio = lazy(() => import("./pages/Studio"));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+      <p className="font-telegraf text-gray-600">Loading...</p>
+    </div>
+  </div>
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -50,33 +60,109 @@ const App = () => (
               <Route 
                 path="/studio/*" 
                 element={
-                  <Suspense fallback={<div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading Studio...</div>}>
+                  <Suspense fallback={<PageLoader />}>
                     <Studio />
                   </Suspense>
                 } 
               />
               <Route element={<Layout />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/solutions" element={<Solutions />} />
-                <Route path="/resources" element={<Resources />} />
-                <Route path="/newsupdates" element={<Blog />} />
-                <Route path="/newsupdates/:slug" element={<BlogDetail />} />
+                <Route path="/" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Home />
+                  </Suspense>
+                } />
+                <Route path="/about" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <About />
+                  </Suspense>
+                } />
+                <Route path="/services" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Services />
+                  </Suspense>
+                } />
+                <Route path="/projects" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Projects />
+                  </Suspense>
+                } />
+                <Route path="/solutions" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Solutions />
+                  </Suspense>
+                } />
+                <Route path="/resources" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Resources />
+                  </Suspense>
+                } />
+                <Route path="/newsupdates" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Blog />
+                  </Suspense>
+                } />
+                <Route path="/newsupdates/:slug" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <BlogDetail />
+                  </Suspense>
+                } />
                 {/* Legacy redirect for /blog */}
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogDetail />} />
-                <Route path="/checklist" element={<Checklist />} />
-                <Route path="/projects/:slug" element={<ProjectDetail />} />
+                <Route path="/blog" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Blog />
+                  </Suspense>
+                } />
+                <Route path="/blog/:slug" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <BlogDetail />
+                  </Suspense>
+                } />
+                <Route path="/checklist" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Checklist />
+                  </Suspense>
+                } />
+                <Route path="/projects/:slug" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <ProjectDetail />
+                  </Suspense>
+                } />
                 {/* Legacy redirects for case-studies URLs */}
-                <Route path="/case-studies" element={<Projects />} />
-                <Route path="/case-studies/:slug" element={<ProjectDetail />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/sitemap.xml" element={<Sitemap />} />
-                <Route path="*" element={<NotFound />} />
+                <Route path="/case-studies" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Projects />
+                  </Suspense>
+                } />
+                <Route path="/case-studies/:slug" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <ProjectDetail />
+                  </Suspense>
+                } />
+                <Route path="/contact" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Contact />
+                  </Suspense>
+                } />
+                <Route path="/faq" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <FAQ />
+                  </Suspense>
+                } />
+                <Route path="/privacy" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Privacy />
+                  </Suspense>
+                } />
+                <Route path="/sitemap.xml" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Sitemap />
+                  </Suspense>
+                } />
+                <Route path="*" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <NotFound />
+                  </Suspense>
+                } />
               </Route>
             </Routes>
           </BrowserRouter>
