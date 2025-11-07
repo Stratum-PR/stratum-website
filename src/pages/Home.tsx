@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import OptimizedImage from "@/components/OptimizedImage";
+import { ComingSoonModal } from "@/components/ComingSoonModal";
 import { lazy, Suspense, useState, useEffect } from "react";
 
 // Lazy load non-critical components with better loading states
@@ -15,6 +16,7 @@ const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSectio
 const Home = () => {
   const { t } = useLanguage();
   const [isClient, setIsClient] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
   
   // Hydration optimization 
   useEffect(() => {
@@ -210,15 +212,13 @@ const Home = () => {
               </Button>
 
               <Button 
-                asChild 
+                onClick={() => setShowComingSoon(true)}
                 variant="outline" 
                 size="lg" 
                 className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105 text-sm sm:text-base h-10 sm:h-12 w-full sm:w-auto max-w-xs sm:max-w-none" 
                 aria-label="Take the Systems Assessment"
               >
-                <Link to="/checklist">
-                  {t('home.hero.cta.secondary')}
-                </Link>
+                {t('home.hero.cta.secondary')}
               </Button>
             </div>
           </div>
@@ -304,13 +304,27 @@ const Home = () => {
                   </p>
                 </div>
 
-                {/* Working Zoom Image */}
-                <div className="w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-xl">
-                  <img 
-                    src="/img/working_zoom.jpeg" 
-                    alt="Technology & Innovation - Working Environment" 
-                    className="w-full h-full object-cover"
-                  />
+                {/* Puerto Rico Image */}
+                <div className="w-full">
+                  <div className="w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-xl">
+                    <img 
+                      src="https://images.unsplash.com/photo-1590099461831-30e3dacdca40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1846" 
+                      alt="Puerto Rico - Modern Business and Technology Hub" 
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2 text-center font-telegraf">
+                    {t('home.guide.photoBy')}{' '}
+                    <a 
+                      href="https://unsplash.com/@sklepacki" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-primary-600 underline hover:no-underline transition-colors"
+                    >
+                      Stephanie Klepacki
+                    </a>
+                  </p>
                 </div>
               </div>
 
@@ -599,6 +613,9 @@ const Home = () => {
           </div>
         </section>
       </div>
+      
+      {/* Coming Soon Modal for Systems Assessment */}
+      <ComingSoonModal open={showComingSoon} onOpenChange={setShowComingSoon} />
     </TooltipProvider>
   );
 };

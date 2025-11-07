@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ComingSoonModal } from "@/components/ComingSoonModal";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,6 +18,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
@@ -51,13 +53,16 @@ export const Header = () => {
 
   const resourcesDropdown = [{
     name: t('projects.hero.title'),
-    href: '/projects'
+    href: '/projects',
+    isChecklist: false
   }, {
     name: t('nav.newsupdates'),
-    href: '/newsupdates'
+    href: '/newsupdates',
+    isChecklist: false
   }, {
     name: t('nav.checklist'),
-    href: '/checklist'
+    href: '/checklist',
+    isChecklist: true // Flag to trigger modal instead of navigation
   }];
   
   const isActive = (path: string) => location.pathname === path;
@@ -107,13 +112,23 @@ export const Header = () => {
                 <NavigationMenuContent>
                   <div className="w-48 p-2">
                     {resourcesDropdown.map(dropdownItem => (
-                      <Link
-                        key={dropdownItem.name}
-                        to={dropdownItem.href}
-                        className="block px-4 py-3 font-telegraf font-medium text-base text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
-                      >
-                        {dropdownItem.name}
-                      </Link>
+                      dropdownItem.isChecklist ? (
+                        <button
+                          key={dropdownItem.name}
+                          onClick={() => setShowComingSoon(true)}
+                          className="block w-full text-left px-4 py-3 font-telegraf font-medium text-base text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
+                        >
+                          {dropdownItem.name}
+                        </button>
+                      ) : (
+                        <Link
+                          key={dropdownItem.name}
+                          to={dropdownItem.href}
+                          className="block px-4 py-3 font-telegraf font-medium text-base text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
+                        >
+                          {dropdownItem.name}
+                        </Link>
+                      )
                     ))}
                   </div>
                 </NavigationMenuContent>
@@ -261,18 +276,31 @@ export const Header = () => {
                           {isResourcesOpen && (
                             <div className="pl-4 space-y-1 mt-1">
                               {resourcesDropdown.map(subItem => (
-                                <Link
-                                  key={subItem.name}
-                                  to={subItem.href}
-                                  className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
-                                    isActive(subItem.href)
-                                      ? 'text-white bg-white/20 border-l-4 border-white'
-                                      : 'text-white/80 hover:text-white hover:bg-white/10 active:bg-white/20'
-                                  }`}
-                                  onClick={closeMenu}
-                                >
-                                  {subItem.name}
-                                </Link>
+                                subItem.isChecklist ? (
+                                  <button
+                                    key={subItem.name}
+                                    onClick={() => {
+                                      setShowComingSoon(true);
+                                      closeMenu();
+                                    }}
+                                    className="font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation w-full text-left text-white/80 hover:text-white hover:bg-white/10 active:bg-white/20"
+                                  >
+                                    {subItem.name}
+                                  </button>
+                                ) : (
+                                  <Link
+                                    key={subItem.name}
+                                    to={subItem.href}
+                                    className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
+                                      isActive(subItem.href)
+                                        ? 'text-white bg-white/20 border-l-4 border-white'
+                                        : 'text-white/80 hover:text-white hover:bg-white/10 active:bg-white/20'
+                                    }`}
+                                    onClick={closeMenu}
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                )
                               ))}
                             </div>
                           )}
@@ -301,6 +329,9 @@ export const Header = () => {
           </>
         )}
       </div>
+      
+      {/* Coming Soon Modal for Systems Assessment */}
+      <ComingSoonModal open={showComingSoon} onOpenChange={setShowComingSoon} />
     </header>
   );
 };

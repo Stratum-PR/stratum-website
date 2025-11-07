@@ -19,7 +19,7 @@ const MissionSection: React.FC = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
         setFade(true);
       }, 500); // fade out duration
-    }, 5000);
+    }, 7000); // 7 seconds (2 seconds slower than before)
     return () => clearInterval(interval);
   }, []);
 
@@ -56,11 +56,11 @@ const MissionSection: React.FC = () => {
                 className={`w-full h-full object-cover transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}
               />
             </div>
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 md:gap-2">
               {images.map((_, index) => (
                 <button
                   key={index}
-                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-colors duration-300 ${
+                  className={`!min-w-0 !min-h-0 w-[6px] h-[6px] sm:w-[8px] sm:h-[8px] md:w-2 md:h-2 rounded-full transition-colors duration-300 ${
                     index === currentImageIndex ? 'bg-white' : 'bg-white/50'
                   }`}
                   onClick={() => handleDotClick(index)}
