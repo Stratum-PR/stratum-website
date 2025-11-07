@@ -146,15 +146,17 @@ export const enTranslations: Record<string, string> = {
   'about.team.title': 'Meet Our Leadership Team',
   'about.team.description': 'Our team brings together more than 18 years of experience from leading projects at Fortune 500 companies, consulting firms, technology companies, and academic institutions.',
   'about.team.expertise': 'EXPERTISE',
+  'about.team.readMore': 'Read More',
+  'about.team.readLess': 'Read Less',
   
   // Team member data
-  'team.jovaniel.name': 'Jovaniel Rodriguez',
+  'team.jovaniel.name': 'Jovaniel Rodríguez',
   'team.jovaniel.role': 'Co-Founder, Technology Infrastructure',
   'team.jovaniel.bio': 'Jovaniel brings over 10 years of experience in strategic consulting and data analytics, having led transformational projects at Fortune 500 companies. His expertise spans business intelligence, process optimization, and organizational change management.',
   'team.jovaniel.expertise': 'Strategic Consulting, Business Intelligence, Change Management, Data Analytics',
   
-  'team.genesis.name': 'Genesis Rodriguez',
-  'team.genesis.role': 'Chief Data Officer',
+  'team.genesis.name': 'Génesis Rodríguez',
+  'team.genesis.role': 'Co-Founder, Data & Insights',
   'team.genesis.bio': 'Genesis is a seasoned technology leader with extensive experience in AI implementation, software architecture, and digital transformation. She has successfully delivered enterprise-scale solutions across multiple industries.',
   'team.genesis.expertise': 'AI Implementation, Software Architecture, Digital Transformation, Enterprise Solutions',
   
