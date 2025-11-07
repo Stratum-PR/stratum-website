@@ -555,7 +555,7 @@ const Checklist = () => {
                       asChild
                       className="flex-1 bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold"
                     >
-                      <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
+                      <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
                         {t('checklist.button.consultation')}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>
@@ -604,7 +604,7 @@ const Checklist = () => {
                     <div className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-700">
-                        <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">
+                        <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">
                           {t('checklist.nextSteps.consultation')}
                         </a>{' '}
                         {t('checklist.nextSteps.consultationSuffix')}

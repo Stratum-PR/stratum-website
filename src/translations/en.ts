@@ -66,7 +66,7 @@ export const enTranslations: Record<string, string> = {
   // Plan Section
   'home.plan.title': 'Getting started is simple:',
   'home.plan.step1': 'Complete our <strong>free Systems Assessment</strong> (coming soon) to identify potential inefficiencies.',
-  'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities.',
+  'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities.',
   'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.',
   
   // Two Paths Forward Section

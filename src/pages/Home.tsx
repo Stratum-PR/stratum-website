@@ -205,7 +205,7 @@ const Home = () => {
                 className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-sm sm:text-base h-10 sm:h-12 w-full sm:w-auto max-w-xs sm:max-w-none" 
                 aria-label="Schedule free consultation with Stratum PR data analytics experts"
               >
-                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
                   {t('home.hero.cta.primary')}
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
                 </a>
@@ -597,7 +597,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
+                <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
                   {t('services.cta.consultation')}
                 </a>
               </Button>

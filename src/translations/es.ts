@@ -65,7 +65,7 @@ export const esTranslations: Record<string, string> = {
   // Plan Section
   'home.plan.title': 'Comenzar es simple:',
   'home.plan.step1': 'Completa nuestra <strong>Evaluación de Sistemas gratuita</strong> (próximamente) para identificar potenciales deficiencias.',
-  'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades.',
+  'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades.',
   'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong> para tu empresa y sus necesidades.',
   
   // Two Paths Forward Section

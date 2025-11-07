@@ -186,7 +186,7 @@ export const Header = () => {
             {/* CTA Button - Show only on desktop (xl+) */}
             <div className="hidden xl:block flex-shrink-0">
               <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 md:px-5 py-2 text-sm rounded-md transition-all duration-200 hover:shadow-lg whitespace-nowrap h-9 md:h-10">
-                <a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
                   {t('nav.schedule')}
                 </a>
               </Button>
