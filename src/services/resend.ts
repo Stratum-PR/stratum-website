@@ -171,7 +171,7 @@ export async function sendChecklistResults(
         <li><strong>Ver casos de estudio</strong> - <a href="https://www.stratumpr.com/projects">Aprender de proyectos exitosos</a></li>
       </ol>
       
-      <p>¿Listo para dar el siguiente paso? <a href="https://calendly.com/jrodriguez4917/30min">Agenda tu consulta gratuita ahora</a></p>
+      <p>¿Listo para dar el siguiente paso? <a href="https://calendly.com/admin-stratumpr/30min">Agenda tu consulta gratuita ahora</a></p>
       
       <br>
       <p style="color: #666; font-size: 12px;">Has sido agregado a nuestra lista de correo para recibir actualizaciones del blog.</p>
@@ -190,7 +190,7 @@ export async function sendChecklistResults(
         <li><strong>View case studies</strong> - <a href="https://www.stratumpr.com/projects">Learn from successful projects</a></li>
       </ol>
       
-      <p>Ready to take the next step? <a href="https://calendly.com/jrodriguez4917/30min">Schedule your free consultation now</a></p>
+      <p>Ready to take the next step? <a href="https://calendly.com/admin-stratumpr/30min">Schedule your free consultation now</a></p>
       
       <br>
       <p style="color: #666; font-size: 12px;">You've been added to our mailing list to receive blog updates.</p>
