@@ -11,7 +11,7 @@ export const enTranslations: Record<string, string> = {
   // NAVIGATION - Edit menu items here
   // ==========================================================================
   'nav.home': 'Home',
-  'nav.about': 'About',
+  'nav.about': 'About Us',
   'nav.services': 'Services',
   'nav.contact': 'Contact',
   'nav.projects': 'Projects',
@@ -25,9 +25,9 @@ export const enTranslations: Record<string, string> = {
   // Home page
   'home.hero.title': 'Spend less time on admin, more time on growth',
   'home.hero.subtitle': '',
-  'home.hero.description': 'Based in Puerto Rico, Stratum builds and manages intelligent data systems that reduce manual work and streamline operations without the need of a full-time internal team.',
+  'home.hero.description': '100% based in Puerto Rico, Stratum builds intelligent data systems that reduce manual work and optimize operations without the need to hire a data management team.',
   'home.hero.cta.primary': 'Book Free Consultation',
-  'home.hero.cta.secondary': 'Take our Systems Health Assessment',
+  'home.hero.cta.secondary': 'Take our Systems Assessment',
 
   
   // Problem Section
@@ -35,7 +35,7 @@ export const enTranslations: Record<string, string> = {
   'home.problem.box1.title': 'Fragmented Data Across Systems',
   'home.problem.box1.subtitle': 'Critical information is spread across spreadsheets, emails, and disconnected tools, slowing down decision-making.',
   'home.problem.box2.title': 'Manual Work Is Slowing You Down',
-  'home.problem.box2.subtitle': 'Your team spends hours on reporting and admin tasks, with less time for results-driven work.',
+  'home.problem.box2.subtitle': 'Your team spends too many hours on administrative tasks and report creation, dedicating less time to real work.',
   'home.problem.box3.title': 'Gut-based Decision Making',
   'home.problem.box3.subtitle': 'Without reliable numbers, decisions are based on incomplete information, increasing risk of mistakes.',
   'home.problem.conclusion': 'Valuable time is being spent on tasks that systems could manage for you.',
@@ -62,7 +62,7 @@ export const enTranslations: Record<string, string> = {
   'home.twoPaths.title': 'Two Paths Forward: Which Will You Choose?',
   'home.twoPaths.withoutAction.title': 'Without Action: The Cost of Standing Still',
   'home.twoPaths.withoutAction.point1.title': 'Falling Behind Competitors',
-  'home.twoPaths.withoutAction.point1.description': 'While you manually process data, competitors gain market advantage with AI-driven insights',
+  'home.twoPaths.withoutAction.point1.description': 'While you manually process data, competitors gain market advantage with real-time metrics driven by artificial intelligence',
   'home.twoPaths.withoutAction.point2.title': 'Wasted Resources',
   'home.twoPaths.withoutAction.point2.description': 'Your team burns 20+ hours weekly on manual tasks that could be automated',
   'home.twoPaths.withoutAction.point3.title': 'Missed Opportunities',
@@ -73,15 +73,15 @@ export const enTranslations: Record<string, string> = {
   'home.twoPaths.withStratum.point1.title': 'Lightning-Fast Decisions',
   'home.twoPaths.withStratum.point1.description': 'Real-time dashboards give you instant visibility into what matters most',
   'home.twoPaths.withStratum.point2.title': 'Strategic Advantage',
-  'home.twoPaths.withStratum.point2.description': 'Predictive analytics help you stay three steps ahead of market changes',
+  'home.twoPaths.withStratum.point2.description': 'Predictive analytics help you stay three steps ahead of your competition',
   'home.twoPaths.withStratum.point3.title': 'Time Freedom',
-  'home.twoPaths.withStratum.point3.description': 'Your team focuses on high-value work while AI handles routine tasks',
+  'home.twoPaths.withStratum.point3.description': 'Your team focuses on work that grows the business while technology handles routine tasks',
   'home.twoPaths.withStratum.point4.title': 'Industry Leadership',
   'home.twoPaths.withStratum.point4.description': 'Become the organization others look to as the innovation benchmark',
   
   // Final CTA Section
   'home.finalCta.title': 'Reach your potential with Stratum.',
-  'home.finalCta.description': 'Ready to transform your business with data-driven insights?',
+  'home.finalCta.description': 'Ready to transform your business with a digital strategy?',
   'home.finalCta.consultation': 'Book Free Consultation',
   'home.finalCta.checklist': 'Get Systems Assessment',
   
@@ -102,7 +102,7 @@ export const enTranslations: Record<string, string> = {
 
   // Why Work With Us
   'whyworkwithus.title': 'Why Work With Us',
-  'whyworkwithus.description': 'Stratum PR may be new, but our team is not. Founded by senior consultants and data specialists with years of experience delivering results for Fortune 500 companies, federal recovery programs, and Puerto Rico government agencies, we bring the discipline of enterprise work into a focused, agile firm built for impact.',
+  'whyworkwithus.description': 'Founded by senior consultants and data specialists with years of experience delivering results, we bring the discipline of enterprise work into a focused, agile firm built for impact.',
   'whyworkwithus.expertise.title': 'Proven Expertise',
   'whyworkwithus.expertise.description': 'We\'ve designed systems, dashboards, and automation tools for organizations like ICF, UnitedHealth Group, and the Puerto Rico Department of Health. We know the stakes—and how to deliver.',
   'whyworkwithus.process.title': 'Process-Driven Clarity',
@@ -144,7 +144,7 @@ export const enTranslations: Record<string, string> = {
   'about.values.innovation': 'Innovation Focus',
   'about.values.innovation.desc': 'Continuously exploring emerging technologies to deliver competitive advantages.',
   'about.team.title': 'Meet Our Leadership Team',
-  'about.team.description': 'Our founding team brings together more than a decade of experience from leading projects at Fortune 500 companies, consulting firms, technology companies, and academic institutions.',
+  'about.team.description': 'Our team brings together more than 18 years of experience from leading projects at Fortune 500 companies, consulting firms, technology companies, and academic institutions.',
   'about.team.expertise': 'EXPERTISE',
   
   // Team member data
