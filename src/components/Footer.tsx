@@ -13,10 +13,10 @@ export const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <img src="/Stratum_Icon_whiteline ver 2.svg" alt="Stratum PR Logo" className="h-8 w-8 object-scale-down" />
-              <span className="font-telegraf font-bold text-xl text-left px-0">Stratum PR - The Architecture of Better Decisions.</span>
+              <span className="font-telegraf font-bold text-xl text-left px-0">{t('footer.companyName')}</span>
             </div>
             <p className="text-primary-100 mb-4 font-telegraf">
-              Your strategic partner for business intelligence solutions in Puerto Rico.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a href="https://linkedin.com/company/stratumpr" target="_blank" rel="noopener noreferrer" className="text-primary-200 hover:text-accent transition-colors">
@@ -33,7 +33,7 @@ export const Footer = () => {
 
           {/* Navigation Links - Reordered to match header: Home, About, Services, FAQ, Resources, Contact - Hidden on mobile */}
           <div className="hidden md:block">
-            <h3 className="font-telegraf font-semibold text-lg mb-4">Navigation</h3>
+            <h3 className="font-telegraf font-semibold text-lg mb-4">{t('footer.navigation')}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Link to="/" className="block text-primary-200 hover:text-accent transition-colors font-telegraf">

@@ -24,7 +24,8 @@ const Contact = lazy(() => import("./pages/Contact"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
-const Checklist = lazy(() => import("./pages/Checklist"));
+// CHECKLIST TEMPORARILY DISABLED - Uncomment when ready to enable
+// const Checklist = lazy(() => import("./pages/Checklist"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Studio = lazy(() => import("./pages/Studio"));
 
@@ -117,11 +118,13 @@ const App = () => (
                     <BlogDetail />
                   </Suspense>
                 } />
+                {/* CHECKLIST ROUTE TEMPORARILY DISABLED - Uncomment when ready to enable
                 <Route path="/checklist" element={
                   <Suspense fallback={<PageLoader />}>
                     <Checklist />
                   </Suspense>
                 } />
+                */}
                 <Route path="/projects/:slug" element={
                   <Suspense fallback={<PageLoader />}>
                     <ProjectDetail />

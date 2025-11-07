@@ -17,7 +17,7 @@ export const esTranslations: Record<string, string> = {
   'nav.projects': 'Proyectos',
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
-  'nav.newsupdates': 'Actualizaciones',
+  'nav.newsupdates': 'Noticias',
   'nav.checklist': 'Haz tu Evaluación de Sistemas',
   'nav.schedule': 'Agendar Consulta',
   'nav.faq': 'FAQ',
@@ -50,10 +50,21 @@ export const esTranslations: Record<string, string> = {
   'home.guide.conclusion': 'Le permitimos a equipos y organizaciones la enfocarse en lo que hacen mejor y eliminamos la necesidad de manejar sistemas complejos manualmente.',
   'home.guide.moreAboutUs': 'Más sobre nosotros aquí.',
   'home.guide.learnMoreServices': 'Conoce más sobre nuestros Servicios',
+  'home.guide.photoBy': 'Foto por',
+  
+  // Coming Soon Modal (para Evaluación de Sistemas)
+  'comingSoon.title': 'Próximamente',
+  'comingSoon.description': 'La función de Evaluación de Sistemas está actualmente en desarrollo. ¡Únete a nuestro boletín para ser notificado cuando esté disponible!',
+  'comingSoon.newsletter.description': 'Suscríbete a nuestro boletín para recibir actualizaciones cuando la Evaluación de Sistemas esté lista:',
+  'comingSoon.newsletter.placeholder': 'Ingresa tu dirección de correo electrónico',
+  'comingSoon.newsletter.button': 'Suscribirse',
+  'comingSoon.newsletter.subscribing': 'Suscribiendo...',
+  'comingSoon.newsletter.success': '¡Gracias por suscribirte! Te notificaremos cuando la Evaluación de Sistemas esté disponible.',
+  'comingSoon.newsletter.error': 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.',
   
   // Plan Section
   'home.plan.title': 'Comenzar es simple:',
-  'home.plan.step1': 'Completa nuestra <strong><a href="/checklist" class="text-primary hover:underline">Evaluación de Sistemas gratuita</a></strong> para identificar potenciales deficiencias.',
+  'home.plan.step1': 'Completa nuestra <strong>Evaluación de Sistemas gratuita</strong> (próximamente) para identificar potenciales deficiencias.',
   'home.plan.step2': 'Programa una <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">consulta gratuita de 30 minutos</a></strong> para revisar necesidades y prioridades.',
   'home.plan.step3': 'Recibe un <strong>plan de solución personalizado</strong> para tu empresa y sus necesidades.',
   
@@ -151,12 +162,12 @@ export const esTranslations: Record<string, string> = {
   // Team member data
   'team.jovaniel.name': 'Jovaniel Rodríguez',
   'team.jovaniel.role': 'Co-Fundador, Infraestructura Tecnológica',
-  'team.jovaniel.bio': 'Jovaniel aporta más de 8 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado varios proyectos en empresas "Fortune 500". Su experiencia abarca manejo de proyectos, inteligencia de negicios, optimización de procesos y modernización de sistemas.',
+  'team.jovaniel.bio': 'Jovaniel aporta más de 10 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado varios proyectos en empresas "Fortune 500". Su experiencia abarca manejo de proyectos, inteligencia de negocios, optimización de procesos y modernización de sistemas.',
   'team.jovaniel.expertise': 'Modernización de Sistemas, Implementación de IA, Gobernanza de Datos',
   
   'team.genesis.name': 'Génesis Rodríguez',
   'team.genesis.role': 'Co-Fundadora, Ciencia de Datos',
-  'team.genesis.bio': 'Génesis es una líder tecnológica experimentada con amplia experiencia en implementación de IA, arquitectura de software y transformación digital. Ha entregado exitosamente soluciones a escala empresarial en múltiples industrias.',
+  'team.genesis.bio': 'Génesis aporta más de 5 años de experiencia en ciencia de datos e investigación, habiendo liderado equipos de datos en proyectos a nivel estatal. Su experiencia abarca automatización de procesos, administración de datos, análisis avanzado, modelaje estadístico y proyecciones estratégicas.',
   'team.genesis.expertise': 'Implementación de IA, Arquitectura de Software, Transformación Digital, Soluciones Empresariales',
   
   'team.roberto.name': 'Roberto Otero',
@@ -324,6 +335,9 @@ export const esTranslations: Record<string, string> = {
   
   // Footer
   'footer.tagline': 'La Arquitectura de Mejores Decisiones. Nos especializamos en soluciones de análisis y consultoría que impulsan resultados empresariales estratégicos.',
+  'footer.companyName': 'Stratum PR - La Arquitectura de Mejores Decisiones.',
+  'footer.description': 'Tu socio estratégico para soluciones de inteligencia empresarial en Puerto Rico.',
+  'footer.navigation': 'Navegación',
   'footer.quicklinks': 'Enlaces Rápidos',
   'footer.contact': 'Contacto',
   'footer.copyright': 'Todos los derechos reservados.',

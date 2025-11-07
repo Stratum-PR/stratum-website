@@ -5,9 +5,12 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { ComingSoonModal } from "@/components/ComingSoonModal";
+import { useState } from "react";
 
 const Resources = () => {
   const { t, language } = useLanguage();
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   // SEO optimization for resources page
   useSEO({
@@ -73,7 +76,41 @@ const Resources = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {resources.map((resource) => {
-              return (
+              const isChecklist = resource.href === '/checklist';
+              return isChecklist ? (
+                <button
+                  key={resource.href}
+                  onClick={() => setShowComingSoon(true)}
+                  className="text-left"
+                >
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full w-full">
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={resource.image} 
+                        alt={resource.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          // Fallback to a placeholder if image doesn't exist
+                          (e.target as HTMLImageElement).src = '/img/topographic-linear-background.jpg';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                    <CardContent className="p-6 text-center">
+                      <h3 className="font-telegraf font-semibold text-xl text-primary mb-3 group-hover:text-secondary transition-colors">
+                        {resource.name}
+                      </h3>
+                      <p className="font-telegraf text-gray-600 mb-6 leading-relaxed">
+                        {resource.description}
+                      </p>
+                      <div className="flex items-center justify-center text-primary hover:text-secondary transition-colors group/link">
+                        <span className="font-telegraf">{t('resources.explore')}</span>
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </button>
+              ) : (
                 <Link key={resource.href} to={resource.href}>
                   <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full">
                     <div className="relative h-48 overflow-hidden">
@@ -107,6 +144,9 @@ const Resources = () => {
           </div>
         </div>
       </section>
+      
+      {/* Coming Soon Modal for Systems Assessment */}
+      <ComingSoonModal open={showComingSoon} onOpenChange={setShowComingSoon} />
     </div>
   );
 };

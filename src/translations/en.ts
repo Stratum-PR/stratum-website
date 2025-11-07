@@ -17,7 +17,7 @@ export const enTranslations: Record<string, string> = {
   'nav.projects': 'Projects',
   'nav.resources': 'Resources',
   'nav.blog': 'Blog',
-  'nav.newsupdates': 'News & Updates',
+  'nav.newsupdates': 'Newsletter',
   'nav.checklist': 'Take Your Systems Health Assessment',
   'nav.schedule': 'Book Free Consultation',
   'nav.faq': 'FAQ',
@@ -51,10 +51,21 @@ export const enTranslations: Record<string, string> = {
   'home.guide.conclusion': 'We free up organizational teams from managing complex systems, allowing them to focus on what they do best.',
   'home.guide.moreAboutUs': 'More about us here.',
   'home.guide.learnMoreServices': 'Learn more about our Services',
+  'home.guide.photoBy': 'Photo by',
+  
+  // Coming Soon Modal (for Systems Assessment)
+  'comingSoon.title': 'Coming Soon',
+  'comingSoon.description': 'The Systems Assessment feature is currently under development. Join our newsletter to be notified when it\'s available!',
+  'comingSoon.newsletter.description': 'Subscribe to our newsletter to receive updates when the Systems Assessment is ready:',
+  'comingSoon.newsletter.placeholder': 'Enter your email address',
+  'comingSoon.newsletter.button': 'Subscribe',
+  'comingSoon.newsletter.subscribing': 'Subscribing...',
+  'comingSoon.newsletter.success': 'Thank you for subscribing! We\'ll notify you when the Systems Assessment is available.',
+  'comingSoon.newsletter.error': 'Something went wrong. Please try again later.',
   
   // Plan Section
   'home.plan.title': 'Getting started is simple:',
-  'home.plan.step1': 'Complete our <strong><a href="/checklist" class="text-primary hover:underline">free Systems Assessment</a></strong> to identify potential inefficiencies.',
+  'home.plan.step1': 'Complete our <strong>free Systems Assessment</strong> (coming soon) to identify potential inefficiencies.',
   'home.plan.step2': 'Schedule a <strong><a href="https://calendly.com/jrodriguez4917/30min" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">free 30-minute consultation</a></strong> to review needs and priorities.',
   'home.plan.step3': 'Receive a <strong>tailored solution plan</strong>, revised until it\'s the right fit.',
   
@@ -117,7 +128,7 @@ export const enTranslations: Record<string, string> = {
   
   // Features
   'features.title': 'Strategic Solutions for Data Analytics Puerto Rico',
-  'features.description': 'We architect comprehensive solutions that bridge the gap between complex data and strategic business outcomes through AI business automation and CRM implementation consulting.',
+  'features.description': 'We build comprehensive solutions that bridge the gap between complex data and strategic business outcomes through AI business automation and CRM implementation consulting.',
   'features.bigdata.title': 'Big Data Analytics',
   'features.bigdata.description': 'Transform complex data into actionable insights',
   'features.ai.title': 'AI & Decision Intelligence',
@@ -132,7 +143,7 @@ export const enTranslations: Record<string, string> = {
   'about.hero.description': 'Founded in 2025, Stratum PR emerged from a simple observation: most organizations have access to more data than ever before, yet struggle to make better decisions. We bridge this gap by architecting solutions that transform complex information into strategic advantage.',
   'about.mission.title': 'Our Mission',
   'about.mission.description1': 'We exist to democratize advanced analytics and AI capabilities for businesses of all sizes. By combining deep technical expertise with strategic business acumen, we help organizations build the foundation for sustained competitive advantage in an increasingly data-driven world.',
-  'about.mission.description2': 'Our approach goes beyond traditional consulting. We don\'t just provide recommendations—we architect and implement complete solutions that integrate seamlessly with your existing operations while positioning you for future growth.',
+  'about.mission.description2': 'Our approach goes beyond traditional consulting. We don\'t just provide recommendations, we design and implement complete solutions that integrate seamlessly with your existing operations while positioning you for future growth.',
   'about.values.title': 'Our Values',
   'about.values.description': 'These principles guide every decision we make and every solution we deliver.',
   'about.values.technical': 'Technical Excellence',
@@ -157,7 +168,7 @@ export const enTranslations: Record<string, string> = {
   
   'team.genesis.name': 'Génesis Rodríguez',
   'team.genesis.role': 'Co-Founder, Data & Insights',
-  'team.genesis.bio': 'Genesis is a seasoned technology leader with extensive experience in AI implementation, software architecture, and digital transformation. She has successfully delivered enterprise-scale solutions across multiple industries.',
+  'team.genesis.bio': 'Génesis brings over 5 years of experience in data science and research, having led data teams on state-level projects. Her expertise spans process automation, data management, advanced analytics, statistical modeling, and strategic forecasting.',
   'team.genesis.expertise': 'AI Implementation, Software Architecture, Digital Transformation, Enterprise Solutions',
   
   'team.roberto.name': 'Roberto Otero',
@@ -167,7 +178,7 @@ export const enTranslations: Record<string, string> = {
   
   // Services page
   'services.hero.title': 'Data Analytics Services Puerto Rico',
-  'services.hero.description': 'We architect comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from CRM implementation consulting to AI business automation.',
+  'services.hero.description': 'We build comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from CRM implementation consulting to AI business automation.',
   'services.hero.cta': 'Book Free Consultation',
   'services.core.title': 'Our Core Services',
   'services.core.description': 'Each service is designed to deliver measurable business value while building the foundation for long-term strategic advantage.',
@@ -325,6 +336,9 @@ export const enTranslations: Record<string, string> = {
   
   // Footer
   'footer.tagline': 'The Architecture of Better Decisions. Your strategic partner for business intelligence solutions in Puerto Rico.',
+  'footer.companyName': 'Stratum PR - The Architecture of Better Decisions.',
+  'footer.description': 'Your strategic partner for business intelligence solutions in Puerto Rico.',
+  'footer.navigation': 'Navigation',
   'footer.quicklinks': 'Quick Links',
   'footer.contact': 'Contact',
   'footer.copyright': 'All rights reserved.',
@@ -406,7 +420,7 @@ export const enTranslations: Record<string, string> = {
   
   // Blog page (News & Updates)
   // EDIT THIS SECTION: Change blog title, descriptions, and subscription text
-  'blog.hero.title': 'News and Updates',
+  'blog.hero.title': 'Newsletter',
   'blog.hero.description': 'Stay informed with the latest trends, best practices, and expert insights in data analytics, AI automation, and digital transformation.',
   'blog.readmore': 'Read Article',
   'blog.cta.title': 'Have a Topic in Mind?',
