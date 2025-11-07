@@ -41,7 +41,7 @@ export const enTranslations: Record<string, string> = {
   'home.problem.conclusion': 'Valuable time is being spent on tasks that systems could manage for you.',
   
   // Guide Section
-  'home.guide.description': 'Stratum PR brings together a team of data experts based in Puerto Rico, with backgrounds in analytics, research, systems design, and automation.',
+  'home.guide.description': 'Stratum PR brings together a team of data experts based in Puerto Rico, with expertise in analytics, research, systems design, and automation.',
   'home.guide.weSpecialize': 'We specialize in:',
   'home.guide.feature1': 'Custom reporting dashboards designed and maintained',
   'home.guide.feature2': 'CRM and ERP implementation and optimization',
@@ -230,7 +230,7 @@ export const enTranslations: Record<string, string> = {
   'services.cta.title': 'Ready to Get Started?',
   'services.cta.description': 'Let\'s discuss how our data analytics services can transform your business operations and drive strategic growth in Puerto Rico.',
   'services.cta.consultation': 'Book Free Consultation',
-  'services.cta.contact': 'Contact Our Team',
+  'services.cta.contact': 'Contact Us',
   'services.features': 'Key Features',
   
   // Contact page
@@ -240,25 +240,25 @@ export const enTranslations: Record<string, string> = {
   'contact.form.description': 'Fill out the form below and we\'ll get back to you within 24 hours.',
   'contact.form.security': 'This form is protected against spam and automated submissions',
   'contact.form.name': 'Full Name',
-  'contact.form.name.placeholder': 'John Smith',
+  'contact.form.name.placeholder': 'Ana Perez',
   'contact.form.email': 'Email Address',
-  'contact.form.email.placeholder': 'john@company.com',
+  'contact.form.email.placeholder': 'ana@company.com',
   'contact.form.phone': 'Phone Number',
-  'contact.form.phone.placeholder': '+1 (555) 123-4567',
+  'contact.form.phone.placeholder': '+1 (787) 123-4567',
   'contact.form.company': 'Company Name',
-  'contact.form.company.placeholder': 'Acme Corporation',
+  'contact.form.company.placeholder': 'ABC Group',
   'contact.form.industry': 'Industry',
   'contact.form.industry.placeholder': 'Healthcare, Finance, Technology...',
   'contact.form.subject': 'Subject',
-  'contact.form.subject.placeholder': 'Help me understand how my data can help me generate more income',
+  'contact.form.subject.placeholder': 'I need my processes optimized',
   'contact.form.message': 'Message',
-  'contact.form.message.placeholder': 'I have a lot of data and don\'t know what to do with it...',
+  'contact.form.message.placeholder': 'I have a lot of data and want to know how I can eliminate repetitive tasks and optimize my processes.',
   'contact.form.submit': 'Send Message',
   'contact.form.sending': 'Sending Message...',
   'contact.form.success.title': 'Message Sent Successfully!',
   'contact.form.success.description': 'Thank you for reaching out. We\'ll get back to you within 24 hours.',
   'contact.info.title': 'Get in Touch',
-  'contact.info.description': 'Multiple ways to reach our team',
+  'contact.info.description': 'Multiple ways to contact us',
   'contact.info.email': 'Email',
   'contact.info.email.desc': 'Send us a message anytime',
   'contact.info.linkedin': 'LinkedIn',
@@ -281,13 +281,13 @@ export const enTranslations: Record<string, string> = {
   
   // Company FAQs
   'faq.company.who.question': 'Who is Stratum PR and what makes you different?',
-  'faq.company.who.answer': 'Stratum PR is a data analytics and consulting firm founded in 2025, specializing in transforming complex data into strategic business advantages. What makes us different is our team\'s proven track record with Fortune 500 companies, federal recovery programs, and Puerto Rico government agencies. We\'re not just consultants—we\'re architects of better decision-making systems.',
+  'faq.company.who.answer': 'Stratum PR is a data analytics and consulting firm founded in 2025, specializing in transforming complex data into strategic business advantages. What makes us different is our team\'s proven track record with Fortune 500 companies, federal recovery programs, and Puerto Rico government agencies. We\'re not just consultants, we\'re architects of better decision-making systems.',
   
   'faq.company.why.question': 'Why should I hire Stratum PR instead of a larger consulting firm?',
-  'faq.company.why.answer': 'While larger firms often assign junior staff to your project, at Stratum PR you work directly with senior consultants and decision-makers. Our smaller size means personalized attention, faster response times, and solutions tailored specifically to your needs. Plus, we bring Fortune 500-level expertise at a more accessible scale and cost.',
+  'faq.company.why.answer': 'While larger firms often assign junior staff to your project, at Stratum PR you work directly with senior consultants and decision-makers. We provide you with personalized attention, faster response times, and solutions tailored specifically to your needs. Plus, we bring Fortune 500-level expertise at a more accessible scale and cost.',
   
   'faq.company.experience.question': 'What experience does your team have?',
-  'faq.company.experience.answer': 'Our founding team brings over a decade of combined experience from leading projects at Fortune 500 companies like UnitedHealth Group, consulting firms like ICF, and government agencies including the Puerto Rico Department of Health. We\'ve designed systems, dashboards, and automation tools that have delivered measurable results for organizations of all sizes.',
+  'faq.company.experience.answer': 'Our founding team brings over a decade of combined experience from leading projects at public and private organizations in Puerto Rico and the United States. We\'ve designed systems, dashboards, and automation tools that have delivered measurable results for organizations of all sizes.',
   
   // Services FAQs
   'faq.services.crm.question': 'What is CRM implementation and why do I need it?',
@@ -409,7 +409,7 @@ export const enTranslations: Record<string, string> = {
   'blog.readmore': 'Read Article',
   'blog.cta.title': 'Have a Topic in Mind?',
   'blog.cta.description': 'Let us know what you\'d like to learn more about. We\'re always looking to create content that helps our community.',
-  'blog.cta.button': 'Contact Our Team',
+  'blog.cta.button': 'Contact Us',
   'blog.subscribe.title': 'Stay Updated',
   // EDIT THIS LINE: Change subscription description text
   'blog.subscribe.description': 'Subscribe to our blog to receive the latest articles directly in your inbox.',

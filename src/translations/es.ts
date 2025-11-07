@@ -40,7 +40,7 @@ export const esTranslations: Record<string, string> = {
   'home.problem.conclusion': 'Estás perdiendo tiempo valioso en tareas que podrían hacerse de manera automática.',
   
   // Guide Section
-  'home.guide.description': 'Stratum PR reúne a un equipo de expertos en datos con sede en Puerto Rico, con antecedentes en análisis, investigación, diseño de sistemas y automatización.',
+  'home.guide.description': 'Stratum PR reúne a un equipo de expertos en datos con sede en Puerto Rico, con dominio en análisis, investigación, diseño de sistemas y automatización.',
   'home.guide.weSpecialize': 'Nos especializamos en:',
   'home.guide.feature1': 'Dashboards de reportes personalizados diseñados y mantenidos',
   'home.guide.feature2': 'Implementación y optimización de CRM y ERP',
@@ -61,7 +61,7 @@ export const esTranslations: Record<string, string> = {
   'home.twoPaths.title': 'Hay dos caminos: ¿Cuál le espera a tu empresa?',
   'home.twoPaths.withoutAction.title': 'No Tomar Acción: El costo de no tener una estrategia de datos',
   'home.twoPaths.withoutAction.point1.title': 'Quedarse Atrás de Competidores',
-  'home.twoPaths.withoutAction.point1.description': 'Mientras procesas datos manualmente, los competidores ganan ventaja en el mercado con métricas en tiempo real impulsadas por inteligencia artificial.',
+  'home.twoPaths.withoutAction.point1.description': 'Mientras procesas datos manualmente, los competidores ganan ventaja en el mercado con métricas en tiempo real impulsadas por inteligencia artificial',
   'home.twoPaths.withoutAction.point2.title': 'Recursos Desperdiciados',
   'home.twoPaths.withoutAction.point2.description': 'Tu equipo gasta 20+ horas semanales en tareas manuales que podrían automatizarse',
   'home.twoPaths.withoutAction.point3.title': 'Oportunidades Perdidas',
@@ -70,13 +70,13 @@ export const esTranslations: Record<string, string> = {
   'home.twoPaths.withoutAction.point4.description': 'Los mejores empleados se va a organizaciones con sistemas modernos y eficientes',
   'home.twoPaths.withStratum.title': 'Con Stratum: Tu Futuro Transformado',
   'home.twoPaths.withStratum.point1.title': 'Decisiones Rápidas',
-  'home.twoPaths.withStratum.point1.description': 'Los dashboards en tiempo real te dan visibilidad instantánea de las métricas importantes de tu negocio.',
+  'home.twoPaths.withStratum.point1.description': 'Los dashboards en tiempo real te dan visibilidad instantánea de las métricas importantes de tu negocio',
   'home.twoPaths.withStratum.point2.title': 'Ventaja Estratégica',
-  'home.twoPaths.withStratum.point2.description': 'Los análisis predictivos te ayudan a estar tres pasos por delante de tu competencia.',
+  'home.twoPaths.withStratum.point2.description': 'Los análisis predictivos te ayudan a estar tres pasos por delante de tu competencia',
   'home.twoPaths.withStratum.point3.title': 'Libertad de Tiempo',
-  'home.twoPaths.withStratum.point3.description': 'Tu equipo se enfoca en trabajo que hace crecer la empresa mientras la tecnología maneja tareas rutinarias.',
+  'home.twoPaths.withStratum.point3.description': 'Tu equipo se enfoca en trabajo que hace crecer la empresa mientras la tecnología maneja tareas rutinarias',
   'home.twoPaths.withStratum.point4.title': 'Liderazgo en la Industria',
-  'home.twoPaths.withStratum.point4.description': 'Conviértete en la organización a la que otros miran como inspiración para innovar.',
+  'home.twoPaths.withStratum.point4.description': 'Conviértete en la organización a la que otros miran como inspiración para innovar',
   
   // Final CTA Section
   'home.finalCta.title': 'Alcanza tu potencial con Stratum.',
@@ -229,7 +229,7 @@ export const esTranslations: Record<string, string> = {
   'services.cta.title': '¿Listo para Comenzar?',
   'services.cta.description': 'Discutamos cómo nuestros servicios de análisis de datos pueden transformar tus operaciones empresariales e impulsar el crecimiento estratégico en Puerto Rico.',
   'services.cta.consultation': 'Agendar Consulta Gratuita',
-  'services.cta.contact': 'Contactar Nuestro Equipo',
+  'services.cta.contact': 'Contáctanos',
   'services.features': 'Características Principales',
   
   // Contact page
@@ -239,25 +239,25 @@ export const esTranslations: Record<string, string> = {
   'contact.form.description': 'Completa el formulario a continuación y te responderemos dentro de 24 horas.',
   'contact.form.security': 'Este formulario está protegido contra spam y envíos automatizados',
   'contact.form.name': 'Nombre Completo',
-  'contact.form.name.placeholder': 'Juan Pérez',
+  'contact.form.name.placeholder': 'Ana Perez',
   'contact.form.email': 'Dirección de Email',
-  'contact.form.email.placeholder': 'juan@empresa.com',
+  'contact.form.email.placeholder': 'ana@empresa.com',
   'contact.form.phone': 'Número de Teléfono',
-  'contact.form.phone.placeholder': '+1 (555) 123-4567',
+  'contact.form.phone.placeholder': '+1 (787) 123-4567',
   'contact.form.company': 'Nombre de la Empresa',
-  'contact.form.company.placeholder': 'Corporación Acme',
+  'contact.form.company.placeholder': 'ABC Group',
   'contact.form.industry': 'Industria',
   'contact.form.industry.placeholder': 'Salud, Finanzas, Tecnología...',
   'contact.form.subject': 'Asunto',
-  'contact.form.subject.placeholder': 'Ayúdame a entender cómo mis datos pueden generar más ingresos',
+  'contact.form.subject.placeholder': 'Necesito que mis procesos se optimicen',
   'contact.form.message': 'Mensaje',
-  'contact.form.message.placeholder': 'Tengo muchos datos y no sé qué hacer con ellos...',
+  'contact.form.message.placeholder': 'Tengo muchos datos y quiero conocer cómo puedo eliminar tareas repetitivas y optimizar mis procesos.',
   'contact.form.submit': 'Enviar Mensaje',
   'contact.form.sending': 'Enviando Mensaje...',
   'contact.form.success.title': '¡Mensaje Enviado Exitosamente!',
   'contact.form.success.description': 'Gracias por contactarnos. Te responderemos dentro de 24 horas.',
   'contact.info.title': 'Ponte en Contacto',
-  'contact.info.description': 'Múltiples formas de contactar nuestro equipo',
+  'contact.info.description': 'Múltiples formas de contactarnos',
   'contact.info.email': 'Email',
   'contact.info.email.desc': 'Envíanos un mensaje en cualquier momento',
   'contact.info.linkedin': 'LinkedIn',
@@ -280,13 +280,13 @@ export const esTranslations: Record<string, string> = {
   
   // Company FAQs
   'faq.company.who.question': '¿Quién es Stratum PR y qué los hace diferentes?',
-  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas empresariales estratégicas. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico. No somos solo consultores—somos arquitectos de mejores sistemas de toma de decisiones.',
+  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas empresariales estratégicas. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico. No somos solo consultores,somos arquitectos de mejores sistemas de toma de decisiones.',
   
   'faq.company.why.question': '¿Por qué debería contratar a Stratum PR en lugar de una firma consultora más grande?',
-  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Nuestro tamaño más pequeño significa atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, brindamos experiencia de nivel Fortune 500 a una escala y costo más accesibles.',
+  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Te proveeremos atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, brindamos experiencia de nivel Fortune 500 a una escala y costo más accesibles.',
   
   'faq.company.experience.question': '¿Qué experiencia tiene su equipo?',
-  'faq.company.experience.answer': 'Nuestro equipo fundador aporta más de una década de experiencia combinada liderando proyectos en empresas Fortune 500 como UnitedHealth Group, firmas consultoras como ICF y agencias gubernamentales incluyendo el Departamento de Salud de Puerto Rico. Hemos diseñado sistemas, tableros y herramientas de automatización que han entregado resultados medibles para organizaciones de todos los tamaños.',
+  'faq.company.experience.answer': 'Nuestro equipo fundador aporta más de una década de experiencia combinada liderando proyectos en organizaciones públicas y privadas en Puerto Rico y Estados Unidos. Hemos diseñado sistemas, dashboards y herramientas de automatización que han entregado resultados medibles para organizaciones de todos los tamaños.',
   
   // Services FAQs
   'faq.services.crm.question': '¿Qué es la implementación de CRM y por qué la necesito?',
@@ -408,7 +408,7 @@ export const esTranslations: Record<string, string> = {
   'blog.readmore': 'Leer Artículo',
   'blog.cta.title': '¿Tienes un Tema en Mente?',
   'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
-  'blog.cta.button': 'Contactar Nuestro Equipo',
+  'blog.cta.button': 'Contáctanos',
   'blog.subscribe.title': 'Mantente Actualizado',
   // EDITAR ESTA LÍNEA: Cambiar texto de descripción de suscripción
   'blog.subscribe.description': 'Suscríbete a nuestro blog para recibir los últimos artículos directamente en tu bandeja de entrada.',
