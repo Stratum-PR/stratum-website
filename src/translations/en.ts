@@ -164,12 +164,12 @@ export const enTranslations: Record<string, string> = {
   'team.jovaniel.name': 'Jovaniel Rodríguez',
   'team.jovaniel.role': 'Co-Founder, Technology Infrastructure',
   'team.jovaniel.bio': 'Jovaniel brings over 10 years of experience in strategic consulting and data analytics, having led transformational projects at Fortune 500 companies. His expertise spans business intelligence, process optimization, and organizational change management.',
-  'team.jovaniel.expertise': 'Strategic Consulting, Business Intelligence, Change Management, Data Analytics',
+  'team.jovaniel.expertise': 'Digital Modernization, AI/ML, Data Governance',
   
   'team.genesis.name': 'Génesis Rodríguez',
   'team.genesis.role': 'Co-Founder, Data & Insights',
   'team.genesis.bio': 'Génesis brings over 5 years of experience in data science and research, having led data teams on state-level projects. Her expertise spans process automation, data management, advanced analytics, statistical modeling, and strategic forecasting.',
-  'team.genesis.expertise': 'AI Implementation, Software Architecture, Digital Transformation, Enterprise Solutions',
+  'team.genesis.expertise': 'Statistical Modeling, Predictive Analytics, Automation',
   
   'team.roberto.name': 'Roberto Otero',
   'team.roberto.role': 'Chief Technology Officer',

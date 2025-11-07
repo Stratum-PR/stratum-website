@@ -168,7 +168,7 @@ export const esTranslations: Record<string, string> = {
   'team.genesis.name': 'Génesis Rodríguez',
   'team.genesis.role': 'Co-Fundadora, Ciencia de Datos',
   'team.genesis.bio': 'Génesis aporta más de 5 años de experiencia en ciencia de datos e investigación, habiendo liderado equipos de datos en proyectos a nivel estatal. Su experiencia abarca automatización de procesos, administración de datos, análisis avanzado, modelaje estadístico y proyecciones estratégicas.',
-  'team.genesis.expertise': 'Implementación de IA, Arquitectura de Software, Transformación Digital, Soluciones Empresariales',
+  'team.genesis.expertise': 'Modelaje Estadístico, Análisis Predictivo, Automatización de Sistemas',
   
   'team.roberto.name': 'Roberto Otero',
   'team.roberto.role': 'Co-Fundador, Inteligencia de Negocios',
