@@ -7,6 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     
+    <!-- Block indexing of dev/staging environments -->
+    <script>
+      // Immediately block indexing if on dev/staging domain
+      (function() {
+        const hostname = window.location.hostname;
+        if (hostname.includes('dev.stratumpr.com') || hostname.includes('staging.stratumpr.com') || hostname.includes('.vercel.app')) {
+          // Remove existing robots meta tag
+          const existingRobots = document.querySelector('meta[name="robots"]');
+          if (existingRobots) {
+            existingRobots.setAttribute('content', 'noindex, nofollow');
+          } else {
+            // Create new noindex meta tag
+            const meta = document.createElement('meta');
+            meta.name = 'robots';
+            meta.content = 'noindex, nofollow';
+            document.head.insertBefore(meta, document.head.firstChild);
+          }
+          
+          // Force canonical to production URL
+          const canonical = document.querySelector('link[rel="canonical"]');
+          if (canonical) {
+            canonical.setAttribute('href', 'https://www.stratumpr.com' + window.location.pathname);
+          }
+        }
+      })();
+    </script>
+    
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
