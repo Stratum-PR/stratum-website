@@ -62,6 +62,7 @@ export const updateSEO = (seoData: SEOData) => {
   updateMetaTag('og:title', ogTitle, true);
   updateMetaTag('og:description', seoData.description, true);
   updateMetaTag('og:url', seoData.canonical, true);
+  updateMetaTag('og:site_name', 'Stratum PR', true);
   updateMetaTag('twitter:title', ogTitle);
   updateMetaTag('twitter:description', seoData.description);
 
@@ -69,6 +70,10 @@ export const updateSEO = (seoData: SEOData) => {
     updateMetaTag('og:image', seoData.ogImage, true);
     updateMetaTag('og:image:secure_url', seoData.ogImage, true);
     updateMetaTag('og:image:type', 'image/jpeg', true);
+    // WhatsApp requires width and height for better preview rendering
+    updateMetaTag('og:image:width', '1200', true);
+    updateMetaTag('og:image:height', '630', true);
+    updateMetaTag('og:image:alt', seoData.ogTitle || seoData.title, true);
     updateMetaTag('twitter:image', seoData.ogImage);
   }
 
