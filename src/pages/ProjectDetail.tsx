@@ -117,6 +117,56 @@ const ProjectDetail = () => {
     fetchProject();
   }, [slug]);
 
+  // Prepare SEO data (must be called before any conditional returns to follow Rules of Hooks)
+  const seoTitle = project 
+    ? (language === 'es' 
+        ? (project.seoTitleEs || project.titleEs || project.title)
+        : (project.seoTitle || project.title))
+    : 'Project Not Found';
+  const seoDescription = project
+    ? (language === 'es'
+        ? (project.seoDescriptionEs || project.summaryEs || project.summary)
+        : (project.seoDescription || project.summary))
+    : 'The project you\'re looking for doesn\'t exist.';
+  const seoKeywords = project
+    ? (language === 'es' ? project.seoKeywordsEs : project.seoKeywords)
+    : undefined;
+  const imageUrl = project?.mainImage 
+    ? urlFor(project.mainImage).width(1200).height(800).url()
+    : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&crop=center';
+
+  // SEO optimization - MUST be called before any conditional returns
+  useSEO({
+    title: seoTitle,
+    description: seoDescription,
+    keywords: seoKeywords,
+    canonical: project 
+      ? `https://www.stratumpr.com/projects/${project.slug?.current || slug || ''}`
+      : `https://www.stratumpr.com/projects/${slug || ''}`,
+    ogType: "article",
+    ogImage: imageUrl,
+    structuredData: project ? {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": language === 'es' ? (project.titleEs || project.title) : project.title,
+      "description": language === 'es' ? (project.summaryEs || project.summary) : project.summary,
+      "image": imageUrl,
+      "author": {
+        "@type": "Organization",
+        "name": "Stratum PR"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Stratum PR",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.stratumpr.com/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png"
+        }
+      },
+      "datePublished": project.publishedAt
+    } : undefined
+  }, `project-${slug || 'unknown'}`);
+
   // Handle loading state
   if (loading) {
     return (
@@ -161,51 +211,6 @@ const ProjectDetail = () => {
   const results = language === 'es' ? (project.resultsEs || []) : (project.results || []);
   const timeline = language === 'es' ? (project.timelineEs || project.timeline) : (project.timeline || '');
   const teamSize = language === 'es' ? (project.teamSizeEs || project.teamSize) : (project.teamSize || '');
-  
-  // SEO metadata
-  const seoTitle = language === 'es' 
-    ? (project.seoTitleEs || project.titleEs)
-    : (project.seoTitle || project.title);
-  const seoDescription = language === 'es'
-    ? (project.seoDescriptionEs || project.summaryEs)
-    : (project.seoDescription || project.summary);
-  const seoKeywords = language === 'es'
-    ? project.seoKeywordsEs
-    : project.seoKeywords;
-  
-  const imageUrl = project.mainImage 
-    ? urlFor(project.mainImage).width(1200).height(800).url()
-    : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&crop=center';
-
-  // SEO optimization for individual project
-  useSEO({
-    title: seoTitle,
-    description: seoDescription,
-    keywords: seoKeywords,
-    canonical: `https://www.stratumpr.com/projects/${project.slug.current}`,
-    ogType: "article",
-    ogImage: imageUrl,
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": title,
-      "description": summary,
-      "image": imageUrl,
-      "author": {
-        "@type": "Organization",
-        "name": "Stratum PR"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Stratum PR",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.stratumpr.com/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png"
-        }
-      },
-      "datePublished": project.publishedAt
-    }
-  }, `project-${project.slug.current}`);
 
   // Get the icon component dynamically
   const IconComponent = (LucideIcons as any)[project.icon] || LucideIcons.FileText;
