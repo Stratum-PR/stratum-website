@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -17,15 +17,11 @@ import {
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMenuClosing, setIsMenuClosing] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const firstMenuItemRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
   
   // Navigation items - simple array, no progressive hiding
   const navigation = [
@@ -81,72 +77,38 @@ export const Header = () => {
   // Logo size: ~26-28px (40-45% of header height, matching Oracle proportions)
   const logoSize = 'h-6 sm:h-6 md:h-7';
   
-  // Improved body scroll lock that works on iOS
-  const lockBodyScroll = () => {
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
+  // Simple toggle function
+  const toggleMenu = () => {
+    setIsMenuOpen(prev => !prev);
   };
 
-  const unlockBodyScroll = () => {
-    const scrollY = document.body.style.top;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    document.body.style.overflow = '';
-    if (scrollY) {
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsResourcesOpen(false);
   };
 
-  const closeMenu = useCallback(() => {
-    setIsMenuClosing(true);
-    unlockBodyScroll();
-    // Return focus to menu button
-    setTimeout(() => {
-      menuButtonRef.current?.focus();
-    }, 100);
-    // After animation completes, close the menu
-    setTimeout(() => {
-      setIsMenuOpen(false);
-      setIsMenuClosing(false);
-    }, 500);
-  }, []);
-
-  const openMenu = useCallback(() => {
-    setIsMenuClosing(false);
-    setIsMenuOpen(true);
-    lockBodyScroll();
-    // Focus first menu item after a brief delay
-    setTimeout(() => {
-      firstMenuItemRef.current?.focus();
-    }, 100);
-  }, []);
-
-  // Handle ESC key to close menu
+  // Handle ESC key
   useEffect(() => {
-    if (!isMenuOpen) return;
-
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' && isMenuOpen) {
         closeMenu();
       }
     };
-
     document.addEventListener('keydown', handleEscape);
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isMenuOpen, closeMenu]);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isMenuOpen]);
 
-  // Cleanup on unmount
+  // Lock body scroll when menu is open
   useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
     return () => {
-      unlockBodyScroll();
+      document.body.style.overflow = '';
     };
-  }, []);
+  }, [isMenuOpen]);
   
   // Render navigation items - all visible, no progressive hiding
   const renderNavItems = () => {
@@ -274,28 +236,9 @@ export const Header = () => {
 
             {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
-              ref={menuButtonRef}
               type="button"
-              className={`xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
-                isMenuOpen 
-                  ? 'bg-transparent hover:bg-transparent active:bg-transparent' 
-                  : 'hover:bg-white/10 active:bg-white/20'
-              }`}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (isMenuOpen) {
-                  closeMenu();
-                } else {
-                  openMenu();
-                }
-              }}
-              style={{
-                WebkitTapHighlightColor: 'transparent',
-                touchAction: 'manipulation',
-                userSelect: 'none',
-                WebkitUserSelect: 'none',
-                cursor: 'pointer'
-              }}
+              className="xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-white/10 active:bg-white/20"
+              onClick={toggleMenu}
               aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
@@ -315,60 +258,29 @@ export const Header = () => {
           <img src="/img/Logo_Text_Only.svg" alt="" />
         </div>
 
-        {/* Mobile Navigation Overlay */}
-        {(isMenuOpen || isMenuClosing) && (
+        {/* Mobile Navigation Menu */}
+        {isMenuOpen && (
           <>
-            {/* Backdrop - starts below navbar */}
+            {/* Backdrop */}
             <div 
-              className={`fixed top-14 md:top-16 left-0 right-0 bottom-0 bg-black/20 backdrop-blur-sm z-[90] transition-opacity duration-500 ease-out ${
-                isMenuClosing ? 'opacity-0' : isMenuOpen ? 'opacity-100' : 'opacity-0'
-              }`}
+              className="xl:hidden fixed inset-0 bg-black/50 z-[90] top-14 md:top-16"
               onClick={closeMenu}
               aria-hidden="true"
-              style={{
-                visibility: (isMenuOpen || isMenuClosing) ? 'visible' : 'hidden',
-                pointerEvents: isMenuOpen ? 'auto' : 'none'
-              }}
             />
             
-            {/* Mobile/Tablet Navigation Menu - positioned below the header */}
+            {/* Mobile Menu */}
             <div 
-              ref={menuRef}
               id="mobile-menu" 
-              role="dialog"
-              aria-modal="true"
-              aria-label="Navigation menu"
-              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-gradient-to-br from-primary via-primary-800 to-secondary transition-all duration-300 ease-out overflow-y-auto max-h-[calc(100vh-3.5rem)] ${
-                isMenuClosing 
-                  ? 'opacity-0 -translate-y-full' 
-                  : isMenuOpen
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 -translate-y-full'
-              }`}
-              style={{
-                display: (isMenuOpen || isMenuClosing) ? 'block' : 'none',
-                pointerEvents: isMenuOpen ? 'auto' : 'none',
-                transform: isMenuOpen && !isMenuClosing ? 'translateY(0)' : 'translateY(-100%)',
-                opacity: isMenuOpen && !isMenuClosing ? 1 : 0,
-                backgroundColor: isMenuOpen && !isMenuClosing ? 'rgb(30, 43, 126)' : 'transparent'
-              }}
+              className="xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-gradient-to-br from-primary via-primary-800 to-secondary overflow-y-auto max-h-[calc(100vh-3.5rem)]"
             >
-              {/* Dark overlay for better text contrast - same as hero section */}
+              {/* Dark overlay */}
               <div className="absolute inset-0 bg-black/60 z-0"></div>
               
-              {/* Tech animated background - same as navbar */}
-              {isMenuOpen && !isMenuClosing && (
-                <TechAnimatedBackground className="z-0" opacity={0.5} />
-              )}
+              {/* Tech animated background */}
+              <TechAnimatedBackground className="z-0" opacity={0.5} />
               
               {/* Navigation Content */}
-              <div className={`relative z-10 px-4 py-6 transition-all duration-500 ease-out ${
-                isMenuClosing 
-                  ? 'opacity-0 translate-y-4' 
-                  : isMenuOpen
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-4'
-              }`}>
+              <div className="relative z-10 px-4 py-6">
                 <nav className="flex flex-col space-y-1">
                   {/* Main navigation items */}
                   {navigation.map(item => {
@@ -429,13 +341,11 @@ export const Header = () => {
                       );
                     }
                     // Regular navigation items
-                    const isFirstItem = navigation.indexOf(item) === 0;
                     return (
                       <Link
                         key={item.name}
-                        ref={isFirstItem ? (firstMenuItemRef as React.RefObject<HTMLAnchorElement>) : null}
                         to={item.href}
-                        className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
+                        className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center ${
                           isActive(item.href)
                             ? 'text-black bg-accent border-l-4 border-accent'
                             : 'text-white/90 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
