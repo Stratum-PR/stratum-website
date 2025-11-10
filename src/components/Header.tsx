@@ -164,7 +164,7 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[60] bg-black/95 border-b border-gray-800 ${headerHeight}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[60] bg-black border-b border-gray-800 ${headerHeight}`}>
       <div className="w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
         <div className="flex items-center h-full">

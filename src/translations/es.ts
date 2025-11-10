@@ -29,6 +29,13 @@ export const esTranslations: Record<string, string> = {
   'home.hero.description': 'Entendemos lo que los negocios locales necesitan y construimos sistemas de datos inteligentes que reducen el trabajo manual y optimizan las operaciones, todo sin que necesites contratar un equipo de manejo de datos.',
   'home.hero.cta.primary': 'Agendar Consulta Gratuita',
   'home.hero.cta.secondary': 'Haz tu Evaluación de Sistemas',
+  'home.hero.carousel.baseText': 'Proveemos',
+  'home.hero.carousel.word1': 'Análisis de Datos',
+  'home.hero.carousel.word2': 'Automatización',
+  'home.hero.carousel.word3': 'Transformación Digital',
+  'home.hero.carousel.word4': 'Integración de IA',
+  'home.hero.carousel.word5': 'Sistemas Inteligentes',
+  'home.hero.carousel.word6': 'Implementación de CRM',
   
   // Problem Section
   'home.problem.title': '¿Estas situaciones te están afectando?',

@@ -307,9 +307,16 @@ const Home = () => {
             <div className="font-telegraf font-bold mb-6 sm:mb-8 animate-fade-in leading-tight" role="presentation" aria-hidden="true">
               <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
                 <RotatingText
-                  baseText="We power"
-                  words={['data analytics', 'business automation', 'digital transformation', 'AI solutions', 'intelligent systems']}
-                  colors={['#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E']}
+                  baseText={t('home.hero.carousel.baseText')}
+                  words={[
+                    t('home.hero.carousel.word1'),
+                    t('home.hero.carousel.word2'),
+                    t('home.hero.carousel.word3'),
+                    t('home.hero.carousel.word4'),
+                    t('home.hero.carousel.word5'),
+                    t('home.hero.carousel.word6')
+                  ]}
+                  colors={['#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E']}
                   className="block"
                   typingSpeed={80}
                   deletingSpeed={40}
