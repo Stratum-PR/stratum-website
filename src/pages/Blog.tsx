@@ -58,6 +58,12 @@ const Blog = () => {
         console.log('Client config:', {
           projectId: sanityClient.config().projectId,
           dataset: sanityClient.config().dataset,
+          useCdn: sanityClient.config().useCdn,
+        });
+        console.log('Environment:', {
+          MODE: import.meta.env.MODE,
+          PROD: import.meta.env.PROD,
+          DEV: import.meta.env.DEV,
         });
         
         const posts = await sanityClient.fetch<SanityBlogPost[]>(blogPostsQuery);
@@ -90,15 +96,22 @@ const Blog = () => {
         
         let errorMessage = 'Failed to load blog posts';
         
-        if (err?.message?.includes('projectId')) {
-          errorMessage = 'Sanity Project ID is missing. Check your .env file.';
-        } else if (err?.message?.includes('CORS')) {
-          errorMessage = 'CORS error. Check Sanity project settings.';
+        // More specific error messages
+        if (err?.message?.includes('projectId') || err?.message?.includes('Project ID')) {
+          errorMessage = 'Sanity Project ID is missing. Check your .env.local file.';
+        } else if (err?.message?.includes('CORS') || err?.message?.includes('Access-Control')) {
+          errorMessage = 'CORS error. For localhost, this shouldn\'t happen. Check Sanity project settings.';
         } else if (err?.statusCode === 401) {
-          errorMessage = 'Unauthorized. Check your Sanity project ID.';
+          errorMessage = 'Unauthorized. Check your Sanity project ID is correct.';
         } else if (err?.statusCode === 404) {
-          errorMessage = 'Project not found. Verify your Sanity project ID.';
+          errorMessage = `Project not found. Verify your Sanity project ID: ${sanityClient?.config().projectId || 'unknown'}`;
+        } else if (err?.message) {
+          errorMessage = `Error: ${err.message}`;
         }
+        
+        // Log full error for debugging
+        console.error('Full error object:', err);
+        console.error('Error stack:', err?.stack);
         
         setError(errorMessage);
         setBlogPosts([]);

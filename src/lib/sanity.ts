@@ -50,7 +50,7 @@ if (projectId) {
   })
   
   if (useCdn) {
-    console.log('📡 Using Sanity CDN (requires CORS configuration for dev.stratumpr.com)')
+    console.log('📡 Using Sanity CDN (requires CORS configuration for www.stratumpr.com)')
   } else {
     console.log('📡 Using Sanity Direct API (no CORS required)')
   }

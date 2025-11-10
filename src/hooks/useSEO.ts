@@ -17,7 +17,8 @@ export const useSEO = (seoData: SEOData, pageName?: string) => {
 
       // Detect language from content
       const isSpanish = /[áéíóúñüÁÉÍÓÚÑÜ]/.test(seoData.title + seoData.description);
-      const currentUrl = window.location.origin + location.pathname;
+      // Always use production domain for hreflang tags for SEO consistency
+      const currentUrl = `https://www.stratumpr.com${location.pathname}`;
 
       // Add hreflang tags
       const enLink = document.createElement('link');
