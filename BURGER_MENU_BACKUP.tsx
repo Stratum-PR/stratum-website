@@ -1,3 +1,11 @@
+/**
+ * BURGER MENU BACKUP - Last Working Version
+ * Date: Current working version after z-index and portal fixes
+ * 
+ * This file contains the complete Header.tsx component with the working burger menu implementation.
+ * To restore: Replace the burger menu section in src/components/Header.tsx with the code from this backup.
+ */
+
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -166,12 +174,7 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`}>
-      {/* Dark overlay for better text contrast - same as hero section */}
-      <div className="absolute inset-0 bg-black/40 z-0"></div>
-      
-      {/* Tech animated background - exact same as hero section */}
-      <TechAnimatedBackground className="z-0" opacity={0.7} />
+    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-black ${headerHeight}`}>
       
       <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
@@ -421,3 +424,23 @@ export const Header = () => {
     </header>
   );
 };
+
+/**
+ * KEY FEATURES OF THIS WORKING VERSION:
+ * 
+ * 1. React Portal: Menu renders via createPortal to document.body to escape header stacking context
+ * 2. High Z-Index: Menu uses z-index 9999, backdrop uses 9998 (inline styles)
+ * 3. Touch Event Handling: 
+ *    - onTouchStart marks touch as handled
+ *    - onTouchEnd triggers menu toggle with preventDefault
+ *    - onClick checks touchHandledRef to prevent double-toggle
+ * 4. Button Styling: 
+ *    - z-index 70 (inline style)
+ *    - pointerEvents: 'auto'
+ *    - touchAction: 'manipulation'
+ *    - WebkitTapHighlightColor: 'transparent'
+ * 5. Menu Positioning: Fixed positioning below header (top-14 md:top-16)
+ * 6. Gradient Background: Matches hero section with TechAnimatedBackground
+ * 7. Animation: Smooth slide-in/out with opacity transitions
+ */
+
