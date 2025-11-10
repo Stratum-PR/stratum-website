@@ -226,6 +226,12 @@ export const Header = () => {
           </div>
         </div>
 
+        {/* Pre-render logo images for burger menu to prevent pop-in */}
+        <div className="xl:hidden fixed -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true">
+          <img src="/Stratum_Icon_whiteline ver 2.svg" alt="" />
+          <img src="/img/Logo_Text_Only.svg" alt="" />
+        </div>
+
         {/* Mobile Navigation Overlay */}
         {(isMenuOpen || isMenuClosing) && (
           <>
