@@ -25,7 +25,12 @@ export const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <img src="/Stratum_Icon_whiteline ver 2.svg" alt="Stratum PR Logo" className="h-8 w-8 object-scale-down" />
-              <span className="font-telegraf font-bold text-xl text-left px-0">{t('footer.companyName')}</span>
+              <span className="font-telegraf font-bold text-xl text-left px-0">
+                {t('footer.companyName').split(' - ')[0]}
+                {t('footer.companyName').includes(' - ') && (
+                  <span className="text-accent"> - {t('footer.companyName').split(' - ')[1]}</span>
+                )}
+              </span>
             </div>
             <p className="text-white/80 mb-4 font-telegraf">
               {t('footer.description')}
@@ -44,7 +49,7 @@ export const Footer = () => {
           </div>
 
           {/* Navigation Links - Enhanced with icons and better styling */}
-          <div>
+          <div className="hidden md:block">
             <h3 className="font-telegraf font-semibold text-lg mb-6 text-white">{t('footer.navigation')}</h3>
             <div className="grid grid-cols-2 gap-3">
               {navigationItems.map((item) => {
@@ -71,7 +76,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+        <div className="border-t border-accent mt-8 pt-8 text-center">
           <p className="text-white/80 font-telegraf text-sm">
             © {currentYear} Stratum PR. {t('footer.copyright')}
           </p>
