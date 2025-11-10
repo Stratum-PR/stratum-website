@@ -27,11 +27,11 @@ const Home = () => {
   
   // Dynamic SEO data based on language (optimized for 50-60 char titles, 150-160 char descriptions)
   const seoData = language === 'es' ? {
-    title: "Consultoría IA Puerto Rico | Análisis Datos - Stratum PR",
+    title: "Stratum PR",
     description: "Firma líder de análisis y consultoría en Puerto Rico. Especializados en implementación de CRM, análisis de big data, soluciones de IA y automatización empresarial. Transforma tu negocio con decisiones basadas en datos.",
     keywords: "consultoría de IA Puerto Rico, análisis de datos Puerto Rico, automatización comercial Puerto Rico, implementación de CRM Puerto Rico, inteligencia empresarial Puerto Rico, análisis de big data, modelado predictivo, consultoría de aprendizaje automático, transformación digital Puerto Rico"
   } : {
-    title: "AI Consulting Puerto Rico | Data Analytics - Stratum PR",
+    title: "Stratum PR",
     description: "Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, and predictive modeling. 100% Puerto Rico based. Free consultation available.",
     keywords: "AI consulting Puerto Rico, data analytics consulting Puerto Rico, AI business automation Puerto Rico, CRM Puerto Rico, CRM implementation consulting Puerto Rico, commercial automation Puerto Rico, big data analytics consulting, business intelligence Puerto Rico, Salesforce implementation Puerto Rico, predictive modeling services Puerto Rico, machine learning consulting Puerto Rico, digital transformation consulting Puerto Rico, data analytics services, business automation solutions Puerto Rico"
   };
@@ -46,7 +46,7 @@ const Home = () => {
     ogTitle: language === 'es' 
       ? "Stratum PR - Consultoría IA y Análisis de Datos Puerto Rico"
       : "Stratum PR - AI Consulting & Data Analytics Puerto Rico",
-    ogImage: "https://www.stratumpr.com/img/StratumPR Preview Image.jpg",
+    ogImage: "https://www.stratumpr.com/img/StratumPR%20Preview%20Image.jpg",
     structuredData: {
       "@context": "https://schema.org",
       "@graph": [
