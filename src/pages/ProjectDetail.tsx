@@ -1,30 +1,144 @@
 
+import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight, Calendar, Users, Clock, CheckCircle } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { getCaseStudyBySlug } from "@/data/caseStudies";
+import { sanityClient, projectBySlugQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import * as LucideIcons from "lucide-react";
+
+interface SanityProject {
+  _id: string;
+  title: string;
+  titleEs: string;
+  slug: { current: string };
+  client: string;
+  clientEs: string;
+  sector: string;
+  sectorEs: string;
+  summary: string;
+  summaryEs: string;
+  challenge: string;
+  challengeEs: string;
+  solution: string;
+  solutionEs: string;
+  results: string[];
+  resultsEs: string[];
+  technologies: string[];
+  timeline: string;
+  timelineEs: string;
+  teamSize: string;
+  teamSizeEs: string;
+  mainImage?: any;
+  publishedAt: string;
+  tags?: string[];
+  featured?: boolean;
+  icon?: string;
+  seoTitle?: string;
+  seoTitleEs?: string;
+  seoDescription?: string;
+  seoDescriptionEs?: string;
+  seoKeywords?: string;
+  seoKeywordsEs?: string;
+}
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
-  
-  const project = slug ? getCaseStudyBySlug(slug) : null;
+  const [project, setProject] = useState<SanityProject | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Handle project not found
-  if (!project) {
+  useEffect(() => {
+    const fetchProject = async () => {
+      if (!slug) {
+        setError('No slug provided');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // Check if Sanity is configured
+        if (!isSanityConfigured || !sanityClient) {
+          console.error('❌ Sanity is not configured - missing VITE_SANITY_PROJECT_ID');
+          setError('Project is not configured. Please set VITE_SANITY_PROJECT_ID in environment variables.');
+          setLoading(false);
+          return;
+        }
+        
+        console.log('📡 Fetching project by slug:', slug);
+        const fetchedProject = await sanityClient.fetch<SanityProject>(projectBySlugQuery, { slug });
+        
+        console.log('✅ Fetched project:', fetchedProject ? 'Found' : 'Not found');
+        
+        if (!fetchedProject) {
+          console.error('❌ Project not found for slug:', slug);
+          setError('Project not found');
+          setProject(null);
+        } else {
+          setProject(fetchedProject);
+          setError(null);
+        }
+      } catch (err: any) {
+        console.error('❌ Error fetching project:', err);
+        console.error('Error details:', {
+          message: err?.message,
+          statusCode: err?.statusCode,
+          responseBody: err?.responseBody,
+        });
+        
+        let errorMessage = 'Failed to load project';
+        
+        if (err?.message?.includes('projectId') || err?.message?.includes('Project ID')) {
+          errorMessage = 'Sanity Project ID is missing. Check your .env.local file.';
+        } else if (err?.message?.includes('CORS') || err?.message?.includes('Access-Control')) {
+          errorMessage = 'CORS error. Check Sanity project settings.';
+        } else if (err?.statusCode === 401) {
+          errorMessage = 'Unauthorized. Check your Sanity project ID is correct.';
+        } else if (err?.statusCode === 404) {
+          errorMessage = `Project not found. Verify your Sanity project ID: ${sanityClient?.config().projectId || 'unknown'}`;
+        } else if (err?.message) {
+          errorMessage = `Error: ${err.message}`;
+        }
+        
+        setError(errorMessage);
+        setProject(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, [slug]);
+
+  // Handle loading state
+  if (loading) {
+    return (
+      <div className="pt-20 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="font-telegraf text-gray-600">Loading project...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle error state
+  if (error || !project) {
     return (
       <div className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="font-telegraf font-bold text-4xl text-primary mb-4">
-            Project Not Found
+            {error || 'Project Not Found'}
           </h1>
           <p className="font-telegraf text-gray-600 mb-6">
-            The project you're looking for doesn't exist.
+            {error || 'The project you\'re looking for doesn\'t exist.'}
           </p>
           <Button asChild>
             <Link to="/projects">
@@ -37,23 +151,46 @@ const ProjectDetail = () => {
     );
   }
 
-  const content = project.content[language];
-  const metadata = project.metadata;
+  // Get localized content
+  const title = language === 'es' ? project.titleEs : project.title;
+  const client = language === 'es' ? project.clientEs : project.client;
+  const sector = language === 'es' ? project.sectorEs : project.sector;
+  const summary = language === 'es' ? project.summaryEs : project.summary;
+  const challenge = language === 'es' ? project.challengeEs : project.challenge;
+  const solution = language === 'es' ? project.solutionEs : project.solution;
+  const results = language === 'es' ? project.resultsEs : project.results;
+  const timeline = language === 'es' ? project.timelineEs : project.timeline;
+  const teamSize = language === 'es' ? project.teamSizeEs : project.teamSize;
+  
+  // SEO metadata
+  const seoTitle = language === 'es' 
+    ? (project.seoTitleEs || project.titleEs)
+    : (project.seoTitle || project.title);
+  const seoDescription = language === 'es'
+    ? (project.seoDescriptionEs || project.summaryEs)
+    : (project.seoDescription || project.summary);
+  const seoKeywords = language === 'es'
+    ? project.seoKeywordsEs
+    : project.seoKeywords;
+  
+  const imageUrl = project.mainImage 
+    ? urlFor(project.mainImage).width(1200).height(800).url()
+    : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&crop=center';
 
   // SEO optimization for individual project
   useSEO({
-    title: metadata.title[language],
-    description: metadata.description[language],
-    keywords: metadata.keywords[language],
-    canonical: `https://www.stratumpr.com/projects/${project.slug}`,
+    title: seoTitle,
+    description: seoDescription,
+    keywords: seoKeywords,
+    canonical: `https://www.stratumpr.com/projects/${project.slug.current}`,
     ogType: "article",
-    ogImage: project.image,
+    ogImage: imageUrl,
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": content.title,
-      "description": content.summary,
-      "image": project.image,
+      "headline": title,
+      "description": summary,
+      "image": imageUrl,
       "author": {
         "@type": "Organization",
         "name": "Stratum PR"
@@ -66,9 +203,9 @@ const ProjectDetail = () => {
           "url": "https://www.stratumpr.com/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png"
         }
       },
-      "datePublished": project.publishDate
+      "datePublished": project.publishedAt
     }
-  }, `project-${project.slug}`);
+  }, `project-${project.slug.current}`);
 
   // Get the icon component dynamically
   const IconComponent = (LucideIcons as any)[project.icon] || LucideIcons.FileText;
@@ -102,16 +239,16 @@ const ProjectDetail = () => {
           <div className="flex items-center gap-3 mb-6">
             <IconComponent className="h-8 w-8 text-white" />
             <span className="font-telegraf text-sm text-white/80 uppercase tracking-wide">
-              {content.sector}
+              {sector}
             </span>
           </div>
 
           <h1 className="font-telegraf font-bold text-4xl md:text-5xl text-white drop-shadow-lg mb-6">
-            {content.title}
+            {title}
           </h1>
           
           <p className="font-telegraf text-xl text-white/90 drop-shadow-md leading-relaxed mb-8">
-            {content.summary}
+            {summary}
           </p>
 
           {/* Project Details */}
@@ -120,21 +257,21 @@ const ProjectDetail = () => {
               <Calendar className="h-5 w-5 text-white" />
               <div>
                 <p className="font-telegraf text-sm text-white/80">Timeline</p>
-                <p className="font-telegraf font-semibold text-white">{content.timeline}</p>
+                <p className="font-telegraf font-semibold text-white">{timeline}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Users className="h-5 w-5 text-white" />
               <div>
                 <p className="font-telegraf text-sm text-white/80">Team Size</p>
-                <p className="font-telegraf font-semibold text-white">{content.teamSize}</p>
+                <p className="font-telegraf font-semibold text-white">{teamSize}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Clock className="h-5 w-5 text-white" />
               <div>
                 <p className="font-telegraf text-sm text-white/80">Client</p>
-                <p className="font-telegraf font-semibold text-white">{content.client}</p>
+                <p className="font-telegraf font-semibold text-white">{client}</p>
               </div>
             </div>
           </div>
@@ -145,8 +282,8 @@ const ProjectDetail = () => {
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <img 
-            src={project.image} 
-            alt={content.title}
+            src={imageUrl} 
+            alt={title}
             className="w-full h-96 object-cover rounded-xl shadow-lg"
           />
         </div>
@@ -164,7 +301,7 @@ const ProjectDetail = () => {
                   The Challenge
                 </h2>
                 <p className="font-telegraf text-gray-600 leading-relaxed text-justify">
-                  {content.challenge}
+                  {challenge}
                 </p>
               </div>
 
@@ -174,7 +311,7 @@ const ProjectDetail = () => {
                   Our Solution
                 </h2>
                 <p className="font-telegraf text-gray-600 leading-relaxed text-justify">
-                  {content.solution}
+                  {solution}
                 </p>
               </div>
 
@@ -184,7 +321,7 @@ const ProjectDetail = () => {
                   Results & Impact
                 </h2>
                 <div className="space-y-4">
-                  {content.results.map((result, index) => (
+                  {results.map((result, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
                       <p className="font-telegraf text-gray-600">{result}</p>
@@ -203,7 +340,7 @@ const ProjectDetail = () => {
                     Technologies Used
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {content.technologies.map((tech, index) => (
+                    {project.technologies.map((tech, index) => (
                       <span 
                         key={index}
                         className="px-3 py-1 text-sm font-telegraf bg-primary/10 text-primary rounded-full"
@@ -216,23 +353,25 @@ const ProjectDetail = () => {
               </Card>
 
               {/* Tags */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-telegraf font-semibold text-lg text-primary mb-4">
-                    Project Tags
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, index) => (
-                      <span 
-                        key={index}
-                        className="px-3 py-1 text-sm font-telegraf bg-secondary/10 text-secondary rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              {project.tags && project.tags.length > 0 && (
+                <Card>
+                  <CardContent className="p-6">
+                    <h3 className="font-telegraf font-semibold text-lg text-primary mb-4">
+                      Project Tags
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, index) => (
+                        <span 
+                          key={index}
+                          className="px-3 py-1 text-sm font-telegraf bg-secondary/10 text-secondary rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
           </div>
         </div>

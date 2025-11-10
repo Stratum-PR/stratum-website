@@ -124,4 +124,74 @@ export const featuredBlogPostsQuery = `*[_type == "blogPost" && featured == true
   tags
 }`
 
+export const projectsQuery = `*[_type == "project"] | order(publishedAt desc) {
+  _id,
+  title,
+  titleEs,
+  slug,
+  client,
+  clientEs,
+  sector,
+  sectorEs,
+  summary,
+  summaryEs,
+  mainImage,
+  publishedAt,
+  tags,
+  featured,
+  icon
+}`
+
+export const projectBySlugQuery = `*[_type == "project" && slug.current == $slug][0] {
+  _id,
+  title,
+  titleEs,
+  slug,
+  client,
+  clientEs,
+  sector,
+  sectorEs,
+  summary,
+  summaryEs,
+  challenge,
+  challengeEs,
+  solution,
+  solutionEs,
+  results,
+  resultsEs,
+  technologies,
+  timeline,
+  timelineEs,
+  teamSize,
+  teamSizeEs,
+  mainImage,
+  publishedAt,
+  tags,
+  featured,
+  icon,
+  seoTitle,
+  seoTitleEs,
+  seoDescription,
+  seoDescriptionEs,
+  seoKeywords,
+  seoKeywordsEs
+}`
+
+export const featuredProjectsQuery = `*[_type == "project" && featured == true] | order(publishedAt desc)[0...3] {
+  _id,
+  title,
+  titleEs,
+  slug,
+  client,
+  clientEs,
+  sector,
+  sectorEs,
+  summary,
+  summaryEs,
+  mainImage,
+  publishedAt,
+  tags,
+  icon
+}`
+
 

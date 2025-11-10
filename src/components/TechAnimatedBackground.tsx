@@ -117,7 +117,10 @@ const TechAnimatedBackground: React.FC<TechAnimatedBackgroundProps> = ({
                   top: `${top}%`,
                   opacity: 0.2 + Math.random() * 0.4,
                   boxShadow: `0 0 ${size * 2}px rgba(255, 255, 255, 0.5)`,
-                  animation: `particleFloat ${duration}s linear infinite`,
+                  animationName: 'particleFloat',
+                  animationDuration: `${duration}s`,
+                  animationTimingFunction: 'linear',
+                  animationIterationCount: 'infinite',
                   animationDelay: `${delay}s`,
                   transform: 'translate(-50%, -50%)',
                 }}
@@ -148,7 +151,10 @@ const TechAnimatedBackground: React.FC<TechAnimatedBackgroundProps> = ({
                   background: `linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1), transparent)`,
                   transform: `translateX(-50%) rotate(${angle}deg)`,
                   transformOrigin: 'center top',
-                  animation: `beamRotate ${duration}s ease-in-out infinite`,
+                  animationName: 'beamRotate',
+                  animationDuration: `${duration}s`,
+                  animationTimingFunction: 'ease-in-out',
+                  animationIterationCount: 'infinite',
                   animationDelay: `${delay}s`,
                 }}
               />
@@ -196,7 +202,10 @@ const TechAnimatedBackground: React.FC<TechAnimatedBackgroundProps> = ({
                   left: `${left}%`,
                   top: `${top}%`,
                   transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
-                  animation: `shapeFloat ${duration}s ease-in-out infinite`,
+                  animationName: 'shapeFloat',
+                  animationDuration: `${duration}s`,
+                  animationTimingFunction: 'ease-in-out',
+                  animationIterationCount: 'infinite',
                   animationDelay: `${delay}s`,
                   clipPath: shapeType === 0 
                     ? 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' 

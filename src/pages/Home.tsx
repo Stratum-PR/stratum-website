@@ -448,11 +448,14 @@ const Home = () => {
                 {/* Puerto Rico Image */}
                 <div className="w-full">
                   <div className="w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-xl">
-                    <img 
-                      src="https://images.unsplash.com/photo-1590099461831-30e3dacdca40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1846" 
+                    <OptimizedImage 
+                      src="https://images.unsplash.com/photo-1590099461831-30e3dacdca40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1200" 
                       alt="Puerto Rico - Modern Business and Technology Hub" 
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                      placeholderColor="#e0e7ef"
+                      context="Puerto Rico business technology"
                     />
                   </div>
                   <p className="text-xs text-gray-500 mt-2 text-center font-telegraf">
