@@ -16,6 +16,7 @@ import {
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuClosing, setIsMenuClosing] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
   const location = useLocation();
@@ -76,38 +77,19 @@ export const Header = () => {
   // Logo size: ~26-28px (40-45% of header height, matching Oracle proportions)
   const logoSize = 'h-6 sm:h-6 md:h-7';
   
-  // Simple toggle function
-  const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev);
-  };
-
   const closeMenu = () => {
-    setIsMenuOpen(false);
-    setIsResourcesOpen(false);
+    setIsMenuClosing(true);
+    // After animation completes, close the menu
+    setTimeout(() => {
+      setIsMenuOpen(false);
+      setIsMenuClosing(false);
+    }, 500); // Match the duration of the slide-out animation
   };
 
-  // Handle ESC key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        closeMenu();
-      }
-    };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isMenuOpen]);
-
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMenuOpen]);
+  const openMenu = () => {
+    setIsMenuClosing(false);
+    setIsMenuOpen(true);
+  };
   
   // Render navigation items - all visible, no progressive hiding
   const renderNavItems = () => {
@@ -231,9 +213,19 @@ export const Header = () => {
             {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
               type="button"
-              className="xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center hover:bg-white/10 active:bg-white/20"
-              onClick={toggleMenu}
-              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              className={`xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
+                isMenuOpen 
+                  ? 'bg-transparent hover:bg-transparent active:bg-transparent' 
+                  : 'hover:bg-white/10 active:bg-white/20'
+              }`}
+              onClick={() => {
+                if (isMenuOpen) {
+                  closeMenu();
+                } else {
+                  openMenu();
+                }
+              }}
+              aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
@@ -252,24 +244,37 @@ export const Header = () => {
           <img src="/img/Logo_Text_Only.svg" alt="" />
         </div>
 
-        {/* Mobile Navigation Menu */}
-        {isMenuOpen && (
+        {/* Mobile Navigation Overlay */}
+        {(isMenuOpen || isMenuClosing) && (
           <>
-            {/* Backdrop */}
+            {/* Backdrop - starts below navbar */}
             <div 
-              className="xl:hidden fixed inset-0 bg-black/50 z-[90] top-14 md:top-16"
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 bottom-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-500 ease-out ${
+                isMenuClosing ? 'opacity-0' : isMenuOpen ? 'opacity-100' : 'opacity-0'
+              }`}
               onClick={closeMenu}
               aria-hidden="true"
             />
             
-            {/* Mobile Menu */}
+            {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className="xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-black overflow-y-auto max-h-[calc(100vh-3.5rem)]"
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-black transition-all duration-500 ease-out overflow-hidden ${
+                isMenuClosing 
+                  ? 'opacity-0 -translate-y-full' 
+                  : isMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 -translate-y-full'
+              }`}
             >
-              
               {/* Navigation Content */}
-              <div className="relative z-10 px-4 py-6">
+              <div className={`relative z-10 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-500 ease-out ${
+                isMenuClosing 
+                  ? 'opacity-0 translate-y-4' 
+                  : isMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4'
+              }`}>
                 <nav className="flex flex-col space-y-1">
                   {/* Main navigation items */}
                   {navigation.map(item => {
