@@ -9,7 +9,7 @@ const Privacy: React.FC = () => {
     title: t('privacy.page.title'),
     description: t('privacy.page.description'),
     keywords: t('privacy.page.keywords'),
-    canonical: window.location.origin + '/privacy',
+    canonical: "https://www.stratumpr.com/privacy",
   });
 
   return (
