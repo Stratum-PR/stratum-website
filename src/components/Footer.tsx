@@ -6,8 +6,11 @@ export const Footer = () => {
     t
   } = useLanguage();
   const currentYear = new Date().getFullYear();
-  return <footer className="text-white bg-[#000953]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+  return <footer className="relative text-white bg-gradient-to-br from-primary via-primary-800 to-secondary overflow-hidden">
+      {/* Dark overlay for better text contrast - same as animated footer CTA section */}
+      <div className="absolute inset-0 bg-black/40 z-0"></div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">

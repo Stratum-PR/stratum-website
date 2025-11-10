@@ -201,7 +201,11 @@ export const Header = () => {
 
             {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
-              className={`xl:hidden p-2.5 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation`}
+              className={`xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
+                isMenuOpen 
+                  ? 'bg-transparent hover:bg-transparent active:bg-transparent' 
+                  : 'hover:bg-gray-100 active:bg-gray-200'
+              }`}
               onClick={() => {
                 if (isMenuOpen) {
                   closeMenu();
