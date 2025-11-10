@@ -166,7 +166,12 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-black ${headerHeight}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`}>
+      {/* Dark overlay for better text contrast - same as hero section */}
+      <div className="absolute inset-0 bg-black/40 z-0"></div>
+      
+      {/* Tech animated background - exact same as hero section */}
+      <TechAnimatedBackground className="z-0" opacity={0.7} />
       
       <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
