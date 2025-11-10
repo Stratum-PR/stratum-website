@@ -254,23 +254,31 @@ export const Header = () => {
           <>
             {/* Backdrop - starts below navbar */}
             <div 
-              className={`fixed top-14 md:top-16 left-0 right-0 bottom-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-500 ease-out ${
+              className={`fixed top-14 md:top-16 left-0 right-0 bottom-0 bg-black/20 backdrop-blur-sm z-[90] transition-opacity duration-500 ease-out ${
                 isMenuClosing ? 'opacity-0' : isMenuOpen ? 'opacity-100' : 'opacity-0'
               }`}
               onClick={closeMenu}
               aria-hidden="true"
+              style={{
+                visibility: (isMenuOpen || isMenuClosing) ? 'visible' : 'hidden',
+                pointerEvents: isMenuOpen ? 'auto' : 'none'
+              }}
             />
             
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary transition-all duration-500 ease-out overflow-hidden ${
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-gradient-to-br from-primary via-primary-800 to-secondary transition-all duration-500 ease-out overflow-y-auto max-h-[calc(100vh-3.5rem)] ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : isMenuOpen
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 -translate-y-full'
               }`}
+              style={{
+                visibility: (isMenuOpen || isMenuClosing) ? 'visible' : 'hidden',
+                pointerEvents: isMenuOpen ? 'auto' : 'none'
+              }}
             >
               {/* Dark overlay for better text contrast - same as hero section */}
               <div className="absolute inset-0 bg-black/40 z-0"></div>
@@ -281,7 +289,7 @@ export const Header = () => {
               )}
               
               {/* Navigation Content */}
-              <div className={`relative z-10 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-500 ease-out ${
+              <div className={`relative z-10 px-4 py-6 transition-all duration-500 ease-out ${
                 isMenuClosing 
                   ? 'opacity-0 translate-y-4' 
                   : isMenuOpen
