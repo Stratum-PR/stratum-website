@@ -77,7 +77,7 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-6 bg-gray-900 relative">
+      <section className="py-16 sm:py-20 md:py-24 bg-gray-900 relative">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {faqCategories.map((category) => {
             const categoryFAQs = getFAQsByCategory(category.id);
@@ -85,8 +85,8 @@ const FAQ: React.FC = () => {
             if (categoryFAQs.length === 0) return null;
 
             return (
-              <div key={category.id} className="mb-8">
-                <h2 className="text-2xl font-telegraf font-bold text-white mb-6">
+              <div key={category.id} className="mb-12">
+                <h2 className="text-3xl sm:text-4xl font-telegraf font-light text-white mb-8 tracking-tight">
                   {t(category.titleKey)}
                 </h2>
                 
@@ -95,12 +95,12 @@ const FAQ: React.FC = () => {
                     <AccordionItem 
                       key={faq.id} 
                       value={faq.id}
-                      className="border-2 border-gray-600 rounded-lg px-4 sm:px-6 py-2 bg-gray-800 shadow-lg hover:shadow-xl hover:border-accent hover-lift transition-all duration-300"
+                      className="border border-gray-700/50 rounded-lg px-6 sm:px-8 py-4 bg-gray-800/50 shadow-lg hover:shadow-xl hover:border-white/20 hover:bg-gray-800 hover-lift transition-all duration-300 backdrop-blur-sm"
                     >
-                      <AccordionTrigger className="text-left text-base sm:text-lg font-telegraf font-semibold text-white hover:text-accent transition-colors">
+                      <AccordionTrigger className="text-left text-lg sm:text-xl font-telegraf font-light text-white hover:text-white/80 transition-colors">
                         {t(faq.question)}
                       </AccordionTrigger>
-                      <AccordionContent className="text-sm sm:text-base text-gray-300 leading-relaxed pt-2 pb-4 font-telegraf">
+                      <AccordionContent className="text-base sm:text-lg text-gray-400 leading-relaxed pt-4 pb-2 font-telegraf font-light">
                         {t(faq.answer)}
                       </AccordionContent>
                     </AccordionItem>

@@ -37,8 +37,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   const displayName = translatedName;
   
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden w-full max-w-[280px] bg-gray-800">
-      <div className="h-64 bg-gray-700 overflow-hidden">
+    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700/50 shadow-lg overflow-hidden w-full max-w-[280px] bg-gray-800/50 backdrop-blur-sm hover:border-white/20 hover:bg-gray-800">
+      <div className="h-64 bg-gray-700/50 overflow-hidden">
         {founder.image ? (
           <img
             src={founder.image}
@@ -46,27 +46,27 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-gray-600 flex items-center justify-center">
-            <span className="text-4xl font-telegraf font-bold text-gray-300">
+          <div className="w-full h-full bg-gray-600/50 flex items-center justify-center">
+            <span className="text-4xl font-telegraf font-light text-gray-300">
               {displayName.split(' ').map(n => n[0]).join('')}
             </span>
           </div>
         )}
       </div>
-      <CardContent className="p-4 bg-gray-800">
-        <h3 className="font-telegraf font-bold text-base text-white mb-1">
+      <CardContent className="p-6 bg-transparent">
+        <h3 className="font-telegraf font-light text-lg text-white mb-2 tracking-tight">
           {displayName}
         </h3>
-        <p className="font-telegraf font-semibold text-xs text-accent mb-2">
+        <p className="font-telegraf font-light text-sm text-white/70 mb-4">
           {translatedRole}
         </p>
-        <div className="mb-3">
-          <p className={`font-telegraf text-xs text-gray-300 leading-relaxed ${isExpanded ? '' : 'line-clamp-3'}`}>
+        <div className="mb-4">
+          <p className={`font-telegraf text-sm text-gray-400 leading-relaxed font-light ${isExpanded ? '' : 'line-clamp-3'}`}>
             {translatedBio}
           </p>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-2 flex items-center gap-1 text-accent hover:text-accent/80 text-xs font-telegraf font-semibold transition-colors"
+            className="mt-2 flex items-center gap-1 text-white hover:text-white/80 text-xs font-telegraf font-light transition-colors"
           >
             {isExpanded ? (
               <>
@@ -83,12 +83,12 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
         </div>
         
         <div>
-          <h4 className="font-telegraf font-semibold text-xs text-white mb-1.5">
+          <h4 className="font-telegraf font-light text-xs text-white/70 mb-2 uppercase tracking-wide">
             {t('about.team.expertise')}
           </h4>
           <div className="flex flex-wrap gap-1">
             {expertiseArray.map((skill, skillIndex) => (
-              <Badge key={skillIndex} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary hover:text-white text-xs px-2 py-0.5">
+              <Badge key={skillIndex} variant="secondary" className="bg-white/5 text-white border border-white/10 hover:bg-white/10 text-xs px-3 py-1 font-light">
                 {skill}
               </Badge>
             ))}

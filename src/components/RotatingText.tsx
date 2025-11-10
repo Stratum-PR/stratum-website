@@ -67,7 +67,7 @@ const RotatingText: React.FC<RotatingTextProps> = ({
 
   return (
     <span className={className} style={{ display: 'block' }}>
-      {baseText && <span style={{ display: 'block' }} className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">{baseText}</span>}
+      {baseText && <span style={{ display: 'block' }} className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light">{baseText}</span>}
       <span 
         style={{ 
           color: currentColor, 
@@ -77,7 +77,7 @@ const RotatingText: React.FC<RotatingTextProps> = ({
           whiteSpace: 'nowrap',
           overflow: 'hidden',
         }} 
-        className="font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+        className="font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-tight"
       >
         <style>{`
           @media (min-width: 768px) {
@@ -88,7 +88,7 @@ const RotatingText: React.FC<RotatingTextProps> = ({
         `}</style>
         <span className="rotating-text-container" style={{ display: 'inline-block' }}>
           {currentText || '\u00A0'} {/* Non-breaking space when empty to maintain height */}
-          <span className="animate-pulse" style={{ color: currentColor }}>|</span>
+          <span className="animate-pulse opacity-70" style={{ color: currentColor }}>|</span>
         </span>
       </span>
     </span>

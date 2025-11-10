@@ -158,22 +158,22 @@ const Projects = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
+          <h1 className="font-telegraf font-light text-4xl sm:text-5xl md:text-6xl text-white mb-8 tracking-tight">
             {t('projects.hero.title')}
           </h1>
-          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-xl sm:text-2xl text-white/70 leading-relaxed max-w-3xl mx-auto font-light">
             {t('projects.hero.description')}
           </p>
         </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 bg-gray-900 relative">
+      <section className="py-16 sm:py-20 md:py-24 bg-gray-900 relative">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-              <span className="ml-4 font-telegraf text-gray-300">Loading projects...</span>
+              <div className="animate-spin rounded-full h-12 w-12 border-2 border-white/20 border-t-white"></div>
+              <span className="ml-4 font-telegraf text-gray-400 font-light">Loading projects...</span>
             </div>
           ) : error ? (
             <div className="text-center py-20">
@@ -199,7 +199,7 @@ const Projects = () => {
                 
                 return (
                   <Link key={project._id} to={`/projects/${project.slug.current}`}>
-                    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden cursor-pointer h-full bg-gray-800 hover:border-accent hover-lift">
+                    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700/50 shadow-lg overflow-hidden cursor-pointer h-full bg-gray-800/50 hover:border-white/20 hover:bg-gray-800 hover-lift backdrop-blur-sm">
                       <div className="relative h-48 overflow-hidden">
                         <img 
                           src={imageUrl} 
@@ -209,7 +209,7 @@ const Projects = () => {
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                         {project.featured && (
                           <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 text-xs font-telegraf font-semibold bg-accent text-black rounded-full uppercase tracking-wide">
+                            <span className="px-3 py-1 text-xs font-telegraf font-light bg-white text-gray-900 rounded-full uppercase tracking-wide">
                               Featured
                             </span>
                           </div>
@@ -217,25 +217,25 @@ const Projects = () => {
                       </div>
                       <CardContent className="p-6">
                         {project.tags && project.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mb-3">
+                          <div className="flex flex-wrap gap-2 mb-4">
                             {project.tags.slice(0, 2).map((tag, idx) => (
-                              <span key={idx} className="px-2 py-1 text-xs font-telegraf bg-accent/20 text-accent rounded-full">
+                              <span key={idx} className="px-3 py-1 text-xs font-telegraf bg-white/5 text-white border border-white/10 rounded-full font-light">
                                 {tag}
                               </span>
                             ))}
                           </div>
                         )}
-                        <h3 className="font-telegraf font-semibold text-xl text-white mb-2 group-hover:text-accent transition-colors">
+                        <h3 className="font-telegraf font-light text-xl text-white mb-3 group-hover:text-white transition-colors tracking-tight">
                           {title}
                         </h3>
-                        <p className="font-telegraf text-sm text-gray-400 mb-3">
+                        <p className="font-telegraf text-sm text-gray-400 mb-3 font-light">
                           {sector}
                         </p>
-                        <p className="font-telegraf text-gray-300 mb-4 leading-relaxed">
+                        <p className="font-telegraf text-gray-400 mb-4 leading-relaxed text-sm font-light">
                           {summary}
                         </p>
-                        <div className="flex items-center text-accent hover:text-accent/80 transition-colors group/link">
-                          <span className="font-telegraf">{t('projects.readmore')}</span>
+                        <div className="flex items-center text-white hover:text-white/80 transition-colors group/link">
+                          <span className="font-telegraf font-light">{t('projects.readmore')}</span>
                           <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                         </div>
                       </CardContent>

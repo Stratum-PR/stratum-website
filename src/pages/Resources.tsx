@@ -82,17 +82,17 @@ const Resources = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
+          <h1 className="font-telegraf font-light text-4xl sm:text-5xl md:text-6xl text-white mb-8 tracking-tight">
             {t('resources.hero.title')}
           </h1>
-          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-xl sm:text-2xl text-white/70 leading-relaxed max-w-3xl mx-auto font-light">
             {t('resources.hero.description')}
           </p>
         </div>
       </section>
 
       {/* Resources Grid */}
-      <section className="py-12 bg-gray-900 relative">
+      <section className="py-16 sm:py-20 md:py-24 bg-gray-900 relative">
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {resources.map((resource) => {
@@ -103,7 +103,7 @@ const Resources = () => {
                   onClick={() => setShowComingSoon(true)}
                   className="text-left"
                 >
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden cursor-pointer h-full w-full bg-gray-800 hover:border-accent hover-lift">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700/50 shadow-lg overflow-hidden cursor-pointer h-full w-full bg-gray-800/50 hover:border-white/20 hover:bg-gray-800 hover-lift backdrop-blur-sm">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={resource.image} 
@@ -116,15 +116,15 @@ const Resources = () => {
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                     </div>
-                    <CardContent className="p-6 text-center">
-                      <h3 className="font-telegraf font-semibold text-xl text-white mb-3 group-hover:text-accent transition-colors">
+                    <CardContent className="p-8 text-center">
+                      <h3 className="font-telegraf font-light text-xl sm:text-2xl text-white mb-4 group-hover:text-white transition-colors tracking-tight">
                         {resource.name}
                       </h3>
-                      <p className="font-telegraf text-gray-300 mb-6 leading-relaxed">
+                      <p className="font-telegraf text-gray-400 mb-6 leading-relaxed font-light">
                         {resource.description}
                       </p>
-                      <div className="flex items-center justify-center text-accent hover:text-accent/80 transition-colors group/link">
-                        <span className="font-telegraf">{t('resources.explore')}</span>
+                      <div className="flex items-center justify-center text-white hover:text-white/80 transition-colors group/link">
+                        <span className="font-telegraf font-light">{t('resources.explore')}</span>
                         <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                       </div>
                     </CardContent>
@@ -132,7 +132,7 @@ const Resources = () => {
                 </button>
               ) : (
                 <Link key={resource.href} to={resource.href}>
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden cursor-pointer h-full bg-gray-800 hover:border-accent hover-lift">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-700/50 shadow-lg overflow-hidden cursor-pointer h-full bg-gray-800/50 hover:border-white/20 hover:bg-gray-800 hover-lift backdrop-blur-sm">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={resource.image} 
@@ -145,15 +145,15 @@ const Resources = () => {
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                     </div>
-                    <CardContent className="p-6 text-center">
-                      <h3 className="font-telegraf font-semibold text-xl text-white mb-3 group-hover:text-accent transition-colors">
+                    <CardContent className="p-8 text-center">
+                      <h3 className="font-telegraf font-light text-xl sm:text-2xl text-white mb-4 group-hover:text-white transition-colors tracking-tight">
                         {resource.name}
                       </h3>
-                      <p className="font-telegraf text-gray-300 mb-6 leading-relaxed">
+                      <p className="font-telegraf text-gray-400 mb-6 leading-relaxed font-light">
                         {resource.description}
                       </p>
-                      <div className="flex items-center justify-center text-accent hover:text-accent/80 transition-colors group/link">
-                        <span className="font-telegraf">{t('resources.explore')}</span>
+                      <div className="flex items-center justify-center text-white hover:text-white/80 transition-colors group/link">
+                        <span className="font-telegraf font-light">{t('resources.explore')}</span>
                         <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                       </div>
                     </CardContent>

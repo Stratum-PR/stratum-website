@@ -22,13 +22,13 @@ const TeamSection: React.FC<TeamSectionProps> = ({ founders }) => {
   const { t } = useLanguage();
   
   return (
-    <section className="py-16 bg-gray-800">
+    <section className="py-16 sm:py-20 md:py-24 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="font-telegraf font-bold text-2xl md:text-3xl text-white mb-4">
+        <div className="text-center mb-16">
+          <h2 className="font-telegraf font-light text-3xl sm:text-4xl md:text-5xl text-white mb-6 tracking-tight">
             {t('about.team.title')}
           </h2>
-          <p className="font-telegraf text-base text-gray-300 max-w-3xl mx-auto">
+          <p className="font-telegraf text-lg text-gray-400 max-w-3xl mx-auto font-light">
             {t('about.team.description')}
           </p>
         </div>

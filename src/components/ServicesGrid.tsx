@@ -110,11 +110,11 @@ export const ServicesGrid = () => {
   return (
     <section className="py-20 bg-gray-900 relative" aria-labelledby="services-heading">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 id="services-heading" className="font-telegraf font-bold text-4xl text-white mb-6">
+        <div className="text-center mb-20">
+          <h2 id="services-heading" className="font-telegraf font-light text-4xl sm:text-5xl md:text-6xl text-white mb-8 tracking-tight">
             {t('services.core.title')}
           </h2>
-          <p className="font-telegraf text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="font-telegraf text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto font-light">
             {t('services.core.description')}
           </p>
         </div>

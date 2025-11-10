@@ -34,17 +34,17 @@ const MissionSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-800 relative">
+    <section className="py-16 sm:py-20 md:py-24 bg-gray-900 relative">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="font-telegraf font-bold text-2xl md:text-3xl text-white mb-4">
+            <h2 className="font-telegraf font-light text-3xl sm:text-4xl md:text-5xl text-white mb-8 tracking-tight">
               {t('about.mission.title')}
             </h2>
-            <p className="font-telegraf text-base text-gray-300 mb-4 leading-relaxed">
+            <p className="font-telegraf text-lg sm:text-xl text-gray-400 mb-6 leading-relaxed font-light">
               {t('about.mission.description1')}
             </p>
-            <p className="font-telegraf text-base text-gray-300 leading-relaxed">
+            <p className="font-telegraf text-lg sm:text-xl text-gray-400 leading-relaxed font-light">
               {t('about.mission.description2')}
             </p>
           </div>
