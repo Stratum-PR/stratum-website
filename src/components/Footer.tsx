@@ -6,7 +6,7 @@ export const Footer = () => {
     t
   } = useLanguage();
   const currentYear = new Date().getFullYear();
-  return <footer className="relative text-white bg-gradient-to-br from-primary via-primary-800 to-secondary overflow-hidden">
+  return <footer className="relative text-white bg-gradient-to-bl from-primary via-primary-800 to-secondary overflow-hidden">
       {/* Dark overlay for better text contrast - same as animated footer CTA section */}
       <div className="absolute inset-0 bg-black/40 z-0"></div>
       
