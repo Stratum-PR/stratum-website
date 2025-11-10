@@ -12,13 +12,38 @@ import {
 import { faqData, faqCategories, type FAQItem } from '@/data/faqData';
 
 const FAQ: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Preguntas Frecuentes | Consultoría Análisis de Datos Puerto Rico - Stratum PR",
+    description: "Encuentra respuestas a preguntas comunes sobre nuestros servicios de análisis de datos, enfoque y cómo podemos ayudar a transformar tu negocio en Puerto Rico.",
+    keywords: "preguntas frecuentes, FAQ, análisis de datos Puerto Rico, consultoría IA, implementación CRM, automatización empresarial, servicios análisis datos"
+  } : {
+    title: "Frequently Asked Questions | Data Analytics Consulting Puerto Rico - Stratum PR",
+    description: "Find answers to common questions about our data analytics services, approach, and how we can help transform your business in Puerto Rico.",
+    keywords: "FAQ, frequently asked questions, data analytics Puerto Rico, AI consulting, CRM implementation, business automation, data analytics services"
+  };
 
   useSEO({
-    title: `${t('nav.faq')} | Stratum PR`,
-    description: t('faq.hero.description'),
-    keywords: 'FAQ, questions, data analytics, Puerto Rico, consulting, AI, CRM',
-    canonical: `${window.location.origin}/faq`,
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
+    canonical: "https://www.stratumpr.com/faq",
+    ogType: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://www.stratumpr.com/faq#webpage",
+      "url": "https://www.stratumpr.com/faq",
+      "name": seoData.title,
+      "description": seoData.description,
+      "inLanguage": language === 'es' ? 'es' : 'en',
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": []
+      }
+    }
   }, 'FAQ');
 
   const getFAQsByCategory = (category: string): FAQItem[] => {

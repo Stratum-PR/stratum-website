@@ -12,13 +12,33 @@ const Resources = () => {
   const { t, language } = useLanguage();
   const [showComingSoon, setShowComingSoon] = useState(false);
 
-  // SEO optimization for resources page
-  useSEO({
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Recursos - Guías y Herramientas de Análisis de Datos Stratum PR",
+    description: "Accede a nuestros proyectos, noticias y actualizaciones, y lista de verificación de preparación TI para ayudar a tu negocio a aprovechar los datos de manera efectiva.",
+    keywords: "recursos análisis de datos, proyectos, noticias actualizaciones, lista verificación TI, análisis de datos Puerto Rico"
+  } : {
     title: "Resources - Stratum PR Data Analytics Guides and Tools",
     description: "Access our projects, news and updates, and IT readiness checklist to help your business leverage data effectively.",
-    keywords: "data analytics resources, projects, news updates, IT checklist, Puerto Rico data analytics",
+    keywords: "data analytics resources, projects, news updates, IT checklist, Puerto Rico data analytics"
+  };
+  
+  // SEO optimization for resources page
+  useSEO({
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/resources",
-    ogType: "website"
+    ogType: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://www.stratumpr.com/resources#webpage",
+      "url": "https://www.stratumpr.com/resources",
+      "name": seoData.title,
+      "description": seoData.description,
+      "inLanguage": language === 'es' ? 'es' : 'en'
+    }
   }, "resources");
 
   const resources = [
