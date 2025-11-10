@@ -757,9 +757,16 @@ const Home = () => {
         {/* Section Divider */}
         <div className="h-1 bg-gradient-to-r from-transparent via-secondary/20 to-transparent"></div>
 
-        {/* Final CTA Section - Matching Services Footer */}
-        <section className="py-12 sm:py-16 bg-gradient-to-r from-primary via-primary-800 to-secondary text-white" aria-labelledby="final-cta-heading">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Final CTA Section - Matching Hero Section Animated Background */}
+        <section className="relative flex items-center justify-center overflow-hidden py-12 sm:py-16 bg-gradient-to-tl from-primary via-primary-800 to-secondary text-white" aria-labelledby="final-cta-heading">
+          {/* Dark overlay for better text contrast - same as hero section */}
+          <div className="absolute inset-0 bg-black/40 z-0"></div>
+          
+          {/* Tech animated background - same as hero section */}
+          <TechAnimatedBackground className="z-0" opacity={0.7} />
+
+          {/* Content */}
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 id="final-cta-heading" className="font-telegraf font-bold text-2xl md:text-3xl mb-4 sm:mb-6">
               {t('home.finalCta.title')}
             </h2>
