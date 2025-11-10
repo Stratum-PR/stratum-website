@@ -5,31 +5,59 @@
     <!-- Critical Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Robots meta tag - will be updated by script below if on dev/staging -->
+    <meta name="robots" id="robots-meta" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     
-    <!-- Block indexing of dev/staging environments -->
+    <!-- Block indexing of dev/staging environments - MUST run before any other scripts -->
     <script>
-      // Immediately block indexing if on dev/staging domain
+      // Run immediately, before DOM is fully loaded
       (function() {
-        const hostname = window.location.hostname;
-        if (hostname.includes('dev.stratumpr.com') || hostname.includes('staging.stratumpr.com') || hostname.includes('.vercel.app')) {
-          // Remove existing robots meta tag
-          const existingRobots = document.querySelector('meta[name="robots"]');
-          if (existingRobots) {
-            existingRobots.setAttribute('content', 'noindex, nofollow');
+        'use strict';
+        // Check hostname immediately
+        var hostname = window.location.hostname;
+        var isDev = hostname.includes('dev.stratumpr.com') || 
+                   hostname.includes('staging.stratumpr.com') || 
+                   hostname.includes('.vercel.app') ||
+                   hostname.includes('localhost');
+        
+        if (isDev) {
+          // Function to update robots meta tag
+          var updateRobots = function() {
+            var robotsMeta = document.getElementById('robots-meta') || 
+                            document.querySelector('meta[name="robots"]');
+            if (robotsMeta) {
+              robotsMeta.setAttribute('content', 'noindex, nofollow');
+              console.log('🚫 Dev environment detected - noindex applied');
+            } else {
+              // Create if doesn't exist
+              var meta = document.createElement('meta');
+              meta.name = 'robots';
+              meta.content = 'noindex, nofollow';
+              meta.id = 'robots-meta';
+              var head = document.head || document.getElementsByTagName('head')[0];
+              head.insertBefore(meta, head.firstChild);
+              console.log('🚫 Dev environment detected - noindex meta tag created');
+            }
+          };
+          
+          // Update immediately if DOM is ready
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateRobots);
           } else {
-            // Create new noindex meta tag
-            const meta = document.createElement('meta');
-            meta.name = 'robots';
-            meta.content = 'noindex, nofollow';
-            document.head.insertBefore(meta, document.head.firstChild);
+            updateRobots();
           }
           
-          // Force canonical to production URL
-          const canonical = document.querySelector('link[rel="canonical"]');
-          if (canonical) {
-            canonical.setAttribute('href', 'https://www.stratumpr.com' + window.location.pathname);
-          }
+          // Also update on load (in case script runs early)
+          window.addEventListener('load', function() {
+            updateRobots();
+            // Force canonical to production URL
+            var canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) {
+              var path = window.location.pathname;
+              canonical.setAttribute('href', 'https://www.stratumpr.com' + path);
+              console.log('🔗 Canonical forced to production:', 'https://www.stratumpr.com' + path);
+            }
+          });
         }
       })();
     </script>
