@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ComingSoonModal } from "@/components/ComingSoonModal";
+import TechAnimatedBackground from "@/components/TechAnimatedBackground";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -171,9 +172,7 @@ export const Header = () => {
                 src="/StratumPR_Logo4.svg" 
                 alt="Stratum Logo" 
                 key="main-logo"
-                className={`${logoSize} w-auto transition-all duration-500 ease-in-out ${
-                  isMenuOpen || isMenuClosing ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-                }`} 
+                className={`${logoSize} w-auto`} 
               />
             </Link>
           </div>
@@ -215,7 +214,7 @@ export const Header = () => {
               aria-controls="mobile-menu"
             >
               {isMenuOpen ? (
-                <X className="h-5 w-5 text-gray-700" />
+                <X className="h-5 w-5 text-white" />
               ) : (
                 <Menu className="h-5 w-5 text-gray-700" />
               )}
@@ -238,7 +237,7 @@ export const Header = () => {
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-primary-900 shadow-xl transition-all duration-500 ease-out ${
+              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary shadow-xl transition-all duration-500 ease-out overflow-hidden ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : isMenuOpen
@@ -246,8 +245,16 @@ export const Header = () => {
                   : 'opacity-0 -translate-y-full'
               }`}
             >
+              {/* Dark overlay for better text contrast - same as hero section */}
+              <div className="absolute inset-0 bg-black/40 z-0"></div>
+              
+              {/* Tech animated background - exact same as hero section for seamless particle flow */}
+              {isMenuOpen && !isMenuClosing && (
+                <TechAnimatedBackground className="z-0" opacity={0.7} />
+              )}
+
               {/* Header space with white line icon and logo text when menu is open */}
-              <div className="h-14 md:h-16 border-b border-primary-700/30 flex items-center px-4 sm:px-5 md:px-6 lg:px-8">
+              <div className="relative z-10 h-14 md:h-16 border-b border-white/20 flex items-center px-4 sm:px-5 md:px-6 lg:px-8">
                 <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3" onClick={closeMenu}>
                   <img 
                     src="/Stratum_Icon_whiteline ver 2.svg" 
@@ -263,7 +270,7 @@ export const Header = () => {
                   <img 
                     src="/img/Logo_Text_Only.svg" 
                     alt="Stratum" 
-                    className={`h-6 sm:h-7 md:h-8 w-auto transition-all duration-500 ease-out delay-75 ${
+                    className={`h-6 sm:h-7 md:h-8 w-auto transition-all duration-500 ease-out ${
                       isMenuClosing 
                         ? 'opacity-0 scale-95 translate-x-4' 
                         : isMenuOpen
@@ -275,7 +282,7 @@ export const Header = () => {
               </div>
               
               {/* Navigation Content */}
-              <div className={`bg-primary-900 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-500 ease-out delay-100 ${
+              <div className={`relative z-10 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-500 ease-out ${
                 isMenuClosing 
                   ? 'opacity-0 translate-y-4' 
                   : isMenuOpen
@@ -293,8 +300,8 @@ export const Header = () => {
                             onClick={() => setIsResourcesOpen(!isResourcesOpen)}
                             className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] w-full flex items-center justify-between touch-manipulation ${
                               isActive(item.href) || resourcesDropdown.some(subItem => isActive(subItem.href))
-                                ? 'text-white bg-white/20 border-l-4 border-white'
-                                : 'text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20'
+                                ? 'text-white bg-primary-800 border-l-4 border-white'
+                                : 'text-white/90 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
                             }`}
                           >
                             <span>{item.name}</span>
@@ -315,7 +322,7 @@ export const Header = () => {
                                       setShowComingSoon(true);
                                       closeMenu();
                                     }}
-                                    className="font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation w-full text-left text-white/80 hover:text-white hover:bg-white/10 active:bg-white/20"
+                                    className="font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation w-full text-left text-white/80 hover:text-white hover:bg-primary-800/50 active:bg-primary-800"
                                   >
                                     {subItem.name}
                                   </button>
@@ -325,8 +332,8 @@ export const Header = () => {
                                     to={subItem.href}
                                     className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                                       isActive(subItem.href)
-                                        ? 'text-white bg-white/20 border-l-4 border-white'
-                                        : 'text-white/80 hover:text-white hover:bg-white/10 active:bg-white/20'
+                                        ? 'text-white bg-primary-800 border-l-4 border-white'
+                                        : 'text-white/80 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
                                     }`}
                                     onClick={closeMenu}
                                   >
@@ -346,8 +353,8 @@ export const Header = () => {
                         to={item.href}
                         className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                           isActive(item.href)
-                            ? 'text-white bg-white/20 border-l-4 border-white'
-                            : 'text-white/90 hover:text-white hover:bg-white/10 active:bg-white/20'
+                            ? 'text-white bg-primary-800 border-l-4 border-white'
+                            : 'text-white/90 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
                         }`}
                         onClick={closeMenu}
                       >
