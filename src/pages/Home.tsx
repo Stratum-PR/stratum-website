@@ -43,6 +43,7 @@ const Home = () => {
     keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/",
     ogType: "website",
+    ogImage: "https://www.stratumpr.com/Icon 1.svg",
     structuredData: {
       "@context": "https://schema.org",
       "@graph": [
