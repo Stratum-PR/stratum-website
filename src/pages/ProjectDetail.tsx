@@ -151,16 +151,16 @@ const ProjectDetail = () => {
     );
   }
 
-  // Get localized content
-  const title = language === 'es' ? project.titleEs : project.title;
-  const client = language === 'es' ? project.clientEs : project.client;
-  const sector = language === 'es' ? project.sectorEs : project.sector;
-  const summary = language === 'es' ? project.summaryEs : project.summary;
-  const challenge = language === 'es' ? project.challengeEs : project.challenge;
-  const solution = language === 'es' ? project.solutionEs : project.solution;
-  const results = language === 'es' ? project.resultsEs : project.results;
-  const timeline = language === 'es' ? project.timelineEs : project.timeline;
-  const teamSize = language === 'es' ? project.teamSizeEs : project.teamSize;
+  // Get localized content with fallbacks
+  const title = language === 'es' ? (project.titleEs || project.title) : (project.title || 'Project');
+  const client = language === 'es' ? (project.clientEs || project.client) : (project.client || '');
+  const sector = language === 'es' ? (project.sectorEs || project.sector) : (project.sector || '');
+  const summary = language === 'es' ? (project.summaryEs || project.summary) : (project.summary || '');
+  const challenge = language === 'es' ? (project.challengeEs || project.challenge) : (project.challenge || '');
+  const solution = language === 'es' ? (project.solutionEs || project.solution) : (project.solution || '');
+  const results = language === 'es' ? (project.resultsEs || []) : (project.results || []);
+  const timeline = language === 'es' ? (project.timelineEs || project.timeline) : (project.timeline || '');
+  const teamSize = language === 'es' ? (project.teamSizeEs || project.teamSize) : (project.teamSize || '');
   
   // SEO metadata
   const seoTitle = language === 'es' 
@@ -321,12 +321,16 @@ const ProjectDetail = () => {
                   Results & Impact
                 </h2>
                 <div className="space-y-4">
-                  {results.map((result, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                      <p className="font-telegraf text-gray-600">{result}</p>
-                    </div>
-                  ))}
+                  {results && results.length > 0 ? (
+                    results.map((result, index) => (
+                      <div key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <p className="font-telegraf text-gray-600">{result}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="font-telegraf text-gray-500 italic">No results data available.</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -334,23 +338,25 @@ const ProjectDetail = () => {
             {/* Sidebar */}
             <div className="space-y-8">
               {/* Technologies */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-telegraf font-semibold text-lg text-primary mb-4">
-                    Technologies Used
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, index) => (
-                      <span 
-                        key={index}
-                        className="px-3 py-1 text-sm font-telegraf bg-primary/10 text-primary rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              {project.technologies && project.technologies.length > 0 && (
+                <Card>
+                  <CardContent className="p-6">
+                    <h3 className="font-telegraf font-semibold text-lg text-primary mb-4">
+                      Technologies Used
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span 
+                          key={index}
+                          className="px-3 py-1 text-sm font-telegraf bg-primary/10 text-primary rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Tags */}
               {project.tags && project.tags.length > 0 && (
