@@ -762,8 +762,8 @@ const Home = () => {
           {/* Dark overlay for better text contrast - same as hero section */}
           <div className="absolute inset-0 bg-black/40 z-0"></div>
           
-          {/* Tech animated background - same as hero section */}
-          <TechAnimatedBackground className="z-0" opacity={0.7} />
+          {/* Tech animated background - temporarily removed */}
+          {/* <TechAnimatedBackground className="z-0" opacity={0.7} /> */}
 
           {/* Content */}
           <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
