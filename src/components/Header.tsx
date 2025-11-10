@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ComingSoonModal } from "@/components/ComingSoonModal";
+import TechAnimatedBackground from "@/components/TechAnimatedBackground";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -259,7 +260,7 @@ export const Header = () => {
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-black transition-all duration-500 ease-out overflow-hidden ${
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary shadow-xl transition-all duration-500 ease-out overflow-hidden ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : isMenuOpen
@@ -267,6 +268,14 @@ export const Header = () => {
                   : 'opacity-0 -translate-y-full'
               }`}
             >
+              {/* Dark overlay for better text contrast - same as hero section */}
+              <div className="absolute inset-0 bg-black/40 z-0"></div>
+              
+              {/* Tech animated background - exact same as hero section for seamless particle flow */}
+              {isMenuOpen && !isMenuClosing && (
+                <TechAnimatedBackground className="z-0" opacity={0.7} />
+              )}
+              
               {/* Navigation Content */}
               <div className={`relative z-10 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-500 ease-out ${
                 isMenuClosing 
