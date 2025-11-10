@@ -98,14 +98,14 @@ export const Header = () => {
       // Check if this is the Resources item - make it clickable with dropdown
       if (item.href === '/resources') {
         return (
-          <NavigationMenu key={item.href}>
+          <NavigationMenu key={item.href} className="[&>div>div]:!bg-black/95 [&>div>div]:!border-gray-800">
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
-                  className={`font-telegraf bg-transparent hover:bg-transparent data-[state=open]:bg-transparent rounded-none ${navFontSize} ${
+                  className={`font-telegraf !bg-transparent hover:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!text-white data-[state=open]:!opacity-100 rounded-none ${navFontSize} ${
                     isActive(item.href)
-                      ? 'text-primary border-b-2 border-primary font-bold'
-                      : 'text-gray-700 hover:text-primary font-medium'
+                      ? 'text-white border-b-2 border-accent font-bold'
+                      : 'text-white/80 hover:text-white font-medium'
                   }`}
                   onClick={(e) => {
                     // Navigate to resources on click
@@ -115,14 +115,14 @@ export const Header = () => {
                 >
                   {t('nav.resources')}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-48 p-2">
+                <NavigationMenuContent className="!bg-black/95 border-gray-800">
+                  <div className="w-48 p-2 bg-black/95">
                     {resourcesDropdown.map(dropdownItem => (
                       dropdownItem.isChecklist ? (
                         <button
                           key={dropdownItem.name}
                           onClick={() => setShowComingSoon(true)}
-                          className="block w-full text-left px-4 py-3 font-telegraf font-medium text-base text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
+                          className="block w-full text-left px-4 py-3 font-telegraf font-medium text-base text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors"
                         >
                           {dropdownItem.name}
                         </button>
@@ -130,7 +130,11 @@ export const Header = () => {
                         <Link
                           key={dropdownItem.name}
                           to={dropdownItem.href}
-                          className="block px-4 py-3 font-telegraf font-medium text-base text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
+                          className={`block px-4 py-3 font-telegraf font-medium text-base rounded-md transition-colors ${
+                            isActive(dropdownItem.href)
+                              ? 'text-white border-b-2 border-accent font-bold'
+                              : 'text-white/80 hover:text-white hover:bg-white/10'
+                          }`}
                         >
                           {dropdownItem.name}
                         </Link>
@@ -149,8 +153,8 @@ export const Header = () => {
           to={item.href}
           className={`font-telegraf transition-colors duration-200 ${navFontSize} whitespace-nowrap ${
             isActive(item.href)
-              ? 'text-primary border-b-2 border-primary font-bold'
-              : 'text-gray-700 hover:text-primary font-medium'
+              ? 'text-white border-b-2 border-accent font-bold'
+              : 'text-white/80 hover:text-white font-medium'
           }`}
         >
           {item.name}
@@ -160,7 +164,7 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 ${headerHeight}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[60] bg-black/95 border-b border-gray-800 ${headerHeight}`}>
       <div className="w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
         <div className="flex items-center h-full">
@@ -169,10 +173,17 @@ export const Header = () => {
             {/* Logo - Oracle-style sizing: ~26-28px (40-45% of header height) */}
             <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3">
               <img 
-                src="/StratumPR_Logo4.svg" 
+                src="/img/Logo 2.svg" 
                 alt="Stratum Logo" 
                 key="main-logo"
-                className={`${logoSize} w-auto`} 
+                className={`${logoSize} w-auto`}
+                style={{ 
+                  imageRendering: 'auto',
+                  WebkitFontSmoothing: 'antialiased',
+                  MozOsxFontSmoothing: 'grayscale',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden'
+                }}
               />
             </Link>
           </div>
@@ -192,7 +203,7 @@ export const Header = () => {
             
             {/* CTA Button - Show only on desktop (xl+) */}
             <div className="hidden xl:block flex-shrink-0">
-              <Button asChild className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-4 md:px-5 py-2 text-sm rounded-md transition-all duration-200 hover:shadow-lg whitespace-nowrap h-9 md:h-10">
+              <Button asChild className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-4 md:px-5 py-2 text-sm rounded-md transition-all duration-200 hover:shadow-lg whitespace-nowrap h-9 md:h-10">
                 <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
                   {t('nav.schedule')}
                 </a>
@@ -204,7 +215,7 @@ export const Header = () => {
               className={`xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
                 isMenuOpen 
                   ? 'bg-transparent hover:bg-transparent active:bg-transparent' 
-                  : 'hover:bg-gray-100 active:bg-gray-200'
+                  : 'hover:bg-white/10 active:bg-white/20'
               }`}
               onClick={() => {
                 if (isMenuOpen) {
@@ -220,7 +231,7 @@ export const Header = () => {
               {isMenuOpen ? (
                 <X className="h-5 w-5 text-white" />
               ) : (
-                <Menu className="h-5 w-5 text-gray-700" />
+                <Menu className="h-5 w-5 text-white" />
               )}
             </button>
           </div>
@@ -235,9 +246,9 @@ export const Header = () => {
         {/* Mobile Navigation Overlay */}
         {(isMenuOpen || isMenuClosing) && (
           <>
-            {/* Backdrop */}
+            {/* Backdrop - starts below navbar */}
             <div 
-              className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-500 ease-out ${
+              className={`fixed top-14 md:top-16 left-0 right-0 bottom-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-500 ease-out ${
                 isMenuClosing ? 'opacity-0' : isMenuOpen ? 'opacity-100' : 'opacity-0'
               }`}
               onClick={closeMenu}
@@ -247,7 +258,7 @@ export const Header = () => {
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary shadow-xl transition-all duration-500 ease-out overflow-hidden ${
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary shadow-xl transition-all duration-500 ease-out overflow-hidden ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : isMenuOpen
@@ -262,34 +273,6 @@ export const Header = () => {
               {isMenuOpen && !isMenuClosing && (
                 <TechAnimatedBackground className="z-0" opacity={0.7} />
               )}
-
-              {/* Header space with white line icon and logo text when menu is open */}
-              <div className="relative z-10 h-14 md:h-16 border-b border-white/20 flex items-center px-4 sm:px-5 md:px-6 lg:px-8">
-                <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3" onClick={closeMenu}>
-                  <img 
-                    src="/Stratum_Icon_whiteline ver 2.svg" 
-                    alt="Stratum Icon" 
-                    className={`h-6 sm:h-6 md:h-7 w-auto transition-all duration-500 ease-out ${
-                      isMenuClosing 
-                        ? 'opacity-0 scale-95 translate-x-4' 
-                        : isMenuOpen
-                        ? 'opacity-100 scale-100 translate-x-0'
-                        : 'opacity-0 scale-95 translate-x-4'
-                    }`} 
-                  />
-                  <img 
-                    src="/img/Logo_Text_Only.svg" 
-                    alt="Stratum" 
-                    className={`h-6 sm:h-7 md:h-8 w-auto transition-all duration-500 ease-out ${
-                      isMenuClosing 
-                        ? 'opacity-0 scale-95 translate-x-4' 
-                        : isMenuOpen
-                        ? 'opacity-100 scale-100 translate-x-0'
-                        : 'opacity-0 scale-95 translate-x-4'
-                    }`} 
-                  />
-                </Link>
-              </div>
               
               {/* Navigation Content */}
               <div className={`relative z-10 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-500 ease-out ${
@@ -310,15 +293,17 @@ export const Header = () => {
                             onClick={() => setIsResourcesOpen(!isResourcesOpen)}
                             className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] w-full flex items-center justify-between touch-manipulation ${
                               isActive(item.href) || resourcesDropdown.some(subItem => isActive(subItem.href))
-                                ? 'text-white bg-primary-800 border-l-4 border-white'
+                                ? 'text-black bg-accent border-l-4 border-accent'
                                 : 'text-white/90 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
                             }`}
                           >
                             <span>{item.name}</span>
                             <ChevronDown 
-                              className={`h-4 w-4 text-white transition-transform duration-200 ${
-                                isResourcesOpen ? 'transform rotate-180' : ''
-                              }`} 
+                              className={`h-4 w-4 transition-transform duration-200 ${
+                                isActive(item.href) || resourcesDropdown.some(subItem => isActive(subItem.href))
+                                  ? 'text-black'
+                                  : 'text-white'
+                              } ${isResourcesOpen ? 'transform rotate-180' : ''}`} 
                             />
                           </button>
                           {/* Resources dropdown items */}
@@ -342,7 +327,7 @@ export const Header = () => {
                                     to={subItem.href}
                                     className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                                       isActive(subItem.href)
-                                        ? 'text-white bg-primary-800 border-l-4 border-white'
+                                        ? 'text-black bg-accent border-l-4 border-accent'
                                         : 'text-white/80 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
                                     }`}
                                     onClick={closeMenu}
@@ -363,7 +348,7 @@ export const Header = () => {
                         to={item.href}
                         className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                           isActive(item.href)
-                            ? 'text-white bg-primary-800 border-l-4 border-white'
+                            ? 'text-black bg-accent border-l-4 border-accent'
                             : 'text-white/90 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
                         }`}
                         onClick={closeMenu}
