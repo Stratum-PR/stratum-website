@@ -53,15 +53,21 @@ const Projects = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-br from-primary/8 via-white to-secondary/8 relative animate-gradient-flow">
+        {/* Subtle animated background pattern */}
+        <div className="absolute inset-0 opacity-[0.04] animate-gradient-flow pointer-events-none" style={{
+          backgroundImage: `radial-gradient(circle at 40% 30%, rgba(230, 224, 142, 0.15) 0%, transparent 50%),
+                            radial-gradient(circle at 60% 70%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
+          backgroundSize: '200% 200%'
+        }}></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map(study => {
               const content = study.content[language];
               
               return (
                 <Link key={study.id} to={`/projects/${study.slug}`}>
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 hover-lift">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={study.image} 

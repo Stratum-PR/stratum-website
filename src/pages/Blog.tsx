@@ -148,8 +148,14 @@ const Blog = () => {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-gradient-to-br from-secondary/8 via-white to-primary/8 relative animate-gradient-flow">
+        {/* Subtle animated background pattern */}
+        <div className="absolute inset-0 opacity-[0.04] animate-gradient-flow pointer-events-none" style={{
+          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(30, 43, 126, 0.15) 0%, transparent 50%),
+                            radial-gradient(circle at 70% 60%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
+          backgroundSize: '200% 200%'
+        }}></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -182,7 +188,7 @@ const Blog = () => {
                 
                 return (
                   <Link key={post._id} to={`/newsupdates/${post.slug.current}`} className="group">
-                    <Card className="group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg overflow-hidden cursor-pointer h-full bg-white rounded-2xl">
+                    <Card className="group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 rounded-2xl hover-lift">
                       <div className="relative h-56 overflow-hidden">
                         <img 
                           src={imageUrl}

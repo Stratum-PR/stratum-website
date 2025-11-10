@@ -60,8 +60,14 @@ const Contact = () => {
         </div>
       </section>
       
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative animate-gradient-flow">
+        {/* Subtle animated background pattern */}
+        <div className="absolute inset-0 opacity-[0.03] animate-gradient-flow pointer-events-none" style={{
+          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.1) 0%, transparent 50%),
+                            radial-gradient(circle at 70% 60%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
+          backgroundSize: '200% 200%'
+        }}></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Message Form - Takes 2 columns */}
             <div className="lg:col-span-2">
@@ -69,7 +75,7 @@ const Contact = () => {
             </div>
             {/* Email - Takes 1 column, smaller */}
             <div>
-              <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+              <div className="bg-gradient-to-br from-white via-primary/5 to-white border-2 border-primary/20 rounded-lg p-4 shadow-lg hover-lift">
                 <h3 className="font-telegraf font-semibold text-lg text-primary mb-3">
                   {t('contact.info.title')}
                 </h3>

@@ -72,8 +72,14 @@ const Resources = () => {
       </section>
 
       {/* Resources Grid */}
-      <section className="py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-gradient-to-br from-secondary/8 via-white to-primary/8 relative animate-gradient-flow">
+        {/* Subtle animated background pattern */}
+        <div className="absolute inset-0 opacity-[0.04] animate-gradient-flow pointer-events-none" style={{
+          backgroundImage: `radial-gradient(circle at 20% 30%, rgba(30, 43, 126, 0.15) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 70%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
+          backgroundSize: '200% 200%'
+        }}></div>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {resources.map((resource) => {
               const isChecklist = resource.href === '/checklist';
@@ -83,7 +89,7 @@ const Resources = () => {
                   onClick={() => setShowComingSoon(true)}
                   className="text-left"
                 >
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full w-full">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full w-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 hover-lift">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={resource.image} 
@@ -112,7 +118,7 @@ const Resources = () => {
                 </button>
               ) : (
                 <Link key={resource.href} to={resource.href}>
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden cursor-pointer h-full">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 hover-lift">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={resource.image} 
