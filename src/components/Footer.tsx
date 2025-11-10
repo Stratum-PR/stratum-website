@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Linkedin, Facebook, Instagram, Home, Users, Briefcase, HelpCircle, FolderOpen, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import TechAnimatedBackground from "@/components/TechAnimatedBackground";
 export const Footer = () => {
   const {
     t
@@ -18,19 +19,27 @@ export const Footer = () => {
     { name: t('nav.resources'), href: '/resources', icon: FolderOpen },
     { name: t('nav.contact'), href: '/contact', icon: Mail },
   ];
-  return <footer className="relative text-white bg-black/95 overflow-hidden">
+  return <footer className="relative text-white overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary">
+      {/* Dark overlay - darker than navbar for visual distinction */}
+      <div className="absolute inset-0 bg-black/60 z-0"></div>
+      
+      {/* Tech animated background - slightly less opacity than navbar */}
+      <TechAnimatedBackground className="z-0" opacity={0.5} />
+      
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <img src="/Stratum_Icon_whiteline ver 2.svg" alt="Stratum PR Logo" className="h-8 w-8 object-scale-down" />
-              <span className="font-telegraf font-bold text-xl text-left px-0">
-                {t('footer.companyName').split(' - ')[0]}
-                {t('footer.companyName').includes(' - ') && (
-                  <span className="text-accent"> - {t('footer.companyName').split(' - ')[1]}</span>
-                )}
-              </span>
+            <div className="flex items-start space-x-3 mb-4 mt-7">
+              <img src="/Stratum_Icon_whiteline ver 2.svg" alt="Stratum PR Icon" className="h-8 w-8 object-scale-down" style={{ marginTop: 'calc(1.25rem - 2rem + 0.5rem)' }} />
+              <div className="flex flex-col">
+                <span className="font-telegraf font-bold text-xl text-left px-0 leading-tight">
+                  Stratum PR
+                </span>
+                <span className="font-telegraf text-accent text-sm md:text-base mt-0.5">
+                  {t('footer.companyName').replace('Stratum PR ', '')}
+                </span>
+              </div>
             </div>
             <p className="text-white/80 mb-4 font-telegraf">
               {t('footer.description')}

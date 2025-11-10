@@ -63,7 +63,7 @@ const Services = () => {
   }, "services");
 
   return (
-    <div className="pt-[50px]">
+    <div>
       <ServicesHero />
       <ServicesGrid />
       <ProcessSection />

@@ -49,7 +49,7 @@ const Contact = () => {
   }, "contact");
 
   return (
-    <div className="pt-[50px]">
+    <div>
       {/* Hero Section with Background */}
       <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">

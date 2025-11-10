@@ -343,7 +343,7 @@ export const esTranslations: Record<string, string> = {
   
   // Footer
   'footer.tagline': 'La Arquitectura de Mejores Decisiones. Nos especializamos en soluciones de análisis y consultoría que impulsan resultados empresariales estratégicos.',
-  'footer.companyName': 'Stratum PR - La Arquitectura de Mejores Decisiones.',
+  'footer.companyName': 'Stratum PR La Arquitectura de Mejores Decisiones.',
   'footer.description': 'Tu socio estratégico para soluciones de inteligencia empresarial en Puerto Rico.',
   'footer.navigation': 'Navegación',
   'footer.quicklinks': 'Enlaces Rápidos',

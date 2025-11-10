@@ -287,7 +287,7 @@ const Home = () => {
 
   return (
     <TooltipProvider>
-      <div className="pt-14 md:pt-16">
+      <div>
         {/* Hero Section - Techy animated background similar to Evertec */}
         <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[85vh] sm:min-h-[90vh] bg-gradient-to-br from-primary via-primary-800 to-secondary">
           {/* Dark overlay for better text contrast */}
