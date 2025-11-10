@@ -85,6 +85,11 @@ export const Header = () => {
       setIsMenuClosing(false);
     }, 500); // Match the duration of the slide-out animation
   };
+
+  const openMenu = () => {
+    setIsMenuClosing(false);
+    setIsMenuOpen(true);
+  };
   
   // Render navigation items - all visible, no progressive hiding
   const renderNavItems = () => {
@@ -163,9 +168,12 @@ export const Header = () => {
             {/* Logo - Oracle-style sizing: ~26-28px (40-45% of header height) */}
             <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3">
               <img 
-                src={isMenuOpen ? "/img/Logo 2.svg" : "/StratumPR_Logo4.svg"} 
+                src="/StratumPR_Logo4.svg" 
                 alt="Stratum Logo" 
-                className={`${logoSize} w-auto transition-opacity duration-300 ease-in-out`} 
+                key="main-logo"
+                className={`${logoSize} w-auto transition-all duration-500 ease-in-out ${
+                  isMenuOpen || isMenuClosing ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                }`} 
               />
             </Link>
           </div>
@@ -199,8 +207,7 @@ export const Header = () => {
                 if (isMenuOpen) {
                   closeMenu();
                 } else {
-                  setIsMenuOpen(true);
-                  setIsMenuClosing(false);
+                  openMenu();
                 }
               }}
               aria-label="Toggle navigation menu"
@@ -221,8 +228,8 @@ export const Header = () => {
           <>
             {/* Backdrop */}
             <div 
-              className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300 ease-in-out ${
-                isMenuClosing ? 'opacity-0' : 'opacity-100'
+              className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-500 ease-out ${
+                isMenuClosing ? 'opacity-0' : isMenuOpen ? 'opacity-100' : 'opacity-0'
               }`}
               onClick={closeMenu}
               aria-hidden="true"
@@ -231,25 +238,50 @@ export const Header = () => {
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-primary-900 shadow-xl transition-all duration-500 ease-in-out ${
+              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-primary-900 shadow-xl transition-all duration-500 ease-out ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
-                  : 'opacity-100 translate-y-0'
+                  : isMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 -translate-y-full'
               }`}
             >
-              {/* Header space with Logo 2.svg when menu is open */}
+              {/* Header space with white line icon and logo text when menu is open */}
               <div className="h-14 md:h-16 border-b border-primary-700/30 flex items-center px-4 sm:px-5 md:px-6 lg:px-8">
                 <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3" onClick={closeMenu}>
                   <img 
-                    src="/img/Logo 2.svg" 
-                    alt="Stratum Logo" 
-                    className={`${logoSize} w-auto transition-opacity duration-300 ease-in-out`} 
+                    src="/Stratum_Icon_whiteline ver 2.svg" 
+                    alt="Stratum Icon" 
+                    className={`h-6 sm:h-6 md:h-7 w-auto transition-all duration-500 ease-out ${
+                      isMenuClosing 
+                        ? 'opacity-0 scale-95 translate-x-4' 
+                        : isMenuOpen
+                        ? 'opacity-100 scale-100 translate-x-0'
+                        : 'opacity-0 scale-95 translate-x-4'
+                    }`} 
+                  />
+                  <img 
+                    src="/img/Logo_Text_Only.svg" 
+                    alt="Stratum" 
+                    className={`h-6 sm:h-7 md:h-8 w-auto transition-all duration-500 ease-out delay-75 ${
+                      isMenuClosing 
+                        ? 'opacity-0 scale-95 translate-x-4' 
+                        : isMenuOpen
+                        ? 'opacity-100 scale-100 translate-x-0'
+                        : 'opacity-0 scale-95 translate-x-4'
+                    }`} 
                   />
                 </Link>
               </div>
               
               {/* Navigation Content */}
-              <div className="bg-primary-900 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
+              <div className={`bg-primary-900 px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto transition-all duration-500 ease-out delay-100 ${
+                isMenuClosing 
+                  ? 'opacity-0 translate-y-4' 
+                  : isMenuOpen
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4'
+              }`}>
                 <nav className="flex flex-col space-y-1">
                   {/* Main navigation items */}
                   {navigation.map(item => {
