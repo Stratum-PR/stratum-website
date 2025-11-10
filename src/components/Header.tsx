@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -20,6 +21,7 @@ export const Header = () => {
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
+  const touchHandledRef = useRef(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
@@ -220,7 +222,12 @@ export const Header = () => {
                   : 'hover:bg-white/10 active:bg-white/20'
               }`}
               onClick={(e) => {
-                e.preventDefault();
+                // Prevent click if touch was already handled (to avoid double-toggle)
+                if (touchHandledRef.current) {
+                  e.preventDefault();
+                  touchHandledRef.current = false;
+                  return;
+                }
                 e.stopPropagation();
                 if (isMenuOpen) {
                   closeMenu();
@@ -229,7 +236,21 @@ export const Header = () => {
                 }
               }}
               onTouchStart={(e) => {
+                // Mark that touch is being handled
+                touchHandledRef.current = true;
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
+                if (isMenuOpen) {
+                  closeMenu();
+                } else {
+                  openMenu();
+                }
+                // Reset after a short delay to allow click event to be ignored if it fires
+                setTimeout(() => {
+                  touchHandledRef.current = false;
+                }, 300);
               }}
               style={{
                 position: 'relative',
@@ -238,7 +259,8 @@ export const Header = () => {
                 WebkitTapHighlightColor: 'transparent',
                 touchAction: 'manipulation',
                 userSelect: 'none',
-                WebkitUserSelect: 'none'
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none'
               }}
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}
@@ -259,12 +281,12 @@ export const Header = () => {
           <img src="/img/Logo_Text_Only.svg" alt="" />
         </div>
 
-        {/* Mobile Navigation Overlay */}
-        {(isMenuOpen || isMenuClosing) && (
+        {/* Mobile Navigation Overlay - rendered via portal to escape header stacking context */}
+        {(isMenuOpen || isMenuClosing) && typeof document !== 'undefined' && createPortal(
           <>
             {/* Backdrop - starts below navbar */}
             <div 
-              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 bottom-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-500 ease-out ${
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 bottom-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 ease-out ${
                 isMenuClosing ? 'opacity-0' : isMenuOpen ? 'opacity-100' : 'opacity-0'
               }`}
               onClick={closeMenu}
@@ -272,19 +294,23 @@ export const Header = () => {
                 e.stopPropagation();
               }}
               aria-hidden="true"
-              style={{ pointerEvents: isMenuOpen ? 'auto' : 'none' }}
+              style={{ 
+                pointerEvents: isMenuOpen ? 'auto' : 'none',
+                zIndex: 9998
+              }}
             />
             
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary shadow-xl transition-all duration-500 ease-out overflow-hidden ${
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 bg-gradient-to-br from-primary via-primary-800 to-secondary shadow-xl transition-all duration-500 ease-out overflow-hidden ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : isMenuOpen
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 -translate-y-full'
               }`}
+              style={{ zIndex: 9999 }}
             >
               {/* Dark overlay for better text contrast - same as hero section */}
               <div className="absolute inset-0 bg-black/40 z-0"></div>
@@ -380,7 +406,8 @@ export const Header = () => {
                 </nav>
               </div>
             </div>
-          </>
+          </>,
+          document.body
         )}
       </div>
       
