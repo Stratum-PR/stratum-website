@@ -125,11 +125,11 @@ const Blog = () => {
 
   // Dynamic SEO data based on language
   const seoData = language === 'es' ? {
-    title: "Blog - Perspectivas y Actualizaciones de Análisis de Datos Stratum PR",
+    title: "Blog de Análisis de Datos - Stratum PR",
     description: "Mantente informado con las últimas perspectivas, tendencias y mejores prácticas en análisis de datos, automatización de IA y transformación digital de los expertos de Stratum PR.",
     keywords: "blog análisis de datos, perspectivas IA, transformación digital, tecnología Puerto Rico, blog inteligencia empresarial"
   } : {
-    title: "Blog - Stratum PR Data Analytics Insights and Updates",
+    title: "Data Analytics Blog - Stratum PR",
     description: "Stay informed with the latest insights, trends, and best practices in data analytics, AI automation, and digital transformation from Stratum PR experts.",
     keywords: "data analytics blog, AI insights, digital transformation, Puerto Rico tech, business intelligence blog"
   };

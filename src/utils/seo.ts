@@ -10,6 +10,7 @@ export interface SEOData {
   keywords: string;
   canonical: string;
   ogImage?: string;
+  ogTitle?: string; // Optional separate title for Open Graph/Twitter cards
   ogType?: string;
   structuredData?: any;
 }
@@ -56,10 +57,12 @@ export const updateSEO = (seoData: SEOData) => {
   // Update meta tags
   updateMetaTag('description', seoData.description);
   updateMetaTag('keywords', seoData.keywords);
-  updateMetaTag('og:title', seoData.title, true);
+  // Use ogTitle if provided, otherwise use regular title
+  const ogTitle = seoData.ogTitle || seoData.title;
+  updateMetaTag('og:title', ogTitle, true);
   updateMetaTag('og:description', seoData.description, true);
   updateMetaTag('og:url', seoData.canonical, true);
-  updateMetaTag('twitter:title', seoData.title);
+  updateMetaTag('twitter:title', ogTitle);
   updateMetaTag('twitter:description', seoData.description);
 
   if (seoData.ogImage) {
