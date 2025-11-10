@@ -16,7 +16,7 @@ import RotatingText from "@/components/RotatingText";
 const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSection"));
 
 const Home = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isClient, setIsClient] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
   
@@ -25,31 +25,141 @@ const Home = () => {
     setIsClient(true);
   }, []);
   
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Consultoría de IA Puerto Rico | Análisis de Datos y Automatización Comercial - Stratum PR",
+    description: "Firma líder de análisis y consultoría en Puerto Rico especializada en implementación de CRM, análisis de big data, soluciones de IA y automatización estratégica empresarial. Transforma tu negocio con decisiones basadas en datos.",
+    keywords: "consultoría de IA Puerto Rico, análisis de datos Puerto Rico, automatización comercial Puerto Rico, implementación de CRM Puerto Rico, inteligencia empresarial Puerto Rico, análisis de big data, modelado predictivo, consultoría de aprendizaje automático, transformación digital Puerto Rico"
+  } : {
+    title: "AI Consulting Puerto Rico | Data Analytics & Commercial Automation Services - Stratum PR",
+    description: "Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, commercial automation, and predictive modeling. 100% Puerto Rico based. Free consultation available.",
+    keywords: "AI consulting Puerto Rico, data analytics consulting Puerto Rico, AI business automation Puerto Rico, CRM Puerto Rico, CRM implementation consulting Puerto Rico, commercial automation Puerto Rico, big data analytics consulting, business intelligence Puerto Rico, Salesforce implementation Puerto Rico, predictive modeling services Puerto Rico, machine learning consulting Puerto Rico, digital transformation consulting Puerto Rico, data analytics services, business automation solutions Puerto Rico"
+  };
+  
   // SEO optimization for home page
   useSEO({
-    title: "Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico",
-    description: "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation. Transform your business with data-driven decisions.",
-    keywords: "data analytics Puerto Rico, AI business automation, CRM implementation consulting, big data analytics, business intelligence Puerto Rico, Salesforce implementation, predictive modeling, machine learning consulting, digital transformation Puerto Rico",
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/",
     ogType: "website",
     structuredData: {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "https://www.stratumpr.com/#webpage",
-      "url": "https://www.stratumpr.com/",
-      "name": "Stratum PR - The Architecture of Better Decisions",
-      "description": "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation.",
-      "isPartOf": {
-        "@id": "https://www.stratumpr.com/#website"
-      },
-      "about": {
-        "@type": "Thing",
-        "name": "Data Analytics and Business Automation Consulting"
-      },
-      "mainEntity": {
-        "@type": "LocalBusiness",
-        "name": "Stratum PR"
-      }
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.stratumpr.com/#website",
+          "url": "https://www.stratumpr.com/",
+          "name": "Stratum PR",
+          "description": language === 'es' 
+            ? "Firma líder de análisis y consultoría en Puerto Rico especializada en implementación de CRM, análisis de big data, soluciones de IA y automatización estratégica empresarial."
+            : "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation.",
+          "inLanguage": language === 'es' ? 'es' : 'en',
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.stratumpr.com/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.stratumpr.com/#webpage",
+          "url": "https://www.stratumpr.com/",
+          "name": seoData.title,
+          "description": seoData.description,
+          "inLanguage": language === 'es' ? 'es' : 'en',
+          "isPartOf": {
+            "@id": "https://www.stratumpr.com/#website"
+          },
+          "about": {
+            "@type": "Thing",
+            "name": language === 'es' ? "Análisis de Datos y Automatización Empresarial" : "Data Analytics and Business Automation Consulting"
+          }
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://www.stratumpr.com/#business",
+          "name": "Stratum PR",
+          "alternateName": "Stratum Puerto Rico",
+          "description": language === 'es'
+            ? "Firma líder de análisis y consultoría en Puerto Rico especializada en implementación de CRM, análisis de big data, soluciones de IA y automatización estratégica empresarial."
+            : "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation.",
+          "url": "https://www.stratumpr.com",
+          "logo": "https://www.stratumpr.com/img/stratum-pr-logo.png",
+          "telephone": "+1-787-XXX-XXXX",
+          "email": "contact@stratumpr.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Trujillo Alto",
+            "addressRegion": "PR",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 18.2208,
+            "longitude": -66.5901
+          },
+          "areaServed": {
+            "@type": "Place",
+            "name": "Puerto Rico"
+          },
+          "foundingDate": "2025",
+          "founders": [
+            {
+              "@type": "Person",
+              "name": "Jovaniel Rodriguez",
+              "jobTitle": "Co-Founder, Technology Infrastructure"
+            },
+            {
+              "@type": "Person", 
+              "name": "Roberto Otero",
+              "jobTitle": "Co-Founder, Tech & Build"
+            },
+            {
+              "@type": "Person",
+              "name": "Genesis Rodriguez", 
+              "jobTitle": "Co-Founder, Data & Insights"
+            }
+          ],
+          "sameAs": [
+            "https://linkedin.com/company/stratumpr",
+            "https://twitter.com/stratumpr"
+          ],
+          "inLanguage": language === 'es' ? 'es' : 'en'
+        },
+        {
+          "@type": "OfferCatalog",
+          "@id": "https://www.stratumpr.com/#services",
+          "name": language === 'es' ? "Servicios de Stratum PR" : "Stratum PR Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": language === 'es' ? "Consultoría de IA" : "AI Consulting",
+                "description": language === 'es' ? "Soluciones de inteligencia artificial para automatización empresarial" : "Artificial intelligence solutions for business automation"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": language === 'es' ? "Implementación de CRM" : "CRM Implementation",
+                "description": language === 'es' ? "Implementación y optimización de sistemas CRM" : "CRM system implementation and optimization"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": language === 'es' ? "Análisis de Big Data" : "Big Data Analytics",
+                "description": language === 'es' ? "Análisis de grandes volúmenes de datos para insights empresariales" : "Large-scale data analysis for business insights"
+              }
+            }
+          ],
+          "inLanguage": language === 'es' ? 'es' : 'en'
+        }
+      ]
     }
   }, "home");
 
@@ -285,10 +395,10 @@ const Home = () => {
               </div>
 
               {/* Gut-based Decisions Box */}
-              <div className="bg-gradient-to-br from-yellow-50/80 via-white to-accent/10 border-2 border-accent/30 rounded-lg p-6 md:p-8 hover:border-accent/50 hover:shadow-xl hover:shadow-accent/20 transition-all duration-300 group shadow-lg shadow-accent/10 hover-lift animate-fade-in-scale" style={{animationDelay: '0.3s'}}>
+              <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 border-2 border-primary/30 rounded-lg p-6 md:p-8 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 group shadow-lg shadow-primary/10 hover-lift animate-fade-in-scale" style={{animationDelay: '0.3s'}}>
                 <div className="text-center">
-                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-200 to-yellow-300 rounded-full flex items-center justify-center group-hover:from-yellow-300 group-hover:to-accent transition-all duration-300 shadow-lg hover-scale-icon accent-glow">
-                    <HelpCircle className="h-7 w-7 md:h-8 md:w-8 text-yellow-600 group-hover:text-yellow-700" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full flex items-center justify-center group-hover:from-primary/40 group-hover:to-secondary/40 transition-all duration-300 shadow-lg hover-scale-icon primary-glow">
+                    <HelpCircle className="h-7 w-7 md:h-8 md:w-8 text-primary group-hover:text-primary-800" />
                   </div>
                   <h3 className="font-telegraf font-bold text-base sm:text-lg md:text-xl text-gray-800 mb-3 min-h-[3rem] flex items-center justify-center">
                     {t('home.problem.box3.title')}

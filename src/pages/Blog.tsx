@@ -110,13 +110,37 @@ const Blog = () => {
     fetchPosts();
   }, []);
 
-  // SEO optimization for blog page
-  useSEO({
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Blog - Perspectivas y Actualizaciones de Análisis de Datos Stratum PR",
+    description: "Mantente informado con las últimas perspectivas, tendencias y mejores prácticas en análisis de datos, automatización de IA y transformación digital de los expertos de Stratum PR.",
+    keywords: "blog análisis de datos, perspectivas IA, transformación digital, tecnología Puerto Rico, blog inteligencia empresarial"
+  } : {
     title: "Blog - Stratum PR Data Analytics Insights and Updates",
     description: "Stay informed with the latest insights, trends, and best practices in data analytics, AI automation, and digital transformation from Stratum PR experts.",
-    keywords: "data analytics blog, AI insights, digital transformation, Puerto Rico tech, business intelligence blog",
+    keywords: "data analytics blog, AI insights, digital transformation, Puerto Rico tech, business intelligence blog"
+  };
+  
+  // SEO optimization for blog page
+  useSEO({
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/newsupdates",
-    ogType: "website"
+    ogType: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "@id": "https://www.stratumpr.com/newsupdates#blog",
+      "url": "https://www.stratumpr.com/newsupdates",
+      "name": seoData.title,
+      "description": seoData.description,
+      "inLanguage": language === 'es' ? 'es' : 'en',
+      "publisher": {
+        "@type": "Organization",
+        "name": "Stratum PR"
+      }
+    }
   }, "blog");
 
   return (

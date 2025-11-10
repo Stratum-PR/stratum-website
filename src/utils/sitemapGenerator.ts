@@ -26,6 +26,9 @@ const sitemapConfig: SitemapConfig = {
     { path: '/projects', priority: 0.8, changefreq: 'weekly' },
     { path: '/contact', priority: 0.8, changefreq: 'monthly' },
     { path: '/faq', priority: 0.7, changefreq: 'monthly' },
+    { path: '/resources', priority: 0.7, changefreq: 'monthly' },
+    { path: '/newsupdates', priority: 0.7, changefreq: 'weekly' },
+    { path: '/privacy', priority: 0.5, changefreq: 'yearly' },
   ]
 };
 

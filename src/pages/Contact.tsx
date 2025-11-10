@@ -6,13 +6,24 @@ import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Contacta Stratum PR - Consultoría Análisis de Datos Puerto Rico | Agenda Consulta Gratuita",
+    description: "Contacta Stratum PR para consultoría experta en análisis de datos en Puerto Rico. Agenda una consulta gratuita para implementación de CRM, automatización empresarial con IA y servicios de modelado predictivo. Ponte en contacto hoy.",
+    keywords: "contactar Stratum PR, consulta análisis de datos Puerto Rico, cotización implementación CRM, contacto automatización empresarial IA, agendar consulta, consultoría análisis Puerto Rico"
+  } : {
+    title: "Contact Stratum PR - Data Analytics Consulting Puerto Rico | Schedule Free Consultation",
+    description: "Contact Stratum PR for expert data analytics consulting in Puerto Rico. Schedule a free consultation for CRM implementation, AI business automation, and predictive modeling services. Get in touch today.",
+    keywords: "contact Stratum PR, data analytics consultation Puerto Rico, CRM implementation quote, AI business automation contact, schedule consultation, analytics consulting Puerto Rico"
+  };
   
   // SEO optimization for contact page
   useSEO({
-    title: "Contact Stratum PR - Data Analytics Consulting Puerto Rico | Schedule Free Consultation",
-    description: "Contact Stratum PR for expert data analytics consulting in Puerto Rico. Schedule a free consultation for CRM implementation, AI business automation, and predictive modeling services. Get in touch today.",
-    keywords: "contact Stratum PR, data analytics consultation Puerto Rico, CRM implementation quote, AI business automation contact, schedule consultation, analytics consulting Puerto Rico",
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/contact",
     ogType: "website",
     structuredData: {
@@ -20,8 +31,10 @@ const Contact = () => {
       "@type": "ContactPage",
       "@id": "https://www.stratumpr.com/contact#webpage",
       "url": "https://www.stratumpr.com/contact",
-      "name": "Contact Stratum PR - Data Analytics Consulting",
-      "description": "Get in touch with Stratum PR for expert data analytics consulting services in Puerto Rico.",
+      "name": language === 'es' ? "Contacta Stratum PR - Consultoría en Análisis de Datos" : "Contact Stratum PR - Data Analytics Consulting",
+      "description": language === 'es'
+        ? "Ponte en contacto con Stratum PR para servicios de consultoría experta en análisis de datos en Puerto Rico."
+        : "Get in touch with Stratum PR for expert data analytics consulting services in Puerto Rico.",
       "mainEntity": {
         "@type": "LocalBusiness",
         "name": "Stratum PR",
@@ -30,7 +43,8 @@ const Contact = () => {
           "email": "contact@stratumpr.com",
           "contactType": "Customer Service"
         }
-      }
+      },
+      "inLanguage": language === 'es' ? 'es' : 'en'
     }
   }, "contact");
 

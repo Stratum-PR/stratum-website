@@ -18,6 +18,10 @@ export const updateSEO = (seoData: SEOData) => {
   // Update title
   document.title = seoData.title;
 
+  // Update HTML lang attribute dynamically
+  const isSpanish = /[áéíóúñüÁÉÍÓÚÑÜ]/.test(seoData.title + seoData.description);
+  document.documentElement.lang = isSpanish ? 'es' : 'en';
+
   // Update or create meta tags
   const updateMetaTag = (name: string, content: string, property?: boolean) => {
     const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
@@ -52,6 +56,10 @@ export const updateSEO = (seoData: SEOData) => {
   if (seoData.ogType) {
     updateMetaTag('og:type', seoData.ogType, true);
   }
+
+  // Update og:locale based on content language (detect from title/description)
+  const isSpanishLocale = /[áéíóúñüÁÉÍÓÚÑÜ]/.test(seoData.title + seoData.description);
+  updateMetaTag('og:locale', isSpanishLocale ? 'es_PR' : 'en_US', true);
 
   // Update canonical link
   let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
