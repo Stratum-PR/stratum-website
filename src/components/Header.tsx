@@ -196,7 +196,7 @@ export const Header = () => {
           </nav>
 
           {/* Right side: Language Toggle, CTA Button, Hamburger */}
-          <div className="flex items-center gap-3 md:gap-4 lg:gap-6 flex-shrink-0 ml-auto">
+          <div className="flex items-center gap-3 md:gap-4 lg:gap-6 flex-shrink-0 ml-auto" style={{ position: 'relative', zIndex: 70 }}>
             {/* Language Toggle */}
             <div className="flex-shrink-0">
               <LanguageToggle />
@@ -214,26 +214,40 @@ export const Header = () => {
             {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
               type="button"
-              className={`xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
+              className={`xl:hidden p-2.5 rounded-lg transition-colors flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
                 isMenuOpen 
                   ? 'bg-transparent hover:bg-transparent active:bg-transparent' 
                   : 'hover:bg-white/10 active:bg-white/20'
               }`}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 if (isMenuOpen) {
                   closeMenu();
                 } else {
                   openMenu();
                 }
               }}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+              }}
+              style={{
+                position: 'relative',
+                zIndex: 70,
+                pointerEvents: 'auto',
+                WebkitTapHighlightColor: 'transparent',
+                touchAction: 'manipulation',
+                userSelect: 'none',
+                WebkitUserSelect: 'none'
+              }}
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
               {isMenuOpen ? (
-                <X className="h-5 w-5 text-white" />
+                <X className="h-5 w-5 text-white pointer-events-none" />
               ) : (
-                <Menu className="h-5 w-5 text-white" />
+                <Menu className="h-5 w-5 text-white pointer-events-none" />
               )}
             </button>
           </div>
@@ -254,7 +268,11 @@ export const Header = () => {
                 isMenuClosing ? 'opacity-0' : isMenuOpen ? 'opacity-100' : 'opacity-0'
               }`}
               onClick={closeMenu}
+              onTouchStart={(e) => {
+                e.stopPropagation();
+              }}
               aria-hidden="true"
+              style={{ pointerEvents: isMenuOpen ? 'auto' : 'none' }}
             />
             
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
