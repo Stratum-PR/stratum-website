@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -23,6 +23,9 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const firstMenuItemRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
   
   // Navigation items - simple array, no progressive hiding
   const navigation = [
@@ -78,23 +81,72 @@ export const Header = () => {
   // Logo size: ~26-28px (40-45% of header height, matching Oracle proportions)
   const logoSize = 'h-6 sm:h-6 md:h-7';
   
-  const closeMenu = () => {
-    setIsMenuClosing(true);
-    // Restore body scroll
+  // Improved body scroll lock that works on iOS
+  const lockBodyScroll = () => {
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  };
+
+  const unlockBodyScroll = () => {
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.style.overflow = '';
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  };
+
+  const closeMenu = useCallback(() => {
+    setIsMenuClosing(true);
+    unlockBodyScroll();
+    // Return focus to menu button
+    setTimeout(() => {
+      menuButtonRef.current?.focus();
+    }, 100);
     // After animation completes, close the menu
     setTimeout(() => {
       setIsMenuOpen(false);
       setIsMenuClosing(false);
-    }, 500); // Match the duration of the slide-out animation
-  };
+    }, 500);
+  }, []);
 
-  const openMenu = () => {
+  const openMenu = useCallback(() => {
     setIsMenuClosing(false);
     setIsMenuOpen(true);
-    // Prevent body scroll when menu is open
-    document.body.style.overflow = 'hidden';
-  };
+    lockBodyScroll();
+    // Focus first menu item after a brief delay
+    setTimeout(() => {
+      firstMenuItemRef.current?.focus();
+    }, 100);
+  }, []);
+
+  // Handle ESC key to close menu
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMenuOpen, closeMenu]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      unlockBodyScroll();
+    };
+  }, []);
   
   // Render navigation items - all visible, no progressive hiding
   const renderNavItems = () => {
@@ -222,6 +274,7 @@ export const Header = () => {
 
             {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
+              ref={menuButtonRef}
               type="button"
               className={`xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
                 isMenuOpen 
@@ -229,7 +282,6 @@ export const Header = () => {
                   : 'hover:bg-white/10 active:bg-white/20'
               }`}
               onClick={(e) => {
-                e.preventDefault();
                 e.stopPropagation();
                 if (isMenuOpen) {
                   closeMenu();
@@ -237,7 +289,14 @@ export const Header = () => {
                   openMenu();
                 }
               }}
-              aria-label="Toggle navigation menu"
+              style={{
+                WebkitTapHighlightColor: 'transparent',
+                touchAction: 'manipulation',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                cursor: 'pointer'
+              }}
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
@@ -274,8 +333,12 @@ export const Header = () => {
             
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
+              ref={menuRef}
               id="mobile-menu" 
-              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-gradient-to-br from-primary via-primary-800 to-secondary transition-all duration-500 ease-out overflow-y-auto max-h-[calc(100vh-3.5rem)] ${
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-gradient-to-br from-primary via-primary-800 to-secondary transition-all duration-300 ease-out overflow-y-auto max-h-[calc(100vh-3.5rem)] ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : isMenuOpen
@@ -366,9 +429,11 @@ export const Header = () => {
                       );
                     }
                     // Regular navigation items
+                    const isFirstItem = navigation.indexOf(item) === 0;
                     return (
                       <Link
                         key={item.name}
+                        ref={isFirstItem ? (firstMenuItemRef as React.RefObject<HTMLAnchorElement>) : null}
                         to={item.href}
                         className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center touch-manipulation ${
                           isActive(item.href)
