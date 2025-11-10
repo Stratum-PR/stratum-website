@@ -44,7 +44,7 @@ const Home = () => {
     canonical: "https://www.stratumpr.com/",
     ogType: "website",
     ogTitle: "Stratum PR",
-    ogImage: "https://www.stratumpr.com/img/StratumPR%20Preview%20Image.jpg",
+    ogImage: "https://www.stratumpr.com/img/StratumPR-Preview-Image.jpg",
     structuredData: {
       "@context": "https://schema.org",
       "@graph": [
