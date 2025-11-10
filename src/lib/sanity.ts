@@ -33,7 +33,8 @@ let sanityClient: ReturnType<typeof createClient> | null = null
 
 if (projectId) {
   // In production, try CDN first, but it requires CORS configuration
-  // If CORS isn't configured, we'll use direct API as fallback
+  // For localhost/dev, always use direct API (no CORS needed)
+  // If CORS isn't configured in production, we'll use direct API as fallback
   const useCdn = import.meta.env.PROD
   
   sanityClient = createClient({
@@ -41,12 +42,15 @@ if (projectId) {
     dataset,
     // Use CDN in production for better performance (requires CORS setup)
     // Direct API works without CORS but is slower
+    // For localhost, we'll always use direct API (set useCdn: false)
     useCdn: useCdn,
     apiVersion: '2024-01-01',
     // Add token if available (for private content, not needed for public read)
     token: import.meta.env.VITE_SANITY_TOKEN || undefined,
     // Add request tag for better error tracking
     requestTagPrefix: 'stratum-website',
+    // Add better error handling
+    ignoreBrowserTokenWarning: true,
   })
   
   if (useCdn) {

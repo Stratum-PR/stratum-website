@@ -81,6 +81,8 @@ const Projects = () => {
           message: err?.message,
           statusCode: err?.statusCode,
           responseBody: err?.responseBody,
+          status: err?.status,
+          response: err?.response,
         });
         
         let errorMessage = 'Failed to load projects';
@@ -89,11 +91,13 @@ const Projects = () => {
         if (err?.message?.includes('projectId') || err?.message?.includes('Project ID')) {
           errorMessage = 'Sanity Project ID is missing. Check your .env.local file.';
         } else if (err?.message?.includes('CORS') || err?.message?.includes('Access-Control')) {
-          errorMessage = 'CORS error. For localhost, this shouldn\'t happen. Check Sanity project settings.';
-        } else if (err?.statusCode === 401) {
+          errorMessage = 'CORS error. Check Sanity project settings and add your domain to CORS origins.';
+        } else if (err?.statusCode === 401 || err?.status === 401) {
           errorMessage = 'Unauthorized. Check your Sanity project ID is correct.';
-        } else if (err?.statusCode === 404) {
-          errorMessage = `Project not found. Verify your Sanity project ID: ${sanityClient?.config().projectId || 'unknown'}`;
+        } else if (err?.statusCode === 404 || err?.status === 404) {
+          errorMessage = `Project not found. Verify your Sanity project ID: ${sanityClient?.config().projectId || 'unknown'}. Also check if "project" document type exists in Sanity.`;
+        } else if (err?.message?.includes('Request error')) {
+          errorMessage = 'Network error connecting to Sanity. Check your internet connection and Sanity project settings. If this persists, the "project" document type may not exist in Sanity Studio yet.';
         } else if (err?.message) {
           errorMessage = `Error: ${err.message}`;
         }
