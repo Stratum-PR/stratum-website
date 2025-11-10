@@ -114,11 +114,11 @@ const Projects = () => {
 
   // Dynamic SEO data based on language
   const seoData = language === 'es' ? {
-    title: "Proyectos - Historias de Éxito de Análisis de Datos Puerto Rico | Casos de Estudio | Stratum PR",
+    title: "Proyectos de Análisis de Datos - Stratum PR",
     description: "Explora historias de éxito reales de análisis de datos y casos de estudio de Stratum PR. Ve cómo hemos ayudado a negocios en Puerto Rico con implementación de CRM, automatización con IA y sistemas de decisiones estratégicas. Proyectos de análisis orientados a resultados.",
     keywords: "proyectos de análisis de datos Puerto Rico, historias de éxito implementación de CRM, casos de estudio automatización con IA, ejemplos de inteligencia empresarial Puerto Rico, casos de estudio de análisis de datos, proyectos de modelado predictivo, historias de éxito transformación digital Puerto Rico, resultados automatización empresarial"
   } : {
-    title: "Projects - Stratum PR Data Analytics Success Stories",
+    title: "Data Analytics Projects - Stratum PR",
     description: "Explore real-world examples of how Stratum PR delivers data analytics, automation, and strategic decision systems for clients across Puerto Rico and beyond.",
     keywords: "projects Puerto Rico, data analytics success stories, business intelligence examples, CRM implementation results, automation projects, digital transformation examples"
   };

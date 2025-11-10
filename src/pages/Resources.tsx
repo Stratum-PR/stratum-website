@@ -14,11 +14,11 @@ const Resources = () => {
 
   // Dynamic SEO data based on language
   const seoData = language === 'es' ? {
-    title: "Recursos - Guías y Herramientas de Análisis de Datos Stratum PR",
+    title: "Recursos de Análisis de Datos - Stratum PR",
     description: "Accede a nuestros proyectos, noticias y actualizaciones, y lista de verificación de preparación TI para ayudar a tu negocio a aprovechar los datos de manera efectiva.",
     keywords: "recursos análisis de datos, proyectos, noticias actualizaciones, lista verificación TI, análisis de datos Puerto Rico"
   } : {
-    title: "Resources - Stratum PR Data Analytics Guides and Tools",
+    title: "Data Analytics Resources - Stratum PR",
     description: "Access our projects, news and updates, and IT readiness checklist to help your business leverage data effectively.",
     keywords: "data analytics resources, projects, news updates, IT checklist, Puerto Rico data analytics"
   };

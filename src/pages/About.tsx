@@ -11,11 +11,11 @@ const About = () => {
   
   // Dynamic SEO data based on language
   const seoData = language === 'es' ? {
-    title: "Acerca de Stratum PR - Equipo de Expertos en Análisis de Datos Puerto Rico | Fundadores Consultoría IA",
+    title: "Acerca de Stratum PR - Expertos en Análisis de Datos",
     description: "Conoce al equipo experto detrás de Stratum PR. Fundada en 2025 por científicos de datos y consultores experimentados especializados en automatización empresarial con IA, implementación de CRM y modelado predictivo en Puerto Rico.",
     keywords: "equipo Stratum PR, expertos análisis de datos Puerto Rico, fundadores consultoría IA, consultores inteligencia empresarial, especialistas implementación CRM, expertos aprendizaje automático Caribe"
   } : {
-    title: "About Stratum PR - Expert Data Analytics Team Puerto Rico | AI Consulting Founders",
+    title: "About Stratum PR - Expert Data Analytics Team",
     description: "Meet the expert team behind Stratum PR. Founded in 2025 by experienced data scientists and consultants specializing in AI business automation, CRM implementation, and predictive modeling in Puerto Rico.",
     keywords: "Stratum PR team, data analytics experts Puerto Rico, AI consulting founders, business intelligence consultants, CRM implementation specialists, machine learning experts Caribbean"
   };

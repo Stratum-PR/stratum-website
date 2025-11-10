@@ -43,7 +43,10 @@ const Home = () => {
     keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/",
     ogType: "website",
-    ogImage: "https://www.stratumpr.com/Icon 1.svg",
+    ogTitle: language === 'es' 
+      ? "Stratum PR - Consultoría IA y Análisis de Datos Puerto Rico"
+      : "Stratum PR - AI Consulting & Data Analytics Puerto Rico",
+    ogImage: "https://www.stratumpr.com/img/hero_poster.png",
     structuredData: {
       "@context": "https://schema.org",
       "@graph": [
