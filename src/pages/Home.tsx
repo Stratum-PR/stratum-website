@@ -28,11 +28,11 @@ const Home = () => {
   // Dynamic SEO data based on language (optimized for 50-60 char titles, 150-160 char descriptions)
   const seoData = language === 'es' ? {
     title: "Stratum PR",
-    description: "Firma líder de análisis y consultoría en Puerto Rico. Especializados en implementación de CRM, análisis de big data, soluciones de IA y automatización empresarial. Transforma tu negocio con decisiones basadas en datos.",
+    description: "Análisis de Datos e Implementación de IA en Puerto Rico. Transforma tu negocio con soluciones estratégicas de datos.",
     keywords: "consultoría de IA Puerto Rico, análisis de datos Puerto Rico, automatización comercial Puerto Rico, implementación de CRM Puerto Rico, inteligencia empresarial Puerto Rico, análisis de big data, modelado predictivo, consultoría de aprendizaje automático, transformación digital Puerto Rico"
   } : {
     title: "Stratum PR",
-    description: "Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, and predictive modeling. 100% Puerto Rico based. Free consultation available.",
+    description: "Data Analytics and AI Implementation services in Puerto Rico. Transform your business with strategic data solutions.",
     keywords: "AI consulting Puerto Rico, data analytics consulting Puerto Rico, AI business automation Puerto Rico, CRM Puerto Rico, CRM implementation consulting Puerto Rico, commercial automation Puerto Rico, big data analytics consulting, business intelligence Puerto Rico, Salesforce implementation Puerto Rico, predictive modeling services Puerto Rico, machine learning consulting Puerto Rico, digital transformation consulting Puerto Rico, data analytics services, business automation solutions Puerto Rico"
   };
   
@@ -43,9 +43,7 @@ const Home = () => {
     keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/",
     ogType: "website",
-    ogTitle: language === 'es' 
-      ? "Stratum PR - Consultoría IA y Análisis de Datos Puerto Rico"
-      : "Stratum PR - AI Consulting & Data Analytics Puerto Rico",
+    ogTitle: "Stratum PR",
     ogImage: "https://www.stratumpr.com/img/StratumPR%20Preview%20Image.jpg",
     structuredData: {
       "@context": "https://schema.org",
