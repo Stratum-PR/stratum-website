@@ -53,7 +53,7 @@ const FAQ: React.FC = () => {
   return (
     <div className="pt-[50px]">
       {/* Hero Section with Background  */}
-      <section className="relative pt-8 pb-6 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
