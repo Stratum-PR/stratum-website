@@ -286,15 +286,16 @@ export const Header = () => {
                 display: (isMenuOpen || isMenuClosing) ? 'block' : 'none',
                 pointerEvents: isMenuOpen ? 'auto' : 'none',
                 transform: isMenuOpen && !isMenuClosing ? 'translateY(0)' : 'translateY(-100%)',
-                opacity: isMenuOpen && !isMenuClosing ? 1 : 0
+                opacity: isMenuOpen && !isMenuClosing ? 1 : 0,
+                backgroundColor: isMenuOpen && !isMenuClosing ? 'rgb(30, 43, 126)' : 'transparent'
               }}
             >
               {/* Dark overlay for better text contrast - same as hero section */}
-              <div className="absolute inset-0 bg-black/40 z-0"></div>
+              <div className="absolute inset-0 bg-black/60 z-0"></div>
               
               {/* Tech animated background - same as navbar */}
               {isMenuOpen && !isMenuClosing && (
-                <TechAnimatedBackground className="z-0" opacity={0.7} />
+                <TechAnimatedBackground className="z-0" opacity={0.5} />
               )}
               
               {/* Navigation Content */}
