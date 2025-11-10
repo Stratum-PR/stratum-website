@@ -231,14 +231,14 @@ export const Header = () => {
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-primary shadow-xl transition-all duration-500 ease-in-out ${
+              className={`xl:hidden fixed top-0 left-0 right-0 z-50 bg-black shadow-xl transition-all duration-500 ease-in-out ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : 'opacity-100 translate-y-0'
               }`}
             >
               {/* Header space with Logo 2.svg when menu is open */}
-              <div className="h-14 md:h-16 border-b border-primary-700/30 flex items-center px-4 sm:px-5 md:px-6 lg:px-8">
+              <div className="h-14 md:h-16 border-b border-white/20 flex items-center px-4 sm:px-5 md:px-6 lg:px-8">
                 <Link to="/" className="flex items-center space-x-2 sm:space-x-2.5 md:space-x-3" onClick={closeMenu}>
                   <img 
                     src="/img/Logo 2.svg" 
@@ -249,7 +249,7 @@ export const Header = () => {
               </div>
               
               {/* Navigation Content */}
-              <div className="bg-primary px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
+              <div className="bg-black px-4 py-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
                 <nav className="flex flex-col space-y-1">
                   {/* Main navigation items */}
                   {navigation.map(item => {
