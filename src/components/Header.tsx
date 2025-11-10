@@ -164,8 +164,14 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[60] bg-black border-b border-gray-800 ${headerHeight}`}>
-      <div className="w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
+    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`}>
+      {/* Dark overlay for better text contrast - same as hero section */}
+      <div className="absolute inset-0 bg-black/40 z-0"></div>
+      
+      {/* Tech animated background - same as hero section */}
+      <TechAnimatedBackground className="z-0" opacity={0.7} />
+      
+      <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
         <div className="flex items-center h-full">
           {/* Left side: Logo */}
@@ -258,7 +264,7 @@ export const Header = () => {
             {/* Mobile/Tablet Navigation Menu - positioned below the header */}
             <div 
               id="mobile-menu" 
-              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary shadow-xl transition-all duration-500 ease-out overflow-hidden ${
+              className={`xl:hidden fixed top-14 md:top-16 left-0 right-0 z-50 bg-gradient-to-br from-primary via-primary-800 to-secondary transition-all duration-500 ease-out overflow-hidden ${
                 isMenuClosing 
                   ? 'opacity-0 -translate-y-full' 
                   : isMenuOpen
@@ -269,7 +275,7 @@ export const Header = () => {
               {/* Dark overlay for better text contrast - same as hero section */}
               <div className="absolute inset-0 bg-black/40 z-0"></div>
               
-              {/* Tech animated background - exact same as hero section for seamless particle flow */}
+              {/* Tech animated background - same as navbar */}
               {isMenuOpen && !isMenuClosing && (
                 <TechAnimatedBackground className="z-0" opacity={0.7} />
               )}

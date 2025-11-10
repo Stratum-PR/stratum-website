@@ -344,7 +344,7 @@ export const enTranslations: Record<string, string> = {
   
   // Footer
   'footer.tagline': 'The Architecture of Better Decisions. Your strategic partner for business intelligence solutions in Puerto Rico.',
-  'footer.companyName': 'Stratum PR - The Architecture of Better Decisions.',
+  'footer.companyName': 'Stratum PR The Architecture of Better Decisions.',
   'footer.description': 'Your strategic partner for business intelligence solutions in Puerto Rico.',
   'footer.navigation': 'Navigation',
   'footer.quicklinks': 'Quick Links',

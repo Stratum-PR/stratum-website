@@ -331,7 +331,7 @@ const Checklist = () => {
   const progress = ((currentQuestion + (showResults ? 1 : 0)) / questions.length) * 100;
 
   return (
-    <div className="pt-[50px]">
+    <div>
       {/* Hero Section */}
       <section className="relative pt-8 pb-6 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">

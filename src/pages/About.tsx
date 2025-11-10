@@ -104,7 +104,7 @@ const About = () => {
   ];
 
   return (
-    <div className="pt-[50px]">
+    <div>
       <HeroSection />
       <MissionSection />
       <ValuesSection values={values} />
