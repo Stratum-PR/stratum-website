@@ -67,6 +67,8 @@ export const updateSEO = (seoData: SEOData) => {
 
   if (seoData.ogImage) {
     updateMetaTag('og:image', seoData.ogImage, true);
+    updateMetaTag('og:image:secure_url', seoData.ogImage, true);
+    updateMetaTag('og:image:type', 'image/jpeg', true);
     updateMetaTag('twitter:image', seoData.ogImage);
   }
 
