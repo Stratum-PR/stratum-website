@@ -5,7 +5,6 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ComingSoonModal } from "@/components/ComingSoonModal";
-import TechAnimatedBackground from "@/components/TechAnimatedBackground";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -182,12 +181,7 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`}>
-      {/* Dark overlay for better text contrast - same as hero section */}
-      <div className="absolute inset-0 bg-black/40 z-0"></div>
-      
-      {/* Tech animated background - same as hero section */}
-      <TechAnimatedBackground className="z-0" opacity={0.7} />
+    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-black ${headerHeight}`}>
       
       <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
@@ -271,13 +265,8 @@ export const Header = () => {
             {/* Mobile Menu */}
             <div 
               id="mobile-menu" 
-              className="xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-gradient-to-br from-primary via-primary-800 to-secondary overflow-y-auto max-h-[calc(100vh-3.5rem)]"
+              className="xl:hidden fixed top-14 md:top-16 left-0 right-0 z-[100] bg-black overflow-y-auto max-h-[calc(100vh-3.5rem)]"
             >
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-black/60 z-0"></div>
-              
-              {/* Tech animated background */}
-              <TechAnimatedBackground className="z-0" opacity={0.5} />
               
               {/* Navigation Content */}
               <div className="relative z-10 px-4 py-6">
