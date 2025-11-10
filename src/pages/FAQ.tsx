@@ -52,8 +52,13 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-6">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-6 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative animate-gradient-flow">
+        {/* Subtle animated background pattern */}
+        <div className="absolute inset-0 opacity-[0.03] animate-gradient-flow pointer-events-none" style={{
+          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.1) 0%, transparent 50%)`,
+          backgroundSize: '200% 200%'
+        }}></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {faqCategories.map((category) => {
             const categoryFAQs = getFAQsByCategory(category.id);
             
@@ -70,7 +75,7 @@ const FAQ: React.FC = () => {
                     <AccordionItem 
                       key={faq.id} 
                       value={faq.id}
-                      className="border border-gray-200 rounded-lg px-4 sm:px-6 py-2 bg-white shadow-sm hover:shadow-md transition-shadow"
+                      className="border-2 border-primary/20 rounded-lg px-4 sm:px-6 py-2 bg-gradient-to-br from-white via-primary/3 to-white shadow-lg hover:shadow-xl hover-lift transition-all duration-300"
                     >
                       <AccordionTrigger className="text-left text-base sm:text-lg font-telegraf font-semibold text-gray-900 hover:text-primary transition-colors">
                         {t(faq.question)}
