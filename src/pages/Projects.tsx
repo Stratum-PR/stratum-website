@@ -168,18 +168,12 @@ const Projects = () => {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 bg-gradient-to-br from-primary/8 via-white to-secondary/8 relative animate-gradient-flow">
-        {/* Subtle animated background pattern */}
-        <div className="absolute inset-0 opacity-[0.04] animate-gradient-flow pointer-events-none" style={{
-          backgroundImage: `radial-gradient(circle at 40% 30%, rgba(230, 224, 142, 0.15) 0%, transparent 50%),
-                            radial-gradient(circle at 60% 70%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
-          backgroundSize: '200% 200%'
-        }}></div>
+      <section className="py-20 bg-gray-900 relative">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-              <span className="ml-4 font-telegraf text-gray-600">Loading projects...</span>
+              <span className="ml-4 font-telegraf text-gray-300">Loading projects...</span>
             </div>
           ) : error ? (
             <div className="text-center py-20">
@@ -190,8 +184,8 @@ const Projects = () => {
             </div>
           ) : projects.length === 0 ? (
             <div className="text-center py-20">
-              <p className="font-telegraf text-gray-600 text-lg mb-4">No projects found.</p>
-              <p className="font-telegraf text-gray-500">Create your first project in Sanity Studio!</p>
+              <p className="font-telegraf text-gray-300 text-lg mb-4">No projects found.</p>
+              <p className="font-telegraf text-gray-400">Create your first project in Sanity Studio!</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -205,7 +199,7 @@ const Projects = () => {
                 
                 return (
                   <Link key={project._id} to={`/projects/${project.slug.current}`}>
-                    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 hover-lift">
+                    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden cursor-pointer h-full bg-gray-800 hover:border-accent hover-lift">
                       <div className="relative h-48 overflow-hidden">
                         <img 
                           src={imageUrl} 
@@ -215,7 +209,7 @@ const Projects = () => {
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                         {project.featured && (
                           <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 text-xs font-telegraf font-semibold bg-primary text-white rounded-full uppercase tracking-wide">
+                            <span className="px-3 py-1 text-xs font-telegraf font-semibold bg-accent text-black rounded-full uppercase tracking-wide">
                               Featured
                             </span>
                           </div>
@@ -225,22 +219,22 @@ const Projects = () => {
                         {project.tags && project.tags.length > 0 && (
                           <div className="flex flex-wrap gap-1 mb-3">
                             {project.tags.slice(0, 2).map((tag, idx) => (
-                              <span key={idx} className="px-2 py-1 text-xs font-telegraf bg-primary/10 text-primary rounded-full">
+                              <span key={idx} className="px-2 py-1 text-xs font-telegraf bg-accent/20 text-accent rounded-full">
                                 {tag}
                               </span>
                             ))}
                           </div>
                         )}
-                        <h3 className="font-telegraf font-semibold text-xl text-primary mb-2 group-hover:text-secondary transition-colors">
+                        <h3 className="font-telegraf font-semibold text-xl text-white mb-2 group-hover:text-accent transition-colors">
                           {title}
                         </h3>
-                        <p className="font-telegraf text-sm text-gray-500 mb-3">
+                        <p className="font-telegraf text-sm text-gray-400 mb-3">
                           {sector}
                         </p>
-                        <p className="font-telegraf text-gray-600 mb-4 leading-relaxed">
+                        <p className="font-telegraf text-gray-300 mb-4 leading-relaxed">
                           {summary}
                         </p>
-                        <div className="flex items-center text-primary hover:text-secondary transition-colors group/link">
+                        <div className="flex items-center text-accent hover:text-accent/80 transition-colors group/link">
                           <span className="font-telegraf">{t('projects.readmore')}</span>
                           <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                         </div>

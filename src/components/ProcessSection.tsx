@@ -29,34 +29,28 @@ export const ProcessSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-accent/8 via-white to-primary/8 relative animate-gradient-flow" aria-labelledby="process-heading">
-      {/* Subtle animated background pattern */}
-      <div className="absolute inset-0 opacity-[0.05] animate-gradient-flow pointer-events-none" style={{
-        backgroundImage: `radial-gradient(circle at 25% 50%, rgba(30, 43, 126, 0.15) 0%, transparent 50%),
-                          radial-gradient(circle at 75% 50%, rgba(230, 224, 142, 0.1) 0%, transparent 50%)`,
-        backgroundSize: '200% 200%'
-      }}></div>
+    <section className="py-16 bg-gray-800 relative" aria-labelledby="process-heading">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 id="process-heading" className="font-telegraf font-bold text-2xl text-primary mb-4 animate-fade-in-up">
+          <h2 id="process-heading" className="font-telegraf font-bold text-2xl text-white mb-4 animate-fade-in-up">
             {t('services.process.title')}
           </h2>
-          <p className="font-telegraf text-base text-gray-600 max-w-3xl mx-auto">
+          <p className="font-telegraf text-base text-gray-300 max-w-3xl mx-auto">
             {t('services.process.description')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {process.map((phase, index) => (
-            <Card key={index} className="text-center border-2 border-primary/20 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 bg-gradient-to-br from-white via-primary/5 to-white animate-fade-in-scale" style={{animationDelay: `${index * 0.1}s`}}>
+            <Card key={index} className="text-center border-2 border-gray-600 shadow-lg hover:shadow-xl hover:border-accent hover-lift transition-all duration-300 bg-gray-700 animate-fade-in-scale" style={{animationDelay: `${index * 0.1}s`}}>
               <CardContent className="p-6">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-primary to-secondary text-white rounded-full text-lg font-telegraf font-bold mb-4 shadow-lg hover-scale-icon primary-glow animate-float-slow" style={{animationDelay: `${index * 0.2}s`}}>
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-accent text-black rounded-full text-lg font-telegraf font-bold mb-4 shadow-lg hover-scale-icon primary-glow animate-float-slow" style={{animationDelay: `${index * 0.2}s`}}>
                   {phase.step}
                 </div>
-                <h3 className="font-telegraf font-semibold text-base text-primary mb-3">
+                <h3 className="font-telegraf font-semibold text-base text-white mb-3">
                   {phase.title}
                 </h3>
-                <p className="font-telegraf text-sm text-gray-600 leading-relaxed">
+                <p className="font-telegraf text-sm text-gray-300 leading-relaxed">
                   {phase.description}
                 </p>
               </CardContent>

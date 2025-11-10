@@ -24,12 +24,12 @@ const ContactInfo = () => {
   ];
 
   return (
-    <Card className="border-0 shadow-lg">
+    <Card className="border-2 border-gray-600 shadow-lg bg-gray-800">
       <CardHeader>
-        <CardTitle className="font-telegraf text-2xl text-primary">
+        <CardTitle className="font-telegraf text-2xl text-white">
           {t('contact.info.title')}
         </CardTitle>
-        <p className="font-telegraf text-gray-600">
+        <p className="font-telegraf text-gray-300">
           {t('contact.info.description')}
         </p>
       </CardHeader>
@@ -40,21 +40,21 @@ const ContactInfo = () => {
             href={info.href}
             target={info.href.startsWith('http') ? '_blank' : undefined}
             rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="flex items-start space-x-4 p-4 rounded-lg hover:bg-gray-50 transition-colors group"
+            className="flex items-start space-x-4 p-4 rounded-lg hover:bg-gray-700 transition-colors group"
           >
             <div className="flex-shrink-0">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <info.icon className="h-5 w-5 text-primary group-hover:text-white" />
+              <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-all duration-300">
+                <info.icon className="h-5 w-5 text-accent group-hover:text-accent" />
               </div>
             </div>
             <div>
-              <h3 className="font-telegraf font-semibold text-gray-900">
+              <h3 className="font-telegraf font-semibold text-white">
                 {info.title}
               </h3>
-              <p className="font-telegraf text-primary font-medium">
+              <p className="font-telegraf text-accent font-medium">
                 {info.value}
               </p>
-              <p className="font-telegraf text-sm text-gray-600">
+              <p className="font-telegraf text-sm text-gray-400">
                 {info.description}
               </p>
             </div>

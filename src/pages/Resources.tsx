@@ -92,13 +92,7 @@ const Resources = () => {
       </section>
 
       {/* Resources Grid */}
-      <section className="py-12 bg-gradient-to-br from-secondary/8 via-white to-primary/8 relative animate-gradient-flow">
-        {/* Subtle animated background pattern */}
-        <div className="absolute inset-0 opacity-[0.04] animate-gradient-flow pointer-events-none" style={{
-          backgroundImage: `radial-gradient(circle at 20% 30%, rgba(30, 43, 126, 0.15) 0%, transparent 50%),
-                            radial-gradient(circle at 80% 70%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
-          backgroundSize: '200% 200%'
-        }}></div>
+      <section className="py-12 bg-gray-900 relative">
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {resources.map((resource) => {
@@ -109,7 +103,7 @@ const Resources = () => {
                   onClick={() => setShowComingSoon(true)}
                   className="text-left"
                 >
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full w-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 hover-lift">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden cursor-pointer h-full w-full bg-gray-800 hover:border-accent hover-lift">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={resource.image} 
@@ -123,13 +117,13 @@ const Resources = () => {
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                     </div>
                     <CardContent className="p-6 text-center">
-                      <h3 className="font-telegraf font-semibold text-xl text-primary mb-3 group-hover:text-secondary transition-colors">
+                      <h3 className="font-telegraf font-semibold text-xl text-white mb-3 group-hover:text-accent transition-colors">
                         {resource.name}
                       </h3>
-                      <p className="font-telegraf text-gray-600 mb-6 leading-relaxed">
+                      <p className="font-telegraf text-gray-300 mb-6 leading-relaxed">
                         {resource.description}
                       </p>
-                      <div className="flex items-center justify-center text-primary hover:text-secondary transition-colors group/link">
+                      <div className="flex items-center justify-center text-accent hover:text-accent/80 transition-colors group/link">
                         <span className="font-telegraf">{t('resources.explore')}</span>
                         <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                       </div>
@@ -138,7 +132,7 @@ const Resources = () => {
                 </button>
               ) : (
                 <Link key={resource.href} to={resource.href}>
-                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 hover-lift">
+                  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden cursor-pointer h-full bg-gray-800 hover:border-accent hover-lift">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={resource.image} 
@@ -152,13 +146,13 @@ const Resources = () => {
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                     </div>
                     <CardContent className="p-6 text-center">
-                      <h3 className="font-telegraf font-semibold text-xl text-primary mb-3 group-hover:text-secondary transition-colors">
+                      <h3 className="font-telegraf font-semibold text-xl text-white mb-3 group-hover:text-accent transition-colors">
                         {resource.name}
                       </h3>
-                      <p className="font-telegraf text-gray-600 mb-6 leading-relaxed">
+                      <p className="font-telegraf text-gray-300 mb-6 leading-relaxed">
                         {resource.description}
                       </p>
-                      <div className="flex items-center justify-center text-primary hover:text-secondary transition-colors group/link">
+                      <div className="flex items-center justify-center text-accent hover:text-accent/80 transition-colors group/link">
                         <span className="font-telegraf">{t('resources.explore')}</span>
                         <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                       </div>

@@ -77,12 +77,7 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-6 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative animate-gradient-flow">
-        {/* Subtle animated background pattern */}
-        <div className="absolute inset-0 opacity-[0.03] animate-gradient-flow pointer-events-none" style={{
-          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.1) 0%, transparent 50%)`,
-          backgroundSize: '200% 200%'
-        }}></div>
+      <section className="py-6 bg-gray-900 relative">
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {faqCategories.map((category) => {
             const categoryFAQs = getFAQsByCategory(category.id);
@@ -91,7 +86,7 @@ const FAQ: React.FC = () => {
 
             return (
               <div key={category.id} className="mb-8">
-                <h2 className="text-2xl font-telegraf font-bold text-primary mb-6">
+                <h2 className="text-2xl font-telegraf font-bold text-white mb-6">
                   {t(category.titleKey)}
                 </h2>
                 
@@ -100,12 +95,12 @@ const FAQ: React.FC = () => {
                     <AccordionItem 
                       key={faq.id} 
                       value={faq.id}
-                      className="border-2 border-primary/20 rounded-lg px-4 sm:px-6 py-2 bg-gradient-to-br from-white via-primary/3 to-white shadow-lg hover:shadow-xl hover-lift transition-all duration-300"
+                      className="border-2 border-gray-600 rounded-lg px-4 sm:px-6 py-2 bg-gray-800 shadow-lg hover:shadow-xl hover:border-accent hover-lift transition-all duration-300"
                     >
-                      <AccordionTrigger className="text-left text-base sm:text-lg font-telegraf font-semibold text-gray-900 hover:text-primary transition-colors">
+                      <AccordionTrigger className="text-left text-base sm:text-lg font-telegraf font-semibold text-white hover:text-accent transition-colors">
                         {t(faq.question)}
                       </AccordionTrigger>
-                      <AccordionContent className="text-sm sm:text-base text-gray-700 leading-relaxed pt-2 pb-4 font-telegraf">
+                      <AccordionContent className="text-sm sm:text-base text-gray-300 leading-relaxed pt-2 pb-4 font-telegraf">
                         {t(faq.answer)}
                       </AccordionContent>
                     </AccordionItem>

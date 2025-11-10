@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-gray-900">
       <Header />
       <main className="flex-1">
         <ErrorBoundary>

@@ -185,18 +185,12 @@ const Blog = () => {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-12 bg-gradient-to-br from-secondary/8 via-white to-primary/8 relative animate-gradient-flow">
-        {/* Subtle animated background pattern */}
-        <div className="absolute inset-0 opacity-[0.04] animate-gradient-flow pointer-events-none" style={{
-          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(30, 43, 126, 0.15) 0%, transparent 50%),
-                            radial-gradient(circle at 70% 60%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
-          backgroundSize: '200% 200%'
-        }}></div>
+      <section className="py-12 bg-gray-900 relative">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-              <span className="ml-4 font-telegraf text-gray-600">Loading blog posts...</span>
+              <span className="ml-4 font-telegraf text-gray-300">Loading blog posts...</span>
             </div>
           ) : error ? (
             <div className="text-center py-20">
@@ -207,8 +201,8 @@ const Blog = () => {
             </div>
           ) : blogPosts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="font-telegraf text-gray-600 text-lg mb-4">No blog posts found.</p>
-              <p className="font-telegraf text-gray-500">Create your first post in Sanity Studio!</p>
+              <p className="font-telegraf text-gray-300 text-lg mb-4">No blog posts found.</p>
+              <p className="font-telegraf text-gray-400">Create your first post in Sanity Studio!</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -225,7 +219,7 @@ const Blog = () => {
                 
                 return (
                   <Link key={post._id} to={`/newsupdates/${post.slug.current}`} className="group">
-                    <Card className="group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 rounded-2xl hover-lift">
+                    <Card className="group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-gray-600 shadow-lg overflow-hidden cursor-pointer h-full bg-gray-800 rounded-2xl hover:border-accent hover-lift">
                       <div className="relative h-56 overflow-hidden">
                         <img 
                           src={imageUrl}
@@ -235,7 +229,7 @@ const Blog = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         {post.featured && (
                           <div className="absolute top-4 left-4">
-                            <span className="px-3 py-1 text-xs font-telegraf font-semibold bg-primary text-white rounded-full uppercase tracking-wide">
+                            <span className="px-3 py-1 text-xs font-telegraf font-semibold bg-accent text-black rounded-full uppercase tracking-wide">
                               Featured
                             </span>
                           </div>
@@ -245,23 +239,23 @@ const Blog = () => {
                         {post.tags && post.tags.length > 0 && (
                           <div className="flex flex-wrap gap-2">
                             {post.tags.slice(0, 2).map((tag, idx) => (
-                              <span key={idx} className="px-2 py-1 text-xs font-telegraf bg-gray-100 text-gray-600 rounded-md hover:bg-primary/10 hover:text-primary transition-colors">
+                              <span key={idx} className="px-2 py-1 text-xs font-telegraf bg-accent/20 text-accent rounded-md hover:bg-accent/30 transition-colors">
                                 {tag}
                               </span>
                             ))}
                           </div>
                         )}
                         
-                        <h3 className="font-telegraf font-bold text-xl text-gray-900 leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                        <h3 className="font-telegraf font-bold text-xl text-white leading-tight group-hover:text-accent transition-colors duration-300 line-clamp-2">
                           {title}
                         </h3>
                         
-                        <p className="font-telegraf text-gray-600 leading-relaxed text-sm line-clamp-3">
+                        <p className="font-telegraf text-gray-300 leading-relaxed text-sm line-clamp-3">
                           {excerpt}
                         </p>
                         
-                        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                          <div className="flex items-center space-x-4 text-sm text-gray-500">
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-600">
+                          <div className="flex items-center space-x-4 text-sm text-gray-400">
                             <div className="flex items-center">
                               <User className="h-4 w-4 mr-1.5" />
                               <span className="font-medium">{authorName}</span>
@@ -274,7 +268,7 @@ const Blog = () => {
                         </div>
                         
                         <div className="flex items-center justify-between pt-2">
-                          <div className="flex items-center text-primary group-hover:text-secondary transition-colors font-telegraf font-semibold text-sm">
+                          <div className="flex items-center text-accent group-hover:text-accent/80 transition-colors font-telegraf font-semibold text-sm">
                             <span>{t('blog.readmore')}</span>
                             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                           </div>

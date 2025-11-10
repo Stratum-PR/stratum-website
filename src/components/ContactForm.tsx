@@ -209,16 +209,16 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-white via-primary/5 to-white">
+    <Card className="border-2 border-gray-600 shadow-xl bg-gray-800">
       <CardHeader className="pb-4">
-        <CardTitle className="font-telegraf text-2xl text-primary flex items-center">
+        <CardTitle className="font-telegraf text-2xl text-white flex items-center">
           <MessageSquare className="h-6 w-6 mr-2" />
           {t('contact.form.title')}
         </CardTitle>
-        <p className="font-telegraf text-sm text-gray-600 mt-1">
+        <p className="font-telegraf text-sm text-gray-300 mt-1">
           {t('contact.form.description')}
         </p>
-        <div className="flex items-center text-xs text-gray-500 mt-1">
+        <div className="flex items-center text-xs text-gray-400 mt-1">
           <Shield className="h-3 w-3 mr-1" />
           {t('contact.form.security')}
         </div>

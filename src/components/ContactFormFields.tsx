@@ -25,7 +25,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <Label htmlFor="name" className="font-telegraf font-medium text-sm">
+          <Label htmlFor="name" className="font-telegraf font-medium text-sm text-white">
             {t('contact.form.name')} *
           </Label>
           <Input 
@@ -42,7 +42,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           {errors.name && <p className="text-red-500 text-xs mt-0.5">{errors.name}</p>}
         </div>
         <div>
-          <Label htmlFor="email" className="font-telegraf font-medium text-sm">
+          <Label htmlFor="email" className="font-telegraf font-medium text-sm text-white">
             {t('contact.form.email')} *
           </Label>
           <Input 
@@ -61,7 +61,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       </div>
 
       <div>
-        <Label htmlFor="phone" className="font-telegraf font-medium text-sm">
+        <Label htmlFor="phone" className="font-telegraf font-medium text-sm text-white">
           {t('contact.form.phone')}
         </Label>
         <Input 
@@ -79,7 +79,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <Label htmlFor="company" className="font-telegraf font-medium text-sm">
+          <Label htmlFor="company" className="font-telegraf font-medium text-sm text-white">
             {t('contact.form.company')}
           </Label>
           <Input 
@@ -95,7 +95,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           {errors.company && <p className="text-red-500 text-xs mt-0.5">{errors.company}</p>}
         </div>
         <div>
-          <Label htmlFor="industry" className="font-telegraf font-medium text-sm">
+          <Label htmlFor="industry" className="font-telegraf font-medium text-sm text-white">
             {t('contact.form.industry')}
           </Label>
           <Input 
@@ -113,7 +113,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       </div>
       
       <div>
-        <Label htmlFor="subject" className="font-telegraf font-medium text-sm">
+        <Label htmlFor="subject" className="font-telegraf font-medium text-sm text-white">
           {t('contact.form.subject')}
         </Label>
         <Input 
@@ -130,7 +130,7 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       </div>
       
       <div>
-        <Label htmlFor="message" className="font-telegraf font-medium text-sm">
+        <Label htmlFor="message" className="font-telegraf font-medium text-sm text-white">
           {t('contact.form.message')} *
         </Label>
         <Textarea 

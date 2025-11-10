@@ -37,8 +37,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   const displayName = translatedName;
   
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden w-full max-w-[280px]">
-      <div className="h-64 bg-white overflow-hidden">
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-600 shadow-lg overflow-hidden w-full max-w-[280px] bg-gray-800">
+      <div className="h-64 bg-gray-700 overflow-hidden">
         {founder.image ? (
           <img
             src={founder.image}
@@ -46,27 +46,27 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-            <span className="text-4xl font-telegraf font-bold text-gray-600">
+          <div className="w-full h-full bg-gray-600 flex items-center justify-center">
+            <span className="text-4xl font-telegraf font-bold text-gray-300">
               {displayName.split(' ').map(n => n[0]).join('')}
             </span>
           </div>
         )}
       </div>
-      <CardContent className="p-4">
-        <h3 className="font-telegraf font-bold text-base text-primary mb-1">
+      <CardContent className="p-4 bg-gray-800">
+        <h3 className="font-telegraf font-bold text-base text-white mb-1">
           {displayName}
         </h3>
-        <p className="font-telegraf font-semibold text-xs text-secondary mb-2">
+        <p className="font-telegraf font-semibold text-xs text-accent mb-2">
           {translatedRole}
         </p>
         <div className="mb-3">
-          <p className={`font-telegraf text-xs text-gray-600 leading-relaxed ${isExpanded ? '' : 'line-clamp-3'}`}>
+          <p className={`font-telegraf text-xs text-gray-300 leading-relaxed ${isExpanded ? '' : 'line-clamp-3'}`}>
             {translatedBio}
           </p>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-2 flex items-center gap-1 text-primary hover:text-primary/80 text-xs font-telegraf font-semibold transition-colors"
+            className="mt-2 flex items-center gap-1 text-accent hover:text-accent/80 text-xs font-telegraf font-semibold transition-colors"
           >
             {isExpanded ? (
               <>
@@ -83,7 +83,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
         </div>
         
         <div>
-          <h4 className="font-telegraf font-semibold text-xs text-gray-800 mb-1.5">
+          <h4 className="font-telegraf font-semibold text-xs text-white mb-1.5">
             {t('about.team.expertise')}
           </h4>
           <div className="flex flex-wrap gap-1">

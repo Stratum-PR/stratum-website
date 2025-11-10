@@ -108,19 +108,13 @@ export const ServicesGrid = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative animate-gradient-flow" aria-labelledby="services-heading">
-      {/* Subtle animated background pattern */}
-      <div className="absolute inset-0 opacity-[0.04] animate-gradient-flow pointer-events-none" style={{
-        backgroundImage: `radial-gradient(circle at 40% 30%, rgba(230, 224, 142, 0.15) 0%, transparent 50%),
-                          radial-gradient(circle at 60% 70%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
-        backgroundSize: '200% 200%'
-      }}></div>
+    <section className="py-20 bg-gray-900 relative" aria-labelledby="services-heading">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 id="services-heading" className="font-telegraf font-bold text-4xl text-primary mb-6">
+          <h2 id="services-heading" className="font-telegraf font-bold text-4xl text-white mb-6">
             {t('services.core.title')}
           </h2>
-          <p className="font-telegraf text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="font-telegraf text-xl text-gray-300 max-w-3xl mx-auto">
             {t('services.core.description')}
           </p>
         </div>
