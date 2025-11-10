@@ -46,7 +46,7 @@ const Home = () => {
     ogTitle: language === 'es' 
       ? "Stratum PR - Consultoría IA y Análisis de Datos Puerto Rico"
       : "Stratum PR - AI Consulting & Data Analytics Puerto Rico",
-    ogImage: "https://www.stratumpr.com/img/hero_poster.png",
+    ogImage: "https://www.stratumpr.com/img/StratumPR Preview Image.jpg",
     structuredData: {
       "@context": "https://schema.org",
       "@graph": [
