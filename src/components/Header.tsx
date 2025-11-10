@@ -80,6 +80,8 @@ export const Header = () => {
   
   const closeMenu = () => {
     setIsMenuClosing(true);
+    // Restore body scroll
+    document.body.style.overflow = '';
     // After animation completes, close the menu
     setTimeout(() => {
       setIsMenuOpen(false);
@@ -90,6 +92,8 @@ export const Header = () => {
   const openMenu = () => {
     setIsMenuClosing(false);
     setIsMenuOpen(true);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = 'hidden';
   };
   
   // Render navigation items - all visible, no progressive hiding
@@ -218,12 +222,15 @@ export const Header = () => {
 
             {/* Hamburger menu button: Show on tablets and mobile (below xl breakpoint) */}
             <button
+              type="button"
               className={`xl:hidden p-2.5 rounded-lg transition-colors z-[60] relative flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation ${
                 isMenuOpen 
                   ? 'bg-transparent hover:bg-transparent active:bg-transparent' 
                   : 'hover:bg-white/10 active:bg-white/20'
               }`}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 if (isMenuOpen) {
                   closeMenu();
                 } else {
@@ -276,8 +283,10 @@ export const Header = () => {
                   : 'opacity-0 -translate-y-full'
               }`}
               style={{
-                visibility: (isMenuOpen || isMenuClosing) ? 'visible' : 'hidden',
-                pointerEvents: isMenuOpen ? 'auto' : 'none'
+                display: (isMenuOpen || isMenuClosing) ? 'block' : 'none',
+                pointerEvents: isMenuOpen ? 'auto' : 'none',
+                transform: isMenuOpen && !isMenuClosing ? 'translateY(0)' : 'translateY(-100%)',
+                opacity: isMenuOpen && !isMenuClosing ? 1 : 0
               }}
             >
               {/* Dark overlay for better text contrast - same as hero section */}
