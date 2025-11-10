@@ -1,6 +1,4 @@
 
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ServicesHero = () => {
@@ -24,15 +22,9 @@ export const ServicesHero = () => {
         <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
           {t('services.hero.title')}
         </h1>
-        <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed mb-8">
+        <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed">
           {t('services.hero.description')}
         </p>
-        <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-          <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule consultation for data analytics services">
-            {t('services.hero.cta')}
-            <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-          </a>
-        </Button>
       </div>
     </section>
   );

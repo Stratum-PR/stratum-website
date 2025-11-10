@@ -25,9 +25,17 @@ export const enTranslations: Record<string, string> = {
   // Home page
   'home.hero.title': 'Spend less time on admin, more time on growth',
   'home.hero.subtitle': '',
-  'home.hero.description': '100% based in Puerto Rico, Stratum builds intelligent data systems that reduce manual work and optimize operations without the need to hire a data management team.',
+  'home.hero.badge': '100% Puerto Rico Based',
+  'home.hero.description': 'We understand what local businesses need and build intelligent data systems that reduce manual work and optimize operations, all without you needing to hire a data management team.',
   'home.hero.cta.primary': 'Book Free Consultation',
   'home.hero.cta.secondary': 'Take our Systems Assessment',
+  'home.hero.carousel.baseText': 'We power',
+  'home.hero.carousel.word1': 'Data Analytics',
+  'home.hero.carousel.word2': 'Business Automation',
+  'home.hero.carousel.word3': 'Digital Transformation',
+  'home.hero.carousel.word4': 'AI Solutions',
+  'home.hero.carousel.word5': 'Intelligent Systems',
+  'home.hero.carousel.word6': 'CRM Implementation',
 
   
   // Problem Section

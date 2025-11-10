@@ -209,7 +209,7 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="border-0 shadow-xl">
+    <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-white via-primary/5 to-white">
       <CardHeader className="pb-4">
         <CardTitle className="font-telegraf text-2xl text-primary flex items-center">
           <MessageSquare className="h-6 w-6 mr-2" />

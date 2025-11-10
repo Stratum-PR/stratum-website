@@ -6,13 +6,24 @@ import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Contacta Stratum PR - Consultoría Análisis de Datos Puerto Rico | Agenda Consulta Gratuita",
+    description: "Contacta Stratum PR para consultoría experta en análisis de datos en Puerto Rico. Agenda una consulta gratuita para implementación de CRM, automatización empresarial con IA y servicios de modelado predictivo. Ponte en contacto hoy.",
+    keywords: "contactar Stratum PR, consulta análisis de datos Puerto Rico, cotización implementación CRM, contacto automatización empresarial IA, agendar consulta, consultoría análisis Puerto Rico"
+  } : {
+    title: "Contact Stratum PR - Data Analytics Consulting Puerto Rico | Schedule Free Consultation",
+    description: "Contact Stratum PR for expert data analytics consulting in Puerto Rico. Schedule a free consultation for CRM implementation, AI business automation, and predictive modeling services. Get in touch today.",
+    keywords: "contact Stratum PR, data analytics consultation Puerto Rico, CRM implementation quote, AI business automation contact, schedule consultation, analytics consulting Puerto Rico"
+  };
   
   // SEO optimization for contact page
   useSEO({
-    title: "Contact Stratum PR - Data Analytics Consulting Puerto Rico | Schedule Free Consultation",
-    description: "Contact Stratum PR for expert data analytics consulting in Puerto Rico. Schedule a free consultation for CRM implementation, AI business automation, and predictive modeling services. Get in touch today.",
-    keywords: "contact Stratum PR, data analytics consultation Puerto Rico, CRM implementation quote, AI business automation contact, schedule consultation, analytics consulting Puerto Rico",
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/contact",
     ogType: "website",
     structuredData: {
@@ -20,8 +31,10 @@ const Contact = () => {
       "@type": "ContactPage",
       "@id": "https://www.stratumpr.com/contact#webpage",
       "url": "https://www.stratumpr.com/contact",
-      "name": "Contact Stratum PR - Data Analytics Consulting",
-      "description": "Get in touch with Stratum PR for expert data analytics consulting services in Puerto Rico.",
+      "name": language === 'es' ? "Contacta Stratum PR - Consultoría en Análisis de Datos" : "Contact Stratum PR - Data Analytics Consulting",
+      "description": language === 'es'
+        ? "Ponte en contacto con Stratum PR para servicios de consultoría experta en análisis de datos en Puerto Rico."
+        : "Get in touch with Stratum PR for expert data analytics consulting services in Puerto Rico.",
       "mainEntity": {
         "@type": "LocalBusiness",
         "name": "Stratum PR",
@@ -30,7 +43,8 @@ const Contact = () => {
           "email": "contact@stratumpr.com",
           "contactType": "Customer Service"
         }
-      }
+      },
+      "inLanguage": language === 'es' ? 'es' : 'en'
     }
   }, "contact");
 
@@ -60,8 +74,14 @@ const Contact = () => {
         </div>
       </section>
       
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative animate-gradient-flow">
+        {/* Subtle animated background pattern */}
+        <div className="absolute inset-0 opacity-[0.03] animate-gradient-flow pointer-events-none" style={{
+          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.1) 0%, transparent 50%),
+                            radial-gradient(circle at 70% 60%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
+          backgroundSize: '200% 200%'
+        }}></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Message Form - Takes 2 columns */}
             <div className="lg:col-span-2">
@@ -69,7 +89,7 @@ const Contact = () => {
             </div>
             {/* Email - Takes 1 column, smaller */}
             <div>
-              <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+              <div className="bg-gradient-to-br from-white via-primary/5 to-white border-2 border-primary/20 rounded-lg p-4 shadow-lg hover-lift">
                 <h3 className="font-telegraf font-semibold text-lg text-primary mb-3">
                   {t('contact.info.title')}
                 </h3>

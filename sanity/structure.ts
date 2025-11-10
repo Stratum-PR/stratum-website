@@ -15,5 +15,11 @@ export const customStructure = (S: any) =>
           S.documentTypeList('author')
             .title('Authors')
         ),
+      S.listItem()
+        .title('Projects')
+        .child(
+          S.documentTypeList('project')
+            .title('Projects / Case Studies')
+        ),
     ])
 

@@ -34,8 +34,13 @@ const MissionSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 bg-gradient-to-br from-white via-secondary/5 to-white relative">
+      {/* Subtle animated background pattern */}
+      <div className="absolute inset-0 opacity-[0.03] animate-gradient-flow pointer-events-none" style={{
+        backgroundImage: `radial-gradient(circle at 20% 30%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
+        backgroundSize: '200% 200%'
+      }}></div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="font-telegraf font-bold text-2xl md:text-3xl text-primary mb-4">

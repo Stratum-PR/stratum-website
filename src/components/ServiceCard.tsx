@@ -26,8 +26,8 @@ export const ServiceCard = ({ icon: Icon, title, description, features, delivera
   };
 
   return (
-    <Card className="group flex flex-col justify-between h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
-      <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5 pb-4">
+    <Card className="group flex flex-col justify-between h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg bg-gradient-to-br from-white via-primary/5 to-secondary/5 hover-lift">
+      <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10 pb-4">
         <div className="flex items-start space-x-3">
           <div className="flex-shrink-0">
             <div className="inline-flex items-center justify-center w-10 h-10 bg-primary text-white rounded-xl group-hover:bg-secondary transition-colors duration-300">
