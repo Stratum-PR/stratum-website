@@ -24,6 +24,53 @@ const Home = () => {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Use Intersection Observer to animate sections when they enter viewport
+  useEffect(() => {
+    const sessionKey = 'homePageAnimated';
+    const hasAnimatedBefore = sessionStorage.getItem(sessionKey);
+    
+    // If already visited in session, show immediately
+    if (hasAnimatedBefore) {
+      document.body.classList.add('no-animation');
+      const elements = document.querySelectorAll('.entrance-animation');
+      elements.forEach(el => {
+        el.classList.add('animate');
+      });
+      return;
+    }
+
+    // Set up Intersection Observer for first-time visitors
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15 // Trigger when 15% of the section is visible
+    };
+
+    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          // Once animated, stop observing this element
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections with entrance-animation class
+    const elements = document.querySelectorAll('.entrance-animation');
+    elements.forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Mark session as animated
+    sessionStorage.setItem(sessionKey, 'true');
+
+    // Cleanup
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   
   // Dynamic SEO data based on language (optimized for 50-60 char titles, 150-160 char descriptions)
   const seoData = language === 'es' ? {
@@ -367,7 +414,7 @@ const Home = () => {
         <div className="h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
 
         {/* Problem Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/10 section-container relative animate-gradient-flow" aria-labelledby="problem-heading">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/10 section-container relative animate-gradient-flow entrance-animation animate-slide-in-bottom" aria-labelledby="problem-heading" style={{animationDelay: '0.2s'}}>
           {/* Subtle animated background pattern */}
           <div className="absolute inset-0 opacity-[0.08] animate-gradient-flow pointer-events-none" style={{
             backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.25) 0%, transparent 50%),
@@ -379,49 +426,81 @@ const Home = () => {
               {t('home.problem.title')}
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12">
-              {/* Fragmented Data Box */}
-              <div className="bg-gradient-to-br from-red-50/80 via-white to-primary/10 border-2 border-primary/30 rounded-lg p-6 md:p-8 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 group shadow-lg shadow-primary/10 hover-lift animate-fade-in-scale" style={{animationDelay: '0.1s'}}>
-                <div className="text-center">
-                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 bg-gradient-to-br from-red-200 to-red-300 rounded-full flex items-center justify-center group-hover:from-red-300 group-hover:to-red-400 transition-all duration-300 shadow-lg hover-scale-icon">
-                    <Database className="h-7 w-7 md:h-8 md:w-8 text-red-600 group-hover:text-red-700" />
+            {/* Compact Dependency Flow */}
+            <div className="relative mb-10 md:mb-12">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                  {/* Problem 1 */}
+                  <div className="flex-1 max-w-sm bg-white/80 border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-1">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative animate-icon-pulse-red-1">
+                        <Database className="h-6 w-6 md:h-7 md:w-7 text-white" />
+                        <div className="absolute inset-0 rounded-full bg-red-500/50 animate-ping opacity-75"></div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
+                          {t('home.problem.box1.title')}
+                        </h3>
+                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed">
+                          {t('home.problem.box1.subtitle')}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-telegraf font-bold text-base sm:text-lg md:text-xl text-gray-800 mb-3 min-h-[3rem] flex items-center justify-center">
-                    {t('home.problem.box1.title')}
-                  </h3>
-                  <p className="font-telegraf text-gray-600 leading-relaxed text-sm sm:text-base">
-                    {t('home.problem.box1.subtitle')}
-                  </p>
-                </div>
-              </div>
 
-              {/* Manual Work Box */}
-              <div className="bg-gradient-to-br from-orange-50/80 via-white to-secondary/10 border-2 border-secondary/30 rounded-lg p-6 md:p-8 hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/20 transition-all duration-300 group shadow-lg shadow-secondary/10 hover-lift animate-fade-in-scale" style={{animationDelay: '0.2s'}}>
-                <div className="text-center">
-                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center group-hover:from-orange-200 group-hover:to-orange-300 transition-all duration-300 shadow-lg hover-scale-icon animate-icon-pulse">
-                    <Clock className="h-7 w-7 md:h-8 md:w-8 text-orange-600 group-hover:text-orange-700 stroke-2" />
+                  {/* Arrow 1 */}
+                  <div className="hidden md:flex flex-shrink-0 items-center relative">
+                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary/40 transition-all duration-300" />
+                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary absolute animate-pulse" style={{
+                      animation: 'arrowPulse 4.5s ease-in-out infinite',
+                      animationDelay: '0.75s'
+                    }} />
                   </div>
-                  <h3 className="font-telegraf font-bold text-base sm:text-lg md:text-xl text-gray-800 mb-3 min-h-[3rem] flex items-center justify-center">
-                    {t('home.problem.box2.title')}
-                  </h3>
-                  <p className="font-telegraf text-gray-600 leading-relaxed text-sm sm:text-base">
-                    {t('home.problem.box2.subtitle')}
-                  </p>
-                </div>
-              </div>
 
-              {/* Gut-based Decisions Box */}
-              <div className="bg-gradient-to-br from-primary/10 via-white to-secondary/10 border-2 border-primary/30 rounded-lg p-6 md:p-8 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 group shadow-lg shadow-primary/10 hover-lift animate-fade-in-scale" style={{animationDelay: '0.3s'}}>
-                <div className="text-center">
-                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-4 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full flex items-center justify-center group-hover:from-primary/40 group-hover:to-secondary/40 transition-all duration-300 shadow-lg hover-scale-icon primary-glow">
-                    <HelpCircle className="h-7 w-7 md:h-8 md:w-8 text-primary group-hover:text-primary-800" />
+                  {/* Problem 2 */}
+                  <div className="flex-1 max-w-sm bg-white/80 border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-2">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative animate-icon-pulse-red-2">
+                        <Clock className="h-6 w-6 md:h-7 md:w-7 text-white" />
+                        <div className="absolute inset-0 rounded-full bg-red-500/50 animate-ping opacity-75" style={{animationDelay: '0.2s'}}></div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
+                          {t('home.problem.box2.title')}
+                        </h3>
+                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed">
+                          {t('home.problem.box2.subtitle')}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-telegraf font-bold text-base sm:text-lg md:text-xl text-gray-800 mb-3 min-h-[3rem] flex items-center justify-center">
-                    {t('home.problem.box3.title')}
-                  </h3>
-                  <p className="font-telegraf text-gray-600 leading-relaxed text-sm sm:text-base">
-                    {t('home.problem.box3.subtitle')}
-                  </p>
+
+                  {/* Arrow 2 */}
+                  <div className="hidden md:flex flex-shrink-0 items-center relative">
+                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary/40 transition-all duration-300" />
+                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary absolute animate-pulse" style={{
+                      animation: 'arrowPulse 4.5s ease-in-out infinite',
+                      animationDelay: '2.25s'
+                    }} />
+                  </div>
+
+                  {/* Problem 3 */}
+                  <div className="flex-1 max-w-sm bg-white/80 border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-3">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative animate-icon-pulse-red-3">
+                        <AlertTriangle className="h-6 w-6 md:h-7 md:w-7 text-white" />
+                        <div className="absolute inset-0 rounded-full bg-red-500/50 animate-ping opacity-75" style={{animationDelay: '0.4s'}}></div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
+                          {t('home.problem.box3.title')}
+                        </h3>
+                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed">
+                          {t('home.problem.box3.subtitle')}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -439,7 +518,7 @@ const Home = () => {
         <div className="h-1 bg-gradient-to-r from-transparent via-secondary/20 to-transparent"></div>
 
         {/* Guide Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-secondary/8 via-white to-primary/8 section-container relative" aria-labelledby="guide-heading">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-secondary/8 via-white to-primary/8 section-container relative entrance-animation animate-slide-in-bottom" aria-labelledby="guide-heading" style={{animationDelay: '0.3s'}}>
           {/* Subtle animated background pattern */}
           <div className="absolute inset-0 opacity-[0.1] animate-gradient-flow pointer-events-none" style={{
             backgroundImage: `radial-gradient(circle at 20% 30%, rgba(30, 43, 126, 0.2) 0%, transparent 50%),
@@ -489,21 +568,61 @@ const Home = () => {
               </div>
 
               {/* Right Side - Enhanced Services Grid */}
-              <div>
-                <h2 className="font-telegraf text-xl sm:text-2xl md:text-3xl text-gray-800 mb-6 md:mb-8 font-bold text-center animate-fade-in-up" style={{color: '#1E2B7E'}}>
+              <div className="relative">
+                {/* Tech animated background for services section */}
+                <div className="absolute inset-0 opacity-30 pointer-events-none">
+                  <TechAnimatedBackground opacity={0.15} />
+                </div>
+                
+                <h2 className="font-telegraf text-xl sm:text-2xl md:text-3xl text-gray-800 mb-6 md:mb-8 font-bold text-center animate-fade-in-up relative z-10" style={{color: '#1E2B7E'}}>
                   {t('home.guide.weSpecialize')}
                 </h2>
-                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 relative z-10">
                   {services.map((service, index) => (
                     <Link key={index} to="/services" className="group">
-                      <Card className="h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-primary/20 shadow-lg bg-gradient-to-br from-primary/8 via-white to-secondary/8 hover:from-primary/15 hover:via-accent/5 hover:to-secondary/15 hover-lift animate-fade-in-scale" style={{animationDelay: `${index * 0.1}s`}}>
-                        <CardContent className="p-4 sm:p-5 md:p-6 text-center h-full flex flex-col justify-center">
+                      <Card className="h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-primary/30 shadow-xl bg-gradient-to-br from-white/90 via-primary/5 to-primary/10 backdrop-blur-sm hover:from-primary/20 hover:via-primary/15 hover:to-primary/25 hover:border-primary/60 hover-lift animate-fade-in-scale relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+                        {/* Animated tech border glow */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 animate-gradient-flow" style={{
+                            backgroundSize: '200% 200%',
+                            animation: 'gradientFlow 8s ease infinite'
+                          }}></div>
+                        </div>
+                        
+                        {/* Circuit-like corner accents */}
+                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <CardContent className="p-4 sm:p-5 md:p-6 text-center h-full flex flex-col justify-center relative z-10">
                           <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#E6E09E] to-[#266AB2] rounded-xl group-hover:from-[#266AB2] group-hover:to-[#1E2B7E] transition-all duration-300 shadow-lg hover-scale-icon primary-glow">
-                              <service.icon className="h-6 w-6 sm:h-7 sm:w-7 text-white group-hover:text-white animate-icon-pulse" style={{animationDelay: `${index * 0.2}s`}} aria-hidden="true" />
+                            <div className="relative inline-flex items-center justify-center">
+                              {/* Outer glow ring */}
+                              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/30 to-primary/50 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
+                                animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                              }}></div>
+                              
+                              {/* Icon container with tech gradient */}
+                              <div className="relative inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary via-primary-800 to-primary rounded-xl group-hover:from-primary-800 group-hover:via-primary group-hover:to-primary-800 transition-all duration-500 shadow-lg hover-scale-icon primary-glow">
+                                {/* Animated inner glow */}
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                
+                                <service.icon className="h-6 w-6 sm:h-7 sm:w-7 text-white relative z-10 group-hover:scale-110 transition-transform duration-500" style={{filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'}} aria-hidden="true" />
+                              </div>
+                              
+                              {/* Pulsing dots around icon */}
+                              <div className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100" style={{
+                                animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                                animationDelay: '0.2s'
+                              }}></div>
+                              <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-primary-800 rounded-full opacity-0 group-hover:opacity-100" style={{
+                                animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                                animationDelay: '0.4s'
+                              }}></div>
                             </div>
                           </div>
-                          <h3 className="font-telegraf font-bold text-sm sm:text-base text-primary group-hover:text-secondary transition-colors">
+                          <h3 className="font-telegraf font-bold text-sm sm:text-base text-primary group-hover:text-primary-800 transition-colors duration-500 relative z-10">
                             {service.title}
                           </h3>
                         </CardContent>
@@ -530,7 +649,7 @@ const Home = () => {
         <div className="h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
 
         {/* Plan Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-accent/8 via-white to-primary/10 section-container relative animate-gradient-flow" aria-labelledby="plan-heading">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-accent/8 via-white to-primary/10 section-container relative animate-gradient-flow entrance-animation animate-slide-in-bottom" aria-labelledby="plan-heading" style={{animationDelay: '0.4s'}}>
           {/* Subtle animated background pattern */}
           <div className="absolute inset-0 opacity-[0.08] animate-gradient-flow pointer-events-none" style={{
             backgroundImage: `radial-gradient(circle at 40% 30%, rgba(30, 43, 126, 0.2) 0%, transparent 50%),
@@ -565,7 +684,7 @@ const Home = () => {
         <div className="h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
 
         {/* Two Paths Forward Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary/8 via-secondary/5 to-primary/8 section-container relative" aria-labelledby="two-paths-heading">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary/8 via-secondary/5 to-primary/8 section-container relative entrance-animation animate-slide-in-bottom" aria-labelledby="two-paths-heading" style={{animationDelay: '0.5s'}}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 id="two-paths-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-10 md:mb-12 text-center animate-fade-in-up" style={{color: '#1E2B7E'}}>
               {t('home.twoPaths.title')}
@@ -767,7 +886,7 @@ const Home = () => {
         <div className="h-1 bg-gradient-to-r from-transparent via-secondary/20 to-transparent"></div>
 
         {/* Final CTA Section - Matching Hero Section Animated Background */}
-        <section className="relative flex items-center justify-center overflow-hidden py-12 sm:py-16 bg-gradient-to-tl from-primary via-primary-800 to-secondary text-white" aria-labelledby="final-cta-heading">
+        <section className="relative flex items-center justify-center overflow-hidden py-12 sm:py-16 bg-gradient-to-tl from-primary via-primary-800 to-secondary text-white entrance-animation animate-slide-in-bottom" aria-labelledby="final-cta-heading" style={{animationDelay: '0.6s'}}>
           {/* Dark overlay for better text contrast - same as hero section */}
           <div className="absolute inset-0 bg-black/40 z-0"></div>
           
