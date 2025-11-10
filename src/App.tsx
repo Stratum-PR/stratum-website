@@ -9,6 +9,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import ScrollToTop from "./components/ScrollToTop";
 import Layout from "./components/Layout";
 import { lazy, Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 // Lazy load all pages for better code splitting and initial load performance
 const Home = lazy(() => import("./pages/Home"));
@@ -169,6 +170,7 @@ const App = () => (
               </Route>
             </Routes>
           </BrowserRouter>
+          <Analytics />
         </ErrorBoundary>
       </LanguageProvider>
     </TooltipProvider>
