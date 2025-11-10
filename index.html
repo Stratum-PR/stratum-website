@@ -5,7 +5,62 @@
     <!-- Critical Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Robots meta tag - will be updated by script below if on dev/staging -->
+    <meta name="robots" id="robots-meta" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- Block indexing of dev/staging environments - MUST run before any other scripts -->
+    <script>
+      // Run immediately, before DOM is fully loaded
+      (function() {
+        'use strict';
+        // Check hostname immediately
+        var hostname = window.location.hostname;
+        var isDev = hostname.includes('dev.stratumpr.com') || 
+                   hostname.includes('staging.stratumpr.com') || 
+                   hostname.includes('.vercel.app') ||
+                   hostname.includes('localhost');
+        
+        if (isDev) {
+          // Function to update robots meta tag
+          var updateRobots = function() {
+            var robotsMeta = document.getElementById('robots-meta') || 
+                            document.querySelector('meta[name="robots"]');
+            if (robotsMeta) {
+              robotsMeta.setAttribute('content', 'noindex, nofollow');
+              console.log('🚫 Dev environment detected - noindex applied');
+            } else {
+              // Create if doesn't exist
+              var meta = document.createElement('meta');
+              meta.name = 'robots';
+              meta.content = 'noindex, nofollow';
+              meta.id = 'robots-meta';
+              var head = document.head || document.getElementsByTagName('head')[0];
+              head.insertBefore(meta, head.firstChild);
+              console.log('🚫 Dev environment detected - noindex meta tag created');
+            }
+          };
+          
+          // Update immediately if DOM is ready
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateRobots);
+          } else {
+            updateRobots();
+          }
+          
+          // Also update on load (in case script runs early)
+          window.addEventListener('load', function() {
+            updateRobots();
+            // Force canonical to production URL
+            var canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) {
+              var path = window.location.pathname;
+              canonical.setAttribute('href', 'https://www.stratumpr.com' + path);
+              console.log('🔗 Canonical forced to production:', 'https://www.stratumpr.com' + path);
+            }
+          });
+        }
+      })();
+    </script>
     
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -77,25 +132,26 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Primary Meta Tags -->
-    <title>Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico</title>
-    <meta name="title" content="Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico" />
-    <meta name="description" content="Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation. Transform your business with data-driven decisions." />
-    <meta name="keywords" content="data analytics Puerto Rico, AI business automation, CRM implementation consulting, big data analytics, business intelligence Puerto Rico, Salesforce implementation, predictive modeling, machine learning consulting, digital transformation Puerto Rico" />
+    <title>AI Consulting Puerto Rico | Data Analytics - Stratum PR</title>
+    <meta name="title" content="AI Consulting Puerto Rico | Data Analytics - Stratum PR" />
+    <meta name="description" content="Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, and predictive modeling. 100% Puerto Rico based. Free consultation available." />
+    <meta name="keywords" content="AI consulting Puerto Rico, data analytics consulting Puerto Rico, AI business automation Puerto Rico, CRM Puerto Rico, CRM implementation consulting Puerto Rico, commercial automation Puerto Rico, big data analytics consulting, business intelligence Puerto Rico, Salesforce implementation Puerto Rico, predictive modeling services Puerto Rico, machine learning consulting Puerto Rico, digital transformation consulting Puerto Rico, data analytics services, business automation solutions Puerto Rico" />
     <meta name="author" content="Stratum PR" />
     <meta name="language" content="English" />
-    <link rel="canonical" href="https://dev.stratumpr.com/" />
+    <link rel="canonical" href="https://www.stratumpr.com/" />
 
     <!-- Multilingual support -->
-    <link rel="alternate" hreflang="en" href="https://dev.stratumpr.com/" />
-    <link rel="alternate" hreflang="es" href="https://dev.stratumpr.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.stratumpr.com/" />
+    <link rel="alternate" hreflang="es" href="https://www.stratumpr.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.stratumpr.com/" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dev.stratumpr.com/" />
+    <meta property="og:url" content="https://www.stratumpr.com/" />
     <meta property="og:site_name" content="Stratum PR" />
-    <meta property="og:title" content="Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico" />
-    <meta property="og:description" content="Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation." />
-    <meta property="og:image" content="https://dev.stratumpr.com/img/stratum-pr-og-image.jpg" />
+    <meta property="og:title" content="AI Consulting Puerto Rico | Data Analytics & CRM Implementation Services - Stratum PR" />
+    <meta property="og:description" content="Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, commercial automation, and predictive modeling. 100% Puerto Rico based." />
+    <meta property="og:image" content="https://www.stratumpr.com/Icon 1.svg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Stratum PR - The Architecture of Better Decisions" />
@@ -105,9 +161,9 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@stratumpr" />
     <meta name="twitter:creator" content="@stratumpr" />
-    <meta name="twitter:title" content="Stratum PR - Data Analytics & AI Business Automation Consulting Puerto Rico" />
-    <meta name="twitter:description" content="Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation." />
-    <meta name="twitter:image" content="https://dev.stratumpr.com/img/stratum-pr-twitter-card.jpg" />
+    <meta name="twitter:title" content="AI Consulting Puerto Rico | Data Analytics & CRM Implementation Services - Stratum PR" />
+    <meta name="twitter:description" content="Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, commercial automation, and predictive modeling. 100% Puerto Rico based." />
+    <meta name="twitter:image" content="https://www.stratumpr.com/Icon 1.svg" />
 
     <!-- Geo location -->
     <meta name="geo.region" content="PR" />
@@ -118,6 +174,9 @@
     <!-- Preload critical assets for faster LCP -->
     <link rel="preload" as="image" href="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" fetchpriority="high" />
     <link rel="preload" as="image" href="/img/Icon 1.png" fetchpriority="high" />
+    <!-- Preload burger menu logos to prevent pop-in -->
+    <link rel="preload" as="image" href="/Stratum_Icon_whiteline ver 2.svg" />
+    <link rel="preload" as="image" href="/img/Logo_Text_Only.svg" />
 
     <!-- Resource hints for better performance -->
     <link rel="modulepreload" href="/src/main.tsx" />

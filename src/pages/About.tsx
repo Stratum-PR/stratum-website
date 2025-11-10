@@ -7,13 +7,24 @@ import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Acerca de Stratum PR - Equipo de Expertos en Análisis de Datos Puerto Rico | Fundadores Consultoría IA",
+    description: "Conoce al equipo experto detrás de Stratum PR. Fundada en 2025 por científicos de datos y consultores experimentados especializados en automatización empresarial con IA, implementación de CRM y modelado predictivo en Puerto Rico.",
+    keywords: "equipo Stratum PR, expertos análisis de datos Puerto Rico, fundadores consultoría IA, consultores inteligencia empresarial, especialistas implementación CRM, expertos aprendizaje automático Caribe"
+  } : {
+    title: "About Stratum PR - Expert Data Analytics Team Puerto Rico | AI Consulting Founders",
+    description: "Meet the expert team behind Stratum PR. Founded in 2025 by experienced data scientists and consultants specializing in AI business automation, CRM implementation, and predictive modeling in Puerto Rico.",
+    keywords: "Stratum PR team, data analytics experts Puerto Rico, AI consulting founders, business intelligence consultants, CRM implementation specialists, machine learning experts Caribbean"
+  };
   
   // SEO optimization for about page
   useSEO({
-    title: "About Stratum PR - Expert Data Analytics Team Puerto Rico | AI Consulting Founders",
-    description: "Meet the expert team behind Stratum PR. Founded in 2025 by experienced data scientists and consultants specializing in AI business automation, CRM implementation, and predictive modeling in Puerto Rico.",
-    keywords: "Stratum PR team, data analytics experts Puerto Rico, AI consulting founders, business intelligence consultants, CRM implementation specialists, machine learning experts Caribbean",
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
     canonical: "https://www.stratumpr.com/about",
     ogType: "website",
     structuredData: {
@@ -21,14 +32,19 @@ const About = () => {
       "@type": "AboutPage",
       "@id": "https://www.stratumpr.com/about#webpage",
       "url": "https://www.stratumpr.com/about",
-      "name": "About Stratum PR - Data Analytics Consulting Team",
-      "description": "Meet the expert team behind Stratum PR, specializing in data analytics, AI solutions, and business automation consulting in Puerto Rico.",
+      "name": language === 'es' ? "Acerca de Stratum PR - Equipo de Consultoría en Análisis de Datos" : "About Stratum PR - Data Analytics Consulting Team",
+      "description": language === 'es'
+        ? "Conoce al equipo experto detrás de Stratum PR, especializado en análisis de datos, soluciones de IA y consultoría de automatización empresarial en Puerto Rico."
+        : "Meet the expert team behind Stratum PR, specializing in data analytics, AI solutions, and business automation consulting in Puerto Rico.",
       "mainEntity": {
         "@type": "Organization",
         "name": "Stratum PR",
         "foundingDate": "2025",
-        "description": "Analytics and consulting firm specializing in data-driven business solutions."
-      }
+        "description": language === 'es' 
+          ? "Firma de análisis y consultoría especializada en soluciones empresariales basadas en datos."
+          : "Analytics and consulting firm specializing in data-driven business solutions."
+      },
+      "inLanguage": language === 'es' ? 'es' : 'en'
     }
   }, "about");
 

@@ -33,7 +33,8 @@ let sanityClient: ReturnType<typeof createClient> | null = null
 
 if (projectId) {
   // In production, try CDN first, but it requires CORS configuration
-  // If CORS isn't configured, we'll use direct API as fallback
+  // For localhost/dev, always use direct API (no CORS needed)
+  // If CORS isn't configured in production, we'll use direct API as fallback
   const useCdn = import.meta.env.PROD
   
   sanityClient = createClient({
@@ -41,16 +42,19 @@ if (projectId) {
     dataset,
     // Use CDN in production for better performance (requires CORS setup)
     // Direct API works without CORS but is slower
+    // For localhost, we'll always use direct API (set useCdn: false)
     useCdn: useCdn,
     apiVersion: '2024-01-01',
     // Add token if available (for private content, not needed for public read)
     token: import.meta.env.VITE_SANITY_TOKEN || undefined,
     // Add request tag for better error tracking
     requestTagPrefix: 'stratum-website',
+    // Add better error handling
+    ignoreBrowserTokenWarning: true,
   })
   
   if (useCdn) {
-    console.log('📡 Using Sanity CDN (requires CORS configuration for dev.stratumpr.com)')
+    console.log('📡 Using Sanity CDN (requires CORS configuration for www.stratumpr.com)')
   } else {
     console.log('📡 Using Sanity Direct API (no CORS required)')
   }
@@ -122,6 +126,76 @@ export const featuredBlogPostsQuery = `*[_type == "blogPost" && featured == true
   mainImage,
   publishedAt,
   tags
+}`
+
+export const projectsQuery = `*[_type == "project"] | order(publishedAt desc) {
+  _id,
+  title,
+  titleEs,
+  slug,
+  client,
+  clientEs,
+  sector,
+  sectorEs,
+  summary,
+  summaryEs,
+  mainImage,
+  publishedAt,
+  tags,
+  featured,
+  icon
+}`
+
+export const projectBySlugQuery = `*[_type == "project" && slug.current == $slug][0] {
+  _id,
+  title,
+  titleEs,
+  slug,
+  client,
+  clientEs,
+  sector,
+  sectorEs,
+  summary,
+  summaryEs,
+  challenge,
+  challengeEs,
+  solution,
+  solutionEs,
+  results,
+  resultsEs,
+  technologies,
+  timeline,
+  timelineEs,
+  teamSize,
+  teamSizeEs,
+  mainImage,
+  publishedAt,
+  tags,
+  featured,
+  icon,
+  seoTitle,
+  seoTitleEs,
+  seoDescription,
+  seoDescriptionEs,
+  seoKeywords,
+  seoKeywordsEs
+}`
+
+export const featuredProjectsQuery = `*[_type == "project" && featured == true] | order(publishedAt desc)[0...3] {
+  _id,
+  title,
+  titleEs,
+  slug,
+  client,
+  clientEs,
+  sector,
+  sectorEs,
+  summary,
+  summaryEs,
+  mainImage,
+  publishedAt,
+  tags,
+  icon
 }`
 
 

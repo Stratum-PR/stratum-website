@@ -15,8 +15,26 @@ export interface SEOData {
 }
 
 export const updateSEO = (seoData: SEOData) => {
+  // Block indexing if on dev/staging domain
+  const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
+  const isDevEnvironment = hostname.includes('dev.stratumpr.com') || 
+                          hostname.includes('staging.stratumpr.com') || 
+                          hostname.includes('.vercel.app');
+  
+  // Update robots meta tag for dev environments
+  if (isDevEnvironment) {
+    const robotsMeta = document.querySelector('meta[name="robots"]');
+    if (robotsMeta) {
+      robotsMeta.setAttribute('content', 'noindex, nofollow');
+    }
+  }
+  
   // Update title
   document.title = seoData.title;
+
+  // Update HTML lang attribute dynamically
+  const isSpanish = /[áéíóúñüÁÉÍÓÚÑÜ]/.test(seoData.title + seoData.description);
+  document.documentElement.lang = isSpanish ? 'es' : 'en';
 
   // Update or create meta tags
   const updateMetaTag = (name: string, content: string, property?: boolean) => {
@@ -53,13 +71,19 @@ export const updateSEO = (seoData: SEOData) => {
     updateMetaTag('og:type', seoData.ogType, true);
   }
 
-  // Update canonical link
+  // Update og:locale based on content language (detect from title/description)
+  const isSpanishLocale = /[áéíóúñüÁÉÍÓÚÑÜ]/.test(seoData.title + seoData.description);
+  updateMetaTag('og:locale', isSpanishLocale ? 'es_PR' : 'en_US', true);
+
+  // Update canonical link - always use production URL even on dev
   let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
   if (!canonical) {
     canonical = document.createElement('link');
     canonical.setAttribute('rel', 'canonical');
     document.head.appendChild(canonical);
   }
+  // Always use the provided canonical URL (should be www.stratumpr.com)
+  // This ensures dev sites always point to production
   canonical.setAttribute('href', seoData.canonical);
 
   // Add structured data if provided

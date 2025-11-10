@@ -12,13 +12,38 @@ import {
 import { faqData, faqCategories, type FAQItem } from '@/data/faqData';
 
 const FAQ: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  // Dynamic SEO data based on language
+  const seoData = language === 'es' ? {
+    title: "Preguntas Frecuentes | Consultoría Análisis de Datos Puerto Rico - Stratum PR",
+    description: "Encuentra respuestas a preguntas comunes sobre nuestros servicios de análisis de datos, enfoque y cómo podemos ayudar a transformar tu negocio en Puerto Rico.",
+    keywords: "preguntas frecuentes, FAQ, análisis de datos Puerto Rico, consultoría IA, implementación CRM, automatización empresarial, servicios análisis datos"
+  } : {
+    title: "Frequently Asked Questions | Data Analytics Consulting Puerto Rico - Stratum PR",
+    description: "Find answers to common questions about our data analytics services, approach, and how we can help transform your business in Puerto Rico.",
+    keywords: "FAQ, frequently asked questions, data analytics Puerto Rico, AI consulting, CRM implementation, business automation, data analytics services"
+  };
 
   useSEO({
-    title: `${t('nav.faq')} | Stratum PR`,
-    description: t('faq.hero.description'),
-    keywords: 'FAQ, questions, data analytics, Puerto Rico, consulting, AI, CRM',
-    canonical: `${window.location.origin}/faq`,
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
+    canonical: "https://www.stratumpr.com/faq",
+    ogType: "website",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://www.stratumpr.com/faq#webpage",
+      "url": "https://www.stratumpr.com/faq",
+      "name": seoData.title,
+      "description": seoData.description,
+      "inLanguage": language === 'es' ? 'es' : 'en',
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": []
+      }
+    }
   }, 'FAQ');
 
   const getFAQsByCategory = (category: string): FAQItem[] => {
@@ -28,7 +53,7 @@ const FAQ: React.FC = () => {
   return (
     <div className="pt-[50px]">
       {/* Hero Section with Background  */}
-      <section className="relative pt-8 pb-6 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
@@ -52,8 +77,13 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-6">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-6 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative animate-gradient-flow">
+        {/* Subtle animated background pattern */}
+        <div className="absolute inset-0 opacity-[0.03] animate-gradient-flow pointer-events-none" style={{
+          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.1) 0%, transparent 50%)`,
+          backgroundSize: '200% 200%'
+        }}></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {faqCategories.map((category) => {
             const categoryFAQs = getFAQsByCategory(category.id);
             
@@ -70,7 +100,7 @@ const FAQ: React.FC = () => {
                     <AccordionItem 
                       key={faq.id} 
                       value={faq.id}
-                      className="border border-gray-200 rounded-lg px-4 sm:px-6 py-2 bg-white shadow-sm hover:shadow-md transition-shadow"
+                      className="border-2 border-primary/20 rounded-lg px-4 sm:px-6 py-2 bg-gradient-to-br from-white via-primary/3 to-white shadow-lg hover:shadow-xl hover-lift transition-all duration-300"
                     >
                       <AccordionTrigger className="text-left text-base sm:text-lg font-telegraf font-semibold text-gray-900 hover:text-primary transition-colors">
                         {t(faq.question)}
@@ -88,8 +118,11 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-8 bg-gradient-to-r from-primary to-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <section className="relative flex items-center justify-center overflow-hidden py-8 bg-gradient-to-tl from-primary via-primary-800 to-secondary text-white">
+        {/* Dark overlay for better text contrast - same as footer sections */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-telegraf font-bold text-2xl md:text-3xl mb-4">
             {t('faq.cta.title')}
           </h2>
