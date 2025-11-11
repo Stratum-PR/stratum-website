@@ -171,7 +171,7 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[60] relative bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`} style={{ overflow: 'visible' }}>
+    <header className={`fixed top-0 left-0 right-0 z-[9998] relative bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`} style={{ overflow: 'visible', position: 'fixed' }}>
       {/* Dark overlay for better text contrast - same as hero section */}
       <div className="absolute inset-0 bg-black/40 z-0"></div>
       

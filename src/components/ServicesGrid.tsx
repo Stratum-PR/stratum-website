@@ -11,7 +11,11 @@ import {
 import { ServiceCard } from "./ServiceCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-export const ServicesGrid = () => {
+interface ServicesGridProps {
+  highlightedServiceId?: string | null;
+}
+
+export const ServicesGrid = ({ highlightedServiceId }: ServicesGridProps) => {
   const { t } = useLanguage();
 
   const services = [
@@ -126,9 +130,26 @@ export const ServicesGrid = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
-          ))}
+          {services.map((service, index) => {
+            // Create a slug from the service title for the ID
+            const serviceId = service.title.toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, '');
+            const isHighlighted = highlightedServiceId === serviceId;
+            return (
+              <div 
+                key={index} 
+                id={`service-${serviceId}`} 
+                className={`scroll-mt-24 transition-all duration-500 ${
+                  isHighlighted 
+                    ? 'ring-4 ring-yellow-400 ring-offset-4 ring-offset-white shadow-2xl scale-[1.02]' 
+                    : ''
+                }`}
+              >
+                <ServiceCard {...service} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
