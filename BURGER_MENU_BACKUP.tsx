@@ -1,3 +1,11 @@
+/**
+ * BURGER MENU BACKUP - Last Working Version
+ * Date: Current working version after z-index and portal fixes
+ * 
+ * This file contains the complete Header.tsx component with the working burger menu implementation.
+ * To restore: Replace the burger menu section in src/components/Header.tsx with the code from this backup.
+ */
+
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -72,8 +80,7 @@ export const Header = () => {
   
   // Oracle-style spacing and sizing - Harmonized logo and nav sizes
   // Nav spacing: 20-24px between items (tighter spacing, matching Oracle's density)
-  // Using gap instead of space-x for more consistent spacing
-  const navSpacing = 'gap-3 sm:gap-4 md:gap-5 lg:gap-6';
+  const navSpacing = 'space-x-3 sm:space-x-4 md:space-x-5 lg:space-x-6';
   // Nav font size: 14px mobile, 17-18px desktop (larger for better readability and density)
   const navFontSize = 'text-sm sm:text-base lg:text-lg';
   // Header height - Enterprise standard (64px desktop, 56px mobile/tablet)
@@ -101,14 +108,14 @@ export const Header = () => {
       // Check if this is the Resources item - make it clickable with dropdown
       if (item.href === '/resources') {
         return (
-          <NavigationMenu key={item.href} className="relative overflow-visible !flex-none [&>div>div]:!bg-black/95 [&>div>div]:!border-gray-800 [&>div>div]:!z-[9999]" style={{ margin: 0 }}>
-            <NavigationMenuList className="!space-x-0">
+          <NavigationMenu key={item.href} className="[&>div>div]:!bg-black/95 [&>div>div]:!border-gray-800">
+            <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
-                  className={`font-telegraf !bg-transparent hover:!bg-transparent hover:!text-white focus:!text-white data-[state=open]:!bg-transparent data-[state=open]:!text-white data-[state=open]:!opacity-100 rounded-none !px-0 !py-0 ${navFontSize} ${
+                  className={`font-telegraf !bg-transparent hover:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!text-white data-[state=open]:!opacity-100 rounded-none ${navFontSize} ${
                     isActive(item.href)
                       ? 'text-white border-b-2 border-accent font-bold'
-                      : 'text-white/80 hover:!text-white font-medium'
+                      : 'text-white/80 hover:text-white font-medium'
                   }`}
                   onClick={(e) => {
                     // Navigate to resources on click
@@ -118,11 +125,8 @@ export const Header = () => {
                 >
                   {t('nav.resources')}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="!bg-gradient-to-br !from-primary !via-primary-800 !to-secondary border-gray-800 !z-[9999] relative overflow-hidden">
-                  {/* Dark overlay for better text contrast - same as navbar */}
-                  <div className="absolute inset-0 bg-black/40 z-0"></div>
-                  
-                  <div className="relative z-10 w-48 p-2">
+                <NavigationMenuContent className="!bg-black/95 border-gray-800">
+                  <div className="w-48 p-2 bg-black/95">
                     {resourcesDropdown.map(dropdownItem => (
                       dropdownItem.isChecklist ? (
                         <button
@@ -162,7 +166,6 @@ export const Header = () => {
               ? 'text-white border-b-2 border-accent font-bold'
               : 'text-white/80 hover:text-white font-medium'
           }`}
-          style={{ margin: 0 }}
         >
           {item.name}
         </Link>
@@ -171,16 +174,11 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[9998] relative bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`} style={{ overflow: 'visible', position: 'fixed' }}>
-      {/* Dark overlay for better text contrast - same as hero section */}
-      <div className="absolute inset-0 bg-black/40 z-0"></div>
+    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-black ${headerHeight}`}>
       
-      {/* Tech animated background - exact same as hero section */}
-      <TechAnimatedBackground className="z-0" opacity={0.7} />
-      
-      <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full" style={{ overflow: 'visible' }}>
+      <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
-        <div className="flex items-center h-full" style={{ overflow: 'visible' }}>
+        <div className="flex items-center h-full">
           {/* Left side: Logo */}
           <div className="flex items-center flex-shrink-0">
             {/* Logo - Oracle-style sizing: ~26-28px (40-45% of header height) */}
@@ -203,7 +201,7 @@ export const Header = () => {
 
           {/* Center: Navigation links - progressively visible based on window size */}
           {/* Only show navigation menu on desktop (xl+), use hamburger for tablets and mobile */}
-          <nav className={`hidden xl:flex items-center ${navSpacing} absolute left-1/2 transform -translate-x-1/2`} style={{ overflow: 'visible' }}>
+          <nav className={`hidden xl:flex items-center ${navSpacing} absolute left-1/2 transform -translate-x-1/2`}>
             {renderNavItems()}
           </nav>
 
@@ -426,3 +424,23 @@ export const Header = () => {
     </header>
   );
 };
+
+/**
+ * KEY FEATURES OF THIS WORKING VERSION:
+ * 
+ * 1. React Portal: Menu renders via createPortal to document.body to escape header stacking context
+ * 2. High Z-Index: Menu uses z-index 9999, backdrop uses 9998 (inline styles)
+ * 3. Touch Event Handling: 
+ *    - onTouchStart marks touch as handled
+ *    - onTouchEnd triggers menu toggle with preventDefault
+ *    - onClick checks touchHandledRef to prevent double-toggle
+ * 4. Button Styling: 
+ *    - z-index 70 (inline style)
+ *    - pointerEvents: 'auto'
+ *    - touchAction: 'manipulation'
+ *    - WebkitTapHighlightColor: 'transparent'
+ * 5. Menu Positioning: Fixed positioning below header (top-14 md:top-16)
+ * 6. Gradient Background: Matches hero section with TechAnimatedBackground
+ * 7. Animation: Smooth slide-in/out with opacity transitions
+ */
+

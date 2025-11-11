@@ -27,18 +27,18 @@ export const LanguageToggle: React.FC = () => {
           variant="ghost"
           size="sm"
           onClick={handleToggle}
-          className="flex items-center gap-2 font-telegraf font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors px-2 lg:px-3 flex-shrink-0"
+          className="flex items-center gap-2 font-telegraf font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors px-2 lg:px-3 flex-shrink-0"
           aria-label={`Current language: ${language === 'en' ? 'English' : 'Español'}`}
         >
           {language === 'en' ? (
             <>
               <span className="text-lg">🇺🇸</span>
-              <span className="text-lg font-semibold">English</span>
+              <span className="text-lg font-semibold text-white">English</span>
             </>
           ) : (
             <>
               <span className="text-lg">🇵🇷</span>
-              <span className="text-lg font-semibold">Español</span>
+              <span className="text-lg font-semibold text-white">Español</span>
             </>
           )}
         </Button>

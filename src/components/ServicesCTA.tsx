@@ -7,8 +7,11 @@ export const ServicesCTA = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-12 sm:py-16 bg-gradient-to-r from-primary to-secondary text-white" aria-labelledby="cta-heading">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="relative flex items-center justify-center overflow-hidden py-12 sm:py-16 bg-gradient-to-tl from-primary via-primary-800 to-secondary text-white" aria-labelledby="cta-heading">
+      {/* Dark overlay for better text contrast - same as footer sections */}
+      <div className="absolute inset-0 bg-black/40 z-0"></div>
+      
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 id="cta-heading" className="font-telegraf font-bold text-2xl md:text-3xl mb-4 sm:mb-6">
           {t('services.cta.title')}
         </h2>
