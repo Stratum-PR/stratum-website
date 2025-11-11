@@ -72,7 +72,8 @@ export const Header = () => {
   
   // Oracle-style spacing and sizing - Harmonized logo and nav sizes
   // Nav spacing: 20-24px between items (tighter spacing, matching Oracle's density)
-  const navSpacing = 'space-x-3 sm:space-x-4 md:space-x-5 lg:space-x-6';
+  // Using gap instead of space-x for more consistent spacing
+  const navSpacing = 'gap-3 sm:gap-4 md:gap-5 lg:gap-6';
   // Nav font size: 14px mobile, 17-18px desktop (larger for better readability and density)
   const navFontSize = 'text-sm sm:text-base lg:text-lg';
   // Header height - Enterprise standard (64px desktop, 56px mobile/tablet)
@@ -100,11 +101,11 @@ export const Header = () => {
       // Check if this is the Resources item - make it clickable with dropdown
       if (item.href === '/resources') {
         return (
-          <NavigationMenu key={item.href} className="relative overflow-visible [&>div>div]:!bg-black/95 [&>div>div]:!border-gray-800 [&>div>div]:!z-[9999]">
-            <NavigationMenuList>
+          <NavigationMenu key={item.href} className="relative overflow-visible !flex-none [&>div>div]:!bg-black/95 [&>div>div]:!border-gray-800 [&>div>div]:!z-[9999]" style={{ margin: 0 }}>
+            <NavigationMenuList className="!space-x-0">
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
-                  className={`font-telegraf !bg-transparent hover:!bg-transparent hover:!text-white focus:!text-white data-[state=open]:!bg-transparent data-[state=open]:!text-white data-[state=open]:!opacity-100 rounded-none ${navFontSize} ${
+                  className={`font-telegraf !bg-transparent hover:!bg-transparent hover:!text-white focus:!text-white data-[state=open]:!bg-transparent data-[state=open]:!text-white data-[state=open]:!opacity-100 rounded-none !px-0 !py-0 ${navFontSize} ${
                     isActive(item.href)
                       ? 'text-white border-b-2 border-accent font-bold'
                       : 'text-white/80 hover:!text-white font-medium'
@@ -117,8 +118,11 @@ export const Header = () => {
                 >
                   {t('nav.resources')}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="!bg-gradient-to-br !from-primary !via-primary-800 !to-secondary border-gray-800 !z-[9999]">
-                  <div className="w-48 p-2 bg-gradient-to-br from-primary via-primary-800 to-secondary">
+                <NavigationMenuContent className="!bg-gradient-to-br !from-primary !via-primary-800 !to-secondary border-gray-800 !z-[9999] relative overflow-hidden">
+                  {/* Dark overlay for better text contrast - same as navbar */}
+                  <div className="absolute inset-0 bg-black/40 z-0"></div>
+                  
+                  <div className="relative z-10 w-48 p-2">
                     {resourcesDropdown.map(dropdownItem => (
                       dropdownItem.isChecklist ? (
                         <button
@@ -158,6 +162,7 @@ export const Header = () => {
               ? 'text-white border-b-2 border-accent font-bold'
               : 'text-white/80 hover:text-white font-medium'
           }`}
+          style={{ margin: 0 }}
         >
           {item.name}
         </Link>

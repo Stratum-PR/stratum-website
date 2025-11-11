@@ -580,19 +580,42 @@ input:focus-visible {
   0% {
     transform: scale(1);
     border-left-color: rgba(30, 43, 126, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
   }
   15% {
     transform: scale(1.05);
     border-left-color: rgba(239, 68, 68, 1) !important;
+    background-color: rgba(239, 68, 68, 1) !important;
   }
   30% {
     transform: scale(1);
     border-left-color: rgba(30, 43, 126, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
   }
   100% {
     transform: scale(1);
     border-left-color: rgba(30, 43, 126, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
   }
+}
+
+/* Text color animation for problem boxes - white text when red background */
+@keyframes cascadePulseText {
+  0%, 30%, 100% {
+    color: rgb(31, 41, 55) !important; /* gray-800 */
+  }
+  15% {
+    color: rgb(255, 255, 255) !important; /* white */
+  }
+}
+
+.animate-cascade-pulse-1 h3,
+.animate-cascade-pulse-1 p,
+.animate-cascade-pulse-2 h3,
+.animate-cascade-pulse-2 p,
+.animate-cascade-pulse-3 h3,
+.animate-cascade-pulse-3 p {
+  animation: cascadePulseText 4.5s ease-in-out infinite;
 }
 
 .animate-cascade-pulse-1 {
