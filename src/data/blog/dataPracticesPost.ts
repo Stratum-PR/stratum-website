@@ -19,7 +19,7 @@ export const dataPracticesPost = {
   content: {
     en: {
       title: 'Top 5 Data Practices for Small Businesses: Practical Steps for Better Decision-Making',
-      summary: 'You don\'t need to be a Fortune 500 company to benefit from good data practices. These five practical strategies will help your small business make better decisions and compete more effectively.',
+      summary: 'You don\'t need to be a large enterprise to benefit from good data practices. These five practical strategies will help your small business make better decisions and compete more effectively.',
       content: `# Why Data Practices Matter for Small Business
 
 "Data-driven decision making" sounds like something only big corporations with data science teams can do. But here's the truth: **small businesses actually have an advantage when it comes to data**. You're closer to your customers, more agile, and can act on insights faster than large competitors.
@@ -449,7 +449,7 @@ Start with one practice. Master it. Add another. Within a year, you'll have a si
     },
     es: {
       title: 'Las 5 Mejores Prácticas de Datos para Pequeñas Empresas: Pasos Prácticos para Mejores Decisiones',
-      summary: 'No necesitas ser una empresa Fortune 500 para beneficiarte de buenas prácticas de datos. Estas cinco estrategias prácticas ayudarán a tu pequeña empresa a tomar mejores decisiones y competir más efectivamente.',
+      summary: 'No necesitas ser una gran empresa para beneficiarte de buenas prácticas de datos. Estas cinco estrategias prácticas ayudarán a tu pequeña empresa a tomar mejores decisiones y competir más efectivamente.',
       content: `# Por Qué las Prácticas de Datos Importan para Pequeñas Empresas
 
 "Toma de decisiones basada en datos" suena como algo que solo pueden hacer las grandes corporaciones con equipos de ciencia de datos. Pero aquí está la verdad: **las pequeñas empresas tienen una ventaja cuando se trata de datos**. Estás más cerca de tus clientes, eres más ágil y puedes actuar sobre insights más rápido que los competidores grandes.
