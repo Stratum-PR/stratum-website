@@ -3,6 +3,7 @@
 // NOTE: API key is kept secure on the server - never exposed to browser
 
 import { getWelcomeEmailTemplate, getBlogNotificationTemplate, type EmailTemplateData } from '@/utils/emailTemplates';
+import { getWelcomeEmailPlainText, getBlogNotificationPlainText } from '@/utils/emailPlainText';
 
 const API_ENDPOINT = 'https://api.resend.com/emails'
 
@@ -10,7 +11,9 @@ interface EmailData {
   to: string
   subject: string
   html: string
+  text?: string
   from?: string
+  replyTo?: string
 }
 
 export async function sendEmail(data: EmailData) {
@@ -28,7 +31,9 @@ export async function sendEmail(data: EmailData) {
         from: data.from, // Server will handle default from email
         to: data.to,
         subject: data.subject,
-        html: data.html
+        html: data.html,
+        text: data.text, // Plain text version for better deliverability
+        replyTo: data.replyTo || 'contact@stratumpr.com'
       })
     })
 
@@ -73,6 +78,12 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
     language,
     unsubscribeToken
   });
+  
+  const text = getWelcomeEmailPlainText({
+    email,
+    language,
+    unsubscribeToken
+  });
 
   // Send notification to admin
   const adminSubject = language === 'es'
@@ -103,7 +114,9 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
       to: email,
       subject,
       html,
-      from: 'Stratum PR <info@stratumpr.com>' // Will auto-fallback to contact@ if not verified
+      text, // Plain text version for better deliverability
+      from: 'Stratum PR <info@stratumpr.com>', // Will auto-fallback to contact@ if not verified
+      replyTo: 'contact@stratumpr.com'
     }),
     sendEmail({
       to: adminEmail,
@@ -228,11 +241,19 @@ export async function sendBlogNotification(
       unsubscribeToken
     });
     
+    const text = getBlogNotificationPlainText(blogTitle, blogExcerpt, blogSlug, {
+      email,
+      language,
+      unsubscribeToken
+    });
+    
     return sendEmail({
       to: email,
       subject,
       html,
-      from: 'Stratum PR <info@stratumpr.com>' // Newsletter emails from info@stratumpr.com (auto-fallback if not verified)
+      text, // Plain text version for better deliverability
+      from: 'Stratum PR <info@stratumpr.com>', // Newsletter emails from info@stratumpr.com (auto-fallback if not verified)
+      replyTo: 'contact@stratumpr.com'
     });
   }))
 }

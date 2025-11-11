@@ -453,6 +453,7 @@ export const esTranslations: Record<string, string> = {
   'blog.detail.aboutAuthor': 'Sobre el Autor',
   'blog.detail.articleTags': 'Etiquetas del Artículo',
   'blog.subscribe.success': '¡Gracias por suscribirte! Recibirás nuestras últimas actualizaciones por correo electrónico.',
+  'blog.subscribe.spamNotice': '📧 Si no ves nuestro correo de bienvenida en tu bandeja de entrada, por favor revisa tu carpeta de spam o correo no deseado y márcalo como "No es spam" para asegurar que recibas nuestros correos futuros.',
   'blog.subscribe.error': 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.',
   
   // Resources modal
