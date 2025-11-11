@@ -13,10 +13,10 @@ const Privacy: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-[50px]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-8 mt-8">
             {t('privacy.title')}
           </h1>
 

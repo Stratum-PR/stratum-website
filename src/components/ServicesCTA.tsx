@@ -19,11 +19,16 @@ export const ServicesCTA = () => {
           {t('services.cta.description')}
         </p>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-          <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-            <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
-              {t('services.cta.consultation')}
-            </a>
-          </Button>
+          <div className="relative">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+              <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
+                {t('services.cta.consultation')}
+              </a>
+            </Button>
+            <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+              FREE
+            </span>
+          </div>
           <Button
             asChild
             variant="outline"

@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Linkedin, Mail, ChevronDown, ChevronUp } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface TeamMember {
@@ -22,7 +22,6 @@ interface TeamMemberCardProps {
 
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
   const { t } = useLanguage();
-  const [isExpanded, setIsExpanded] = useState(false);
   
   // Get translations for this team member
   const translatedName = t(`team.${founder.key}.name`) || founder.name;
@@ -61,25 +60,9 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ founder }) => {
           {translatedRole}
         </p>
         <div className="mb-3">
-          <p className={`font-telegraf text-xs text-gray-600 leading-relaxed ${isExpanded ? '' : 'line-clamp-3'}`}>
+          <p className="font-telegraf text-xs text-gray-600 leading-relaxed">
             {translatedBio}
           </p>
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-2 flex items-center gap-1 text-primary hover:text-primary/80 text-xs font-telegraf font-semibold transition-colors"
-          >
-            {isExpanded ? (
-              <>
-                <span>{t('about.team.readLess')}</span>
-                <ChevronUp className="w-3 h-3" />
-              </>
-            ) : (
-              <>
-                <span>{t('about.team.readMore')}</span>
-                <ChevronDown className="w-3 h-3" />
-              </>
-            )}
-          </button>
         </div>
         
         <div>

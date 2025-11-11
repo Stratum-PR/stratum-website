@@ -45,25 +45,97 @@ export default async function handler(
     }
 
     // Use custom domain email - domain must be verified in Resend dashboard
-    // If domain not verified, use onboarding@resend.dev for testing
-    const fromEmail = from || process.env.FROM_EMAIL || 'Stratum PR <contact@stratumpr.com>';
+    // If domain not verified, fall back to verified email
+    let fromEmail = from || process.env.FROM_EMAIL || 'Stratum PR <contact@stratumpr.com>';
+    
+    // Check if from email contains info@stratumpr.com and domain might not be verified
+    // If so, try with contact@stratumpr.com first, then fall back to onboarding@resend.dev
+    const isInfoEmail = fromEmail.includes('info@stratumpr.com');
+    const fallbackFrom = process.env.FROM_EMAIL || 'Stratum PR <contact@stratumpr.com>';
+    const testFrom = 'onboarding@resend.dev';
 
     // Send email via Resend API
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to,
-        subject,
-        html
-      })
-    });
+    let response;
+    let data;
+    let lastError;
+    
+    // Try sending with the requested from email first
+    try {
+      response = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${RESEND_API_KEY}`
+        },
+        body: JSON.stringify({
+          from: fromEmail,
+          to,
+          subject,
+          html
+        })
+      });
 
-    const data = await response.json();
+      data = await response.json();
+
+      // If it fails with pattern/domain error and we're using info@, try fallback
+      if (!response.ok && isInfoEmail && (
+        data.message?.includes('pattern') || 
+        data.message?.includes('match') ||
+        data.message?.includes('domain') ||
+        data.message?.includes('not verified')
+      )) {
+        console.warn(`Failed to send with ${fromEmail}, trying fallback: ${fallbackFrom}`);
+        lastError = data;
+        
+        // Try with contact@stratumpr.com
+        response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${RESEND_API_KEY}`
+          },
+          body: JSON.stringify({
+            from: fallbackFrom,
+            to,
+            subject,
+            html
+          })
+        });
+
+        data = await response.json();
+        
+        // If still fails, try onboarding@resend.dev (always works)
+        if (!response.ok) {
+          console.warn(`Failed to send with ${fallbackFrom}, trying test email: ${testFrom}`);
+          lastError = data;
+          
+          response = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${RESEND_API_KEY}`
+            },
+            body: JSON.stringify({
+              from: testFrom,
+              to,
+              subject,
+              html
+            })
+          });
+
+          data = await response.json();
+        } else {
+          // Success with fallback - log it
+          console.log(`Successfully sent email using fallback: ${fallbackFrom}`);
+        }
+      }
+    } catch (fetchError: any) {
+      console.error('Fetch error:', fetchError);
+      return res.status(500).json({
+        error: 'Network error',
+        message: 'Failed to connect to email service'
+      });
+    }
 
     if (!response.ok) {
       console.error('Resend API Error:', {
@@ -71,21 +143,24 @@ export default async function handler(
         statusText: response.statusText,
         error: data,
         fromEmail,
+        fallbackFrom,
         to
       });
       
       // Provide more helpful error messages
       let errorMessage = data.message || response.statusText;
       if (data.message?.includes('domain') || data.message?.includes('not verified')) {
-        errorMessage = 'Email domain not verified. Please verify your domain in Resend dashboard or use onboarding@resend.dev for testing.';
+        errorMessage = `Email domain not verified. The email "${fromEmail}" cannot be used. Please verify your domain in Resend dashboard.`;
       } else if (data.message?.includes('pattern') || data.message?.includes('match')) {
-        errorMessage = 'Invalid email format. Please check the email address and try again.';
+        errorMessage = `Invalid email format for "${fromEmail}". Please verify the domain in Resend dashboard or contact support.`;
       }
       
       return res.status(response.status).json({
         error: 'Failed to send email',
         message: errorMessage,
-        details: data
+        details: data,
+        attemptedFrom: fromEmail,
+        lastError: lastError
       });
     }
 

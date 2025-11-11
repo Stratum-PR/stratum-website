@@ -397,12 +397,17 @@ const ProjectDetail = () => {
           <p className="font-telegraf text-xl mb-8 text-primary-100">
             {t('projects.cta.description')}
           </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-            <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
-              {t('projects.cta.button')}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-          </Button>
+          <div className="relative inline-block">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+              <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
+                {t('projects.cta.button')}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+            <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+              FREE
+            </span>
+          </div>
         </div>
       </section>
     </div>

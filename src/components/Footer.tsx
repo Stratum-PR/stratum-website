@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Linkedin, Facebook, Instagram, Home, Users, Briefcase, HelpCircle, FolderOpen, Mail } from "lucide-react";
+import { Linkedin, Facebook, Instagram, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import TechAnimatedBackground from "@/components/TechAnimatedBackground";
 export const Footer = () => {
@@ -12,12 +12,18 @@ export const Footer = () => {
   const isActive = (path: string) => location.pathname === path;
   
   const navigationItems = [
-    { name: t('nav.home'), href: '/', icon: Home },
-    { name: t('nav.about'), href: '/about', icon: Users },
-    { name: t('nav.services'), href: '/services', icon: Briefcase },
-    { name: t('nav.faq'), href: '/faq', icon: HelpCircle },
-    { name: t('nav.resources'), href: '/resources', icon: FolderOpen },
-    { name: t('nav.contact'), href: '/contact', icon: Mail },
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.services'), href: '/services' },
+    { name: t('nav.faq'), href: '/faq' },
+    { name: t('nav.resources'), href: '/resources' },
+    { name: t('nav.contact'), href: '/contact' },
+  ];
+
+  const legalLinks = [
+    { name: t('footer.privacy'), href: '/privacy' },
+    { name: t('footer.cookies'), href: '/cookies' },
+    { name: t('footer.terms'), href: '/terms' },
   ];
   return <footer className="relative text-white overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary">
       {/* Dark overlay - darker than navbar for visual distinction */}
@@ -57,27 +63,45 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Navigation Links - Enhanced with icons and better styling */}
+          {/* Navigation Links - Compact with arrows in multicolumn */}
           <div className="hidden md:block">
-            <h3 className="font-telegraf font-semibold text-lg mb-6 text-white">{t('footer.navigation')}</h3>
-            <div className="grid grid-cols-2 gap-3">
+            <h3 className="font-telegraf font-semibold text-base mb-3 text-white">{t('footer.navigation')}</h3>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
               {navigationItems.map((item) => {
-                const Icon = item.icon;
                 const active = isActive(item.href);
                 return (
                   <Link
                     key={item.href}
                     to={item.href}
-                    className={`group flex items-center space-x-3 py-2 px-3 rounded-lg transition-all duration-200 font-telegraf ${
+                    className={`group flex items-center justify-between py-1.5 px-2 rounded transition-all duration-200 font-telegraf text-sm ${
                       active
-                        ? 'text-accent bg-accent/10 border-l-2 border-accent'
-                        : 'text-white/70 hover:text-white hover:bg-white/5'
+                        ? 'text-accent'
+                        : 'text-white/70 hover:text-white'
                     }`}
                   >
-                    <Icon className={`h-4 w-4 transition-colors duration-200 ${
-                      active ? 'text-accent' : 'text-white/60 group-hover:text-accent'
+                    <span>{item.name}</span>
+                    <ArrowRight className={`h-3 w-3 transition-transform duration-200 ${
+                      active ? 'text-accent' : 'text-white/50 group-hover:text-accent group-hover:translate-x-0.5'
                     }`} />
-                    <span className="text-sm font-medium">{item.name}</span>
+                  </Link>
+                );
+              })}
+              {legalLinks.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className={`group flex items-center justify-between py-1.5 px-2 rounded transition-all duration-200 font-telegraf text-xs ${
+                      active
+                        ? 'text-accent'
+                        : 'text-white/60 hover:text-white/80'
+                    }`}
+                  >
+                    <span>{item.name}</span>
+                    <ArrowRight className={`h-3 w-3 transition-transform duration-200 ${
+                      active ? 'text-accent' : 'text-white/40 group-hover:text-white/60 group-hover:translate-x-0.5'
+                    }`} />
                   </Link>
                 );
               })}

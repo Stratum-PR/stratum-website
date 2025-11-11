@@ -254,18 +254,18 @@ const BlogDetail = () => {
           </p>
 
           {/* Article Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <div className="flex items-center gap-3">
               <User className="h-5 w-5 text-white" />
               <div>
-                <p className="font-telegraf text-sm text-white/80">Author</p>
+                <p className="font-telegraf text-sm text-white/80">{t('blog.detail.author')}</p>
                 <p className="font-telegraf font-semibold text-white">{authorName}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Calendar className="h-5 w-5 text-white" />
               <div>
-                <p className="font-telegraf text-sm text-white/80">Published</p>
+                <p className="font-telegraf text-sm text-white/80">{t('blog.detail.published')}</p>
                 <p className="font-telegraf font-semibold text-white">{new Date(post.publishedAt).toLocaleDateString()}</p>
               </div>
             </div>
@@ -275,7 +275,7 @@ const BlogDetail = () => {
 
       {/* Hero Image */}
       {post.mainImage && (
-        <section className="pb-0">
+        <section className="pt-12 pb-2">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <img 
               src={mainImageUrl} 
@@ -287,38 +287,72 @@ const BlogDetail = () => {
       )}
 
       {/* Content */}
-      <section className="pt-0 pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Main Content */}
-            <div className="lg:col-span-2">
-              <div className="font-telegraf text-gray-700 leading-relaxed prose prose-lg max-w-none [&>*:first-child]:!mt-0 [&_h6]:!text-sm [&_h6]:!font-semibold [&_h6]:!mb-1 [&_h6]:!mt-2 [&_h6]:!leading-normal">
+      <section className="pt-2 pb-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Main Content - Full width with sidebar floated */}
+            <div className="flex-1 min-w-0">
+              <div className="font-telegraf text-gray-700 leading-relaxed prose prose-xl max-w-none [&>*:first-child]:!mt-0 [&_h6]:!text-sm [&_h6]:!font-semibold [&_h6]:!mb-1 [&_h6]:!mt-2 [&_h6]:!leading-normal [&_p]:text-lg [&_p]:leading-relaxed">
                 <PortableText value={content} />
               </div>
             </div>
 
-            {/* Sidebar */}
-            <div className="space-y-8">
-              {/* Article Tags */}
-              {post.tags && Array.isArray(post.tags) && post.tags.length > 0 && (
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="font-telegraf font-semibold text-lg text-primary mb-4">
-                      Article Tags
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.map((tag, index) => (
-                        <span 
-                          key={index}
-                          className="px-3 py-1 text-sm font-telegraf bg-secondary/10 text-secondary rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
+            {/* Sidebar - Floated to the right on desktop */}
+            <div className="lg:w-80 flex-shrink-0">
+              <div className="lg:sticky lg:top-8 space-y-6">
+                {/* About the Author */}
+                {post.author && (
+                  <Card className="border border-gray-200">
+                    <CardContent className="p-4">
+                      <h3 className="font-telegraf font-semibold text-base text-primary mb-3">
+                        {t('blog.detail.aboutAuthor')}
+                      </h3>
+                      <div className="space-y-3">
+                        {/* Author Image and Name - Side by Side */}
+                        <div className="flex items-center gap-3">
+                          {post.author.image && (
+                            <img 
+                              src={authorImage} 
+                              alt={authorName}
+                              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover flex-shrink-0"
+                            />
+                          )}
+                          <p className="font-telegraf font-semibold text-sm sm:text-base text-gray-900">
+                            {authorName}
+                          </p>
+                        </div>
+                        {/* Bio Below */}
+                        {authorBio && (
+                          <p className="font-telegraf text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            {authorBio}
+                          </p>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Article Tags */}
+                {post.tags && Array.isArray(post.tags) && post.tags.length > 0 && (
+                  <Card className="border border-gray-200">
+                    <CardContent className="p-4">
+                      <h3 className="font-telegraf font-semibold text-base text-primary mb-3">
+                        {t('blog.detail.articleTags')}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.map((tag, index) => (
+                          <span 
+                            key={index}
+                            className="px-2 py-1 text-xs font-telegraf bg-secondary/10 text-secondary rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             </div>
           </div>
         </div>

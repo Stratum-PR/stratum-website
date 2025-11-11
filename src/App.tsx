@@ -24,6 +24,10 @@ const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Contact = lazy(() => import("./pages/Contact"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Cookies = lazy(() => import("./pages/Cookies"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const EmailPreferences = lazy(() => import("./pages/EmailPreferences"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 // CHECKLIST TEMPORARILY DISABLED - Uncomment when ready to enable
 // const Checklist = lazy(() => import("./pages/Checklist"));
@@ -155,6 +159,26 @@ const App = () => (
                 <Route path="/privacy" element={
                   <Suspense fallback={<PageLoader />}>
                     <Privacy />
+                  </Suspense>
+                } />
+                <Route path="/terms" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Terms />
+                  </Suspense>
+                } />
+                <Route path="/cookies" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Cookies />
+                  </Suspense>
+                } />
+                <Route path="/unsubscribe" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Unsubscribe />
+                  </Suspense>
+                } />
+                <Route path="/email-preferences" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <EmailPreferences />
                   </Suspense>
                 } />
                 <Route path="/sitemap.xml" element={
