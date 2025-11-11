@@ -3,6 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure NavigationMenu viewport can extend beyond header */
+[data-radix-navigation-menu-viewport] {
+  position: absolute !important;
+  z-index: 9999 !important;
+  overflow: visible !important;
+}
+
+/* Ensure header and all containers don't clip dropdown */
+header,
+header > div,
+header nav,
+header [data-radix-navigation-menu-root] {
+  overflow: visible !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
