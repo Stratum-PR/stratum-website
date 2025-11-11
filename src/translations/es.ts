@@ -122,7 +122,7 @@ export const esTranslations: Record<string, string> = {
   'whyworkwithus.title': 'Por Qué Trabajar Con Nosotros',
   'whyworkwithus.description': 'Fundada por consultores y especialistas en datos con años de experiencia entregando resultados, traemos la disciplina de equipos empresariales a gran escala en una firma enfocada y ágil.',
   'whyworkwithus.expertise.title': 'Nuestra Experiencia',
-  'whyworkwithus.expertise.description': 'Hemos diseñado sistemas, dashboards y herramientas de automatización para organizaciones en Puerto Rico y los Estados Unidos. Conocemos las preocupaciones y cómo dar resultados.',
+  'whyworkwithus.expertise.description': 'Hemos diseñado sistemas, dashboards y herramientas de automatización para grandes organizaciones en los sectores de salud, gobierno y empresas. Entendemos lo que está en juego y cómo entregar resultados.',
   'whyworkwithus.process.title': 'Claridad Impulsada por Procesos',
   'whyworkwithus.process.description': 'Ayudamos a los clientes a organizar y conectar su información, implementando sistemas que apoyen la toma de decisiones, planificación y eficiencia.',
   'whyworkwithus.partnership.title': 'Asistencia Personalizada',
@@ -162,7 +162,7 @@ export const esTranslations: Record<string, string> = {
   'about.values.innovation': 'Enfoque en Innovación',
   'about.values.innovation.desc': 'Exploramos continuamente tecnologías emergentes para entregar ventajas competitivas.',
   'about.team.title': 'Conoce Nuestro Equipo de Liderazgo',
-  'about.team.description': 'Nuestro equipo cuenta con mas de 18 años de experiencia en empresas "Fortune 500", firmas de consultoría, empresas de tecnología e instituciones académicas.',
+  'about.team.description': 'Nuestro equipo cuenta con más de 18 años de experiencia en grandes empresas, firmas de consultoría, empresas de tecnología e instituciones académicas.',
   'about.team.expertise': 'EXPERIENCIA',
   'about.team.readMore': 'Leer Más',
   'about.team.readLess': 'Leer Menos',
@@ -170,7 +170,7 @@ export const esTranslations: Record<string, string> = {
   // Team member data
   'team.jovaniel.name': 'Jovaniel Rodríguez',
   'team.jovaniel.role': 'Co-Fundador, Infraestructura Tecnológica',
-  'team.jovaniel.bio': 'Jovaniel aporta más de 10 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado varios proyectos en empresas "Fortune 500". Su experiencia abarca manejo de proyectos, inteligencia de negocios, optimización de procesos y modernización de sistemas.',
+  'team.jovaniel.bio': 'Jovaniel aporta más de 10 años de experiencia en consultoría estratégica y análisis de datos, habiendo liderado varios proyectos en grandes empresas. Su experiencia abarca manejo de proyectos, inteligencia de negocios, optimización de procesos y modernización de sistemas.',
   'team.jovaniel.expertise': 'Modernización de Sistemas, Implementación de IA, Gobernanza de Datos',
   
   'team.genesis.name': 'Génesis Rodríguez',
@@ -301,10 +301,10 @@ export const esTranslations: Record<string, string> = {
   
   // Company FAQs
   'faq.company.who.question': '¿Quién es Stratum PR y qué los hace diferentes?',
-  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas empresariales estratégicas. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con empresas Fortune 500, programas federales de recuperación y agencias del gobierno de Puerto Rico. No somos solo consultores,somos arquitectos de mejores sistemas de toma de decisiones.',
+  'faq.company.who.answer': 'Stratum PR es una firma de análisis de datos y consultoría fundada en 2025, especializada en transformar datos complejos en ventajas empresariales estratégicas. Lo que nos hace diferentes es el historial comprobado de nuestro equipo con grandes empresas, programas federales y organizaciones gubernamentales. No somos solo consultores. Somos arquitectos de mejores sistemas de toma de decisiones.',
   
   'faq.company.why.question': '¿Por qué debería contratar a Stratum PR en lugar de una firma consultora más grande?',
-  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Te proveeremos atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, brindamos experiencia de nivel Fortune 500 a una escala y costo más accesibles.',
+  'faq.company.why.answer': 'Mientras que las firmas más grandes a menudo asignan personal junior a tu proyecto, en Stratum PR trabajas directamente con consultores senior y tomadores de decisiones. Proporcionamos atención personalizada, tiempos de respuesta más rápidos y soluciones adaptadas específicamente a tus necesidades. Además, brindamos experiencia de nivel empresarial a una escala y costo más accesibles.',
   
   'faq.company.experience.question': '¿Qué experiencia tiene su equipo?',
   'faq.company.experience.answer': 'Nuestro equipo fundador aporta más de una década de experiencia combinada liderando proyectos en organizaciones públicas y privadas en Puerto Rico y Estados Unidos. Hemos diseñado sistemas, dashboards y herramientas de automatización que han entregado resultados medibles para organizaciones de todos los tamaños.',
@@ -372,12 +372,12 @@ export const esTranslations: Record<string, string> = {
   'projects.healthcare.summary': 'Optimizó datos de pacientes en 12 instalaciones, reduciendo la sobrecarga administrativa en un 40% y mejorando la coordinación de atención.',
   
   'projects.municipal.title': 'Tablero de Transparencia Presupuestaria Municipal',
-  'projects.municipal.client': 'Municipio de Puerto Rico',
+  'projects.municipal.client': 'Gobierno Municipal',
   'projects.municipal.sector': 'Gobierno',
   'projects.municipal.summary': 'Creó sistema de seguimiento presupuestario en tiempo real que aumentó la participación ciudadana y mejoró la responsabilidad fiscal.',
   
   'projects.sales.title': 'Suite de Análisis de Rendimiento de Ventas',
-  'projects.sales.client': 'Empresa Tecnológica Fortune 500',
+  'projects.sales.client': 'Empresa Tecnológica',
   'projects.sales.sector': 'Tecnología',
   'projects.sales.summary': 'Pipeline de reportes de ventas automatizado que redujo el trabajo manual en un 60% y mejoró la precisión de pronósticos en un 25%.',
   
