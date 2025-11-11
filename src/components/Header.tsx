@@ -100,14 +100,14 @@ export const Header = () => {
       // Check if this is the Resources item - make it clickable with dropdown
       if (item.href === '/resources') {
         return (
-          <NavigationMenu key={item.href} className="[&>div>div]:!bg-black/95 [&>div>div]:!border-gray-800">
+          <NavigationMenu key={item.href} className="relative overflow-visible [&>div>div]:!bg-black/95 [&>div>div]:!border-gray-800 [&>div>div]:!z-[9999]">
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger 
-                  className={`font-telegraf !bg-transparent hover:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!text-white data-[state=open]:!opacity-100 rounded-none ${navFontSize} ${
+                  className={`font-telegraf !bg-transparent hover:!bg-transparent hover:!text-white focus:!text-white data-[state=open]:!bg-transparent data-[state=open]:!text-white data-[state=open]:!opacity-100 rounded-none ${navFontSize} ${
                     isActive(item.href)
                       ? 'text-white border-b-2 border-accent font-bold'
-                      : 'text-white/80 hover:text-white font-medium'
+                      : 'text-white/80 hover:!text-white font-medium'
                   }`}
                   onClick={(e) => {
                     // Navigate to resources on click
@@ -117,8 +117,8 @@ export const Header = () => {
                 >
                   {t('nav.resources')}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="!bg-black/95 border-gray-800">
-                  <div className="w-48 p-2 bg-black/95">
+                <NavigationMenuContent className="!bg-gradient-to-br !from-primary !via-primary-800 !to-secondary border-gray-800 !z-[9999]">
+                  <div className="w-48 p-2 bg-gradient-to-br from-primary via-primary-800 to-secondary">
                     {resourcesDropdown.map(dropdownItem => (
                       dropdownItem.isChecklist ? (
                         <button
@@ -166,16 +166,16 @@ export const Header = () => {
   };
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[60] relative overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[60] relative bg-gradient-to-br from-primary via-primary-800 to-secondary ${headerHeight}`} style={{ overflow: 'visible' }}>
       {/* Dark overlay for better text contrast - same as hero section */}
       <div className="absolute inset-0 bg-black/40 z-0"></div>
       
       {/* Tech animated background - exact same as hero section */}
       <TechAnimatedBackground className="z-0" opacity={0.7} />
       
-      <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full">
+      <div className="relative z-10 w-full px-4 sm:px-5 md:px-6 lg:px-8 h-full" style={{ overflow: 'visible' }}>
         {/* Oracle-style layout: Logo (left) | Nav (center) | Actions (right) */}
-        <div className="flex items-center h-full">
+        <div className="flex items-center h-full" style={{ overflow: 'visible' }}>
           {/* Left side: Logo */}
           <div className="flex items-center flex-shrink-0">
             {/* Logo - Oracle-style sizing: ~26-28px (40-45% of header height) */}
@@ -198,7 +198,7 @@ export const Header = () => {
 
           {/* Center: Navigation links - progressively visible based on window size */}
           {/* Only show navigation menu on desktop (xl+), use hamburger for tablets and mobile */}
-          <nav className={`hidden xl:flex items-center ${navSpacing} absolute left-1/2 transform -translate-x-1/2`}>
+          <nav className={`hidden xl:flex items-center ${navSpacing} absolute left-1/2 transform -translate-x-1/2`} style={{ overflow: 'visible' }}>
             {renderNavItems()}
           </nav>
 

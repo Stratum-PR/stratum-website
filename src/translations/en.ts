@@ -25,7 +25,7 @@ export const enTranslations: Record<string, string> = {
   // Home page
   'home.hero.title': 'Spend less time on admin, more time on growth',
   'home.hero.subtitle': '',
-  'home.hero.badge': '100% Puerto Rican Company',
+  'home.hero.badge': '100% Puerto Rican Business',
   'home.hero.description': 'We understand what local businesses need and build intelligent data systems that reduce manual work and optimize operations, all without you needing to hire a data management team.',
   'home.hero.cta.primary': 'Book Free Consultation',
   'home.hero.cta.secondary': 'Take our Systems Assessment',
