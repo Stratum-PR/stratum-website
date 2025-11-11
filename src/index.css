@@ -38,6 +38,14 @@ html {
   }
 }
 
+/* Support for safe area insets on iOS devices with notches/dynamic island */
+@supports (padding: max(0px)) {
+  .hero-section {
+    padding-top: max(5rem, calc(env(safe-area-inset-top) + 3.5rem));
+    padding-bottom: max(3rem, env(safe-area-inset-bottom));
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

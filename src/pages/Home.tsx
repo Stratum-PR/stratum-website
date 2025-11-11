@@ -341,7 +341,7 @@ const Home = () => {
     <TooltipProvider>
       <div>
         {/* Hero Section - Techy animated background similar to Evertec */}
-        <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[85vh] sm:min-h-[90vh] bg-gradient-to-br from-primary via-primary-800 to-secondary pt-14 md:pt-16">
+        <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[100svh] sm:min-h-[90vh] bg-gradient-to-br from-primary via-primary-800 to-secondary pt-20 pb-12 sm:pt-16 sm:pb-12">
           {/* Dark overlay for better text contrast */}
           <div className="absolute inset-0 bg-black/40 z-0"></div>
           
@@ -349,7 +349,7 @@ const Home = () => {
           <TechAnimatedBackground className="z-0" opacity={0.7} />
 
           {/* Content */}
-          <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center text-white z-10">
+          <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 py-4 sm:py-6 text-center text-white z-10">
             {/* SEO-friendly H1 - visible to search engines */}
             <h1 className="sr-only">
               {language === 'es' 
