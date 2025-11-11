@@ -36,17 +36,11 @@ export function getWelcomeEmailPlainText(data: EmailTemplateData): string {
     title: '¡Bienvenido a nuestro boletín!',
     greeting: 'Hola,',
     welcome: 'Gracias por suscribirte a nuestro boletín. Estamos emocionados de tenerte como parte de nuestra comunidad y compartir contigo contenido valioso que te ayudará a transformar tu negocio.',
-    whatYoullReceive: 'Como suscriptor, recibirás:',
-    bulletins: '• Boletines mensuales con las últimas tendencias en análisis de datos e inteligencia empresarial',
-    updates: '• Actualizaciones exclusivas sobre nuevos artículos, recursos y herramientas prácticas',
+    benefits: 'Como suscriptor, recibirás:',
+    bulletins: '• Boletines con nuevos artículos, recursos y herramientas prácticas',
     educational: '• Contenido educativo sobre automatización, análisis predictivo y mejores prácticas de datos',
     insights: '• Casos de estudio reales y ejemplos de cómo otras empresas están optimizando sus operaciones',
     tips: '• Consejos prácticos y guías paso a paso para implementar soluciones de datos en tu organización',
-    benefits: 'Al suscribirte, tendrás acceso a:',
-    benefit1: '• Estrategias probadas para reducir trabajo manual y aumentar la eficiencia',
-    benefit2: '• Guías prácticas sobre implementación de sistemas de datos y automatización',
-    benefit3: '• Análisis de tendencias del mercado y cómo aplicarlas a tu negocio',
-    benefit4: '• Recursos descargables y plantillas que puedes usar inmediatamente',
     followUs: 'Síguenos en nuestras redes sociales:',
     linkedin: 'LinkedIn: https://linkedin.com/company/stratumpr',
     facebook: 'Facebook: https://www.facebook.com/profile.php?id=61577145020919',
@@ -60,17 +54,11 @@ export function getWelcomeEmailPlainText(data: EmailTemplateData): string {
     title: 'Welcome to our newsletter!',
     greeting: 'Hello,',
     welcome: 'Thank you for subscribing to our newsletter. We\'re excited to have you as part of our community and share valuable content that will help you transform your business.',
-    whatYoullReceive: 'As a subscriber, you\'ll receive:',
-    bulletins: '• Monthly bulletins with the latest trends in data analytics and business intelligence',
-    updates: '• Exclusive updates on new articles, resources, and practical tools',
+    benefits: 'As a subscriber, you\'ll receive:',
+    bulletins: '• Bulletins with new articles, resources, and practical tools',
     educational: '• Educational content on automation, predictive analytics, and data best practices',
     insights: '• Real case studies and examples of how other businesses are optimizing their operations',
     tips: '• Practical tips and step-by-step guides to implement data solutions in your organization',
-    benefits: 'By subscribing, you\'ll have access to:',
-    benefit1: '• Proven strategies to reduce manual work and increase efficiency',
-    benefit2: '• Practical guides on implementing data systems and automation',
-    benefit3: '• Market trend analysis and how to apply them to your business',
-    benefit4: '• Downloadable resources and templates you can use immediately',
     followUs: 'Follow us on social media:',
     linkedin: 'LinkedIn: https://linkedin.com/company/stratumpr',
     facebook: 'Facebook: https://www.facebook.com/profile.php?id=61577145020919',
@@ -89,20 +77,12 @@ ${content.greeting}
 
 ${content.welcome}
 
-${content.whatYoullReceive}
+${content.benefits}
 
 ${content.bulletins}
-${content.updates}
 ${content.educational}
 ${content.insights}
 ${content.tips}
-
-${content.benefits}
-
-${content.benefit1}
-${content.benefit2}
-${content.benefit3}
-${content.benefit4}
 
 ${content.followUs}
 
