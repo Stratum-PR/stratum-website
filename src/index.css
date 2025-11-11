@@ -18,6 +18,26 @@ header [data-radix-navigation-menu-root] {
   overflow: visible !important;
 }
 
+/* Ensure navbar stays fixed and visible */
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9998 !important;
+}
+
+/* Add scroll margin to account for fixed navbar on all pages */
+html {
+  scroll-padding-top: 5rem; /* 80px to account for fixed navbar */
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 5.5rem; /* 88px for larger navbar on desktop */
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

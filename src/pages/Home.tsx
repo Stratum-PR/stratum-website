@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info, Clock, HelpCircle, Server, AlertTriangle, XCircle, Network, Wifi, WifiOff, Link as LinkIcon, RotateCcw, Link2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import OptimizedImage from "@/components/OptimizedImage";
@@ -273,10 +273,15 @@ const Home = () => {
   // Optimized service card component with better performance
   const ServiceCardWithPopover = ({ service }: { service: any }) => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleCardClick = () => {
-      // Navigate to services page when clicking the card area
-      window.location.href = '/services';
+      // Create a slug from the service title for the hash (matching ServicesGrid format)
+      const serviceId = service.title.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+      // Navigate to services page with hash to scroll to specific service
+      navigate(`/services#service-${serviceId}`);
     };
 
     const handlePopoverToggle = (e: React.MouseEvent) => {
@@ -575,8 +580,13 @@ const Home = () => {
                   {t('home.guide.weSpecialize')}
                 </h2>
                 <div className="grid grid-cols-2 gap-3 sm:gap-4 relative z-10">
-                  {services.map((service, index) => (
-                    <Link key={index} to="/services" className="group">
+                  {services.map((service, index) => {
+                    // Create a slug from the service title for the hash (matching ServicesGrid format)
+                    const serviceId = service.title.toLowerCase()
+                      .replace(/[^a-z0-9]+/g, '-')
+                      .replace(/^-|-$/g, '');
+                    return (
+                    <Link key={index} to={`/services#service-${serviceId}`} className="group">
                       <Card className="h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-primary/30 shadow-xl bg-gradient-to-br from-white/90 via-primary/5 to-primary/10 backdrop-blur-sm hover:from-primary/20 hover:via-primary/15 hover:to-primary/25 hover:border-primary/60 hover-lift animate-fade-in-scale relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
                         {/* Animated tech border glow */}
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -625,7 +635,8 @@ const Home = () => {
                         </CardContent>
                       </Card>
                     </Link>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
