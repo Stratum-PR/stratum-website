@@ -123,9 +123,9 @@ export const enTranslations: Record<string, string> = {
   'whyworkwithus.title': 'Why Work With Us',
   'whyworkwithus.description': 'Founded by senior consultants and data specialists with years of experience delivering results, we bring the discipline of enterprise work into a focused, agile firm built for impact.',
   'whyworkwithus.expertise.title': 'Proven Expertise',
-  'whyworkwithus.expertise.description': 'We\'ve designed systems, dashboards, and automation tools for organizations like ICF, UnitedHealth Group, and the Puerto Rico Department of Health. We know the stakes—and how to deliver.',
+  'whyworkwithus.expertise.description': 'We\'ve designed systems, dashboards, and automation tools for large organizations across healthcare, government, and enterprise sectors. We understand what\'s at stake and how to deliver results.',
   'whyworkwithus.process.title': 'Process-Driven Clarity',
-  'whyworkwithus.process.description': 'We don\'t just build dashboards—we help clients untangle messy data and implement frameworks that actually support decision-making, planning, and accountability.',
+  'whyworkwithus.process.description': 'We don\'t just build dashboards. We help clients untangle messy data and implement frameworks that support decision-making, planning, and accountability.',
   'whyworkwithus.partnership.title': 'Personalized Partnership',
   'whyworkwithus.partnership.description': 'We take on fewer clients so we can work with you, not just for you. Our size means you\'ll always be working directly with decision-makers, not just junior staff or vendors.',
   
@@ -163,7 +163,7 @@ export const enTranslations: Record<string, string> = {
   'about.values.innovation': 'Innovation Focus',
   'about.values.innovation.desc': 'Continuously exploring emerging technologies to deliver competitive advantages.',
   'about.team.title': 'Meet Our Leadership Team',
-  'about.team.description': 'Our team brings together more than 18 years of experience from leading projects at Fortune 500 companies, consulting firms, technology companies, and academic institutions.',
+  'about.team.description': 'Our team brings together more than 18 years of experience from leading projects at large enterprises, consulting firms, technology companies, and academic institutions.',
   'about.team.expertise': 'EXPERTISE',
   'about.team.readMore': 'Read More',
   'about.team.readLess': 'Read Less',
@@ -171,7 +171,7 @@ export const enTranslations: Record<string, string> = {
   // Team member data
   'team.jovaniel.name': 'Jovaniel Rodríguez',
   'team.jovaniel.role': 'Co-Founder, Technology Infrastructure',
-  'team.jovaniel.bio': 'Jovaniel brings over 10 years of experience in strategic consulting and data analytics, having led transformational projects at Fortune 500 companies. His expertise spans business intelligence, process optimization, and organizational change management.',
+  'team.jovaniel.bio': 'Jovaniel brings over 10 years of experience in strategic consulting and data analytics, having led transformational projects at large enterprises. His expertise spans business intelligence, process optimization, and organizational change management.',
   'team.jovaniel.expertise': 'Digital Modernization, AI/ML, Data Governance',
   
   'team.genesis.name': 'Génesis Rodríguez',
@@ -302,10 +302,10 @@ export const enTranslations: Record<string, string> = {
   
   // Company FAQs
   'faq.company.who.question': 'Who is Stratum PR and what makes you different?',
-  'faq.company.who.answer': 'Stratum PR is a data analytics and consulting firm founded in 2025, specializing in transforming complex data into strategic business advantages. What makes us different is our team\'s proven track record with Fortune 500 companies, federal recovery programs, and Puerto Rico government agencies. We\'re not just consultants, we\'re architects of better decision-making systems.',
+  'faq.company.who.answer': 'Stratum PR is a data analytics and consulting firm founded in 2025, specializing in transforming complex data into strategic business advantages. What makes us different is our team\'s proven track record with large enterprises, federal programs, and government organizations. We\'re not just consultants. We\'re architects of better decision-making systems.',
   
   'faq.company.why.question': 'Why should I hire Stratum PR instead of a larger consulting firm?',
-  'faq.company.why.answer': 'While larger firms often assign junior staff to your project, at Stratum PR you work directly with senior consultants and decision-makers. We provide you with personalized attention, faster response times, and solutions tailored specifically to your needs. Plus, we bring Fortune 500-level expertise at a more accessible scale and cost.',
+  'faq.company.why.answer': 'While larger firms often assign junior staff to your project, at Stratum PR you work directly with senior consultants and decision-makers. We provide personalized attention, faster response times, and solutions tailored specifically to your needs. Plus, we bring enterprise-level expertise at a more accessible scale and cost.',
   
   'faq.company.experience.question': 'What experience does your team have?',
   'faq.company.experience.answer': 'Our founding team brings over a decade of combined experience from leading projects at public and private organizations in Puerto Rico and the United States. We\'ve designed systems, dashboards, and automation tools that have delivered measurable results for organizations of all sizes.',
@@ -368,17 +368,17 @@ export const enTranslations: Record<string, string> = {
   
   // Project examples
   'projects.healthcare.title': 'Healthcare Data Integration Platform',
-  'projects.healthcare.client': 'Regional Healthcare Network',
+  'projects.healthcare.client': 'Healthcare Organization',
   'projects.healthcare.sector': 'Healthcare',
   'projects.healthcare.summary': 'Streamlined patient data across 12 facilities, reducing administrative overhead by 40% and improving care coordination.',
   
   'projects.municipal.title': 'Municipal Budget Transparency Dashboard',
-  'projects.municipal.client': 'Puerto Rico Municipality',
+  'projects.municipal.client': 'Municipal Government',
   'projects.municipal.sector': 'Government',
   'projects.municipal.summary': 'Created real-time budget tracking system that increased citizen engagement and improved fiscal accountability.',
   
   'projects.sales.title': 'Sales Performance Analytics Suite',
-  'projects.sales.client': 'Fortune 500 Technology Company',
+  'projects.sales.client': 'Technology Enterprise',
   'projects.sales.sector': 'Technology',
   'projects.sales.summary': 'Automated sales reporting pipeline that reduced manual work by 60% and improved forecast accuracy by 25%.',
   
