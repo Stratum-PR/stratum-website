@@ -32,26 +32,40 @@ export function getWelcomeEmailTemplate(data: EmailTemplateData): string {
   const isSpanish = language === 'es';
   
   const content = isSpanish ? {
-    title: '¡Bienvenido a Stratum PR!',
+    title: '¡Bienvenido a nuestro boletín!',
     greeting: 'Hola,',
-    welcome: 'Gracias por suscribirte a nuestro boletín. Estamos emocionados de tenerte como parte de nuestra comunidad.',
-    whatYoullReceive: 'Recibirás:',
-    bulletins: 'Boletines con las últimas actualizaciones',
-    updates: 'Actualizaciones sobre nuevos artículos y recursos',
-    educational: 'Contenido educativo sobre análisis de datos y automatización',
+    welcome: 'Gracias por suscribirte a nuestro boletín. Estamos emocionados de tenerte como parte de nuestra comunidad y compartir contigo contenido valioso que te ayudará a transformar tu negocio.',
+    whatYoullReceive: 'Como suscriptor, recibirás:',
+    bulletins: '📊 Boletines mensuales con las últimas tendencias en análisis de datos e inteligencia empresarial',
+    updates: '📝 Actualizaciones exclusivas sobre nuevos artículos, recursos y herramientas prácticas',
+    educational: '🎓 Contenido educativo sobre automatización, análisis predictivo y mejores prácticas de datos',
+    insights: '💡 Casos de estudio reales y ejemplos de cómo otras empresas están optimizando sus operaciones',
+    tips: '⚡ Consejos prácticos y guías paso a paso para implementar soluciones de datos en tu organización',
+    benefits: 'Al suscribirte, tendrás acceso a:',
+    benefit1: 'Estrategias probadas para reducir trabajo manual y aumentar la eficiencia',
+    benefit2: 'Guías prácticas sobre implementación de sistemas de datos y automatización',
+    benefit3: 'Análisis de tendencias del mercado y cómo aplicarlas a tu negocio',
+    benefit4: 'Recursos descargables y plantillas que puedes usar inmediatamente',
     followUs: 'Síguenos en nuestras redes sociales:',
     changeLanguage: 'Cambiar idioma de preferencia',
     unsubscribe: 'Cancelar suscripción',
     footer: 'Stratum PR - La Arquitectura de Mejores Decisiones',
     tagline: 'Tu socio estratégico para soluciones de inteligencia empresarial en Puerto Rico.'
   } : {
-    title: 'Welcome to Stratum PR!',
+    title: 'Welcome to our newsletter!',
     greeting: 'Hello,',
-    welcome: 'Thank you for subscribing to our newsletter. We\'re excited to have you as part of our community.',
-    whatYoullReceive: 'You\'ll receive:',
-    bulletins: 'Bulletins with the latest updates',
-    updates: 'Updates on new articles and resources',
-    educational: 'Educational content on data analytics and automation',
+    welcome: 'Thank you for subscribing to our newsletter. We\'re excited to have you as part of our community and share valuable content that will help you transform your business.',
+    whatYoullReceive: 'As a subscriber, you\'ll receive:',
+    bulletins: '📊 Monthly bulletins with the latest trends in data analytics and business intelligence',
+    updates: '📝 Exclusive updates on new articles, resources, and practical tools',
+    educational: '🎓 Educational content on automation, predictive analytics, and data best practices',
+    insights: '💡 Real case studies and examples of how other businesses are optimizing their operations',
+    tips: '⚡ Practical tips and step-by-step guides to implement data solutions in your organization',
+    benefits: 'By subscribing, you\'ll have access to:',
+    benefit1: 'Proven strategies to reduce manual work and increase efficiency',
+    benefit2: 'Practical guides on implementing data systems and automation',
+    benefit3: 'Market trend analysis and how to apply them to your business',
+    benefit4: 'Downloadable resources and templates you can use immediately',
     followUs: 'Follow us on social media:',
     changeLanguage: 'Change language preference',
     unsubscribe: 'Unsubscribe',
@@ -73,10 +87,10 @@ export function getWelcomeEmailTemplate(data: EmailTemplateData): string {
       <td align="center">
         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
           
-          <!-- Header with gradient background -->
+          <!-- Header with gradient background and colored logo -->
           <tr>
             <td style="background: linear-gradient(135deg, #266AB2 0%, #1E2B7E 100%); padding: 40px 30px; text-align: center;">
-              <img src="https://www.stratumpr.com/Stratum_Icon_whiteline%20ver%202.svg" alt="Stratum PR" style="height: 48px; margin-bottom: 16px;" />
+              <img src="https://www.stratumpr.com/StratumPR_Logo4.svg" alt="Stratum PR" style="height: 60px; margin-bottom: 20px; max-width: 200px;" />
               <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold; line-height: 1.3;">
                 ${content.title}
               </h1>
@@ -94,32 +108,54 @@ export function getWelcomeEmailTemplate(data: EmailTemplateData): string {
                 ${content.welcome}
               </p>
               
+              <!-- Benefits Section with Image -->
+              <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border: 2px solid #E6E08E; border-radius: 8px; padding: 25px; margin: 30px 0; text-align: center;">
+                <img src="https://www.stratumpr.com/img/working_zoom.jpeg" alt="Data Analytics" style="width: 100%; max-width: 400px; height: auto; border-radius: 6px; margin-bottom: 20px;" />
+                <p style="margin: 0 0 15px 0; color: #266AB2; font-size: 20px; font-weight: 700;">
+                  ${content.benefits}
+                </p>
+                <ul style="margin: 0; padding-left: 0; list-style: none; color: #555555; font-size: 15px; line-height: 2;">
+                  <li style="margin-bottom: 12px;">✓ ${content.benefit1}</li>
+                  <li style="margin-bottom: 12px;">✓ ${content.benefit2}</li>
+                  <li style="margin-bottom: 12px;">✓ ${content.benefit3}</li>
+                  <li style="margin-bottom: 12px;">✓ ${content.benefit4}</li>
+                </ul>
+              </div>
+              
               <div style="background-color: #f8f9fa; border-left: 4px solid #266AB2; padding: 20px; margin: 30px 0; border-radius: 4px;">
                 <p style="margin: 0 0 12px 0; color: #266AB2; font-size: 18px; font-weight: 600;">
                   ${content.whatYoullReceive}
                 </p>
                 <ul style="margin: 0; padding-left: 20px; color: #555555; font-size: 15px; line-height: 1.8;">
-                  <li style="margin-bottom: 8px;">${content.bulletins}</li>
-                  <li style="margin-bottom: 8px;">${content.updates}</li>
-                  <li style="margin-bottom: 8px;">${content.educational}</li>
+                  <li style="margin-bottom: 10px;">${content.bulletins}</li>
+                  <li style="margin-bottom: 10px;">${content.updates}</li>
+                  <li style="margin-bottom: 10px;">${content.educational}</li>
+                  <li style="margin-bottom: 10px;">${content.insights}</li>
+                  <li style="margin-bottom: 10px;">${content.tips}</li>
                 </ul>
               </div>
               
-              <!-- Social Media Links -->
+              <!-- Social Media Links with Icons -->
               <div style="margin: 40px 0; text-align: center;">
                 <p style="margin: 0 0 20px 0; color: #333333; font-size: 16px; font-weight: 600;">
                   ${content.followUs}
                 </p>
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
                   <tr>
-                    <td style="padding: 0 10px;">
-                      <a href="https://linkedin.com/company/stratumpr" style="display: inline-block; padding: 12px 24px; background-color: #0077b5; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600;">LinkedIn</a>
+                    <td style="padding: 0 15px;">
+                      <a href="https://linkedin.com/company/stratumpr" style="display: inline-block; text-decoration: none;">
+                        <img src="https://cdn.simpleicons.org/linkedin/0077b5" alt="LinkedIn" style="width: 40px; height: 40px; border-radius: 50%;" />
+                      </a>
                     </td>
-                    <td style="padding: 0 10px;">
-                      <a href="https://www.facebook.com/profile.php?id=61577145020919" style="display: inline-block; padding: 12px 24px; background-color: #1877f2; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600;">Facebook</a>
+                    <td style="padding: 0 15px;">
+                      <a href="https://www.facebook.com/profile.php?id=61577145020919" style="display: inline-block; text-decoration: none;">
+                        <img src="https://cdn.simpleicons.org/facebook/1877f2" alt="Facebook" style="width: 40px; height: 40px; border-radius: 50%;" />
+                      </a>
                     </td>
-                    <td style="padding: 0 10px;">
-                      <a href="https://www.instagram.com/stratum.pr/" style="display: inline-block; padding: 12px 24px; background-color: #E4405F; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 14px; font-weight: 600;">Instagram</a>
+                    <td style="padding: 0 15px;">
+                      <a href="https://www.instagram.com/stratum.pr/" style="display: inline-block; text-decoration: none;">
+                        <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram" style="width: 40px; height: 40px; border-radius: 50%;" />
+                      </a>
                     </td>
                   </tr>
                 </table>
@@ -146,21 +182,14 @@ export function getWelcomeEmailTemplate(data: EmailTemplateData): string {
               </p>
               
               <!-- Preferences Links -->
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: 20px 0;">
-                <tr>
-                  <td style="padding: 0 10px;">
-                    <a href="${languageUrl}" style="color: #266AB2; text-decoration: underline; font-size: 12px;">
-                      ${content.changeLanguage}
-                    </a>
-                  </td>
-                  <td style="padding: 0 10px; color: #cccccc;">|</td>
-                  <td style="padding: 0 10px;">
-                    <a href="${unsubscribeUrl}" style="color: #999999; text-decoration: underline; font-size: 12px;">
-                      ${content.unsubscribe}
-                    </a>
-                  </td>
-                </tr>
-              </table>
+              <div style="margin: 25px 0; text-align: center;">
+                <a href="${languageUrl}" style="color: #266AB2; text-decoration: underline; font-size: 13px; margin-right: 20px;">
+                  ${content.changeLanguage}
+                </a>
+                <a href="${unsubscribeUrl}" style="display: inline-block; color: #dc2626; text-decoration: none; font-size: 13px; padding: 8px 16px; border: 1px solid #dc2626; border-radius: 4px; background-color: #ffffff; font-weight: 600;">
+                  ${content.unsubscribe}
+                </a>
+              </div>
               
               <p style="margin: 20px 0 0 0; color: #999999; font-size: 11px; line-height: 1.5;">
                 ${isSpanish 

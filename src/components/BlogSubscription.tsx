@@ -64,9 +64,16 @@ export const BlogSubscription = () => {
           {/* Form on second line */}
           <div className="w-full">
             {status === 'success' ? (
-              <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                <p className="font-telegraf text-sm text-green-800">{message}</p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                  <p className="font-telegraf text-sm text-green-800">{message}</p>
+                </div>
+                <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="font-telegraf text-xs text-blue-800">
+                    {t('blog.subscribe.spamNotice')}
+                  </p>
+                </div>
               </div>
             ) : status === 'error' ? (
               <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">

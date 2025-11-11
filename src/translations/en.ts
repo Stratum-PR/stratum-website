@@ -454,6 +454,7 @@ export const enTranslations: Record<string, string> = {
   'blog.detail.aboutAuthor': 'About the Author',
   'blog.detail.articleTags': 'Article Tags',
   'blog.subscribe.success': 'Thank you for subscribing! You\'ll receive our latest updates via email.',
+  'blog.subscribe.spamNotice': '📧 If you don\'t see our welcome email in your inbox, please check your spam or junk folder and mark it as "Not Spam" to ensure you receive future emails.',
   'blog.subscribe.error': 'Something went wrong. Please try again later.',
   
   // Resources modal

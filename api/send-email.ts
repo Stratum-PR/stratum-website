@@ -25,7 +25,7 @@ export default async function handler(
   }
 
   try {
-    const { to, subject, html, from } = req.body;
+    const { to, subject, html, text, from, replyTo } = req.body;
 
     // Validate required fields
     if (!to || !subject || !html) {
@@ -47,12 +47,17 @@ export default async function handler(
     // Use custom domain email - domain must be verified in Resend dashboard
     // If domain not verified, fall back to verified email
     let fromEmail = from || process.env.FROM_EMAIL || 'Stratum PR <contact@stratumpr.com>';
+    const replyToEmail = replyTo || 'contact@stratumpr.com';
     
     // Check if from email contains info@stratumpr.com and domain might not be verified
     // If so, try with contact@stratumpr.com first, then fall back to onboarding@resend.dev
     const isInfoEmail = fromEmail.includes('info@stratumpr.com');
     const fallbackFrom = process.env.FROM_EMAIL || 'Stratum PR <contact@stratumpr.com>';
     const testFrom = 'onboarding@resend.dev';
+    
+    // Generate unsubscribe URL from email if available
+    const unsubscribeUrl = `https://www.stratumpr.com/unsubscribe?email=${encodeURIComponent(to)}`;
+    const unsubscribeMailto = `mailto:contact@stratumpr.com?subject=Unsubscribe&body=Please unsubscribe ${encodeURIComponent(to)}`;
 
     // Send email via Resend API
     let response;
@@ -71,7 +76,15 @@ export default async function handler(
           from: fromEmail,
           to,
           subject,
-          html
+          html,
+          text: text || undefined, // Plain text version for better deliverability
+          reply_to: replyToEmail,
+          headers: {
+            'List-Unsubscribe': `<${unsubscribeUrl}>, <${unsubscribeMailto}>`,
+            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+            'X-Entity-Ref-ID': `newsletter-${Date.now()}`,
+            'Precedence': 'bulk'
+          }
         })
       });
 
