@@ -51,9 +51,9 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <div className="pt-[50px]">
+    <div>
       {/* Hero Section with Background  */}
-      <section className="relative pt-8 pb-6 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
@@ -67,10 +67,10 @@ const FAQ: React.FC = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-2xl md:text-3xl text-white drop-shadow-lg mb-3">
+          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
             {t('faq.hero.title')}
           </h1>
-          <p className="font-telegraf text-base md:text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
             {t('faq.hero.description')}
           </p>
         </div>
@@ -118,8 +118,11 @@ const FAQ: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-8 bg-gradient-to-r from-primary to-secondary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <section className="relative flex items-center justify-center overflow-hidden py-8 bg-gradient-to-tl from-primary via-primary-800 to-secondary text-white">
+        {/* Dark overlay for better text contrast - same as footer sections */}
+        <div className="absolute inset-0 bg-black/40 z-0"></div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-telegraf font-bold text-2xl md:text-3xl mb-4">
             {t('faq.cta.title')}
           </h2>

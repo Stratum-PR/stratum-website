@@ -25,10 +25,17 @@ export const esTranslations: Record<string, string> = {
   // Home page
   'home.hero.title': 'Pasa menos tiempo en administración, más en crecimiento',
   'home.hero.subtitle': '',
-  'home.hero.badge': '100% Basado en Puerto Rico',
+  'home.hero.badge': 'Empresa 100% Puertorriqueña',
   'home.hero.description': 'Entendemos lo que los negocios locales necesitan y construimos sistemas de datos inteligentes que reducen el trabajo manual y optimizan las operaciones, todo sin que necesites contratar un equipo de manejo de datos.',
   'home.hero.cta.primary': 'Agendar Consulta Gratuita',
   'home.hero.cta.secondary': 'Haz tu Evaluación de Sistemas',
+  'home.hero.carousel.baseText': 'Proveemos',
+  'home.hero.carousel.word1': 'Análisis de Datos',
+  'home.hero.carousel.word2': 'Automatización',
+  'home.hero.carousel.word3': 'Transformación Digital',
+  'home.hero.carousel.word4': 'Integración de IA',
+  'home.hero.carousel.word5': 'Sistemas Inteligentes',
+  'home.hero.carousel.word6': 'Implementación de CRM',
   
   // Problem Section
   'home.problem.title': '¿Estas situaciones te están afectando?',
@@ -336,7 +343,7 @@ export const esTranslations: Record<string, string> = {
   
   // Footer
   'footer.tagline': 'La Arquitectura de Mejores Decisiones. Nos especializamos en soluciones de análisis y consultoría que impulsan resultados empresariales estratégicos.',
-  'footer.companyName': 'Stratum PR - La Arquitectura de Mejores Decisiones.',
+  'footer.companyName': 'Stratum PR La Arquitectura de Mejores Decisiones.',
   'footer.description': 'Tu socio estratégico para soluciones de inteligencia empresarial en Puerto Rico.',
   'footer.navigation': 'Navegación',
   'footer.quicklinks': 'Enlaces Rápidos',

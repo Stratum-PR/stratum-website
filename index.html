@@ -87,8 +87,8 @@
       #root { min-height: 100vh; }
       .font-telegraf { font-family: Inter, system-ui, sans-serif; }
       /* Prevent layout shift for header */
-      header { height: 80px; }
-      @media (max-width: 1024px) { header { height: 96px; } }
+      header { height: 56px; }
+      @media (min-width: 768px) { header { height: 64px; } }
       /* Prevent hero section layout shift */
       .hero-section { 
         min-height: 100vh; 
@@ -123,17 +123,17 @@
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     </noscript>
 
-    <!-- Favicons with optimal sizes -->
-    <link rel="icon" type="image/svg+xml" href="/Favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <!-- Favicons with optimal sizes - Order matters for mobile compatibility -->
     <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/svg+xml" href="/Favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Primary Meta Tags -->
-    <title>AI Consulting Puerto Rico | Data Analytics - Stratum PR</title>
-    <meta name="title" content="AI Consulting Puerto Rico | Data Analytics - Stratum PR" />
+    <title>Stratum PR</title>
+    <meta name="title" content="Stratum PR" />
     <meta name="description" content="Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, and predictive modeling. 100% Puerto Rico based. Free consultation available." />
     <meta name="keywords" content="AI consulting Puerto Rico, data analytics consulting Puerto Rico, AI business automation Puerto Rico, CRM Puerto Rico, CRM implementation consulting Puerto Rico, commercial automation Puerto Rico, big data analytics consulting, business intelligence Puerto Rico, Salesforce implementation Puerto Rico, predictive modeling services Puerto Rico, machine learning consulting Puerto Rico, digital transformation consulting Puerto Rico, data analytics services, business automation solutions Puerto Rico" />
     <meta name="author" content="Stratum PR" />
@@ -145,25 +145,32 @@
     <link rel="alternate" hreflang="es" href="https://www.stratumpr.com/" />
     <link rel="alternate" hreflang="x-default" href="https://www.stratumpr.com/" />
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.stratumpr.com/" />
     <meta property="og:site_name" content="Stratum PR" />
-    <meta property="og:title" content="AI Consulting Puerto Rico | Data Analytics & CRM Implementation Services - Stratum PR" />
-    <meta property="og:description" content="Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, commercial automation, and predictive modeling. 100% Puerto Rico based." />
-    <meta property="og:image" content="https://www.stratumpr.com/img/stratum-pr-og-image.jpg" />
+    <meta property="og:title" content="Stratum PR" />
+    <meta property="og:description" content="The Architecture of Better Decisions. Data Analytics and AI Services in Puerto Rico." />
+    <meta property="og:image" content="https://www.stratumpr.com/img/StratumPR-Preview-Image.jpg" />
+    <meta property="og:image:secure_url" content="https://www.stratumpr.com/img/StratumPR-Preview-Image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Stratum PR - The Architecture of Better Decisions" />
     <meta property="og:locale" content="en_US" />
+    
+    <!-- Apple / iMessage specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Stratum PR" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@stratumpr" />
     <meta name="twitter:creator" content="@stratumpr" />
-    <meta name="twitter:title" content="AI Consulting Puerto Rico | Data Analytics & CRM Implementation Services - Stratum PR" />
-    <meta name="twitter:description" content="Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, commercial automation, and predictive modeling. 100% Puerto Rico based." />
-    <meta name="twitter:image" content="https://www.stratumpr.com/img/stratum-pr-twitter-card.jpg" />
+    <meta name="twitter:title" content="Stratum PR" />
+    <meta name="twitter:description" content="Data Analytics and AI Implementation services in Puerto Rico. Transform your business with strategic data solutions." />
+    <meta name="twitter:image" content="https://www.stratumpr.com/img/StratumPR-Preview-Image.jpg" />
 
     <!-- Geo location -->
     <meta name="geo.region" content="PR" />
@@ -174,6 +181,9 @@
     <!-- Preload critical assets for faster LCP -->
     <link rel="preload" as="image" href="/lovable-uploads/2fa2d4e2-201d-491d-abf3-9f4702b8293c.png" fetchpriority="high" />
     <link rel="preload" as="image" href="/img/Icon 1.png" fetchpriority="high" />
+    <!-- Preload burger menu logos to prevent pop-in -->
+    <link rel="preload" as="image" href="/Stratum_Icon_whiteline ver 2.svg" />
+    <link rel="preload" as="image" href="/img/Logo_Text_Only.svg" />
 
     <!-- Resource hints for better performance -->
     <link rel="modulepreload" href="/src/main.tsx" />

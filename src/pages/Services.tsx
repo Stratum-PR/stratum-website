@@ -1,4 +1,6 @@
 
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ServicesHero } from "@/components/ServicesHero";
@@ -8,6 +10,8 @@ import { ServicesCTA } from "@/components/ServicesCTA";
 
 const Services = () => {
   const { t, language } = useLanguage();
+  const location = useLocation();
+  const [highlightedServiceId, setHighlightedServiceId] = useState<string | null>(null);
   
   // Dynamic SEO data based on language
   const seoData = language === 'es' ? {
@@ -62,10 +66,43 @@ const Services = () => {
     }
   }, "services");
 
+  // Scroll to service card when hash is present in URL and highlight it
+  useEffect(() => {
+    if (location.hash) {
+      // Extract service ID from hash (e.g., #service-data-integration -> data-integration)
+      const serviceId = location.hash.replace('#service-', '');
+      setHighlightedServiceId(serviceId);
+      
+      // Wait for the page to render, then scroll to the element
+      const timer = setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          // Use scrollIntoView with block: 'start' and the CSS scroll-padding-top will handle the offset
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+      
+      // Remove highlight after 5 seconds
+      const highlightTimer = setTimeout(() => {
+        setHighlightedServiceId(null);
+      }, 5000);
+      
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(highlightTimer);
+      };
+    } else {
+      setHighlightedServiceId(null);
+    }
+  }, [location.hash]);
+
   return (
-    <div className="pt-20">
+    <div>
       <ServicesHero />
-      <ServicesGrid />
+      <ServicesGrid highlightedServiceId={highlightedServiceId} />
       <ProcessSection />
       <ServicesCTA />
     </div>

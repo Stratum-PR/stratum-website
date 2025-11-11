@@ -10,11 +10,11 @@ const Contact = () => {
   
   // Dynamic SEO data based on language
   const seoData = language === 'es' ? {
-    title: "Contacta Stratum PR - Consultoría Análisis de Datos Puerto Rico | Agenda Consulta Gratuita",
+    title: "Contacta Stratum PR - Consultoría Análisis de Datos",
     description: "Contacta Stratum PR para consultoría experta en análisis de datos en Puerto Rico. Agenda una consulta gratuita para implementación de CRM, automatización empresarial con IA y servicios de modelado predictivo. Ponte en contacto hoy.",
     keywords: "contactar Stratum PR, consulta análisis de datos Puerto Rico, cotización implementación CRM, contacto automatización empresarial IA, agendar consulta, consultoría análisis Puerto Rico"
   } : {
-    title: "Contact Stratum PR - Data Analytics Consulting Puerto Rico | Schedule Free Consultation",
+    title: "Contact Stratum PR - Data Analytics Consulting",
     description: "Contact Stratum PR for expert data analytics consulting in Puerto Rico. Schedule a free consultation for CRM implementation, AI business automation, and predictive modeling services. Get in touch today.",
     keywords: "contact Stratum PR, data analytics consultation Puerto Rico, CRM implementation quote, AI business automation contact, schedule consultation, analytics consulting Puerto Rico"
   };
@@ -49,9 +49,9 @@ const Contact = () => {
   }, "contact");
 
   return (
-    <div className="pt-[50px]">
+    <div>
       {/* Hero Section with Background */}
-      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
@@ -68,7 +68,7 @@ const Contact = () => {
           <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
             {t('contact.hero.title')}
           </h1>
-          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed">
             {t('contact.hero.description')}
           </p>
         </div>

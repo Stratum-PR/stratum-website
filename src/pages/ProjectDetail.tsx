@@ -120,9 +120,9 @@ const ProjectDetail = () => {
   // Prepare SEO data (must be called before any conditional returns to follow Rules of Hooks)
   const seoTitle = project 
     ? (language === 'es' 
-        ? (project.seoTitleEs || project.titleEs || project.title)
-        : (project.seoTitle || project.title))
-    : 'Project Not Found';
+        ? `${project.seoTitleEs || project.titleEs || project.title} - Stratum PR`
+        : `${project.seoTitle || project.title} - Stratum PR`)
+    : 'Project Not Found - Stratum PR';
   const seoDescription = project
     ? (language === 'es'
         ? (project.seoDescriptionEs || project.summaryEs || project.summary)
@@ -216,9 +216,9 @@ const ProjectDetail = () => {
   const IconComponent = (LucideIcons as any)[project.icon] || LucideIcons.FileText;
 
   return (
-    <div className="pt-[50px]">
+    <div>
       {/* Hero Section with Background */}
-      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
