@@ -429,19 +429,18 @@ const Home = () => {
             {/* Compact Dependency Flow */}
             <div className="relative mb-10 md:mb-12">
               <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                <div className="flex flex-col md:flex-row items-stretch justify-center gap-4 md:gap-6">
                   {/* Problem 1 */}
-                  <div className="flex-1 max-w-sm bg-white/80 border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-1">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative animate-icon-pulse-red-1">
+                  <div className="flex-1 max-w-sm border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-1 flex flex-col">
+                    <div className="flex items-start gap-4 flex-1">
+                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative">
                         <Database className="h-6 w-6 md:h-7 md:w-7 text-white" />
-                        <div className="absolute inset-0 rounded-full bg-red-500/50 animate-ping opacity-75"></div>
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col">
                         <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
                           {t('home.problem.box1.title')}
                         </h3>
-                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed">
+                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
                           {t('home.problem.box1.subtitle')}
                         </p>
                       </div>
@@ -458,17 +457,16 @@ const Home = () => {
                   </div>
 
                   {/* Problem 2 */}
-                  <div className="flex-1 max-w-sm bg-white/80 border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-2">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative animate-icon-pulse-red-2">
+                  <div className="flex-1 max-w-sm border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-2 flex flex-col">
+                    <div className="flex items-start gap-4 flex-1">
+                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative">
                         <Clock className="h-6 w-6 md:h-7 md:w-7 text-white" />
-                        <div className="absolute inset-0 rounded-full bg-red-500/50 animate-ping opacity-75" style={{animationDelay: '0.2s'}}></div>
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col">
                         <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
                           {t('home.problem.box2.title')}
                         </h3>
-                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed">
+                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
                           {t('home.problem.box2.subtitle')}
                         </p>
                       </div>
@@ -485,17 +483,16 @@ const Home = () => {
                   </div>
 
                   {/* Problem 3 */}
-                  <div className="flex-1 max-w-sm bg-white/80 border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-3">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative animate-icon-pulse-red-3">
+                  <div className="flex-1 max-w-sm border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-3 flex flex-col">
+                    <div className="flex items-start gap-4 flex-1">
+                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative">
                         <AlertTriangle className="h-6 w-6 md:h-7 md:w-7 text-white" />
-                        <div className="absolute inset-0 rounded-full bg-red-500/50 animate-ping opacity-75" style={{animationDelay: '0.4s'}}></div>
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col">
                         <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
                           {t('home.problem.box3.title')}
                         </h3>
-                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed">
+                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
                           {t('home.problem.box3.subtitle')}
                         </p>
                       </div>

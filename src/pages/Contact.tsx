@@ -68,7 +68,7 @@ const Contact = () => {
           <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
             {t('contact.hero.title')}
           </h1>
-          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed">
             {t('contact.hero.description')}
           </p>
         </div>

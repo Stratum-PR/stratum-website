@@ -67,10 +67,10 @@ const FAQ: React.FC = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-2xl md:text-3xl text-white drop-shadow-lg mb-3">
+          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
             {t('faq.hero.title')}
           </h1>
-          <p className="font-telegraf text-base md:text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
+          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed max-w-2xl mx-auto">
             {t('faq.hero.description')}
           </p>
         </div>
