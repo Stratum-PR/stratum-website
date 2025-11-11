@@ -9,17 +9,27 @@ export interface EmailTemplateData {
 
 // Generate unsubscribe URL
 function getUnsubscribeUrl(email: string, token?: string): string {
+  // Use production URL for emails - this ensures links work in production
+  // For local testing, users can manually navigate to /unsubscribe
   const baseUrl = 'https://www.stratumpr.com';
-  const params = new URLSearchParams({ email });
-  if (token) params.append('token', token);
+  const params = new URLSearchParams();
+  params.append('email', email);
+  if (token) {
+    params.append('token', token);
+  }
   return `${baseUrl}/unsubscribe?${params.toString()}`;
 }
 
 // Generate language preference change URL
 function getLanguagePreferenceUrl(email: string, token?: string): string {
+  // Use production URL for emails - this ensures links work in production
+  // For local testing, users can manually navigate to /email-preferences
   const baseUrl = 'https://www.stratumpr.com';
-  const params = new URLSearchParams({ email });
-  if (token) params.append('token', token);
+  const params = new URLSearchParams();
+  params.append('email', email);
+  if (token) {
+    params.append('token', token);
+  }
   return `${baseUrl}/email-preferences?${params.toString()}`;
 }
 
