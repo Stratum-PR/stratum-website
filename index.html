@@ -2,6 +2,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) - Only loads on production (main branch) -->
+    <script>
+      (function() {
+        'use strict';
+        // Only load Google Analytics on production domain (main branch)
+        // This ensures it won't track dev/staging/preview deployments
+        var hostname = window.location.hostname;
+        var isProduction = hostname === 'www.stratumpr.com' || 
+                         hostname === 'stratumpr.com';
+        
+        if (isProduction) {
+          // Google tag (gtag.js)
+          var script1 = document.createElement('script');
+          script1.async = true;
+          script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-CX4CZ333HX';
+          document.head.appendChild(script1);
+          
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-CX4CZ333HX');
+        }
+      })();
+    </script>
+    
     <!-- Critical Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -247,36 +272,6 @@
     }
     </script>
 
-    <!-- Defer Google Analytics for better performance -->
-    <script>
-      function loadGA() {
-        if (typeof gtag === 'undefined') {
-          const script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-          document.head.appendChild(script);
-          
-          script.onload = function() {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX', {
-              page_title: document.title,
-              page_location: window.location.href
-            });
-          };
-        }
-      }
-      
-      // Load GA after page load to not block rendering
-      if (document.readyState === 'complete') {
-        setTimeout(loadGA, 1000);
-      } else {
-        window.addEventListener('load', function() {
-          setTimeout(loadGA, 1000);
-        });
-      }
-    </script>
 
     <!-- Verification tags -->
     <meta name="google-site-verification" content="V4DBiNP1G6SHGIeWGpQpCure0tV7a0ILCaykbHIDfuY" />
