@@ -28,20 +28,41 @@ export default async function handler(
       });
     }
 
-    // TODO: In production, store unsubscribe status in a database
-    // For now, we'll just log it and return success
-    // You should integrate with your email service provider's unsubscribe API
-    // or store in a database (e.g., Supabase, MongoDB, etc.)
-    
     console.log(`Unsubscribe request for: ${email}`);
     
-    // Here you would:
-    // 1. Update database to mark email as unsubscribed
-    // 2. Remove from mailing list in your email service
-    // 3. Log the unsubscribe event
+    // Remove from Resend Audience if configured
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
+
+    if (RESEND_API_KEY && RESEND_AUDIENCE_ID) {
+      try {
+        // Update contact in Resend Audience to mark as unsubscribed
+        const resendResponse = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts/${encodeURIComponent(email)}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${RESEND_API_KEY}`
+          },
+          body: JSON.stringify({
+            unsubscribed: true
+          })
+        });
+
+        if (!resendResponse.ok) {
+          const errorData = await resendResponse.json();
+          console.error('Failed to update Resend audience:', errorData);
+          // Continue anyway - we still want to mark as unsubscribed
+        } else {
+          console.log(`Successfully unsubscribed ${email} from Resend audience`);
+        }
+      } catch (error) {
+        console.error('Error updating Resend audience:', error);
+        // Continue anyway - we still want to mark as unsubscribed
+      }
+    }
     
-    // For now, we'll just return success
-    // In production, implement actual unsubscribe logic
+    // TODO: In production, also store unsubscribe status in a database
+    // For now, Resend audience handles the unsubscribe status
     
     return res.status(200).json({ 
       success: true,

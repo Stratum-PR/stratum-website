@@ -59,6 +59,42 @@ export async function sendEmail(data: EmailData) {
   }
 }
 
+// Add subscriber to Resend Audience
+export async function addSubscriberToAudience(
+  email: string, 
+  language: 'en' | 'es' = 'en'
+) {
+  try {
+    const response = await fetch('/api/add-subscriber', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        language,
+        tags: ['newsletter', `language-${language}`]
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      // Don't throw error if subscriber already exists
+      if (data.message?.includes('already exists') || data.message?.includes('duplicate')) {
+        return data;
+      }
+      throw new Error(data.message || 'Failed to add subscriber to audience');
+    }
+
+    return data;
+  } catch (error: any) {
+    console.error('Add subscriber to audience error:', error);
+    // Don't throw - we still want to send the welcome email even if audience add fails
+    return null;
+  }
+}
+
 // Subscribe to blog updates
 export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en') {
   // Admin email will be handled by the serverless function
@@ -67,6 +103,12 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
   
   // Generate unsubscribe token (simple hash for now - in production, use a proper token system)
   const unsubscribeToken = btoa(`${email}-${Date.now()}`).replace(/[^a-zA-Z0-9]/g, '');
+  
+  // Add subscriber to Resend Audience (non-blocking)
+  // This allows the welcome email to be sent even if audience add fails
+  addSubscriberToAudience(email, language).catch(error => {
+    console.error('Failed to add subscriber to audience (non-critical):', error);
+  });
   
   // Use beautiful email template
   const subject = language === 'es' 
