@@ -129,11 +129,16 @@ const FAQ: React.FC = () => {
           <p className="font-telegraf text-base md:text-lg mb-6 text-primary-100 max-w-2xl mx-auto leading-relaxed">
             {t('faq.cta.description')}
           </p>
-          <Button asChild className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg text-base">
-            <a href="/contact">
-              {t('faq.cta.button')}
-            </a>
-          </Button>
+          <div className="relative inline-block">
+            <Button asChild className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:shadow-lg text-base">
+              <a href="/contact">
+                {t('faq.cta.button')}
+              </a>
+            </Button>
+            <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+              FREE
+            </span>
+          </div>
         </div>
       </section>
     </div>

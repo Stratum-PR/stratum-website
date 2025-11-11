@@ -399,18 +399,31 @@ export const Header = () => {
                     }
                     // Regular navigation items
                     return (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center ${
-                          isActive(item.href)
-                            ? 'text-black bg-accent border-l-4 border-accent'
-                            : 'text-white/90 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
-                        }`}
-                        onClick={closeMenu}
-                      >
-                        {item.name}
-                      </Link>
+                      <div key={item.href}>
+                        <Link
+                          to={item.href}
+                          className={`font-telegraf font-medium py-3 px-4 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center ${
+                            isActive(item.href)
+                              ? 'text-black bg-accent border-l-4 border-accent'
+                              : 'text-white/90 hover:text-white hover:bg-primary-800/50 active:bg-primary-800'
+                          }`}
+                          onClick={closeMenu}
+                        >
+                          {item.name}
+                        </Link>
+                        {/* Add "Book Free Consultation" under Contact */}
+                        {item.href === '/contact' && (
+                          <a
+                            href="https://calendly.com/admin-stratumpr/30min"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-telegraf font-medium py-3 px-4 pl-8 rounded-lg transition-all duration-200 text-base min-h-[44px] flex items-center text-white/80 hover:text-white hover:bg-primary-800/50 active:bg-primary-800"
+                            onClick={closeMenu}
+                          >
+                            {t('nav.schedule')}
+                          </a>
+                        )}
+                      </div>
                     );
                   })}
                 </nav>

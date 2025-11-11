@@ -18,20 +18,20 @@ export const esTranslations: Record<string, string> = {
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
   'nav.newsupdates': 'Noticias',
-  'nav.checklist': 'Haz tu Evaluación de Sistemas',
-  'nav.schedule': 'Agendar Consulta',
+  'nav.checklist': 'Obtén tu Evaluación de Sistemas',
+  'nav.schedule': 'Agenda una Consulta',
   'nav.faq': 'FAQ',
   
   // Home page
   'home.hero.title': 'Pasa menos tiempo en administración, más en crecimiento',
   'home.hero.subtitle': '',
   'home.hero.badge': 'Empresa 100% Puertorriqueña',
-  'home.hero.description': 'Entendemos lo que los negocios locales necesitan y construimos sistemas de datos inteligentes que reducen el trabajo manual y optimizan las operaciones, todo sin que necesites contratar un equipo de manejo de datos.',
+  'home.hero.description': 'El crecimiento trae consigo un aumento en tareas administrativas. Te ayudamos a implementar tecnología que asuma esa carga.',
   'home.hero.cta.primary': 'Agendar Consulta Gratuita',
   'home.hero.cta.secondary': 'Haz tu Evaluación de Sistemas',
   'home.hero.carousel.baseText': 'Proveemos',
   'home.hero.carousel.word1': 'Análisis de Datos',
-  'home.hero.carousel.word2': 'Automatización',
+  'home.hero.carousel.word2': 'Automatizaciones',
   'home.hero.carousel.word3': 'Transformación Digital',
   'home.hero.carousel.word4': 'Integración de IA',
   'home.hero.carousel.word5': 'Sistemas Inteligentes',
@@ -348,6 +348,9 @@ export const esTranslations: Record<string, string> = {
   'footer.navigation': 'Navegación',
   'footer.quicklinks': 'Enlaces Rápidos',
   'footer.contact': 'Contacto',
+  'footer.privacy': 'Política de Privacidad',
+  'footer.cookies': 'Política de Cookies',
+  'footer.terms': 'Términos de Servicio',
   'footer.copyright': 'Todos los derechos reservados.',
   
   // Common
@@ -380,6 +383,12 @@ export const esTranslations: Record<string, string> = {
   'projects.sales.client': 'Empresa Tecnológica',
   'projects.sales.sector': 'Tecnología',
   'projects.sales.summary': 'Pipeline de reportes de ventas automatizado que redujo el trabajo manual en un 60% y mejoró la precisión de pronósticos en un 25%.',
+  
+  // Cookie Policy Page
+  'cookies.page.title': 'Política de Cookies - Stratum PR',
+  'cookies.page.description': 'Aprende sobre cómo Stratum PR usa cookies en nuestro sitio web.',
+  'cookies.page.keywords': 'política de cookies, cookies, seguimiento, Stratum PR',
+  'cookies.page.intro': 'Stratum PR usa cookies para mejorar tu experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido. Esta Política de Cookies explica qué son las cookies, cómo las usamos y tus opciones respecto a su uso.',
   
   // Cookie Consent
   'cookie.title': 'Usamos cookies',
@@ -437,7 +446,12 @@ export const esTranslations: Record<string, string> = {
   // EDITAR ESTA LÍNEA: Cambiar texto de descripción de suscripción
   'blog.subscribe.description': 'Suscríbete a nuestro blog para recibir los últimos artículos directamente en tu bandeja de entrada.',
   'blog.subscribe.email.placeholder': 'Ingresa tu dirección de correo electrónico',
+  'blog.subscribe.language': 'Idioma del correo',
   'blog.subscribe.button': 'Suscribirse',
+  'blog.detail.author': 'Autor',
+  'blog.detail.published': 'Publicado',
+  'blog.detail.aboutAuthor': 'Sobre el Autor',
+  'blog.detail.articleTags': 'Etiquetas del Artículo',
   'blog.subscribe.success': '¡Gracias por suscribirte! Recibirás nuestras últimas actualizaciones por correo electrónico.',
   'blog.subscribe.error': 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.',
   
@@ -472,7 +486,10 @@ export const esTranslations: Record<string, string> = {
   'privacy.policy.contact.title': 'Contáctanos:',
   'privacy.policy.contact.info': 'Si tienes alguna pregunta o inquietud sobre nuestra política de privacidad, por favor contáctanos en',
   
-  // Terms of Use Modal
+  // Terms of Use Page
+  'terms.page.title': 'Términos de Servicio - Stratum PR',
+  'terms.page.description': 'Lee los términos y condiciones para usar el sitio web y servicios de Stratum PR.',
+  'terms.page.keywords': 'términos de servicio, términos y condiciones, legal, Stratum PR',
   'terms.title': 'Términos de Uso',
   'terms.intro': 'Estos términos y condiciones y todos los demás documentos legales incorporados por referencia (colectivamente, los "Términos") son un contrato legal entre "usted" y Stratum PR LLC (colectivamente "Stratum PR", "nosotros", "nuestro" o "nos") con respecto al acceso y uso de nuestras propiedades de internet asociadas (incluyendo sin limitación https://www.stratumpr.com/) como están vinculadas y ofrecidas por nosotros, nuestras subsidiarias y/o empresas afiliadas, y cualquier software que le proporcionemos para descargar en sus dispositivos (cada una una "aplicación") (todas estas colectivamente, el "Sitio").',
   'terms.important': 'IMPORTANTE – LEA CUIDADOSAMENTE – ESTOS TÉRMINOS GOBIERNAN SU USO DE ESTE SITIO. AL ACCEDER, VER, NAVEGAR, VISITAR O USAR ESTE SITIO USTED ACEPTA Y ACEPTA ESTAR OBLIGADO, SIN LIMITACIÓN O CALIFICACIÓN, POR ESTOS TÉRMINOS. SI NO ACEPTA ALGUNO DE ESTOS TÉRMINOS, POR FAVOR NO USE ESTE SITIO. STRATUM PR PUEDE, A SU SOLA DISCRECIÓN, MODIFICAR O REVISAR ESTOS TÉRMINOS EN CUALQUIER MOMENTO ACTUALIZANDO ESTE DOCUMENTO. USTED ESTÁ OBLIGADO POR CUALQUIER MODIFICACIÓN O REVISIÓN Y POR LO TANTO DEBE VISITAR ESTA PÁGINA PERIÓDICAMENTE PARA REVISAR ESTOS TÉRMINOS.',

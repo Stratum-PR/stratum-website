@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mail, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, CheckCircle, AlertCircle, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export const BlogSubscription = () => {
-  const { t, language } = useLanguage();
+  const { t, language: currentLanguage } = useLanguage();
   const [email, setEmail] = useState('');
+  const [emailLanguage, setEmailLanguage] = useState<'en' | 'es'>(currentLanguage as 'en' | 'es');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -19,7 +21,7 @@ export const BlogSubscription = () => {
     try {
       const { subscribeToBlog } = await import('@/services/resend');
       
-      await subscribeToBlog(email, language as 'en' | 'es');
+      await subscribeToBlog(email, emailLanguage);
       
       setStatus('success');
       setMessage(t('blog.subscribe.success'));
@@ -72,23 +74,38 @@ export const BlogSubscription = () => {
                 <p className="font-telegraf text-sm text-red-800">{message}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full">
-                <Input
-                  type="email"
-                  placeholder={t('blog.subscribe.email.placeholder')}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={status === 'loading'}
-                  className="flex-1 font-telegraf w-full sm:w-auto"
-                />
-                <Button 
-                  type="submit" 
-                  disabled={status === 'loading'}
-                  className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-6 whitespace-nowrap w-full sm:w-auto"
-                >
-                  {status === 'loading' ? 'Subscribing...' : t('blog.subscribe.button')}
-                </Button>
+              <form onSubmit={handleSubmit} className="space-y-3 w-full">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    type="email"
+                    placeholder={t('blog.subscribe.email.placeholder')}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    disabled={status === 'loading'}
+                    className="flex-1 font-telegraf w-full sm:w-auto"
+                  />
+                  <Button 
+                    type="submit" 
+                    disabled={status === 'loading'}
+                    className="bg-primary hover:bg-primary-800 text-white font-telegraf font-semibold px-6 whitespace-nowrap w-full sm:w-auto"
+                  >
+                    {status === 'loading' ? 'Subscribing...' : t('blog.subscribe.button')}
+                  </Button>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Globe className="h-4 w-4" />
+                  <span className="font-telegraf">{t('blog.subscribe.language')}:</span>
+                  <Select value={emailLanguage} onValueChange={(value: 'en' | 'es') => setEmailLanguage(value)}>
+                    <SelectTrigger className="w-32 h-8 text-sm font-telegraf">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="en">English</SelectItem>
+                      <SelectItem value="es">Español</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </form>
             )}
           </div>

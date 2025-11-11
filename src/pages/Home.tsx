@@ -20,7 +20,7 @@ const Home = () => {
   const [isClient, setIsClient] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
   
-  // Hydration optimization 
+  // Hydration optimization
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -111,22 +111,22 @@ const Home = () => {
           }
         },
         {
-          "@type": "WebPage",
-          "@id": "https://www.stratumpr.com/#webpage",
-          "url": "https://www.stratumpr.com/",
+      "@type": "WebPage",
+      "@id": "https://www.stratumpr.com/#webpage",
+      "url": "https://www.stratumpr.com/",
           "name": seoData.title,
           "description": seoData.description,
           "inLanguage": language === 'es' ? 'es' : 'en',
-          "isPartOf": {
-            "@id": "https://www.stratumpr.com/#website"
-          },
-          "about": {
-            "@type": "Thing",
+      "isPartOf": {
+        "@id": "https://www.stratumpr.com/#website"
+      },
+      "about": {
+        "@type": "Thing",
             "name": language === 'es' ? "Análisis de Datos y Automatización Empresarial" : "Data Analytics and Business Automation Consulting"
           }
-        },
+      },
         {
-          "@type": "LocalBusiness",
+        "@type": "LocalBusiness",
           "@id": "https://www.stratumpr.com/#business",
           "name": "Stratum PR",
           "alternateName": "Stratum Puerto Rico",
@@ -341,7 +341,7 @@ const Home = () => {
     <TooltipProvider>
       <div>
         {/* Hero Section - Techy animated background similar to Evertec */}
-        <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[100svh] sm:min-h-[90vh] bg-gradient-to-br from-primary via-primary-800 to-secondary pt-20 pb-12 sm:pt-16 sm:pb-12">
+        <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[100svh] sm:min-h-[85vh] md:min-h-[75vh] lg:min-h-[70vh] xl:min-h-[80vh] bg-gradient-to-br from-primary via-primary-800 to-secondary pt-20 pb-12 sm:pt-16 sm:pb-12">
           {/* Dark overlay for better text contrast */}
           <div className="absolute inset-0 bg-black/40 z-0"></div>
           
@@ -390,27 +390,37 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-slide-up px-2 sm:px-0" style={{animationDelay: '0.4s'}}>
+              <div className="relative w-full sm:w-auto">
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base sm:text-lg h-auto w-full sm:w-auto" 
+                  className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base sm:text-lg h-auto w-full sm:w-auto" 
                 aria-label="Schedule free consultation with Stratum PR data analytics experts"
               >
-                <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
+                  <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
                   {t('home.hero.cta.primary')}
-                  <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 inline" aria-hidden="true" />
+                    <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 inline" aria-hidden="true" />
                 </a>
               </Button>
+                <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+                  FREE
+                </span>
+              </div>
 
-              <Button 
-                onClick={() => setShowComingSoon(true)}
-                variant="outline" 
-                size="lg" 
-                className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary font-telegraf font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base sm:text-lg h-auto w-full sm:w-auto" 
-                aria-label="Take the Systems Assessment"
-              >
-                {t('home.hero.cta.secondary')}
-              </Button>
+              <div className="relative w-full sm:w-auto">
+                <Button 
+                  onClick={() => setShowComingSoon(true)}
+                  variant="outline" 
+                  size="lg" 
+                  className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary font-telegraf font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base sm:text-lg h-auto w-full sm:w-auto" 
+                  aria-label="Take the Systems Assessment"
+                >
+                  {t('home.hero.cta.secondary')}
+                </Button>
+                <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+                  FREE
+                </span>
+              </div>
             </div>
           </div>
         </section>
@@ -440,17 +450,17 @@ const Home = () => {
                     <div className="flex items-start gap-4 flex-1">
                       <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative">
                         <Database className="h-6 w-6 md:h-7 md:w-7 text-white" />
-                      </div>
+                  </div>
                       <div className="flex-1 min-w-0 flex flex-col">
                         <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
-                          {t('home.problem.box1.title')}
-                        </h3>
+                    {t('home.problem.box1.title')}
+                  </h3>
                         <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
-                          {t('home.problem.box1.subtitle')}
-                        </p>
+                    {t('home.problem.box1.subtitle')}
+                  </p>
                       </div>
-                    </div>
-                  </div>
+                </div>
+              </div>
 
                   {/* Arrow 1 */}
                   <div className="hidden md:flex flex-shrink-0 items-center relative">
@@ -469,14 +479,14 @@ const Home = () => {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
                         <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
-                          {t('home.problem.box2.title')}
-                        </h3>
+                    {t('home.problem.box2.title')}
+                  </h3>
                         <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
-                          {t('home.problem.box2.subtitle')}
-                        </p>
+                    {t('home.problem.box2.subtitle')}
+                  </p>
                       </div>
-                    </div>
-                  </div>
+                </div>
+              </div>
 
                   {/* Arrow 2 */}
                   <div className="hidden md:flex flex-shrink-0 items-center relative">
@@ -495,11 +505,11 @@ const Home = () => {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col">
                         <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
-                          {t('home.problem.box3.title')}
-                        </h3>
+                    {t('home.problem.box3.title')}
+                  </h3>
                         <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
-                          {t('home.problem.box3.subtitle')}
-                        </p>
+                    {t('home.problem.box3.subtitle')}
+                  </p>
                       </div>
                     </div>
                   </div>
@@ -539,8 +549,8 @@ const Home = () => {
                     <Link to="/about" className="text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 font-semibold">
                       {t('home.guide.moreAboutUs')}
                     </Link>
-                  </p>
-                </div>
+              </p>
+            </div>
 
                 {/* Puerto Rico Image */}
                 <div className="w-full">
@@ -548,7 +558,7 @@ const Home = () => {
                     <OptimizedImage 
                       src="https://images.unsplash.com/photo-1590099461831-30e3dacdca40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1200" 
                       alt="Puerto Rico - Modern Business and Technology Hub" 
-                      className="w-full h-full object-cover"
+                    className="w-full h-full object-cover"
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                       placeholderColor="#e0e7ef"
@@ -910,19 +920,24 @@ const Home = () => {
               {t('home.finalCta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
-                  {t('services.cta.consultation')}
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
+              <div className="relative">
+                <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                  <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
+                    {t('services.cta.consultation')}
+                  </a>
+                </Button>
+                <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+                  FREE
+                </span>
+              </div>
+              <Button 
+                asChild 
+                variant="outline" 
+                size="lg" 
                 className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105"
               >
                 <Link to="/contact" aria-label="Contact Stratum PR team for data analytics consulting">{t('services.cta.contact')}</Link>
-              </Button>
+            </Button>
             </div>
           </div>
         </section>

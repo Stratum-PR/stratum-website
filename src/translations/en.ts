@@ -26,7 +26,7 @@ export const enTranslations: Record<string, string> = {
   'home.hero.title': 'Spend less time on admin, more time on growth',
   'home.hero.subtitle': '',
   'home.hero.badge': '100% Puerto Rican Business',
-  'home.hero.description': 'We understand what local businesses need and build intelligent data systems that reduce manual work and optimize operations, all without you needing to hire a data management team.',
+  'home.hero.description': 'Growth brings an increase in administrative tasks. We help you implement technology that takes that load off.',
   'home.hero.cta.primary': 'Book Free Consultation',
   'home.hero.cta.secondary': 'Take our Systems Assessment',
   'home.hero.carousel.baseText': 'We power',
@@ -349,6 +349,9 @@ export const enTranslations: Record<string, string> = {
   'footer.navigation': 'Navigation',
   'footer.quicklinks': 'Quick Links',
   'footer.contact': 'Contact',
+  'footer.privacy': 'Privacy Policy',
+  'footer.cookies': 'Cookie Policy',
+  'footer.terms': 'Terms of Service',
   'footer.copyright': 'All rights reserved.',
   
   // Common
@@ -381,6 +384,12 @@ export const enTranslations: Record<string, string> = {
   'projects.sales.client': 'Technology Enterprise',
   'projects.sales.sector': 'Technology',
   'projects.sales.summary': 'Automated sales reporting pipeline that reduced manual work by 60% and improved forecast accuracy by 25%.',
+  
+  // Cookie Policy Page
+  'cookies.page.title': 'Cookie Policy - Stratum PR',
+  'cookies.page.description': 'Learn about how Stratum PR uses cookies on our website.',
+  'cookies.page.keywords': 'cookie policy, cookies, tracking, Stratum PR',
+  'cookies.page.intro': 'Stratum PR uses cookies to enhance your browsing experience, analyze site traffic, and personalize content. This Cookie Policy explains what cookies are, how we use them, and your choices regarding their use.',
   
   // Cookie Consent
   'cookie.title': 'We use cookies',
@@ -438,7 +447,12 @@ export const enTranslations: Record<string, string> = {
   // EDIT THIS LINE: Change subscription description text
   'blog.subscribe.description': 'Subscribe to our blog to receive the latest articles directly in your inbox.',
   'blog.subscribe.email.placeholder': 'Enter your email address',
+  'blog.subscribe.language': 'Email language',
   'blog.subscribe.button': 'Subscribe',
+  'blog.detail.author': 'Author',
+  'blog.detail.published': 'Published',
+  'blog.detail.aboutAuthor': 'About the Author',
+  'blog.detail.articleTags': 'Article Tags',
   'blog.subscribe.success': 'Thank you for subscribing! You\'ll receive our latest updates via email.',
   'blog.subscribe.error': 'Something went wrong. Please try again later.',
   
@@ -473,7 +487,10 @@ export const enTranslations: Record<string, string> = {
   'privacy.policy.contact.title': 'Contact Us:',
   'privacy.policy.contact.info': 'If you have any questions or concerns regarding our privacy policy, please contact us at',
   
-  // Terms of Use Modal
+  // Terms of Use Page
+  'terms.page.title': 'Terms of Service - Stratum PR',
+  'terms.page.description': 'Read the terms and conditions for using Stratum PR\'s website and services.',
+  'terms.page.keywords': 'terms of service, terms and conditions, legal, Stratum PR',
   'terms.title': 'Terms of Use',
   'terms.intro': 'These terms and conditions and all other legal documents incorporated by reference (collectively, the "Terms") are a legal contract between "you" and Stratum PR LLC (collectively "Stratum PR," "we," "our," or "us") with respect to access to and use of our associated internet properties (including without limitation https://www.stratumpr.com/) as linked and offered by us, our subsidiaries and/or affiliated companies, and any software that we provide to you for download in your devices (each an "application") (all of these collectively, the "Site").',
   'terms.important': 'IMPORTANT – PLEASE READ CAREFULLY – THESE TERMS GOVERN YOUR USE OF THIS SITE. BY ACCESSING, VIEWING, BROWSING, VISITING OR USING THIS SITE YOU ACCEPT AND AGREE TO BE BOUND, WITHOUT LIMITATION OR QUALIFICATION, BY THESE TERMS. IF YOU DO NOT ACCEPT ANY OF THESE TERMS, PLEASE DO NOT USE THIS SITE. STRATUM PR MAY, IN ITS SOLE DISCRETION, MODIFY OR REVISE THESE TERMS AT ANY TIME BY UPDATING THIS DOCUMENT. YOU ARE BOUND BY ANY SUCH MODIFICATION OR REVISION AND SHOULD THEREFORE VISIT THIS PAGE PERIODICALLY TO REVIEW THESE TERMS. IF ANY MODIFICATION IS NOT ACCEPTABLE TO YOU, YOUR SOLE REMEDY AND RECOURSE IS TO DISCONTINUE USE OF THIS SITE.',

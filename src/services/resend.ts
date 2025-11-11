@@ -2,6 +2,8 @@
 // This handles all email communications including blog subscriptions and checklist results
 // NOTE: API key is kept secure on the server - never exposed to browser
 
+import { getWelcomeEmailTemplate, getBlogNotificationTemplate, type EmailTemplateData } from '@/utils/emailTemplates';
+
 const API_ENDPOINT = 'https://api.resend.com/emails'
 
 interface EmailData {
@@ -58,26 +60,19 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
   // The serverless function reads ADMIN_EMAIL from environment variables
   const adminEmail = 'contact@stratumpr.com' // Fallback, but server will use ADMIN_EMAIL env var
   
-  // Send welcome email to subscriber
-  const subject = language === 'es' 
-    ? 'Bienvenido al Blog de Stratum PR' 
-    : 'Welcome to Stratum PR Blog'
+  // Generate unsubscribe token (simple hash for now - in production, use a proper token system)
+  const unsubscribeToken = btoa(`${email}-${Date.now()}`).replace(/[^a-zA-Z0-9]/g, '');
   
-  const html = language === 'es'
-    ? `
-      <h1>¡Gracias por suscribirte!</h1>
-      <p>Has sido agregado a nuestra lista de correo. Recibirás actualizaciones cuando publiquemos nuevos artículos del blog.</p>
-      <p>¿Necesitas ayuda con tus sistemas de datos? <a href="https://www.stratumpr.com/contact">Contáctanos</a></p>
-      <br>
-      <p style="color: #666; font-size: 12px;">Stratum PR - La Arquitectura de Mejores Decisiones</p>
-    `
-    : `
-      <h1>Thanks for subscribing!</h1>
-      <p>You've been added to our mailing list. You'll receive updates when we publish new blog posts.</p>
-      <p>Need help with your data systems? <a href="https://www.stratumpr.com/contact">Contact us</a></p>
-      <br>
-      <p style="color: #666; font-size: 12px;">Stratum PR - The Architecture of Better Decisions</p>
-    `
+  // Use beautiful email template
+  const subject = language === 'es' 
+    ? '¡Bienvenido a Stratum PR!' 
+    : 'Welcome to Stratum PR!'
+  
+  const html = getWelcomeEmailTemplate({
+    email,
+    language,
+    unsubscribeToken
+  });
 
   // Send notification to admin
   const adminSubject = language === 'es'
@@ -98,12 +93,17 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
       <p><strong>Date:</strong> ${new Date().toLocaleString('en-US')}</p>
     `
 
-  // Send both emails
+  // Send welcome email from info@stratumpr.com (newsletter email)
+  // NOTE: If info@stratumpr.com domain is not verified in Resend, it will automatically
+  // fall back to contact@stratumpr.com. Once you verify info@stratumpr.com in Resend,
+  // you can use it directly.
+  // Send admin notification from contact@stratumpr.com
   await Promise.all([
     sendEmail({
       to: email,
       subject,
-      html
+      html,
+      from: 'Stratum PR <info@stratumpr.com>' // Will auto-fallback to contact@ if not verified
     }),
     sendEmail({
       to: adminEmail,
@@ -213,37 +213,28 @@ export async function sendBlogNotification(
   language: 'en' | 'es' = 'en'
 ) {
   const subject = language === 'es'
-    ? `Nuevo Post: ${blogTitle}`
-    : `New Post: ${blogTitle}`
+    ? `Nuevo artículo: ${blogTitle}`
+    : `New article: ${blogTitle}`
   
-  const blogUrl = `https://www.stratumpr.com/blog/${blogSlug}`
-  
-  const html = language === 'es'
-    ? `
-      <h1>Nuevo Artículo del Blog</h1>
-      <h2>${blogTitle}</h2>
-      <p>${blogExcerpt}</p>
-      <p><a href="${blogUrl}" style="background-color: #1E2B7E; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">Leer Más</a></p>
-      <br>
-      <p style="color: #666; font-size: 12px;">Stratum PR - La Arquitectura de Mejores Decisiones</p>
-    `
-    : `
-      <h1>New Blog Post</h1>
-      <h2>${blogTitle}</h2>
-      <p>${blogExcerpt}</p>
-      <p><a href="${blogUrl}" style="background-color: #1E2B7E; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">Read More</a></p>
-      <br>
-      <p style="color: #666; font-size: 12px;">Stratum PR - The Architecture of Better Decisions</p>
-    `
-
-  // Send to multiple recipients
-  return Promise.all(to.map(email => 
-    sendEmail({
+  // Send to multiple recipients with their language preferences
+  // Note: In production, you'd want to store language preferences per email
+  return Promise.all(to.map(email => {
+    // Generate unsubscribe token for each recipient
+    const unsubscribeToken = btoa(`${email}-${Date.now()}`).replace(/[^a-zA-Z0-9]/g, '');
+    
+    const html = getBlogNotificationTemplate(blogTitle, blogExcerpt, blogSlug, {
+      email,
+      language,
+      unsubscribeToken
+    });
+    
+    return sendEmail({
       to: email,
       subject,
-      html
-    })
-  ))
+      html,
+      from: 'Stratum PR <info@stratumpr.com>' // Newsletter emails from info@stratumpr.com (auto-fallback if not verified)
+    });
+  }))
 }
 
 

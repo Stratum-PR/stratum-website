@@ -2,14 +2,14 @@ import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
 
-const Privacy: React.FC = () => {
+const Cookies: React.FC = () => {
   const { t } = useLanguage();
   
   useSEO({
-    title: t('privacy.page.title'),
-    description: t('privacy.page.description'),
-    keywords: t('privacy.page.keywords'),
-    canonical: "https://www.stratumpr.com/privacy",
+    title: t('cookies.page.title'),
+    description: t('cookies.page.description'),
+    keywords: t('cookies.page.keywords'),
+    canonical: "https://www.stratumpr.com/cookies",
   });
 
   return (
@@ -17,11 +17,11 @@ const Privacy: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="prose prose-lg max-w-none">
           <h1 className="text-4xl font-bold text-gray-900 mb-8 mt-8">
-            {t('privacy.title')}
+            {t('cookies.page.title')}
           </h1>
 
           <div className="text-gray-600 leading-relaxed space-y-6">
-            <p>{t('privacy.intro')}</p>
+            <p>{t('cookies.page.intro')}</p>
 
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">
@@ -56,22 +56,15 @@ const Privacy: React.FC = () => {
 
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">
-                {t('privacy.compliance.title')}
-              </h2>
-              <p>{t('privacy.compliance.description')}</p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">
                 {t('privacy.contact.title')}
               </h2>
               <p>
                 {t('privacy.contact.description')}{' '}
                 <a 
-                  href="mailto:info@stratumpr.com" 
+                  href="mailto:contact@stratumpr.com" 
                   className="text-blue-600 hover:text-blue-800 underline"
                 >
-                  info@stratumpr.com
+                  contact@stratumpr.com
                 </a>
               </p>
             </section>
@@ -82,4 +75,5 @@ const Privacy: React.FC = () => {
   );
 };
 
-export default Privacy;
+export default Cookies;
+
