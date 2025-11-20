@@ -27,6 +27,26 @@
       })();
     </script>
     
+    <!-- Microsoft Clarity - Only loads on production (main branch) -->
+    <script>
+      (function() {
+        'use strict';
+        // Only load Microsoft Clarity on production domain (main branch)
+        // This ensures it won't track dev/staging/preview deployments
+        var hostname = window.location.hostname;
+        var isProduction = hostname === 'www.stratumpr.com' || 
+                         hostname === 'stratumpr.com';
+        
+        if (isProduction) {
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "u8tw0omuua");
+        }
+      })();
+    </script>
+    
     <!-- Critical Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -91,6 +111,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.clarity.ms" crossorigin>
     <link rel="dns-prefetch" href="//images.unsplash.com">
     <link rel="dns-prefetch" href="//calendly.com">
 
