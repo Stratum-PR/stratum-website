@@ -371,8 +371,8 @@ const Home = () => {
                   ]}
                   colors={['#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E']}
                   className="block"
-                  typingSpeed={80}
-                  deletingSpeed={40}
+                  typingSpeed={100}
+                  deletingSpeed={60}
                   pauseDuration={2500}
                 />
               </div>

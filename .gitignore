@@ -26,3 +26,10 @@ dist-ssr
 .env
 .env.local
 .env.production
+.env.bak
+.env.backup
+.env.*
+
+# Pre-commit security reports
+reports/
+.last-commit-security-report.txt
