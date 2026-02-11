@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "studio": "sanity dev",
     "prepare": "husky",
-    "precommit": "node scripts/pre-commit-marketing"
+    "precommit": "node scripts/pre-commit-marketing.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
