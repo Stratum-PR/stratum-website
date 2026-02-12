@@ -8,6 +8,7 @@ import { Progress } from '@/components/ui/progress';
 import { CheckCircle, AlertCircle, Info, Mail, ArrowRight } from 'lucide-react';
 import { useSEO } from '@/hooks/useSEO';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { logger } from '@/lib/logger';
 
 interface Question {
   id: number;
@@ -292,7 +293,7 @@ const Checklist = () => {
       setEmailSubmitted(true);
       setEmailError(null);
     } catch (error: any) {
-      console.error('Error submitting email:', error);
+      logger.error('Error submitting email:', error);
       
       // Show helpful error message to user
       let errorMessage = language === 'es'

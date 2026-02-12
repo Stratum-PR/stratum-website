@@ -10,6 +10,7 @@ import { sanityClient, blogPostBySlugQuery, urlFor, isSanityConfigured } from '@
 import NotFound from './NotFound';
 import { PortableText } from '@/components/PortableText';
 import { BlogSubscription } from '@/components/BlogSubscription';
+import { logger } from '@/lib/logger';
 
 interface SanityBlogPost {
   _id: string;
@@ -53,23 +54,23 @@ const BlogDetail = () => {
         
         // Check if Sanity is configured
         if (!isSanityConfigured || !sanityClient) {
-          console.error('❌ Sanity is not configured - missing VITE_SANITY_PROJECT_ID');
+          logger.error('❌ Sanity is not configured - missing VITE_SANITY_PROJECT_ID');
           setError('Blog is not configured. Please set VITE_SANITY_PROJECT_ID in environment variables.');
           setLoading(false);
           return;
         }
         
-        console.log('📡 Fetching blog post by slug:', slug);
+        logger.log('📡 Fetching blog post by slug:', slug);
         const fetchedPost = await sanityClient.fetch<SanityBlogPost>(blogPostBySlugQuery, { slug });
         
-        console.log('✅ Fetched post:', fetchedPost ? 'Found' : 'Not found');
+        logger.log('✅ Fetched post:', fetchedPost ? 'Found' : 'Not found');
         
         if (!fetchedPost) {
-          console.error('❌ Post not found for slug:', slug);
+          logger.error('❌ Post not found for slug:', slug);
           setError('Post not found');
           setPost(null);
         } else {
-          console.log('Post data:', {
+          logger.log('Post data:', {
             id: fetchedPost._id,
             title: fetchedPost.title,
             hasContent: !!fetchedPost.content,
@@ -82,8 +83,8 @@ const BlogDetail = () => {
           setError(null);
         }
       } catch (err: any) {
-        console.error('❌ Error fetching blog post:', err);
-        console.error('Error details:', {
+        logger.error('❌ Error fetching blog post:', err);
+        logger.error('Error details:', {
           message: err?.message,
           statusCode: err?.statusCode,
           responseBody: err?.responseBody,
@@ -163,7 +164,7 @@ const BlogDetail = () => {
 
   // Validate content before rendering
   if (!content) {
-    console.error('❌ No content available for this post');
+    logger.error('❌ No content available for this post');
     return (
       <div className="pt-20 flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -188,7 +189,7 @@ const BlogDetail = () => {
       authorImage = urlFor(post.author.image).width(200).height(200).url();
     }
   } catch (err) {
-    console.warn('Error generating author image URL:', err);
+    logger.warn('Error generating author image URL:', err);
   }
   
   let authorBio = '';
@@ -197,7 +198,7 @@ const BlogDetail = () => {
       ? (post.author?.bioEs || post.author?.bio || '')
       : (post.author?.bio || '');
   } catch (err) {
-    console.warn('Error reading author bio:', err);
+    logger.warn('Error reading author bio:', err);
   }
   
   let mainImageUrl = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=630&fit=crop&crop=center';
@@ -206,7 +207,7 @@ const BlogDetail = () => {
       mainImageUrl = urlFor(post.mainImage).width(1200).height(630).url();
     }
   } catch (err) {
-    console.warn('Error generating main image URL:', err);
+    logger.warn('Error generating main image URL:', err);
   }
 
   return (

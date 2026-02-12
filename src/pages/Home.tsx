@@ -11,6 +11,7 @@ import { ComingSoonModal } from "@/components/ComingSoonModal";
 import { lazy, Suspense, useState, useEffect } from "react";
 import TechAnimatedBackground from "@/components/TechAnimatedBackground";
 import RotatingText from "@/components/RotatingText";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 // Lazy load non-critical components with better loading states
 const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSection"));
@@ -681,17 +682,17 @@ const Home = () => {
             <div className="flex flex-col space-y-4 sm:space-y-6">
               <div className="flex items-center gap-4 animate-fade-in-up" style={{animationDelay: '0.1s'}}>
                 <span className="bg-gradient-to-br from-primary to-primary-800 text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-telegraf font-bold text-lg sm:text-xl flex-shrink-0 shadow-lg hover-scale-icon primary-glow animate-float-slow">1</span>
-                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: t('home.plan.step1') }}>
+                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeHtml(t('home.plan.step1')) }}>
                 </p>
               </div>
               <div className="flex items-center gap-4 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
                 <span className="bg-gradient-to-br from-primary to-primary-800 text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-telegraf font-bold text-lg sm:text-xl flex-shrink-0 shadow-lg hover-scale-icon secondary-glow animate-float-slow" style={{animationDelay: '0.5s'}}>2</span>
-                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: t('home.plan.step2') }}>
+                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeHtml(t('home.plan.step2')) }}>
                 </p>
               </div>
               <div className="flex items-center gap-4 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
                 <span className="bg-gradient-to-br from-primary to-primary-800 text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-telegraf font-bold text-lg sm:text-xl flex-shrink-0 shadow-lg hover-scale-icon accent-glow animate-float-slow" style={{animationDelay: '1s'}}>3</span>
-                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: t('home.plan.step3') }}>
+                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeHtml(t('home.plan.step3')) }}>
                 </p>
               </div>
             </div>

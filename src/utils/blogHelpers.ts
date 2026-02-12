@@ -3,6 +3,7 @@ import { sanityClient, blogPostsQuery, blogPostBySlugQuery } from '@/lib/sanity'
 import { getAllBlogPosts, getBlogPostBySlug } from '@/data/blog';
 import { urlFor } from '@/lib/sanity';
 import { PortableText } from '@portabletext/react';
+import { logger } from '@/lib/logger';
 
 export interface SanityBlogPost {
   _id: string;
@@ -65,7 +66,7 @@ export async function fetchAllBlogPosts() {
       };
     }
   } catch (error) {
-    console.error('Error fetching Sanity posts:', error);
+    logger.error('Error fetching Sanity posts:', error);
     // If Sanity fails, just return hardcoded posts
   }
   
@@ -91,7 +92,7 @@ export async function fetchBlogPostBySlug(slug: string) {
         return { type: 'sanity', post: sanityPost };
       }
     } catch (error) {
-      console.error('Error fetching Sanity post:', error);
+      logger.error('Error fetching Sanity post:', error);
     }
   }
   

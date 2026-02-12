@@ -1,5 +1,6 @@
 import { PortableText as SanityPortableText } from '@portabletext/react'
 import { urlFor } from '@/lib/sanity'
+import { logger } from '@/lib/logger'
 
 // Custom components for Portable Text rendering
 const portableTextComponents = {
@@ -102,7 +103,7 @@ interface PortableTextProps {
 
 export const PortableText = ({ value }: PortableTextProps) => {
   if (!value) {
-    console.warn('PortableText: No value provided');
+    logger.warn('PortableText: No value provided');
     return null;
   }
   
@@ -117,7 +118,7 @@ export const PortableText = ({ value }: PortableTextProps) => {
       />
     );
   } catch (error) {
-    console.error('Error rendering PortableText:', error);
+    logger.error('Error rendering PortableText:', error);
     return (
       <div className="p-4 bg-red-50 border border-red-200 rounded">
         <p className="font-telegraf text-red-800">Error rendering content. Please try refreshing the page.</p>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Download, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { logger } from "@/lib/logger";
 
 interface PDFViewerProps {
   pdfUrl: string;
@@ -15,7 +16,7 @@ export const PDFViewer = ({ pdfUrl, title }: PDFViewerProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handlePdfError = () => {
-    console.log('PDF failed to load:', pdfUrl);
+    logger.log('PDF failed to load:', pdfUrl);
     setPdfError(true);
     setIsLoading(false);
   };

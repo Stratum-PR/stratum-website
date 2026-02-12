@@ -10,6 +10,7 @@ import ContactFormFields from "./ContactFormFields";
 import SecurityCaptcha from "./SecurityCaptcha";
 import ContactFormSuccess from "./ContactFormSuccess";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { logger } from "@/lib/logger";
 
 const ContactForm = () => {
   const { t, language } = useLanguage();
@@ -102,7 +103,7 @@ const ContactForm = () => {
       message: sanitizeInput(formData.message)
     };
 
-    console.log("Secure form submission:", {
+    logger.log("Secure form submission:", {
       ...sanitizedData,
       timestamp: new Date().toISOString(),
       userAgent: navigator.userAgent.substring(0, 100)
@@ -156,7 +157,7 @@ const ContactForm = () => {
             from: 'Stratum PR <contact@stratumpr.com>'
           });
         } catch (emailError) {
-          console.error('Error sending confirmation email:', emailError);
+          logger.error('Error sending confirmation email:', emailError);
           // Don't fail the form submission if confirmation email fails
         }
         
@@ -181,7 +182,7 @@ const ContactForm = () => {
         throw new Error("Form submission failed");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      logger.error("Error submitting form:", error);
       toast({
         title: "Submission Failed",
         description: "Something went wrong. Please try again later.",

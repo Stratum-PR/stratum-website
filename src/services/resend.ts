@@ -4,6 +4,7 @@
 
 import { getWelcomeEmailTemplate, getBlogNotificationTemplate, type EmailTemplateData } from '@/utils/emailTemplates';
 import { getWelcomeEmailPlainText, getBlogNotificationPlainText } from '@/utils/emailPlainText';
+import { logger } from '@/lib/logger';
 
 const API_ENDPOINT = 'https://api.resend.com/emails'
 
@@ -40,7 +41,7 @@ export async function sendEmail(data: EmailData) {
     const responseData = await response.json()
 
     if (!response.ok) {
-      console.error('Email API Error:', {
+      logger.error('Email API Error:', {
         status: response.status,
         statusText: response.statusText,
         error: responseData
@@ -50,7 +51,7 @@ export async function sendEmail(data: EmailData) {
 
     return responseData.data || responseData
   } catch (error: any) {
-    console.error('Email sending error:', error)
+    logger.error('Email sending error:', error)
     // Provide helpful error messages
     if (error.message?.includes('CORS') || error.message?.includes('Failed to fetch') || error.message?.includes('network')) {
       throw new Error('Email service is not available. Please try again later or contact support.')
@@ -89,7 +90,7 @@ export async function addSubscriberToAudience(
 
     return data;
   } catch (error: any) {
-    console.error('Add subscriber to audience error:', error);
+    logger.error('Add subscriber to audience error:', error);
     // Don't throw - we still want to send the welcome email even if audience add fails
     return null;
   }
@@ -107,7 +108,7 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
   // Add subscriber to Resend Audience (non-blocking)
   // This allows the welcome email to be sent even if audience add fails
   addSubscriberToAudience(email, language).catch(error => {
-    console.error('Failed to add subscriber to audience (non-critical):', error);
+    logger.error('Failed to add subscriber to audience (non-critical):', error);
   });
   
   // Use beautiful email template

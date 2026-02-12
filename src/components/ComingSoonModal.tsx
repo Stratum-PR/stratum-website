@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { logger } from '@/lib/logger';
 
 interface ComingSoonModalProps {
   open: boolean;
@@ -37,7 +38,7 @@ export const ComingSoonModal: React.FC<ComingSoonModalProps> = ({ open, onOpenCh
         setMessage('');
       }, 3000);
     } catch (error: any) {
-      console.error('Newsletter subscription error:', error);
+      logger.error('Newsletter subscription error:', error);
       setStatus('error');
       const errorMessage = error?.message || t('comingSoon.newsletter.error');
       setMessage(errorMessage);

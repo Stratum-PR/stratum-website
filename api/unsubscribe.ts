@@ -1,5 +1,6 @@
 // Vercel Serverless Function for Unsubscribe
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { logger } from '../lib/logger';
 
 export default async function handler(
   req: VercelRequest,
@@ -28,7 +29,7 @@ export default async function handler(
       });
     }
 
-    console.log(`Unsubscribe request for: ${email}`);
+    logger.log(`Unsubscribe request for: ${email}`);
     
     // Remove from Resend Audience if configured
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -50,13 +51,13 @@ export default async function handler(
 
         if (!resendResponse.ok) {
           const errorData = await resendResponse.json();
-          console.error('Failed to update Resend audience:', errorData);
+          logger.error('Failed to update Resend audience:', errorData);
           // Continue anyway - we still want to mark as unsubscribed
         } else {
-          console.log(`Successfully unsubscribed ${email} from Resend audience`);
+          logger.log(`Successfully unsubscribed ${email} from Resend audience`);
         }
       } catch (error) {
-        console.error('Error updating Resend audience:', error);
+        logger.error('Error updating Resend audience:', error);
         // Continue anyway - we still want to mark as unsubscribed
       }
     }
@@ -69,7 +70,7 @@ export default async function handler(
       message: 'Successfully unsubscribed'
     });
   } catch (error: any) {
-    console.error('Unsubscribe error:', error);
+    logger.error('Unsubscribe error:', error);
     return res.status(500).json({
       error: 'Internal server error',
       message: error.message || 'An unexpected error occurred'

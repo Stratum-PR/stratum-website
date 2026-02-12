@@ -7,6 +7,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { sanityClient, blogPostsQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import { BlogSubscription } from "@/components/BlogSubscription";
+import { logger } from "@/lib/logger";
 
 interface SanityBlogPost {
   _id: string;
@@ -40,7 +41,7 @@ const Blog = () => {
         // Check if Sanity is configured
         if (!isSanityConfigured || !sanityClient) {
           const errorMsg = 'Blog is not configured. Please set VITE_SANITY_PROJECT_ID and VITE_SANITY_DATASET in Vercel environment variables.';
-          console.error('❌ Sanity is not configured:', {
+          logger.error('❌ Sanity is not configured:', {
             isSanityConfigured,
             hasClient: !!sanityClient,
             projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'MISSING',
@@ -53,14 +54,14 @@ const Blog = () => {
           return;
         }
         
-        console.log('📡 Fetching blog posts from Sanity...');
-        console.log('Query:', blogPostsQuery);
-        console.log('Client config:', {
+        logger.log('📡 Fetching blog posts from Sanity...');
+        logger.log('Query:', blogPostsQuery);
+        logger.log('Client config:', {
           projectId: sanityClient.config().projectId,
           dataset: sanityClient.config().dataset,
           useCdn: sanityClient.config().useCdn,
         });
-        console.log('Environment:', {
+        logger.log('Environment:', {
           MODE: import.meta.env.MODE,
           PROD: import.meta.env.PROD,
           DEV: import.meta.env.DEV,
@@ -68,27 +69,27 @@ const Blog = () => {
         
         const posts = await sanityClient.fetch<SanityBlogPost[]>(blogPostsQuery);
         
-        console.log('✅ Fetched posts:', posts.length);
+        logger.log('✅ Fetched posts:', posts.length);
         if (posts.length > 0) {
-          console.log('First post:', {
+          logger.log('First post:', {
             id: posts[0]._id,
             title: posts[0].title,
             slug: posts[0].slug?.current,
           });
         } else {
-          console.warn('⚠️ No posts returned - check if posts are published with publishedAt date');
+          logger.warn('⚠️ No posts returned - check if posts are published with publishedAt date');
         }
         
         if (Array.isArray(posts)) {
           setBlogPosts(posts);
         } else {
-          console.error('❌ Unexpected response format:', posts);
+          logger.error('❌ Unexpected response format:', posts);
           setError('Invalid response from server');
           setBlogPosts([]);
         }
       } catch (err: any) {
-        console.error('❌ Error fetching blog posts:', err);
-        console.error('Error details:', {
+        logger.error('❌ Error fetching blog posts:', err);
+        logger.error('Error details:', {
           message: err?.message,
           statusCode: err?.statusCode,
           responseBody: err?.responseBody,
@@ -110,8 +111,8 @@ const Blog = () => {
         }
         
         // Log full error for debugging
-        console.error('Full error object:', err);
-        console.error('Error stack:', err?.stack);
+        logger.error('Full error object:', err);
+        logger.error('Error stack:', err?.stack);
         
         setError(errorMessage);
         setBlogPosts([]);

@@ -1,5 +1,6 @@
 
 import { sanityClient, projectsQuery, blogPostsQuery, isSanityConfigured } from '@/lib/sanity';
+import { logger } from '@/lib/logger';
 
 export interface SitemapEntry {
   loc: string;
@@ -66,7 +67,7 @@ export const generateSitemapEntries = async (): Promise<SitemapEntry[]> => {
         });
       }
     } catch (error) {
-      console.warn('⚠️ Failed to fetch projects for sitemap:', error);
+      logger.warn('⚠️ Failed to fetch projects for sitemap:', error);
       // Continue without projects if fetch fails
     }
 
@@ -89,7 +90,7 @@ export const generateSitemapEntries = async (): Promise<SitemapEntry[]> => {
         });
       }
     } catch (error) {
-      console.warn('⚠️ Failed to fetch blog posts for sitemap:', error);
+      logger.warn('⚠️ Failed to fetch blog posts for sitemap:', error);
       // Continue without blog posts if fetch fails
     }
   }

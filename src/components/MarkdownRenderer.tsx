@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useLanguage } from "@/contexts/LanguageContext";
+import { logger } from "@/lib/logger";
+import { logger } from "@/lib/logger";
 
 interface MarkdownRendererProps {
   resourceSlug: string;
@@ -41,7 +43,7 @@ export const MarkdownRenderer = ({ resourceSlug }: MarkdownRendererProps) => {
         contentCache.set(cacheKey, text);
         setContent(text);
       } catch (err) {
-        console.error('Error loading markdown content:', err);
+        logger.error('Error loading markdown content:', err);
         setError(err instanceof Error ? err.message : 'Failed to load content');
       } finally {
         setLoading(false);

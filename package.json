@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "studio": "sanity dev",
     "prepare": "husky",
-    "precommit": "node scripts/pre-commit-marketing.mjs"
+    "precommit": "node scripts/pre-commit-marketing.mjs",
+    "security-check": "node scripts/pre-commit-marketing.mjs --scan",
+    "security-history-scan": "node scripts/scan-history-for-secrets.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -48,12 +50,14 @@
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.11.0",
     "@tanstack/react-query": "^5.56.2",
+    "@types/dompurify": "^3.0.5",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
+    "dompurify": "^3.3.1",
     "embla-carousel-react": "^8.3.0",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
