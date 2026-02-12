@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { generateSitemapXml } from '@/utils/sitemapGenerator';
+import { logger } from '@/lib/logger';
 
 const Sitemap = () => {
   const [sitemapXml, setSitemapXml] = useState<string | null>(null);
@@ -20,7 +21,7 @@ const Sitemap = () => {
         // Replace the current page with the XML content
         window.location.replace(url);
       } catch (err: any) {
-        console.error('Error generating sitemap:', err);
+        logger.error('Error generating sitemap:', err);
         setError(err.message || 'Failed to generate sitemap');
       }
     };

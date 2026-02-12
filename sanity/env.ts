@@ -1,5 +1,6 @@
 // Environment variables for Sanity
 // Vite automatically loads .env files - we just need to access them correctly
+import { logger } from '../lib/logger';
 
 export const apiVersion = '2024-01-01'
 
@@ -31,13 +32,13 @@ export const dataset = getEnvVar('VITE_SANITY_DATASET', 'production')
 export const projectId = getEnvVar('VITE_SANITY_PROJECT_ID', '')
 
 if (!projectId) {
-  console.error('Missing VITE_SANITY_PROJECT_ID in environment variables')
-  console.error('Make sure you have a .env file in the project root with:')
-  console.error('  VITE_SANITY_PROJECT_ID=your_project_id_here')
-  console.error('  VITE_SANITY_DATASET=production')
-  console.error('')
-  console.error('Or add NEXT_PUBLIC_ versions for Sanity Studio compatibility:')
-  console.error('  NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id_here')
-  console.error('  NEXT_PUBLIC_SANITY_DATASET=production')
+  logger.error('Missing VITE_SANITY_PROJECT_ID in environment variables')
+  logger.error('Make sure you have a .env file in the project root with:')
+  logger.error('  VITE_SANITY_PROJECT_ID=your_project_id_here')
+  logger.error('  VITE_SANITY_DATASET=production')
+  logger.error('')
+  logger.error('Or add NEXT_PUBLIC_ versions for Sanity Studio compatibility:')
+  logger.error('  NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id_here')
+  logger.error('  NEXT_PUBLIC_SANITY_DATASET=production')
 }
 

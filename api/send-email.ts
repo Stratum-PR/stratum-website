@@ -3,6 +3,7 @@
 // API key is kept secure on the server - never exposed to browser
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { logger } from '../lib/logger';
 
 export default async function handler(
   req: VercelRequest,
@@ -17,7 +18,7 @@ export default async function handler(
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
   if (!RESEND_API_KEY) {
-    console.error('Resend API key is missing');
+    logger.error('Resend API key is missing');
     return res.status(500).json({ 
       error: 'Email service is not configured',
       message: 'RESEND_API_KEY environment variable is missing. Set it in Vercel dashboard (without VITE_ prefix).'
@@ -97,7 +98,7 @@ export default async function handler(
         data.message?.includes('domain') ||
         data.message?.includes('not verified')
       )) {
-        console.warn(`Failed to send with ${fromEmail}, trying fallback: ${fallbackFrom}`);
+        logger.warn(`Failed to send with ${fromEmail}, trying fallback: ${fallbackFrom}`);
         lastError = data;
         
         // Try with contact@stratumpr.com
@@ -119,7 +120,7 @@ export default async function handler(
         
         // If still fails, try onboarding@resend.dev (always works)
         if (!response.ok) {
-          console.warn(`Failed to send with ${fallbackFrom}, trying test email: ${testFrom}`);
+          logger.warn(`Failed to send with ${fallbackFrom}, trying test email: ${testFrom}`);
           lastError = data;
           
           response = await fetch('https://api.resend.com/emails', {
@@ -139,11 +140,11 @@ export default async function handler(
           data = await response.json();
         } else {
           // Success with fallback - log it
-          console.log(`Successfully sent email using fallback: ${fallbackFrom}`);
+          logger.log(`Successfully sent email using fallback: ${fallbackFrom}`);
         }
       }
     } catch (fetchError: any) {
-      console.error('Fetch error:', fetchError);
+      logger.error('Fetch error:', fetchError);
       return res.status(500).json({
         error: 'Network error',
         message: 'Failed to connect to email service'
@@ -151,7 +152,7 @@ export default async function handler(
     }
 
     if (!response.ok) {
-      console.error('Resend API Error:', {
+      logger.error('Resend API Error:', {
         status: response.status,
         statusText: response.statusText,
         error: data,
@@ -182,7 +183,7 @@ export default async function handler(
       data 
     });
   } catch (error: any) {
-    console.error('Email sending error:', error);
+    logger.error('Email sending error:', error);
     return res.status(500).json({
       error: 'Internal server error',
       message: error.message || 'An unexpected error occurred'

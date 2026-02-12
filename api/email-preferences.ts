@@ -1,5 +1,6 @@
 // Vercel Serverless Function for Email Preferences
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { logger } from '../lib/logger';
 
 export default async function handler(
   req: VercelRequest,
@@ -40,7 +41,7 @@ export default async function handler(
     // You should integrate with your email service provider's API
     // or store in a database (e.g., Supabase, MongoDB, etc.)
     
-    console.log(`Language preference update for ${email}: ${language}`);
+    logger.log(`Language preference update for ${email}: ${language}`);
     
     // Here you would:
     // 1. Update database with language preference
@@ -55,7 +56,7 @@ export default async function handler(
       message: 'Language preference updated successfully'
     });
   } catch (error: any) {
-    console.error('Email preferences error:', error);
+    logger.error('Email preferences error:', error);
     return res.status(500).json({
       error: 'Internal server error',
       message: error.message || 'An unexpected error occurred'

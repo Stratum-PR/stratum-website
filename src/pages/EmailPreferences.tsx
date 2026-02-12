@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { CheckCircle, AlertCircle, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
+import { logger } from '@/lib/logger';
 
 const EmailPreferences = () => {
   const [searchParams] = useSearchParams();
@@ -63,7 +64,7 @@ const EmailPreferences = () => {
         ? 'Tus preferencias de idioma han sido actualizadas exitosamente.'
         : 'Your language preferences have been successfully updated.');
     } catch (error: any) {
-      console.error('Preferences update error:', error);
+      logger.error('Preferences update error:', error);
       setStatus('error');
       setMessage(error?.message || (language === 'es'
         ? 'Ocurrió un error al actualizar las preferencias. Por favor, intenta de nuevo.'

@@ -17,6 +17,7 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
@@ -33,3 +34,6 @@ dist-ssr
 # Pre-commit security reports
 reports/
 .last-commit-security-report.txt
+
+# filter-branch temporary (remove with: rm -rf .git-rewrite)
+.git-rewrite/

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { logger } from '@/lib/logger';
 
 // This component renders Sanity Studio
 const Studio: React.FC = () => {
@@ -22,7 +23,7 @@ const Studio: React.FC = () => {
       }
       
       // Clear any existing content
-      containerRef.current.innerHTML = '';
+      containerRef.current.replaceChildren();
       
       // Import the config
       import('../../sanity.config').then((configModule) => {
@@ -30,7 +31,7 @@ const Studio: React.FC = () => {
         
         const studioConfig = configModule.default;
         
-        console.log('Rendering Sanity Studio...', { config: studioConfig });
+        logger.log('Rendering Sanity Studio...', { config: studioConfig });
         
         // Render the studio
         try {
@@ -46,19 +47,19 @@ const Studio: React.FC = () => {
           // Store cleanup function
           (containerRef.current as any).__cleanup = cleanup;
           setLoading(false);
-          console.log('Sanity Studio rendered successfully');
+          logger.log('Sanity Studio rendered successfully');
         } catch (renderError: any) {
-          console.error('Error rendering studio:', renderError);
+          logger.error('Error rendering studio:', renderError);
           setError(renderError.message || 'Failed to render Sanity Studio');
           setLoading(false);
         }
       }).catch((err) => {
-        console.error('Error loading Sanity config:', err);
+        logger.error('Error loading Sanity config:', err);
         setError(`Failed to load Sanity config: ${err.message}`);
         setLoading(false);
       });
     }).catch((err) => {
-      console.error('Error loading Sanity Studio:', err);
+      logger.error('Error loading Sanity Studio:', err);
       setError(`Failed to load Sanity Studio: ${err.message}`);
       setLoading(false);
     });

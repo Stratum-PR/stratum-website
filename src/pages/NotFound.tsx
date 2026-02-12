@@ -2,13 +2,14 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { logger } from "@/lib/logger";
 
 const NotFound = () => {
   const location = useLocation();
   const { t } = useLanguage();
 
   useEffect(() => {
-    console.error(
+    logger.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );

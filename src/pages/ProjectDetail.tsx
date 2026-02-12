@@ -8,6 +8,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { sanityClient, projectBySlugQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import * as LucideIcons from "lucide-react";
+import { logger } from "@/lib/logger";
 
 interface SanityProject {
   _id: string;
@@ -66,19 +67,19 @@ const ProjectDetail = () => {
         
         // Check if Sanity is configured
         if (!isSanityConfigured || !sanityClient) {
-          console.error('❌ Sanity is not configured - missing VITE_SANITY_PROJECT_ID');
+          logger.error('❌ Sanity is not configured - missing VITE_SANITY_PROJECT_ID');
           setError('Project is not configured. Please set VITE_SANITY_PROJECT_ID in environment variables.');
           setLoading(false);
           return;
         }
         
-        console.log('📡 Fetching project by slug:', slug);
+        logger.log('📡 Fetching project by slug:', slug);
         const fetchedProject = await sanityClient.fetch<SanityProject>(projectBySlugQuery, { slug });
         
-        console.log('✅ Fetched project:', fetchedProject ? 'Found' : 'Not found');
+        logger.log('✅ Fetched project:', fetchedProject ? 'Found' : 'Not found');
         
         if (!fetchedProject) {
-          console.error('❌ Project not found for slug:', slug);
+          logger.error('❌ Project not found for slug:', slug);
           setError('Project not found');
           setProject(null);
         } else {
@@ -86,8 +87,8 @@ const ProjectDetail = () => {
           setError(null);
         }
       } catch (err: any) {
-        console.error('❌ Error fetching project:', err);
-        console.error('Error details:', {
+        logger.error('❌ Error fetching project:', err);
+        logger.error('Error details:', {
           message: err?.message,
           statusCode: err?.statusCode,
           responseBody: err?.responseBody,

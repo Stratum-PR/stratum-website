@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Mail, CheckCircle, AlertCircle, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { logger } from '@/lib/logger';
 
 export const BlogSubscription = () => {
   const { t, language: currentLanguage } = useLanguage();
@@ -27,20 +28,11 @@ export const BlogSubscription = () => {
       setMessage(t('blog.subscribe.success'));
       setEmail('');
     } catch (error: any) {
-      console.error('Subscription error:', error);
+      logger.error('Subscription error:', error);
       setStatus('error');
-      // Show more detailed error message
       const errorMessage = error?.message || t('blog.subscribe.error');
       setMessage(errorMessage);
-      
-      // Log detailed error for debugging
-      if (import.meta.env.DEV) {
-        console.error('Detailed subscription error:', {
-          error,
-          message: error?.message,
-          stack: error?.stack
-        });
-      }
+      logger.error('Detailed subscription error:', { error, message: error?.message, stack: error?.stack });
     }
   };
 

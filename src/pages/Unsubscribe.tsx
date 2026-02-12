@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, AlertCircle, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
+import { logger } from '@/lib/logger';
 
 const Unsubscribe = () => {
   const [searchParams] = useSearchParams();
@@ -58,7 +59,7 @@ const Unsubscribe = () => {
         ? 'Te has desuscrito exitosamente. Ya no recibirás más correos de nuestro boletín.'
         : 'You have been successfully unsubscribed. You will no longer receive newsletter emails from us.');
     } catch (error: any) {
-      console.error('Unsubscribe error:', error);
+      logger.error('Unsubscribe error:', error);
       setStatus('error');
       setMessage(error?.message || (language === 'es'
         ? 'Ocurrió un error al cancelar la suscripción. Por favor, intenta de nuevo.'

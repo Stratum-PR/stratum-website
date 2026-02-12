@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { generateHoneypotField, checkRateLimit } from "@/utils/security";
+import { logger } from "@/lib/logger";
 
 export const useFormSecurity = () => {
   const [honeypotField, setHoneypotField] = useState("");
@@ -15,7 +16,7 @@ export const useFormSecurity = () => {
   const validateSecurity = (): { isValid: boolean; error?: string } => {
     // Check honeypot
     if (honeypotValue.trim() !== "") {
-      console.warn("Bot detected: honeypot filled");
+      logger.warn("Bot detected: honeypot filled");
       return { isValid: false, error: "Security validation failed" };
     }
 

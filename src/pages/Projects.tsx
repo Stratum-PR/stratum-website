@@ -7,6 +7,8 @@ import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { sanityClient, projectsQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import * as LucideIcons from "lucide-react";
+import { logger } from "@/lib/logger";
+import { logger } from "@/lib/logger";
 
 interface SanityProject {
   _id: string;
@@ -41,7 +43,7 @@ const Projects = () => {
         // Check if Sanity is configured
         if (!isSanityConfigured || !sanityClient) {
           const errorMsg = 'Projects are not configured. Please set VITE_SANITY_PROJECT_ID and VITE_SANITY_DATASET in Vercel environment variables.';
-          console.error('❌ Sanity is not configured:', {
+          logger.error('❌ Sanity is not configured:', {
             isSanityConfigured,
             hasClient: !!sanityClient,
             projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'MISSING',
@@ -54,30 +56,30 @@ const Projects = () => {
           return;
         }
         
-        console.log('📡 Fetching projects from Sanity...');
+        logger.log('📡 Fetching projects from Sanity...');
         const fetchedProjects = await sanityClient.fetch<SanityProject[]>(projectsQuery);
         
-        console.log('✅ Fetched projects:', fetchedProjects.length);
+        logger.log('✅ Fetched projects:', fetchedProjects.length);
         if (fetchedProjects.length > 0) {
-          console.log('First project:', {
+          logger.log('First project:', {
             id: fetchedProjects[0]._id,
             title: fetchedProjects[0].title,
             slug: fetchedProjects[0].slug?.current,
           });
         } else {
-          console.warn('⚠️ No projects returned - check if projects are published with publishedAt date');
+          logger.warn('⚠️ No projects returned - check if projects are published with publishedAt date');
         }
         
         if (Array.isArray(fetchedProjects)) {
           setProjects(fetchedProjects);
         } else {
-          console.error('❌ Unexpected response format:', fetchedProjects);
+          logger.error('❌ Unexpected response format:', fetchedProjects);
           setError('Invalid response from server');
           setProjects([]);
         }
       } catch (err: any) {
-        console.error('❌ Error fetching projects:', err);
-        console.error('Error details:', {
+        logger.error('❌ Error fetching projects:', err);
+        logger.error('Error details:', {
           message: err?.message,
           statusCode: err?.statusCode,
           responseBody: err?.responseBody,

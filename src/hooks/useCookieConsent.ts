@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 
 export interface CookiePreferences {
   essential: boolean;
@@ -25,7 +26,7 @@ export const useCookieConsent = () => {
         setPreferences(parsed);
         setHasConsent(true);
       } catch (error) {
-        console.error('Error parsing cookie consent:', error);
+        logger.error('Error parsing cookie consent:', error);
         setHasConsent(false);
       }
     } else {

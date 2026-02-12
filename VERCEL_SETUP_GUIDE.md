@@ -197,7 +197,7 @@ VITE_SANITY_DATASET=production
 ### Optional Variables (if using email)
 
 ```
-RESEND_API_KEY=your_resend_api_key
+RESEND_API_KEY=REPLACE_ME
 FROM_EMAIL=contact@stratumpr.com
 ADMIN_EMAIL=contact@stratumpr.com
 ```

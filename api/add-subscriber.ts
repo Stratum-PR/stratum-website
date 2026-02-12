@@ -1,5 +1,6 @@
 // Vercel Serverless Function to Add Subscriber to Resend Audience
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { logger } from '../lib/logger';
 
 export default async function handler(
   req: VercelRequest,
@@ -63,7 +64,7 @@ export default async function handler(
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Resend API Error:', data);
+      logger.error('Resend API Error:', data);
       
       // If contact already exists, that's okay - return success
       if (data.message?.includes('already exists') || 
@@ -89,7 +90,7 @@ export default async function handler(
       data 
     });
   } catch (error: any) {
-    console.error('Add subscriber error:', error);
+    logger.error('Add subscriber error:', error);
     return res.status(500).json({
       error: 'Internal server error',
       message: error.message || 'An unexpected error occurred'

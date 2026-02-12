@@ -1,5 +1,6 @@
 import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
+import { logger } from './logger'
 
 const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || ''
 const dataset = import.meta.env.VITE_SANITY_DATASET || 'production'
@@ -18,13 +19,13 @@ const logConfig = {
   isProd: import.meta.env.PROD,
   allEnvKeys: Object.keys(import.meta.env).filter(key => key.includes('SANITY')),
 }
-console.log('🔍 Sanity Client Config:', logConfig)
-console.log('🔍 Available SANITY env vars:', logConfig.allEnvKeys)
+logger.log('🔍 Sanity Client Config:', logConfig)
+logger.log('🔍 Available SANITY env vars:', logConfig.allEnvKeys)
 
 if (!projectId) {
-  console.error('❌ CRITICAL: VITE_SANITY_PROJECT_ID is missing!')
-  console.error('   Add it to your .env file: VITE_SANITY_PROJECT_ID=your_project_id')
-  console.error('   For Vercel: Add VITE_SANITY_PROJECT_ID in Environment Variables section')
+  logger.error('❌ CRITICAL: VITE_SANITY_PROJECT_ID is missing!')
+  logger.error('   Add it to your .env file: VITE_SANITY_PROJECT_ID=your_project_id')
+  logger.error('   For Vercel: Add VITE_SANITY_PROJECT_ID in Environment Variables section')
 }
 
 // Only create client if projectId is configured
@@ -54,12 +55,12 @@ if (projectId) {
   })
   
   if (useCdn) {
-    console.log('📡 Using Sanity CDN (requires CORS configuration for www.stratumpr.com)')
+    logger.log('📡 Using Sanity CDN (requires CORS configuration for www.stratumpr.com)')
   } else {
-    console.log('📡 Using Sanity Direct API (no CORS required)')
+    logger.log('📡 Using Sanity Direct API (no CORS required)')
   }
 } else {
-  console.warn('⚠️ Sanity client not initialized - VITE_SANITY_PROJECT_ID is missing')
+  logger.warn('⚠️ Sanity client not initialized - VITE_SANITY_PROJECT_ID is missing')
 }
 
 // Export client with null check helper
@@ -74,7 +75,7 @@ if (sanityClient) {
 
 export function urlFor(source: any) {
   if (!builder) {
-    console.warn('⚠️ Sanity image builder not available - VITE_SANITY_PROJECT_ID is missing')
+    logger.warn('⚠️ Sanity image builder not available - VITE_SANITY_PROJECT_ID is missing')
     // Return a chainable object that matches the imageUrlBuilder interface
     const fallback = {
       width: () => fallback,
