@@ -1,6 +1,13 @@
 // Vercel Serverless Function to Add Subscriber to Resend Audience
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { logger } from '../lib/logger';
+import { checkRateLimit } from '../lib/rateLimit';
+
+function getClientId(req: VercelRequest): string {
+  const forwarded = req.headers['x-forwarded-for'];
+  const ip = typeof forwarded === 'string' ? forwarded.split(',')[0].trim() : forwarded?.[0] ?? req.headers['x-real-ip'] ?? 'anonymous';
+  return `add-subscriber:${ip}`;
+}
 
 export default async function handler(
   req: VercelRequest,
@@ -8,6 +15,11 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const { allowed } = await checkRateLimit(getClientId(req));
+  if (!allowed) {
+    return res.status(429).json({ error: 'Too many requests', message: 'Please try again later.' });
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -26,6 +38,10 @@ export default async function handler(
       message: 'RESEND_AUDIENCE_ID environment variable is missing. Create an audience in Resend dashboard first.'
     });
   }
+
+  // Only allow these tags; ignore client-supplied tags to prevent injection/abuse
+  const ALLOWED_LANGUAGES = ['en', 'es'] as const;
+  const allowedTags = new Set(['newsletter', 'language-en', 'language-es']);
 
   try {
     const { email, language = 'en', tags = [] } = req.body;
@@ -46,6 +62,12 @@ export default async function handler(
       });
     }
 
+    const lang = ALLOWED_LANGUAGES.includes(language as any) ? language : 'en';
+    const safeTags = Array.isArray(tags)
+      ? tags.filter((t: unknown) => typeof t === 'string' && allowedTags.has(t))
+      : [];
+    const tagsToSend = ['newsletter', `language-${lang}`, ...safeTags];
+
     // Add subscriber to Resend Audience
     const response = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
       method: 'POST',
@@ -56,8 +78,7 @@ export default async function handler(
       body: JSON.stringify({
         email,
         unsubscribed: false,
-        // Add language and newsletter tags
-        tags: ['newsletter', `language-${language}`, ...tags]
+        tags: tagsToSend
       })
     });
 

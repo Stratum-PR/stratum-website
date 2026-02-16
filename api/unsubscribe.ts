@@ -1,6 +1,28 @@
 // Vercel Serverless Function for Unsubscribe
+// Requires signed token (HMAC) so only the recipient can unsubscribe.
+
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import crypto from 'crypto';
 import { logger } from '../lib/logger';
+import { checkRateLimit } from '../lib/rateLimit';
+
+function getClientId(req: VercelRequest): string {
+  const forwarded = req.headers['x-forwarded-for'];
+  const ip = typeof forwarded === 'string' ? forwarded.split(',')[0].trim() : forwarded?.[0] ?? req.headers['x-real-ip'] ?? 'anonymous';
+  return `unsubscribe:${ip}`;
+}
+
+function verifyUnsubscribeToken(email: string, token: string): boolean {
+  const secret = process.env.UNSUBSCRIBE_SECRET;
+  if (!secret || !token) return false;
+  const expected = crypto.createHmac('sha256', secret).update(email.toLowerCase().trim()).digest('hex');
+  if (token.length !== expected.length) return false;
+  try {
+    return crypto.timingSafeEqual(Buffer.from(token, 'hex'), Buffer.from(expected, 'hex'));
+  } catch {
+    return false;
+  }
+}
 
 export default async function handler(
   req: VercelRequest,
@@ -10,13 +32,25 @@ export default async function handler(
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const { allowed } = await checkRateLimit(getClientId(req));
+  if (!allowed) {
+    return res.status(429).json({ error: 'Too many requests', message: 'Please try again later.' });
+  }
+
   try {
-    const { email } = req.body;
+    const { email, token } = req.body;
 
     if (!email) {
       return res.status(400).json({ 
         error: 'Missing email',
         message: 'Email address is required'
+      });
+    }
+
+    if (!token) {
+      return res.status(400).json({ 
+        error: 'Missing token',
+        message: 'Unsubscribe link is invalid or expired. Use the link from your email.'
       });
     }
 
@@ -26,6 +60,13 @@ export default async function handler(
       return res.status(400).json({
         error: 'Invalid email format',
         message: 'The email address is not valid'
+      });
+    }
+
+    if (!verifyUnsubscribeToken(email, token)) {
+      return res.status(403).json({
+        error: 'Invalid token',
+        message: 'Unsubscribe link is invalid or expired. Use the link from your email.'
       });
     }
 

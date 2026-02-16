@@ -229,6 +229,33 @@ files.forEach(file => {
 if (!xssFound) pass("No obvious XSS patterns");
 
 // ════════════════════════════════════════════════════════════
+// CHECK 4b · SANITIZE CONFIG (safe href: only http/https/mailto)
+// ════════════════════════════════════════════════════════════
+const sanitizePath = path.join(process.cwd(), "src", "lib", "sanitize.ts");
+if (fileExists("src/lib/sanitize.ts")) {
+  const sanitizeContent = fs.readFileSync(sanitizePath, "utf8");
+  if (sanitizeContent.includes("sanitizeHtml") && sanitizeContent.includes("href")) {
+    if (!sanitizeContent.includes("ALLOWED_URI_REGEXP") && !sanitizeContent.includes("ADD_ATTR")) {
+      warn("⚠️  sanitize.ts allows href but has no ALLOWED_URI_REGEXP", "Add ALLOWED_URI_REGEXP to restrict links to https/mailto only (prevents javascript:).");
+    } else if (sanitizeContent.includes("ALLOWED_URI_REGEXP")) {
+      pass("sanitize.ts uses ALLOWED_URI_REGEXP for safe href");
+    }
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// CHECK 4c · .env.example documents UNSUBSCRIBE_SECRET
+// ════════════════════════════════════════════════════════════
+if (fileExists(".env.example")) {
+  const envExample = fs.readFileSync(path.join(process.cwd(), ".env.example"), "utf8");
+  if (!envExample.includes("UNSUBSCRIBE_SECRET")) {
+    warn("⚠️  .env.example missing UNSUBSCRIBE_SECRET", "Required for secure unsubscribe links. Add UNSUBSCRIBE_SECRET=...");
+  } else {
+    pass(".env.example documents UNSUBSCRIBE_SECRET");
+  }
+}
+
+// ════════════════════════════════════════════════════════════
 // CHECK 5 · OPEN REDIRECT
 // ════════════════════════════════════════════════════════════
 const REDIRECT_PATTERNS = [
@@ -293,6 +320,34 @@ if (hasForm && !usesServerlessApi) {
 }
 
 // ════════════════════════════════════════════════════════════
+// OUTSTANDING ITEMS TO FIX (non-blocking; shown until you solve them)
+// Remove an item from OUTSTANDING_TO_FIX when you've addressed it.
+// ════════════════════════════════════════════════════════════
+const OUTSTANDING_TO_FIX = [
+  {
+    condition: () => fileExists("lib/rateLimit.ts"),
+    msg: "Use a separate Upstash Redis database per app (company site vs SaaS) so rate limits and data are isolated.",
+  },
+  {
+    condition: () => fileExists("api/send-email.ts"),
+    msg: "Restrict /api/send-email: allow unauthenticated only for type=welcome; require internal secret for other sends (checklist, admin, notifications).",
+  },
+  {
+    condition: () => fileExists("api/email-preferences.ts"),
+    msg: "When implementing /api/email-preferences for real updates, require signed link or verification so only the email owner can change preferences.",
+  },
+  {
+    condition: () => {
+      if (!fileExists("vercel.json")) return false;
+      const v = fs.readFileSync(path.resolve(process.cwd(), "vercel.json"), "utf8");
+      return !/Content-Security-Policy/i.test(v);
+    },
+    msg: "Consider adding Content-Security-Policy header in vercel.json for extra XSS hardening (test to avoid breaking scripts).",
+  },
+];
+const toFix = OUTSTANDING_TO_FIX.filter(({ condition }) => condition()).map(({ msg }) => msg);
+
+// ════════════════════════════════════════════════════════════
 // REPORT (console + file)
 // ════════════════════════════════════════════════════════════
 const reportLines = [];
@@ -305,6 +360,13 @@ passed.forEach(p => reportLines.push("  [PASS] " + p));
 reportLines.push("");
 reportLines.push("--- WARNINGS ---");
 warnings.forEach(({ label }, i) => reportLines.push("  [WARN] " + (i + 1) + ". " + label));
+reportLines.push("");
+reportLines.push("--- ITEMS TO FIX (non-blocking) ---");
+if (toFix.length) {
+  toFix.forEach((msg, i) => reportLines.push("  [TO FIX] " + (i + 1) + ". " + msg));
+} else {
+  reportLines.push("  (none)");
+}
 reportLines.push("");
 reportLines.push("--- BLOCKED ---");
 criticals.forEach(({ label }, i) => reportLines.push("  [BLOCKED] " + (i + 1) + ". " + label));
@@ -344,6 +406,11 @@ if (warnings.length) {
     console.log(detail.split("\n").map(l => `  ${Y}│${X} ${l}`).join("\n"));
   });
   console.log(`\n${Y}  ↑ Commit will proceed. Fix before deploy if needed.${X}`);
+}
+if (toFix.length) {
+  console.log(`\n${Y}${BL}📋 ITEMS TO FIX (${toFix.length}) – non-blocking${X}`);
+  toFix.forEach((msg, i) => console.log(`  ${Y}[TO FIX ${i + 1}]${X} ${msg}`));
+  console.log(`\n${Y}  ↑ These stay in reports until you fix them. Tell the hook maintainer to remove an item when solved.${X}`);
 }
 if (criticals.length) {
   console.log(`\n${R}${BL}🚨 BLOCKED (${criticals.length})${X}`);

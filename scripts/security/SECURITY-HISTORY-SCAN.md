@@ -2,6 +2,8 @@
 
 This doc explains how to check your repository history for leaked secrets and what to do if something is found.
 
+**See also:** [SECURITY-NOTES.md](./SECURITY-NOTES.md) — outstanding items to fix are listed in the pre-commit security report (run `npm run security-check` or `node scripts/security/pre-commit.mjs --scan`).
+
 ## Run the scan
 
 From the repo root:

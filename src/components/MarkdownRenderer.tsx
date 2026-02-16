@@ -23,17 +23,20 @@ export const MarkdownRenderer = ({ resourceSlug }: MarkdownRendererProps) => {
       try {
         setLoading(true);
         setError(null);
-        
-        const cacheKey = `${resourceSlug}.md`;
-        
-        // Check cache first
+        // Restrict to safe slug (alphanumeric and hyphens only) to prevent path traversal
+        const safeSlug = /^[a-z0-9-]+$/i.test(resourceSlug) ? resourceSlug : '';
+        if (!safeSlug) {
+          setError('Invalid resource');
+          setLoading(false);
+          return;
+        }
+        const cacheKey = `${safeSlug}.md`;
         if (contentCache.has(cacheKey)) {
           setContent(contentCache.get(cacheKey)!);
           setLoading(false);
           return;
         }
-        
-        const response = await fetch(`/resources/${resourceSlug}.md`);
+        const response = await fetch(`/resources/${safeSlug}.md`);
         if (!response.ok) {
           throw new Error(`Failed to fetch resource content: ${response.status}`);
         }

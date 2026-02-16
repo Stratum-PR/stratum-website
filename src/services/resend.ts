@@ -102,8 +102,9 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
   // The serverless function reads ADMIN_EMAIL from environment variables
   const adminEmail = 'contact@stratumpr.com' // Fallback, but server will use ADMIN_EMAIL env var
   
-  // Generate unsubscribe token (simple hash for now - in production, use a proper token system)
-  const unsubscribeToken = btoa(`${email}-${Date.now()}`).replace(/[^a-zA-Z0-9]/g, '');
+  // Token is generated server-side (HMAC) when sending; client sends placeholder for API to replace
+  const UNSUBSCRIBE_TOKEN_PLACEHOLDER = '{{UNSUBSCRIBE_TOKEN}}';
+  const unsubscribeToken = UNSUBSCRIBE_TOKEN_PLACEHOLDER;
   
   // Add subscriber to Resend Audience (non-blocking)
   // This allows the welcome email to be sent even if audience add fails
@@ -147,26 +148,30 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
       <p><strong>Date:</strong> ${new Date().toLocaleString('en-US')}</p>
     `
 
-  // Send welcome email from info@stratumpr.com (newsletter email)
-  // NOTE: If info@stratumpr.com domain is not verified in Resend, it will automatically
-  // fall back to contact@stratumpr.com. Once you verify info@stratumpr.com in Resend,
-  // you can use it directly.
-  // Send admin notification from contact@stratumpr.com
-  await Promise.all([
-    sendEmail({
+  // Send welcome email via API so server can inject HMAC unsubscribe token (placeholder replaced server-side)
+  const API_ROUTE = '/api/send-email';
+  const welcomeRes = await fetch(API_ROUTE, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type: 'welcome',
       to: email,
-      subject,
+      language,
       html,
-      text, // Plain text version for better deliverability
-      from: 'Stratum PR <info@stratumpr.com>', // Will auto-fallback to contact@ if not verified
+      text,
+      from: 'Stratum PR <info@stratumpr.com>',
       replyTo: 'contact@stratumpr.com'
-    }),
-    sendEmail({
-      to: adminEmail,
-      subject: adminSubject,
-      html: adminHtml
     })
-  ])
+  });
+  const welcomeData = await welcomeRes.json();
+  if (!welcomeRes.ok) throw new Error(welcomeData.message || 'Failed to send welcome email');
+
+  // Send admin notification from contact@stratumpr.com
+  await sendEmail({
+    to: adminEmail,
+    subject: adminSubject,
+    html: adminHtml
+  });
 }
 
 // Send checklist results
