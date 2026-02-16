@@ -159,7 +159,7 @@ function main() {
   }
 
   reportLines.push("");
-  reportLines.push("See scripts/SECURITY-HISTORY-SCAN.md for what to do if you see findings.");
+  reportLines.push("See scripts/security/SECURITY-HISTORY-SCAN.md for what to do if you see findings.");
 
   const reportDir = path.resolve(cwd, "reports");
   const reportName = `history-secret-scan-${new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19)}.txt`;

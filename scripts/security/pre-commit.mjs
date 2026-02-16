@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 // ============================================================
-//  PRE-COMMIT SECURITY HOOK — MARKETING / STATIC SITE
-//  Use for: company site, landing, about/FAQ, email-style pages.
-//  No user login, no DB, no payments → lighter checks.
+//  PRE-COMMIT SECURITY HOOK
+//  Runs on git commit via .husky/pre-commit.
 //
-//  Location: scripts/pre-commit-marketing.mjs (repo root)
+//  Location: scripts/security/pre-commit.mjs
 //  Hook: .husky/pre-commit runs "npm run precommit"
 // ============================================================
 
@@ -76,13 +75,13 @@ function getContent(file) {
 
 // ─── Banner ─────────────────────────────────────────────────
 console.log(`\n${BL}${B}╔══════════════════════════════════════════════════╗${X}`);
-console.log(`${BL}${B}║   🔒  ${isScanMode ? "SECURITY SCAN" : "PRE-COMMIT"}  (Marketing / static site)       ║${X}`);
+console.log(`${BL}${B}║   🔒  ${isScanMode ? "SECURITY SCAN" : "PRE-COMMIT"}  (security check)              ║${X}`);
 console.log(`${BL}${B}╚══════════════════════════════════════════════════╝${X}\n`);
 
 if (!isScanMode && !files.length) {
   crit("Nothing staged to commit", "Every commit must include staged files.\n     Stage changes with: git add <files>\n     Then run: git commit -m \"...\"");
   const ts = new Date().toISOString();
-  const reportLines = ["PRE-COMMIT REPORT (Marketing site)", ts, "", "--- BLOCKED ---", "  [BLOCKED] 1. Nothing staged to commit", "", "RESULT: COMMIT BLOCKED"];
+  const reportLines = ["PRE-COMMIT REPORT", ts, "", "--- BLOCKED ---", "  [BLOCKED] 1. Nothing staged to commit", "", "RESULT: COMMIT BLOCKED"];
   const reportPath = path.join(path.resolve(process.cwd(), "reports"), `security-commit-${reportTimestamp()}.txt`);
   try {
     const reportsDir = path.dirname(reportPath);
@@ -205,7 +204,7 @@ let xssFound = false;
 files.forEach(file => {
   const ext = path.extname(file).toLowerCase();
   if (!CODE_EXTS.has(ext) && ext !== ".html") return;
-  if (file.includes(".sanity/runtime") || file.endsWith("chart.tsx")) return; // generated / known-safe style injection
+  if (file.includes(".sanity/runtime")) return; // generated
   const content = getContent(file);
   const usesSanitizer = content.includes("sanitizeHtml(") || content.includes("DOMPurify.sanitize(");
   XSS_PATTERNS.forEach(({ re, label }) => {
@@ -288,7 +287,7 @@ if (hasForm && !usesServerlessApi) {
 // ════════════════════════════════════════════════════════════
 const reportLines = [];
 const ts = new Date().toISOString();
-reportLines.push(isScanMode ? "SECURITY SCAN REPORT (Marketing site)" : "PRE-COMMIT REPORT (Marketing site)");
+reportLines.push(isScanMode ? "SECURITY SCAN REPORT" : "PRE-COMMIT REPORT");
 reportLines.push(ts);
 reportLines.push("");
 reportLines.push("--- PASSED ---");
@@ -319,7 +318,7 @@ try {
 }
 
 console.log("\n" + "─".repeat(60));
-console.log(`${BL}  ${isScanMode ? "SECURITY SCAN" : "COMMIT"} REPORT (Marketing)  ${ts}${X}`);
+console.log(`${BL}  ${isScanMode ? "SECURITY SCAN" : "COMMIT"} REPORT  ${ts}${X}`);
 console.log("─".repeat(60));
 console.log(`${DIM}Report saved: ${reportPath}${X}`);
 

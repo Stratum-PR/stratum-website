@@ -11,9 +11,9 @@
     "preview": "vite preview",
     "studio": "sanity dev",
     "prepare": "husky",
-    "precommit": "node scripts/pre-commit-marketing.mjs",
-    "security-check": "node scripts/pre-commit-marketing.mjs --scan",
-    "security-history-scan": "node scripts/scan-history-for-secrets.mjs"
+    "precommit": "node scripts/security/pre-commit.mjs",
+    "security-check": "node scripts/security/pre-commit.mjs --scan",
+    "security-history-scan": "node scripts/security/scan-history-for-secrets.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
