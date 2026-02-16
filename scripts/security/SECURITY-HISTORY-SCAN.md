@@ -7,11 +7,13 @@ This doc explains how to check your repository history for leaked secrets and wh
 From the repo root:
 
 ```bash
-node scripts/scan-history-for-secrets.mjs
+npm run security-history-scan
 ```
 
+Or: `node scripts/security/scan-history-for-secrets.mjs`
+
 - By default the script scans the **last 300 commits** across all branches.
-- To scan more commits: `HISTORY_SCAN_COMMITS=500 node scripts/scan-history-for-secrets.mjs`
+- To scan more commits: `HISTORY_SCAN_COMMITS=500 node scripts/security/scan-history-for-secrets.mjs`
 - Results are printed to the terminal and saved under `reports/history-secret-scan-<timestamp>.txt`.
 - Exit code is **0** if nothing was found, **1** if secrets or `.env`-like files were detected.
 

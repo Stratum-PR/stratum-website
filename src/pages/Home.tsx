@@ -358,7 +358,7 @@ const Home = () => {
                 : 'AI Consulting and Data Analytics in Puerto Rico - Stratum PR'}
             </h1>
             {/* Visual H1 for users */}
-            <div className="font-telegraf font-bold mb-6 sm:mb-8 animate-fade-in leading-tight" role="presentation" aria-hidden="true">
+            <div className="font-telegraf font-bold mb-6 sm:mb-8 animate-fade-in leading-tight hero-headline" role="presentation" aria-hidden="true">
               <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
                 <RotatingText
                   baseText={t('home.hero.carousel.baseText')}

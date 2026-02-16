@@ -1,6 +1,6 @@
 # Remove .env.bak from Git history (so it no longer appears on GitHub)
 
-**.env.bak still on GitHub?** It exists in past commits. Rewrite history and force-push to remove it. Run these in **Git Bash** at the repo root (or run `bash scripts/purge-env-bak-from-history.sh`). Not from inside Cursor’s integrated terminal if it fails there.
+**.env.bak still on GitHub?** It exists in past commits. Rewrite history and force-push to remove it. Run the commands below in **Git Bash** at the repo root. Not from inside Cursor’s integrated terminal if it fails there.
 
 ## 1. Clean working tree (required for filter-branch)
 
