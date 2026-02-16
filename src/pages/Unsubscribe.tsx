@@ -12,6 +12,7 @@ const Unsubscribe = () => {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const email = searchParams.get('email') || '';
+  const token = searchParams.get('token') || '';
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -29,23 +30,27 @@ const Unsubscribe = () => {
       setMessage(language === 'es' 
         ? 'No se proporcionó una dirección de correo electrónico.'
         : 'No email address provided.');
+    } else if (!token) {
+      setStatus('error');
+      setMessage(language === 'es'
+        ? 'Enlace de cancelación inválido o caducado. Use el enlace del correo.'
+        : 'Unsubscribe link is invalid or expired. Use the link from your email.');
     }
-  }, [email, language]);
+  }, [email, token, language]);
 
   const handleUnsubscribe = async () => {
-    if (!email) return;
+    if (!email || !token) return;
 
     setStatus('loading');
     setMessage('');
 
     try {
-      // Call API to unsubscribe
       const response = await fetch('/api/unsubscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, token }),
       });
 
       const data = await response.json();
@@ -95,7 +100,7 @@ const Unsubscribe = () => {
                 <AlertCircle className="h-12 w-12 text-red-600" />
               </div>
               <p className="font-telegraf text-red-700">{message}</p>
-              {email && (
+              {email && token && (
                 <Button onClick={handleUnsubscribe} className="w-full">
                   {language === 'es' ? 'Intentar de nuevo' : 'Try again'}
                 </Button>

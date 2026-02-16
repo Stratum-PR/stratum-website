@@ -1,6 +1,13 @@
 // Vercel Serverless Function for Email Preferences
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { logger } from '../lib/logger';
+import { checkRateLimit } from '../lib/rateLimit';
+
+function getClientId(req: VercelRequest): string {
+  const forwarded = req.headers['x-forwarded-for'];
+  const ip = typeof forwarded === 'string' ? forwarded.split(',')[0].trim() : forwarded?.[0] ?? req.headers['x-real-ip'] ?? 'anonymous';
+  return `email-preferences:${ip}`;
+}
 
 export default async function handler(
   req: VercelRequest,
@@ -8,6 +15,11 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const { allowed } = await checkRateLimit(getClientId(req));
+  if (!allowed) {
+    return res.status(429).json({ error: 'Too many requests', message: 'Please try again later.' });
   }
 
   try {
