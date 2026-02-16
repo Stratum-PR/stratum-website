@@ -55,11 +55,22 @@ function scannedFiles() {
     .filter((f) => !f.includes("node_modules"));
 }
 
-// Report filename: date_hour-minute-second for clear differentiation
+// Report filename and body: date and time in 12-hour format, no seconds (e.g. 2026-02-15_07-30-PM)
 function reportTimestamp() {
   const d = new Date();
   const pad = (n) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}_${pad(d.getHours())}-${pad(d.getMinutes())}-${pad(d.getSeconds())}`;
+  const h24 = d.getHours();
+  const h12 = h24 % 12 || 12;
+  const ampm = h24 < 12 ? "AM" : "PM";
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}_${pad(h12)}-${pad(d.getMinutes())}-${ampm}`;
+}
+function reportTimestampLong() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  const h24 = d.getHours();
+  const h12 = h24 % 12 || 12;
+  const ampm = h24 < 12 ? "AM" : "PM";
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(h12)}:${pad(d.getMinutes())} ${ampm}`;
 }
 
 const isScanMode = process.argv.includes("--scan");
@@ -80,11 +91,10 @@ console.log(`${BL}${B}╚══════════════════�
 
 if (!isScanMode && !files.length) {
   crit("Nothing staged to commit", "Every commit must include staged files.\n     Stage changes with: git add <files>\n     Then run: git commit -m \"...\"");
-  const ts = new Date().toISOString();
-  const reportLines = ["PRE-COMMIT REPORT", ts, "", "--- BLOCKED ---", "  [BLOCKED] 1. Nothing staged to commit", "", "RESULT: COMMIT BLOCKED"];
-  const reportPath = path.join(path.resolve(process.cwd(), "reports"), `security-commit-${reportTimestamp()}.txt`);
+  const reportLines = ["PRE-COMMIT REPORT", reportTimestampLong(), "", "--- BLOCKED ---", "  [BLOCKED] 1. Nothing staged to commit", "", "RESULT: COMMIT BLOCKED"];
+  const reportsDir = path.resolve(process.cwd(), "reports");
+  const reportPath = path.join(reportsDir, `security-report-${reportTimestamp()}.txt`);
   try {
-    const reportsDir = path.dirname(reportPath);
     if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
     fs.writeFileSync(reportPath, reportLines.join("\n"), "utf8");
   } catch (_) {}
@@ -286,7 +296,7 @@ if (hasForm && !usesServerlessApi) {
 // REPORT (console + file)
 // ════════════════════════════════════════════════════════════
 const reportLines = [];
-const ts = new Date().toISOString();
+const ts = reportTimestampLong();
 reportLines.push(isScanMode ? "SECURITY SCAN REPORT" : "PRE-COMMIT REPORT");
 reportLines.push(ts);
 reportLines.push("");
@@ -305,7 +315,8 @@ reportLines.push("RESULT: " + (isScanMode ? (allowed ? "SCAN OK" : "SCAN BLOCKED
 const reportText = reportLines.join("\n");
 
 const reportsDir = path.resolve(process.cwd(), "reports");
-const reportFileName = isScanMode ? `security-scan-${reportTimestamp()}.txt` : `security-commit-${reportTimestamp()}.txt`;
+// One report type for both pre-commit and --scan: security-report-{date-time-12hr}.txt in reports/
+const reportFileName = `security-report-${reportTimestamp()}.txt`;
 let reportPath = path.join(reportsDir, reportFileName);
 try {
   if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
