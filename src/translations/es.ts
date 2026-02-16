@@ -27,7 +27,7 @@ export const esTranslations: Record<string, string> = {
   'home.hero.subtitle': '',
   'home.hero.badge': 'Empresa 100% Puertorriqueña',
   'home.hero.description': 'El crecimiento trae consigo un aumento en tareas administrativas. Te ayudamos a implementar tecnología que asuma esa carga.',
-  'home.hero.cta.primary': 'Agendar Consulta Gratuita',
+  'home.hero.cta.primary': 'Agendar Consulta',
   'home.hero.cta.secondary': 'Haz tu Evaluación de Sistemas',
   'home.hero.carousel.baseText': 'Proveemos',
   'home.hero.carousel.word1': 'Análisis de Datos',
@@ -249,7 +249,7 @@ export const esTranslations: Record<string, string> = {
   'services.process.step4.description': 'Programas de capacitación integral y optimización continua aseguran el máximo valor de tu inversión.',
   'services.cta.title': '¿Listo para Comenzar?',
   'services.cta.description': 'Discutamos cómo nuestros servicios de análisis de datos pueden transformar tus operaciones empresariales e impulsar el crecimiento estratégico en Puerto Rico.',
-  'services.cta.consultation': 'Agendar Consulta Gratuita',
+  'services.cta.consultation': 'Agendar Consulta',
   'services.cta.contact': 'Contáctanos',
   'services.features': 'Características Principales',
   
@@ -339,7 +339,7 @@ export const esTranslations: Record<string, string> = {
   // FAQ CTA
   'faq.cta.title': '¿Aún Tienes Preguntas?',
   'faq.cta.description': 'Estamos aquí para ayudar. Agenda una consulta gratuita para discutir tus necesidades específicas y cómo podemos ayudar a transformar tu negocio.',
-  'faq.cta.button': 'Agendar Consulta Gratuita',
+  'faq.cta.button': 'Agendar Consulta',
   
   // Footer
   'footer.tagline': 'La Arquitectura de Mejores Decisiones. Nos especializamos en soluciones de análisis y consultoría que impulsan resultados empresariales estratégicos.',
@@ -366,7 +366,8 @@ export const esTranslations: Record<string, string> = {
   'projects.readmore': 'Leer Más',
   'projects.cta.title': '¿Listo para Crear Tu Historia de Éxito?',
   'projects.cta.description': 'Discutamos cómo podemos ayudar a transformar tus datos en ideas accionables.',
-  'projects.cta.button': 'Agendar Consulta Gratuita',
+  'projects.cta.button': 'Agendar Consulta',
+  'cta.badge.free': 'LIBRE DE COSTO',
   
   // Project examples
   'projects.healthcare.title': 'Plataforma de Integración de Datos de Salud',

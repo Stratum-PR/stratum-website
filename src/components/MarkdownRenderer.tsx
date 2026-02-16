@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useLanguage } from "@/contexts/LanguageContext";
 import { logger } from "@/lib/logger";
-import { logger } from "@/lib/logger";
 
 interface MarkdownRendererProps {
   resourceSlug: string;

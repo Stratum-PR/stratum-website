@@ -19,7 +19,7 @@ export const enTranslations: Record<string, string> = {
   'nav.blog': 'Blog',
   'nav.newsupdates': 'Newsletter',
   'nav.checklist': 'Take Your Systems Health Assessment',
-  'nav.schedule': 'Book Free Consultation',
+  'nav.schedule': 'Book Consultation',
   'nav.faq': 'FAQ',
   
   // Home page
@@ -27,7 +27,7 @@ export const enTranslations: Record<string, string> = {
   'home.hero.subtitle': '',
   'home.hero.badge': '100% Puerto Rican Business',
   'home.hero.description': 'Growth brings an increase in administrative tasks. We help you implement technology that takes that load off.',
-  'home.hero.cta.primary': 'Book Free Consultation',
+  'home.hero.cta.primary': 'Book Consultation',
   'home.hero.cta.secondary': 'Take our Systems Assessment',
   'home.hero.carousel.baseText': 'We power',
   'home.hero.carousel.word1': 'Data Analytics',
@@ -250,7 +250,7 @@ export const enTranslations: Record<string, string> = {
   'services.process.step4.description': 'Comprehensive training programs and ongoing optimization ensure maximum value from your investment.',
   'services.cta.title': 'Ready to Get Started?',
   'services.cta.description': 'Let\'s discuss how our data analytics services can transform your business operations and drive strategic growth in Puerto Rico.',
-  'services.cta.consultation': 'Book Free Consultation',
+  'services.cta.consultation': 'Book Consultation',
   'services.cta.contact': 'Contact Us',
   'services.features': 'Key Features',
   
@@ -340,7 +340,7 @@ export const enTranslations: Record<string, string> = {
   // FAQ CTA
   'faq.cta.title': 'Still Have Questions?',
   'faq.cta.description': 'We\'re here to help. Schedule a free consultation to discuss your specific needs and how we can help transform your business.',
-  'faq.cta.button': 'Book Free Consultation',
+  'faq.cta.button': 'Book Consultation',
   
   // Footer
   'footer.tagline': 'The Architecture of Better Decisions. Your strategic partner for business intelligence solutions in Puerto Rico.',
@@ -367,7 +367,8 @@ export const enTranslations: Record<string, string> = {
   'projects.readmore': 'Read More',
   'projects.cta.title': 'Ready to Create Your Success Story?',
   'projects.cta.description': 'Let\'s discuss how we can help transform your data into actionable insights.',
-  'projects.cta.button': 'Book Free Consultation',
+  'projects.cta.button': 'Book Consultation',
+  'cta.badge.free': 'FREE',
   
   // Project examples
   'projects.healthcare.title': 'Healthcare Data Integration Platform',

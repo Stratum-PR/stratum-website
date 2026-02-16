@@ -404,7 +404,7 @@ const Home = () => {
                 </a>
               </Button>
                 <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-                  FREE
+                  {t('cta.badge.free')}
                 </span>
               </div>
 
@@ -419,7 +419,7 @@ const Home = () => {
                   {t('home.hero.cta.secondary')}
                 </Button>
                 <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-                  FREE
+                  {t('cta.badge.free')}
                 </span>
               </div>
             </div>
@@ -928,7 +928,7 @@ const Home = () => {
                   </a>
                 </Button>
                 <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-                  FREE
+                  {t('cta.badge.free')}
                 </span>
               </div>
               <Button 

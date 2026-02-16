@@ -212,8 +212,8 @@ const BlogDetail = () => {
 
   return (
     <div>
-      {/* Hero Section with Background */}
-      <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      {/* Hero Section with Background - compact like /services */}
+      <section className="relative pt-20 sm:pt-24 pb-8 sm:pb-10 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
@@ -230,16 +230,16 @@ const BlogDetail = () => {
           <Button 
             variant="ghost" 
             onClick={() => navigate('/newsupdates')}
-            className="mb-6 font-telegraf text-white hover:text-white/80 hover:bg-white/10"
+            className="mb-4 font-telegraf text-sm text-white hover:text-white/80 hover:bg-white/10"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="mr-2 h-3.5 w-3.5" />
             {t('blog.hero.title')}
           </Button>
           
           {post.tags && Array.isArray(post.tags) && post.tags.length > 0 && (
-            <div className="flex items-center gap-3 mb-6 flex-wrap">
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
               {post.tags.map((tag, idx) => (
-                <span key={idx} className="px-3 py-1 text-xs font-telegraf bg-white/20 text-white rounded-full uppercase tracking-wide backdrop-blur-sm">
+                <span key={idx} className="px-2.5 py-0.5 text-xs font-telegraf bg-white/20 text-white rounded-full uppercase tracking-wide backdrop-blur-sm">
                   {tag}
                 </span>
               ))}
@@ -250,24 +250,24 @@ const BlogDetail = () => {
             {title}
           </h1>
           
-          <p className="font-telegraf text-xl text-white/90 drop-shadow-md leading-relaxed mb-8">
+          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed mb-5">
             {excerpt}
           </p>
 
           {/* Article Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="flex items-center gap-3">
-              <User className="h-5 w-5 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="flex items-center gap-2">
+              <User className="h-4 w-4 text-white flex-shrink-0" />
               <div>
-                <p className="font-telegraf text-sm text-white/80">{t('blog.detail.author')}</p>
-                <p className="font-telegraf font-semibold text-white">{authorName}</p>
+                <p className="font-telegraf text-xs text-white/80">{t('blog.detail.author')}</p>
+                <p className="font-telegraf font-semibold text-sm text-white">{authorName}</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <Calendar className="h-5 w-5 text-white" />
+            <div className="flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-white flex-shrink-0" />
               <div>
-                <p className="font-telegraf text-sm text-white/80">{t('blog.detail.published')}</p>
-                <p className="font-telegraf font-semibold text-white">{new Date(post.publishedAt).toLocaleDateString()}</p>
+                <p className="font-telegraf text-xs text-white/80">{t('blog.detail.published')}</p>
+                <p className="font-telegraf font-semibold text-sm text-white">{new Date(post.publishedAt).toLocaleDateString()}</p>
               </div>
             </div>
           </div>
