@@ -8,7 +8,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { sanityClient, projectsQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import * as LucideIcons from "lucide-react";
 import { logger } from "@/lib/logger";
-import { logger } from "@/lib/logger";
 
 interface SanityProject {
   _id: string;

@@ -26,7 +26,7 @@ export const ServicesCTA = () => {
               </a>
             </Button>
             <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-              FREE
+              {t('cta.badge.free')}
             </span>
           </div>
           <Button

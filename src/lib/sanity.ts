@@ -2,7 +2,9 @@ import { createClient } from '@sanity/client'
 import imageUrlBuilder from '@sanity/image-url'
 import { logger } from './logger'
 
-const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || ''
+// Fallback so the site works if Vercel doesn't inject env at build time (e.g. cache). Prefer env vars.
+const FALLBACK_PROJECT_ID = 's7h6olb5'
+const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || FALLBACK_PROJECT_ID
 const dataset = import.meta.env.VITE_SANITY_DATASET || 'production'
 
 // Check if Sanity is properly configured

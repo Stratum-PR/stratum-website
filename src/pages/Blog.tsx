@@ -159,8 +159,8 @@ const Blog = () => {
 
   return (
     <div>
-      {/* Hero Section with Background */}
-      <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
+      {/* Hero Section with Background - compact like /services */}
+      <section className="relative pt-20 sm:pt-24 pb-8 sm:pb-10 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
             src="/img/topographic-linear-background.jpg" 
@@ -174,7 +174,7 @@ const Blog = () => {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
+          <h1 className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-white drop-shadow-lg mb-5">
             {t('blog.hero.title')}
           </h1>
           
