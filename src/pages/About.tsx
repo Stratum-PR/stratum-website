@@ -63,21 +63,10 @@ const About = () => {
       email: "j.rodriguez@stratumpr.com",
       image: "/img/Jovaniel.jpg"
     },
-    // HIDDEN: Roberto Otero card - uncomment to show
-    // {
-    //   key: "roberto", 
-    //   name: "Roberto Otero",
-    //   role: "Co-Founder, Tech & Build",
-    //   bio: "Data scientist and ML engineer. Roberto oversees technical delivery and innovation, with deep expertise in AI/ML implementations and big data infrastructure.",
-    //   expertise: ["Data Vizualization", "Big Data", "Database Management"],
-    //   linkedin: "https://www.linkedin.com/in/roberto-otero/",
-    //   email: "r.otero@stratumpr.com",
-    //   image: "/img/Roberto.jpg"
-    // },
     {
       key: "genesis",
       name: "Genesis Rodriguez",
-      role: "Co-Founder, Data & Insights",
+      role: "Co-Founder, Data Science",
       bio: "Biostatistician and Applied Researcher, Genesis has a strong background in predictive modeling and health analytics, driving our analytical methodologies to ensures scientific rigor in all modeling approaches.",
       expertise: ["Statistical Modeling", "Predictive Analytics", "Research Methods"],
       linkedin: "https://www.linkedin.com/in/genesismrodriguez/",

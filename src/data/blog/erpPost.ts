@@ -341,9 +341,9 @@ If you think an ERP might be right for your business:
 
 **Not sure where to start?** Stratum PR helps businesses evaluate their needs and navigate the ERP selection and implementation process. We work with you to ensure you choose the right system and implement it successfully.`,
       author: {
-        name: 'Roberto Otero',
-        role: 'Chief Technology Officer',
-        image: '/img/Roberto.jpg'
+        name: 'Jovaniel Rodriguez',
+        role: 'Co-Founder, Technology Infrastructure',
+        image: '/img/Jovaniel.jpg'
       },
       readTime: 12
     },
@@ -370,9 +370,9 @@ Imagina tu negocio sin un ERP:
 
 Entender si necesitas un ERP y cuál es el correcto para tu negocio es una decisión importante que puede transformar tus operaciones.`,
       author: {
-        name: 'Roberto Otero',
-        role: 'Director de Tecnología',
-        image: '/img/Roberto.jpg'
+        name: 'Jovaniel Rodriguez',
+        role: 'Co-Fundador, Infraestructura Tecnológica',
+        image: '/img/Jovaniel.jpg'
       },
       readTime: 12
     }

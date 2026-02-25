@@ -175,15 +175,10 @@ export const enTranslations: Record<string, string> = {
   'team.jovaniel.expertise': 'Digital Modernization, AI/ML, Data Governance',
   
   'team.genesis.name': 'Génesis Rodríguez',
-  'team.genesis.role': 'Co-Founder, Data & Insights',
+  'team.genesis.role': 'Co-Founder, Data Science',
   'team.genesis.bio': 'Génesis brings over 5 years of experience in data science and research, having led data teams on state-level projects. Her expertise spans process automation, data management, advanced analytics, statistical modeling, and strategic forecasting.',
   'team.genesis.expertise': 'Statistical Modeling, Predictive Analytics, Automation',
-  
-  'team.roberto.name': 'Roberto Otero',
-  'team.roberto.role': 'Chief Technology Officer',
-  'team.roberto.bio': 'Roberto specializes in operational excellence and system integration, with a proven track record of optimizing business processes and implementing scalable solutions for growing organizations.',
-  'team.roberto.expertise': 'Operations Management, System Integration, Process Optimization, Scalable Solutions',
-  
+
   // Services page
   'services.hero.title': 'Data Analytics Services Puerto Rico',
   'services.hero.description': 'We build comprehensive solutions that transform complex data into strategic business advantages. Our services span the entire analytics ecosystem, from CRM implementation consulting to AI business automation.',

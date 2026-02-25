@@ -177,12 +177,7 @@ export const esTranslations: Record<string, string> = {
   'team.genesis.role': 'Co-Fundadora, Ciencia de Datos',
   'team.genesis.bio': 'Génesis aporta más de 5 años de experiencia en ciencia de datos e investigación, habiendo liderado equipos de datos en proyectos a nivel estatal. Su experiencia abarca automatización de procesos, administración de datos, análisis avanzado, modelaje estadístico y proyecciones estratégicas.',
   'team.genesis.expertise': 'Modelaje Estadístico, Análisis Predictivo, Automatización de Sistemas',
-  
-  'team.roberto.name': 'Roberto Otero',
-  'team.roberto.role': 'Co-Fundador, Inteligencia de Negocios',
-  'team.roberto.bio': 'Roberto se especializa en excelencia operacional e integración de sistemas, con un historial comprobado de optimización de procesos empresariales e implementación de soluciones escalables para organizaciones en crecimiento.',
-  'team.roberto.expertise': 'Integración de Sistemas, Optimización de Procesos, Visualización de Datos',
-  
+
   // Services page
   'services.hero.title': 'Servicios de Análisis de Datos Puerto Rico',
   'services.hero.description': 'Diseñamos soluciones integrales que transforman datos complejos en ventajas empresariales estratégicas. Nuestros servicios abarcan todo el ecosistema de análisis, desde implementación de CRM, consultoría, y modelos predictivos hasta implementación de modelos de Inteligencia Artificial.',
