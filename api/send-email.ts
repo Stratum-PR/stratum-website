@@ -1,11 +1,24 @@
 // Vercel Serverless Function for Resend Email API
 // This proxies email requests from the client to Resend API to avoid CORS issues
 // API key is kept secure on the server - never exposed to browser
+//
+// RESTRICTION: Unauthenticated callers may only use type=welcome (newsletter signup)
+// or type=contact (contact form confirmation). All other sends (checklist, admin,
+// notifications) require X-Internal-Email-Secret header matching INTERNAL_EMAIL_SECRET.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import crypto from 'crypto';
 import { logger } from '../lib/logger';
 import { checkRateLimit } from '../lib/rateLimit';
+
+const ALLOWED_UNAUTH_TYPES = ['welcome', 'contact'];
+
+function hasValidInternalSecret(req: VercelRequest): boolean {
+  const secret = process.env.INTERNAL_EMAIL_SECRET;
+  if (!secret) return false;
+  const header = req.headers['x-internal-email-secret'];
+  return typeof header === 'string' && header === secret;
+}
 
 function getClientId(req: VercelRequest): string {
   const forwarded = req.headers['x-forwarded-for'];
@@ -32,6 +45,15 @@ export default async function handler(
   const { allowed } = await checkRateLimit(getClientId(req));
   if (!allowed) {
     return res.status(429).json({ error: 'Too many requests', message: 'Please try again later.' });
+  }
+
+  const bodyType = req.body?.type;
+  const allowedUnauth = typeof bodyType === 'string' && ALLOWED_UNAUTH_TYPES.includes(bodyType);
+  if (!allowedUnauth && !hasValidInternalSecret(req)) {
+    return res.status(403).json({
+      error: 'Forbidden',
+      message: 'This send type requires internal authentication. Use type=welcome or type=contact for public sends.'
+    });
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -216,6 +238,29 @@ export default async function handler(
         attemptedFrom: fromEmail,
         lastError: lastError
       });
+    }
+
+    // After successful welcome email, send admin notification server-side (no client secret needed)
+    if (type === 'welcome' && toFinal) {
+      const adminEmail = process.env.ADMIN_EMAIL || process.env.FROM_EMAIL || 'contact@stratumpr.com';
+      const adminSubject = language === 'es' ? `Nueva suscripción al blog: ${toFinal}` : `New blog subscription: ${toFinal}`;
+      const adminHtml = language === 'es'
+        ? `<h2>Nueva Suscripción al Blog</h2><p><strong>Email:</strong> ${toFinal}</p><p><strong>Idioma:</strong> Español</p><p><strong>Fecha:</strong> ${new Date().toLocaleString('es-ES')}</p>`
+        : `<h2>New Blog Subscription</h2><p><strong>Email:</strong> ${toFinal}</p><p><strong>Language:</strong> English</p><p><strong>Date:</strong> ${new Date().toLocaleString('en-US')}</p>`;
+      try {
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${RESEND_API_KEY}` },
+          body: JSON.stringify({
+            from: fromEmail || fallbackFrom,
+            to: adminEmail.replace(/^.*<([^>]+)>.*$/, '$1').trim() || adminEmail,
+            subject: adminSubject,
+            html: adminHtml
+          })
+        });
+      } catch (adminErr: any) {
+        logger.error('Failed to send admin notification:', adminErr);
+      }
     }
 
     return res.status(200).json({ 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
+import { PageMeta } from '@/components/PageMeta';
+import { COOKIES_ROUTE } from '@/config/discoverable-routes';
 
 const Cookies: React.FC = () => {
   const { t } = useLanguage();
@@ -10,10 +12,11 @@ const Cookies: React.FC = () => {
     description: t('cookies.page.description'),
     keywords: t('cookies.page.keywords'),
     canonical: "https://www.stratumpr.com/cookies",
-  });
+  }, undefined, { skipMeta: true });
 
   return (
     <div className="min-h-screen bg-white pt-[50px]">
+      <PageMeta route={COOKIES_ROUTE} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="prose prose-lg max-w-none">
           <h1 className="text-4xl font-bold text-gray-900 mb-8 mt-8">

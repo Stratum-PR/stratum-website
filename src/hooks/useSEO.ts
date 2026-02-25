@@ -2,12 +2,19 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { updateSEO, trackPageView, type SEOData } from '@/utils/seo';
 
-export const useSEO = (seoData: SEOData, pageName?: string) => {
+export interface UseSEOOptions {
+  /** When true, do not update document title/meta (use PageMeta/Helmet instead). */
+  skipMeta?: boolean;
+}
+
+export const useSEO = (seoData: SEOData, pageName?: string, options?: UseSEOOptions) => {
   const location = useLocation();
+  const skipMeta = options?.skipMeta === true;
 
   useEffect(() => {
-    // Update SEO data
-    updateSEO(seoData);
+    if (!skipMeta) {
+      updateSEO(seoData);
+    }
 
     // Update hreflang tags dynamically
     const updateHreflang = () => {

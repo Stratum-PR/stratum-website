@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PageMeta } from "@/components/PageMeta";
+import { RESOURCES_ROUTE } from "@/config/discoverable-routes";
 import { ComingSoonModal } from "@/components/ComingSoonModal";
 import { useState } from "react";
 
@@ -39,7 +41,7 @@ const Resources = () => {
       "description": seoData.description,
       "inLanguage": language === 'es' ? 'es' : 'en'
     }
-  }, "resources");
+  }, "resources", { skipMeta: true });
 
   const resources = [
     {
@@ -67,6 +69,7 @@ const Resources = () => {
 
   return (
     <div>
+      <PageMeta route={RESOURCES_ROUTE} />
       {/* Hero Section with Background */}
       <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">

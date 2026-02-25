@@ -5,6 +5,8 @@ import TeamSection from "@/components/TeamSection";
 import WhyWorkWithUsSection from "@/components/WhyWorkWithUsSection";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PageMeta } from "@/components/PageMeta";
+import { ABOUT_ROUTE } from "@/config/discoverable-routes";
 
 const About = () => {
   const { t, language } = useLanguage();
@@ -20,7 +22,7 @@ const About = () => {
     keywords: "Stratum PR team, data analytics experts Puerto Rico, AI consulting founders, business intelligence consultants, CRM implementation specialists, machine learning experts Caribbean"
   };
   
-  // SEO optimization for about page
+  // SEO optimization for about page (meta via PageMeta)
   useSEO({
     title: seoData.title,
     description: seoData.description,
@@ -40,13 +42,13 @@ const About = () => {
         "@type": "Organization",
         "name": "Stratum PR",
         "foundingDate": "2025",
-        "description": language === 'es' 
+        "description": language === 'es'
           ? "Firma de análisis y consultoría especializada en soluciones empresariales basadas en datos."
           : "Analytics and consulting firm specializing in data-driven business solutions."
       },
       "inLanguage": language === 'es' ? 'es' : 'en'
     }
-  }, "about");
+  }, "about", { skipMeta: true });
 
   // EDIT THIS ARRAY: Add or remove team members here
   // To hide a member, comment them out or remove from array
@@ -105,6 +107,18 @@ const About = () => {
 
   return (
     <div>
+      <PageMeta route={ABOUT_ROUTE} jsonLd={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "@id": "https://www.stratumpr.com/about#webpage",
+        "url": "https://www.stratumpr.com/about",
+        "name": language === 'es' ? "Acerca de Stratum PR - Equipo de Consultoría en Análisis de Datos" : "About Stratum PR - Data Analytics Consulting Team",
+        "description": language === 'es'
+          ? "Conoce al equipo experto detrás de Stratum PR, especializado en análisis de datos, soluciones de IA y consultoría de automatización empresarial en Puerto Rico."
+          : "Meet the expert team behind Stratum PR, specializing in data analytics, AI solutions, and business automation consulting in Puerto Rico.",
+        "mainEntity": { "@type": "Organization", "name": "Stratum PR", "foundingDate": "2025" },
+        "inLanguage": language === 'es' ? 'es' : 'en'
+      })} />
       <HeroSection />
       <MissionSection />
       <ValuesSection values={values} />

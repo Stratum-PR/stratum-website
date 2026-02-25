@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PageMeta } from "@/components/PageMeta";
+import { SERVICES_ROUTE } from "@/config/discoverable-routes";
 import { ServicesHero } from "@/components/ServicesHero";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { ProcessSection } from "@/components/ProcessSection";
@@ -64,7 +66,7 @@ const Services = () => {
       },
       "inLanguage": language === 'es' ? 'es' : 'en'
     }
-  }, "services");
+  }, "services", { skipMeta: true });
 
   // Scroll to service card when hash is present in URL and highlight it
   useEffect(() => {
@@ -101,6 +103,16 @@ const Services = () => {
 
   return (
     <div>
+      <PageMeta route={SERVICES_ROUTE} jsonLd={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.stratumpr.com/services#services",
+        "name": language === 'es' ? "Servicios de Análisis de Datos y Automatización Empresarial" : "Data Analytics and Business Automation Services",
+        "description": seoData.description,
+        "provider": { "@type": "LocalBusiness", "name": "Stratum PR" },
+        "areaServed": { "@type": "Place", "name": "Puerto Rico" },
+        "inLanguage": language === 'es' ? 'es' : 'en'
+      })} />
       <ServicesHero />
       <ServicesGrid highlightedServiceId={highlightedServiceId} />
       <ProcessSection />
