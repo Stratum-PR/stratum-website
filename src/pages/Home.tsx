@@ -163,14 +163,9 @@ const Home = () => {
               "jobTitle": "Co-Founder, Technology Infrastructure"
             },
             {
-              "@type": "Person", 
-              "name": "Roberto Otero",
-              "jobTitle": "Co-Founder, Tech & Build"
-            },
-            {
               "@type": "Person",
               "name": "Genesis Rodriguez", 
-              "jobTitle": "Co-Founder, Data & Insights"
+              "jobTitle": "Co-Founder, Data Science"
             }
           ],
           "sameAs": [
