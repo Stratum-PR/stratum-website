@@ -6,6 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { CheckCircle, AlertCircle, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
+import { PageMeta } from '@/components/PageMeta';
+import { EMAIL_PREFERENCES_ROUTE } from '@/config/discoverable-routes';
 import { logger } from '@/lib/logger';
 
 const EmailPreferences = () => {
@@ -23,7 +25,7 @@ const EmailPreferences = () => {
       ? 'Cambiar tus preferencias de idioma para correos de Stratum PR'
       : 'Change your language preferences for Stratum PR emails',
     canonical: 'https://www.stratumpr.com/email-preferences',
-  });
+  }, undefined, { skipMeta: true });
 
   useEffect(() => {
     if (!email) {
@@ -74,6 +76,7 @@ const EmailPreferences = () => {
 
   return (
     <div className="min-h-screen bg-white pt-[50px] flex items-center justify-center px-4">
+      <PageMeta route={EMAIL_PREFERENCES_ROUTE} />
       <Card className="max-w-md w-full">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">

@@ -17,7 +17,7 @@ interface EmailData {
   replyTo?: string
 }
 
-export async function sendEmail(data: EmailData) {
+export async function sendEmail(data: EmailData & { type?: 'contact' }) {
   // Always use serverless function - API key is kept secure on the server
   // Never expose API key to browser for security
   const API_ROUTE = '/api/send-email'
@@ -29,11 +29,12 @@ export async function sendEmail(data: EmailData) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: data.from, // Server will handle default from email
+        type: data.type,
+        from: data.from,
         to: data.to,
         subject: data.subject,
         html: data.html,
-        text: data.text, // Plain text version for better deliverability
+        text: data.text,
         replyTo: data.replyTo || 'contact@stratumpr.com'
       })
     })
@@ -98,16 +99,11 @@ export async function addSubscriberToAudience(
 
 // Subscribe to blog updates
 export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en') {
-  // Admin email will be handled by the serverless function
-  // The serverless function reads ADMIN_EMAIL from environment variables
-  const adminEmail = 'contact@stratumpr.com' // Fallback, but server will use ADMIN_EMAIL env var
-  
   // Token is generated server-side (HMAC) when sending; client sends placeholder for API to replace
   const UNSUBSCRIBE_TOKEN_PLACEHOLDER = '{{UNSUBSCRIBE_TOKEN}}';
   const unsubscribeToken = UNSUBSCRIBE_TOKEN_PLACEHOLDER;
   
   // Add subscriber to Resend Audience (non-blocking)
-  // This allows the welcome email to be sent even if audience add fails
   addSubscriberToAudience(email, language).catch(error => {
     logger.error('Failed to add subscriber to audience (non-critical):', error);
   });
@@ -129,25 +125,6 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
     unsubscribeToken
   });
 
-  // Send notification to admin
-  const adminSubject = language === 'es'
-    ? `Nueva suscripción al blog: ${email}`
-    : `New blog subscription: ${email}`
-  
-  const adminHtml = language === 'es'
-    ? `
-      <h2>Nueva Suscripción al Blog</h2>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Idioma:</strong> Español</p>
-      <p><strong>Fecha:</strong> ${new Date().toLocaleString('es-ES')}</p>
-    `
-    : `
-      <h2>New Blog Subscription</h2>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Language:</strong> English</p>
-      <p><strong>Date:</strong> ${new Date().toLocaleString('en-US')}</p>
-    `
-
   // Send welcome email via API so server can inject HMAC unsubscribe token (placeholder replaced server-side)
   const API_ROUTE = '/api/send-email';
   const welcomeRes = await fetch(API_ROUTE, {
@@ -166,12 +143,7 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
   const welcomeData = await welcomeRes.json();
   if (!welcomeRes.ok) throw new Error(welcomeData.message || 'Failed to send welcome email');
 
-  // Send admin notification from contact@stratumpr.com
-  await sendEmail({
-    to: adminEmail,
-    subject: adminSubject,
-    html: adminHtml
-  });
+  // Admin notification is sent server-side by /api/send-email when type=welcome
 }
 
 // Send checklist results
@@ -258,14 +230,21 @@ export async function sendChecklistResults(
       <p style="color: #666; font-size: 12px;">Stratum PR - The Architecture of Better Decisions</p>
     `
 
-  return sendEmail({
-    to: email,
-    subject,
-    html
-  })
+  // Checklist emails require INTERNAL_EMAIL_SECRET; use dedicated API so secret stays server-side
+  const res = await fetch('/api/send-checklist-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ to: email, subject, html })
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || 'Failed to send checklist results');
+  return data;
 }
 
 // Send new blog post notification
+// NOTE: This uses sendEmail() with no type, so it requires INTERNAL_EMAIL_SECRET when calling /api/send-email.
+// Invoke from a server context (cron, API route) that adds X-Internal-Email-Secret, or use a dedicated
+// /api/send-blog-notification endpoint that forwards with the secret.
 export async function sendBlogNotification(
   to: string[],
   blogTitle: string,

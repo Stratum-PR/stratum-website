@@ -5,6 +5,8 @@ import { ArrowRight, Clock, User, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PageMeta } from "@/components/PageMeta";
+import { NEWSUPDATES_ROUTE } from "@/config/discoverable-routes";
 import { sanityClient, blogPostsQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import { BlogSubscription } from "@/components/BlogSubscription";
 import { logger } from "@/lib/logger";
@@ -155,10 +157,11 @@ const Blog = () => {
         "name": "Stratum PR"
       }
     }
-  }, "blog");
+  }, "blog", { skipMeta: true });
 
   return (
     <div>
+      <PageMeta route={NEWSUPDATES_ROUTE} />
       {/* Hero Section with Background - compact like /services */}
       <section className="relative pt-20 sm:pt-24 pb-8 sm:pb-10 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">

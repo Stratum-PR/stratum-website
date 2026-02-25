@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
+import { PageMeta } from '@/components/PageMeta';
+import { PRIVACY_ROUTE } from '@/config/discoverable-routes';
 
 const Privacy: React.FC = () => {
   const { t } = useLanguage();
@@ -10,10 +12,11 @@ const Privacy: React.FC = () => {
     description: t('privacy.page.description'),
     keywords: t('privacy.page.keywords'),
     canonical: "https://www.stratumpr.com/privacy",
-  });
+  }, undefined, { skipMeta: true });
 
   return (
     <div className="min-h-screen bg-white pt-[50px]">
+      <PageMeta route={PRIVACY_ROUTE} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="prose prose-lg max-w-none">
           <h1 className="text-4xl font-bold text-gray-900 mb-8 mt-8">

@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, AlertCircle, Mail } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
+import { PageMeta } from '@/components/PageMeta';
+import { UNSUBSCRIBE_ROUTE } from '@/config/discoverable-routes';
 import { logger } from '@/lib/logger';
 
 const Unsubscribe = () => {
@@ -22,7 +24,7 @@ const Unsubscribe = () => {
       ? 'Cancelar tu suscripción al boletín de Stratum PR'
       : 'Unsubscribe from Stratum PR newsletter',
     canonical: 'https://www.stratumpr.com/unsubscribe',
-  });
+  }, undefined, { skipMeta: true });
 
   useEffect(() => {
     if (!email) {
@@ -74,6 +76,7 @@ const Unsubscribe = () => {
 
   return (
     <div className="min-h-screen bg-white pt-[50px] flex items-center justify-center px-4">
+      <PageMeta route={UNSUBSCRIBE_ROUTE} />
       <Card className="max-w-md w-full">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">

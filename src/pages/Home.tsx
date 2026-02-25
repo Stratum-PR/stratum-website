@@ -6,6 +6,8 @@ import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers
 import { Link, useNavigate } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PageMeta } from "@/components/PageMeta";
+import { LANDING_ROUTE } from "@/config/discoverable-routes";
 import OptimizedImage from "@/components/OptimizedImage";
 import { ComingSoonModal } from "@/components/ComingSoonModal";
 import { lazy, Suspense, useState, useEffect } from "react";
@@ -211,7 +213,7 @@ const Home = () => {
         }
       ]
     }
-  }, "home");
+  }, "home", { skipMeta: true });
 
   const services = [
     {
@@ -340,6 +342,7 @@ const Home = () => {
 
   return (
     <TooltipProvider>
+      <PageMeta route={LANDING_ROUTE} />
       <div>
         {/* Hero Section - Techy animated background similar to Evertec */}
         <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[100svh] sm:min-h-[85vh] md:min-h-[75vh] lg:min-h-[70vh] xl:min-h-[80vh] bg-gradient-to-br from-primary via-primary-800 to-secondary pt-20 pb-12 sm:pt-16 sm:pb-12">

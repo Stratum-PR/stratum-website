@@ -1,4 +1,9 @@
 // Vercel Serverless Function for Email Preferences
+//
+// SECURITY (when implementing real updates): Require a signed link or verification so only the
+// email owner can change preferences. For example: include a signed token in the link
+// (e.g. /email-preferences?email=...&token=HMAC(email, secret)) and verify it before applying
+// updates. Do not allow unauthenticated callers to change preferences for an arbitrary email.
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { logger } from '../lib/logger';
 import { checkRateLimit } from '../lib/rateLimit';

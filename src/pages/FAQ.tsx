@@ -3,6 +3,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSEO } from '@/hooks/useSEO';
+import { PageMeta } from '@/components/PageMeta';
+import { FAQ_ROUTE } from '@/config/discoverable-routes';
 import {
   Accordion,
   AccordionContent,
@@ -44,7 +46,7 @@ const FAQ: React.FC = () => {
         "itemListElement": []
       }
     }
-  }, 'FAQ');
+  }, 'FAQ', { skipMeta: true });
 
   const getFAQsByCategory = (category: string): FAQItem[] => {
     return faqData.filter(faq => faq.category === category);
@@ -52,6 +54,7 @@ const FAQ: React.FC = () => {
 
   return (
     <div>
+      <PageMeta route={FAQ_ROUTE} />
       {/* Hero Section with Background  */}
       <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">

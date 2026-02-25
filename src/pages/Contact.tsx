@@ -4,6 +4,8 @@ import ContactForm from "@/components/ContactForm";
 import ContactInfo from "@/components/ContactInfo";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PageMeta } from "@/components/PageMeta";
+import { CONTACT_ROUTE } from "@/config/discoverable-routes";
 
 const Contact = () => {
   const { t, language } = useLanguage();
@@ -46,10 +48,24 @@ const Contact = () => {
       },
       "inLanguage": language === 'es' ? 'es' : 'en'
     }
-  }, "contact");
+  }, "contact", { skipMeta: true });
 
   return (
     <div>
+      <PageMeta route={CONTACT_ROUTE} jsonLd={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "@id": "https://www.stratumpr.com/contact#webpage",
+        "url": "https://www.stratumpr.com/contact",
+        "name": seoData.title,
+        "description": seoData.description,
+        "mainEntity": {
+          "@type": "LocalBusiness",
+          "name": "Stratum PR",
+          "contactPoint": { "@type": "ContactPoint", "email": "contact@stratumpr.com", "contactType": "Customer Service" }
+        },
+        "inLanguage": language === 'es' ? 'es' : 'en'
+      })} />
       {/* Hero Section with Background */}
       <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">

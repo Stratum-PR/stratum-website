@@ -154,7 +154,8 @@ const ContactForm = () => {
             to: sanitizedData.email,
             subject: confirmationSubject,
             html: confirmationHtml,
-            from: 'Stratum PR <contact@stratumpr.com>'
+            from: 'Stratum PR <contact@stratumpr.com>',
+            type: 'contact'
           });
         } catch (emailError) {
           logger.error('Error sending confirmation email:', emailError);

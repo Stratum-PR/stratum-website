@@ -325,15 +325,27 @@ if (hasForm && !usesServerlessApi) {
 // ════════════════════════════════════════════════════════════
 const OUTSTANDING_TO_FIX = [
   {
-    condition: () => fileExists("lib/rateLimit.ts"),
+    condition: () => {
+      if (!fileExists("lib/rateLimit.ts")) return false;
+      const v = fs.readFileSync(path.resolve(process.cwd(), "lib/rateLimit.ts"), "utf8");
+      return !/dedicated|separate.*Redis|separate.*database/i.test(v);
+    },
     msg: "Use a separate Upstash Redis database per app (company site vs SaaS) so rate limits and data are isolated.",
   },
   {
-    condition: () => fileExists("api/send-email.ts"),
+    condition: () => {
+      if (!fileExists("api/send-email.ts")) return false;
+      const v = fs.readFileSync(path.resolve(process.cwd(), "api/send-email.ts"), "utf8");
+      return !/ALLOWED_UNAUTH_TYPES|INTERNAL_EMAIL_SECRET/i.test(v);
+    },
     msg: "Restrict /api/send-email: allow unauthenticated only for type=welcome; require internal secret for other sends (checklist, admin, notifications).",
   },
   {
-    condition: () => fileExists("api/email-preferences.ts"),
+    condition: () => {
+      if (!fileExists("api/email-preferences.ts")) return false;
+      const v = fs.readFileSync(path.resolve(process.cwd(), "api/email-preferences.ts"), "utf8");
+      return !/signed.*link|verification.*email.*owner/i.test(v);
+    },
     msg: "When implementing /api/email-preferences for real updates, require signed link or verification so only the email owner can change preferences.",
   },
   {

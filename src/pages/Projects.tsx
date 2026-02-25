@@ -5,6 +5,9 @@ import { ArrowRight, Building2, Heart, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PageMeta } from "@/components/PageMeta";
+import { PROJECTS_ROUTE, SOLUTIONS_ROUTE } from "@/config/discoverable-routes";
+import { useLocation } from "react-router-dom";
 import { sanityClient, projectsQuery, urlFor, isSanityConfigured } from "@/lib/sanity";
 import * as LucideIcons from "lucide-react";
 import { logger } from "@/lib/logger";
@@ -29,6 +32,9 @@ interface SanityProject {
 
 const Projects = () => {
   const { t, language } = useLanguage();
+  const location = useLocation();
+  const isSolutions = location.pathname === '/solutions';
+  const pageRoute = isSolutions ? SOLUTIONS_ROUTE : PROJECTS_ROUTE;
   const [projects, setProjects] = useState<SanityProject[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -140,10 +146,11 @@ const Projects = () => {
       "description": seoData.description,
       "inLanguage": language === 'es' ? 'es' : 'en'
     }
-  }, "projects");
+  }, isSolutions ? "solutions" : "projects", { skipMeta: true });
 
   return (
     <div>
+      <PageMeta route={pageRoute} />
       {/* Hero Section with Background */}
       <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
