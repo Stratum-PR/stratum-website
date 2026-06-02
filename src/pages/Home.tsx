@@ -1,950 +1,353 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ArrowRight, BarChart3, Brain, Database, Target, TrendingUp, Zap, Layers, Info, Clock, HelpCircle, Server, AlertTriangle, XCircle, Network, Wifi, WifiOff, Link as LinkIcon, RotateCcw, Link2 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  ArrowRight,
+  Clock,
+  Moon,
+  DollarSign,
+  PackageSearch,
+  Users,
+  Workflow,
+  MessageCircle,
+  Wrench,
+  CheckCircle,
+  Play,
+  ShieldCheck,
+  Quote,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
 import { LANDING_ROUTE } from "@/config/discoverable-routes";
 import OptimizedImage from "@/components/OptimizedImage";
 import { ComingSoonModal } from "@/components/ComingSoonModal";
-import { lazy, Suspense, useState, useEffect } from "react";
-import TechAnimatedBackground from "@/components/TechAnimatedBackground";
-import RotatingText from "@/components/RotatingText";
+import { useState, useEffect } from "react";
 import { sanitizeHtml } from "@/lib/sanitize";
+import { HomeHeroSection } from "@/components/home/HomeHeroSection";
 
-// Lazy load non-critical components with better loading states
-const WhyWorkWithUsSection = lazy(() => import("@/components/WhyWorkWithUsSection"));
+const CALENDLY_URL = "https://calendly.com/admin-stratumpr/30min";
+
+const FOUNDERS = [
+  { key: "jovaniel" as const, image: "/img/Jovaniel.jpg", bioKey: "home.guide.founder1.bio" },
+  { key: "genesis" as const, image: "/img/Genesis.jpg", bioKey: "home.guide.founder2.bio" },
+];
+
+const VALUE_BENEFITS = [
+  { icon: Clock, titleKey: "home.value.benefit1.title", bodyKey: "home.value.benefit1.body" },
+  { icon: Moon, titleKey: "home.value.benefit2.title", bodyKey: "home.value.benefit2.body" },
+  { icon: DollarSign, titleKey: "home.value.benefit3.title", bodyKey: "home.value.benefit3.body" },
+  { icon: PackageSearch, titleKey: "home.value.benefit4.title", bodyKey: "home.value.benefit4.body" },
+  { icon: Users, titleKey: "home.value.benefit5.title", bodyKey: "home.value.benefit5.body" },
+  { icon: Workflow, titleKey: "home.value.benefit6.title", bodyKey: "home.value.benefit6.body" },
+];
+
+const STAKE_KEYS = [
+  "home.stakes.point1",
+  "home.stakes.point2",
+  "home.stakes.point3",
+  "home.stakes.point4",
+  "home.stakes.point5",
+] as const;
+
+const PLAN_STEPS = [
+  { icon: MessageCircle, titleKey: "home.plan.step1.title", bodyKey: "home.plan.step1.body" },
+  { icon: Wrench, titleKey: "home.plan.step2.title", bodyKey: "home.plan.step2.body" },
+  { icon: CheckCircle, titleKey: "home.plan.step3.title", bodyKey: "home.plan.step3.body" },
+] as const;
 
 const Home = () => {
   const { t, language } = useLanguage();
-  const [isClient, setIsClient] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
-  
-  // Hydration optimization
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
-  // Use Intersection Observer to animate sections when they enter viewport
   useEffect(() => {
-    const sessionKey = 'homePageAnimated';
-    const hasAnimatedBefore = sessionStorage.getItem(sessionKey);
-    
-    // If already visited in session, show immediately
-    if (hasAnimatedBefore) {
-      document.body.classList.add('no-animation');
-      const elements = document.querySelectorAll('.entrance-animation');
-      elements.forEach(el => {
-        el.classList.add('animate');
-      });
+    const sessionKey = "homePageAnimated";
+    if (sessionStorage.getItem(sessionKey)) {
+      document.body.classList.add("no-animation");
+      document.querySelectorAll(".entrance-animation").forEach((el) => el.classList.add("animate"));
       return;
     }
 
-    // Set up Intersection Observer for first-time visitors
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15 // Trigger when 15% of the section is visible
-    };
-
-    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-          // Once animated, stop observing this element
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections with entrance-animation class
-    const elements = document.querySelectorAll('.entrance-animation');
-    elements.forEach((el) => {
-      observer.observe(el);
-    });
-
-    // Mark session as animated
-    sessionStorage.setItem(sessionKey, 'true');
-
-    // Cleanup
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-  
-  // Dynamic SEO data based on language (optimized for 50-60 char titles, 150-160 char descriptions)
-  const seoData = language === 'es' ? {
-    title: "Stratum PR",
-    description: "Análisis de Datos e Implementación de IA en Puerto Rico. Transforma tu negocio con soluciones estratégicas de datos.",
-    keywords: "consultoría de IA Puerto Rico, análisis de datos Puerto Rico, automatización comercial Puerto Rico, implementación de CRM Puerto Rico, inteligencia empresarial Puerto Rico, análisis de big data, modelado predictivo, consultoría de aprendizaje automático, transformación digital Puerto Rico"
-  } : {
-    title: "Stratum PR",
-    description: "Data Analytics and AI Implementation services in Puerto Rico. Transform your business with strategic data solutions.",
-    keywords: "AI consulting Puerto Rico, data analytics consulting Puerto Rico, AI business automation Puerto Rico, CRM Puerto Rico, CRM implementation consulting Puerto Rico, commercial automation Puerto Rico, big data analytics consulting, business intelligence Puerto Rico, Salesforce implementation Puerto Rico, predictive modeling services Puerto Rico, machine learning consulting Puerto Rico, digital transformation consulting Puerto Rico, data analytics services, business automation solutions Puerto Rico"
-  };
-  
-  // SEO optimization for home page
-  useSEO({
-    title: seoData.title,
-    description: seoData.description,
-    keywords: seoData.keywords,
-    canonical: "https://www.stratumpr.com/",
-    ogType: "website",
-    ogTitle: "Stratum PR",
-    ogImage: "https://www.stratumpr.com/img/StratumPR-Preview-Image.jpg",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "@id": "https://www.stratumpr.com/#website",
-          "url": "https://www.stratumpr.com/",
-          "name": "Stratum PR",
-          "description": language === 'es' 
-            ? "Firma líder de análisis y consultoría en Puerto Rico especializada en implementación de CRM, análisis de big data, soluciones de IA y automatización estratégica empresarial."
-            : "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation.",
-          "inLanguage": language === 'es' ? 'es' : 'en',
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.stratumpr.com/?s={search_term_string}",
-            "query-input": "required name=search_term_string"
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target);
           }
-        },
-        {
-      "@type": "WebPage",
-      "@id": "https://www.stratumpr.com/#webpage",
-      "url": "https://www.stratumpr.com/",
-          "name": seoData.title,
-          "description": seoData.description,
-          "inLanguage": language === 'es' ? 'es' : 'en',
-      "isPartOf": {
-        "@id": "https://www.stratumpr.com/#website"
+        });
       },
-      "about": {
-        "@type": "Thing",
-            "name": language === 'es' ? "Análisis de Datos y Automatización Empresarial" : "Data Analytics and Business Automation Consulting"
-          }
-      },
-        {
-        "@type": "LocalBusiness",
-          "@id": "https://www.stratumpr.com/#business",
-          "name": "Stratum PR",
-          "alternateName": "Stratum Puerto Rico",
-          "description": language === 'es'
-            ? "Firma líder de análisis y consultoría en Puerto Rico especializada en implementación de CRM, análisis de big data, soluciones de IA y automatización estratégica empresarial."
-            : "Leading analytics and consulting firm in Puerto Rico specializing in CRM implementation, big data analytics, AI solutions, and strategic business automation.",
-          "url": "https://www.stratumpr.com",
-          "logo": "https://www.stratumpr.com/img/stratum-pr-logo.png",
-          "telephone": "+1-787-XXX-XXXX",
-          "email": "contact@stratumpr.com",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Trujillo Alto",
-            "addressRegion": "PR",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 18.2208,
-            "longitude": -66.5901
-          },
-          "areaServed": {
-            "@type": "Place",
-            "name": "Puerto Rico"
-          },
-          "foundingDate": "2025",
-          "founders": [
-            {
-              "@type": "Person",
-              "name": "Jovaniel Rodriguez",
-              "jobTitle": "Co-Founder, Technology Infrastructure"
-            },
-            {
-              "@type": "Person",
-              "name": "Genesis Rodriguez", 
-              "jobTitle": "Co-Founder, Data Science"
-            }
-          ],
-          "sameAs": [
-            "https://linkedin.com/company/stratumpr",
-            "https://twitter.com/stratumpr"
-          ],
-          "inLanguage": language === 'es' ? 'es' : 'en'
-        },
-        {
-          "@type": "OfferCatalog",
-          "@id": "https://www.stratumpr.com/#services",
-          "name": language === 'es' ? "Servicios de Stratum PR" : "Stratum PR Services",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": language === 'es' ? "Consultoría de IA" : "AI Consulting",
-                "description": language === 'es' ? "Soluciones de inteligencia artificial para automatización empresarial" : "Artificial intelligence solutions for business automation"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": language === 'es' ? "Implementación de CRM" : "CRM Implementation",
-                "description": language === 'es' ? "Implementación y optimización de sistemas CRM" : "CRM system implementation and optimization"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": language === 'es' ? "Análisis de Big Data" : "Big Data Analytics",
-                "description": language === 'es' ? "Análisis de grandes volúmenes de datos para insights empresariales" : "Large-scale data analysis for business insights"
-              }
-            }
-          ],
-          "inLanguage": language === 'es' ? 'es' : 'en'
-        }
-      ]
-    }
-  }, "home", { skipMeta: true });
-
-  const services = [
-    {
-      icon: Layers,
-      title: t('services.integration.title'),
-      description: t('services.integration.description'),
-      simpleExplanation: "We connect all your business software so they work together seamlessly."
-    },
-    {
-      icon: BarChart3,
-      title: t('services.crm.title'),
-      description: t('services.crm.description'),
-      simpleExplanation: "We help you organize and track customers more easily so you never miss opportunities."
-    },
-    {
-      icon: Database,
-      title: t('services.bigdata.title'),
-      description: t('services.bigdata.description'),
-      simpleExplanation: "We turn massive datasets into easy-to-understand insights that guide your decisions."
-    },
-    {
-      icon: Target,
-      title: t('services.forecasting.title'),
-      description: t('services.forecasting.description'),
-      simpleExplanation: "We use your data to forecast future trends so you can plan ahead confidently."
-    },
-    {
-      icon: Zap,
-      title: t('services.automation.title'),
-      description: t('services.automation.description'),
-      simpleExplanation: "We automate repetitive tasks so your team can focus on what really matters."
-    },
-    {
-      icon: Brain,
-      title: t('services.decision.title'),
-      description: t('services.decision.description'),
-      simpleExplanation: "We automate complex decisions using smart algorithms that learn from your data."
-    }
-  ];
-
-  const stats = [
-    {
-      value: "16+",
-      label: t('stats.experience')
-    },
-    {
-      value: "3.2x",
-      label: t('stats.satisfaction')
-    },
-    {
-      value: "30+",
-      label: t('stats.projects')
-    },
-    {
-      value: "100%",
-      label: t('stats.team')
-    }
-  ];
-
-  // Optimized service card component with better performance
-  const ServiceCardWithPopover = ({ service }: { service: any }) => {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-    const navigate = useNavigate();
-
-    const handleCardClick = () => {
-      // Create a slug from the service title for the hash (matching ServicesGrid format)
-      const serviceId = service.title.toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '');
-      // Navigate to services page with hash to scroll to specific service
-      navigate(`/services#service-${serviceId}`);
-    };
-
-    const handlePopoverToggle = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setIsPopoverOpen(!isPopoverOpen);
-    };
-
-    return (
-      <Card 
-        className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg h-full "
-        onClick={handleCardClick}
-      >
-        <CardContent className="p-6 md:p-8 text-center h-full flex flex-col">
-          <div className="flex justify-center mb-5">
-            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-primary/10 rounded-xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
-              <service.icon className="h-6 w-6 sm:h-7 sm:w-7 text-primary group-hover:text-white" aria-hidden="true" />
-            </div>
-          </div>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <h3 className="font-telegraf font-semibold text-base sm:text-lg md:text-xl text-primary group-hover:text-secondary transition-colors">
-              {service.title}
-            </h3>
-            <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-              <PopoverTrigger asChild>
-                <button 
-                  className="text-gray-400 hover:text-primary transition-colors p-1.5 rounded-full hover:bg-gray-100 min-w-[32px] min-h-[32px] flex items-center justify-center"
-                  aria-label={`Learn more about ${service.title}`}
-                  onClick={handlePopoverToggle}
-                  type="button"
-                >
-                  <Info className="h-4 w-4" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent 
-                className="w-80 p-4 bg-white border border-gray-200 shadow-lg rounded-lg z-50"
-                side="top"
-                sideOffset={8}
-                align="center"
-                avoidCollisions={true}
-                collisionPadding={20}
-              >
-                <p className="font-telegraf text-sm text-gray-700 leading-relaxed">
-                  {service.simpleExplanation}
-                </p>
-              </PopoverContent>
-            </Popover>
-          </div>
-          <p className="font-telegraf text-gray-600 flex-grow text-sm sm:text-base leading-relaxed">
-            {service.description}
-          </p>
-        </CardContent>
-      </Card>
+      { threshold: 0.15 }
     );
-  };
+
+    document.querySelectorAll(".entrance-animation").forEach((el) => observer.observe(el));
+    sessionStorage.setItem(sessionKey, "true");
+    return () => observer.disconnect();
+  }, []);
+
+  const seoData =
+    language === "es"
+      ? {
+          title: "Stratum PR — Sistemas Digitales para Fabricantes de Alimentos",
+          description:
+            "Sistemas digitales a la medida para fabricantes de alimentos en Puerto Rico. Cumplimiento FSMA, inventario y documentación sin el pánico de auditoría.",
+          keywords:
+            "fabricantes de alimentos Puerto Rico, FSMA, cumplimiento alimentario, sistemas digitales, SQF, trazabilidad, software manufactura alimentos",
+        }
+      : {
+          title: "Stratum PR — Custom Digital Systems for Food Manufacturers",
+          description:
+            "Custom digital systems for Puerto Rico food manufacturers. FSMA compliance, inventory, and documentation — without spreadsheet chaos or audit panic.",
+          keywords:
+            "food manufacturer Puerto Rico, FSMA compliance, digital systems, SQF documentation, food production software, traceability, custom software",
+        };
+
+  useSEO(
+    {
+      title: seoData.title,
+      description: seoData.description,
+      keywords: seoData.keywords,
+      canonical: "https://www.stratumpr.com/",
+      ogType: "website",
+      ogTitle: seoData.title,
+      ogImage: "https://www.stratumpr.com/img/StratumPR-Preview-Image.jpg",
+      structuredData: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        url: "https://www.stratumpr.com/",
+        name: seoData.title,
+        description: seoData.description,
+        inLanguage: language === "es" ? "es" : "en",
+      },
+    },
+    "home",
+    { skipMeta: true }
+  );
+
+  const openChecklist = () => setShowComingSoon(true);
 
   return (
-    <TooltipProvider>
+    <>
       <PageMeta route={LANDING_ROUTE} />
       <div>
-        {/* Hero Section - Techy animated background similar to Evertec */}
-        <section className="hero-section relative flex items-center justify-center overflow-hidden min-h-[100svh] sm:min-h-[85vh] md:min-h-[75vh] lg:min-h-[70vh] xl:min-h-[80vh] bg-gradient-to-br from-primary via-primary-800 to-secondary pt-20 pb-12 sm:pt-16 sm:pb-12">
-          {/* Dark overlay for better text contrast */}
-          <div className="absolute inset-0 bg-black/40 z-0"></div>
-          
-          {/* Tech animated background */}
-          <TechAnimatedBackground className="z-0" opacity={0.7} />
+        <HomeHeroSection onChecklistClick={openChecklist} />
 
-          {/* Content */}
-          <div className="relative max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 py-4 sm:py-6 text-center text-white z-10">
-            {/* SEO-friendly H1 - visible to search engines */}
-            <h1 className="sr-only">
-              {language === 'es' 
-                ? 'Consultoría de IA y Análisis de Datos en Puerto Rico - Stratum PR'
-                : 'AI Consulting and Data Analytics in Puerto Rico - Stratum PR'}
-            </h1>
-            {/* Visual H1 for users */}
-            <div className="font-telegraf font-bold mb-6 sm:mb-8 animate-fade-in leading-tight hero-headline" role="presentation" aria-hidden="true">
-              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-                <RotatingText
-                  baseText={t('home.hero.carousel.baseText')}
-                  words={[
-                    t('home.hero.carousel.word1'),
-                    t('home.hero.carousel.word2'),
-                    t('home.hero.carousel.word3'),
-                    t('home.hero.carousel.word4'),
-                    t('home.hero.carousel.word5'),
-                    t('home.hero.carousel.word6')
-                  ]}
-                  colors={['#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E', '#E6E08E']}
-                  className="block"
-                  typingSpeed={100}
-                  deletingSpeed={60}
-                  pauseDuration={2500}
-                />
-              </div>
+        {/* 2. Stakes */}
+        <section
+          className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-secondary/5 entrance-animation"
+          aria-labelledby="stakes-heading"
+        >
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="stakes-heading" className="font-telegraf font-bold text-2xl md:text-4xl text-primary text-center mb-6">
+              {t("home.stakes.title")}
+            </h2>
+            <p className="font-telegraf text-lg text-gray-700 text-center mb-8">{t("home.stakes.intro")}</p>
+            <ul className="space-y-4 mb-10">
+              {STAKE_KEYS.map((key) => (
+                <li key={key} className="flex gap-3 font-telegraf text-gray-700">
+                  <span className="text-primary font-bold mt-1">•</span>
+                  <span>{t(key)}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="font-telegraf text-lg md:text-xl text-primary font-semibold text-center italic">
+              {t("home.stakes.closing")}
+            </p>
+          </div>
+        </section>
+
+        {/* 3. Value proposition */}
+        <section className="py-16 md:py-20 bg-white entrance-animation" aria-labelledby="value-heading">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="value-heading" className="font-telegraf font-bold text-2xl md:text-4xl text-primary text-center mb-12">
+              {t("home.value.title")}
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {VALUE_BENEFITS.map(({ icon: Icon, titleKey, bodyKey }) => (
+                <Card key={titleKey} className="border-primary/15 shadow-md h-full">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <Icon className="h-6 w-6 text-primary" aria-hidden />
+                    </div>
+                    <h3 className="font-telegraf font-bold text-lg text-primary mb-2">{t(titleKey)}</h3>
+                    <p className="font-telegraf text-gray-600 text-sm leading-relaxed">{t(bodyKey)}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
+          </div>
+        </section>
 
-            {/* Puerto Rico Badge */}
-            <div className="mb-6 sm:mb-8 animate-slide-up" style={{animationDelay: '0.15s'}}>
-              <span className="inline-block px-4 py-2 bg-gradient-to-r from-accent/25 via-accent/30 to-accent/25 backdrop-blur-sm border border-accent/40 rounded-full text-accent font-telegraf font-semibold text-sm sm:text-base shadow-lg accent-glow animate-float-slow">
-                {t('home.hero.badge')}
-              </span>
-            </div>
-
-            <p className="font-telegraf text-base sm:text-lg md:text-xl mb-10 sm:mb-12 text-white/80 max-w-3xl mx-auto animate-slide-up leading-relaxed" style={{animationDelay: '0.2s'}}>
-              {t('home.hero.description')}
+        {/* 4. Guide */}
+        <section className="py-16 md:py-20 bg-gradient-to-br from-secondary/5 to-primary/5 entrance-animation" aria-labelledby="guide-heading">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="font-telegraf text-xl md:text-2xl text-gray-800 leading-relaxed max-w-4xl mx-auto text-center mb-12">
+              {t("home.guide.empathy")}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center animate-slide-up px-2 sm:px-0" style={{animationDelay: '0.4s'}}>
-              <div className="relative w-full sm:w-auto">
-              <Button 
-                asChild 
-                size="lg" 
-                  className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base sm:text-lg h-auto w-full sm:w-auto" 
-                aria-label="Schedule free consultation with Stratum PR data analytics experts"
-              >
-                  <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer">
-                  {t('home.hero.cta.primary')}
-                    <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 inline" aria-hidden="true" />
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {FOUNDERS.map(({ key, image, bioKey }) => (
+                <Card key={key} className="overflow-hidden">
+                  <CardContent className="p-6 flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                    <OptimizedImage
+                      src={image}
+                      alt={t(`team.${key}.name`)}
+                      className="w-28 h-28 rounded-full object-cover flex-shrink-0"
+                      loading="lazy"
+                    />
+                    <div>
+                      <h3 className="font-telegraf font-bold text-xl text-primary">{t(`team.${key}.name`)}</h3>
+                      <p className="font-telegraf text-sm text-accent font-medium mb-2">{t(`team.${key}.role`)}</p>
+                      <p className="font-telegraf text-gray-600 text-sm leading-relaxed">{t(bioKey)}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+              {[
+                t("home.guide.stat.experience"),
+                t("home.guide.stat.roi"),
+                t("home.guide.stat.interviews"),
+                t("home.guide.stat.programs"),
+              ].map((label) => (
+                <div
+                  key={label}
+                  className="bg-primary text-white rounded-lg p-4 text-center font-telegraf font-semibold text-sm"
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-8 mb-10 rounded-xl bg-primary px-6 py-5">
+              <img src="/NSF I-Corps new logo_white.avif" alt="NSF I-Corps" className="h-10 object-contain" />
+              <img src="/logo-guayacan-white-footer.webp" alt="Grupo Guayacán" className="h-9 object-contain" />
+            </div>
+
+            <blockquote className="max-w-2xl mx-auto text-center mb-8">
+              <Quote className="h-8 w-8 text-accent mx-auto mb-3" aria-hidden />
+              <p className="font-telegraf text-xl italic text-gray-800">{t("home.guide.testimonial")}</p>
+              <footer className="font-telegraf text-gray-500 mt-2">{t("home.guide.testimonialAttribution")}</footer>
+            </blockquote>
+
+            <div className="flex items-start gap-3 max-w-2xl mx-auto bg-accent/15 border border-accent/40 rounded-xl p-5 mb-6">
+              <ShieldCheck className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" aria-hidden />
+              <p className="font-telegraf font-semibold text-primary">{t("home.guide.noLockIn")}</p>
+            </div>
+
+            <p className="text-center">
+              <Link to="/about" className="font-telegraf text-primary font-semibold hover:underline">
+                {t("home.guide.moreAboutUs")} →
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* 5. Plan */}
+        <section className="py-16 md:py-20 bg-white entrance-animation" aria-labelledby="plan-heading">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="plan-heading" className="font-telegraf font-bold text-2xl md:text-4xl text-primary text-center mb-12">
+              {t("home.plan.title")}
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {PLAN_STEPS.map(({ icon: Icon, titleKey, bodyKey }, index) => (
+                <div key={titleKey} className="text-center">
+                  <div className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-4 text-xl font-bold font-telegraf">
+                    {index + 1}
+                  </div>
+                  <Icon className="h-8 w-8 text-primary mx-auto mb-3" aria-hidden />
+                  <h3 className="font-telegraf font-bold text-lg text-primary mb-2">{t(titleKey)}</h3>
+                  <p className="font-telegraf text-gray-600 text-sm leading-relaxed">{t(bodyKey)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Explanatory paragraph (SEO) */}
+        <section className="py-16 md:py-20 bg-gray-50 entrance-animation" aria-labelledby="story-heading">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+              id="story-heading"
+              className="font-telegraf text-gray-700 space-y-4 text-base md:text-lg leading-relaxed prose prose-p:mb-4"
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(t("home.story.content")) }}
+            />
+            <div className="mt-10 text-center">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary-800 font-telegraf">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                  {t("home.hero.cta.primary")}
                 </a>
               </Button>
-                <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-                  {t('cta.badge.free')}
-                </span>
-              </div>
+            </div>
+          </div>
+        </section>
 
-              <div className="relative w-full sm:w-auto">
-                <Button 
-                  onClick={() => setShowComingSoon(true)}
-                  variant="outline" 
-                  size="lg" 
-                  className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary font-telegraf font-semibold px-8 py-4 sm:px-10 sm:py-5 rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 text-base sm:text-lg h-auto w-full sm:w-auto" 
-                  aria-label="Take the Systems Assessment"
+        {/* 7. Video placeholder */}
+        <section className="py-16 md:py-20 bg-white entrance-animation" aria-labelledby="video-heading">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 id="video-heading" className="font-telegraf font-bold text-2xl md:text-3xl text-primary mb-8">
+              {t("home.video.title")}
+            </h2>
+            <div className="aspect-video rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-dashed border-primary/30 flex flex-col items-center justify-center gap-4 p-8">
+              <Play className="h-16 w-16 text-primary/40" aria-hidden />
+              <p className="font-telegraf text-gray-600">{t("home.video.placeholder")}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 8. Case study */}
+        <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-white entrance-animation" aria-labelledby="case-heading">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 id="case-heading" className="font-telegraf font-bold text-2xl md:text-4xl text-primary text-center mb-8">
+              {t("home.case.title")}
+            </h2>
+            <Card className="shadow-lg border-primary/20">
+              <CardContent className="p-8 space-y-4 font-telegraf text-gray-700">
+                <p>{t("home.case.challenge")}</p>
+                <p>{t("home.case.solution")}</p>
+                <p className="font-semibold text-primary">{t("home.case.result")}</p>
+                <Link
+                  to="/projects"
+                  className="inline-flex items-center text-primary font-semibold hover:underline pt-2"
                 >
-                  {t('home.hero.cta.secondary')}
-                </Button>
-                <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-                  {t('cta.badge.free')}
-                </span>
-              </div>
-            </div>
+                  {t("home.case.readMore")}
+                  <ArrowRight className="ml-1 h-4 w-4" aria-hidden />
+                </Link>
+                <p className="text-sm text-gray-500 pt-2">{t("home.case.comingSoon")}</p>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
-        {/* Section Divider */}
-        <div className="h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
-
-        {/* Problem Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/10 section-container relative animate-gradient-flow entrance-animation animate-slide-in-bottom" aria-labelledby="problem-heading" style={{animationDelay: '0.2s'}}>
-          {/* Subtle animated background pattern */}
-          <div className="absolute inset-0 opacity-[0.08] animate-gradient-flow pointer-events-none" style={{
-            backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.25) 0%, transparent 50%),
-                              radial-gradient(circle at 70% 60%, rgba(38, 106, 178, 0.2) 0%, transparent 50%)`,
-            backgroundSize: '200% 200%'
-          }}></div>
-          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="problem-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-10 md:mb-12 text-center animate-fade-in-up">
-              {t('home.problem.title')}
-            </h2>
-            
-            {/* Compact Dependency Flow */}
-            <div className="relative mb-10 md:mb-12">
-              <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col md:flex-row items-stretch justify-center gap-4 md:gap-6">
-                  {/* Problem 1 */}
-                  <div className="flex-1 max-w-sm border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-1 flex flex-col">
-                    <div className="flex items-start gap-4 flex-1">
-                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative">
-                        <Database className="h-6 w-6 md:h-7 md:w-7 text-white" />
-                  </div>
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
-                    {t('home.problem.box1.title')}
-                  </h3>
-                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
-                    {t('home.problem.box1.subtitle')}
-                  </p>
-                      </div>
-                </div>
-              </div>
-
-                  {/* Arrow 1 */}
-                  <div className="hidden md:flex flex-shrink-0 items-center relative">
-                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary/40 transition-all duration-300" />
-                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary absolute animate-pulse" style={{
-                      animation: 'arrowPulse 4.5s ease-in-out infinite',
-                      animationDelay: '0.75s'
-                    }} />
-                  </div>
-
-                  {/* Problem 2 */}
-                  <div className="flex-1 max-w-sm border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-2 flex flex-col">
-                    <div className="flex items-start gap-4 flex-1">
-                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative">
-                        <Clock className="h-6 w-6 md:h-7 md:w-7 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
-                    {t('home.problem.box2.title')}
-                  </h3>
-                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
-                    {t('home.problem.box2.subtitle')}
-                  </p>
-                      </div>
-                </div>
-              </div>
-
-                  {/* Arrow 2 */}
-                  <div className="hidden md:flex flex-shrink-0 items-center relative">
-                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary/40 transition-all duration-300" />
-                    <ArrowRight className="h-6 w-6 md:h-7 md:w-7 text-primary absolute animate-pulse" style={{
-                      animation: 'arrowPulse 4.5s ease-in-out infinite',
-                      animationDelay: '2.25s'
-                    }} />
-                  </div>
-
-                  {/* Problem 3 */}
-                  <div className="flex-1 max-w-sm border-l-4 border-primary rounded-r-lg p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 group relative animate-cascade-pulse-3 flex flex-col">
-                    <div className="flex items-start gap-4 flex-1">
-                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center relative">
-                        <AlertTriangle className="h-6 w-6 md:h-7 md:w-7 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0 flex flex-col">
-                        <h3 className="font-telegraf font-bold text-base md:text-lg text-gray-800 mb-2 leading-tight">
-                    {t('home.problem.box3.title')}
-                  </h3>
-                        <p className="font-telegraf text-sm md:text-base text-gray-600 leading-relaxed flex-1">
-                    {t('home.problem.box3.subtitle')}
-                  </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Dark Blue Background Message */}
-            <div className="bg-gradient-to-r from-primary via-primary-800 to-secondary text-white rounded-lg p-6 md:p-8 text-center shadow-xl animate-gradient-flow hover-glow">
-              <p className="font-telegraf text-base sm:text-lg md:text-xl font-semibold leading-relaxed">
-                {t('home.problem.conclusion')}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Section Divider */}
-        <div className="h-1 bg-gradient-to-r from-transparent via-secondary/20 to-transparent"></div>
-
-        {/* Guide Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-secondary/8 via-white to-primary/8 section-container relative entrance-animation animate-slide-in-bottom" aria-labelledby="guide-heading" style={{animationDelay: '0.3s'}}>
-          {/* Subtle animated background pattern */}
-          <div className="absolute inset-0 opacity-[0.1] animate-gradient-flow pointer-events-none" style={{
-            backgroundImage: `radial-gradient(circle at 20% 30%, rgba(30, 43, 126, 0.2) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 70%, rgba(38, 106, 178, 0.15) 0%, transparent 50%)`,
-            backgroundSize: '200% 200%'
-          }}></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-              {/* Left Side - Text Content */}
-              <div className="space-y-6 md:space-y-8">
-                <div>
-                  <p className="font-telegraf text-xl sm:text-2xl md:text-3xl text-gray-800 leading-relaxed font-bold mb-6" style={{color: '#1E2B7E'}}>
-                    {t('home.guide.description')}
-                  </p>
-                  <p className="font-telegraf text-base sm:text-lg text-gray-700 mb-6">
-                    <Link to="/about" className="text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 font-semibold">
-                      {t('home.guide.moreAboutUs')}
-                    </Link>
-              </p>
-            </div>
-
-                {/* Puerto Rico Image */}
-                <div className="w-full">
-                  <div className="w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-xl">
-                    <OptimizedImage 
-                      src="https://images.unsplash.com/photo-1590099461831-30e3dacdca40?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1200" 
-                      alt="Puerto Rico - Modern Business and Technology Hub" 
-                    className="w-full h-full object-cover"
-                      loading="lazy"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-                      placeholderColor="#e0e7ef"
-                      context="Puerto Rico business technology"
-                    />
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2 text-center font-telegraf">
-                    {t('home.guide.photoBy')}{' '}
-                    <a 
-                      href="https://unsplash.com/@sklepacki" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-primary-600 underline hover:no-underline transition-colors"
-                    >
-                      Stephanie Klepacki
-                    </a>
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Side - Enhanced Services Grid */}
-              <div className="relative">
-                {/* Tech animated background for services section */}
-                <div className="absolute inset-0 opacity-30 pointer-events-none">
-                  <TechAnimatedBackground opacity={0.15} />
-                </div>
-                
-                <h2 className="font-telegraf text-xl sm:text-2xl md:text-3xl text-gray-800 mb-6 md:mb-8 font-bold text-center animate-fade-in-up relative z-10" style={{color: '#1E2B7E'}}>
-                  {t('home.guide.weSpecialize')}
-                </h2>
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 relative z-10">
-                  {services.map((service, index) => {
-                    // Create a slug from the service title for the hash (matching ServicesGrid format)
-                    const serviceId = service.title.toLowerCase()
-                      .replace(/[^a-z0-9]+/g, '-')
-                      .replace(/^-|-$/g, '');
-                    return (
-                    <Link key={index} to={`/services#service-${serviceId}`} className="group">
-                      <Card className="h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-primary/30 shadow-xl bg-gradient-to-br from-white/90 via-primary/5 to-primary/10 backdrop-blur-sm hover:from-primary/20 hover:via-primary/15 hover:to-primary/25 hover:border-primary/60 hover-lift animate-fade-in-scale relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
-                        {/* Animated tech border glow */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 animate-gradient-flow" style={{
-                            backgroundSize: '200% 200%',
-                            animation: 'gradientFlow 8s ease infinite'
-                          }}></div>
-                        </div>
-                        
-                        {/* Circuit-like corner accents */}
-                        <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        
-                        <CardContent className="p-4 sm:p-5 md:p-6 text-center h-full flex flex-col justify-center relative z-10">
-                          <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="relative inline-flex items-center justify-center">
-                              {/* Outer glow ring */}
-                              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/30 to-primary/50 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-                                animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-                              }}></div>
-                              
-                              {/* Icon container with tech gradient */}
-                              <div className="relative inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary via-primary-800 to-primary rounded-xl group-hover:from-primary-800 group-hover:via-primary group-hover:to-primary-800 transition-all duration-500 shadow-lg hover-scale-icon primary-glow">
-                                {/* Animated inner glow */}
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                
-                                <service.icon className="h-6 w-6 sm:h-7 sm:w-7 text-white relative z-10 group-hover:scale-110 transition-transform duration-500" style={{filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'}} aria-hidden="true" />
-                              </div>
-                              
-                              {/* Pulsing dots around icon */}
-                              <div className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100" style={{
-                                animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
-                                animationDelay: '0.2s'
-                              }}></div>
-                              <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-primary-800 rounded-full opacity-0 group-hover:opacity-100" style={{
-                                animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
-                                animationDelay: '0.4s'
-                              }}></div>
-                            </div>
-                          </div>
-                          <h3 className="font-telegraf font-bold text-sm sm:text-base text-primary group-hover:text-primary-800 transition-colors duration-500 relative z-10">
-                            {service.title}
-                          </h3>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            
-            {/* Conclusion Text */}
-            <div className="text-center mt-10 md:mt-12 bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 rounded-xl p-6 md:p-8 border-2 border-primary/20 shadow-lg">
-              <p className="font-telegraf text-lg sm:text-xl md:text-2xl text-gray-700 italic mb-4 font-semibold">
-                {t('home.guide.conclusion')}
-              </p>
-              <Link to="/services" className="font-telegraf text-primary hover:text-primary-600 underline hover:no-underline transition-colors duration-200 text-base sm:text-lg font-bold">
-                {t('home.guide.learnMoreServices')}
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Section Divider */}
-        <div className="h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
-
-        {/* Plan Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-accent/8 via-white to-primary/10 section-container relative animate-gradient-flow entrance-animation animate-slide-in-bottom" aria-labelledby="plan-heading" style={{animationDelay: '0.4s'}}>
-          {/* Subtle animated background pattern */}
-          <div className="absolute inset-0 opacity-[0.08] animate-gradient-flow pointer-events-none" style={{
-            backgroundImage: `radial-gradient(circle at 40% 30%, rgba(30, 43, 126, 0.2) 0%, transparent 50%),
-                              radial-gradient(circle at 60% 70%, rgba(230, 224, 142, 0.2) 0%, transparent 50%)`,
-            backgroundSize: '200% 200%'
-          }}></div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="plan-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-10 md:mb-12 text-center animate-fade-in-up" style={{color: '#1E2B7E'}}>
-              {t('home.plan.title')}
-            </h2>
-            <div className="flex flex-col space-y-4 sm:space-y-6">
-              <div className="flex items-center gap-4 animate-fade-in-up" style={{animationDelay: '0.1s'}}>
-                <span className="bg-gradient-to-br from-primary to-primary-800 text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-telegraf font-bold text-lg sm:text-xl flex-shrink-0 shadow-lg hover-scale-icon primary-glow animate-float-slow">1</span>
-                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeHtml(t('home.plan.step1')) }}>
-                </p>
-              </div>
-              <div className="flex items-center gap-4 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                <span className="bg-gradient-to-br from-primary to-primary-800 text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-telegraf font-bold text-lg sm:text-xl flex-shrink-0 shadow-lg hover-scale-icon secondary-glow animate-float-slow" style={{animationDelay: '0.5s'}}>2</span>
-                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeHtml(t('home.plan.step2')) }}>
-                </p>
-              </div>
-              <div className="flex items-center gap-4 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-                <span className="bg-gradient-to-br from-primary to-primary-800 text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-telegraf font-bold text-lg sm:text-xl flex-shrink-0 shadow-lg hover-scale-icon accent-glow animate-float-slow" style={{animationDelay: '1s'}}>3</span>
-                <p className="font-telegraf text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: sanitizeHtml(t('home.plan.step3')) }}>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section Divider */}
-        <div className="h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
-
-        {/* Two Paths Forward Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary/8 via-secondary/5 to-primary/8 section-container relative entrance-animation animate-slide-in-bottom" aria-labelledby="two-paths-heading" style={{animationDelay: '0.5s'}}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 id="two-paths-heading" className="font-telegraf font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-10 md:mb-12 text-center animate-fade-in-up" style={{color: '#1E2B7E'}}>
-              {t('home.twoPaths.title')}
-            </h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-8 lg:gap-6">
-              {/* Without Action Column */}
-              <div className="bg-gradient-to-br from-red-50/90 via-white to-orange-50/60 rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl border-l-4 md:border-l-8 border-2 border-red-200/60" style={{borderLeftColor: '#B26E26'}}>
-                <div className="flex items-center mb-5 sm:mb-6 md:mb-8">
-                  <AlertTriangle className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 mr-2 sm:mr-3 md:mr-4 stroke-2 flex-shrink-0" style={{color: '#B26E26'}} />
-                  <h3 className="font-telegraf font-bold text-base sm:text-lg md:text-xl" style={{color: '#B26E26'}}>
-                    {t('home.twoPaths.withoutAction.title')}
-                  </h3>
-                </div>
-                
-                <ul className="font-telegraf text-gray-600 space-y-2.5 sm:space-y-3 md:space-y-4 text-sm sm:text-base">
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#B26E26'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withoutAction.point1.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withoutAction.point1.description')}</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#B26E26'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withoutAction.point2.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withoutAction.point2.description')}</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#B26E26'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withoutAction.point3.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withoutAction.point3.description')}</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#B26E26'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withoutAction.point4.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withoutAction.point4.description')}</span>
-                    </div>
-                  </li>
-                </ul>
-                
-                {/* Visual: Dynamic Fragmented Systems - Below text */}
-                <div className="mt-6 sm:mt-8 flex justify-center">
-                  <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64">
-                    {/* Fragmented systems with slow pulsing animation */}
-                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 slow-pulse">
-                      <Database className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-red-600 slow-bounce" />
-                    </div>
-                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 slow-pulse" style={{animationDelay: '1.25s'}}>
-                      <Server className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-red-600 slow-bounce" style={{animationDelay: '1s'}} />
-                    </div>
-                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 slow-pulse" style={{animationDelay: '2.5s'}}>
-                      <BarChart3 className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-red-600 slow-bounce" style={{animationDelay: '2s'}} />
-                    </div>
-                    <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-red-200 rounded-lg flex items-center justify-center border-2 border-red-300 slow-pulse" style={{animationDelay: '3.75s'}}>
-                      <Network className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-red-600 slow-bounce" style={{animationDelay: '3s'}} />
-                    </div>
-                    
-                    {/* Central chaos indicator - broken system */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-orange-600 rounded-full flex items-center justify-center shadow-lg system-error">
-                        <XCircle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" />
-                      </div>
-                    </div>
-                    
-                    {/* Disconnected state with slow pulsing */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-9 sm:mt-10 md:mt-12">
-                      <WifiOff className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-red-500 slow-pulse" />
-                    </div>
-                    
-                    {/* Dynamic broken connection lines */}
-                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
-                      <line x1="80" y1="80" x2="140" y2="140" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
-                      <line x1="240" y1="80" x2="180" y2="140" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
-                      <line x1="80" y1="240" x2="140" y2="180" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
-                      <line x1="240" y1="240" x2="180" y2="180" stroke="#ef4444" strokeWidth="3" strokeDasharray="12,8"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              {/* With Stratum Column */}
-              <div className="bg-gradient-to-br from-blue-50/90 via-white to-primary/10 rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl border-l-4 md:border-l-8 border-2 border-primary/30" style={{borderLeftColor: '#266AB2'}}>
-                <div className="flex items-center mb-5 sm:mb-6 md:mb-8">
-                  <TrendingUp className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 mr-2 sm:mr-3 md:mr-4 stroke-2 flex-shrink-0" style={{color: '#266AB2'}} />
-                  <h3 className="font-telegraf font-bold text-base sm:text-lg md:text-xl" style={{color: '#266AB2'}}>
-                    {t('home.twoPaths.withStratum.title')}
-                  </h3>
-                </div>
-                
-                <ul className="font-telegraf text-gray-600 space-y-2.5 sm:space-y-3 md:space-y-4 text-sm sm:text-base">
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#266AB2'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withStratum.point1.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withStratum.point1.description')}</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#266AB2'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withStratum.point2.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withStratum.point2.description')}</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#266AB2'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withStratum.point3.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withStratum.point3.description')}</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="mr-2 sm:mr-3 mt-1 text-sm sm:text-base md:text-lg flex-shrink-0" style={{color: '#266AB2'}}>•</span>
-                    <div>
-                      <strong className="text-gray-800 text-sm sm:text-base md:text-lg">{t('home.twoPaths.withStratum.point4.title')}</strong> – <span className="text-xs sm:text-sm sm:text-base">{t('home.twoPaths.withStratum.point4.description')}</span>
-                    </div>
-                  </li>
-                </ul>
-                
-                {/* Visual: Dynamic Connected Systems Network - Below text */}
-                <div className="mt-6 sm:mt-8 flex justify-center">
-                  <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64">
-                    {/* Expanding pulse rings - behind the boxes, limited expansion */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 rounded-full border-2 border-green-400 network-pulse z-0"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 rounded-full border-2 border-green-400 network-pulse z-0" style={{animationDelay: '0.5s'}}></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 rounded-full border-2 border-green-400 network-pulse z-0" style={{animationDelay: '1s'}}></div>
-                    
-                    {/* Central AI hub - opaque and static */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center z-10 shadow-2xl">
-                      <Brain className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-white" />
-                    </div>
-                    
-                    {/* Connected systems with slow pulsing animation */}
-                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg slow-pulse">
-                      <Database className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-green-600 slow-bounce" />
-                    </div>
-                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg slow-pulse" style={{animationDelay: '1.25s'}}>
-                      <Server className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-green-600 slow-bounce" style={{animationDelay: '1s'}} />
-                    </div>
-                    <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg slow-pulse" style={{animationDelay: '2.5s'}}>
-                      <BarChart3 className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-green-600 slow-bounce" style={{animationDelay: '2s'}} />
-                    </div>
-                    <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-200 rounded-lg flex items-center justify-center border-2 border-green-400 shadow-lg slow-pulse" style={{animationDelay: '3.75s'}}>
-                      <Network className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-green-600 slow-bounce" style={{animationDelay: '3s'}} />
-                    </div>
-                    
-                    {/* WiFi connectivity with slow pulsing */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-12 sm:mt-14 md:mt-16">
-                      <Wifi className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-green-500 slow-pulse" />
-                    </div>
-                    
-                    {/* Speed indicators with slow bounce animation */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-12 sm:-mt-14 md:-mt-16">
-                      <svg className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-yellow-500 slow-bounce" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                      </svg>
-                    </div>
-                    
-                    {/* Dynamic connection lines with flowing data */}
-                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
-                      <line x1="80" y1="80" x2="140" y2="140" stroke="#10b981" strokeWidth="4">
-                        <animate attributeName="stroke-width" values="4;6;4" dur="3s" repeatCount="indefinite"/>
-                      </line>
-                      <line x1="240" y1="80" x2="180" y2="140" stroke="#10b981" strokeWidth="4">
-                        <animate attributeName="stroke-width" values="4;6;4" dur="3s" repeatCount="indefinite" begin="0.75s"/>
-                      </line>
-                      <line x1="80" y1="240" x2="140" y2="180" stroke="#10b981" strokeWidth="4">
-                        <animate attributeName="stroke-width" values="4;6;4" dur="3s" repeatCount="indefinite" begin="1.5s"/>
-                      </line>
-                      <line x1="240" y1="240" x2="180" y2="180" stroke="#10b981" strokeWidth="4">
-                        <animate attributeName="stroke-width" values="4;6;4" dur="3s" repeatCount="indefinite" begin="2.25s"/>
-                      </line>
-                      
-                      {/* Enhanced data flow indicators */}
-                      <circle cx="120" cy="120" r="3" fill="#10b981">
-                        <animate attributeName="r" values="3;6;3" dur="2.5s" repeatCount="indefinite"/>
-                        <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite"/>
-                      </circle>
-                      <circle cx="200" cy="120" r="3" fill="#10b981">
-                        <animate attributeName="r" values="3;6;3" dur="2.5s" repeatCount="indefinite" begin="0.6s"/>
-                        <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" begin="0.6s"/>
-                      </circle>
-                      <circle cx="120" cy="200" r="3" fill="#10b981">
-                        <animate attributeName="r" values="3;6;3" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
-                        <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
-                      </circle>
-                      <circle cx="200" cy="200" r="3" fill="#10b981">
-                        <animate attributeName="r" values="3;6;3" dur="2.5s" repeatCount="indefinite" begin="1.8s"/>
-                        <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" begin="1.8s"/>
-                      </circle>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section Divider */}
-        <div className="h-1 bg-gradient-to-r from-transparent via-secondary/20 to-transparent"></div>
-
-        {/* Final CTA Section - Matching Hero Section Animated Background */}
-        <section className="relative flex items-center justify-center overflow-hidden py-12 sm:py-16 bg-gradient-to-tl from-primary via-primary-800 to-secondary text-white entrance-animation animate-slide-in-bottom" aria-labelledby="final-cta-heading" style={{animationDelay: '0.6s'}}>
-          {/* Dark overlay for better text contrast - same as hero section */}
-          <div className="absolute inset-0 bg-black/40 z-0"></div>
-          
-          {/* Tech animated background - temporarily removed */}
-          {/* <TechAnimatedBackground className="z-0" opacity={0.7} /> */}
-
-          {/* Content */}
-          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 id="final-cta-heading" className="font-telegraf font-bold text-2xl md:text-3xl mb-4 sm:mb-6">
-              {t('home.finalCta.title')}
-            </h2>
-            <p className="font-telegraf text-base mb-4 sm:mb-6 text-primary-100">
-              {t('home.finalCta.description')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <div className="relative">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                  <a href="https://calendly.com/admin-stratumpr/30min" target="_blank" rel="noopener noreferrer" aria-label="Schedule free consultation for data analytics services">
-                    {t('services.cta.consultation')}
-                  </a>
-                </Button>
-                <span className="absolute -top-2 -right-2 bg-white text-primary text-xs font-telegraf font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-                  {t('cta.badge.free')}
-                </span>
-              </div>
-              <Button 
-                asChild 
-                variant="outline" 
-                size="lg" 
-                className="bg-white text-black border-2 border-primary font-telegraf font-semibold px-6 py-3 text-sm rounded-lg transition-all duration-300 hover:bg-accent hover:text-black hover:shadow-2xl hover:scale-105"
+        {/* 9. Final CTA */}
+        <section className="relative py-16 bg-gradient-to-br from-primary via-primary-800 to-secondary text-white entrance-animation">
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
+            <h2 className="font-telegraf font-bold text-2xl md:text-3xl mb-4">{t("home.finalCta.title")}</h2>
+            <p className="font-telegraf text-white/85 mb-8">{t("home.finalCta.description")}</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent-600 text-black font-telegraf font-semibold">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                  {t("home.finalCta.consultation")}
+                </a>
+              </Button>
+              <Button
+                onClick={openChecklist}
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-primary font-telegraf"
               >
-                <Link to="/contact" aria-label="Contact Stratum PR team for data analytics consulting">{t('services.cta.contact')}</Link>
-            </Button>
+                {t("home.finalCta.checklist")}
+              </Button>
             </div>
           </div>
         </section>
       </div>
-      
-      {/* Coming Soon Modal for Systems Assessment */}
+
       <ComingSoonModal open={showComingSoon} onOpenChange={setShowComingSoon} />
-    </TooltipProvider>
+    </>
   );
 };
 
