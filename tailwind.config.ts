@@ -110,8 +110,8 @@ export default {
 				}
 			},
 			fontFamily: {
-				'telegraf': ['Inter', 'system-ui', 'sans-serif'], // Using Inter as PP Telegraf alternative
-				'sans': ['Inter', 'system-ui', 'sans-serif'],
+				'telegraf': ['"PP Telegraf"', '"DM Sans"', 'system-ui', 'sans-serif'],
+				'sans': ['"PP Telegraf"', '"DM Sans"', 'system-ui', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
