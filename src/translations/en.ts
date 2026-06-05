@@ -25,13 +25,10 @@ export const enTranslations: Record<string, string> = {
   'nav.faq': 'FAQ',
   
   // Home page — StoryBrand wireframe
-  'home.hero.title': 'Local Businesses. World-Class Systems.',
-  'home.hero.headline.line1': 'Local Businesses.',
-  'home.hero.headline.line2': 'World-Class Systems.',
-  'home.hero.subtitle.line1.before': 'We give back ',
-  'home.hero.subtitle.line1.accent': '80+ hours per month',
-  'home.hero.subtitle.line1.after': ' to food manufacturers',
-  'home.hero.subtitle.line2': 'drowning in FSMA compliance and manual processes.',
+  'home.hero.title': 'Take control. Let your systems work.',
+  'home.hero.headline.line1': 'Take control.',
+  'home.hero.headline.line2': 'Let your systems work.',
+  'home.hero.subtitle': 'We digitize and automate your manual work, so you can run your business with clarity and peace of mind.',
   'home.hero.badge': 'Built in Puerto Rico, for Puerto Rico',
   'home.hero.cta.primary': 'Book a Demo',
   'home.hero.cta.secondary': 'Download: The FSMA Digital Readiness Checklist →',
@@ -43,14 +40,33 @@ export const enTranslations: Record<string, string> = {
   'home.hero.card.stat2.label': 'Years Combined Experience',
   'home.hero.card.stat3.label': 'ROI Generated for Clients',
 
+  'home.integrations.title': 'Empowering Top Companies with Seamless Integrations',
+  'home.integrations.subtitle':
+    'Experience seamless connections with our innovative solutions, designed to effortlessly integrate with your existing systems, enhance productivity, and drive your business towards greater success.',
+  'home.integrations.cta': 'Work With Us',
+
+  'home.production.title': 'What if your business worked for you?',
+  'home.production.subtitle':
+    'Book a demo and we\'ll show you how to make it real.',
+  'home.production.cta': 'Book a Demo',
+
   'home.stakes.title': 'What\'s the Real Cost of "The Way We\'ve Always Done It"?',
-  'home.stakes.intro': 'Every day you run on manual processes, you\'re bleeding time, money, and risk you can\'t see.',
-  'home.stakes.point1': 'A failed FDA or FSMA audit doesn\'t just mean a fine — it can mean a shutdown, a recall, or your company\'s name on the evening news.',
-  'home.stakes.point2': 'Inventory errors nobody reports until thousands of dollars of product have already been lost or held up.',
-  'home.stakes.point3': 'SQF documentation on spreadsheets that take hours to fill and are one accidental deletion away from disaster.',
-  'home.stakes.point4': 'Everything depends on "that one person" — and when they\'re out sick, on vacation, or gone, so is your institutional knowledge.',
-  'home.stakes.point5': 'Batches held up by paperwork while fresh product sits and loses value by the hour.',
-  'home.stakes.closing': 'You didn\'t build your family business to spend your nights worrying about whether someone logged a temperature reading.',
+  'home.stakes.intro': 'Manual processes hide expensive risks until it\'s too late.',
+  'home.stakes.card1.title': 'Failed Audits',
+  'home.stakes.card1.body': 'Shutdowns, recalls, and headlines.',
+  'home.stakes.card2.title': 'Inventory Loss',
+  'home.stakes.card2.body': 'Thousands gone before anyone notices.',
+  'home.stakes.card3.title': 'Spreadsheet Chaos',
+  'home.stakes.card3.body': 'One wrong click from disaster.',
+  'home.stakes.card4.title': 'One-Person Risk',
+  'home.stakes.card4.body': 'Knowledge walks out the door.',
+  'home.stakes.card5.title': 'Paperwork Delays',
+  'home.stakes.card5.body': 'Product losing value by the hour.',
+  'home.stakes.closing': 'You didn\'t build your family business to lose sleep over a missed temperature log.',
+
+  'home.services.title': 'Integrated Digital Systems for Food Manufacturers',
+  'home.services.subtitle':
+    'Streamline your operation with custom tools focused on compliance, inventory, and clarity — not corporate bloat.',
 
   'home.value.title': 'Imagine Running Your Operation With Confidence',
   'home.value.benefit1.title': 'Get Hours Back Every Week',
@@ -79,12 +95,12 @@ export const enTranslations: Record<string, string> = {
   'home.guide.moreAboutUs': 'Meet the full team',
 
   'home.plan.title': 'Getting Started Is Simpler Than You Think',
-  'home.plan.step1.title': 'Tell Us About Your Operation',
-  'home.plan.step1.body': 'Book a free, no-pressure consultation. We\'ll listen to how your business runs today — the good, the messy, and the painful. Available in English and Spanish.',
-  'home.plan.step2.title': 'Get a System Designed Around You',
-  'home.plan.step2.body': 'We map your workflows and build a custom digital system that fits your team — not the other way around. You\'ll see a working demo before you commit to anything.',
-  'home.plan.step3.title': 'Run Your Business With Confidence',
-  'home.plan.step3.body': 'Go live with a system that handles compliance, inventory, documentation, and reporting — so you can focus on production, growth, and your family.',
+  'home.plan.step1.title': 'Book a Demo',
+  'home.plan.step1.body': 'We talk through your operation, your challenges, and what you need to fix. Free consultation, no commitment — in English or Spanish.',
+  'home.plan.step2.title': 'We Build It',
+  'home.plan.step2.body': 'We design a digital system tailored to your plant. You see a working demo with your processes before you commit to paying.',
+  'home.plan.step3.title': 'You Run It',
+  'home.plan.step3.body': 'Compliance, inventory, traceability, and reports — all in one place. Your team uses it from day one, without spreadsheet chaos.',
 
   'home.lead.title': 'Free Download: The FSMA Digital Readiness Checklist',
   'home.lead.subtitle': 'A simple self-assessment for Puerto Rico food manufacturers. Find out if your operation is ready for the next audit — or if you\'re flying blind.',
@@ -92,18 +108,16 @@ export const enTranslations: Record<string, string> = {
 
   'home.story.content': '<p>At Stratum, we know you\'re the kind of business owner who wants to be <strong>in control of your operation — not buried under it.</strong> In order to run a competitive, compliant food manufacturing business, you need <strong>digital systems that track inventory, manage compliance documentation, and give you real-time visibility into how your business is actually doing.</strong> The problem is, <strong>most of the software out there was built for massive corporations with massive budgets</strong> — and it makes you feel like <strong>you\'re falling behind just because you can\'t afford a six-figure IT department.</strong></p><p>We believe <strong>every food manufacturer in Puerto Rico — whether you\'re a family farm or a growing production facility — deserves systems that work as hard as you do.</strong> We understand what it\'s like to compete with companies that have resources you don\'t, and we\'ve spent 16+ years building the kind of data systems that level that playing field.</p><p>That\'s why we build <strong>custom digital tools around the way your team already works</strong> — no bloated features, no steep learning curves, no multi-year contracts.</p><p>Here\'s how it works: <strong>first, you book a free consultation and tell us about your operation. Then, we design and demo a system tailored to your needs. Finally, you go live — and start getting your hours, your money, and your peace of mind back.</strong></p><p><strong>Schedule your free consultation today</strong> — so you can stop losing sleep over audits, spreadsheets, and inventory you can\'t trust, and start running the business your family built with the confidence it deserves.</p>',
 
-  'home.video.title': 'How Stratum Helps Puerto Rico\'s Food Manufacturers Compete',
-  'home.video.placeholder': 'Video coming soon — we\'re putting the finishing touches on our story.',
-
   'home.case.title': 'See How It Works In the Real World',
-  'home.case.challenge': 'A family-owned food production facility was running on spreadsheets, paper logs, and one person\'s memory for compliance.',
-  'home.case.solution': 'Stratum mapped their workflows and built a custom system for traceability, documentation, and inventory visibility.',
-  'home.case.result': 'The team cut hours of weekly admin work, caught inventory issues earlier, and walked into their next audit with documentation already in place.',
+  'home.case.summary': 'A family food plant moved off spreadsheets and paper logs to one system the whole team uses.',
+  'home.case.outcome1': 'Hours back every week',
+  'home.case.outcome2': 'Inventory issues caught earlier',
+  'home.case.outcome3': 'Walked into audit with docs ready',
   'home.case.readMore': 'Read the full story',
-  'home.case.comingSoon': 'More case studies coming soon.',
 
-  'home.finalCta.title': 'Ready to Run Your Operation With Confidence?',
-  'home.finalCta.description': 'Schedule your free consultation — available in English and Spanish.',
+  'home.finalCta.title': 'Change starts with a call.',
+  'home.finalCta.subtitle':
+    'Book a demo and discover how simple running your business can be.',
   'home.finalCta.consultation': 'Schedule Your Free Consultation',
   'home.finalCta.checklist': 'Get the FSMA Checklist',
 

@@ -25,13 +25,10 @@ export const esTranslations: Record<string, string> = {
   'nav.faq': 'FAQ',
   
   // Home page — StoryBrand wireframe
-  'home.hero.title': 'Negocios Locales. Sistemas de Clase Mundial.',
-  'home.hero.headline.line1': 'Negocios Locales.',
-  'home.hero.headline.line2': 'Sistemas de Clase Mundial.',
-  'home.hero.subtitle.line1.before': 'Devolvemos ',
-  'home.hero.subtitle.line1.accent': '80+ horas al mes',
-  'home.hero.subtitle.line1.after': ' a fabricantes de alimentos',
-  'home.hero.subtitle.line2': 'ahogados en cumplimiento FSMA y procesos manuales.',
+  'home.hero.title': 'Toma el control. Deja que tus sistemas trabajen.',
+  'home.hero.headline.line1': 'Toma el control.',
+  'home.hero.headline.line2': 'Deja que tus sistemas trabajen.',
+  'home.hero.subtitle': 'Digitalizamos y automatizamos tu trabajo manual, para que dirijas tu negocio con claridad y tranquilidad.',
   'home.hero.badge': 'Hecho en Puerto Rico, para Puerto Rico',
   'home.hero.cta.primary': 'Agendar un Demo',
   'home.hero.cta.secondary': 'Descarga: Lista de Preparación Digital FSMA →',
@@ -43,14 +40,33 @@ export const esTranslations: Record<string, string> = {
   'home.hero.card.stat2.label': 'Años de Experiencia Combinada',
   'home.hero.card.stat3.label': 'ROI Generado para Clientes',
 
+  'home.integrations.title': 'Empoderamos a las mejores empresas con integraciones fluidas',
+  'home.integrations.subtitle':
+    'Experimenta conexiones sin fricción con nuestras soluciones innovadoras, diseñadas para integrarse con tus sistemas existentes, aumentar la productividad e impulsar tu negocio hacia el éxito.',
+  'home.integrations.cta': 'Trabaja con nosotros',
+
+  'home.production.title': '¿Y si tu negocio trabajara para ti?',
+  'home.production.subtitle':
+    'Reserva una demo y te mostramos cómo hacerlo realidad.',
+  'home.production.cta': 'Agendar un Demo',
+
   'home.stakes.title': '¿Cuál Es el Verdadero Costo de "Siempre lo Hemos Hecho Así"?',
-  'home.stakes.intro': 'Cada día que operas con procesos manuales, pierdes tiempo, dinero y asumes riesgos que no ves.',
-  'home.stakes.point1': 'Una auditoría fallida de la FDA o FSMA no es solo una multa — puede significar cierre, retiro de producto o el nombre de tu empresa en las noticias.',
-  'home.stakes.point2': 'Errores de inventario que nadie reporta hasta que miles de dólares en producto ya se perdieron o quedaron retenidos.',
-  'home.stakes.point3': 'Documentación SQF en hojas de cálculo que toman horas y están a un borrado accidental de un desastre.',
-  'home.stakes.point4': 'Todo depende de "esa persona" — y cuando está enferma, de vacaciones o se va, se va también el conocimiento de tu operación.',
-  'home.stakes.point5': 'Lotes retenidos por papeleo mientras producto fresco pierde valor hora tras hora.',
-  'home.stakes.closing': 'No construiste tu negocio familiar para pasar las noches preocupándote si alguien anotó una lectura de temperatura.',
+  'home.stakes.intro': 'Los procesos manuales esconden riesgos caros hasta que es tarde.',
+  'home.stakes.card1.title': 'Auditorías fallidas',
+  'home.stakes.card1.body': 'Cierres, retiros y titulares.',
+  'home.stakes.card2.title': 'Pérdidas de inventario',
+  'home.stakes.card2.body': 'Miles perdidos antes de enterarse.',
+  'home.stakes.card3.title': 'Caos en hojas de cálculo',
+  'home.stakes.card3.body': 'Un clic equivocado y desastre.',
+  'home.stakes.card4.title': 'Dependencia de una persona',
+  'home.stakes.card4.body': 'El conocimiento se va con ella.',
+  'home.stakes.card5.title': 'Retrasos por papeleo',
+  'home.stakes.card5.body': 'Producto perdiendo valor cada hora.',
+  'home.stakes.closing': 'No construiste tu negocio familiar para perder el sueño por un registro de temperatura.',
+
+  'home.services.title': 'Sistemas Digitales Integrados para Fabricantes de Alimentos',
+  'home.services.subtitle':
+    'Simplifica tu operación con herramientas a la medida enfocadas en cumplimiento, inventario y claridad — no software corporativo inflado.',
 
   'home.value.title': 'Imagina Manejar tu Operación con Confianza',
   'home.value.benefit1.title': 'Recupera Horas Cada Semana',
@@ -79,12 +95,12 @@ export const esTranslations: Record<string, string> = {
   'home.guide.moreAboutUs': 'Conoce al equipo completo',
 
   'home.plan.title': 'Empezar Es Más Simple de lo que Piensas',
-  'home.plan.step1.title': 'Cuéntanos Sobre tu Operación',
-  'home.plan.step1.body': 'Agenda una consulta gratis, sin presión. Escuchamos cómo funciona tu negocio hoy — lo bueno, lo desordenado y lo doloroso. Disponible en inglés y español.',
-  'home.plan.step2.title': 'Recibe un Sistema Diseñado para Ti',
-  'home.plan.step2.body': 'Mapeamos tus flujos y construimos un sistema digital a la medida de tu equipo — no al revés. Verás una demo funcionando antes de comprometerte.',
-  'home.plan.step3.title': 'Maneja tu Negocio con Confianza',
-  'home.plan.step3.body': 'Sal en vivo con un sistema que maneja cumplimiento, inventario, documentación y reportes — para que te enfoques en producción, crecimiento y tu familia.',
+  'home.plan.step1.title': 'Agenda un Demo',
+  'home.plan.step1.body': 'Hablamos de tu operación, tus retos y lo que necesitas resolver. Consulta gratuita, sin compromiso — en español o en inglés.',
+  'home.plan.step2.title': 'Lo Construimos',
+  'home.plan.step2.body': 'Diseñamos un sistema digital a la medida de tu planta. Ves una demo funcionando con tus procesos antes de comprometerte a pagar.',
+  'home.plan.step3.title': 'Lo Usas',
+  'home.plan.step3.body': 'Cumplimiento, inventario, trazabilidad y reportes — todo en un solo lugar. Tu equipo lo usa desde el primer día, sin depender de hojas de cálculo.',
 
   'home.lead.title': 'Descarga Gratis: Lista de Preparación Digital FSMA',
   'home.lead.subtitle': 'Una autoevaluación simple para fabricantes de alimentos en Puerto Rico. Descubre si tu operación está lista para la próxima auditoría — o si vas a ciegas.',
@@ -92,18 +108,16 @@ export const esTranslations: Record<string, string> = {
 
   'home.story.content': '<p>En Stratum, sabemos que eres el tipo de dueño que quiere <strong>tener control de su operación — no estar enterrado bajo ella.</strong> Para manejar un negocio de manufactura de alimentos competitivo y en cumplimiento, necesitas <strong>sistemas digitales que rastreen inventario, gestionen documentación de cumplimiento y te den visibilidad en tiempo real de cómo va tu negocio.</strong> El problema es que <strong>la mayoría del software fue hecho para corporaciones enormes con presupuestos enormes</strong> — y te hace sentir que <strong>te quedas atrás solo porque no puedes pagar un departamento de TI de seis cifras.</strong></p><p>Creemos que <strong>cada fabricante de alimentos en Puerto Rico — ya sea una finca familiar o una planta en crecimiento — merece sistemas que trabajen tan duro como tú.</strong> Entendemos lo que es competir con empresas que tienen recursos que tú no tienes, y llevamos 16+ años construyendo el tipo de sistemas de datos que nivelan ese campo.</p><p>Por eso construimos <strong>herramientas digitales a la medida de cómo tu equipo ya trabaja</strong> — sin funciones infladas, sin curvas de aprendizaje empinadas, sin contratos multianuales.</p><p>Así funciona: <strong>primero, agendas una consulta gratis y nos cuentas sobre tu operación. Luego, diseñamos y demostramos un sistema a tu medida. Finalmente, sales en vivo — y empiezas a recuperar tus horas, tu dinero y tu tranquilidad.</strong></p><p><strong>Agenda tu consulta gratis hoy</strong> — para dejar de perder el sueño por auditorías, hojas de cálculo e inventario en el que no confías, y empezar a manejar el negocio que tu familia construyó con la confianza que merece.</p>',
 
-  'home.video.title': 'Cómo Stratum Ayuda a los Fabricantes de Alimentos de Puerto Rico a Competir',
-  'home.video.placeholder': 'Video próximamente — estamos terminando nuestra historia.',
-
   'home.case.title': 'Mira Cómo Funciona en el Mundo Real',
-  'home.case.challenge': 'Una planta de procesamiento familiar operaba con hojas de cálculo, registros en papel y la memoria de una persona para el cumplimiento.',
-  'home.case.solution': 'Stratum mapeó sus flujos y construyó un sistema a la medida para trazabilidad, documentación y visibilidad de inventario.',
-  'home.case.result': 'El equipo redujo horas semanales de administración, detectó problemas de inventario antes y entró a su próxima auditoría con documentación ya lista.',
+  'home.case.summary': 'Una planta familiar dejó las hojas de cálculo y el papel por un solo sistema que todo el equipo usa.',
+  'home.case.outcome1': 'Horas recuperadas cada semana',
+  'home.case.outcome2': 'Problemas de inventario detectados antes',
+  'home.case.outcome3': 'Auditoría lista con documentación al día',
   'home.case.readMore': 'Lee la historia completa',
-  'home.case.comingSoon': 'Más casos de éxito próximamente.',
 
-  'home.finalCta.title': '¿Listo para Manejar tu Operación con Confianza?',
-  'home.finalCta.description': 'Agenda tu consulta gratis — disponible en inglés y español.',
+  'home.finalCta.title': 'El cambio empieza con una llamada.',
+  'home.finalCta.subtitle':
+    'Reserva una demo y descubre qué tan simple puede ser dirigir tu negocio.',
   'home.finalCta.consultation': 'Agenda tu Consulta Gratis',
   'home.finalCta.checklist': 'Obtén la Lista FSMA',
 

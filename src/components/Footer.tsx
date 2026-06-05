@@ -1,16 +1,30 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Facebook, Instagram } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageToggle } from "./LanguageToggle";
-import TechAnimatedBackground from "@/components/TechAnimatedBackground";
-import { ComingSoonModal } from "@/components/ComingSoonModal";
-import { useState } from "react";
-
 const CALENDLY_URL = "https://calendly.com/admin-stratumpr/30min";
+const CONTACT_EMAIL = "contact@stratumpr.com";
+
+const SOCIAL_LINKS = [
+  {
+    href: "https://www.facebook.com/profile.php?id=61577145020919",
+    label: "Facebook",
+    Icon: Facebook,
+  },
+  {
+    href: "https://www.instagram.com/stratum.pr/",
+    label: "Instagram",
+    Icon: Instagram,
+  },
+  {
+    href: "https://linkedin.com/company/stratumpr",
+    label: "LinkedIn",
+    Icon: Linkedin,
+  },
+] as const;
 
 export const Footer = () => {
   const { t } = useLanguage();
-  const [showComingSoon, setShowComingSoon] = useState(false);
   const currentYear = new Date().getFullYear();
 
   const companyLinks = [
@@ -22,22 +36,16 @@ export const Footer = () => {
   const resourceLinks = [
     { name: t("footer.caseStudies"), href: "/projects" },
     { name: t("footer.blog"), href: "/resources" },
-    {
-      name: t("footer.checklist"),
-      onClick: () => setShowComingSoon(true),
-    },
     { name: t("nav.faq"), href: "/faq" },
   ];
 
   const connectLinks = [
     { name: t("footer.schedule"), href: CALENDLY_URL, external: true },
     { name: t("footer.email"), href: "/contact" },
-    {
-      name: "LinkedIn",
-      href: "https://linkedin.com/company/stratumpr",
-      external: true,
-    },
   ];
+
+  const linkClass =
+    "font-telegraf text-sm text-[#9ca3af] transition-colors hover:text-white";
 
   const renderLink = (
     item: { name: string; href?: string; external?: boolean; onClick?: () => void },
@@ -65,116 +73,97 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative text-white overflow-hidden bg-gradient-to-br from-primary via-primary-800 to-secondary">
-      <div className="absolute inset-0 bg-black/60 z-0" />
-      <TechAnimatedBackground className="z-0" opacity={0.5} />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
+    <footer className="bg-[#0b1215] text-[#9ca3af]">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-4">
+            <div className="mb-5 flex items-center gap-3">
               <img
                 src="/Stratum_Icon_whiteline ver 2.svg"
-                alt="Stratum"
-                className="h-8 w-8"
+                alt=""
+                className="h-9 w-9"
               />
-              <span className="font-telegraf font-bold text-xl">Stratum PR</span>
+              <span className="font-telegraf text-xl font-bold text-white">Stratum PR</span>
             </div>
-            <p className="text-white/80 font-telegraf text-sm mb-4">{t("footer.description")}</p>
-            <div className="flex gap-4">
-              <a
-                href="https://linkedin.com/company/stratumpr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-accent"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=61577145020919"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-accent"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.instagram.com/stratum.pr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-accent"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
+            <p className="max-w-sm font-telegraf text-sm leading-relaxed text-[#9ca3af]">
+              {t("footer.description")}
+            </p>
+            <div className="mt-5 flex items-center gap-2">
+              {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1a2328] text-white transition-colors hover:bg-[#243038]"
+                  aria-label={label}
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="font-telegraf font-semibold mb-4">{t("footer.column.company")}</h3>
-            <ul className="space-y-2">
+          <div className="lg:col-span-2">
+            <h3 className="mb-5 font-telegraf text-base font-semibold text-white">
+              {t("footer.column.company")}
+            </h3>
+            <ul className="space-y-3">
               {companyLinks.map((item) => (
-                <li key={item.name}>
-                  {renderLink(
-                    item,
-                    "font-telegraf text-sm text-white/70 hover:text-white transition-colors"
-                  )}
-                </li>
+                <li key={item.name}>{renderLink(item, linkClass)}</li>
               ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-telegraf font-semibold mb-4">{t("footer.column.resources")}</h3>
-            <ul className="space-y-2">
+          <div className="lg:col-span-3">
+            <h3 className="mb-5 font-telegraf text-base font-semibold text-white">
+              {t("footer.column.resources")}
+            </h3>
+            <ul className="space-y-3">
               {resourceLinks.map((item) => (
-                <li key={item.name}>
-                  {renderLink(
-                    item,
-                    "font-telegraf text-sm text-white/70 hover:text-white transition-colors"
-                  )}
-                </li>
+                <li key={item.name}>{renderLink(item, linkClass)}</li>
               ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-telegraf font-semibold mb-4">{t("footer.column.connect")}</h3>
-            <ul className="space-y-2">
+          <div className="lg:col-span-3">
+            <h3 className="mb-5 font-telegraf text-base font-semibold text-white">
+              {t("footer.column.connect")}
+            </h3>
+            <ul className="space-y-3">
               {connectLinks.map((item) => (
-                <li key={item.name}>
-                  {renderLink(
-                    item,
-                    "font-telegraf text-sm text-white/70 hover:text-white transition-colors"
-                  )}
-                </li>
+                <li key={item.name}>{renderLink(item, linkClass)}</li>
               ))}
             </ul>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-3 block font-telegraf text-sm text-[#9ca3af] transition-colors hover:text-white"
+            >
+              {CONTACT_EMAIL}
+            </a>
           </div>
         </div>
 
-        <div className="border-t border-accent/50 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/80 font-telegraf text-sm text-center sm:text-left">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+          <p className="font-telegraf text-sm text-[#9ca3af]">
             © {currentYear} Stratum PR. {t("footer.copyright")}
           </p>
-          <LanguageToggle />
-          <div className="flex flex-wrap justify-center gap-4 text-xs font-telegraf text-white/60">
-            <Link to="/privacy" className="hover:text-white">
-              {t("footer.privacy")}
-            </Link>
-            <Link to="/terms" className="hover:text-white">
+
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <LanguageToggle variant="dark" />
+            <Link to="/terms" className={`${linkClass} text-xs`}>
               {t("footer.terms")}
             </Link>
-            <Link to="/cookies" className="hover:text-white">
+            <Link to="/privacy" className={`${linkClass} text-xs`}>
+              {t("footer.privacy")}
+            </Link>
+            <Link to="/cookies" className={`${linkClass} text-xs`}>
               {t("footer.cookies")}
             </Link>
           </div>
         </div>
       </div>
 
-      <ComingSoonModal open={showComingSoon} onOpenChange={setShowComingSoon} />
     </footer>
   );
 };
