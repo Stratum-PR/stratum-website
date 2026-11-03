@@ -38,7 +38,6 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-tooltip',
           ],
           'query-vendor': ['@tanstack/react-query'],
-          'sanity-vendor': ['@sanity/client', '@sanity/image-url'],
         },
         // Optimize chunk file names
         chunkFileNames: 'assets/js/[name]-[hash].js',

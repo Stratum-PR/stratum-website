@@ -12,7 +12,7 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://formspree.io https://api.resend.com https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms https://vitals.vercel-insights.com https://*.sanity.io https://*.sanity.net; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://formspree.io https://api.resend.com https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms https://vitals.vercel-insights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" }
       ]
     }
   ],
@@ -28,8 +28,11 @@
     { "source": "/case-studies", "destination": "/", "permanent": true },
     { "source": "/case-studies/:slug", "destination": "/", "permanent": true },
     { "source": "/faq", "destination": "/preguntas", "permanent": true },
-    { "source": "/resources", "destination": "/newsupdates", "permanent": true },
-    { "source": "/blog", "destination": "/newsupdates", "permanent": true }
+    { "source": "/resources", "destination": "/", "permanent": true },
+    { "source": "/blog", "destination": "/", "permanent": true },
+    { "source": "/blog/:slug*", "destination": "/", "permanent": true },
+    { "source": "/newsupdates", "destination": "/", "permanent": true },
+    { "source": "/newsupdates/:slug*", "destination": "/", "permanent": true }
   ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },

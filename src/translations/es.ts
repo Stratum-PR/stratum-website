@@ -18,7 +18,6 @@ export const esTranslations: Record<string, string> = {
   'nav.projects': 'Proyectos',
   'nav.resources': 'Recursos',
   'nav.blog': 'Blog',
-  'nav.newsupdates': 'Noticias',
   'nav.checklist': 'Lista FSMA de Preparación Digital',
   'nav.caseStudies': 'Casos de Éxito',
   'nav.schedule': 'Agenda tu Consulta Gratis',
@@ -544,7 +543,6 @@ export const esTranslations: Record<string, string> = {
   'footer.team': 'Nuestro Equipo',
   'footer.mission': 'Nuestra Misión',
   'footer.caseStudies': 'Casos de Éxito',
-  'footer.blog': 'Noticias',
   'footer.checklist': 'Lista de Preparación FSMA',
   'footer.schedule': 'Agenda una Consulta',
   'footer.email': 'Escríbenos',
@@ -640,31 +638,7 @@ export const esTranslations: Record<string, string> = {
   
   // Blog page (Noticias y Actualizaciones)
   // EDITAR ESTA SECCIÓN: Cambiar título del blog, descripciones y texto de suscripción
-  'blog.hero.title': 'Noticias y Actualizaciones',
-  'blog.hero.description': 'Mantente informado con las últimas tendencias, mejores prácticas y perspectivas expertas en análisis de datos, automatización de IA y transformación digital.',
-  'blog.readmore': 'Leer Artículo',
-  'blog.loading': 'Cargando artículos...',
-  'blog.empty.title': 'Todavía no hay artículos.',
-  'blog.empty.body': 'Pronto publicaremos artículos nuevos.',
-  'blog.error': 'No pudimos cargar los artículos. Inténtalo de nuevo en unos minutos.',
-  'blog.retry': 'Reintentar',
-  'blog.featured': 'Destacado',
-  'blog.cta.title': '¿Tienes un Tema en Mente?',
-  'blog.cta.description': 'Déjanos saber sobre qué te gustaría aprender más. Siempre buscamos crear contenido que ayude a nuestra comunidad.',
-  'blog.cta.button': 'Contáctanos',
-  'blog.subscribe.title': 'Mantente Actualizado',
   // EDITAR ESTA LÍNEA: Cambiar texto de descripción de suscripción
-  'blog.subscribe.description': 'Suscríbete a nuestro blog para recibir los últimos artículos directamente en tu bandeja de entrada.',
-  'blog.subscribe.email.placeholder': 'tu@correo.com',
-  'blog.subscribe.language': 'Idioma del correo',
-  'blog.subscribe.button': 'Suscribirse',
-  'blog.detail.author': 'Autor',
-  'blog.detail.published': 'Publicado',
-  'blog.detail.aboutAuthor': 'Sobre el Autor',
-  'blog.detail.articleTags': 'Etiquetas del Artículo',
-  'blog.subscribe.success': '¡Gracias por suscribirte! Recibirás nuestras últimas actualizaciones por correo electrónico.',
-  'blog.subscribe.spamNotice': '📧 Si no ves nuestro correo de bienvenida en tu bandeja de entrada, por favor revisa tu carpeta de spam o correo no deseado y márcalo como "No es spam" para asegurar que recibas nuestros correos futuros.',
-  'blog.subscribe.error': 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.',
   
   // Resources modal
   'resources.modal.downloadDescription': 'Descarga la plantilla completa para usar en tus proyectos',
@@ -787,7 +761,6 @@ export const esTranslations: Record<string, string> = {
   'resources.hero.title': 'Recursos',
   'resources.hero.description': 'Accede a nuestros proyectos, noticias y actualizaciones, y lista de verificación de preparación TI para ayudar a tu negocio a aprovechar los datos de manera efectiva.',
   'resources.projects.description': 'Explora ejemplos del mundo real de nuestras soluciones de análisis de datos y automatización',
-  'resources.newsupdates.description': 'Mantente informado con las últimas perspectivas, tendencias y mejores prácticas',
   'resources.checklist.description': 'Realiza nuestra Evaluación de Sistemas gratuita para descubrir tus necesidades tecnológicas',
   'resources.explore': 'Explorar',
 };

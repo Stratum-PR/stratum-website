@@ -91,8 +91,8 @@ export const HomeHeroSection = () => {
             <img
               key={src}
               src={src}
-              // 960px copies for phones and small screens; the frame is cropped by height, so desktop needs ~1100px
-              srcSet={`${src.replace(".webp", "-960.webp")} 960w, ${src} 1600w`}
+              // 768/960px copies for phones and tablets; the frame is cropped by height, so desktop needs ~1100px
+              srcSet={`${src.replace(".webp", "-768.webp")} 768w, ${src.replace(".webp", "-960.webp")} 960w, ${src} 1600w`}
               sizes="(min-width: 1024px) 1100px, 100vw"
               alt={t(altKey)}
               aria-hidden={i !== photoIndex}
@@ -101,6 +101,8 @@ export const HomeHeroSection = () => {
                 i === photoIndex ? "scale-100 opacity-100" : "scale-[1.08] opacity-0"
               }`}
               loading={i === 0 ? "eager" : "lazy"}
+              // the first photo is the LCP element; fetch it ahead of everything else
+              fetchPriority={i === 0 ? "high" : "auto"}
               decoding="async"
             />
           ))}

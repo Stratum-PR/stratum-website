@@ -18,7 +18,6 @@ export const enTranslations: Record<string, string> = {
   'nav.projects': 'Projects',
   'nav.resources': 'Resources',
   'nav.blog': 'Blog',
-  'nav.newsupdates': 'Newsletter',
   'nav.checklist': 'FSMA Digital Readiness Checklist',
   'nav.caseStudies': 'Case Studies',
   'nav.schedule': 'Schedule a Consultation',
@@ -544,7 +543,6 @@ export const enTranslations: Record<string, string> = {
   'footer.team': 'Our Team',
   'footer.mission': 'Our Mission',
   'footer.caseStudies': 'Case Studies',
-  'footer.blog': 'News',
   'footer.checklist': 'FSMA Readiness Checklist',
   'footer.schedule': 'Schedule a Consultation',
   'footer.email': 'Email Us',
@@ -640,31 +638,7 @@ export const enTranslations: Record<string, string> = {
   
   // Blog page (News & Updates)
   // EDIT THIS SECTION: Change blog title, descriptions, and subscription text
-  'blog.hero.title': 'Newsletter',
-  'blog.hero.description': 'Stay informed with the latest trends, best practices, and expert insights in data analytics, AI automation, and digital transformation.',
-  'blog.readmore': 'Read Article',
-  'blog.loading': 'Loading articles...',
-  'blog.empty.title': 'No articles yet.',
-  'blog.empty.body': 'New articles are coming soon.',
-  'blog.error': "We couldn't load the articles. Please try again in a few minutes.",
-  'blog.retry': 'Retry',
-  'blog.featured': 'Featured',
-  'blog.cta.title': 'Have a Topic in Mind?',
-  'blog.cta.description': 'Let us know what you\'d like to learn more about. We\'re always looking to create content that helps our community.',
-  'blog.cta.button': 'Contact Us',
-  'blog.subscribe.title': 'Stay Updated',
   // EDIT THIS LINE: Change subscription description text
-  'blog.subscribe.description': 'Subscribe to our blog to receive the latest articles directly in your inbox.',
-  'blog.subscribe.email.placeholder': 'you@email.com',
-  'blog.subscribe.language': 'Email language',
-  'blog.subscribe.button': 'Subscribe',
-  'blog.detail.author': 'Author',
-  'blog.detail.published': 'Published',
-  'blog.detail.aboutAuthor': 'About the Author',
-  'blog.detail.articleTags': 'Article Tags',
-  'blog.subscribe.success': 'Thank you for subscribing! You\'ll receive our latest updates via email.',
-  'blog.subscribe.spamNotice': '📧 If you don\'t see our welcome email in your inbox, please check your spam or junk folder and mark it as "Not Spam" to ensure you receive future emails.',
-  'blog.subscribe.error': 'Something went wrong. Please try again later.',
   
   // Resources modal
   'resources.modal.downloadDescription': 'Download the complete template to use in your projects',
@@ -787,7 +761,6 @@ export const enTranslations: Record<string, string> = {
   'resources.hero.title': 'Resources',
   'resources.hero.description': 'Access our projects, news and updates, and IT readiness checklist to help your business leverage data effectively.',
   'resources.projects.description': 'Explore real-world examples of our data analytics and automation solutions',
-  'resources.newsupdates.description': 'Stay informed with the latest insights, trends, and best practices',
   'resources.checklist.description': 'Take our free Systems Assessment to discover your technology needs',
   'resources.explore': 'Explore',
 };

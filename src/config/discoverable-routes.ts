@@ -112,16 +112,7 @@ export const DISCOVERABLE_ROUTES: DiscoverableRoute[] = [
     changefreq: 'monthly',
     priority: 0.9,
   },
-  {
-    path: '/newsupdates',
-    title: 'Noticias | Stratum PR',
-    description: 'Noticias y artículos de Stratum PR sobre inocuidad, cumplimiento y tecnología para la industria de alimentos en Puerto Rico.',
-    titleEn: 'News & Updates - Stratum PR',
-    descriptionEn: 'Latest news, insights, and updates on data analytics, AI, and business automation from Stratum PR.',
-    indexable: true,
-    changefreq: 'weekly',
-    priority: 0.8,
-  },
+
   {
     path: '/contact',
     title: 'Contacto | Stratum PR',
@@ -198,7 +189,6 @@ export const LANDING_ROUTE = routeFor('/');
 export const ABOUT_ROUTE = routeFor('/about');
 export const PREGUNTAS_ROUTE = routeFor('/preguntas');
 export const SELFCHECK_ROUTE = routeFor('/autoevaluacion');
-export const NEWSUPDATES_ROUTE = routeFor('/newsupdates');
 export const CONTACT_ROUTE = routeFor('/contact');
 export const PRIVACY_ROUTE = routeFor('/privacy');
 export const TERMS_ROUTE = routeFor('/terms');

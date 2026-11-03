@@ -2,8 +2,8 @@
 // This handles all email communications including blog subscriptions and checklist results
 // NOTE: API key is kept secure on the server - never exposed to browser
 
-import { getWelcomeEmailTemplate, getBlogNotificationTemplate, type EmailTemplateData } from '@/utils/emailTemplates';
-import { getWelcomeEmailPlainText, getBlogNotificationPlainText } from '@/utils/emailPlainText';
+import { getWelcomeEmailTemplate, type EmailTemplateData } from '@/utils/emailTemplates';
+import { getWelcomeEmailPlainText } from '@/utils/emailPlainText';
 import { logger } from '@/lib/logger';
 
 const API_ENDPOINT = 'https://api.resend.com/emails'
@@ -245,44 +245,5 @@ export async function sendChecklistResults(
 // NOTE: This uses sendEmail() with no type, so it requires INTERNAL_EMAIL_SECRET when calling /api/send-email.
 // Invoke from a server context (cron, API route) that adds X-Internal-Email-Secret, or use a dedicated
 // /api/send-blog-notification endpoint that forwards with the secret.
-export async function sendBlogNotification(
-  to: string[],
-  blogTitle: string,
-  blogExcerpt: string,
-  blogSlug: string,
-  language: 'en' | 'es' = 'en'
-) {
-  const subject = language === 'es'
-    ? `Nuevo artículo: ${blogTitle}`
-    : `New article: ${blogTitle}`
-  
-  // Send to multiple recipients with their language preferences
-  // Note: In production, you'd want to store language preferences per email
-  return Promise.all(to.map(email => {
-    // Generate unsubscribe token for each recipient
-    const unsubscribeToken = btoa(`${email}-${Date.now()}`).replace(/[^a-zA-Z0-9]/g, '');
-    
-    const html = getBlogNotificationTemplate(blogTitle, blogExcerpt, blogSlug, {
-      email,
-      language,
-      unsubscribeToken
-    });
-    
-    const text = getBlogNotificationPlainText(blogTitle, blogExcerpt, blogSlug, {
-      email,
-      language,
-      unsubscribeToken
-    });
-    
-    return sendEmail({
-      to: email,
-      subject,
-      html,
-      text, // Plain text version for better deliverability
-      from: 'Stratum PR <info@stratumpr.com>', // Newsletter emails from info@stratumpr.com (auto-fallback if not verified)
-      replyTo: 'contact@stratumpr.com'
-    });
-  }))
-}
 
 

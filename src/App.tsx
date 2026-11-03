@@ -9,6 +9,8 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import ScrollToTop from "./components/ScrollToTop";
 import Layout from "./components/Layout";
+// The home page ships with the main bundle so the hero (the LCP image) renders without waiting for a second chunk
+import Home from "./pages/Home";
 import { lazy as reactLazy, Suspense, type ComponentType } from "react";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -41,10 +43,7 @@ const lazy = <T extends ComponentType<any>>(load: () => Promise<{ default: T }>)
   );
 
 // Lazy load all pages for better code splitting and initial load performance
-const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
-const Blog = lazy(() => import("./pages/Blog"));
-const BlogDetail = lazy(() => import("./pages/BlogDetail"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Preguntas = lazy(() => import("./pages/Preguntas"));
 const Autoevaluacion = lazy(() => import("./pages/Autoevaluacion"));
@@ -53,11 +52,9 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 const EmailPreferences = lazy(() => import("./pages/EmailPreferences"));
-const Sitemap = lazy(() => import("./pages/Sitemap"));
 // CHECKLIST TEMPORARILY DISABLED - Uncomment when ready to enable
 // const Checklist = lazy(() => import("./pages/Checklist"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const Studio = lazy(() => import("./pages/Studio"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -89,14 +86,6 @@ const App = () => (
             <BrowserRouter>
             <ScrollToTop />
             <Routes>
-              <Route 
-                path="/studio/*" 
-                element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Studio />
-                  </Suspense>
-                } 
-              />
               <Route element={<Layout />}>
                 <Route path="/" element={
                   <Suspense fallback={<PageLoader />}>
@@ -111,24 +100,10 @@ const App = () => (
                 <Route path="/services" element={<Navigate to="/" replace />} />
                 <Route path="/projects" element={<Navigate to="/" replace />} />
                 <Route path="/solutions" element={<Navigate to="/" replace />} />
-                <Route path="/resources" element={<Navigate to="/newsupdates" replace />} />
-                <Route path="/newsupdates" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Blog />
-                  </Suspense>
-                } />
-                <Route path="/newsupdates/:slug" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <BlogDetail />
-                  </Suspense>
-                } />
-                {/* Legacy redirect for /blog */}
-                <Route path="/blog" element={<Navigate to="/newsupdates" replace />} />
-                <Route path="/blog/:slug" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <BlogDetail />
-                  </Suspense>
-                } />
+                {/* The blog was retired: old links go to the home page */}
+                <Route path="/resources" element={<Navigate to="/" replace />} />
+                <Route path="/newsupdates/*" element={<Navigate to="/" replace />} />
+                <Route path="/blog/*" element={<Navigate to="/" replace />} />
                 {/* CHECKLIST ROUTE TEMPORARILY DISABLED - Uncomment when ready to enable
                 <Route path="/checklist" element={
                   <Suspense fallback={<PageLoader />}>
@@ -179,11 +154,6 @@ const App = () => (
                 <Route path="/email-preferences" element={
                   <Suspense fallback={<PageLoader />}>
                     <EmailPreferences />
-                  </Suspense>
-                } />
-                <Route path="/sitemap.xml" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Sitemap />
                   </Suspense>
                 } />
                 <Route path="*" element={

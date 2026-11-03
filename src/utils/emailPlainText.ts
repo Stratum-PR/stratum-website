@@ -106,43 +106,4 @@ You received this email because you subscribed to our newsletter. If you no long
 }
 
 // Blog Notification Plain Text Template
-export function getBlogNotificationPlainText(
-  blogTitle: string,
-  blogExcerpt: string,
-  blogSlug: string,
-  data: EmailTemplateData
-): string {
-  const { email, language, unsubscribeToken } = data;
-  const unsubscribeUrl = getUnsubscribeUrl(email, unsubscribeToken);
-  const blogUrl = `https://www.stratumpr.com/newsupdates/${blogSlug}`;
-  const isSpanish = language === 'es';
-  
-  const content = isSpanish ? {
-    title: 'Nuevo artículo en nuestro blog',
-    readMore: 'Leer artículo completo',
-    unsubscribe: 'Cancelar suscripción',
-    footer: 'Stratum PR - La Arquitectura de Mejores Decisiones'
-  } : {
-    title: 'New article on our blog',
-    readMore: 'Read full article',
-    unsubscribe: 'Unsubscribe',
-    footer: 'Stratum PR - The Architecture of Better Decisions'
-  };
-
-  return `
-${content.title}
-
-${blogTitle}
-
-${blogExcerpt}
-
-${content.readMore}: ${blogUrl}
-
----
-
-${content.footer}
-
-${content.unsubscribe}: ${unsubscribeUrl}
-  `.trim();
-}
 

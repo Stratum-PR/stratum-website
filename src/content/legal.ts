@@ -80,7 +80,6 @@ export const PRIVACY_POLICY: Bilingual = {
             ['Microsoft Clarity', 'Grabaciones de sesión y mapas de calor (solo con tu consentimiento)', 'Interacciones en la página e identificadores de cookies'],
             ['Vercel', 'Hospedaje del sitio y métricas de rendimiento sin cookies', 'Dirección IP y datos técnicos de la visita'],
             ['Upstash', 'Limitar envíos repetidos a los formularios', 'Dirección IP'],
-            ['Sanity', 'Administrar el contenido del blog', 'No recibe datos de los visitantes'],
           ],
         },
       },
@@ -184,7 +183,6 @@ export const PRIVACY_POLICY: Bilingual = {
             ['Microsoft Clarity', 'Session recordings and heatmaps (only with your consent)', 'Page interactions and cookie identifiers'],
             ['Vercel', 'Hosting the site and cookieless performance metrics', 'IP address and technical visit data'],
             ['Upstash', 'Limiting repeated form submissions', 'IP address'],
-            ['Sanity', 'Managing blog content', 'Receives no visitor data'],
           ],
         },
       },
@@ -380,7 +378,7 @@ export const TERMS_OF_USE: Bilingual = {
       {
         heading: 'Información general, no asesoría',
         paragraphs: [
-          'El contenido del sitio, incluidas las preguntas frecuentes, el blog y los recursos sobre FSMA, SQF, BRCGS y otros temas, es información general. No es asesoría legal, regulatoria ni profesional. Cada empresa es responsable de su propio cumplimiento y debe confirmar los requisitos en las fuentes oficiales que le aplican.',
+          'El contenido del sitio, incluidas las preguntas frecuentes, la autoevaluación y los recursos sobre FSMA, SQF, BRCGS y otros temas, es información general. No es asesoría legal, regulatoria ni profesional. Cada empresa es responsable de su propio cumplimiento y debe confirmar los requisitos en las fuentes oficiales que le aplican.',
         ],
       },
       {
@@ -467,7 +465,7 @@ export const TERMS_OF_USE: Bilingual = {
       {
         heading: 'General information, not advice',
         paragraphs: [
-          'The site’s content, including the FAQ, the blog and the resources on FSMA, SQF, BRCGS and other topics, is general information. It is not legal, regulatory or professional advice. Each company is responsible for its own compliance and should confirm requirements with the official sources that apply to it.',
+          'The site’s content, including the FAQ, the self-check and the resources on FSMA, SQF, BRCGS and other topics, is general information. It is not legal, regulatory or professional advice. Each company is responsible for its own compliance and should confirm requirements with the official sources that apply to it.',
         ],
       },
       {

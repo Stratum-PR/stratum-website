@@ -34,11 +34,7 @@ export const PAGE_CONTENT: Record<string, PageContentShape> = {
       { heading: 'Team', body: 'Co-founders and specialists in technology infrastructure, data and insights, and tech and build. Enterprise-level expertise at an accessible scale.' },
     ],
   },
-  '/newsupdates': {
-    sections: [
-      { heading: 'News and Updates', body: 'Latest news, insights, and updates on data analytics, AI, and business automation from Stratum PR.' },
-    ],
-  },
+
   '/autoevaluacion': {
     sections: [
       { heading: 'Audit-readiness self-check', body: 'A free 4-step self-check for food plants covering certification, records, food safety (FDA registration, PCQI food safety plan, recall plan) and suppliers and traceability. It gives a readiness score and a to-do list with official sources.' },

@@ -34,7 +34,6 @@ export const Footer = () => {
       links: [
         { name: t("nav.questions"), href: "/preguntas" },
         { name: t("nav.selfcheck"), href: "/autoevaluacion" },
-        { name: t("footer.blog"), href: "/newsupdates" },
         { name: t("nav.alerts"), href: ALERTAS_URL, external: true },
       ],
     },

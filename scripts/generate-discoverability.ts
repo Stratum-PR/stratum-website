@@ -88,7 +88,6 @@ function writeRobots(baseUrl: string): void {
     ...WELCOMED_CRAWLERS.flatMap((agent) => [`User-agent: ${agent}`, 'Allow: /', '']),
     'User-agent: *',
     'Allow: /',
-    'Disallow: /studio',
     '',
     `Sitemap: ${baseUrl}/sitemap.xml`,
   ];
@@ -117,9 +116,10 @@ function writeLlmsTxt(baseUrl: string): void {
   const lines: string[] = [];
   lines.push('# Stratum PR');
   lines.push('');
+  // llms.txt format: an H1, a one-paragraph blockquote summary, then sections of Markdown link lists
   lines.push(
     toAsciiSafe(
-      'Technology for Puerto Rico food manufacturers. Stratum PR digitizes records, inventory and traceability so plants are ready for every FDA inspection. Also runs Alertas PR, a free public portal of FDA food recalls affecting Puerto Rico.'
+      '> Technology for Puerto Rico food manufacturers. Stratum PR digitizes records, inventory and traceability so plants are ready for every FDA inspection. Also runs Alertas PR, a free public portal of FDA food recalls affecting Puerto Rico. The site is in Spanish, with an English version.'
     )
   );
   lines.push('');
@@ -127,8 +127,17 @@ function writeLlmsTxt(baseUrl: string): void {
   lines.push('');
   for (const r of DISCOVERABLE_ROUTES) {
     const url = baseUrl + safePathForUrl(r.path);
-    lines.push(`${url} - ${toAsciiSafe(r.title)} - ${toAsciiSafe(r.description)}`);
+    lines.push(`- [${toAsciiSafe(r.title)}](${url}): ${toAsciiSafe(r.description)}`);
   }
+  lines.push('');
+  lines.push('## Products');
+  lines.push('');
+  lines.push('- [Alertas PR](https://mvp.stratumpr.com/): Free public portal, in Spanish, of the FDA food recalls affecting Puerto Rico.');
+  lines.push('');
+  lines.push('## Optional');
+  lines.push('');
+  lines.push(`- [Sitemap](${baseUrl}/sitemap.xml): Every public page of the site.`);
+  lines.push(`- [Page content as JSON](${baseUrl}/content.json): The same text as this file, structured by page.`);
   lines.push('');
 
   for (const r of DISCOVERABLE_ROUTES) {
@@ -162,6 +171,17 @@ function writeLlmsTxt(baseUrl: string): void {
 
   fs.writeFileSync(path.join(DIST, 'llms.txt'), lines.join('\n'), 'utf8');
   console.log('Wrote dist/llms.txt');
+}
+
+/**
+ * Agentic Resource Discovery manifest (https://agenticresourcediscovery.org/spec/).
+ * Stratum PR publishes no MCP servers or agent tools yet, so the list is empty; add entries when it does.
+ */
+function writeArdManifest(): void {
+  const dir = path.join(DIST, '.well-known');
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'ard.json'), JSON.stringify({ entries: [] }, null, 2) + '\n', 'utf8');
+  console.log('Wrote dist/.well-known/ard.json');
 }
 
 function writeContentJson(baseUrl: string): void {
@@ -282,6 +302,7 @@ function main(): void {
   writeAiRoutes(baseUrl);
   writeLlmsTxt(baseUrl);
   writeContentJson(baseUrl);
+  writeArdManifest();
   writeStaticPages(baseUrl);
 
   console.log('Discoverability artifacts generated in dist/');

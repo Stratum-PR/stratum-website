@@ -37,3 +37,5 @@ reports/
 
 # filter-branch temporary (remove with: rm -rf .git-rewrite)
 .git-rewrite/
+.vercel
+.env*

@@ -111,8 +111,8 @@ export default {
 				}
 			},
 			fontFamily: {
-				'telegraf': ['"PP Telegraf"', '"DM Sans"', 'system-ui', 'sans-serif'],
-				'sans': ['"PP Telegraf"', '"DM Sans"', 'system-ui', 'sans-serif'],
+				'telegraf': ['"PP Telegraf"', 'system-ui', 'sans-serif'],
+				'sans': ['"PP Telegraf"', 'system-ui', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

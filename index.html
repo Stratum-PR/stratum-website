@@ -102,12 +102,20 @@
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-    <link rel="preconnect" href="https://www.clarity.ms" crossorigin>
-    <link rel="dns-prefetch" href="//images.unsplash.com">
     <link rel="dns-prefetch" href="//calendly.com">
 
-    <!-- Brand font (PP Telegraf), self-hosted; DM Sans covers the gap while it loads -->
+    <!-- Home hero photo (the LCP element): start downloading it from the HTML, before React renders -->
+    <script>
+      if (location.pathname === '/') {
+        var l = document.createElement('link');
+        l.rel = 'preload'; l.as = 'image'; l.fetchPriority = 'high';
+        l.setAttribute('imagesrcset', '/img/hero/hero-1-768.webp 768w, /img/hero/hero-1-960.webp 960w, /img/hero/hero-1.webp 1600w');
+        l.setAttribute('imagesizes', '(min-width: 1024px) 1100px, 100vw');
+        l.href = '/img/hero/hero-1-960.webp';
+        document.head.appendChild(l);
+      }
+    </script>
+    <!-- Brand font (PP Telegraf), self-hosted; the system font covers the gap while it loads -->
     <link rel="preload" href="/fonts/pp-telegraf-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/pp-telegraf-ultrabold.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -129,7 +137,7 @@
       }
       /* Critical above-the-fold styles */
       html { 
-        font-family: "PP Telegraf", "DM Sans", system-ui, sans-serif; 
+        font-family: "PP Telegraf", system-ui, sans-serif; 
       }
       body { 
         margin: 0; 
@@ -140,7 +148,7 @@
         -moz-osx-font-smoothing: grayscale;
       }
       #root { min-height: 100vh; }
-      .font-telegraf { font-family: "PP Telegraf", "DM Sans", system-ui, sans-serif; }
+      .font-telegraf { font-family: "PP Telegraf", system-ui, sans-serif; }
       /* Prevent layout shift for header */
       header { height: 56px; }
       @media (min-width: 768px) { header { height: 64px; } }
@@ -162,15 +170,15 @@
       }
     </style>
 
-    <!-- Optimized font loading with font-display: swap and faster loading -->
+    <!-- Caveat for the handwritten notes in "El problema"; it isn't needed for first paint, so it loads without blocking -->
     <link 
       rel="preload" 
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Caveat:wght@500&display=swap" 
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" 
       as="style" 
       onload="this.onload=null;this.rel='stylesheet'"
     >
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
     </noscript>
 
     <!-- Favicons with optimal sizes - Order matters for mobile compatibility -->
