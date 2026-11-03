@@ -128,13 +128,13 @@ const Blog = () => {
 
   // Dynamic SEO data based on language
   const seoData = language === 'es' ? {
-    title: "Blog de Análisis de Datos - Stratum PR",
-    description: "Mantente informado con las últimas perspectivas, tendencias y mejores prácticas en análisis de datos, automatización de IA y transformación digital de los expertos de Stratum PR.",
-    keywords: "blog análisis de datos, perspectivas IA, transformación digital, tecnología Puerto Rico, blog inteligencia empresarial"
+    title: "Noticias | Stratum PR",
+    description: "Noticias y artículos de Stratum PR sobre inocuidad, cumplimiento y tecnología para la industria de alimentos en Puerto Rico.",
+    keywords: "inocuidad alimentaria, cumplimiento FSMA, industria de alimentos Puerto Rico, noticias Stratum PR"
   } : {
-    title: "Data Analytics Blog - Stratum PR",
-    description: "Stay informed with the latest insights, trends, and best practices in data analytics, AI automation, and digital transformation from Stratum PR experts.",
-    keywords: "data analytics blog, AI insights, digital transformation, Puerto Rico tech, business intelligence blog"
+    title: "News | Stratum PR",
+    description: "News and articles from Stratum PR on food safety, compliance and technology for Puerto Rico's food industry.",
+    keywords: "food safety, FSMA compliance, Puerto Rico food industry, Stratum PR news"
   };
   
   // SEO optimization for blog page
@@ -163,10 +163,10 @@ const Blog = () => {
     <div>
       <PageMeta route={NEWSUPDATES_ROUTE} />
       {/* Hero Section with Background - compact like /services */}
-      <section className="relative pt-20 sm:pt-24 pb-8 sm:pb-10 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <section className="relative pt-24 md:pt-28 pb-8 sm:pb-10 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="absolute inset-0">
           <img 
-            src="/img/topographic-linear-background.jpg" 
+            src="/img/topographic-linear-background.webp" 
             alt="" 
             className="w-full h-full object-cover"
             onError={(e) => {
@@ -200,19 +200,20 @@ const Blog = () => {
           {loading ? (
             <div className="flex items-center justify-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-              <span className="ml-4 font-telegraf text-gray-600">Loading blog posts...</span>
+              <span className="ml-4 font-telegraf text-gray-600">{t('blog.loading')}</span>
             </div>
           ) : error ? (
             <div className="text-center py-20">
-              <p className="font-telegraf text-red-600 mb-4">{error}</p>
-              <Button onClick={() => window.location.reload()} variant="outline">
-                Retry
+              {/* Technical details go to the logger; visitors get a friendly message */}
+              <p className="font-telegraf text-gray-600 mb-4">{t('blog.error')}</p>
+              <Button onClick={() => window.location.reload()} variant="outline" className="min-h-[44px]">
+                {t('blog.retry')}
               </Button>
             </div>
           ) : blogPosts.length === 0 ? (
             <div className="text-center py-20">
-              <p className="font-telegraf text-gray-600 text-lg mb-4">No blog posts found.</p>
-              <p className="font-telegraf text-gray-500">Create your first post in Sanity Studio!</p>
+              <p className="font-telegraf text-gray-600 text-lg mb-4">{t('blog.empty.title')}</p>
+              <p className="font-telegraf text-gray-500">{t('blog.empty.body')}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -230,7 +231,7 @@ const Blog = () => {
                 return (
                   <Link key={post._id} to={`/newsupdates/${post.slug.current}`} className="group">
                     <Card className="group-hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-primary/20 shadow-lg overflow-hidden cursor-pointer h-full bg-gradient-to-br from-white via-primary/5 to-secondary/5 rounded-2xl hover-lift">
-                      <div className="relative h-56 overflow-hidden">
+                      <div className="relative h-44 sm:h-56 overflow-hidden">
                         <img 
                           src={imageUrl}
                           alt={title}
@@ -240,7 +241,7 @@ const Blog = () => {
                         {post.featured && (
                           <div className="absolute top-4 left-4">
                             <span className="px-3 py-1 text-xs font-telegraf font-semibold bg-primary text-white rounded-full uppercase tracking-wide">
-                              Featured
+                              {t('blog.featured')}
                             </span>
                           </div>
                         )}
@@ -272,7 +273,7 @@ const Blog = () => {
                             </div>
                             <div className="flex items-center">
                               <Calendar className="h-4 w-4 mr-1.5" />
-                              <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+                              <span>{new Date(post.publishedAt).toLocaleDateString(language === 'es' ? 'es-PR' : 'en-US')}</span>
                             </div>
                           </div>
                         </div>

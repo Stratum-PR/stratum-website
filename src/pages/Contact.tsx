@@ -1,145 +1,79 @@
-
-import ContactHero from "@/components/ContactHero";
+import { CalendarDays, Mail, MapPin } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
-import ContactInfo from "@/components/ContactInfo";
-import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
 import { CONTACT_ROUTE } from "@/config/discoverable-routes";
+import { CALENDLY_URL } from "@/constants/links";
+
+const CONTACT_EMAIL = "contact@stratumpr.com";
 
 const Contact = () => {
   const { t, language } = useLanguage();
-  
-  // Dynamic SEO data based on language
-  const seoData = language === 'es' ? {
-    title: "Contacta Stratum PR - Consultoría Análisis de Datos",
-    description: "Contacta Stratum PR para consultoría experta en análisis de datos en Puerto Rico. Agenda una consulta gratuita para implementación de CRM, automatización empresarial con IA y servicios de modelado predictivo. Ponte en contacto hoy.",
-    keywords: "contactar Stratum PR, consulta análisis de datos Puerto Rico, cotización implementación CRM, contacto automatización empresarial IA, agendar consulta, consultoría análisis Puerto Rico"
-  } : {
-    title: "Contact Stratum PR - Data Analytics Consulting",
-    description: "Contact Stratum PR for expert data analytics consulting in Puerto Rico. Schedule a free consultation for CRM implementation, AI business automation, and predictive modeling services. Get in touch today.",
-    keywords: "contact Stratum PR, data analytics consultation Puerto Rico, CRM implementation quote, AI business automation contact, schedule consultation, analytics consulting Puerto Rico"
-  };
-  
-  // SEO optimization for contact page
-  useSEO({
-    title: seoData.title,
-    description: seoData.description,
-    keywords: seoData.keywords,
-    canonical: "https://www.stratumpr.com/contact",
-    ogType: "website",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "@id": "https://www.stratumpr.com/contact#webpage",
-      "url": "https://www.stratumpr.com/contact",
-      "name": language === 'es' ? "Contacta Stratum PR - Consultoría en Análisis de Datos" : "Contact Stratum PR - Data Analytics Consulting",
-      "description": language === 'es'
-        ? "Ponte en contacto con Stratum PR para servicios de consultoría experta en análisis de datos en Puerto Rico."
-        : "Get in touch with Stratum PR for expert data analytics consulting services in Puerto Rico.",
-      "mainEntity": {
-        "@type": "LocalBusiness",
-        "name": "Stratum PR",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "contact@stratumpr.com",
-          "contactType": "Customer Service"
-        }
-      },
-      "inLanguage": language === 'es' ? 'es' : 'en'
-    }
-  }, "contact", { skipMeta: true });
+
+  const contactJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    url: "https://www.stratumpr.com/contact",
+    name: CONTACT_ROUTE.title,
+    inLanguage: language === "es" ? "es" : "en",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Stratum PR",
+      address: { "@type": "PostalAddress", addressLocality: "Trujillo Alto", addressRegion: "PR", addressCountry: "US" },
+      contactPoint: { "@type": "ContactPoint", email: CONTACT_EMAIL, contactType: "customer service", availableLanguage: ["es", "en"] },
+    },
+  });
+
+  const cardClass = "rounded-3xl border border-primary/10 bg-white p-5 md:p-6";
 
   return (
-    <div>
-      <PageMeta route={CONTACT_ROUTE} jsonLd={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        "@id": "https://www.stratumpr.com/contact#webpage",
-        "url": "https://www.stratumpr.com/contact",
-        "name": seoData.title,
-        "description": seoData.description,
-        "mainEntity": {
-          "@type": "LocalBusiness",
-          "name": "Stratum PR",
-          "contactPoint": { "@type": "ContactPoint", "email": "contact@stratumpr.com", "contactType": "Customer Service" }
-        },
-        "inLanguage": language === 'es' ? 'es' : 'en'
-      })} />
-      {/* Hero Section with Background */}
-      <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
-        <div className="absolute inset-0">
-          <img 
-            src="/img/topographic-linear-background.jpg" 
-            alt="" 
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
-          />
-        </div>
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-telegraf font-bold text-3xl md:text-4xl text-white drop-shadow-lg mb-6">
-            {t('contact.hero.title')}
+    <>
+      <PageMeta route={CONTACT_ROUTE} jsonLd={contactJsonLd} />
+
+      <section className="bg-topo px-4 pb-10 pt-24 text-white md:pb-14 md:pt-32" aria-labelledby="contact-heading">
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-4 font-telegraf text-sm font-medium uppercase tracking-[0.14em] text-[#E6E09E]">{t("contact.eyebrow")}</p>
+          <h1 id="contact-heading" className="max-w-[16ch] font-telegraf text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-[-0.03em]">
+            {t("contact.title")}
           </h1>
-          <p className="font-telegraf text-lg text-white/90 drop-shadow-md leading-relaxed">
-            {t('contact.hero.description')}
-          </p>
+          <p className="mt-5 max-w-2xl font-telegraf text-lg leading-relaxed text-white/80">{t("contact.intro")}</p>
         </div>
       </section>
-      
-      <section className="py-12 bg-gradient-to-br from-primary/5 via-white to-secondary/5 relative animate-gradient-flow">
-        {/* Subtle animated background pattern */}
-        <div className="absolute inset-0 opacity-[0.03] animate-gradient-flow pointer-events-none" style={{
-          backgroundImage: `radial-gradient(circle at 30% 40%, rgba(230, 224, 142, 0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 70% 60%, rgba(38, 106, 178, 0.1) 0%, transparent 50%)`,
-          backgroundSize: '200% 200%'
-        }}></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Message Form - Takes 2 columns */}
-            <div className="lg:col-span-2">
-              <ContactForm />
-            </div>
-            {/* Email - Takes 1 column, smaller */}
-            <div>
-              <div className="bg-gradient-to-br from-white via-primary/5 to-white border-2 border-primary/20 rounded-lg p-4 shadow-lg hover-lift">
-                <h3 className="font-telegraf font-semibold text-lg text-primary mb-3">
-                  {t('contact.info.title')}
-                </h3>
-                <div className="space-y-3">
-                  <a
-                    href="mailto:contact@stratumpr.com"
-                    className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
-                  >
-                    <div className="flex-shrink-0">
-                      <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <svg className="h-4 w-4 text-primary group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-telegraf font-medium text-sm text-gray-900 mb-1">
-                        {t('contact.info.email')}
-                      </h4>
-                      <p className="font-telegraf text-primary font-medium text-sm">
-                        contact@stratumpr.com
-                      </p>
-                      <p className="font-telegraf text-xs text-gray-600 mt-1">
-                        {t('contact.info.email.desc')}
-                      </p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
+
+      <div className="bg-[#FAFAF8] px-4 py-14 md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <ContactForm />
           </div>
+
+          <aside className="flex flex-col gap-4" aria-label={t("contact.info.title")}>
+            <div className={`${cardClass} bg-topo border-0 text-white`}>
+              <CalendarDays className="mb-3 h-6 w-6 text-[#E6E09E]" aria-hidden />
+              <h2 className="font-telegraf text-xl font-bold">{t("contact.book.title")}</h2>
+              <p className="mb-5 mt-1.5 font-telegraf text-base text-white/80">{t("contact.book.body")}</p>
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] items-center rounded-2xl bg-white px-6 font-telegraf font-semibold text-primary transition-colors hover:bg-[#E6E09E]"
+              >
+                {t("home.hero.cta.primary")}
+              </a>
+            </div>
+            <a href={`mailto:${CONTACT_EMAIL}`} className={`${cardClass} block transition-colors hover:border-primary/30`}>
+              <Mail className="mb-3 h-6 w-6 text-primary" aria-hidden />
+              <h2 className="font-telegraf text-lg font-bold text-[#0b1215]">{t("contact.info.email")}</h2>
+              <p className="mt-1 font-telegraf font-semibold text-primary">{CONTACT_EMAIL}</p>
+            </a>
+            <div className={cardClass}>
+              <MapPin className="mb-3 h-6 w-6 text-primary" aria-hidden />
+              <h2 className="font-telegraf text-lg font-bold text-[#0b1215]">{t("contact.location.title")}</h2>
+              <p className="mt-1 font-telegraf text-neutral-600">{t("footer.location")}</p>
+            </div>
+          </aside>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 

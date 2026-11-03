@@ -29,19 +29,19 @@ export const CookieConsent: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
-      <Card className="mx-auto max-w-4xl bg-white shadow-lg border border-gray-200">
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-4">
+    <div className="fixed bottom-0 left-0 right-0 z-[9995] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:p-4">
+      <Card className="mx-auto max-w-3xl rounded-2xl border border-primary/10 bg-white shadow-[0_12px_40px_rgba(30,43,126,0.18)]">
+        <CardContent className="p-4 md:p-5">
+          <div className="flex items-start justify-between mb-3 md:mb-4">
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-base font-semibold text-[#0b1215] mb-1 md:mb-2 md:text-lg">
                 {t('cookie.title')}
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-neutral-600 mb-0 md:mb-4">
                 {t('cookie.description')}{' '}
                 <Link 
-                  to="/privacy" 
-                  className="text-blue-600 hover:text-blue-800 underline"
+                  to="/cookies" 
+                  className="text-primary hover:text-secondary underline"
                 >
                   {t('cookie.privacy.link')}
                 </Link>
@@ -50,24 +50,24 @@ export const CookieConsent: React.FC = () => {
           </div>
 
           {!showCustomize ? (
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3">
               <Button 
                 onClick={acceptAll}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="min-h-[44px] rounded-xl bg-primary px-5 font-semibold text-white hover:bg-secondary"
               >
                 {t('cookie.accept.all')}
               </Button>
               <Button 
                 onClick={rejectAll}
                 variant="outline"
-                className="border-gray-300 text-gray-700 hover:bg-gray-50"
+                className="min-h-[44px] rounded-xl border-primary/20 px-5 font-semibold text-primary hover:bg-primary/5"
               >
                 {t('cookie.reject.all')}
               </Button>
               <Button 
                 onClick={() => setShowCustomize(true)}
                 variant="outline"
-                className="border-gray-300 text-gray-700 hover:bg-gray-50"
+                className="col-span-2 min-h-[44px] rounded-xl border-primary/20 px-5 font-semibold text-primary hover:bg-primary/5"
               >
                 <Settings className="w-4 h-4 mr-2" />
                 {t('cookie.customize')}
@@ -79,10 +79,10 @@ export const CookieConsent: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   <Checkbox checked={true} disabled />
                   <div>
-                    <label className="text-sm font-medium text-gray-900">
+                    <label className="text-sm font-medium text-[#0b1215]">
                       {t('cookie.essential.title')}
                     </label>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-600">
                       {t('cookie.essential.description')}
                     </p>
                   </div>
@@ -96,44 +96,27 @@ export const CookieConsent: React.FC = () => {
                     }
                   />
                   <div>
-                    <label className="text-sm font-medium text-gray-900">
+                    <label className="text-sm font-medium text-[#0b1215]">
                       {t('cookie.analytics.title')}
                     </label>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-600">
                       {t('cookie.analytics.description')}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <Checkbox 
-                    checked={customPrefs.marketing}
-                    onCheckedChange={(checked) => 
-                      setCustomPrefs(prev => ({ ...prev, marketing: !!checked }))
-                    }
-                  />
-                  <div>
-                    <label className="text-sm font-medium text-gray-900">
-                      {t('cookie.marketing.title')}
-                    </label>
-                    <p className="text-xs text-gray-500">
-                      {t('cookie.marketing.description')}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3 pt-4 border-t">
                 <Button 
                   onClick={handleCustomSave}
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="min-h-[44px] rounded-xl bg-primary px-5 font-semibold text-white hover:bg-secondary"
                 >
                   {t('cookie.save.preferences')}
                 </Button>
                 <Button 
                   onClick={() => setShowCustomize(false)}
                   variant="outline"
-                  className="border-gray-300 text-gray-700 hover:bg-gray-50"
+                  className="min-h-[44px] rounded-xl border-primary/20 px-5 font-semibold text-primary hover:bg-primary/5"
                 >
                   {t('common.cancel')}
                 </Button>

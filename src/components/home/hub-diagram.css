@@ -1,0 +1,103 @@
+/* "Disconnected tools → one Stratum hub" diagram, ported from the product site's landing
+   (LandingPage, branch archivo/landing-fsqms-2026-10). Defaults are the FINAL (connected)
+   state; the .play animations start from the scattered grey "before" state, so visitors who
+   prefer reduced motion just see the finished diagram. */
+.hub-diagram {
+  --hub-line: #e2e5ec;
+  --hub-ink: #16204f;
+  --hub-muted: #586187;
+  --hub-blue: #266ab2;
+  --hub-sky: #5fa3da;
+  background: #fff; border: 1px solid var(--hub-line); border-radius: 26px;
+  padding: 28px 28px 22px; overflow: hidden;
+}
+.hub-stage { position: relative; width: min(640px, 100%); aspect-ratio: 1; margin: 0 auto; }
+.hub-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hub-orbit { fill: none; stroke: var(--hub-line); stroke-width: .25; stroke-dasharray: .6 1.2; }
+.hub-stub { stroke: #b9c0d0; stroke-width: .5; stroke-linecap: round; stroke-dasharray: 1.4 1.1; opacity: 0; }
+.hub-cut { opacity: 0; }
+.hub-cut circle { fill: #fff; stroke: #d64545; stroke-width: .45; }
+.hub-cut path { stroke: #d64545; stroke-width: .5; stroke-linecap: round; }
+.hub-spoke { stroke: #c8d2ea; stroke-width: .45; stroke-linecap: round; }
+.hub-flow { stroke: var(--hub-blue); stroke-width: .6; stroke-linecap: round; stroke-dasharray: 1.2 2.4; animation: hub-flow 1.6s linear infinite; }
+@keyframes hub-flow { to { stroke-dashoffset: -3.6; } }
+.hub-gear {
+  fill: none; stroke: var(--hub-sky); stroke-width: 2.2; stroke-dasharray: 1.6 1.4;
+  transform-box: fill-box; transform-origin: center; animation: hub-spin 18s linear infinite;
+}
+@keyframes hub-spin { to { transform: rotate(360deg); } }
+.hub-core {
+  position: absolute; left: 50%; top: 50%; width: 25%; aspect-ratio: 1; translate: -50% -50%;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #1e2b7e 0%, #266ab2 100%); border-radius: 50%;
+  box-shadow: 0 18px 40px -18px rgba(30, 43, 126, .8), 0 0 0 6px rgba(95, 163, 218, .15);
+}
+.hub-core img { width: 74%; height: auto; display: block; }
+.hub-node {
+  position: absolute; translate: -50% -50%; width: 17%;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+}
+.hub-tile {
+  position: relative; width: clamp(38px, 8.5vw, 56px); aspect-ratio: 1; border-radius: 30%;
+  display: grid; place-items: center; background: var(--c); color: var(--ic, #fff);
+  box-shadow: 0 10px 20px -12px rgba(22, 32, 79, .6);
+}
+.hub-tile::after {
+  content: ""; position: absolute; top: -4px; right: -4px; width: 12px; height: 12px; border-radius: 50%;
+  background: #d64545; border: 2px solid #fff; opacity: 0;
+}
+.hub-tile svg { width: 52%; height: 52%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hub-label { display: grid; }
+.hub-label > * { grid-area: 1 / 1; }
+.hub-new { font-size: clamp(10.5px, 1.9vw, 14px); font-weight: 800; color: var(--hub-ink); line-height: 1.2; }
+.hub-old { font-size: clamp(9.5px, 1.6vw, 12px); font-weight: 600; color: var(--hub-muted); line-height: 1.2; opacity: 0; }
+.hub-caption { display: grid; margin-top: 10px; text-align: center; font-size: 15.5px; font-weight: 800; }
+.hub-caption > * { grid-area: 1 / 1; }
+.hub-cap-before { color: var(--hub-muted); opacity: 0; }
+.hub-cap-after { color: #1e2b7e; }
+
+/* ---- Timeline (HubDiagram adds .play while it is on screen) ---- */
+.hub-diagram.play .hub-node {
+  animation:
+    hub-node-pop .5s calc(var(--i) * 70ms) cubic-bezier(.3, 1.5, .5, 1) both,
+    hub-node-settle .9s 3.1s cubic-bezier(.16, 1, .3, 1) both;
+}
+@keyframes hub-node-pop { from { opacity: 0; scale: .5; } }
+@keyframes hub-node-settle { from { translate: calc(-50% + var(--dx) * var(--scatter, 1)) calc(-50% + var(--dy) * var(--scatter, 1)); rotate: var(--rot); } }
+.hub-diagram.play .hub-tile { animation: hub-tile-color .6s calc(3.5s + var(--i) * 70ms) ease both; }
+@keyframes hub-tile-color { from { background: #e3e6ed; color: #8a92ab; box-shadow: none; } }
+.hub-diagram.play .hub-old { animation: hub-label-out .6s calc(3.5s + var(--i) * 70ms) ease both; }
+.hub-diagram.play .hub-new { animation: hub-label-in .6s calc(3.65s + var(--i) * 70ms) ease both; }
+@keyframes hub-label-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes hub-label-in { from { opacity: 0; transform: translateY(4px); } }
+.hub-diagram.play .hub-spoke { stroke-dasharray: 1; animation: hub-draw-spoke .6s calc(3.4s + var(--i) * 70ms) ease both; }
+@keyframes hub-draw-spoke { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.hub-diagram.play .hub-flow { animation: hub-fade-in .4s 4.4s ease both, hub-flow 1.6s 4.4s linear infinite; }
+@keyframes hub-fade-in { from { opacity: 0; } }
+.hub-diagram.play .hub-orbit { animation: hub-fade-in .8s 3.4s ease both; }
+.hub-diagram.play .hub-core { animation: hub-core-pop .7s 3.6s cubic-bezier(.3, 1.5, .5, 1) both; }
+@keyframes hub-core-pop { from { opacity: 0; scale: .4; } }
+.hub-diagram.play .hub-gear { animation: hub-fade-in .6s 3.8s ease both, hub-spin 18s 3.8s linear infinite; }
+.hub-diagram.play .hub-cap-before { animation: hub-cap-before 4.2s ease both; }
+.hub-diagram.play .hub-cap-after { animation: hub-label-in .6s 4.1s ease both; }
+.hub-diagram.play .hub-stub,
+.hub-diagram.play .hub-cut,
+.hub-diagram.play .hub-tile::after { animation: hub-broken 3.7s calc(.35s + var(--i) * 70ms) ease both; }
+@keyframes hub-broken { 0% { opacity: 0; } 14% { opacity: 1; } 86% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes hub-cap-before { 0%, 85% { opacity: 1; } 100% { opacity: 0; } }
+/* between loops the stage fades out briefly, then replays */
+.hub-stage, .hub-caption { transition: opacity .45s ease; }
+.hub-diagram.hub-fading .hub-stage, .hub-diagram.hub-fading .hub-caption { opacity: 0; }
+
+@media (max-width: 600px) {
+  .hub-diagram { padding: 12px 4px 16px; }
+  .hub-node { width: 22%; gap: 4px; --scatter: .6; }
+  .hub-new { font-size: 11.5px; }
+  .hub-old { font-size: 10.5px; }
+  .hub-core { width: 30%; }
+  .hub-caption { font-size: 14px; padding: 0 8px; }
+}
+/* Narrow phones: give each node enough room for its longest single word ("Temperaturas") */
+@media (max-width: 400px) {
+  .hub-node { width: 26%; }
+}

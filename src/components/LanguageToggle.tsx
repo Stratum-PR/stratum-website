@@ -24,9 +24,9 @@ const LANGUAGES = [
 const HOVER_CLOSE_MS = 120;
 
 const glassWhiteTrigger =
-  "bg-transparent backdrop-blur-sm border border-white/60 shadow-sm hover:bg-white/25";
+  "bg-transparent border border-transparent hover:border-primary/15 hover:bg-primary/5";
 const glassWhiteMenu =
-  "bg-white/70 backdrop-blur-md border border-white/50 shadow-lg";
+  "bg-white border border-primary/10 shadow-[0_8px_24px_rgba(30,43,126,0.12)]";
 const glassWhiteMenuItem =
   "bg-transparent focus:bg-white/20 data-[highlighted]:bg-white/20 data-[state=checked]:bg-white/20";
 
@@ -74,7 +74,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
           <button
             type="button"
             className={cn(
-              "rounded-lg transition-colors outline-none focus-visible:ring-2 focus-visible:ring-primary/40 gap-2",
+              "rounded-xl transition-colors gap-2",
               matchHeaderCtaSize
                 ? HEADER_LANG_BUTTON_CLASS
                 : "h-9 inline-flex items-center justify-center px-2.5",

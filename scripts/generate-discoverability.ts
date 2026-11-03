@@ -70,19 +70,25 @@ function writeSitemap(baseUrl: string): void {
   console.log('Wrote dist/sitemap.xml');
 }
 
+// Search engines and AI assistants we explicitly welcome (the public site is meant to be read and cited)
+const WELCOMED_CRAWLERS = [
+  'Googlebot', 'Bingbot', 'DuckDuckBot', 'Applebot', 'Twitterbot', 'facebookexternalhit', 'LinkedInBot',
+  'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
+  'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+  'PerplexityBot', 'Perplexity-User',
+  'Google-Extended', 'Applebot-Extended', 'CCBot', 'Amazonbot', 'meta-externalagent', 'MistralAI-User',
+];
+
 function writeRobots(baseUrl: string): void {
   const lines = [
     '# Stratum PR - https://www.stratumpr.com',
-    'User-agent: Googlebot',
-    'Allow: /',
-    'User-agent: Bingbot',
-    'Allow: /',
-    'User-agent: Twitterbot',
-    'Allow: /',
-    'User-agent: facebookexternalhit',
-    'Allow: /',
+    '# Search engines and AI assistants are welcome to read, index and cite this site.',
+    `# Plain-text summary for AI assistants: ${baseUrl}/llms.txt`,
+    '',
+    ...WELCOMED_CRAWLERS.flatMap((agent) => [`User-agent: ${agent}`, 'Allow: /', '']),
     'User-agent: *',
     'Allow: /',
+    'Disallow: /studio',
     '',
     `Sitemap: ${baseUrl}/sitemap.xml`,
   ];
@@ -113,7 +119,7 @@ function writeLlmsTxt(baseUrl: string): void {
   lines.push('');
   lines.push(
     toAsciiSafe(
-      'The Architecture of Better Decisions. Data analytics and AI services in Puerto Rico. Expert consulting in CRM implementation, business automation, and predictive modeling.'
+      'Technology for Puerto Rico food manufacturers. Stratum PR digitizes records, inventory and traceability so plants are ready for every FDA inspection. Also runs Alertas PR, a free public portal of FDA food recalls affecting Puerto Rico.'
     )
   );
   lines.push('');
@@ -188,6 +194,84 @@ function writeContentJson(baseUrl: string): void {
   console.log('Wrote dist/content.json');
 }
 
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/** Replace exactly one match; fail the build if the template changed under us. */
+function replaceOnce(html: string, pattern: RegExp, replacement: string, what: string): string {
+  const matches = html.match(new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : pattern.flags + 'g'));
+  if (!matches || matches.length !== 1) {
+    throw new Error(`Static pages: expected one ${what} in dist/index.html, found ${matches?.length ?? 0}`);
+  }
+  return html.replace(pattern, replacement);
+}
+
+/**
+ * Many AI crawlers (GPTBot, ClaudeBot, PerplexityBot…) do not run JavaScript, so the bare SPA
+ * shell looks empty to them. For each public route, write dist/<route>/index.html with that
+ * route's title, description and full text (plus the FAQ and its JSON-LD on the home page)
+ * inside #root. React replaces it on load in a browser. The untouched shell is kept as
+ * dist/app-shell.html for every other URL (see the catch-all rewrite in vercel.json).
+ */
+function writeStaticPages(baseUrl: string): void {
+  const shellPath = path.join(DIST, 'index.html');
+  const shell = fs.readFileSync(shellPath, 'utf8');
+  fs.writeFileSync(path.join(DIST, 'app-shell.html'), shell, 'utf8');
+
+  const routes = DISCOVERABLE_ROUTES.filter((r) => r.indexable !== false && !r.noindex);
+  const nav = routes
+    .map((r) => `<a href="${escapeHtml(safePathForUrl(r.path))}">${escapeHtml(r.title)}</a>`)
+    .concat('<a href="https://mvp.stratumpr.com/">Alertas PR</a>')
+    .join(' · ');
+
+  for (const r of routes) {
+    const pathSafe = safePathForUrl(r.path);
+    const url = baseUrl + pathSafe;
+    const title = escapeHtml(r.title);
+    const desc = escapeHtml(r.description);
+
+    let body = `<header><nav aria-label="Stratum PR">${nav}</nav></header><main><h1>${title}</h1><p>${desc}</p>`;
+    for (const sec of PAGE_CONTENT[r.path]?.sections ?? []) {
+      body += `<section><h2>${escapeHtml(sec.heading)}</h2><p>${escapeHtml(sec.body)}</p></section>`;
+    }
+    let headExtra = '';
+    if (r.path === '/preguntas' && FAQ_ENTRIES.length > 0) {
+      body += '<section><h2>Preguntas y respuestas · Questions and answers</h2>';
+      for (const faq of FAQ_ENTRIES) {
+        body += `<h3>${escapeHtml(faq.question)}</h3><p>${escapeHtml(faq.answer)}</p>`;
+      }
+      body += '</section>';
+      const faqLd = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: FAQ_ENTRIES.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      };
+      headExtra = `<script type="application/ld+json">${JSON.stringify(faqLd).replace(/</g, '\\u003c')}</script>`;
+    }
+    body += '</main><footer><p>Stratum PR LLC · <a href="mailto:contact@stratumpr.com">contact@stratumpr.com</a> · <a href="/llms.txt">llms.txt</a></p></footer>';
+
+    let html = shell;
+    html = replaceOnce(html, /<title>[^<]*<\/title>/, `<title>${title}</title>`, '<title>');
+    html = replaceOnce(html, /<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${desc}" />`, 'meta description');
+    html = replaceOnce(html, /<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${escapeHtml(url)}" />`, 'canonical');
+    html = replaceOnce(html, /<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${escapeHtml(url)}" />`, 'og:url');
+    html = replaceOnce(html, /<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`, 'og:title');
+    html = replaceOnce(html, /<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${desc}" />`, 'og:description');
+    html = replaceOnce(html, /<div id="root"><\/div>/, `<div id="root">${body}</div>`, '#root');
+    if (headExtra) html = replaceOnce(html, /<\/head>/, `${headExtra}</head>`, '</head>');
+
+    const outDir = r.path === '/' ? DIST : path.join(DIST, pathSafe.replace(/^\//, ''));
+    fs.mkdirSync(outDir, { recursive: true });
+    fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
+  }
+  console.log(`Wrote ${routes.length} static pages with readable content (and dist/app-shell.html)`);
+}
+
 function main(): void {
   ensureDist();
   const baseUrl = getPublicBaseUrl();
@@ -198,6 +282,7 @@ function main(): void {
   writeAiRoutes(baseUrl);
   writeLlmsTxt(baseUrl);
   writeContentJson(baseUrl);
+  writeStaticPages(baseUrl);
 
   console.log('Discoverability artifacts generated in dist/');
 }

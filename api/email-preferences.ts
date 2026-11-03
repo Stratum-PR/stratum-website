@@ -5,8 +5,8 @@
 // (e.g. /email-preferences?email=...&token=HMAC(email, secret)) and verify it before applying
 // updates. Do not allow unauthenticated callers to change preferences for an arbitrary email.
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { logger } from '../lib/logger';
-import { checkRateLimit } from '../lib/rateLimit';
+import { logger } from '../lib/logger.js';
+import { checkRateLimit } from '../lib/rateLimit.js';
 
 function getClientId(req: VercelRequest): string {
   const forwarded = req.headers['x-forwarded-for'];

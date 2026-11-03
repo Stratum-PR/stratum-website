@@ -343,7 +343,7 @@ If you think an ERP might be right for your business:
       author: {
         name: 'Jovaniel Rodriguez',
         role: 'Co-Founder, Technology Infrastructure',
-        image: '/img/Jovaniel.jpg'
+        image: '/img/Jovaniel.webp'
       },
       readTime: 12
     },
@@ -372,7 +372,7 @@ Entender si necesitas un ERP y cuál es el correcto para tu negocio es una decis
       author: {
         name: 'Jovaniel Rodriguez',
         role: 'Co-Fundador, Infraestructura Tecnológica',
-        image: '/img/Jovaniel.jpg'
+        image: '/img/Jovaniel.webp'
       },
       readTime: 12
     }

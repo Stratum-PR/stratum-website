@@ -35,11 +35,11 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             required 
             value={formData.name} 
             onChange={onChange} 
-            className={`mt-1 font-telegraf h-9 text-sm ${errors.name ? 'border-red-500' : ''}`} 
+            className={`mt-1 font-telegraf h-12 text-base ${errors.name ? 'border-red-500' : ''}`} 
             placeholder={t('contact.form.name.placeholder')}
             maxLength={100} 
           />
-          {errors.name && <p className="text-red-500 text-xs mt-0.5">{errors.name}</p>}
+          {errors.name && <p className="text-red-700 text-xs mt-1">{errors.name}</p>}
         </div>
         <div>
           <Label htmlFor="email" className="font-telegraf font-medium text-sm">
@@ -52,11 +52,11 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             required 
             value={formData.email} 
             onChange={onChange} 
-            className={`mt-1 font-telegraf h-9 text-sm ${errors.email ? 'border-red-500' : ''}`} 
+            className={`mt-1 font-telegraf h-12 text-base ${errors.email ? 'border-red-500' : ''}`} 
             placeholder={t('contact.form.email.placeholder')}
             maxLength={254} 
           />
-          {errors.email && <p className="text-red-500 text-xs mt-0.5">{errors.email}</p>}
+          {errors.email && <p className="text-red-700 text-xs mt-1">{errors.email}</p>}
         </div>
       </div>
 
@@ -70,11 +70,11 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           type="tel" 
           value={formData.phone} 
           onChange={onChange} 
-          className={`mt-1 font-telegraf h-9 text-sm ${errors.phone ? 'border-red-500' : ''}`} 
+          className={`mt-1 font-telegraf h-12 text-base ${errors.phone ? 'border-red-500' : ''}`} 
           placeholder={t('contact.form.phone.placeholder')}
           maxLength={20} 
         />
-        {errors.phone && <p className="text-red-500 text-xs mt-0.5">{errors.phone}</p>}
+        {errors.phone && <p className="text-red-700 text-xs mt-1">{errors.phone}</p>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -88,11 +88,11 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             type="text" 
             value={formData.company} 
             onChange={onChange} 
-            className={`mt-1 font-telegraf h-9 text-sm ${errors.company ? 'border-red-500' : ''}`} 
+            className={`mt-1 font-telegraf h-12 text-base ${errors.company ? 'border-red-500' : ''}`} 
             placeholder={t('contact.form.company.placeholder')}
             maxLength={100} 
           />
-          {errors.company && <p className="text-red-500 text-xs mt-0.5">{errors.company}</p>}
+          {errors.company && <p className="text-red-700 text-xs mt-1">{errors.company}</p>}
         </div>
         <div>
           <Label htmlFor="industry" className="font-telegraf font-medium text-sm">
@@ -104,11 +104,11 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
             type="text" 
             value={formData.industry} 
             onChange={onChange} 
-            className={`mt-1 font-telegraf h-9 text-sm ${errors.industry ? 'border-red-500' : ''}`} 
+            className={`mt-1 font-telegraf h-12 text-base ${errors.industry ? 'border-red-500' : ''}`} 
             placeholder={t('contact.form.industry.placeholder')}
             maxLength={100} 
           />
-          {errors.industry && <p className="text-red-500 text-xs mt-0.5">{errors.industry}</p>}
+          {errors.industry && <p className="text-red-700 text-xs mt-1">{errors.industry}</p>}
         </div>
       </div>
       
@@ -122,11 +122,11 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           type="text" 
           value={formData.subject} 
           onChange={onChange} 
-          className={`mt-1 font-telegraf h-9 text-sm ${errors.subject ? 'border-red-500' : ''}`} 
+          className={`mt-1 font-telegraf h-12 text-base ${errors.subject ? 'border-red-500' : ''}`} 
           placeholder={t('contact.form.subject.placeholder')}
           maxLength={200} 
         />
-        {errors.subject && <p className="text-red-500 text-xs mt-0.5">{errors.subject}</p>}
+        {errors.subject && <p className="text-red-700 text-xs mt-1">{errors.subject}</p>}
       </div>
       
       <div>
@@ -140,11 +140,11 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
           value={formData.message} 
           onChange={onChange} 
           rows={4} 
-          className={`mt-1 font-telegraf resize-none text-sm ${errors.message ? 'border-red-500' : ''}`} 
+          className={`mt-1 font-telegraf resize-none text-base ${errors.message ? 'border-red-500' : ''}`} 
           placeholder={t('contact.form.message.placeholder')}
           maxLength={2000} 
         />
-        {errors.message && <p className="text-red-500 text-xs mt-0.5">{errors.message}</p>}
+        {errors.message && <p className="text-red-700 text-xs mt-1">{errors.message}</p>}
       </div>
     </>
   );

@@ -10,8 +10,12 @@ export type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 
 
 export interface DiscoverableRoute {
   path: string;
+  /** Spanish (the site's default language); also used by the sitemap, llms.txt and static pages */
   title: string;
   description: string;
+  /** English version, shown when the visitor switches language */
+  titleEn?: string;
+  descriptionEn?: string;
   indexable?: boolean;
   noindex?: boolean;
   changefreq?: ChangeFreq;
@@ -70,112 +74,100 @@ export const DEFAULT_OG_IMAGE = '/img/StratumPR-Preview-Image.jpg';
 export const DISCOVERABLE_ROUTES: DiscoverableRoute[] = [
   {
     path: '/',
-    title: 'Stratum PR',
-    description: 'The Architecture of Better Decisions. Expert AI consulting and data analytics services in Puerto Rico. Specializing in AI business automation, CRM implementation, and predictive modeling.',
+    title: 'Stratum PR — Tecnología para fabricantes de alimentos',
+    description: 'Tecnología para fabricantes de alimentos en Puerto Rico: registros digitales, inventario y trazabilidad para llegar a cada inspección con tranquilidad.',
+    titleEn: 'Stratum PR — Technology for food manufacturers',
+    descriptionEn: 'Technology for Puerto Rico food manufacturers: digital records, inventory and traceability so every inspection comes with peace of mind.',
     indexable: true,
     changefreq: 'weekly',
     priority: 1.0,
   },
   {
     path: '/about',
-    title: 'About Stratum PR - Expert Data Analytics Team',
-    description: 'Meet the expert team behind Stratum PR. Founded in 2025 by experienced data scientists and consultants specializing in AI business automation, CRM implementation, and predictive modeling in Puerto Rico.',
+    title: 'Nosotros: fundadores y misión | Stratum PR',
+    description: 'Conoce a los fundadores de Stratum PR, empresa puertorriqueña de datos y tecnología fundada en 2025 que ayuda a los fabricantes de alimentos locales a digitalizarse.',
+    titleEn: 'About Stratum PR - Founders and Mission',
+    descriptionEn: 'Meet the founders of Stratum PR, a Puerto Rican data and technology company founded in 2025 that helps local food manufacturers go digital.',
     indexable: true,
     changefreq: 'monthly',
     priority: 0.8,
   },
   {
-    path: '/services',
-    title: 'Data Analytics Services Puerto Rico | CRM Implementation | AI Business Automation - Stratum PR',
-    description: 'Comprehensive data analytics services in Puerto Rico. Specializing in CRM implementation consulting, AI business automation, predictive modeling, and big data analytics. Transform your business with Stratum PR.',
+    path: '/autoevaluacion',
+    title: 'Autoevaluación: ¿qué tan lista está tu planta para una auditoría? | Stratum PR',
+    description: 'Contesta 4 pasos y recibe tu puntuación de preparación para auditorías de inocuidad (FSMA, SQF, BRCGS) y una lista de pendientes con fuentes oficiales. Gratis.',
+    titleEn: 'Self-check: how ready is your plant for an audit? | Stratum PR',
+    descriptionEn: 'Answer 4 steps and get your audit-readiness score for food safety audits (FSMA, SQF, BRCGS), plus a to-do list with official sources. Free.',
+    indexable: true,
+    changefreq: 'monthly',
+    priority: 0.8,
+  },
+  {
+    path: '/preguntas',
+    title: 'Preguntas sobre inocuidad y cumplimiento: FSMA, SQF, BRCGS | Stratum PR',
+    description: 'Respuestas con fuentes oficiales sobre cómo documentar registros de inocuidad para FSMA, SQF y BRCGS, y qué piden Walmart, Sam’s Club y Costco a sus suplidores.',
+    titleEn: 'Food safety and compliance questions: FSMA, SQF, BRCGS | Stratum PR',
+    descriptionEn: 'Answers with official sources on documenting food safety records for FSMA, SQF and BRCGS, and what Walmart, Sam’s Club and Costco ask of suppliers.',
     indexable: true,
     changefreq: 'monthly',
     priority: 0.9,
   },
   {
-    path: '/projects',
-    title: 'Projects - Stratum PR',
-    description: 'Explore our data analytics and AI implementation projects. Case studies and solutions delivered for businesses in Puerto Rico and the Caribbean.',
-    indexable: true,
-    changefreq: 'weekly',
-    priority: 0.8,
-  },
-  {
-    path: '/solutions',
-    title: 'Solutions - Stratum PR',
-    description: 'Data-driven solutions and AI implementation services. Strategic analytics and business automation for organizations in Puerto Rico.',
-    indexable: true,
-    changefreq: 'monthly',
-    priority: 0.8,
-  },
-  {
-    path: '/resources',
-    title: 'Data Analytics Resources - Stratum PR',
-    description: 'Access our projects, news and updates, and resources to help your business leverage data effectively.',
-    indexable: true,
-    changefreq: 'monthly',
-    priority: 0.7,
-  },
-  {
     path: '/newsupdates',
-    title: 'News & Updates - Stratum PR',
-    description: 'Latest news, insights, and updates on data analytics, AI, and business automation from Stratum PR.',
-    indexable: true,
-    changefreq: 'weekly',
-    priority: 0.8,
-  },
-  {
-    path: '/blog',
-    title: 'Blog - Stratum PR',
-    description: 'Blog and insights on data analytics, AI, and business automation from Stratum PR.',
+    title: 'Noticias | Stratum PR',
+    description: 'Noticias y artículos de Stratum PR sobre inocuidad, cumplimiento y tecnología para la industria de alimentos en Puerto Rico.',
+    titleEn: 'News & Updates - Stratum PR',
+    descriptionEn: 'Latest news, insights, and updates on data analytics, AI, and business automation from Stratum PR.',
     indexable: true,
     changefreq: 'weekly',
     priority: 0.8,
   },
   {
     path: '/contact',
-    title: 'Contact Stratum PR - Data Analytics Consulting',
-    description: 'Contact Stratum PR for expert data analytics consulting in Puerto Rico. Schedule a free consultation for CRM implementation, AI business automation, and predictive modeling services.',
+    title: 'Contacto | Stratum PR',
+    description: 'Escríbenos o agenda una conversación gratis de 30 minutos sobre cómo digitalizar los registros, el inventario y la trazabilidad de tu planta de alimentos.',
+    titleEn: 'Contact Stratum PR',
+    descriptionEn: 'Contact Stratum PR. Book a free 30-minute conversation about digitizing records, inventory and traceability for your food plant in Puerto Rico.',
     indexable: true,
     changefreq: 'monthly',
     priority: 0.8,
   },
   {
-    path: '/faq',
-    title: 'Frequently Asked Questions | Data Analytics Consulting Puerto Rico - Stratum PR',
-    description: 'Find answers to common questions about our data analytics services, approach, and how we can help transform your business in Puerto Rico.',
-    indexable: true,
-    changefreq: 'monthly',
-    priority: 0.7,
-  },
-  {
     path: '/privacy',
-    title: 'Privacy Policy - Stratum PR',
-    description: 'Privacy policy for Stratum PR. How we collect, use, and protect your information.',
+    title: 'Política de privacidad | Stratum PR',
+    description: 'Cómo Stratum PR recopila, usa y protege tu información.',
+    titleEn: 'Privacy Policy - Stratum PR',
+    descriptionEn: 'Privacy policy for Stratum PR. How we collect, use, and protect your information.',
     indexable: true,
     changefreq: 'yearly',
     priority: 0.5,
   },
   {
     path: '/terms',
-    title: 'Terms of Service - Stratum PR',
-    description: 'Terms of service for using Stratum PR website and services.',
+    title: 'Términos de servicio | Stratum PR',
+    description: 'Términos para usar el sitio web y los servicios de Stratum PR.',
+    titleEn: 'Terms of Service - Stratum PR',
+    descriptionEn: 'Terms of service for using Stratum PR website and services.',
     indexable: true,
     changefreq: 'yearly',
     priority: 0.5,
   },
   {
     path: '/cookies',
-    title: 'Cookie Policy - Stratum PR',
-    description: 'Cookie policy for Stratum PR. How we use cookies and similar technologies.',
+    title: 'Política de cookies | Stratum PR',
+    description: 'Cómo Stratum PR usa cookies y tecnologías similares, y cómo cambiar tus preferencias.',
+    titleEn: 'Cookie Policy - Stratum PR',
+    descriptionEn: 'Cookie policy for Stratum PR. How we use cookies and similar technologies.',
     indexable: true,
     changefreq: 'yearly',
     priority: 0.5,
   },
   {
     path: '/unsubscribe',
-    title: 'Unsubscribe - Stratum PR',
-    description: 'Manage your email subscription preferences.',
+    title: 'Cancelar suscripción | Stratum PR',
+    description: 'Administra tu suscripción a nuestros correos.',
+    titleEn: 'Unsubscribe - Stratum PR',
+    descriptionEn: 'Manage your email subscription preferences.',
     indexable: true,
     noindex: true,
     changefreq: 'yearly',
@@ -183,8 +175,10 @@ export const DISCOVERABLE_ROUTES: DiscoverableRoute[] = [
   },
   {
     path: '/email-preferences',
-    title: 'Email Preferences - Stratum PR',
-    description: 'Update your email preferences and subscription settings.',
+    title: 'Preferencias de correo | Stratum PR',
+    description: 'Actualiza tus preferencias de correo y suscripción.',
+    titleEn: 'Email Preferences - Stratum PR',
+    descriptionEn: 'Update your email preferences and subscription settings.',
     indexable: true,
     noindex: true,
     changefreq: 'yearly',
@@ -193,18 +187,21 @@ export const DISCOVERABLE_ROUTES: DiscoverableRoute[] = [
 ];
 
 /** Route constants for use in pages and meta (keep in sync with DISCOVERABLE_ROUTES). */
-export const LANDING_ROUTE = DISCOVERABLE_ROUTES[0];
-export const ABOUT_ROUTE = DISCOVERABLE_ROUTES[1];
-export const SERVICES_ROUTE = DISCOVERABLE_ROUTES[2];
-export const PROJECTS_ROUTE = DISCOVERABLE_ROUTES[3];
-export const SOLUTIONS_ROUTE = DISCOVERABLE_ROUTES[4];
-export const RESOURCES_ROUTE = DISCOVERABLE_ROUTES[5];
-export const NEWSUPDATES_ROUTE = DISCOVERABLE_ROUTES[6];
-export const BLOG_ROUTE = DISCOVERABLE_ROUTES[7];
-export const CONTACT_ROUTE = DISCOVERABLE_ROUTES[8];
-export const FAQ_ROUTE = DISCOVERABLE_ROUTES[9];
-export const PRIVACY_ROUTE = DISCOVERABLE_ROUTES[10];
-export const TERMS_ROUTE = DISCOVERABLE_ROUTES[11];
-export const COOKIES_ROUTE = DISCOVERABLE_ROUTES[12];
-export const UNSUBSCRIBE_ROUTE = DISCOVERABLE_ROUTES[13];
-export const EMAIL_PREFERENCES_ROUTE = DISCOVERABLE_ROUTES[14];
+// Look routes up by path, never by position: removing a route must not shift the others
+function routeFor(path: string): DiscoverableRoute {
+  const route = DISCOVERABLE_ROUTES.find((r) => r.path === path);
+  if (!route) throw new Error(`No discoverable route for ${path}`);
+  return route;
+}
+
+export const LANDING_ROUTE = routeFor('/');
+export const ABOUT_ROUTE = routeFor('/about');
+export const PREGUNTAS_ROUTE = routeFor('/preguntas');
+export const SELFCHECK_ROUTE = routeFor('/autoevaluacion');
+export const NEWSUPDATES_ROUTE = routeFor('/newsupdates');
+export const CONTACT_ROUTE = routeFor('/contact');
+export const PRIVACY_ROUTE = routeFor('/privacy');
+export const TERMS_ROUTE = routeFor('/terms');
+export const COOKIES_ROUTE = routeFor('/cookies');
+export const UNSUBSCRIBE_ROUTE = routeFor('/unsubscribe');
+export const EMAIL_PREFERENCES_ROUTE = routeFor('/email-preferences');

@@ -211,10 +211,10 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-white via-primary/5 to-white">
-      <CardHeader className="pb-4">
-        <CardTitle className="font-telegraf text-2xl text-primary flex items-center">
-          <MessageSquare className="h-6 w-6 mr-2" />
+    <Card className="rounded-3xl border border-primary/10 bg-white shadow-[0_10px_40px_rgba(30,43,126,0.08)]">
+      <CardHeader className="p-5 pb-4 md:p-6 md:pb-4">
+        <CardTitle className="font-telegraf text-xl font-bold md:text-2xl text-[#0b1215] flex items-center">
+          <MessageSquare className="h-6 w-6 mr-2 text-primary" />
           {t('contact.form.title')}
         </CardTitle>
         <p className="font-telegraf text-sm text-gray-600 mt-1">
@@ -225,7 +225,7 @@ const ContactForm = () => {
           {t('contact.form.security')}
         </div>
       </CardHeader>
-      <CardContent className="pt-0">
+      <CardContent className="p-5 pt-0 md:p-6 md:pt-0">
         {isSubmitted ? (
           <ContactFormSuccess />
         ) : (
@@ -245,7 +245,7 @@ const ContactForm = () => {
             <Button 
               type="submit" 
               disabled={isSubmitting || isSubmissionThrottled} 
-              className="w-full bg-primary hover:bg-primary-800 font-telegraf font-semibold py-2 text-sm transition-all duration-300 hover:shadow-lg disabled:opacity-50"
+              className="h-auto w-full rounded-2xl bg-primary py-3.5 font-telegraf text-base font-semibold transition-colors hover:bg-secondary disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>

@@ -9,34 +9,35 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('en');
+// Only set when the visitor picks a language themselves. The old 'preferred-language' key was also
+// written by browser detection, so it is ignored: everyone starts in Spanish until they choose.
+const STORAGE_KEY = 'site-language';
 
-  // Detect browser/device language and load from localStorage
+const readSavedLanguage = (): Language => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch {
+    // storage blocked (private mode): fall through to the default
+  }
+  return 'es';
+};
+
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  // Read synchronously so the first render is already in the right language (no English flash)
+  const [language, setLanguageState] = useState<Language>(readSavedLanguage);
+
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('preferred-language') as Language;
-    
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
-      // User has previously selected a language - use it
-      setLanguageState(savedLanguage);
-    } else {
-      // First visit: Detect browser/device language
-      const browserLanguage = navigator.language || (navigator as any).userLanguage || 'en';
-      
-      // Extract language code (e.g., 'es' from 'es-PR', 'es-MX', 'es-ES', etc.)
-      const languageCode = browserLanguage.toLowerCase().split('-')[0];
-      
-      // Set to Spanish if browser language starts with 'es', otherwise default to English
-      const detectedLanguage: Language = languageCode === 'es' ? 'es' : 'en';
-      
-      setLanguageState(detectedLanguage);
-      localStorage.setItem('preferred-language', detectedLanguage);
-    }
-  }, []);
+    document.documentElement.lang = language;
+  }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('preferred-language', lang);
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      // storage blocked: the choice lasts for this visit only
+    }
   };
 
   // Simple translation function - uses the imported translations

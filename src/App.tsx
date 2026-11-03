@@ -3,27 +3,51 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import ScrollToTop from "./components/ScrollToTop";
 import Layout from "./components/Layout";
-import { lazy, Suspense } from "react";
+import { lazy as reactLazy, Suspense, type ComponentType } from "react";
 import { Analytics } from "@vercel/analytics/react";
+
+// After a new deploy, a tab still running the old build asks for page chunks that no longer exist.
+// Reload once to pick up the new build instead of showing the error screen.
+const RELOAD_FLAG = "chunk-reload";
+const lazy = <T extends ComponentType<any>>(load: () => Promise<{ default: T }>) =>
+  reactLazy(() =>
+    load()
+      .then((module) => {
+        try {
+          sessionStorage.removeItem(RELOAD_FLAG);
+        } catch {
+          // storage blocked: nothing to clear
+        }
+        return module;
+      })
+      .catch((error) => {
+        let reloaded = true;
+        try {
+          reloaded = sessionStorage.getItem(RELOAD_FLAG) === "1";
+          if (!reloaded) sessionStorage.setItem(RELOAD_FLAG, "1");
+        } catch {
+          // storage blocked: don't risk a reload loop, show the error screen
+        }
+        if (reloaded) throw error;
+        window.location.reload();
+        return new Promise<{ default: T }>(() => {});
+      })
+  );
 
 // Lazy load all pages for better code splitting and initial load performance
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
-const Services = lazy(() => import("./pages/Services"));
-const Projects = lazy(() => import("./pages/Projects"));
-const Solutions = lazy(() => import("./pages/Solutions"));
-const Resources = lazy(() => import("./pages/Resources"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogDetail = lazy(() => import("./pages/BlogDetail"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Contact = lazy(() => import("./pages/Contact"));
-const FAQ = lazy(() => import("./pages/FAQ"));
+const Preguntas = lazy(() => import("./pages/Preguntas"));
+const Autoevaluacion = lazy(() => import("./pages/Autoevaluacion"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
@@ -40,7 +64,7 @@ const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
     <div className="text-center">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-      <p className="font-telegraf text-gray-600">Loading...</p>
+      <p className="font-telegraf text-neutral-600">Cargando…</p>
     </div>
   </div>
 );
@@ -84,26 +108,10 @@ const App = () => (
                     <About />
                   </Suspense>
                 } />
-                <Route path="/services" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Services />
-                  </Suspense>
-                } />
-                <Route path="/projects" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Projects />
-                  </Suspense>
-                } />
-                <Route path="/solutions" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Solutions />
-                  </Suspense>
-                } />
-                <Route path="/resources" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Resources />
-                  </Suspense>
-                } />
+                <Route path="/services" element={<Navigate to="/" replace />} />
+                <Route path="/projects" element={<Navigate to="/" replace />} />
+                <Route path="/solutions" element={<Navigate to="/" replace />} />
+                <Route path="/resources" element={<Navigate to="/newsupdates" replace />} />
                 <Route path="/newsupdates" element={
                   <Suspense fallback={<PageLoader />}>
                     <Blog />
@@ -115,11 +123,7 @@ const App = () => (
                   </Suspense>
                 } />
                 {/* Legacy redirect for /blog */}
-                <Route path="/blog" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Blog />
-                  </Suspense>
-                } />
+                <Route path="/blog" element={<Navigate to="/newsupdates" replace />} />
                 <Route path="/blog/:slug" element={
                   <Suspense fallback={<PageLoader />}>
                     <BlogDetail />
@@ -132,30 +136,24 @@ const App = () => (
                   </Suspense>
                 } />
                 */}
-                <Route path="/projects/:slug" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <ProjectDetail />
-                  </Suspense>
-                } />
+                <Route path="/projects/:slug" element={<Navigate to="/" replace />} />
                 {/* Legacy redirects for case-studies URLs */}
-                <Route path="/case-studies" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <Projects />
-                  </Suspense>
-                } />
-                <Route path="/case-studies/:slug" element={
-                  <Suspense fallback={<PageLoader />}>
-                    <ProjectDetail />
-                  </Suspense>
-                } />
+                <Route path="/case-studies" element={<Navigate to="/" replace />} />
+                <Route path="/case-studies/:slug" element={<Navigate to="/" replace />} />
                 <Route path="/contact" element={
                   <Suspense fallback={<PageLoader />}>
                     <Contact />
                   </Suspense>
                 } />
-                <Route path="/faq" element={
+                <Route path="/faq" element={<Navigate to="/preguntas" replace />} />
+                <Route path="/autoevaluacion" element={
                   <Suspense fallback={<PageLoader />}>
-                    <FAQ />
+                    <Autoevaluacion />
+                  </Suspense>
+                } />
+                <Route path="/preguntas" element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Preguntas />
                   </Suspense>
                 } />
                 <Route path="/privacy" element={

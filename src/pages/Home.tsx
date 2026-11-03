@@ -1,24 +1,19 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
 import { LANDING_ROUTE } from "@/config/discoverable-routes";
-import OptimizedImage from "@/components/OptimizedImage";
 import { useEffect } from "react";
 import { HomeHeroSection } from "@/components/home/HomeHeroSection";
-import { HomeIntegrationsSection } from "@/components/home/HomeIntegrationsSection";
+import { HomeProblemSection } from "@/components/home/HomeProblemSection";
+import { HomeInsightsSection } from "@/components/home/HomeInsightsSection";
+import { HomeInspectorSection } from "@/components/home/HomeInspectorSection";
 import { HomePlanSection } from "@/components/home/HomePlanSection";
-import { HomeProductionSection } from "@/components/home/HomeProductionSection";
-import { HomeServicesSection } from "@/components/home/HomeServicesSection";
-import { HomeStakesSection } from "@/components/home/HomeStakesSection";
-
-const FOUNDERS = [
-  { key: "jovaniel" as const, image: "/img/Jovaniel.jpg", bioKey: "home.guide.founder1.bio" },
-  { key: "genesis" as const, image: "/img/Genesis.jpg", bioKey: "home.guide.founder2.bio" },
-];
+import { HomeBeforeAfterSection } from "@/components/home/HomeBeforeAfterSection";
+import { HomeProductsSection } from "@/components/home/HomeProductsSection";
+import { HomeFinalCtaSection } from "@/components/home/HomeFinalCtaSection";
 
 const Home = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   useEffect(() => {
     const sessionKey = "homePageAnimated";
@@ -48,18 +43,18 @@ const Home = () => {
   const seoData =
     language === "es"
       ? {
-          title: "Stratum PR — Sistemas Digitales para Fabricantes de Alimentos",
+          title: "Stratum PR — Tecnología para Fabricantes de Alimentos en Puerto Rico",
           description:
-            "Sistemas digitales a la medida para fabricantes de alimentos en Puerto Rico. Cumplimiento FSMA, inventario y documentación sin el pánico de auditoría.",
+            "Ayudamos a los fabricantes de alimentos de Puerto Rico a dejar el papel atrás: registros, inventario y trazabilidad digitales para llegar a cada inspección con tranquilidad.",
           keywords:
-            "fabricantes de alimentos Puerto Rico, FSMA, cumplimiento alimentario, sistemas digitales, SQF, trazabilidad, software manufactura alimentos",
+            "fabricantes de alimentos Puerto Rico, FSMA, FSMA 204, trazabilidad, inspección FDA, registros digitales, seguridad alimentaria",
         }
       : {
-          title: "Stratum PR — Custom Digital Systems for Food Manufacturers",
+          title: "Stratum PR — Technology for Puerto Rico Food Manufacturers",
           description:
-            "Custom digital systems for Puerto Rico food manufacturers. FSMA compliance, inventory, and documentation — without spreadsheet chaos or audit panic.",
+            "We help Puerto Rico food manufacturers leave paper behind: digital records, inventory and traceability so every inspection comes with peace of mind.",
           keywords:
-            "food manufacturer Puerto Rico, FSMA compliance, digital systems, SQF documentation, food production software, traceability, custom software",
+            "food manufacturer Puerto Rico, FSMA, FSMA 204, traceability, FDA inspection, digital records, food safety",
         };
 
   useSEO(
@@ -89,51 +84,13 @@ const Home = () => {
       <PageMeta route={LANDING_ROUTE} />
       <div>
         <HomeHeroSection />
-
-        <HomeIntegrationsSection />
-        <HomeProductionSection />
-
-        <HomeStakesSection />
-
-        <HomeServicesSection />
-
-        {/* 4. Guide */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-secondary/5 to-primary/5 entrance-animation" aria-labelledby="guide-heading">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="font-telegraf text-xl md:text-2xl text-gray-800 leading-relaxed max-w-4xl mx-auto text-center mb-12">
-              {t("home.guide.empathy")}
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              {FOUNDERS.map(({ key, image, bioKey }) => (
-                <Card key={key} className="overflow-hidden">
-                  <CardContent className="p-6 flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-                    <OptimizedImage
-                      src={image}
-                      alt={t(`team.${key}.name`)}
-                      className="w-28 h-28 rounded-full object-cover flex-shrink-0"
-                      loading="lazy"
-                    />
-                    <div>
-                      <h3 className="font-telegraf font-bold text-xl text-primary">{t(`team.${key}.name`)}</h3>
-                      <p className="font-telegraf text-sm text-accent font-medium mb-2">{t(`team.${key}.role`)}</p>
-                      <p className="font-telegraf text-gray-600 text-sm leading-relaxed">{t(bioKey)}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
+        <HomeProblemSection />
+        <HomeInsightsSection />
+        <HomeInspectorSection />
         <HomePlanSection />
-
-        <HomeProductionSection
-          titleKey="home.finalCta.title"
-          subtitleKey="home.finalCta.subtitle"
-          ctaKey="home.hero.cta.primary"
-          headingId="final-cta-heading"
-        />
+        <HomeBeforeAfterSection />
+        <HomeProductsSection />
+        <HomeFinalCtaSection />
       </div>
     </>
   );

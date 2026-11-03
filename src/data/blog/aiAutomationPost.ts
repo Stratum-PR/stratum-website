@@ -107,7 +107,7 @@ Don't let manual processes hold your company back. Join the growing number of bu
       author: {
         name: 'Jovaniel Rodriguez',
         role: 'CEO & Data Analytics Expert',
-        image: '/img/Jovaniel.jpg'
+        image: '/img/Jovaniel.webp'
       },
       readTime: 8
     },
@@ -178,7 +178,7 @@ No dejes que los procesos manuales limiten tu empresa. Únete al creciente núme
       author: {
         name: 'Jovaniel Rodriguez',
         role: 'CEO y Experto en Análisis de Datos',
-        image: '/img/Jovaniel.jpg'
+        image: '/img/Jovaniel.webp'
       },
       readTime: 8
     }

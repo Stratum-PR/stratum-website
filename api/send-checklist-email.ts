@@ -2,7 +2,7 @@
 // Call this from the client instead of sendEmail() for checklist results so the secret is never exposed.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { checkRateLimit } from '../lib/rateLimit';
+import { checkRateLimit } from '../lib/rateLimit.js';
 
 function getClientId(req: VercelRequest): string {
   const forwarded = req.headers['x-forwarded-for'];

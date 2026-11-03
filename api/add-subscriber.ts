@@ -1,7 +1,7 @@
 // Vercel Serverless Function to Add Subscriber to Resend Audience
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { logger } from '../lib/logger';
-import { checkRateLimit } from '../lib/rateLimit';
+import { logger } from '../lib/logger.js';
+import { checkRateLimit } from '../lib/rateLimit.js';
 
 function getClientId(req: VercelRequest): string {
   const forwarded = req.headers['x-forwarded-for'];

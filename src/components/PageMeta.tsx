@@ -7,6 +7,7 @@
  */
 
 import { Helmet } from 'react-helmet-async';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { getPublicBaseUrl, safePathForUrl, DEFAULT_OG_IMAGE, type DiscoverableRoute } from '@/config/discoverable-routes';
 
 export interface PageMetaProps {
@@ -28,20 +29,23 @@ export function PageMeta({ route, image, jsonLd }: PageMetaProps) {
   const baseUrl = getPublicBaseUrl();
   const canonicalUrl = baseUrl + safePathForUrl(route.path);
   const ogImage = image != null ? resolveImageUrl(image) : resolveImageUrl(DEFAULT_OG_IMAGE);
+  const { language } = useLanguage();
+  const title = language === 'en' && route.titleEn ? route.titleEn : route.title;
+  const description = language === 'en' && route.descriptionEn ? route.descriptionEn : route.description;
 
   return (
     <Helmet>
-      <title>{route.title}</title>
-      <meta name="description" content={route.description} />
+      <title>{title}</title>
+      <meta name="description" content={description} />
       <link rel="canonical" href={canonicalUrl} />
-      <meta property="og:title" content={route.title} />
-      <meta property="og:description" content={route.description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={ogImage} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={route.title} />
-      <meta name="twitter:description" content={route.description} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       {route.noindex === true && (
         <meta name="robots" content="noindex, nofollow" />

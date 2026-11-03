@@ -1,174 +1,142 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { cn } from "@/lib/utils";
+import { CALENDLY_URL, PLATFORM_URL } from "@/constants/links";
 
-const CALENDLY_URL = "https://calendly.com/admin-stratumpr/30min";
-const PHOTO_INTERVAL_MS = 4000;
-const HERO_WORKER_IMAGE = "/img/hero/worker1.png";
+const PHOTO_INTERVAL_MS = 5500;
 
 const HERO_PHOTOS = [
-  "/img/hero/hero-1.jpg",
-  "/img/hero/hero-2.jpg",
-  "/img/hero/hero-3.jpg",
-  "/img/hero/hero-4.jpg",
-  "/img/hero/hero-5.jpg",
+  { src: "/img/hero/hero-1.webp", altKey: "home.hero.photo1" },
+  { src: "/img/hero/hero-2.webp", altKey: "home.hero.photo2" },
+  { src: "/img/hero/hero-3.webp", altKey: "home.hero.photo3" },
+  { src: "/img/hero/hero-4.webp", altKey: "home.hero.photo4" },
+  { src: "/img/hero/hero-5.webp", altKey: "home.hero.photo5" },
 ] as const;
 
-const PHOTO_COUNT = HERO_PHOTOS.length;
-
-const HERO_CAROUSEL_HEIGHT =
-  "h-[34vh] min-h-[11rem] sm:min-h-[12rem] md:h-[38vh] xl:h-[42vh]";
-
-const HERO_CAROUSEL_BOTTOM =
-  "bottom-[calc(5.25rem+env(safe-area-inset-bottom,0px))] md:bottom-0";
-
-/** Keeps title/CTA in the cream area above the carousel strip */
-const HERO_COPY_CLEARANCE =
-  "bottom-[calc(34vh+5.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-[calc(36vh+5.25rem+env(safe-area-inset-bottom,0px))] md:bottom-[38vh] xl:bottom-[42vh]";
-
-function HeroPhotoRotator({
-  photoIndex,
-  failedPhotos,
-  onPhotoError,
-}: {
-  photoIndex: number;
-  failedPhotos: Set<number>;
-  onPhotoError: (index: number) => void;
-}) {
-  return (
-    <>
-      {HERO_PHOTOS.map((src, i) => (
-        <div
-          key={src}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            i === photoIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-          }`}
-          aria-hidden={i !== photoIndex}
-        >
-          {failedPhotos.has(i) ? (
-            <div className="w-full h-full bg-gradient-to-br from-primary to-secondary" />
-          ) : (
-            <img
-              src={src}
-              alt=""
-              className="w-full h-full object-cover"
-              loading={i === 0 ? "eager" : "lazy"}
-              decoding="async"
-              onError={() => onPhotoError(i)}
-            />
-          )}
-        </div>
-      ))}
-    </>
-  );
-}
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export const HomeHeroSection = () => {
   const { t } = useLanguage();
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [failedPhotos, setFailedPhotos] = useState<Set<number>>(new Set());
+  // Visitors who ask for reduced motion start paused (WCAG 2.2.2)
+  const [paused, setPaused] = useState(prefersReducedMotion);
+  // Sticky mobile CTA appears only once the hero's own CTAs have scrolled out of view
+  const ctaRowRef = useRef<HTMLDivElement>(null);
+  const [showStickyCta, setShowStickyCta] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setPhotoIndex((i) => (i + 1) % PHOTO_COUNT);
-    }, PHOTO_INTERVAL_MS);
-    return () => clearInterval(timer);
+    const el = ctaRowRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => {
+      // Only show after scrolling past (CTA row above the viewport), not before it loads in
+      setShowStickyCta(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  const handlePhotoError = (index: number) => {
-    setFailedPhotos((prev) => new Set(prev).add(index));
-  };
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => {
+      setPhotoIndex((i) => (i + 1) % HERO_PHOTOS.length);
+    }, PHOTO_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [paused]);
 
   return (
-    <section
-      className="hero-section-prodmast relative flex min-h-[100svh] flex-col overflow-x-hidden bg-[#FAFAF8] pt-14 md:pt-16 pb-[calc(5.25rem+env(safe-area-inset-bottom,0px))] md:pb-0"
-      aria-labelledby="hero-heading"
-    >
-      {/* Carousel + worker — one bottom edge */}
-      <div
-        className={cn(
-          "pointer-events-none absolute inset-x-0",
-          HERO_CAROUSEL_BOTTOM
-        )}
-        aria-hidden
-      >
-        <div
-          className={cn(
-            "relative z-0 w-full overflow-hidden",
-            HERO_CAROUSEL_HEIGHT
-          )}
-        >
-          <div className="relative h-full w-full">
-            <HeroPhotoRotator
-              photoIndex={photoIndex}
-              failedPhotos={failedPhotos}
-              onPhotoError={handlePhotoError}
-            />
-            <div className="absolute inset-0 z-20 pointer-events-none" aria-hidden>
-              <div className="absolute inset-x-0 top-0 h-[38%] bg-gradient-to-b from-[#FAFAF8] via-[#FAFAF8]/50 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-[12%] bg-gradient-to-t from-[#FAFAF8]/35 to-transparent" />
-              <div className="absolute inset-y-0 left-0 w-[32%] max-w-md bg-gradient-to-r from-[#FAFAF8] via-[#FAFAF8]/70 to-transparent" />
-              <div className="absolute inset-y-0 right-0 w-[14%] bg-gradient-to-l from-[#FAFAF8]/45 to-transparent" />
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 inset-x-0 z-[5] hidden md:block h-[min(82vh,calc(100svh-3.5rem))]">
-          <div className="absolute inset-y-0 left-0 w-[55%] max-w-xl bg-gradient-to-r from-[#FAFAF8] via-[#FAFAF8]/80 to-transparent" />
-          <div className="absolute inset-0 flex items-end justify-end">
-            <img
-              src={HERO_WORKER_IMAGE}
-              alt=""
-              className="block h-auto max-h-full w-auto max-w-[min(68vw,40rem)] xl:max-w-[min(72vw,44rem)] object-contain [object-position:bottom_right] origin-bottom-right scale-[0.8] select-none"
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Copy — cream zone above carousel */}
-      <div
-        className={cn(
-          "absolute inset-x-0 top-14 md:top-16 z-10 flex flex-col justify-start",
-          "px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 lg:pt-12",
-          HERO_COPY_CLEARANCE
-        )}
-      >
-        <div className="relative mx-auto w-full max-w-4xl text-center px-2 sm:px-8 md:px-10 lg:px-14">
-            <h1
-              id="hero-heading"
-              className="font-telegraf font-bold text-primary text-[clamp(1.75rem,6vw,2.5rem)] xl:text-[clamp(2rem,4vw,3.75rem)] leading-[1.15] tracking-tight mb-3 sm:mb-4 md:mb-5 xl:mb-7 hero-animate-in xl:max-w-[32ch] xl:mx-auto"
-              style={{ animationDelay: "0.3s" }}
-            >
-              <span className="sr-only">{t("home.hero.title")}</span>
-              <span className="block">{t("home.hero.headline.line1")}</span>
-              <span className="block">{t("home.hero.headline.line2")}</span>
-            </h1>
-            <p
-              className="font-telegraf text-[clamp(0.9375rem,3.5vw,1.125rem)] xl:text-[clamp(1rem,2.1vw,1.3125rem)] text-neutral-600 max-w-2xl mx-auto mb-5 sm:mb-6 xl:mb-9 leading-[1.5] hero-animate-in"
-              style={{ animationDelay: "0.4s" }}
-            >
-              {t("home.hero.subtitle")}
-            </p>
+    <section className="bg-[#FAFAF8]" aria-labelledby="hero-heading">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 pb-12 pt-24 sm:px-6 md:pt-28 lg:flex-row lg:gap-14 lg:px-8 lg:pb-20">
+        <div className="w-full lg:flex-[1.15]">
+          <h1
+            id="hero-heading"
+            className="mb-5 font-telegraf text-[clamp(2.25rem,5.5vw,3.625rem)] font-bold leading-[1.1] tracking-tight text-primary"
+          >
+            <span className="sr-only">{t("home.hero.title")}</span>
+            <span className="block" aria-hidden>{t("home.hero.headline.line1")}</span>
+            <span className="block" aria-hidden>{t("home.hero.headline.line2")}</span>
+          </h1>
+          <p className="mb-2 font-telegraf text-lg font-semibold text-secondary md:text-xl">{t("home.hero.kicker")}</p>
+          <p className="mb-6 max-w-xl font-telegraf text-lg leading-relaxed text-neutral-600 md:mb-8 md:text-xl">
+            {t("home.hero.subtitle")}
+          </p>
+          <div ref={ctaRowRef} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative z-10 hidden md:inline-flex items-center justify-center font-telegraf font-semibold text-white bg-primary hover:bg-secondary rounded-2xl px-9 sm:px-11 py-3.5 sm:py-4 text-base sm:text-lg transition-colors duration-200 shadow-md hero-animate-in"
-              style={{ animationDelay: "0.5s" }}
+              className="inline-flex w-full items-center justify-center rounded-2xl bg-primary px-6 py-4 sm:w-auto sm:px-9 lg:px-6 whitespace-nowrap font-telegraf text-lg lg:text-base font-semibold text-white transition-colors hover:bg-secondary"
             >
               {t("home.hero.cta.primary")}
             </a>
+            <a
+              href={PLATFORM_URL}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex w-full items-center justify-center rounded-2xl border-[1.5px] border-primary px-6 py-4 sm:w-auto sm:px-7 lg:px-5 whitespace-nowrap font-telegraf text-lg lg:text-base font-semibold text-primary transition-colors hover:bg-primary/5"
+            >
+              {t("home.hero.cta.platform")}
+            </a>
+          </div>
+        </div>
+
+        <div
+          role="region"
+          aria-roledescription={t("home.hero.carousel.role")}
+          aria-label={t("home.hero.carousel.label")}
+          className="relative h-[320px] w-full overflow-hidden rounded-3xl bg-[#dde2ea] shadow-[0_20px_50px_rgba(30,43,126,0.15)] sm:h-[420px] lg:h-[560px] lg:flex-1"
+        >
+          {HERO_PHOTOS.map(({ src, altKey }, i) => (
+            <img
+              key={src}
+              src={src}
+              // 960px copies for phones and small screens; the frame is cropped by height, so desktop needs ~1100px
+              srcSet={`${src.replace(".webp", "-960.webp")} 960w, ${src} 1600w`}
+              sizes="(min-width: 1024px) 1100px, 100vw"
+              alt={t(altKey)}
+              aria-hidden={i !== photoIndex}
+              // Crossfade plus a slow zoom-out on the visible photo (Ken Burns); off for reduced motion
+              className={`absolute inset-0 h-full w-full object-cover [transition:opacity_1400ms_ease-in-out,transform_7000ms_ease-out] motion-reduce:!transform-none ${
+                i === photoIndex ? "scale-100 opacity-100" : "scale-[1.08] opacity-0"
+              }`}
+              loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+          ))}
+          <div className="absolute bottom-5 left-5 flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setPaused((p) => !p)}
+              aria-label={t(paused ? "home.hero.carousel.play" : "home.hero.carousel.pause")}
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(2,8,23,0.6)] text-white transition-colors hover:bg-[rgba(2,8,23,0.8)]"
+            >
+              {paused ? <Play className="h-4 w-4" fill="currentColor" aria-hidden /> : <Pause className="h-4 w-4" fill="currentColor" aria-hidden />}
+            </button>
+            <div className="flex gap-1.5 rounded-full bg-[rgba(2,8,23,0.45)] px-2.5 py-2" aria-hidden>
+              {HERO_PHOTOS.map(({ src }, i) => (
+                <span
+                  key={src}
+                  className={`h-2 w-2 rounded-full bg-white transition-opacity ${i === photoIndex ? "opacity-100" : "opacity-45"}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-[9990] p-3 bg-white/95 backdrop-blur-sm border-t border-primary/10 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <div
+        aria-hidden={!showStickyCta}
+        className={`fixed bottom-0 left-0 right-0 z-[9990] transition-transform duration-300 ease-out motion-reduce:transition-none ${
+          showStickyCta ? "translate-y-0" : "pointer-events-none translate-y-full"
+        } border-t border-primary/10 bg-white/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-4px_20px_rgba(0,0,0,0.08)] backdrop-blur-sm md:hidden`}
+      >
         <a
           href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-center font-telegraf font-semibold text-white bg-primary hover:bg-secondary rounded-2xl px-6 py-3.5 transition-colors"
+          tabIndex={showStickyCta ? undefined : -1}
+          className="flex w-full items-center justify-center rounded-2xl bg-primary px-6 py-3.5 font-telegraf font-semibold text-white transition-colors hover:bg-secondary"
         >
           {t("home.hero.cta.primary")}
         </a>

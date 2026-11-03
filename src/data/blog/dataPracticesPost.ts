@@ -443,7 +443,7 @@ Start with one practice. Master it. Add another. Within a year, you'll have a si
       author: {
         name: 'Jovaniel Rodriguez',
         role: 'Chief Operations Officer',
-        image: '/img/Jovaniel.jpg'
+        image: '/img/Jovaniel.webp'
       },
       readTime: 15
     },
@@ -466,7 +466,7 @@ Las buenas prácticas de datos pueden transformar cómo operas y compites tu peq
       author: {
         name: 'Jovaniel Rodriguez',
         role: 'Director de Operaciones',
-        image: '/img/Jovaniel.jpg'
+        image: '/img/Jovaniel.webp'
       },
       readTime: 15
     }

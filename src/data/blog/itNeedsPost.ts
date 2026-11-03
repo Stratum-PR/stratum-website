@@ -172,7 +172,7 @@ The time you invest in this assessment will save you from costly mistakes and se
       author: {
         name: 'Genesis Rodriguez',
         role: 'Chief Data Officer',
-        image: '/img/Genesis.jpg'
+        image: '/img/Genesis.webp'
       },
       readTime: 10
     },
@@ -207,7 +207,7 @@ Entender las necesidades TI de tu organización no se trata de conocer las últi
       author: {
         name: 'Genesis Rodriguez',
         role: 'Directora de Datos',
-        image: '/img/Genesis.jpg'
+        image: '/img/Genesis.webp'
       },
       readTime: 10
     }

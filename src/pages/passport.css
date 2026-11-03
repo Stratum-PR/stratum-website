@@ -1,0 +1,60 @@
+/* Self-check result as a "compliance passport". Ported in spirit from the product site's
+   Walmart passport (LandingPage, archivo/landing-fsqms-2026-10): route to the destination,
+   score ring, fields, perforation and section stamps. Animations only play when motion is OK. */
+.passport {
+  --pass-navy: #1e2b7e;
+  --pass-ink: #0b1215;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 24px 60px -20px rgba(22, 32, 79, 0.35), 0 0 0 1px rgba(30, 43, 126, 0.08);
+}
+.passport-top {
+  position: relative;
+  padding: 22px 24px 20px;
+  color: #fff;
+  background-color: #141d5c;
+  background-image: linear-gradient(rgba(20, 29, 92, 0.9), rgba(30, 43, 126, 0.92)), url("/img/topo-tile.webp");
+  background-size: auto, 700px auto;
+}
+.passport-route { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; margin-top: 18px; }
+.passport-end b { display: block; font-size: 15px; font-weight: 800; letter-spacing: 0.04em; }
+.passport-end small { display: block; font-size: 11px; opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; }
+.passport-track { position: relative; height: 4px; border-radius: 4px; background: repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 6px, transparent 6px 12px); }
+.passport-fill { position: absolute; inset: 0 auto 0 0; width: calc(var(--pct) * 1%); border-radius: 4px; background: #e6e09e; }
+.passport-mark {
+  position: absolute; top: 50%; left: calc(var(--pct) * 1%); translate: -50% -50%;
+  padding: 3px 8px; border-radius: 999px; background: #e6e09e; color: #141d5c; font-size: 12px; font-weight: 800; white-space: nowrap;
+}
+.passport-ring { position: relative; width: 120px; height: 120px; flex: none; }
+.passport-ring svg { width: 100%; height: 100%; rotate: -90deg; }
+.passport-ring .arc { transition: stroke-dashoffset 1.2s cubic-bezier(.16, 1, .3, 1); }
+.passport-perf {
+  height: 0; margin: 0 18px; border-top: 2px dashed rgba(30, 43, 126, 0.18); position: relative;
+}
+.passport-perf::before, .passport-perf::after {
+  content: ""; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: #fafaf8;
+}
+.passport-perf::before { left: -30px; }
+.passport-perf::after { right: -30px; }
+.passport-stamps { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 10px; }
+.passport-stamp { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.passport-seal {
+  width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; rotate: var(--r);
+  border: 2px dashed rgba(30, 43, 126, 0.3); color: #586187; font-weight: 800; font-size: 14px;
+}
+.passport-stamp.is-done .passport-seal { border: 3px double #1b7a4c; color: #1b7a4c; background: rgba(27, 122, 76, 0.06); }
+@media (max-width: 400px) {
+  .passport-seal { width: 52px; height: 52px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .passport.play { animation: pass-in 0.9s cubic-bezier(.16, 1, .3, 1) both; }
+  .passport.play .passport-fill { animation: pass-fill 1.4s 0.4s cubic-bezier(.16, 1, .3, 1) both; }
+  .passport.play .passport-mark { animation: pass-mark 1.4s 0.4s cubic-bezier(.16, 1, .3, 1) both; }
+  .passport.play .passport-seal { animation: pass-stamp 0.45s calc(1.2s + var(--i) * 0.15s) cubic-bezier(.3, 1.6, .5, 1) both; }
+}
+@keyframes pass-in { from { opacity: 0; transform: translateY(24px) scale(.98); } }
+@keyframes pass-fill { from { width: 0; } }
+@keyframes pass-mark { from { left: 0; } }
+@keyframes pass-stamp { from { opacity: 0; scale: 1.8; } }

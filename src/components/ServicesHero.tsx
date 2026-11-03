@@ -8,7 +8,7 @@ export const ServicesHero = () => {
     <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-primary/10 to-secondary/10">
       <div className="absolute inset-0">
         <img 
-          src="/img/topographic-linear-background.jpg" 
+          src="/img/topographic-linear-background.webp" 
           alt="" 
           className="w-full h-full object-cover"
           onError={(e) => {

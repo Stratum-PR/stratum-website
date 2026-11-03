@@ -54,12 +54,12 @@ export default {
 					foreground: '#FFFFFF'
 				},
 				accent: {
-					DEFAULT: '#E6E08E',
+					DEFAULT: '#E6E09E',
 					50: '#FCFBF4',
 					100: '#F9F6E9',
 					200: '#F2ECD3',
 					300: '#E9DCB3',
-					400: '#E6E08E',
+					400: '#E6E09E',
 					500: '#D4C366',
 					600: '#C0A449',
 					700: '#A08439',
@@ -74,11 +74,12 @@ export default {
 					200: '#E4E4E4',
 					300: '#D1D1D1',
 					400: '#B4B4B4',
-					500: '#9A9A9A',
-					600: '#818181',
-					700: '#6A6A6A',
-					800: '#5A5A5A',
-					900: '#4A4A4A',
+					// 500 and up meet WCAG AA (4.5:1) for body text on white and #FAFAF8
+					500: '#6B6B6B',
+					600: '#575757',
+					700: '#474747',
+					800: '#3A3A3A',
+					900: '#2B2B2B',
 					950: '#000000',
 					foreground: '#FFFFFF'
 				},

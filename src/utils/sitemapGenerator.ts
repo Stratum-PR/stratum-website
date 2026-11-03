@@ -23,11 +23,7 @@ const sitemapConfig: SitemapConfig = {
   staticPages: [
     { path: '/', priority: 1.0, changefreq: 'weekly' },
     { path: '/about', priority: 0.8, changefreq: 'monthly' },
-    { path: '/services', priority: 0.9, changefreq: 'monthly' },
-    { path: '/projects', priority: 0.8, changefreq: 'weekly' },
     { path: '/contact', priority: 0.8, changefreq: 'monthly' },
-    { path: '/faq', priority: 0.7, changefreq: 'monthly' },
-    { path: '/resources', priority: 0.7, changefreq: 'monthly' },
     { path: '/newsupdates', priority: 0.8, changefreq: 'weekly' },
     { path: '/privacy', priority: 0.5, changefreq: 'yearly' },
   ]

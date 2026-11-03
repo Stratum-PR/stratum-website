@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 export type FlagCode = "us" | "pr";
 
 const FLAG_SRC: Record<FlagCode, string> = {
-  us: "/img/flags/flag-us.png",
-  pr: "/img/flags/flag-pr.png",
+  us: "/img/flags/flag-us.webp",
+  pr: "/img/flags/flag-pr.webp",
 };
 
 type FlagIconProps = {
