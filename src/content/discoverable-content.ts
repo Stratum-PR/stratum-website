@@ -24,7 +24,7 @@ export const PAGE_CONTENT: Record<string, PageContentShape> = {
       { heading: 'The problem', body: 'Paper logs, spreadsheets and notes nobody can find when the inspector arrives. The worry of not knowing whether everything is in order, and of everything depending on one person. Competing against companies with full IT departments just for lack of tools.' },
       { heading: 'The plan', body: 'Three steps: a free 30-minute conversation about how your plant works; we design with you and you see a working demo with your processes before deciding; you run with every record captured and ready.' },
       { heading: 'Before and after', body: 'Before: logs in notebooks and spreadsheets, days preparing each audit, losses found at month end, everything depends on one person. With Stratum PR: everything in one system and searchable in seconds, documentation ready every day, errors caught when they happen, knowledge lives in the system.' },
-      { heading: 'Products', body: 'Alertas PR is a free public portal that lists, in Spanish, the FDA food recalls affecting Puerto Rico (https://mvp.stratumpr.com/). Stratum PR also offers a quality and compliance platform for food plants (records, traceability and audits in one place); demos by appointment.' },
+      { heading: 'Products', body: 'Alertas PR is a free public portal that lists, in Spanish, the FDA food recalls affecting Puerto Rico (https://alertas.stratumpr.com/). Stratum PR also offers a quality and compliance platform for food plants (records, traceability and audits in one place); demos by appointment.' },
     ],
   },
   '/about': {

@@ -800,7 +800,7 @@ footer :focus-visible {
   box-shadow: 0 0 30px rgba(230, 224, 142, 0.6);
 }
 
-/* Navy topographic band, shared with the product site (mvp.stratumpr.com) */
+/* Navy topographic band, shared with the Alertas PR site (alertas.stratumpr.com) */
 .bg-topo {
   background-color: #1e2b7e;
   background-image: linear-gradient(rgba(30, 43, 126, 0.92), rgba(30, 43, 126, 0.92)), url("/img/topo-tile.webp");

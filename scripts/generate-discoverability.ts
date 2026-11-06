@@ -132,7 +132,7 @@ function writeLlmsTxt(baseUrl: string): void {
   lines.push('');
   lines.push('## Products');
   lines.push('');
-  lines.push('- [Alertas PR](https://mvp.stratumpr.com/): Free public portal, in Spanish, of the FDA food recalls affecting Puerto Rico.');
+  lines.push('- [Alertas PR](https://alertas.stratumpr.com/): Free public portal, in Spanish, of the FDA food recalls affecting Puerto Rico.');
   lines.push('');
   lines.push('## Optional');
   lines.push('');
@@ -242,7 +242,7 @@ function writeStaticPages(baseUrl: string): void {
   const routes = DISCOVERABLE_ROUTES.filter((r) => r.indexable !== false && !r.noindex);
   const nav = routes
     .map((r) => `<a href="${escapeHtml(safePathForUrl(r.path))}">${escapeHtml(r.title)}</a>`)
-    .concat('<a href="https://mvp.stratumpr.com/">Alertas PR</a>')
+    .concat('<a href="https://alertas.stratumpr.com/">Alertas PR</a>')
     .join(' · ');
 
   for (const r of routes) {
