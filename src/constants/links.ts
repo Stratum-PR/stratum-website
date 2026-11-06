@@ -7,5 +7,5 @@ export const FORMSPREE_URL = "https://formspree.io/f/xyzjgyzq";
 export const ALERTAS_URL = "https://alertas.stratumpr.com/";
 
 // The platform has no public page yet (its site is sign-in only), so "Ve nuestra plataforma" goes to the
-// platform card on the home page
-export const PLATFORM_URL = "/#productos";
+// platform card (sample screens) on the home page
+export const PLATFORM_URL = "/#plataforma";
