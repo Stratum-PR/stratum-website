@@ -3,43 +3,6 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <!-- Analytics (Google Analytics 4 + Microsoft Clarity): production domain only, and only
-         after the visitor accepts analytics cookies in the consent banner. The banner stores the
-         choice in localStorage "cookie-consent" and calls window.stratumLoadAnalytics(). -->
-    <script>
-      (function() {
-        'use strict';
-        var hostname = window.location.hostname;
-        var isProduction = hostname === 'www.stratumpr.com' || hostname === 'stratumpr.com';
-        var loaded = false;
-
-        window.stratumLoadAnalytics = function() {
-          if (loaded || !isProduction) return;
-          loaded = true;
-
-          var ga = document.createElement('script');
-          ga.async = true;
-          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-CX4CZ333HX';
-          document.head.appendChild(ga);
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function(){ window.dataLayer.push(arguments); };
-          window.gtag('js', new Date());
-          window.gtag('config', 'G-CX4CZ333HX');
-
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "u8tw0omuua");
-        };
-
-        try {
-          var consent = JSON.parse(localStorage.getItem('cookie-consent') || 'null');
-          if (consent && consent.analytics) window.stratumLoadAnalytics();
-        } catch (e) { /* no stored consent: load nothing */ }
-      })();
-    </script>
-
     <!-- Critical Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <!-- Robots meta tag - will be updated by script below if on dev/staging -->

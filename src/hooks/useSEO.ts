@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { updateSEO, trackPageView, type SEOData } from '@/utils/seo';
+import { updateSEO, type SEOData } from '@/utils/seo';
 
 export interface UseSEOOptions {
   /** When true, do not update document title/meta (use PageMeta/Helmet instead). */
@@ -50,10 +50,7 @@ export const useSEO = (seoData: SEOData, pageName?: string, options?: UseSEOOpti
 
     updateHreflang();
 
-    // Track page view
-    if (pageName) {
-      trackPageView(pageName);
-    }
+    // Page views are captured by PostHog (with consent) on each route change
 
     // Scroll to top on route change for better UX, unless the link targets a section (ScrollToTop handles it)
     if (!location.hash) window.scrollTo(0, 0);

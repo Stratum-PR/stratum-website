@@ -7,7 +7,7 @@
  * Have Puerto Rico counsel review before publishing changes.
  */
 
-export const LEGAL_UPDATED = { es: '2 de noviembre de 2026', en: 'November 2, 2026' };
+export const LEGAL_UPDATED = { es: '7 de noviembre de 2026', en: 'November 7, 2026' };
 export const LEGAL_CONTACT_EMAIL = 'contact@stratumpr.com';
 
 export interface LegalTable {
@@ -48,9 +48,9 @@ export const PRIVACY_POLICY: Bilingual = {
       {
         heading: 'Información que recopilamos',
         bullets: [
-          'Información que nos das: tu nombre, correo electrónico, teléfono, empresa, industria y el mensaje que envías en el formulario de contacto; tu correo y preferencia de idioma cuando te suscribes al boletín; tu nombre, empresa, correo, teléfono y respuestas cuando completas la autoevaluación; y los datos que entregas al agendar una conversación en Calendly.',
-          'Información que se recopila automáticamente: la dirección IP, el tipo de navegador y dispositivo, las páginas que visitas y cómo interactúas con ellas. Si aceptas las cookies de análisis, Microsoft Clarity también graba sesiones (movimientos, clics y desplazamiento) y genera mapas de calor.',
-          'Información guardada en tu dispositivo: tu preferencia de idioma y tu decisión sobre cookies, en el almacenamiento local de tu navegador.',
+          'Información que nos das: tu nombre, correo electrónico, teléfono, empresa, industria y el mensaje que envías en el formulario de contacto; tu correo y preferencia de idioma cuando te suscribes al boletín; tu nombre, empresa, correo, teléfono, respuestas y, si lo indicas, cómo nos conociste cuando completas la autoevaluación; y los datos que entregas al agendar una conversación en Calendly.',
+          'Información que se recopila automáticamente: la dirección IP, el tipo de navegador y dispositivo, las páginas que visitas y cómo interactúas con ellas. Si aceptas las cookies de análisis, PostHog también graba la sesión (movimientos, clics y desplazamiento), sin lo que escribes en los formularios.',
+          'Información guardada en tu dispositivo: tu preferencia de idioma, en el almacenamiento local de tu navegador, y tu decisión sobre cookies, en una cookie.',
         ],
         paragraphs: ['No buscamos recopilar información sensible a través de este sitio. Por favor no la incluyas en tus mensajes.'],
       },
@@ -76,8 +76,7 @@ export const PRIVACY_POLICY: Bilingual = {
             ['Formspree', 'Recibir los mensajes del formulario de contacto y de la autoevaluación', 'Lo que escribes en el formulario y tus respuestas'],
             ['Resend', 'Enviar correos de confirmación y el boletín', 'Tu correo, nombre y el contenido del correo'],
             ['Calendly', 'Agendar conversaciones (se abre en su sitio)', 'Lo que entregas al agendar'],
-            ['Google Analytics', 'Medir visitas y uso del sitio (solo con tu consentimiento)', 'Datos de navegación e identificadores de cookies'],
-            ['Microsoft Clarity', 'Grabaciones de sesión y mapas de calor (solo con tu consentimiento)', 'Interacciones en la página e identificadores de cookies'],
+            ['PostHog', 'Medir qué páginas se visitan y grabar sesiones sin lo que escribes (solo con tu consentimiento)', 'Datos de navegación, interacciones en la página e identificadores de cookies'],
             ['Vercel', 'Hospedaje del sitio y métricas de rendimiento sin cookies', 'Dirección IP y datos técnicos de la visita'],
             ['Upstash', 'Limitar envíos repetidos a los formularios', 'Dirección IP'],
           ],
@@ -86,7 +85,8 @@ export const PRIVACY_POLICY: Bilingual = {
       {
         heading: 'Cookies',
         paragraphs: [
-          'Las cookies de análisis (Google Analytics y Microsoft Clarity) solo se activan si las aceptas en el aviso de cookies. Puedes cambiar tu decisión en cualquier momento desde nuestra Política de Cookies. Los detalles están en nuestra Política de Cookies.',
+          'Solo usamos cookies necesarias, a menos que aceptes las de análisis en el aviso de cookies. Si las aceptas, PostHog nos dice qué páginas se visitan y graba la sesión sin lo que escribes, para mejorar el sitio. Nunca lo usamos para publicidad. La misma cookie de PostHog se comparte con alertas.stratumpr.com y foodtrail.stratumpr.com para reconocer la misma visita entre nuestros sitios.',
+          'Puedes cambiar tu decisión en cualquier momento con el botón "Cambiar mis preferencias" al principio de esta página o en nuestra Política de Cookies, donde también están los detalles.',
         ],
       },
       {
@@ -151,9 +151,9 @@ export const PRIVACY_POLICY: Bilingual = {
       {
         heading: 'Information we collect',
         bullets: [
-          'Information you give us: your name, email, phone, company, industry and the message you send through the contact form; your email and language preference when you subscribe to the newsletter; your name, company, email, phone and answers when you complete the self-check; and the details you provide when booking a conversation on Calendly.',
-          'Information collected automatically: IP address, browser and device type, the pages you visit and how you interact with them. If you accept analytics cookies, Microsoft Clarity also records sessions (movements, clicks and scrolling) and generates heatmaps.',
-          'Information stored on your device: your language preference and your cookie choice, in your browser’s local storage.',
+          'Information you give us: your name, email, phone, company, industry and the message you send through the contact form; your email and language preference when you subscribe to the newsletter; your name, company, email, phone, answers and, if you tell us, how you heard about us when you complete the self-check; and the details you provide when booking a conversation on Calendly.',
+          'Information collected automatically: IP address, browser and device type, the pages you visit and how you interact with them. If you accept analytics cookies, PostHog also records the session (movements, clicks and scrolling), without what you type in forms.',
+          'Information stored on your device: your language preference, in your browser’s local storage, and your cookie choice, in a cookie.',
         ],
         paragraphs: ['We do not seek to collect sensitive information through this site. Please do not include it in your messages.'],
       },
@@ -179,8 +179,7 @@ export const PRIVACY_POLICY: Bilingual = {
             ['Formspree', 'Receiving contact form and self-check submissions', 'What you type in the form and your answers'],
             ['Resend', 'Sending confirmation emails and the newsletter', 'Your email, name and the email content'],
             ['Calendly', 'Booking conversations (opens on its site)', 'What you provide when booking'],
-            ['Google Analytics', 'Measuring visits and site usage (only with your consent)', 'Browsing data and cookie identifiers'],
-            ['Microsoft Clarity', 'Session recordings and heatmaps (only with your consent)', 'Page interactions and cookie identifiers'],
+            ['PostHog', 'Measuring which pages are visited and recording sessions without what you type (only with your consent)', 'Browsing data, page interactions and cookie identifiers'],
             ['Vercel', 'Hosting the site and cookieless performance metrics', 'IP address and technical visit data'],
             ['Upstash', 'Limiting repeated form submissions', 'IP address'],
           ],
@@ -189,7 +188,8 @@ export const PRIVACY_POLICY: Bilingual = {
       {
         heading: 'Cookies',
         paragraphs: [
-          'Analytics cookies (Google Analytics and Microsoft Clarity) are only turned on if you accept them in the cookie notice. You can change your choice at any time from our Cookie Policy. Details are in our Cookie Policy.',
+          'We only use necessary cookies, unless you accept analytics cookies in the cookie notice. If you accept, PostHog tells us which pages are visited and records the session without what you type, to improve the site. We never use it for advertising. The same PostHog cookie is shared with alertas.stratumpr.com and foodtrail.stratumpr.com to recognize the same visit across our sites.',
+          'You can change your choice at any time with the "Change my preferences" button at the top of this page or in our Cookie Policy, which also has the details.',
         ],
       },
       {
@@ -246,23 +246,15 @@ export const PRIVACY_POLICY: Bilingual = {
 // Cookie Policy
 // ---------------------------------------------------------------------------
 const COOKIE_ROWS_ES = [
-  ['cookie-consent', 'Stratum PR (almacenamiento local)', 'Guarda tu decisión sobre cookies', 'Hasta que la cambies o borres los datos del sitio', 'Necesaria'],
+  ['stratum_analytics', 'Stratum PR', 'Guarda tu decisión sobre cookies', '6 meses', 'Necesaria'],
   ['site-language', 'Stratum PR (almacenamiento local)', 'Guarda tu idioma', 'Hasta que borres los datos del sitio', 'Necesaria'],
-  ['_ga', 'Google Analytics', 'Distinguir usuarios', '2 años', 'Análisis'],
-  ['_ga_<ID>', 'Google Analytics', 'Mantener el estado de la sesión', '2 años', 'Análisis'],
-  ['_clck', 'Microsoft Clarity', 'Guardar el identificador de Clarity y preferencias', 'Según Microsoft', 'Análisis'],
-  ['_clsk', 'Microsoft Clarity', 'Unir varias páginas en una misma grabación de sesión', 'Según Microsoft', 'Análisis'],
-  ['CLID, MUID, ANONCHK, MR, SM', 'Microsoft (dominios de Microsoft)', 'Identificar el navegador y sincronizar identificadores de Microsoft', 'Según Microsoft', 'Análisis'],
+  ['ph_<clave>_posthog', 'PostHog (compartida con *.stratumpr.com)', 'Distinguir visitantes y unir las páginas de una misma sesión', '1 año', 'Análisis'],
 ];
 
 const COOKIE_ROWS_EN = [
-  ['cookie-consent', 'Stratum PR (local storage)', 'Stores your cookie choice', 'Until you change it or clear site data', 'Necessary'],
+  ['stratum_analytics', 'Stratum PR', 'Stores your cookie choice', '6 months', 'Necessary'],
   ['site-language', 'Stratum PR (local storage)', 'Stores your language', 'Until you clear site data', 'Necessary'],
-  ['_ga', 'Google Analytics', 'Distinguish users', '2 years', 'Analytics'],
-  ['_ga_<ID>', 'Google Analytics', 'Persist session state', '2 years', 'Analytics'],
-  ['_clck', 'Microsoft Clarity', 'Store the Clarity ID and preferences', 'Set by Microsoft', 'Analytics'],
-  ['_clsk', 'Microsoft Clarity', 'Join several page views into one session recording', 'Set by Microsoft', 'Analytics'],
-  ['CLID, MUID, ANONCHK, MR, SM', 'Microsoft (Microsoft domains)', 'Identify the browser and sync Microsoft identifiers', 'Set by Microsoft', 'Analytics'],
+  ['ph_<key>_posthog', 'PostHog (shared with *.stratumpr.com)', 'Distinguish visitors and join the pages of one session', '1 year', 'Analytics'],
 ];
 
 export const COOKIE_POLICY: Bilingual = {
@@ -280,14 +272,14 @@ export const COOKIE_POLICY: Bilingual = {
       {
         heading: 'Cómo pedimos tu consentimiento',
         paragraphs: [
-          'Cuando visitas el sitio por primera vez, te mostramos un aviso con tres opciones: aceptar, rechazar o personalizar. Google Analytics y Microsoft Clarity solo se cargan si aceptas las cookies de análisis. Si las rechazas, el sitio funciona igual.',
+          'Cuando visitas el sitio por primera vez, te mostramos un aviso con dos opciones: "Aceptar" o "Solo necesarias". Hasta que elijas, solo usamos cookies necesarias. PostHog solo se carga si aceptas. Si no, el sitio funciona igual.',
         ],
       },
       {
         heading: 'Categorías',
         bullets: [
           'Necesarias: guardan tu decisión sobre cookies y tu idioma. No requieren consentimiento porque el sitio las necesita para funcionar como pediste.',
-          'Análisis: Google Analytics para medir visitas y Microsoft Clarity para grabaciones de sesión y mapas de calor. Solo con tu consentimiento.',
+          'Análisis: PostHog, para saber qué páginas se visitan y grabar la sesión sin lo que escribes. Solo con tu consentimiento y nunca para publicidad.',
           'Mercadeo: no usamos cookies de mercadeo ni de publicidad.',
         ],
         paragraphs: [
@@ -303,7 +295,7 @@ export const COOKIE_POLICY: Bilingual = {
       {
         heading: 'Cómo cambiar tu decisión',
         paragraphs: [
-          'Usa el botón "Cambiar mis preferencias" en esta página para volver a ver el aviso. También puedes borrar o bloquear cookies desde la configuración de tu navegador. Google ofrece un complemento para no participar en Google Analytics.',
+          'Usa el botón "Cambiar mis preferencias" en esta página para volver a ver el aviso. Si dejas de aceptar, PostHog deja de medir de inmediato. También puedes borrar o bloquear cookies desde la configuración de tu navegador.',
         ],
       },
       {
@@ -326,14 +318,14 @@ export const COOKIE_POLICY: Bilingual = {
       {
         heading: 'How we ask for your consent',
         paragraphs: [
-          'When you first visit the site, we show a notice with three options: accept, reject or customize. Google Analytics and Microsoft Clarity only load if you accept analytics cookies. If you reject them, the site works the same.',
+          'When you first visit the site, we show a notice with two options: "Accept" or "Only necessary". Until you choose, we only use necessary cookies. PostHog only loads if you accept. If you don’t, the site works the same.',
         ],
       },
       {
         heading: 'Categories',
         bullets: [
           'Necessary: store your cookie choice and your language. They do not require consent because the site needs them to work as you asked.',
-          'Analytics: Google Analytics to measure visits and Microsoft Clarity for session recordings and heatmaps. Only with your consent.',
+          'Analytics: PostHog, to learn which pages are visited and record the session without what you type. Only with your consent and never for advertising.',
           'Marketing: we do not use marketing or advertising cookies.',
         ],
         paragraphs: [
@@ -349,7 +341,7 @@ export const COOKIE_POLICY: Bilingual = {
       {
         heading: 'How to change your choice',
         paragraphs: [
-          'Use the "Change my preferences" button on this page to see the notice again. You can also delete or block cookies in your browser settings. Google offers a browser add-on to opt out of Google Analytics.',
+          'Use the "Change my preferences" button on this page to see the notice again. If you stop accepting, PostHog stops measuring right away. You can also delete or block cookies in your browser settings.',
         ],
       },
       {
