@@ -5,11 +5,17 @@
 // RESTRICTION: Unauthenticated callers may only use type=welcome (newsletter signup)
 // or type=contact (contact form confirmation). All other sends (checklist, admin,
 // notifications) require X-Internal-Email-Secret header matching INTERNAL_EMAIL_SECRET.
+//
+// For the public types the SERVER builds subject/html/text/from; client-supplied
+// subject, html, text, from and replyTo are ignored so this endpoint cannot be used
+// as an open relay from the stratumpr.com domain.
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import crypto from 'crypto';
 import { logger } from '../lib/logger.js';
 import { checkRateLimit } from '../lib/rateLimit.js';
+import { getWelcomeEmailTemplate } from '../src/utils/emailTemplates.js';
+import { getWelcomeEmailPlainText } from '../src/utils/emailPlainText.js';
 
 const ALLOWED_UNAUTH_TYPES = ['welcome', 'contact'];
 
@@ -26,7 +32,56 @@ function getClientId(req: VercelRequest): string {
   return `send-email:${ip}`;
 }
 
-const UNSUBSCRIBE_TOKEN_PLACEHOLDER = '{{UNSUBSCRIBE_TOKEN}}';
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DEFAULT_FROM = 'Stratum PR <contact@stratumpr.com>';
+const DEFAULT_REPLY_TO = 'contact@stratumpr.com';
+const MAX_NAME_LENGTH = 100;
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/** Server-built contact form confirmation (transactional, no marketing content). */
+function buildContactConfirmation(language: 'es' | 'en', rawName: unknown): { subject: string; html: string; text: string } {
+  // Collapse control chars/newlines, trim, cap length
+  const name = typeof rawName === 'string'
+    ? rawName.replace(/[\u0000-\u001f\u007f]+/g, ' ').trim().slice(0, MAX_NAME_LENGTH)
+    : '';
+  const safeName = escapeHtml(name);
+  const isEs = language === 'es';
+  const subject = isEs ? 'Recibimos tu mensaje - Stratum PR' : 'We received your message - Stratum PR';
+  const greetingText = isEs ? (name ? `Hola ${name},` : 'Hola,') : (name ? `Hi ${name},` : 'Hi,');
+  const greetingHtml = isEs ? (safeName ? `Hola ${safeName},` : 'Hola,') : (safeName ? `Hi ${safeName},` : 'Hi,');
+  const body = isEs
+    ? 'Gracias por escribirnos. Recibimos tu mensaje y te respondemos dentro de 2 días laborables.'
+    : "Thanks for writing to us. We received your message and we'll reply within 2 business days.";
+  const urgentText = isEs
+    ? 'Si es urgente, escríbenos a contact@stratumpr.com.'
+    : "If it's urgent, email us at contact@stratumpr.com.";
+  const mailLink = '<a href="mailto:contact@stratumpr.com" style="color:#266AB2;">contact@stratumpr.com</a>';
+  const urgentHtml = isEs
+    ? `Si es urgente, escríbenos a ${mailLink}.`
+    : `If it&#39;s urgent, email us at ${mailLink}.`;
+  const html = `<!DOCTYPE html>
+<html lang="${isEs ? 'es' : 'en'}">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${subject}</title></head>
+<body style="margin:0;padding:0;background-color:#f5f5f5;">
+  <div style="max-width:560px;margin:0 auto;padding:32px 24px;background-color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;">
+    <p style="margin:0 0 16px;">${greetingHtml}</p>
+    <p style="margin:0 0 16px;">${escapeHtml(body)}</p>
+    <p style="margin:0 0 24px;">${urgentHtml}</p>
+    <p style="margin:0;">Stratum PR</p>
+  </div>
+</body>
+</html>`;
+  const text = `${greetingText}\n\n${body}\n\n${urgentText}\n\nStratum PR\n`;
+  return { subject, html, text };
+}
 
 function generateUnsubscribeToken(email: string): string {
   const secret = process.env.UNSUBSCRIBE_SECRET;
@@ -67,12 +122,42 @@ export default async function handler(
   }
 
   try {
-    const { to, subject, html, text, from, replyTo, type, language } = req.body;
+    const { type } = req.body;
+    const language: 'es' | 'en' | undefined =
+      req.body.language === 'es' || req.body.language === 'en' ? req.body.language : undefined;
 
-    // Welcome email: server generates signed unsubscribe token and replaces placeholder
-    if (type === 'welcome' && to && language) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(to)) {
+    let toFinal: string;
+    let subjectFinal: string;
+    let htmlFinal: string;
+    let textFinal: string | undefined;
+    let fromFinal: string | undefined;
+    let replyToFinal: string | undefined;
+    // Transactional sends (contact confirmation) must not carry bulk/list headers
+    let isTransactional = false;
+    // Signed token for the List-Unsubscribe URL (welcome emails only)
+    let listUnsubscribeToken: string | undefined;
+
+    if (type === 'contact') {
+      // Contact form confirmation: only `to`, `language`, `name` are accepted from the client.
+      const to = req.body.to;
+      if (typeof to !== 'string' || !EMAIL_REGEX.test(to)) {
+        return res.status(400).json({ error: 'Invalid email format', message: 'The email address is not valid' });
+      }
+      const confirmation = buildContactConfirmation(language ?? 'es', req.body.name);
+      toFinal = to;
+      subjectFinal = confirmation.subject;
+      htmlFinal = confirmation.html;
+      textFinal = confirmation.text;
+      fromFinal = undefined; // server default (FROM_EMAIL) below
+      replyToFinal = DEFAULT_REPLY_TO;
+      isTransactional = true;
+    } else if (type === 'welcome') {
+      // Welcome email: server builds content and injects the signed unsubscribe token.
+      const to = req.body.to;
+      if (!language) {
+        return res.status(400).json({ error: 'Missing required fields', message: "language ('es' or 'en') is required" });
+      }
+      if (typeof to !== 'string' || !EMAIL_REGEX.test(to)) {
         return res.status(400).json({ error: 'Invalid email format', message: 'The email address is not valid' });
       }
       const secret = process.env.UNSUBSCRIBE_SECRET;
@@ -80,27 +165,31 @@ export default async function handler(
         logger.error('UNSUBSCRIBE_SECRET is missing');
         return res.status(500).json({ error: 'Server configuration error', message: 'Unsubscribe secret not configured.' });
       }
+      // Pass the real token to the templates (they URL-encode it into the links, so a
+      // placeholder substituted afterwards would never match).
       const token = generateUnsubscribeToken(to);
-      const htmlWithToken = (html || '').split(UNSUBSCRIBE_TOKEN_PLACEHOLDER).join(token);
-      const textWithToken = (text || '').split(UNSUBSCRIBE_TOKEN_PLACEHOLDER).join(token);
-      const subjectWelcome = language === 'es' ? '¡Bienvenido a Stratum PR!' : 'Welcome to Stratum PR!';
-      // Fall through to send with htmlWithToken, textWithToken, subjectWelcome
-      req.body = { ...req.body, subject: subjectWelcome, html: htmlWithToken, text: textWithToken };
+      listUnsubscribeToken = token;
+      toFinal = to;
+      subjectFinal = language === 'es' ? '¡Bienvenido a Stratum PR!' : 'Welcome to Stratum PR!';
+      htmlFinal = getWelcomeEmailTemplate({ email: to, language, unsubscribeToken: token });
+      textFinal = getWelcomeEmailPlainText({ email: to, language, unsubscribeToken: token });
+      fromFinal = undefined; // server default (FROM_EMAIL) below
+      replyToFinal = DEFAULT_REPLY_TO;
+    } else {
+      // Internal-secret sends (checklist, notifications): caller controls content.
+      ({ to: toFinal, subject: subjectFinal, html: htmlFinal, text: textFinal, from: fromFinal, replyTo: replyToFinal } = req.body);
     }
 
-    const { to: toFinal, subject: subjectFinal, html: htmlFinal, text: textFinal, from: fromFinal, replyTo: replyToFinal } = req.body;
-
-    // Validate required fields (after welcome handling)
+    // Validate required fields
     if (!toFinal || !subjectFinal || !htmlFinal) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Missing required fields',
         message: 'to, subject, and html are required'
       });
     }
 
     // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(toFinal)) {
+    if (!EMAIL_REGEX.test(toFinal)) {
       return res.status(400).json({
         error: 'Invalid email format',
         message: 'The email address is not valid'
@@ -109,17 +198,18 @@ export default async function handler(
 
     // Use custom domain email - domain must be verified in Resend dashboard
     // If domain not verified, fall back to verified email
-    let fromEmail = fromFinal || process.env.FROM_EMAIL || 'Stratum PR <contact@stratumpr.com>';
-    const replyToEmail = replyToFinal || 'contact@stratumpr.com';
+    const fromEmail = fromFinal || process.env.FROM_EMAIL || DEFAULT_FROM;
+    const replyToEmail = replyToFinal || DEFAULT_REPLY_TO;
     
     // Check if from email contains info@stratumpr.com and domain might not be verified
     // If so, try with contact@stratumpr.com first, then fall back to onboarding@resend.dev
     const isInfoEmail = fromEmail.includes('info@stratumpr.com');
-    const fallbackFrom = process.env.FROM_EMAIL || 'Stratum PR <contact@stratumpr.com>';
+    const fallbackFrom = process.env.FROM_EMAIL || DEFAULT_FROM;
     const testFrom = 'onboarding@resend.dev';
     
     // Generate unsubscribe URL from email if available
-    const unsubscribeUrl = `https://www.stratumpr.com/unsubscribe?email=${encodeURIComponent(toFinal)}`;
+    const unsubscribeUrl = `https://www.stratumpr.com/unsubscribe?email=${encodeURIComponent(toFinal)}` +
+      (listUnsubscribeToken ? `&token=${listUnsubscribeToken}` : '');
     const unsubscribeMailto = `mailto:contact@stratumpr.com?subject=Unsubscribe&body=Please unsubscribe ${encodeURIComponent(toFinal)}`;
 
     // Send email via Resend API
@@ -142,12 +232,14 @@ export default async function handler(
           html: htmlFinal,
           text: textFinal || undefined, // Plain text version for better deliverability
           reply_to: replyToEmail,
-          headers: {
-            'List-Unsubscribe': `<${unsubscribeUrl}>, <${unsubscribeMailto}>`,
-            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-            'X-Entity-Ref-ID': `newsletter-${Date.now()}`,
-            'Precedence': 'bulk'
-          }
+          headers: isTransactional
+            ? { 'X-Entity-Ref-ID': `contact-${Date.now()}` }
+            : {
+                'List-Unsubscribe': `<${unsubscribeUrl}>, <${unsubscribeMailto}>`,
+                'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+                'X-Entity-Ref-ID': `newsletter-${Date.now()}`,
+                'Precedence': 'bulk'
+              }
         })
       });
 
@@ -244,9 +336,10 @@ export default async function handler(
     if (type === 'welcome' && toFinal) {
       const adminEmail = process.env.ADMIN_EMAIL || process.env.FROM_EMAIL || 'contact@stratumpr.com';
       const adminSubject = language === 'es' ? `Nueva suscripción al blog: ${toFinal}` : `New blog subscription: ${toFinal}`;
+      const safeTo = escapeHtml(toFinal);
       const adminHtml = language === 'es'
-        ? `<h2>Nueva Suscripción al Blog</h2><p><strong>Email:</strong> ${toFinal}</p><p><strong>Idioma:</strong> Español</p><p><strong>Fecha:</strong> ${new Date().toLocaleString('es-ES')}</p>`
-        : `<h2>New Blog Subscription</h2><p><strong>Email:</strong> ${toFinal}</p><p><strong>Language:</strong> English</p><p><strong>Date:</strong> ${new Date().toLocaleString('en-US')}</p>`;
+        ? `<h2>Nueva Suscripción al Blog</h2><p><strong>Email:</strong> ${safeTo}</p><p><strong>Idioma:</strong> Español</p><p><strong>Fecha:</strong> ${new Date().toLocaleString('es-ES')}</p>`
+        : `<h2>New Blog Subscription</h2><p><strong>Email:</strong> ${safeTo}</p><p><strong>Language:</strong> English</p><p><strong>Date:</strong> ${new Date().toLocaleString('en-US')}</p>`;
       try {
         await fetch('https://api.resend.com/emails', {
           method: 'POST',

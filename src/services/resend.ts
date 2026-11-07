@@ -2,8 +2,6 @@
 // This handles all email communications including blog subscriptions and checklist results
 // NOTE: API key is kept secure on the server - never exposed to browser
 
-import { getWelcomeEmailTemplate, type EmailTemplateData } from '@/utils/emailTemplates';
-import { getWelcomeEmailPlainText } from '@/utils/emailPlainText';
 import { logger } from '@/lib/logger';
 
 const API_ENDPOINT = 'https://api.resend.com/emails'
@@ -17,7 +15,8 @@ interface EmailData {
   replyTo?: string
 }
 
-export async function sendEmail(data: EmailData & { type?: 'contact' }) {
+// Generic send: requires internal auth server-side (contact/welcome use dedicated helpers below)
+export async function sendEmail(data: EmailData) {
   // Always use serverless function - API key is kept secure on the server
   // Never expose API key to browser for security
   const API_ROUTE = '/api/send-email'
@@ -29,7 +28,6 @@ export async function sendEmail(data: EmailData & { type?: 'contact' }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        type: data.type,
         from: data.from,
         to: data.to,
         subject: data.subject,
@@ -59,6 +57,26 @@ export async function sendEmail(data: EmailData & { type?: 'contact' }) {
     }
     throw error
   }
+}
+
+// Send contact form confirmation. The server builds the subject/body; only the
+// recipient, display name and language are sent.
+export async function sendContactConfirmation(
+  to: string,
+  name: string | undefined,
+  language: 'en' | 'es' = 'es'
+) {
+  const response = await fetch('/api/send-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'contact', to, language, name })
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    logger.error('Contact confirmation API Error:', { status: response.status, error: data });
+    throw new Error(data.message || `Failed to send confirmation email: ${response.statusText}`);
+  }
+  return data.data || data;
 }
 
 // Add subscriber to Resend Audience
@@ -99,33 +117,12 @@ export async function addSubscriberToAudience(
 
 // Subscribe to blog updates
 export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en') {
-  // Token is generated server-side (HMAC) when sending; client sends placeholder for API to replace
-  const UNSUBSCRIBE_TOKEN_PLACEHOLDER = '{{UNSUBSCRIBE_TOKEN}}';
-  const unsubscribeToken = UNSUBSCRIBE_TOKEN_PLACEHOLDER;
-  
   // Add subscriber to Resend Audience (non-blocking)
   addSubscriberToAudience(email, language).catch(error => {
     logger.error('Failed to add subscriber to audience (non-critical):', error);
   });
   
-  // Use beautiful email template
-  const subject = language === 'es' 
-    ? '¡Bienvenido a Stratum PR!' 
-    : 'Welcome to Stratum PR!'
-  
-  const html = getWelcomeEmailTemplate({
-    email,
-    language,
-    unsubscribeToken
-  });
-  
-  const text = getWelcomeEmailPlainText({
-    email,
-    language,
-    unsubscribeToken
-  });
-
-  // Send welcome email via API so server can inject HMAC unsubscribe token (placeholder replaced server-side)
+  // Welcome email content (subject, html, text, signed unsubscribe token) is built server-side
   const API_ROUTE = '/api/send-email';
   const welcomeRes = await fetch(API_ROUTE, {
     method: 'POST',
@@ -133,11 +130,7 @@ export async function subscribeToBlog(email: string, language: 'en' | 'es' = 'en
     body: JSON.stringify({
       type: 'welcome',
       to: email,
-      language,
-      html,
-      text,
-      from: 'Stratum PR <info@stratumpr.com>',
-      replyTo: 'contact@stratumpr.com'
+      language
     })
   });
   const welcomeData = await welcomeRes.json();
