@@ -1,81 +1,34 @@
 import { useState, useEffect, useCallback } from 'react';
-import { logger } from '@/lib/logger';
+import { readConsent, startAnalytics, stopAnalytics, writeConsent, type Consent } from '@/lib/analytics';
 
-export interface CookiePreferences {
-  essential: boolean;
-  analytics: boolean;
-  /** Kept for stored-data compatibility; the site uses no marketing cookies. */
-  marketing: boolean;
-  timestamp: number;
-}
-
-const STORAGE_KEY = 'cookie-consent';
-// Lets the footer's "Cookie preferences" link reopen the banner in another component
+// Lets the footer's and legal pages' "Cookie preferences" buttons reopen the banner in another component
 const CHANGE_EVENT = 'cookie-consent-changed';
 
-declare global {
-  interface Window {
-    /** Defined in index.html: loads Google Analytics and Microsoft Clarity once. */
-    stratumLoadAnalytics?: () => void;
-  }
-}
-
-const EMPTY: CookiePreferences = { essential: true, analytics: false, marketing: false, timestamp: 0 };
-
-function readStored(): CookiePreferences | null {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? (JSON.parse(stored) as CookiePreferences) : null;
-  } catch (error) {
-    logger.error('Error parsing cookie consent:', error);
-    return null;
-  }
-}
-
+/** The visitor's analytics choice, stored in the "stratum_analytics" cookie. No choice means essential-only. */
 export const useCookieConsent = () => {
-  const [hasConsent, setHasConsent] = useState<boolean | null>(null);
-  const [preferences, setPreferences] = useState<CookiePreferences>(EMPTY);
+  const [consent, setConsent] = useState<Consent | null | undefined>(undefined);
 
   useEffect(() => {
-    const sync = () => {
-      const stored = readStored();
-      setPreferences(stored ?? EMPTY);
-      setHasConsent(stored !== null);
-    };
+    const sync = () => setConsent(readConsent());
     sync();
     window.addEventListener(CHANGE_EVENT, sync);
     return () => window.removeEventListener(CHANGE_EVENT, sync);
   }, []);
 
-  const save = useCallback((analytics: boolean) => {
-    const previous = readStored();
-    const next: CookiePreferences = { essential: true, analytics, marketing: false, timestamp: Date.now() };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  const save = useCallback((next: Consent | null) => {
+    writeConsent(next);
+    if (next === 'granted') startAnalytics();
+    else stopAnalytics();
     window.dispatchEvent(new Event(CHANGE_EVENT));
-    if (analytics) {
-      window.stratumLoadAnalytics?.();
-    } else if (previous?.analytics) {
-      // Analytics scripts can't be unloaded; a reload starts the page without them
-      window.location.reload();
-    }
   }, []);
 
-  const acceptAll = () => save(true);
-  const rejectAll = () => save(false);
-  const saveCustomPreferences = (custom: Omit<CookiePreferences, 'timestamp'>) => save(custom.analytics);
-
-  /** Forget the stored choice so the banner asks again. */
-  const withdrawConsent = () => {
-    localStorage.removeItem(STORAGE_KEY);
-    window.dispatchEvent(new Event(CHANGE_EVENT));
-  };
-
   return {
-    hasConsent,
-    preferences,
-    acceptAll,
-    rejectAll,
-    saveCustomPreferences,
-    withdrawConsent,
+    /** null while reading the cookie on first render, so the banner doesn't flash */
+    hasConsent: consent === undefined ? null : consent !== null,
+    analytics: consent === 'granted',
+    acceptAll: () => save('granted'),
+    rejectAll: () => save('denied'),
+    /** Forget the stored choice so the banner asks again; analytics stop until the visitor accepts again. */
+    withdrawConsent: () => save(null),
   };
 };

@@ -4,6 +4,10 @@ import App from './App.tsx'
 import './index.css'
 import React from 'react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { initAnalytics } from './lib/analytics'
+
+// PostHog only if the visitor already accepted in the consent banner
+initAnalytics()
 
 // Get the root container
 const container = document.getElementById("root")!;

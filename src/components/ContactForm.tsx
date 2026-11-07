@@ -11,6 +11,7 @@ import SecurityCaptcha from "./SecurityCaptcha";
 import ContactFormSuccess from "./ContactFormSuccess";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { logger } from "@/lib/logger";
+import { track } from "@/lib/analytics";
 
 const ContactForm = () => {
   const { t, language } = useLanguage();
@@ -126,6 +127,8 @@ const ContactForm = () => {
       });
 
       if (response.ok) {
+        // Funnel event only (no form values); sent only with analytics consent
+        track("demo_requested");
         // Send confirmation email to user
         try {
           const { sendEmail } = await import('@/services/resend');

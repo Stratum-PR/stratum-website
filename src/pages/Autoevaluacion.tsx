@@ -6,7 +6,9 @@ import { PageMeta } from "@/components/PageMeta";
 import { SELFCHECK_ROUTE } from "@/config/discoverable-routes";
 import { CALENDLY_URL, FORMSPREE_URL } from "@/constants/links";
 import { INSIGHTS, ITEMS, STEPS, TIERS, scoreAnswers, type Question } from "@/content/selfcheck";
+import { HEARD_FROM, HEARD_FROM_AI, HEARD_FROM_OTHER_MAX } from "@/content/heardFrom";
 import { logger } from "@/lib/logger";
+import { track } from "@/lib/analytics";
 import "./passport.css";
 
 type Screen = "intro" | "step" | "contact" | "result";
@@ -44,6 +46,8 @@ const Autoevaluacion = () => {
   const [single, setSingle] = useState<Record<string, number>>({});
   const [multi, setMulti] = useState<Record<string, boolean>>({});
   const [contact, setContact] = useState({ name: "", business: "", email: "", phone: "", consent: false });
+  // "¿Cómo nos conociste?": optional; each follow-up only counts for its own answer
+  const [heard, setHeard] = useState({ from: "", ai: "", other: "" });
   const [sending, setSending] = useState(false);
   const [ringReady, setRingReady] = useState(false);
   const [passNo] = useState(() => `SPR-${Math.floor(100000 + Math.random() * 900000)}`);
@@ -73,6 +77,9 @@ const Autoevaluacion = () => {
     if (!contactValid || sending) return;
     setSending(true);
     // The lead goes to the team inbox; the visitor sees the passport either way
+    const heardFrom = heard.from || null;
+    const heardFromAi = heard.from === "ai" ? heard.ai || null : null;
+    const heardFromOther = heard.from === "other" ? heard.other.trim().slice(0, HEARD_FROM_OTHER_MAX) || null : null;
     try {
       await fetch(FORMSPREE_URL, {
         method: "POST",
@@ -90,8 +97,13 @@ const Autoevaluacion = () => {
           tier: TIERS[result.tier].label.es,
           pending: result.pending.map((k) => ITEMS[k].title.es).join("; "),
           source: "stratumpr.com/autoevaluacion",
+          heard_from: heardFrom ?? "",
+          heard_from_ai: heardFromAi ?? "",
+          heard_from_other: heardFromOther ?? "",
         }),
       });
+      // Funnel event only, no contact details; sent only with analytics consent
+      track("selfcheck_submitted", { heard_from: heardFrom, heard_from_ai: heardFromAi });
     } catch (error) {
       logger.error("Self-check lead failed to send:", error);
     }
@@ -291,6 +303,55 @@ const Autoevaluacion = () => {
                   />
                 </label>
               ))}
+            </div>
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              <label className="block">
+                <span className="mb-1.5 block font-telegraf text-sm font-semibold text-[#0b1215]">{t("selfcheck.contact.heardFrom")}</span>
+                <select
+                  name="heard_from"
+                  value={heard.from}
+                  onChange={(e) => setHeard({ from: e.target.value, ai: "", other: "" })}
+                  className={`${inputClass} ${heard.from ? "" : "text-neutral-500"}`}
+                >
+                  <option value="">{t("selfcheck.contact.heardFrom.placeholder")}</option>
+                  {HEARD_FROM.map((o) => (
+                    <option key={o.key} value={o.key}>
+                      {o.label[lang]}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              {heard.from === "ai" && (
+                <label className="block">
+                  <span className="mb-1.5 block font-telegraf text-sm font-semibold text-[#0b1215]">{t("selfcheck.contact.heardFromAi")}</span>
+                  <select
+                    name="heard_from_ai"
+                    value={heard.ai}
+                    onChange={(e) => setHeard((h) => ({ ...h, ai: e.target.value }))}
+                    className={`${inputClass} ${heard.ai ? "" : "text-neutral-500"}`}
+                  >
+                    <option value="">{t("selfcheck.contact.heardFrom.placeholder")}</option>
+                    {HEARD_FROM_AI.map((o) => (
+                      <option key={o.key} value={o.key}>
+                        {o.label[lang]}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              )}
+              {heard.from === "other" && (
+                <label className="block">
+                  <span className="mb-1.5 block font-telegraf text-sm font-semibold text-[#0b1215]">{t("selfcheck.contact.heardFromOther")}</span>
+                  <input
+                    type="text"
+                    name="heard_from_other"
+                    maxLength={HEARD_FROM_OTHER_MAX}
+                    value={heard.other}
+                    onChange={(e) => setHeard((h) => ({ ...h, other: e.target.value }))}
+                    className={inputClass}
+                  />
+                </label>
+              )}
             </div>
             <label className="mt-6 flex items-start gap-3 font-telegraf text-sm leading-relaxed text-neutral-700">
               <input

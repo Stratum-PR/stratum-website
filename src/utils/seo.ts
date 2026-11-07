@@ -1,8 +1,4 @@
 
-// Add global gtag declaration for TypeScript
-declare global {
-  function gtag(...args: any[]): void;
-}
 
 export interface SEOData {
   title: string;
@@ -120,13 +116,3 @@ export const generateImageAlt = (imageSrc: string, context: string = ''): string
   return altText;
 };
 
-export const trackPageView = (pageName: string) => {
-  // Google Analytics 4 page view tracking
-  if (typeof gtag !== 'undefined') {
-    gtag('config', 'G-XXXXXXXXXX', {
-      page_title: document.title,
-      page_location: window.location.href,
-      custom_map: { custom_parameter: pageName }
-    });
-  }
-};
