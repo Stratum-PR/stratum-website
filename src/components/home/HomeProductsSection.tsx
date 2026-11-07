@@ -6,11 +6,17 @@ import { ALERTAS_URL } from "@/constants/links";
 // Sample screens of the platform (a fictional plant), in public/img/platform/
 const PLATFORM_SHOTS = ["tablero", "alertas", "lotes", "haccp", "suplidores", "ingredientes", "documentos", "acciones"] as const;
 type PlatformShot = (typeof PLATFORM_SHOTS)[number];
+// Languages that have their own screenshots (<shot>-en.webp, <shot>-en-960.webp). Spanish is the default
+// (<shot>.webp); add "en" here once the English captures are in public/img/platform/.
+const SHOT_LANGUAGES: readonly string[] = [];
 
 /** Showcase of the platform for plant owners, then Alertas PR (the free public site) as its own pill. */
 export function HomeProductsSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [shot, setShot] = useState<PlatformShot>("tablero");
+  // Screens that finished loading; an image stays invisible until then so the frame never paints alt text
+  const [loaded, setLoaded] = useState<Record<string, boolean>>({});
+  const suffix = SHOT_LANGUAGES.includes(language) ? `-${language}` : "";
 
   return (
     <section id="productos" className="scroll-mt-20 bg-[#FAFAF8] pb-20 pt-16 md:pb-28 md:pt-24 entrance-animation" aria-labelledby="products-heading">
@@ -60,18 +66,30 @@ export function HomeProductsSection() {
               {t(`home.products.scan.shots.${shot}.caption`)}
             </p>
 
-            <img
-              key={shot}
-              src={`/img/platform/${shot}.webp`}
-              srcSet={`/img/platform/${shot}-960.webp 960w, /img/platform/${shot}.webp 1600w`}
-              sizes="(min-width: 1152px) 810px, 100vw"
-              width={1600}
-              height={875}
-              loading="lazy"
-              decoding="async"
-              alt={t(`home.products.scan.shots.${shot}.alt`)}
-              className="mt-5 block h-auto w-full rounded-2xl shadow-[0_30px_70px_-20px_rgba(30,43,126,0.35),0_0_0_1px_rgba(30,43,126,0.08)] lg:mt-0"
-            />
+            {/* All screens are stacked in one frame and load together when the section scrolls into view, so
+                switching tabs only crossfades: no remount, no empty frame showing alt text while a new image loads */}
+            <div className="relative mt-5 aspect-[1600/875] w-full overflow-hidden rounded-2xl bg-white shadow-[0_30px_70px_-20px_rgba(30,43,126,0.35),0_0_0_1px_rgba(30,43,126,0.08)] lg:mt-0">
+              {PLATFORM_SHOTS.map((id) => {
+                const on = shot === id;
+                const src = `/img/platform/${id}${suffix}.webp`;
+                return (
+                  <img
+                    key={id}
+                    src={src}
+                    srcSet={`/img/platform/${id}${suffix}-960.webp 960w, /img/platform/${id}${suffix}.webp 1600w`}
+                    sizes="(min-width: 1152px) 810px, 100vw"
+                    width={1600}
+                    height={875}
+                    loading="lazy"
+                    decoding="async"
+                    alt={on ? t(`home.products.scan.shots.${id}.alt`) : ""}
+                    aria-hidden={!on}
+                    onLoad={() => setLoaded((l) => ({ ...l, [src]: true }))}
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 motion-reduce:transition-none ${on && loaded[src] ? "opacity-100" : "opacity-0"}`}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
 
