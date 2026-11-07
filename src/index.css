@@ -141,6 +141,22 @@ html {
     }
   }
 
+  /* Rotating highlighted phrase in the home hero headline */
+  .hero-phrase-in {
+    animation: heroPhraseIn 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @keyframes heroPhraseIn {
+    from {
+      opacity: 0;
+      transform: translateY(0.45em);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes heroKenBurns {
     from {
       transform: scale(1);
@@ -812,4 +828,9 @@ footer :focus-visible {
   background-color: #0d1338;
   background-image: linear-gradient(rgba(13, 19, 56, 0.94), rgba(13, 19, 56, 0.94)), url("/img/topo-tile.webp");
   background-size: auto, 900px auto;
+}
+
+/* Space taken by the temporary Alertas PR launch bar; LaunchBar.tsx sets it while the bar is shown */
+:root {
+  --launch-bar-h: 0px;
 }

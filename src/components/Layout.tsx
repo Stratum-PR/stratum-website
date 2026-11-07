@@ -1,4 +1,5 @@
 import { Header } from "./Header";
+import { LaunchBar } from "./LaunchBar";
 import { Footer } from "./Footer";
 import { CookieConsent } from "./CookieConsent";
 import { ErrorBoundary } from "./ErrorBoundary";
@@ -15,6 +16,9 @@ const Layout = () => {
       >
         {t("a11y.skipToContent")}
       </a>
+      <LaunchBar />
+      {/* pushes the page down by the launch bar's height (the bar and the header are fixed) */}
+      <div className="h-[var(--launch-bar-h)] shrink-0 transition-[height] duration-300 ease-out motion-reduce:transition-none" aria-hidden />
       <Header />
       <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
         <ErrorBoundary>

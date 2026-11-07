@@ -1,9 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ALERTAS_URL, CALENDLY_URL } from "@/constants/links";
-
-const CONTACT_EMAIL = "contact@stratumpr.com";
+import { ALERTAS_URL } from "@/constants/links";
 
 const SOCIAL_LINKS = [
   { href: "https://www.facebook.com/profile.php?id=61577145020919", label: "Facebook", Icon: Facebook },
@@ -60,7 +58,7 @@ export const Footer = () => {
         className={`mx-auto max-w-6xl px-4 pt-12 sm:px-6 lg:px-8 lg:pt-20 ${hasStickyCta ? "pb-28 md:pb-10" : "pb-10"}`}
       >
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-12 lg:gap-8">
-          <div className="col-span-2 lg:col-span-5">
+          <div className="col-span-2 lg:col-span-6">
             <Link to="/" aria-label="Stratum PR">
               <img src="/img/stratum-logo-white.png" alt="Stratum" width={640} height={120} className="h-8 w-auto" />
             </Link>
@@ -82,7 +80,7 @@ export const Footer = () => {
           </div>
 
           {columns.map((col) => (
-            <nav key={col.title} aria-label={col.title} className="lg:col-span-2">
+            <nav key={col.title} aria-label={col.title} className="lg:col-span-3">
               <h3 className="mb-2 font-telegraf text-xs font-bold uppercase tracking-[0.14em] text-[#E6E09E] lg:mb-3">{col.title}</h3>
               <ul>
                 {col.links.map((item) => (
@@ -92,23 +90,6 @@ export const Footer = () => {
             </nav>
           ))}
 
-          <div className="col-span-2 lg:col-span-3">
-            <h3 className="mb-5 font-telegraf text-xs font-bold uppercase tracking-[0.14em] text-[#E6E09E]">
-              {t("footer.column.connect")}
-            </h3>
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center rounded-2xl bg-white px-5 font-telegraf text-[15px] font-semibold text-primary transition-colors hover:bg-[#E6E09E]"
-            >
-              {t("home.hero.cta.primary")}
-            </a>
-            <a href={`mailto:${CONTACT_EMAIL}`} className={`mt-2 flex min-h-[44px] items-center break-all ${linkClass}`}>
-              {CONTACT_EMAIL}
-            </a>
-            <p className="font-telegraf text-[15px] text-white/50">{t("footer.location")}</p>
-          </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-6 lg:mt-14 md:flex-row md:items-center md:justify-between">

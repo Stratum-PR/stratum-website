@@ -64,7 +64,7 @@ export const Header = () => {
     }`;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[9998] h-14 md:h-16 bg-white/95 backdrop-blur border-b border-primary/10">
+    <header className="fixed top-[var(--launch-bar-h,0px)] transition-[top] duration-300 ease-out motion-reduce:transition-none left-0 right-0 z-[9998] h-14 md:h-16 bg-white/95 backdrop-blur border-b border-primary/10">
       <div className="w-full h-full px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex items-center h-full">
           <Link to="/" className="flex items-center flex-shrink-0" aria-label="Stratum PR">
@@ -108,14 +108,14 @@ export const Header = () => {
         createPortal(
           <>
             <div
-              className={`lg:hidden fixed inset-0 top-14 md:top-16 bg-black/20 z-[9998] transition-opacity ${
+              className={`lg:hidden fixed inset-0 top-[calc(3.5rem+var(--launch-bar-h,0px))] md:top-[calc(4rem+var(--launch-bar-h,0px))] bg-black/20 z-[9998] transition-opacity ${
                 isMenuClosing ? "opacity-0" : "opacity-100"
               }`}
               onClick={closeMenu}
               aria-hidden
             />
             <div
-              className={`lg:hidden fixed top-14 md:top-16 left-0 right-0 bg-white border-b border-primary/10 shadow-lg z-[9999] transition-all ${
+              className={`lg:hidden fixed top-[calc(3.5rem+var(--launch-bar-h,0px))] md:top-[calc(4rem+var(--launch-bar-h,0px))] left-0 right-0 bg-white border-b border-primary/10 shadow-lg z-[9999] transition-all ${
                 isMenuClosing ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
               }`}
             >

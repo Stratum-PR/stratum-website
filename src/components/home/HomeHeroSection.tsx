@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CALENDLY_URL, PLATFORM_URL } from "@/constants/links";
@@ -16,6 +16,96 @@ const HERO_PHOTOS = [
 const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+const PHRASE_INTERVAL_MS = 2600;
+// Highlighted phrase under the headline, one per platform module
+const HERO_PHRASE_KEYS = [
+  "home.hero.phrase1",
+  "home.hero.phrase2",
+  "home.hero.phrase4",
+  "home.hero.phrase5",
+  "home.hero.phrase6",
+  "home.hero.phrase7",
+] as const;
+
+// Horizontal padding of the pill (px-3 / sm:px-4), added to the measured text width
+const pillPaddingX = () => (typeof window !== "undefined" && window.innerWidth >= 640 ? 32 : 24);
+
+const RotatingHighlight = ({ phrases, paused }: { phrases: string[]; paused: boolean }) => {
+  const [index, setIndex] = useState(0);
+  const [widths, setWidths] = useState<number[]>([]);
+  const measureRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const measureBoxRef = useRef<HTMLSpanElement>(null);
+  const wrapRef = useRef<HTMLSpanElement>(null);
+  const [reserveTwoLines, setReserveTwoLines] = useState(false);
+  const [available, setAvailable] = useState(Infinity);
+  const phrasesKey = phrases.join("|");
+
+  // Measure every phrase off-screen so the pill can animate to each one's width.
+  // A ResizeObserver on the measuring box re-measures whenever the font size changes
+  // (viewport resize, font load), which window "resize" alone can miss.
+  useLayoutEffect(() => {
+    const measure = () => {
+      const next = phrases.map((_, i) => {
+        const el = measureRefs.current[i];
+        return el ? Math.ceil(el.getBoundingClientRect().width) + pillPaddingX() : 0;
+      });
+      setWidths(next);
+      // On narrow screens a long phrase wraps; reserve two lines so the page below doesn't jump
+      const avail = wrapRef.current?.clientWidth ?? Infinity;
+      setAvailable(avail);
+      setReserveTwoLines(next.some((w) => w > avail));
+    };
+    measure();
+    document.fonts?.ready.then(measure);
+    const box = measureBoxRef.current;
+    if (!box || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(box);
+    if (wrapRef.current) observer.observe(wrapRef.current);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phrasesKey]);
+
+  useEffect(() => setIndex(0), [phrasesKey]);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => setIndex((i) => (i + 1) % phrases.length), PHRASE_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [paused, phrases.length]);
+
+  return (
+    <span
+      ref={wrapRef}
+      className="relative mt-1 block"
+      // two lines of 1.1em plus the pill's bottom padding
+      style={reserveTwoLines ? { minHeight: "calc(2.2em + 0.25rem)" } : undefined}
+      aria-hidden
+    >
+      {/* Zero-size clip box so the off-screen copies never widen the page */}
+      <span className="invisible absolute left-0 top-0 h-0 w-0 overflow-hidden">
+        <span ref={measureBoxRef} className="flex w-max flex-col items-start whitespace-nowrap">
+          {phrases.map((p, i) => (
+            <span key={i} ref={(el) => (measureRefs.current[i] = el)} className="inline-block">
+              {p}
+            </span>
+          ))}
+        </span>
+      </span>
+      <span
+        className="inline-block max-w-full overflow-hidden align-top rounded-2xl bg-accent px-3 pb-1 text-primary [transition:width_500ms_cubic-bezier(0.2,0.7,0.2,1)] motion-reduce:transition-none sm:px-4"
+        style={widths[index] ? { width: widths[index] } : undefined}
+      >
+        <span key={`${index}-${phrases[index]}`} // a phrase wider than the column wraps inside the two lines reserved above, instead of being cut off
+          className={`hero-phrase-in block ${widths[index] && widths[index] > available ? "whitespace-normal" : "whitespace-nowrap"}`}
+        >
+          {phrases[index]}
+        </span>
+      </span>
+    </span>
+  );
+};
 
 export const HomeHeroSection = () => {
   const { t } = useLanguage();
@@ -48,19 +138,18 @@ export const HomeHeroSection = () => {
   return (
     <section className="bg-[#FAFAF8]" aria-labelledby="hero-heading">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 pb-12 pt-24 sm:px-6 md:pt-28 lg:flex-row lg:gap-14 lg:px-8 lg:pb-20">
-        <div className="w-full lg:flex-[1.15]">
+        {/* min-w-0: the column keeps its share of the row, so a long rotating phrase never widens it
+            (which re-wrapped the headline and moved the buttons and photo) */}
+        <div className="w-full min-w-0 lg:flex-[1.35]">
           <h1
             id="hero-heading"
-            className="mb-5 font-telegraf text-[clamp(2.25rem,5.5vw,3.625rem)] font-bold leading-[1.1] tracking-tight text-primary"
+            className="mb-6 font-telegraf text-[clamp(2.25rem,4.6vw,3rem)] font-bold md:mb-8 leading-[1.1] tracking-tight text-primary"
           >
             <span className="sr-only">{t("home.hero.title")}</span>
             <span className="block" aria-hidden>{t("home.hero.headline.line1")}</span>
             <span className="block" aria-hidden>{t("home.hero.headline.line2")}</span>
+            <RotatingHighlight phrases={HERO_PHRASE_KEYS.map((k) => t(k))} paused={paused} />
           </h1>
-          <p className="mb-2 font-telegraf text-lg font-semibold text-secondary md:text-xl">{t("home.hero.kicker")}</p>
-          <p className="mb-6 max-w-xl font-telegraf text-lg leading-relaxed text-neutral-600 md:mb-8 md:text-xl">
-            {t("home.hero.subtitle")}
-          </p>
           <div ref={ctaRowRef} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={CALENDLY_URL}

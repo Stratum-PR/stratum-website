@@ -9,7 +9,7 @@
   --hub-blue: #266ab2;
   --hub-sky: #5fa3da;
   background: #fff; border: 1px solid var(--hub-line); border-radius: 26px;
-  padding: 28px 28px 22px; overflow: hidden;
+  padding: 28px 28px 8px; overflow: hidden;
 }
 .hub-stage { position: relative; width: min(640px, 100%); aspect-ratio: 1; margin: 0 auto; }
 .hub-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
@@ -33,39 +33,50 @@
   box-shadow: 0 18px 40px -18px rgba(30, 43, 126, .8), 0 0 0 6px rgba(95, 163, 218, .15);
 }
 .hub-core img { width: 74%; height: auto; display: block; }
+/* Final ("after") state: a clean white card with a colored icon tile and the site's typeface. The card sits above the
+   SVG and holds the label inside, so lines end under it and never cross the words. The "before" state (paper note,
+   pin, handwriting, tilt) comes from the .play keyframes below, so reduced motion shows only this final state. */
 .hub-node {
-  position: absolute; translate: -50% -50%; width: 17%;
+  position: absolute; translate: -50% -50%; width: 19%;
   display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+  padding: 10px 6px 9px; border-radius: 16px; background: #fff; color: var(--hub-ink);
+  border: 1px solid var(--hub-line); box-shadow: 0 14px 28px -16px rgba(22, 32, 79, .5);
 }
+.hub-pin {
+  position: absolute; top: -7px; left: 50%; translate: -50% 0; width: 14px; height: 14px; border-radius: 50%;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, .4); opacity: 0;
+}
+.hub-pin-red { background: radial-gradient(circle at 35% 30%, #ff9a9a, #d32f2f 55%, #7f1010); }
+.hub-pin-blue { background: radial-gradient(circle at 35% 30%, #9cc8ff, #1e5bb8 55%, #0d2d66); }
+.hub-pin-yellow { background: radial-gradient(circle at 35% 30%, #fff3a6, #e0b400 55%, #7a6000); }
+.hub-pin-green { background: radial-gradient(circle at 35% 30%, #a8e6a1, #2e8b3a 55%, #11451a); }
 .hub-tile {
-  position: relative; width: clamp(38px, 8.5vw, 56px); aspect-ratio: 1; border-radius: 30%;
-  display: grid; place-items: center; background: var(--c); color: var(--ic, #fff);
-  box-shadow: 0 10px 20px -12px rgba(22, 32, 79, .6);
+  display: grid; place-items: center; width: clamp(28px, 6vw, 40px); aspect-ratio: 1; border-radius: 30%;
+  background: var(--c); color: var(--ic, #fff); box-shadow: 0 8px 16px -10px rgba(22, 32, 79, .6);
 }
-.hub-tile::after {
-  content: ""; position: absolute; top: -4px; right: -4px; width: 12px; height: 12px; border-radius: 50%;
-  background: #d64545; border: 2px solid #fff; opacity: 0;
-}
-.hub-tile svg { width: 52%; height: 52%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hub-tile svg { width: 56%; height: 56%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .hub-label { display: grid; }
 .hub-label > * { grid-area: 1 / 1; }
-.hub-new { font-size: clamp(10.5px, 1.9vw, 14px); font-weight: 800; color: var(--hub-ink); line-height: 1.2; }
-.hub-old { font-size: clamp(9.5px, 1.6vw, 12px); font-weight: 600; color: var(--hub-muted); line-height: 1.2; opacity: 0; }
-.hub-caption { display: grid; margin-top: 10px; text-align: center; font-size: 15.5px; font-weight: 800; }
-.hub-caption > * { grid-area: 1 / 1; }
-.hub-cap-before { color: var(--hub-muted); opacity: 0; }
-.hub-cap-after { color: #1e2b7e; }
+.hub-new { font-size: clamp(10.5px, 1.8vw, 13.5px); font-weight: 800; line-height: 1.2; color: var(--hub-ink); }
+.hub-old { font-family: 'Caveat', cursive; font-size: clamp(14px, 2.4vw, 19px); font-weight: 600; line-height: 1.05; color: #5c5a52; opacity: 0; }
 
 /* ---- Timeline (HubDiagram adds .play while it is on screen) ---- */
 .hub-diagram.play .hub-node {
   animation:
     hub-node-pop .5s calc(var(--i) * 70ms) cubic-bezier(.3, 1.5, .5, 1) both,
-    hub-node-settle .9s 3.1s cubic-bezier(.16, 1, .3, 1) both;
+    hub-node-settle .9s 3.1s cubic-bezier(.16, 1, .3, 1) both,
+    hub-note-to-card .6s calc(3.5s + var(--i) * 70ms) ease both;
 }
+/* "before": a grey scrap of paper pinned to the wall; "after": a clean card */
+@keyframes hub-note-to-card {
+  from { background: #ebe8e0; border-color: transparent; border-radius: 3px; color: #7d7b72; box-shadow: 0 4px 10px rgba(40, 20, 5, .2); }
+}
+.hub-diagram.play .hub-pin { animation: hub-pin-out .35s calc(3.35s + var(--i) * 70ms) ease both; }
+@keyframes hub-pin-out { from { opacity: 1; } to { opacity: 0; translate: -50% -10px; } }
+.hub-diagram.play .hub-tile { animation: hub-tile-in .6s calc(3.5s + var(--i) * 70ms) ease both; }
+@keyframes hub-tile-in { from { background: transparent; color: #7d7b72; box-shadow: none; } }
 @keyframes hub-node-pop { from { opacity: 0; scale: .5; } }
 @keyframes hub-node-settle { from { translate: calc(-50% + var(--dx) * var(--scatter, 1)) calc(-50% + var(--dy) * var(--scatter, 1)); rotate: var(--rot); } }
-.hub-diagram.play .hub-tile { animation: hub-tile-color .6s calc(3.5s + var(--i) * 70ms) ease both; }
-@keyframes hub-tile-color { from { background: #e3e6ed; color: #8a92ab; box-shadow: none; } }
 .hub-diagram.play .hub-old { animation: hub-label-out .6s calc(3.5s + var(--i) * 70ms) ease both; }
 .hub-diagram.play .hub-new { animation: hub-label-in .6s calc(3.65s + var(--i) * 70ms) ease both; }
 @keyframes hub-label-out { from { opacity: 1; } to { opacity: 0; } }
@@ -78,26 +89,20 @@
 .hub-diagram.play .hub-core { animation: hub-core-pop .7s 3.6s cubic-bezier(.3, 1.5, .5, 1) both; }
 @keyframes hub-core-pop { from { opacity: 0; scale: .4; } }
 .hub-diagram.play .hub-gear { animation: hub-fade-in .6s 3.8s ease both, hub-spin 18s 3.8s linear infinite; }
-.hub-diagram.play .hub-cap-before { animation: hub-cap-before 4.2s ease both; }
-.hub-diagram.play .hub-cap-after { animation: hub-label-in .6s 4.1s ease both; }
 .hub-diagram.play .hub-stub,
-.hub-diagram.play .hub-cut,
-.hub-diagram.play .hub-tile::after { animation: hub-broken 3.7s calc(.35s + var(--i) * 70ms) ease both; }
+.hub-diagram.play .hub-cut { animation: hub-broken 3.7s calc(.35s + var(--i) * 70ms) ease both; }
 @keyframes hub-broken { 0% { opacity: 0; } 14% { opacity: 1; } 86% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes hub-cap-before { 0%, 85% { opacity: 1; } 100% { opacity: 0; } }
 /* between loops the stage fades out briefly, then replays */
-.hub-stage, .hub-caption { transition: opacity .45s ease; }
-.hub-diagram.hub-fading .hub-stage, .hub-diagram.hub-fading .hub-caption { opacity: 0; }
+.hub-stage { transition: opacity .45s ease; }
+.hub-diagram.hub-fading .hub-stage { opacity: 0; }
 
 @media (max-width: 600px) {
-  .hub-diagram { padding: 12px 4px 16px; }
-  .hub-node { width: 22%; gap: 4px; --scatter: .6; }
-  .hub-new { font-size: 11.5px; }
-  .hub-old { font-size: 10.5px; }
-  .hub-core { width: 30%; }
-  .hub-caption { font-size: 14px; padding: 0 8px; }
-}
-/* Narrow phones: give each node enough room for its longest single word ("Temperaturas") */
-@media (max-width: 400px) {
-  .hub-node { width: 26%; }
+  .hub-diagram { padding: 16px 4px 16px; }
+  /* Smaller cards on a slightly wider ring, so neighbours (and 3-line labels) never touch */
+  .hub-stage { width: 92%; }
+  .hub-node { width: 25%; gap: 3px; padding: 6px 3px 6px; border-radius: 10px; --scatter: .6; }
+  .hub-tile { width: 22px; }
+  .hub-new { font-size: 10px; line-height: 1.15; }
+  .hub-old { font-size: 12.5px; }
+  .hub-core { width: 28%; }
 }
