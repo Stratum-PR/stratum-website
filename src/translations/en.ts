@@ -22,6 +22,7 @@ export const enTranslations: Record<string, string> = {
   'nav.caseStudies': 'Case Studies',
   'nav.schedule': 'Schedule a Consultation',
   'nav.bookDemo': 'Schedule a Demo',
+  'nav.language': 'Language',
   'nav.faq': 'FAQ',
   
   // Home page — StoryBrand wireframe

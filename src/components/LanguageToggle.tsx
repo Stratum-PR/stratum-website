@@ -30,6 +30,37 @@ const glassWhiteMenu =
 const glassWhiteMenuItem =
   "bg-transparent focus:bg-white/20 data-[highlighted]:bg-white/20 data-[state=checked]:bg-white/20";
 
+/**
+ * Both languages as two buttons side by side, for the phone menu: one tap switches, and there is no popup that
+ * could open behind the menu panel (the dropdown's layer sits under it).
+ */
+export const LanguageButtons: React.FC = () => {
+  const { language, setLanguage, t } = useLanguage();
+  return (
+    <div role="group" aria-label={t("nav.language")} className="inline-flex rounded-xl border border-primary/15 bg-white p-1">
+      {LANGUAGES.map(({ code, flagCode, label }) => {
+        const on = language === code;
+        return (
+          <button
+            key={code}
+            type="button"
+            lang={code}
+            aria-pressed={on}
+            onClick={() => setLanguage(code)}
+            className={cn(
+              "inline-flex min-h-[44px] items-center gap-2 rounded-lg px-4 font-telegraf text-sm font-medium transition-colors",
+              on ? "bg-primary text-white" : "text-neutral-800 hover:bg-primary/5"
+            )}
+          >
+            <FlagIcon code={flagCode} className="h-5 w-7" />
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+};
+
 export const LanguageToggle: React.FC<LanguageToggleProps> = ({
   variant = "dark",
   matchHeaderCtaSize = false,

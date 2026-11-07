@@ -22,6 +22,7 @@ export const esTranslations: Record<string, string> = {
   'nav.caseStudies': 'Casos de Éxito',
   'nav.schedule': 'Agenda tu Consulta Gratis',
   'nav.bookDemo': 'Agenda un demo',
+  'nav.language': 'Idioma',
   'nav.faq': 'FAQ',
   
   // Home page — StoryBrand wireframe
