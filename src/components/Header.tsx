@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { LanguageToggle } from "./LanguageToggle";
+import { LanguageButtons, LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { HEADER_ACTION_BUTTON_CLASS } from "@/constants/headerActions";
 
@@ -132,7 +132,7 @@ export const Header = () => {
                   )
                 )}
                 <div className="pt-2 pb-1 px-4">
-                  <LanguageToggle variant="light" matchHeaderCtaSize />
+                  <LanguageButtons />
                 </div>
                 <a
                   href={CALENDLY_URL}
