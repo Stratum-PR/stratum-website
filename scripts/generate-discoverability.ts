@@ -231,7 +231,7 @@ function replaceOnce(html: string, pattern: RegExp, replacement: string, what: s
  * Many AI crawlers (GPTBot, ClaudeBot, PerplexityBot…) do not run JavaScript, so the bare SPA
  * shell looks empty to them. For each public route, write dist/<route>/index.html with that
  * route's title, description and full text (plus the FAQ and its JSON-LD on the home page)
- * inside #root. React replaces it on load in a browser. The untouched shell is kept as
+ * inside #root, visually hidden (.prerender) so browsers don't flash it. React replaces it on load. The untouched shell is kept as
  * dist/app-shell.html for every other URL (see the catch-all rewrite in vercel.json).
  */
 function writeStaticPages(baseUrl: string): void {
@@ -251,7 +251,7 @@ function writeStaticPages(baseUrl: string): void {
     const title = escapeHtml(r.title);
     const desc = escapeHtml(r.description);
 
-    let body = `<header><nav aria-label="Stratum PR">${nav}</nav></header><main><h1>${title}</h1><p>${desc}</p>`;
+    let body = `<div class="prerender"><header><nav aria-label="Stratum PR">${nav}</nav></header><main><h1>${title}</h1><p>${desc}</p>`;
     for (const sec of PAGE_CONTENT[r.path]?.sections ?? []) {
       body += `<section><h2>${escapeHtml(sec.heading)}</h2><p>${escapeHtml(sec.body)}</p></section>`;
     }
@@ -273,7 +273,7 @@ function writeStaticPages(baseUrl: string): void {
       };
       headExtra = `<script type="application/ld+json">${JSON.stringify(faqLd).replace(/</g, '\\u003c')}</script>`;
     }
-    body += '</main><footer><p>Stratum PR LLC · <a href="mailto:contact@stratumpr.com">contact@stratumpr.com</a> · <a href="/llms.txt">llms.txt</a></p></footer>';
+    body += '</main><footer><p>Stratum PR LLC · <a href="mailto:contact@stratumpr.com">contact@stratumpr.com</a> · <a href="/llms.txt">llms.txt</a></p></footer></div>';
 
     let html = shell;
     html = replaceOnce(html, /<title>[^<]*<\/title>/, `<title>${title}</title>`, '<title>');
@@ -283,6 +283,9 @@ function writeStaticPages(baseUrl: string): void {
     html = replaceOnce(html, /<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`, 'og:title');
     html = replaceOnce(html, /<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${desc}" />`, 'og:description');
     html = replaceOnce(html, /<div id="root"><\/div>/, `<div id="root">${body}</div>`, '#root');
+    // The readable copy is for crawlers that don't run JavaScript. Keep it in the HTML but visually
+    // hidden, so people don't see a flash of unstyled text before React replaces #root.
+    headExtra += '<style>.prerender{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}</style>';
     if (headExtra) html = replaceOnce(html, /<\/head>/, `${headExtra}</head>`, '</head>');
 
     const outDir = r.path === '/' ? DIST : path.join(DIST, pathSafe.replace(/^\//, ''));
