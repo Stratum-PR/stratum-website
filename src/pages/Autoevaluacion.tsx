@@ -1,17 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Download, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
 import { SELFCHECK_ROUTE } from "@/config/discoverable-routes";
 import { CALENDLY_URL, FORMSPREE_URL } from "@/constants/links";
-import { INSIGHTS, ITEMS, STEPS, TIERS, scoreAnswers, type Question } from "@/content/selfcheck";
+import { BUSINESS, ITEMS, STEPS, TIERS, itemApplies, scoreAnswers, type Question } from "@/content/selfcheck";
 import { HEARD_FROM, HEARD_FROM_AI, HEARD_FROM_OTHER_MAX } from "@/content/heardFrom";
 import { logger } from "@/lib/logger";
 import { track } from "@/lib/analytics";
+import ReportPrint from "@/components/selfcheck/ReportPrint";
 import "./passport.css";
 
-type Screen = "intro" | "step" | "contact" | "result";
+type Screen = "step" | "contact" | "result";
 
 const TIER_STYLE = {
   ready: "bg-[#E6F4EE] text-[#1b7a4c]",
@@ -22,7 +23,7 @@ const TIER_STYLE = {
 const RING_C = 2 * Math.PI * 52;
 const STAMP_ROT = [-8, 6, -4, 9];
 
-// Which step each scored item belongs to, for the passport stamps
+// Which step each scored item belongs to, for the per-area marks on the report card
 const ITEM_STEP: Record<string, number> = {};
 STEPS.forEach((s, i) =>
   s.questions.forEach((q) => {
@@ -41,16 +42,18 @@ const inputClass =
 const Autoevaluacion = () => {
   const { t, language } = useLanguage();
   const lang = language === "es" ? "es" : "en";
-  const [screen, setScreen] = useState<Screen>("intro");
+  const [screen, setScreen] = useState<Screen>("step");
   const [step, setStep] = useState(0);
   const [single, setSingle] = useState<Record<string, number>>({});
   const [multi, setMulti] = useState<Record<string, boolean>>({});
   const [contact, setContact] = useState({ name: "", business: "", email: "", phone: "", consent: false });
   // "¿Cómo nos conociste?": optional; each follow-up only counts for its own answer
   const [heard, setHeard] = useState({ from: "", ai: "", other: "" });
+  // "Otro" business type: optional free text, sent with the lead only (never to analytics)
+  const [businessOther, setBusinessOther] = useState("");
   const [sending, setSending] = useState(false);
   const [ringReady, setRingReady] = useState(false);
-  const [passNo] = useState(() => `SPR-${Math.floor(100000 + Math.random() * 900000)}`);
+  const [folio] = useState(() => `SPR-${Math.floor(100000 + Math.random() * 900000)}`);
 
   const result = useMemo(() => scoreAnswers(single, multi), [single, multi]);
   const current = STEPS[step];
@@ -59,12 +62,26 @@ const Autoevaluacion = () => {
   const contactValid =
     contact.name.trim() && contact.business.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email) && contact.consent;
 
-  // Let the score ring sweep from 0 once the passport is on screen
+  // Let the score ring sweep from 0 once the report is on screen
   useEffect(() => {
     if (screen !== "result") return setRingReady(false);
     const id = requestAnimationFrame(() => setRingReady(true));
     return () => cancelAnimationFrame(id);
   }, [screen]);
+
+  // Funnel events (only with analytics consent): which screen each visitor reaches, so PostHog can
+  // show where people leave. Step number and an English step name only; never answers or contact details.
+  useEffect(() => {
+    if (screen === "step") {
+      track("selfcheck_step_viewed", { step: String(step + 1), step_name: STEPS[step].title.en });
+    } else if (screen === "contact") {
+      track("selfcheck_step_viewed", { step: String(STEPS.length + 1), step_name: "Your details" });
+    } else if (screen === "result") {
+      track("selfcheck_report_viewed", { tier: result.tier, pct: String(result.pct) });
+    }
+    // result is read only when the report screen opens
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [screen, step]);
 
   const go = (next: Screen, nextStep = 0) => {
     setScreen(next);
@@ -76,12 +93,17 @@ const Autoevaluacion = () => {
     e.preventDefault();
     if (!contactValid || sending) return;
     setSending(true);
-    // The lead goes to the team inbox; the visitor sees the passport either way
+    // The lead goes to the team inbox; the visitor sees the report either way
     const heardFrom = heard.from || null;
     const heardFromAi = heard.from === "ai" ? heard.ai || null : null;
     const heardFromOther = heard.from === "other" ? heard.other.trim().slice(0, HEARD_FROM_OTHER_MAX) || null : null;
+    // Unscored context answers (business type, food sales): Spanish label for the lead, English for analytics
+    const pickAnswer = (id: string, l: "es" | "en") => {
+      const q = STEPS.flatMap((s) => s.questions).find((x) => x.id === id);
+      return q?.type === "pick" && single[id] != null ? q.opts[single[id]][l] : "";
+    };
     try {
-      await fetch(FORMSPREE_URL, {
+      const response = await fetch(FORMSPREE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
@@ -91,6 +113,9 @@ const Autoevaluacion = () => {
           business: contact.business,
           email: contact.email,
           phone: contact.phone,
+          business_type: pickAnswer("business", "es"),
+          business_type_other: single.business === BUSINESS.other ? businessOther.trim().slice(0, HEARD_FROM_OTHER_MAX) : "",
+          food_sales: pickAnswer("sales", "es"),
           consent: true,
           language: lang,
           score: `${result.points}/${result.max} (${result.pct}%)`,
@@ -102,8 +127,14 @@ const Autoevaluacion = () => {
           heard_from_other: heardFromOther ?? "",
         }),
       });
+      if (!response.ok) logger.error("Self-check lead was not accepted:", response.status);
       // Funnel event only, no contact details; sent only with analytics consent
-      track("selfcheck_submitted", { heard_from: heardFrom, heard_from_ai: heardFromAi });
+      track("selfcheck_submitted", {
+        heard_from: heardFrom,
+        heard_from_ai: heardFromAi,
+        business_type: pickAnswer("business", "en") || null,
+        food_sales: pickAnswer("sales", "en") || null,
+      });
     } catch (error) {
       logger.error("Self-check lead failed to send:", error);
     }
@@ -133,7 +164,7 @@ const Autoevaluacion = () => {
         {q.help && <p className="mb-4 font-telegraf text-sm text-neutral-500">{q.help[lang]}</p>}
         <div className={`space-y-2.5 ${q.help ? "" : "mt-4"}`} role={q.type === "multi" ? "group" : "radiogroup"}>
           {q.type === "multi"
-            ? q.items.map((it) => {
+            ? q.items.filter((it) => itemApplies(it.item, single)).map((it) => {
                 const on = !!multi[it.item];
                 return (
                   <button
@@ -169,17 +200,47 @@ const Autoevaluacion = () => {
                 );
               })}
         </div>
+        {q.id === "business" && single.business === BUSINESS.other && (
+          <label className="mt-4 block">
+            <span className="mb-1.5 block font-telegraf text-sm font-semibold text-[#0b1215]">{t("selfcheck.businessOther")}</span>
+            <input
+              type="text"
+              name="business_other"
+              maxLength={HEARD_FROM_OTHER_MAX}
+              value={businessOther}
+              onChange={(e) => setBusinessOther(e.target.value)}
+              className={inputClass}
+            />
+          </label>
+        )}
       </fieldset>
     );
   };
 
   const stamps = STEPS.map((s, i) => {
-    const items = Object.keys(ITEMS).filter((k) => ITEM_STEP[k] === i);
+    const items = result.applicable.filter((k) => ITEM_STEP[k] === i);
     const ok = items.filter((k) => (result.scores[k] ?? 0) === 2).length;
     return { title: s.title[lang], ok, n: items.length, done: items.length > 0 && ok === items.length };
   });
   const issued = new Date().toLocaleDateString(lang === "es" ? "es-PR" : "en-US", { day: "numeric", month: "short", year: "numeric" });
   const priorities = result.pending.filter((k) => ITEMS[k].block).length;
+  const issuedLong = new Date().toLocaleDateString(lang === "es" ? "es-PR" : "en-US", { day: "numeric", month: "long", year: "numeric" });
+
+  // "Descargar PDF": print only the report (see ReportPrint); the document title becomes the file name
+  const downloadPdf = () => {
+    const previousTitle = document.title;
+    const slug = (contact.business || "Stratum").replace(/[\/:*?"<>|]+/g, "").trim();
+    document.title = `${t("selfcheck.passport.title")} - ${slug}`;
+    document.body.classList.add("printing-report");
+    const restore = () => {
+      document.body.classList.remove("printing-report");
+      document.title = previousTitle;
+      window.removeEventListener("afterprint", restore);
+    };
+    window.addEventListener("afterprint", restore);
+    track("selfcheck_pdf_downloaded", { tier: result.tier, pct: String(result.pct) });
+    window.print();
+  };
   // Question and contact screens: smaller hero on mobile so the form starts above the fold
   const compact = screen === "step" || screen === "contact";
 
@@ -206,12 +267,10 @@ const Autoevaluacion = () => {
           </h1>
           {(screen === "step" || screen === "contact") && (
             <div className="mt-4 md:mt-8" aria-label={`${t("selfcheck.step")} ${screen === "contact" ? STEPS.length + 1 : step + 1} / ${STEPS.length + 1}`}>
-              <div className="mb-2 flex justify-between font-telegraf text-sm text-white/70">
-                <span>{screen === "contact" ? t("selfcheck.contact.stepTitle") : current.title[lang]}</span>
-                <span>
-                  {screen === "contact" ? STEPS.length + 1 : step + 1} / {STEPS.length + 1}
-                </span>
-              </div>
+              <p className="mb-2 font-telegraf text-sm text-white/70">
+                {t("selfcheck.step")} {screen === "contact" ? STEPS.length + 1 : step + 1} {t("selfcheck.of")} {STEPS.length + 1} ·{" "}
+                {screen === "contact" ? t("selfcheck.contact.stepTitle") : current.title[lang]}
+              </p>
               <div className="flex gap-1.5" aria-hidden>
                 {[...STEPS, null].map((_, i) => (
                   <span
@@ -226,38 +285,18 @@ const Autoevaluacion = () => {
       </section>
 
       <div className={`bg-[#FAFAF8] px-4 md:py-16 ${compact ? "pb-4 pt-8" : "py-12"}`}>
-        {screen === "intro" && (
-          <div className="mx-auto max-w-3xl">
-            <p className="mb-8 font-telegraf text-lg leading-relaxed text-neutral-700">{t("selfcheck.intro")}</p>
-            <h2 className="mb-4 font-telegraf text-lg font-bold text-[#0b1215]">{t("selfcheck.insights.title")}</h2>
-            <ul className="mb-3 grid gap-3 sm:grid-cols-2">
-              {INSIGHTS.map((ins) => (
-                <li key={ins.pct} className="flex items-center gap-4 rounded-2xl border border-primary/10 bg-white px-5 py-4">
-                  <span className="font-telegraf text-4xl font-bold tracking-tight text-primary">{ins.pct}%</span>
-                  <span className="font-telegraf text-base text-neutral-700">{ins.text[lang]}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mb-10 font-telegraf text-sm text-neutral-500">{t("selfcheck.insights.source")}</p>
-            <button
-              type="button"
-              onClick={() => go("step", 0)}
-              className="inline-flex min-h-[52px] items-center gap-2 rounded-2xl bg-primary px-8 font-telegraf text-lg font-semibold text-white transition-colors hover:bg-secondary"
-            >
-              {t("selfcheck.start")}
-              <ArrowRight className="h-5 w-5" aria-hidden />
-            </button>
-          </div>
-        )}
-
         {screen === "step" && (
           <div className="mx-auto max-w-3xl">
             {current.questions.map(renderQuestion)}
             <div className={NAV_BAR_CLASS}>
+              {/* No "Atrás" on the first question: the self-check starts there (keeps "Siguiente" on the right) */}
               <button
                 type="button"
-                onClick={() => (step === 0 ? go("intro") : go("step", step - 1))}
-                className="inline-flex min-h-[48px] shrink-0 items-center gap-2 rounded-2xl px-2 font-telegraf font-semibold text-primary hover:bg-primary/5 md:px-4"
+                onClick={() => go("step", step - 1)}
+                disabled={step === 0}
+                aria-hidden={step === 0}
+                tabIndex={step === 0 ? -1 : undefined}
+                className={`inline-flex min-h-[48px] shrink-0 items-center gap-2 rounded-2xl px-2 font-telegraf font-semibold text-primary hover:bg-primary/5 md:px-4 ${step === 0 ? "invisible" : ""}`}
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden />
                 {t("selfcheck.back")}
@@ -399,7 +438,7 @@ const Autoevaluacion = () => {
                     <div className="text-right">
                       <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#E6E09E]">{t("selfcheck.passport.title")}</p>
                       <p className="text-xs text-white/60">
-                        {t("selfcheck.passport.no")} {passNo}
+                        {t("selfcheck.passport.no")} {folio}
                       </p>
                     </div>
                   </div>
@@ -484,8 +523,29 @@ const Autoevaluacion = () => {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-6 border-t border-primary/10 pt-4 text-center text-xs text-neutral-500">{t("selfcheck.passport.basis")}</p>
                 </div>
               </article>
+              <button
+                type="button"
+                onClick={downloadPdf}
+                className="mt-4 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl border border-primary/25 bg-white px-6 font-telegraf font-semibold text-primary transition-colors hover:bg-primary/5"
+              >
+                <Download className="h-5 w-5" aria-hidden />
+                {t("selfcheck.pdf.download")}
+              </button>
+              <ReportPrint
+                lang={lang}
+                t={t}
+                business={contact.business}
+                name={contact.name}
+                folio={folio}
+                issuedLong={issuedLong}
+                issuedShort={issued}
+                result={result}
+                priorities={priorities}
+                stamps={stamps}
+              />
             </aside>
 
             <div>
@@ -544,7 +604,7 @@ const Autoevaluacion = () => {
                     onClick={() => {
                       setSingle({});
                       setMulti({});
-                      go("intro");
+                      go("step", 0);
                     }}
                     className="inline-flex min-h-[48px] items-center rounded-2xl border border-white/40 px-7 font-telegraf font-semibold text-white hover:bg-white/10"
                   >

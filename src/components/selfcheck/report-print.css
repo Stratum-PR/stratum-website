@@ -1,0 +1,278 @@
+/* Self-check report for "Descargar PDF" (window.print). Hidden on screen. */
+.report-print {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: letter;
+    margin: 0.55in 0.6in 0.75in;
+  }
+
+  /* Print only the report while body.printing-report is set */
+  body.printing-report > *:not(.report-print) {
+    display: none !important;
+  }
+  body.printing-report {
+    background: #fff !important;
+  }
+  body.printing-report .report-print {
+    display: block;
+    color: #0b1215;
+    font-size: 13px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+.report-print a {
+  color: #266ab2;
+  text-decoration: none;
+}
+
+.rp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 3px solid #1e2b7e;
+  padding-bottom: 14px;
+}
+.rp-logo {
+  height: 28px;
+  width: auto;
+}
+.rp-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 11px;
+  color: #525252;
+  line-height: 1.6;
+}
+.rp-meta b {
+  color: #1e2b7e;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.rp-business {
+  margin: 22px 0 2px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1e2b7e;
+}
+.rp-sub {
+  color: #525252;
+  font-size: 13px;
+}
+
+.rp-hero {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: #f3f5fa;
+  break-inside: avoid;
+}
+.rp-ring {
+  position: relative;
+  flex: none;
+  width: 130px;
+  height: 130px;
+}
+.rp-ring > div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.rp-ring b {
+  font-size: 30px;
+  color: #1e2b7e;
+}
+.rp-ring small {
+  font-size: 11px;
+  color: #737373;
+}
+.rp-tier {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.rp-tier.is-ready {
+  background: #e6f4ee;
+  color: #1b7a4c;
+}
+.rp-tier.is-close {
+  background: #fcf1df;
+  color: #9a5b00;
+}
+.rp-tier.is-gaps {
+  background: #fdecea;
+  color: #b3261e;
+}
+.rp-tier-body {
+  margin-top: 6px;
+  color: #404040;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.rp-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+.rp-stats div {
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+}
+.rp-stats small {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #737373;
+}
+.rp-stats b {
+  font-size: 15px;
+}
+
+.rp-h2 {
+  margin: 24px 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #737373;
+  break-after: avoid;
+}
+
+.rp-seals {
+  display: flex;
+  justify-content: space-between;
+  break-inside: avoid;
+}
+.rp-seal {
+  width: 24%;
+  text-align: center;
+}
+.rp-seal span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 6px;
+  border: 2px dashed #b6bcd6;
+  border-radius: 50%;
+  font-weight: 700;
+  color: #1e2b7e;
+}
+.rp-seal.is-done span {
+  border: 2px solid #1b7a4c;
+  background: #e6f4ee;
+  color: #1b7a4c;
+}
+.rp-seal small {
+  font-size: 11px;
+  font-weight: 700;
+  color: #404040;
+}
+
+.rp-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rp-list li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid #e5e7eb;
+  break-inside: avoid;
+}
+.rp-num {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1e2b7e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.rp-item-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+.rp-badge {
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #fdecea;
+  color: #b3261e;
+  font-size: 10.5px;
+}
+.rp-item-todo {
+  margin-top: 2px;
+  color: #404040;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.rp-src {
+  margin-top: 3px;
+  font-size: 10.5px;
+  color: #525252;
+  word-break: break-all;
+}
+.rp-work {
+  margin-top: 5px;
+  font-size: 10.5px;
+  color: #737373;
+}
+
+.rp-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: #1e2b7e;
+  color: #fff;
+  break-inside: avoid;
+}
+.rp-cta b {
+  font-size: 16px;
+}
+.rp-cta p {
+  margin-top: 3px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.report-print .rp-cta a {
+  flex: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #e6e09e;
+  color: #1e2b7e;
+  font-size: 12px;
+  font-weight: 700;
+}

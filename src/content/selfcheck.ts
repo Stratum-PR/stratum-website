@@ -3,6 +3,11 @@
  * self-check (LandingPage, branch archivo/landing-fsqms-2026-10): steps of questions,
  * each scored item worth 0–2 points, a tier and a to-do list with official sources.
  * Edit questions here; the page renders whatever this file defines.
+ *
+ * Reviewed November 7, 2026 against 21 CFR 1 and 117, FDA registration/attestation pages,
+ * FSPCA and the SQF Food Safety Code. Keep wording evergreen (no hard-coded years): the FDA
+ * registration renewal and qualified-facility attestation run Oct 1–Dec 31 of even years.
+ * Items that don't apply to the business (see itemApplies) are hidden and left out of the score.
  */
 
 export interface Bi {
@@ -10,7 +15,7 @@ export interface Bi {
   en: string;
 }
 
-/** A scored requirement. block: missing it keeps the result out of "ready". */
+/** A scored requirement. block: missing it keeps the result out of the top tier. */
 export interface SelfcheckItem {
   block?: boolean;
   title: Bi;
@@ -30,6 +35,10 @@ export interface Step {
   questions: Question[];
 }
 
+/** Answer indexes of the "business" and "sales" pick questions (keep in sync with STEPS). */
+export const BUSINESS = { manufacturing: 0, farm: 1, distribution: 2, copacker: 3, retail: 4, other: 5 } as const;
+export const SALES_UNDER_1M = 0;
+
 export const ITEMS: Record<string, SelfcheckItem> = {
   cert: {
     title: { es: 'Certificación GFSI', en: 'GFSI certification' },
@@ -43,36 +52,36 @@ export const ITEMS: Record<string, SelfcheckItem> = {
   records: {
     title: { es: 'Registros confiables', en: 'Reliable records' },
     todo: {
-      es: 'Cada registro debe hacerse en el momento, con fecha, hora, firma o iniciales y el lote cuando aplique.',
-      en: 'Every record must be made at the time, with date, time, signature or initials and the lot where it applies.',
+      es: 'Llena cada registro en el momento, con valores reales, fecha (y hora cuando importe), iniciales o firma y el lote cuando aplique.',
+      en: 'Fill in each record at the time, with actual values, the date (and time when it matters), initials or signature, and the lot where it applies.',
     },
     url: 'https://www.law.cornell.edu/cfr/text/21/117.305',
     faq: 'registro-valido',
   },
   find: {
-    block: true,
     title: { es: 'Encontrar registros rápido', en: 'Finding records fast' },
     todo: {
-      es: 'Organiza los registros para encontrar cualquiera en minutos. Es lo primero que nota un auditor o inspector.',
-      en: 'Organize records so you can find any one in minutes. It is the first thing an auditor or inspector notices.',
+      es: 'Organiza los registros para encontrar cualquiera en minutos. Un auditor lo nota enseguida, y la FDA puede pedir los que guardas fuera de la planta en 24 horas.',
+      en: 'Organize records so you can find any one in minutes. An auditor notices right away, and FDA can ask for records kept offsite within 24 hours.',
     },
+    url: 'https://www.law.cornell.edu/cfr/text/21/117.315',
     faq: 'documentos-auditor',
   },
   capa: {
     title: { es: 'Acciones correctivas con causa raíz', en: 'Corrective actions with root cause' },
     todo: {
-      es: 'Documenta cada acción correctiva con su causa raíz y la verificación de que funcionó.',
-      en: 'Document every corrective action with its root cause and the check that it worked.',
+      es: 'Documenta cada acción correctiva: qué pasó, la causa raíz, qué hiciste con el producto y cómo comprobaste que funcionó.',
+      en: 'Document each corrective action: what happened, the root cause, what you did with the product, and how you checked it worked.',
     },
-    url: 'https://www.law.cornell.edu/cfr/text/21/117.190',
+    url: 'https://www.law.cornell.edu/cfr/text/21/117.150',
     faq: 'causa-raiz',
   },
   fda: {
     block: true,
     title: { es: 'Registro de la planta con la FDA', en: 'FDA facility registration' },
     todo: {
-      es: 'Registra o renueva tu planta en el portal de la FDA. La renovación bienal está abierta del 1 de octubre al 31 de diciembre de 2026.',
-      en: 'Register or renew your facility on the FDA portal. The biennial renewal runs October 1 to December 31, 2026.',
+      es: 'Si tu planta fabrica, empaca o almacena alimentos para EE. UU., regístrala con la FDA y renueva cada año par entre el 1 de octubre y el 31 de diciembre. Las fincas y los negocios que venden mayormente directo al consumidor no se registran.',
+      en: "If your plant makes, packs or holds food for the US, register it with FDA and renew it in every even-numbered year between October 1 and December 31. Farms and businesses that sell mostly direct to consumers don't register.",
     },
     url: 'https://www.fda.gov/food/online-registration-food-facilities/food-facility-registration-user-guide-biennial-registration-renewal',
   },
@@ -80,25 +89,87 @@ export const ITEMS: Record<string, SelfcheckItem> = {
     block: true,
     title: { es: 'Plan de inocuidad (PCQI)', en: 'Food safety plan (PCQI)' },
     todo: {
-      es: 'El plan de inocuidad lo prepara o supervisa un PCQI. El curso de Controles Preventivos de la FSPCA es la vía más común.',
-      en: 'The food safety plan is prepared or overseen by a PCQI. The FSPCA Preventive Controls course is the most common route.',
+      es: 'Si tu negocio no es muy pequeño, necesitas un plan de inocuidad escrito, preparado o supervisado por un PCQI. El curso de la FSPCA es la vía más común, pero no la única.',
+      en: "Unless you're a very small business, you need a written food safety plan prepared or overseen by a PCQI. The FSPCA course is the most common route, but not the only one.",
     },
-    url: 'https://www.fspca.net',
+    url: 'https://www.fspca.net/pchf-pcqi-v2-0',
     faq: 'pchf',
+  },
+  attest: {
+    block: true,
+    title: { es: 'Atestación de instalación calificada', en: 'Qualified facility attestation' },
+    todo: {
+      es: 'Si promedias menos de ~$1 millón al año en ventas de alimentos (ajustado por inflación), eres instalación calificada: no necesitas el plan completo, pero debes presentar la atestación (Form FDA 3942a) cada año par entre octubre y diciembre, junto con la renovación del registro.',
+      en: "If you average under ~$1 million a year in food sales (inflation-adjusted), you're a qualified facility: you don't need the full plan, but you must file the attestation (Form FDA 3942a) every even-numbered year, October to December, with your registration renewal.",
+    },
+    url: 'https://www.fda.gov/food/registration-food-facilities-and-other-submissions/qualified-facility-attestation',
+    faq: 'pchf',
+  },
+  allergens: {
+    block: true,
+    title: { es: 'Control de alérgenos', en: 'Allergen control' },
+    todo: {
+      es: 'Verifica que cada etiqueta declare los 9 alérgenos principales que contiene. Si manejas alérgenos, evita el contacto cruzado y documenta cómo lo controlas.',
+      en: 'Check that every label declares any of the 9 major allergens it contains. If you handle allergens, prevent cross-contact and document how you control it.',
+    },
+    url: 'https://www.fda.gov/food/food-allergensgluten-free-guidance-documents-regulatory-information/food-allergen-labeling-and-consumer-protection-act-2004-falcpa',
+    faq: 'alergenos-etiqueta',
+  },
+  sanitation: {
+    title: { es: 'Limpieza y sanitación con registros', en: 'Cleaning and sanitation with records' },
+    todo: {
+      es: 'Escribe tus procedimientos de limpieza y sanitación, incluidas las superficies en contacto con alimentos, y registra que se hicieron. SQF y la mayoría de los clientes lo exigen.',
+      en: 'Write your cleaning and sanitation procedures, including food-contact surfaces, and record that they were done. SQF and most buyers require it.',
+    },
+    url: 'https://www.law.cornell.edu/cfr/text/21/117.35',
+  },
+  training: {
+    title: { es: 'Capacitación en higiene', en: 'Hygiene training' },
+    todo: {
+      es: 'Capacita en higiene e inocuidad a todo el personal que maneja alimentos, incluidos supervisores y temporeros, según su trabajo, y guarda los registros.',
+      en: 'Train all staff who handle food, including supervisors and temporary workers, in hygiene and food safety as fits their job, and keep the records.',
+    },
+    url: 'https://www.law.cornell.edu/cfr/text/21/117.4',
+    faq: 'que-registros',
+  },
+  pests: {
+    title: { es: 'Control de plagas', en: 'Pest control' },
+    todo: {
+      es: 'Mantén un programa de control de plagas, propio o contratado, y guarda los informes de servicio y el mapa de estaciones.',
+      en: 'Keep a pest control program, in-house or contracted, and keep the service reports and the bait station map.',
+    },
+    url: 'https://www.law.cornell.edu/cfr/text/21/117.35',
+  },
+  calibration: {
+    title: { es: 'Calibración de instrumentos', en: 'Instrument calibration' },
+    todo: {
+      es: 'Calibra o verifica la exactitud de termómetros y demás instrumentos con una frecuencia definida, y guarda los registros.',
+      en: 'Calibrate or check the accuracy of thermometers and other instruments on a set schedule, and keep the records.',
+    },
+    url: 'https://www.law.cornell.edu/cfr/text/21/117.165',
+  },
+  internalAudit: {
+    title: { es: 'Auditorías internas', en: 'Internal audits' },
+    todo: {
+      es: 'Haz auditorías internas por lo menos una vez al año para comprobar que la planta sigue sus procedimientos, y corrige lo que encuentres. SQF y BRCGS las exigen.',
+      en: 'Run internal audits at least once a year to check that the plant follows its procedures, and fix what you find. SQF and BRCGS require them.',
+    },
+    url: 'https://www.sqfi.com/the-sqf-code/choose-your-code/library-of-codes/food-manufacturing',
+    faq: 'tipos-auditoria',
   },
   recall: {
     title: { es: 'Plan de retiro y simulacro', en: 'Recall plan and mock recall' },
     todo: {
-      es: 'Escribe tu plan de retiro y haz un simulacro rastreando un lote real de principio a fin.',
-      en: 'Write your recall plan and run a mock recall tracing a real lot end to end.',
+      es: 'Escribe tu plan de retiro y pruébalo por lo menos una vez al año rastreando un lote real de principio a fin.',
+      en: 'Write your recall plan and test it at least once a year by tracing a real lot end to end.',
     },
-    url: 'https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-preventive-controls-human-food',
+    url: 'https://www.law.cornell.edu/cfr/text/21/117.139',
   },
   sup: {
-    title: { es: 'Documentos de suplidores', en: 'Supplier documents' },
+    title: { es: 'Suplidores aprobados', en: 'Approved suppliers' },
     todo: {
-      es: 'Pide certificados y COA a cada suplidor, y aprueba y verifica a los que controlan peligros de tus materias primas.',
-      en: 'Ask each supplier for certificates and COAs, and approve and verify those that control hazards in your raw materials.',
+      es: 'Ten una lista de suplidores aprobados con especificaciones. Para los que controlan un peligro de tu materia prima, verifica según el riesgo (auditoría, pruebas o revisión de registros, como los COA).',
+      en: 'Keep an approved supplier list with specifications. For suppliers that control a hazard in your ingredients, verify them by risk (audit, testing or record review, such as COAs).',
     },
     url: 'https://www.law.cornell.edu/cfr/text/21/117.410',
     faq: 'aprobar-suplidores',
@@ -107,10 +178,10 @@ export const ITEMS: Record<string, SelfcheckItem> = {
     block: true,
     title: { es: 'Rastreo de lotes', en: 'Lot tracing' },
     todo: {
-      es: 'Registra qué lote recibiste de quién y a quién enviaste cada lote. La regla FSMA 204 pide entregar esos datos a la FDA en 24 horas.',
-      en: 'Record which lot came from whom and where each lot went. The FSMA 204 rule asks for that data to reach the FDA within 24 hours.',
+      es: 'Anota de quién recibiste cada lote y a quién lo enviaste. La ley exige estos registros y la FDA los puede pedir en 24 horas. Si haces alimentos de la Lista de Trazabilidad, la regla FSMA 204 pide más datos.',
+      en: 'Record who supplied each lot and who you shipped it to. The law requires these records, and FDA can request them within 24 hours. If you make Food Traceability List foods, the FSMA 204 rule requires more data.',
     },
-    url: 'https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods',
+    url: 'https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-1/subpart-J',
     faq: 'fsma204',
   },
   exp: {
@@ -135,7 +206,23 @@ export const STEPS: Step[] = [
           { es: 'Agricultura, finca o pesca', en: 'Farming, agriculture or fishing' },
           { es: 'Distribución o importación', en: 'Distribution or import' },
           { es: 'Co-packer: manufacturo para otras marcas', en: 'Co-packer: I manufacture for other brands' },
+          { es: 'Panadería o tienda que vende mayormente al consumidor', en: 'Bakery or shop selling mostly to consumers' },
           { es: 'Otro', en: 'Other' },
+        ],
+      },
+      {
+        // Size of the business. Under ~$1M a year in food sales (with affiliates, inflation-adjusted)
+        // is FDA's "very small business" cut-off for qualified facilities (21 CFR 117.3).
+        id: 'sales',
+        type: 'pick',
+        q: { es: '¿Cuánto venden en alimentos al año, aproximadamente?', en: 'About how much do you sell in food per year?' },
+        help: { es: 'Incluye empresas afiliadas. Nos ayuda a mostrarte lo que aplica a tu tamaño.', en: 'Include affiliated companies. It helps us show what applies to your size.' },
+        opts: [
+          { es: 'Menos de $1 millón', en: 'Under $1 million' },
+          { es: 'Entre $1 y $5 millones', en: '$1 to $5 million' },
+          { es: 'Entre $5 y $20 millones', en: '$5 to $20 million' },
+          { es: 'Más de $20 millones', en: 'Over $20 million' },
+          { es: 'Prefiero no decir', en: 'Prefer not to say' },
         ],
       },
       {
@@ -161,7 +248,7 @@ export const STEPS: Step[] = [
         q: { es: '¿Cómo llevan los registros de inocuidad, como temperaturas y limpieza?', en: 'How do you keep food safety records, such as temperatures and cleaning?' },
         opts: [
           { label: { es: 'En un sistema digital, en el momento', en: 'In a digital system, at the time' }, score: 2 },
-          { label: { es: 'En papel o Excel, siempre completos', en: 'On paper or Excel, always complete' }, score: 1 },
+          { label: { es: 'En papel o Excel, siempre completos y en el momento', en: 'On paper or Excel, always complete and at the time' }, score: 2 },
           { label: { es: 'A veces se llenan después o quedan incompletos', en: 'Sometimes filled in later or left incomplete' }, score: 0 },
         ],
       },
@@ -201,15 +288,15 @@ export const STEPS: Step[] = [
         q: { es: '¿Cuáles de estos tienes?', en: 'Which of these do you have?' },
         help: { es: 'Marca todos los que apliquen.', en: 'Select all that apply.' },
         items: [
-          { item: 'fda', label: { es: 'Registro de la planta con la FDA, al día', en: 'FDA facility registration, current' } },
-          {
-            item: 'pcqi',
-            label: { es: 'Plan de inocuidad preparado por un PCQI', en: 'Food safety plan prepared by a PCQI' },
-            sub: {
-              es: 'Individuo Calificado en Controles Preventivos: completó el curso de la FSPCA o tiene experiencia equivalente.',
-              en: 'Preventive Controls Qualified Individual: completed the FSPCA course or has equivalent experience.',
-            },
-          },
+          { item: 'fda', label: { es: 'Registro con la FDA, renovado en el último periodo', en: 'FDA registration, renewed in the latest period' } },
+          { item: 'pcqi', label: { es: 'Plan de inocuidad preparado por un PCQI', en: 'Food safety plan prepared by a PCQI' } },
+          { item: 'attest', label: { es: 'Atestación de instalación calificada a la FDA (Form 3942a), al día', en: 'Qualified facility attestation to FDA (Form 3942a), current' } },
+          { item: 'allergens', label: { es: 'Etiquetas con alérgenos verificadas y control de contacto cruzado (o no manejo alérgenos)', en: "Allergen labels checked and cross-contact controlled (or I don't handle allergens)" } },
+          { item: 'sanitation', label: { es: 'Programa de limpieza y sanitación, con registros', en: 'Cleaning and sanitation program, with records' } },
+          { item: 'training', label: { es: 'Capacitación del personal en higiene, con registros', en: 'Staff hygiene training, with records' } },
+          { item: 'pests', label: { es: 'Control de plagas, propio o contratado', en: 'Pest control, in-house or contracted' } },
+          { item: 'calibration', label: { es: 'Termómetros e instrumentos calibrados o verificados, con registros', en: 'Thermometers and instruments calibrated or checked, with records' } },
+          { item: 'internalAudit', label: { es: 'Auditorías internas, por lo menos una vez al año', en: 'Internal audits, at least once a year' } },
         ],
       },
       {
@@ -218,7 +305,7 @@ export const STEPS: Step[] = [
         item: 'recall',
         q: { es: '¿Cómo está tu plan de retiro (recall)?', en: 'Where is your recall plan?' },
         opts: [
-          { label: { es: 'Tengo plan e hice un simulacro este año', en: 'I have a plan and ran a mock recall this year' }, score: 2 },
+          { label: { es: 'Tengo plan e hice un simulacro en los últimos 12 meses', en: 'I have a plan and ran a mock recall in the last 12 months' }, score: 2 },
           { label: { es: 'Tengo plan, sin simulacro reciente', en: 'I have a plan, no recent mock recall' }, score: 1 },
           { label: { es: 'No tengo plan', en: 'No plan' }, score: 0 },
         ],
@@ -232,11 +319,14 @@ export const STEPS: Step[] = [
         id: 'sup',
         type: 'single',
         item: 'sup',
-        q: { es: '¿Cuántos de tus suplidores te han dado certificados y COA vigentes?', en: 'How many of your suppliers have given you current certificates and COAs?' },
+        q: {
+          es: '¿Tienes una lista de suplidores aprobados y sabes cuáles controlan un peligro por ti?',
+          en: 'Do you have an approved supplier list and know which suppliers control a hazard for you?',
+        },
         opts: [
-          { label: { es: 'Todos', en: 'All of them' }, score: 2 },
-          { label: { es: 'La mayoría', en: 'Most' }, score: 1 },
-          { label: { es: 'Pocos, ninguno o no sé', en: 'Few, none or not sure' }, score: 0 },
+          { label: { es: 'Sí, y los verifico y lo documento', en: 'Yes, and I verify and document them' }, score: 2 },
+          { label: { es: 'Tengo la lista, sin verificación', en: 'I have the list, no verification' }, score: 1 },
+          { label: { es: 'No o no sé', en: 'No or not sure' }, score: 0 },
         ],
       },
       {
@@ -268,24 +358,40 @@ export const STEPS: Step[] = [
   },
 ];
 
+/**
+ * Whether an item applies, from the business type and food sales answers.
+ * - Farms and businesses selling mostly to consumers (retail food establishments) don't register
+ *   with FDA and aren't covered by the preventive controls rule (21 CFR 1.226, 117).
+ * - Distributors/importers holding packaged food: no PCQI plan (117.7); allergen control is the maker's.
+ * - Under ~$1M in food sales: qualified facility, so the attestation replaces the PCQI plan (117.5(a)).
+ *   "Prefer not to say" or no answer keeps the PCQI plan.
+ */
+export function itemApplies(item: string, single: Record<string, number>): boolean {
+  const business = single.business;
+  const small = single.sales === SALES_UNDER_1M;
+  const noRegistration = business === BUSINESS.farm || business === BUSINESS.retail;
+  if (item === 'fda') return !noRegistration;
+  if (item === 'pcqi') return !noRegistration && business !== BUSINESS.distribution && !small;
+  if (item === 'attest') return !noRegistration && business !== BUSINESS.distribution && small;
+  if (item === 'allergens') return business !== BUSINESS.distribution;
+  return true;
+}
+
 export const TIERS = {
-  ready: { label: { es: 'Lista para auditoría', en: 'Audit ready' }, body: { es: 'Estás bien posicionado. Mantén todo al día.', en: "You're well positioned. Keep everything current." } },
+  ready: {
+    label: { es: 'Bien encaminada', en: 'On track' },
+    body: {
+      es: 'Estás bien posicionado. Mantén todo al día; una autoevaluación no sustituye una auditoría.',
+      en: "You're well positioned. Keep everything current; a self-check doesn't replace an audit.",
+    },
+  },
   close: { label: { es: 'Cerca', en: 'Close' }, body: { es: 'Te faltan puntos clave. Empieza por los marcados como prioridad.', en: "You're missing key points. Start with the ones marked priority." } },
   gaps: { label: { es: 'Brechas importantes', en: 'Significant gaps' }, body: { es: 'Tienes trabajo por delante, pero es alcanzable. Empieza por la lista de abajo.', en: "You have work ahead, but it's doable. Start with the list below." } },
 } as const;
 
 export type Tier = keyof typeof TIERS;
 
-/** What we heard in Stratum PR's NSF I-Corps customer-discovery interviews. */
-export const INSIGHTS: { pct: number; text: Bi }[] = [
-  { pct: 81, text: { es: 'No están preparados para una auditoría', en: "Aren't ready for an audit" } },
-  { pct: 73, text: { es: 'No pueden rastrear un lote rápidamente', en: "Can't trace a lot quickly" } },
-  { pct: 64, text: { es: 'Manejan operaciones en Excel o papel', en: 'Run operations on Excel or paper' } },
-  { pct: 52, text: { es: 'No tienen operaciones estandarizadas', en: "Don't have standardized operations" } },
-  { pct: 37, text: { es: 'Sienten que no pueden escalar', en: "Feel they can't scale" } },
-];
-
-/** Items scored 0–2 from the answers so far, and the resulting tier. */
+/** Items scored 0–2 from the answers so far, and the resulting tier. Items that don't apply are left out. */
 export function scoreAnswers(single: Record<string, number>, multi: Record<string, boolean>) {
   const scores: Record<string, number> = {};
   for (const step of STEPS) {
@@ -294,12 +400,12 @@ export function scoreAnswers(single: Record<string, number>, multi: Record<strin
       if (q.type === 'multi') for (const it of q.items) scores[it.item] = multi[it.item] ? 2 : 0;
     }
   }
-  const keys = Object.keys(ITEMS);
+  const keys = Object.keys(ITEMS).filter((k) => itemApplies(k, single));
   const points = keys.reduce((sum, k) => sum + (scores[k] ?? 0), 0);
   const max = keys.length * 2;
   const pct = Math.round((points * 100) / max);
   const blockers = keys.filter((k) => ITEMS[k].block && (scores[k] ?? 0) < 2).length;
   const tier: Tier = pct < 50 ? 'gaps' : pct >= 80 && blockers === 0 ? 'ready' : 'close';
   const pending = keys.filter((k) => (scores[k] ?? 0) < 2).sort((a, b) => Number(!!ITEMS[b].block) - Number(!!ITEMS[a].block));
-  return { scores, points, max, pct, blockers, tier, pending };
+  return { scores, points, max, pct, blockers, tier, pending, applicable: keys };
 }

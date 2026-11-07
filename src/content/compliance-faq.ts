@@ -5,11 +5,11 @@
  * Every answer states only what the linked official sources say. AI assistants quote this
  * page, so no invented figures, no clause numbers we could not check against the official
  * text (BRCGS), and dates stated exactly as the source states them. Sources verified
- * November 2, 2026; re-check dates (SQF Edition 10, FSMA 204) before editing.
+ * November 7, 2026; re-check dates (SQF Edition 10, FSMA 204) before editing.
  */
 import { HOME_FAQ } from './home-faq';
 
-export const FAQ_VERIFIED_ON = { es: '2 de noviembre de 2026', en: 'November 2, 2026' };
+export const FAQ_VERIFIED_ON = { es: '7 de noviembre de 2026', en: 'November 7, 2026' };
 
 export interface FaqSource {
   label: string;
@@ -53,7 +53,12 @@ const SRC = {
   walmart: { label: 'Walmart: Food Safety Requirements', url: 'https://enablement.walmart.com/content/food-safety/en_us/food-safety-requirements' },
   walmartPrivate: { label: 'Walmart: marca privada (Private Brand)', url: 'https://enablement.walmart.com/content/food-safety/en_us/food-safety-requirements/private-branded-products/u-s--produced-and-supplier-imported.html' },
   walmartNational: { label: 'Walmart: marca nacional (National Brand)', url: 'https://enablement.walmart.com/content/food-safety/en_us/food-safety-requirements/national-branded-products/all-other-commodities.html' },
-  saludPR: { label: 'Departamento de Salud de PR: Salud Ambiental', url: 'https://www.salud.pr.gov/CMS/185' },
+  cfr117_4: { label: "21 CFR 117.4 (capacitación)", url: "https://www.law.cornell.edu/cfr/text/21/117.4" },
+  allergenFaq: { label: "FDA: Food Allergen Labeling Guidance FAQ (2025)", url: "https://www.fda.gov/food/food-allergensgluten-free-guidance-documents-regulatory-information/frequently-asked-questions-food-allergen-labeling-guidance-industry" },
+  sqfCa: { label: "SQFI: cómo completar acciones correctivas", url: "https://www.sqfi.com/get-certified/help-center/view/how-do-i-complete-my-corrective-actions-in-the-sqf-assessment-database" },
+  costcoV3: { label: "Costco (Azzule): Audit Expectations v3.0", url: "https://azzule.com/wp-content/uploads/2025/08/Food-Safety-Quality-Audit-Expectations-V3.pdf" },
+  costcoV3Es: { label: "Costco (Azzule): Audit Expectations v3.0 en español", url: "https://azzule.com/wp-content/uploads/2025/08/Food-Safety-Quality-Audit-Expectations-V3-Spanish-Approved_20280827.pdf" },
+  costcoCcof: { label: "CCOF: Costco actualiza sus expectativas de auditoría (2025)", url: "https://www.ccof.org/news/costco-releases-updated-food-safety-audit-expectations/" },
 } satisfies Record<string, FaqSource>;
 
 export const FAQ_CATEGORIES: FaqCategory[] = [
@@ -67,26 +72,26 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué registros de inocuidad debe guardar una planta de alimentos?',
           answer:
-            'Bajo la regla de Controles Preventivos de la FDA (21 CFR 117), una planta guarda su plan de inocuidad y los registros que demuestran que funciona: monitoreo de los controles preventivos (por ejemplo, temperaturas), acciones correctivas, verificación (validación, calibración de instrumentos, pruebas de producto, monitoreo ambiental y revisión de registros), el programa de cadena de suministro y la capacitación del PCQI. Las certificaciones como SQF y BRCGS piden registros parecidos y añaden otros, como control de documentos, auditorías internas y manejo de quejas.',
+            "Bajo la regla de Controles Preventivos de la FDA (21 CFR 117), una planta guarda su plan de inocuidad y los registros que demuestran que funciona: monitoreo de los controles preventivos (por ejemplo, temperaturas), acciones correctivas, verificación (validación, calibración de instrumentos, pruebas de producto, monitoreo ambiental y revisión de registros), el programa de cadena de suministro cuando aplica, y la capacitación del PCQI (la persona calificada en controles preventivos), del auditor calificado y de los empleados en higiene e inocuidad. Las certificaciones como SQF y BRCGS piden registros parecidos y añaden otros, como control de documentos, auditorías internas y manejo de quejas.",
         },
         en: {
           question: 'What food safety records does a food plant need to keep?',
           answer:
-            "Under the FDA Preventive Controls rule (21 CFR 117), a plant keeps its food safety plan and the records that show it works: monitoring of preventive controls (for example, temperatures), corrective actions, verification (validation, instrument calibration, product testing, environmental monitoring and records review), the supply-chain program and PCQI training. Certifications such as SQF and BRCGS ask for similar records and add others, such as document control, internal audits and complaint handling.",
+            "Under the FDA Preventive Controls rule (21 CFR 117), a plant keeps its food safety plan and the records that show it works: monitoring of preventive controls (for example, temperatures), corrective actions, verification (validation, instrument calibration, product testing, environmental monitoring and records review), the supply-chain program where it applies, and training records for the PCQI (preventive controls qualified individual), the qualified auditor and employees trained in food hygiene and safety. Certifications such as SQF and BRCGS ask for similar records and add others, such as document control, internal audits and complaint handling.",
         },
-        sources: [SRC.cfr117_190, SRC.pchf, SRC.sqfCode],
+        sources: [SRC.cfr117_190, SRC.cfr117_4, SRC.pchf, SRC.sqfCode],
       },
       {
         id: 'registro-valido',
         es: {
           question: '¿Qué debe tener un registro para que sea válido ante la FDA?',
           answer:
-            'Según 21 CFR 117.305, los registros pueden ser originales, copias fieles o electrónicos; deben anotar los valores y observaciones reales; ser precisos, indelebles y legibles; hacerse en el momento en que ocurre la actividad; e incluir el nombre y lugar de la planta, la fecha y hora, la firma o iniciales de quien hizo la actividad y, cuando aplique, el producto y el código de lote.',
+            "Según 21 CFR 117.305, los registros pueden ser originales, copias fieles o electrónicos; deben anotar los valores y observaciones reales; ser precisos, indelebles y legibles; hacerse en el momento en que ocurre la actividad; y ser tan detallados como haga falta para mostrar lo que se hizo. Deben incluir el nombre de la planta (y su ubicación cuando sea necesario), la fecha (y la hora cuando aplique), la firma o iniciales de quien hizo la actividad y, cuando aplique, el producto y el código de lote.",
         },
         en: {
           question: 'What makes a record valid for the FDA?',
           answer:
-            'Under 21 CFR 117.305, records may be originals, true copies or electronic; they must capture the actual values and observations; be accurate, indelible and legible; be created when the activity happens; and include the facility name and location, the date and time, the signature or initials of the person who did the activity and, where appropriate, the product and lot code.',
+            "Under 21 CFR 117.305, records may be originals, true copies or electronic; they must capture the actual values and observations; be accurate, indelible and legible; be created when the activity happens; and be as detailed as needed to show what was done. They must include the facility name (and location when necessary), the date (and time when appropriate), the signature or initials of the person who did the activity and, where appropriate, the product and lot code.",
         },
         sources: [SRC.cfr117_305],
       },
@@ -95,12 +100,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Por cuánto tiempo hay que guardar los registros?',
           answer:
-            'La FDA exige guardarlos por lo menos 2 años después de creados (21 CFR 117.315). Pueden guardarse fuera de la planta si se pueden recuperar en 24 horas, excepto el plan de inocuidad, que debe estar en la planta. SQF pide fijar la retención según los requisitos del cliente, legales y regulatorios.',
+            "La FDA exige guardarlos por lo menos 2 años después de creados (21 CFR 117.315). Los registros que muestran que un equipo o proceso es adecuado, como las validaciones, se guardan 2 años después de dejar de usar ese equipo o proceso. Pueden estar fuera de la planta si se entregan en 24 horas cuando la FDA los pide, excepto el plan de inocuidad, que debe estar en la planta; un registro electrónico cuenta como \"en la planta\" si se puede abrir desde ella. SQF pide guardarlos por lo menos durante la vida útil del producto, o más si lo exige el cliente o la ley.",
         },
         en: {
           question: 'How long do records have to be kept?',
           answer:
-            'The FDA requires keeping them for at least 2 years after they are created (21 CFR 117.315). They may be stored offsite if they can be retrieved within 24 hours, except the food safety plan, which must stay onsite. SQF asks you to set retention based on customer, legal and regulatory requirements.',
+            "The FDA requires keeping them for at least 2 years after they are created (21 CFR 117.315). Records showing that equipment or a process is adequate, such as validations, are kept 2 years after you stop using that equipment or process. Records may be stored offsite if they can be provided within 24 hours of an FDA request, except the food safety plan, which must stay onsite; an electronic record counts as onsite if it can be opened from the plant. SQF asks you to keep them at least for the product's shelf life, or longer if customers or the law require it.",
         },
         sources: [SRC.cfr117_315, SRC.sqfCode],
       },
@@ -109,12 +114,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Puedo llevar los registros en formato digital en lugar de papel?',
           answer:
-            'Sí. La regla de la FDA acepta registros electrónicos (21 CFR 117.305) y los exime de la Parte 11 a menos que otra regulación la exija. SQF pide que los registros sean legibles, accesibles, recuperables y estén guardados de forma segura, en cualquier formato. Lo importante es que el registro se haga en el momento, sea indeleble (que no se pueda borrar) y se encuentre rápido cuando lo piden.',
+            'Sí. La regla de la FDA acepta registros electrónicos (21 CFR 117.305) y los exime de la Parte 11 a menos que otra regulación la exija. SQF pide que los registros sean legibles, accesibles, recuperables y estén guardados de forma segura, en cualquier formato. Lo importante es que el registro se haga en el momento, sea indeleble (que no se pueda borrar ni cambiar sin dejar rastro) y se encuentre rápido cuando lo piden.',
         },
         en: {
           question: 'Can I keep records digitally instead of on paper?',
           answer:
-            'Yes. The FDA rule accepts electronic records (21 CFR 117.305) and exempts them from Part 11 unless another regulation requires it. SQF asks that records be legible, accessible, retrievable and securely stored, in any format. What matters is that the record is made at the time, is indelible (cannot be erased), and can be found quickly when someone asks for it.',
+            'Yes. The FDA rule accepts electronic records (21 CFR 117.305) and exempts them from Part 11 unless another regulation requires it. SQF asks that records be legible, accessible, retrievable and securely stored, in any format. What matters is that the record is made at the time, is indelible (cannot be erased or changed without leaving a trace), and can be found quickly when someone asks for it.',
         },
         sources: [SRC.cfr117_305, SRC.sqfCode],
       },
@@ -123,26 +128,26 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué alérgenos tengo que declarar en la etiqueta y cómo?',
           answer:
-            'La FDA reconoce nueve alérgenos principales: leche, huevo, pescado, crustáceos, nueces de árbol, maní, trigo, soya y ajonjolí (sésamo). El ajonjolí se añadió con la ley FASTER, vigente desde el 1 de enero de 2023. La etiqueta debe declarar la fuente del alérgeno de una de dos formas: entre paréntesis después del ingrediente, como "lecitina (soya)", o en una declaración "Contiene" justo después o al lado de la lista de ingredientes, como "Contiene trigo, leche y soya". Las advertencias como "puede contener" son voluntarias, no sustituyen las buenas prácticas de manufactura y deben ser veraces.',
+            "La FDA reconoce nueve alérgenos principales: leche, huevo, pescado, crustáceos, nueces de árbol, maní, trigo, soya y ajonjolí (sésamo), que se añadió con la ley FASTER desde el 1 de enero de 2023. Para nueces de árbol, pescado y crustáceos hay que nombrar el tipo específico, como almendra, bacalao o camarón. La etiqueta declara la fuente del alérgeno de una de dos formas: entre paréntesis después del ingrediente, como \"lecitina (soya)\", o en una declaración \"Contiene\" justo después o al lado de la lista de ingredientes, que debe incluir todos los alérgenos principales del producto. Desde su guía de enero de 2025, la FDA ya no considera el coco una nuez de árbol para la etiqueta de alérgenos, aunque sigue apareciendo en la lista de ingredientes. Las advertencias como \"puede contener\" son voluntarias, no sustituyen las buenas prácticas de manufactura y deben ser veraces.",
         },
         en: {
           question: 'Which allergens do I have to declare on the label, and how?',
           answer:
-            'The FDA recognizes nine major food allergens: milk, eggs, fish, crustacean shellfish, tree nuts, peanuts, wheat, soybeans and sesame. Sesame was added by the FASTER Act, effective January 1, 2023. The label must declare the allergen source in one of two ways: in parentheses after the ingredient, such as "lecithin (soy)", or in a "Contains" statement immediately after or next to the ingredient list, such as "Contains wheat, milk, and soy." Advisory statements such as "may contain" are voluntary, do not replace good manufacturing practices and must be truthful.',
+            "The FDA recognizes nine major food allergens: milk, eggs, fish, crustacean shellfish, tree nuts, peanuts, wheat, soybeans and sesame, which the FASTER Act added effective January 1, 2023. For tree nuts, fish and crustacean shellfish, you must name the specific type, such as almond, cod or shrimp. The label declares the allergen source in one of two ways: in parentheses after the ingredient, such as \"lecithin (soy)\", or in a \"Contains\" statement immediately after or next to the ingredient list, which must list every major allergen in the product. Since its January 2025 guidance, the FDA no longer treats coconut as a tree nut for allergen labeling, although it still appears in the ingredient list. Advisory statements such as \"may contain\" are voluntary, do not replace good manufacturing practices and must be truthful.",
         },
-        sources: [SRC.allergens],
+        sources: [SRC.allergens, SRC.allergenFaq],
       },
       {
         id: 'aprobar-suplidores',
         es: {
           question: '¿Cómo apruebo y verifico a mis suplidores?',
           answer:
-            'Si tu análisis de peligros identifica un peligro que tu suplidor controla antes de que la materia prima llegue a tu planta, la FDA exige un programa de cadena de suministro basado en riesgo (21 CFR 117.405). Ese programa incluye usar suplidores aprobados, decidir qué verificación hacer y con qué frecuencia, hacerla y documentarla. Las verificaciones pueden ser auditorías en sitio, muestreo y pruebas, o revisar los registros de inocuidad del suplidor. Si el peligro puede causar consecuencias graves para la salud o la muerte, la regla pide una auditoría en sitio antes de usar el material y por lo menos una vez al año, salvo una determinación escrita que justifique otra verificación. SQF también exige un programa de suplidores aprobados.',
+            "Si tu análisis de peligros identifica un peligro que tu suplidor controla antes de que la materia prima llegue a tu planta, la FDA exige un programa de cadena de suministro basado en riesgo (21 CFR 117.405). Ese programa incluye usar suplidores aprobados, decidir qué verificación hacer y con qué frecuencia, hacerla y documentarla. Las verificaciones pueden ser auditorías en sitio, muestreo y pruebas, o revisar los registros de inocuidad del suplidor. Si hay una probabilidad razonable de que el peligro cause consecuencias graves para la salud o la muerte, la regla pide una auditoría en sitio antes de usar el material y por lo menos una vez al año, salvo una determinación escrita que justifique otra verificación. Si el suplidor es una instalación calificada, una finca pequeña o un productor de huevos con menos de 3,000 gallinas, la regla permite verificarlo con garantías escritas. SQF también exige un programa de suplidores aprobados.",
         },
         en: {
           question: 'How do I approve and verify my suppliers?',
           answer:
-            'If your hazard analysis identifies a hazard that your supplier controls before the raw material reaches your plant, the FDA requires a risk-based supply-chain program (21 CFR 117.405). The program includes using approved suppliers, deciding which verification to do and how often, doing it and documenting it. Verification can be onsite audits, sampling and testing, or reviewing the supplier’s food safety records. If the hazard could cause serious adverse health consequences or death, the rule calls for an onsite audit before first use and at least once a year, unless a written determination justifies other verification. SQF also requires an approved supplier program.',
+            "If your hazard analysis identifies a hazard that your supplier controls before the raw material reaches your plant, the FDA requires a risk-based supply-chain program (21 CFR 117.405). The program includes using approved suppliers, deciding which verification to do and how often, doing it and documenting it. Verification can be onsite audits, sampling and testing, or reviewing the supplier's food safety records. If there is a reasonable probability that the hazard will cause serious adverse health consequences or death, the rule calls for an onsite audit before first use and at least once a year, unless a written determination justifies other verification. If the supplier is a qualified facility, a small farm or an egg producer with fewer than 3,000 hens, the rule allows verification through written assurances. SQF also requires an approved supplier program.",
         },
         sources: [SRC.cfr117_405, SRC.cfr117_410, SRC.cfr117_430, SRC.sqfCode],
       },
@@ -158,12 +163,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué es la regla de Controles Preventivos (PCHF) de FSMA?',
           answer:
-            'Es la regla de la FDA para alimentos de consumo humano que exige buenas prácticas de manufactura (CGMP), un análisis de peligros y controles preventivos basados en riesgo, documentados en un plan de inocuidad, con su programa de cadena de suministro y plan de retiro. Las fechas de cumplimiento ya pasaron: 2017 para negocios pequeños y 2018 para negocios muy pequeños. La FDA tiene una guía en lenguaje sencillo para negocios pequeños.',
+            "Es la regla de la FDA para alimentos de consumo humano. Exige buenas prácticas de manufactura (CGMP) y, para la mayoría de las plantas, un plan de inocuidad preparado por un PCQI, con análisis de peligros y controles preventivos basados en riesgo; cuando aplica, el plan incluye un programa de cadena de suministro y un plan de retiro. Los negocios muy pequeños (menos de aproximadamente $1 millón al año en ventas de alimentos, ajustado por inflación) son \"instalaciones calificadas\": cumplen con las CGMP y envían a la FDA una atestación cada 2 años, sin el plan completo. Las fechas de cumplimiento ya pasaron: 2017 para negocios pequeños (menos de 500 empleados) y 2018 para negocios muy pequeños. La FDA tiene una guía en lenguaje sencillo para negocios pequeños.",
         },
         en: {
           question: 'What is the FSMA Preventive Controls (PCHF) rule?',
           answer:
-            'It is the FDA rule for human food that requires current good manufacturing practices (CGMPs), a hazard analysis and risk-based preventive controls, documented in a food safety plan with a supply-chain program and recall plan. The compliance dates have passed: 2017 for small businesses and 2018 for very small businesses. The FDA publishes a plain-language guide for small businesses.',
+            "It is the FDA rule for human food. It requires current good manufacturing practices (CGMPs) and, for most plants, a food safety plan prepared by a PCQI, with a hazard analysis and risk-based preventive controls; where applicable, the plan includes a supply-chain program and a recall plan. Very small businesses (under about $1 million a year in food sales, adjusted for inflation) are \"qualified facilities\": they follow CGMPs and file an attestation with the FDA every 2 years instead of the full plan. The compliance dates have passed: 2017 for small businesses (under 500 employees) and 2018 for very small businesses. The FDA publishes a plain-language guide for small businesses.",
         },
         sources: [SRC.pchf, SRC.smallGuide],
       },
@@ -172,12 +177,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué es la regla de trazabilidad FSMA 204 y cuándo aplica?',
           answer:
-            'Exige registros adicionales para los alimentos de la Lista de Trazabilidad de la FDA: eventos críticos de rastreo, datos clave, códigos de lote de trazabilidad y un plan de trazabilidad, y entregar los registros a la FDA en 24 horas cuando los pida. La lista incluye, entre otros, quesos que no son duros, huevos, mantequillas de nueces, pimientos, tomates, frutas tropicales, frutas y vegetales cortados frescos, pescados y mariscos, y ensaladas listas para comer. Por orden del Congreso, la FDA no hará cumplir la regla antes del 20 de julio de 2028; la FDA propuso mover oficialmente la fecha a ese día, pero el cambio aún no es final.',
+            "Exige registros adicionales para los alimentos de la Lista de Trazabilidad de la FDA: eventos críticos de rastreo, datos clave, códigos de lote de trazabilidad y un plan de trazabilidad, y entregar los registros a la FDA en 24 horas cuando los pida. La lista incluye, entre otros, quesos que no son duros, huevos con cascarón, mantequillas de nueces, pepinos, hierbas frescas (como cilantro), hojas verdes, melones, pimientos, tomates, frutas tropicales, frutas y vegetales frescos cortados, pescados de aleta, crustáceos, moluscos bivalvos y ensaladas listas para comer refrigeradas. Por orden del Congreso, la FDA no hará cumplir la regla antes del 20 de julio de 2028; la FDA propuso mover oficialmente la fecha a ese día, pero el cambio aún no es final.",
         },
         en: {
           question: 'What is the FSMA 204 traceability rule and when does it apply?',
           answer:
-            "It requires additional records for foods on the FDA's Food Traceability List: critical tracking events, key data elements, traceability lot codes and a traceability plan, and handing records to the FDA within 24 hours when asked. The list includes, among others, non-hard cheeses, shell eggs, nut butters, peppers, tomatoes, tropical tree fruits, fresh-cut fruits and vegetables, fish and shellfish, and ready-to-eat deli salads. Under a directive from Congress, the FDA will not enforce the rule before July 20, 2028; the FDA has proposed formally moving the date there, but the change is not yet final.",
+            "It requires additional records for foods on the FDA's Food Traceability List: critical tracking events, key data elements, traceability lot codes and a traceability plan, and handing records to the FDA within 24 hours when asked. The list includes, among others, non-hard cheeses, shell eggs, nut butters, cucumbers, fresh herbs (such as cilantro), leafy greens, melons, peppers, tomatoes, tropical tree fruits, fresh-cut fruits and vegetables, finfish, crustaceans, bivalve mollusks and refrigerated ready-to-eat deli salads. Under a directive from Congress, the FDA will not enforce the rule before July 20, 2028; the FDA has proposed formally moving the date there, but the change is not yet final.",
         },
         sources: [SRC.ftr, SRC.ftl, SRC.ftrDate],
       },
@@ -186,12 +191,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Dónde le puedo hacer preguntas sobre FSMA a la FDA?',
           answer:
-            'La FDA tiene la FSMA Technical Assistance Network (TAN), un servicio gratuito para enviar preguntas por formulario en línea, con respuestas a preguntas frecuentes ya publicadas.',
+            "La FDA tiene la FSMA Technical Assistance Network (TAN), donde envías tus preguntas por un formulario en línea. También publica respuestas a las preguntas más comunes.",
         },
         en: {
           question: 'Where can I ask the FDA questions about FSMA?',
           answer:
-            'The FDA runs the FSMA Technical Assistance Network (TAN), a free service where you submit questions through an online form, with answers to common questions already published.',
+            "The FDA runs the FSMA Technical Assistance Network (TAN), where you submit questions through an online form. It also publishes answers to common questions.",
         },
         sources: [SRC.tan],
       },
@@ -207,12 +212,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué es GFSI y por qué los clientes piden SQF o BRCGS?',
           answer:
-            'GFSI (Global Food Safety Initiative) no certifica plantas: reconoce programas de certificación que cumplen sus requisitos, como SQF y BRCGS. Un certificado reconocido por GFSI es aceptado por muchos compradores a la vez, lo que evita auditorías repetidas. Por eso muchas cadenas y distribuidores lo piden a sus suplidores.',
+            "GFSI (Global Food Safety Initiative) no certifica plantas: reconoce programas de certificación que cumplen sus requisitos, como SQF y BRCGS. Un certificado reconocido por GFSI es aceptado por muchos compradores, lo que reduce las auditorías distintas que te piden, aunque algunos clientes igual hacen la suya. Por eso muchas cadenas y distribuidores lo piden a sus suplidores.",
         },
         en: {
           question: 'What is GFSI and why do buyers ask for SQF or BRCGS?',
           answer:
-            'GFSI (Global Food Safety Initiative) does not certify plants: it recognizes certification programs that meet its requirements, such as SQF and BRCGS. A GFSI-recognized certificate is accepted by many buyers at once, which avoids repeated audits. That is why many retailers and distributors ask their suppliers for one.',
+            "GFSI (Global Food Safety Initiative) does not certify plants: it recognizes certification programs that meet its requirements, such as SQF and BRCGS. A GFSI-recognized certificate is accepted by many buyers, which reduces the number of separate audits you face, though some customers still run their own. That is why many retailers and distributors ask their suppliers for one.",
         },
         sources: [SRC.gfsiCert, SRC.gfsiRec],
       },
@@ -221,12 +226,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué edición del código SQF aplica?',
           answer:
-            'SQFI publicó la Edición 10 en marzo de 2026, pero las auditorías bajo la Edición 10 no comenzarán antes del 2 de enero de 2027, sujeto al reconocimiento de GFSI. Hasta entonces se audita con la Edición 9. Los códigos SQF se pueden consultar gratis en sqfi.com.',
+            "SQFI publicó la Edición 10 en marzo de 2026. Se espera que las auditorías bajo la Edición 10 empiecen no antes del 2 de enero de 2027, sujeto al reconocimiento de GFSI, y SQFI advierte que la fecha puede moverse. Hasta entonces se audita con la Edición 9, y una misma auditoría no mezcla requisitos de las dos ediciones: confirma con tu organismo de certificación cuál te aplica. Los códigos SQF se pueden consultar gratis en sqfi.com.",
         },
         en: {
           question: 'Which edition of the SQF Code applies?',
           answer:
-            'SQFI published Edition 10 in March 2026, but Edition 10 audits will not start before January 2, 2027, subject to GFSI benchmarking. Until then, audits use Edition 9. SQF codes are free to read at sqfi.com.',
+            "SQFI published Edition 10 in March 2026. Edition 10 audits are expected to start no earlier than January 2, 2027, subject to GFSI benchmarking, and SQFI notes the date may move. Until then, audits use Edition 9, and a single audit does not mix requirements from both editions: confirm with your certification body which one applies to you. SQF codes are free to read at sqfi.com.",
         },
         sources: [SRC.sqfWhich, SRC.sqfFaq, SRC.sqfCode],
       },
@@ -235,12 +240,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué pide SQF sobre documentos y registros?',
           answer:
-            'La sección 2.2 del código de Manufactura de Alimentos (Edición 10) pide control de documentos (el personal tiene acceso a la versión vigente y los cambios se comunican) y registros que demuestren que el sistema funciona y mejora: legibles, accesibles, recuperables y guardados de forma segura, con un período de retención definido.',
+            "La sección 2.2 del código de Manufactura de Alimentos (Edición 10) pide control de documentos (el personal tiene acceso a la versión vigente y los cambios se comunican) y registros que demuestren que el sistema funciona y mejora: legibles, accesibles, recuperables y guardados de forma segura, por lo menos durante la vida útil del producto o más si lo exige el cliente o la ley.",
         },
         en: {
           question: 'What does SQF require for documents and records?',
           answer:
-            'Section 2.2 of the Food Manufacturing code (Edition 10) requires document control (staff can access the current version and changes are communicated) and records that show the system is implemented and improving: legible, accessible, retrievable and securely stored, with a defined retention period.',
+            "Section 2.2 of the Food Manufacturing code (Edition 10) requires document control (staff can access the current version and changes are communicated) and records that show the system is implemented and improving: legible, accessible, retrievable and securely stored, kept at least for the product's shelf life or longer if customers or the law require it.",
         },
         sources: [SRC.sqfCode],
       },
@@ -249,12 +254,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué versión de BRCGS Food Safety está vigente?',
           answer:
-            'La vigente es la Issue 9. BRCGS está desarrollando la Issue 10, pero no ha anunciado fecha oficial de publicación. El estándar incluye requisitos de control de documentos y de registros; consulta el texto oficial de BRCGS para el detalle de cada cláusula.',
+            "La vigente es la Issue 9. BRCGS está preparando la Issue 10, pero no ha anunciado fecha de publicación.",
         },
         en: {
           question: 'Which version of BRCGS Food Safety is current?',
           answer:
-            'Issue 9 is current. BRCGS is developing Issue 10 but has not announced an official publication date. The standard includes document control and record requirements; see the official BRCGS text for the detail of each clause.',
+            "Issue 9 is current. BRCGS is preparing Issue 10 but has not announced a publication date.",
         },
         sources: [SRC.brcgs],
       },
@@ -270,12 +275,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué diferencia hay entre una auditoría de primera, segunda y tercera parte?',
           answer:
-            'Una auditoría de primera parte es interna: tu propio equipo (o alguien que contratas) revisa si la planta hace lo que dicen sus procedimientos. Una de segunda parte la hace un cliente a su suplidor, por ejemplo un supermercado que audita a quien le vende. Una de tercera parte la hace un organismo de certificación independiente contra un estándar como SQF o BRCGS, y es la que lleva a un certificado.',
+            "Una auditoría de primera parte es interna: tu propio equipo (o alguien que contratas) revisa si la planta hace lo que dicen sus procedimientos. Una de segunda parte la hace un cliente a su suplidor, por ejemplo un supermercado que audita a quien le vende. Una de tercera parte la hace un organismo independiente contra un estándar como SQF o BRCGS, y es la que puede llevar a un certificado.",
         },
         en: {
           question: 'What is the difference between first-, second- and third-party audits?',
           answer:
-            'A first-party audit is internal: your own team (or someone you hire) checks whether the plant does what its procedures say. A second-party audit is done by a customer on its supplier, for example a supermarket auditing a vendor. A third-party audit is done by an independent certification body against a standard such as SQF or BRCGS, and it is the one that leads to a certificate.',
+            "A first-party audit is internal: your own team (or someone you hire) checks whether the plant does what its procedures say. A second-party audit is done by a customer on its supplier, for example a supermarket auditing a vendor. A third-party audit is done by an independent body against a standard such as SQF or BRCGS, and it is the one that can lead to a certificate.",
         },
       },
       {
@@ -283,12 +288,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿En qué se diferencia una auditoría de certificación de una inspección de la FDA?',
           answer:
-            'La inspección de la FDA verifica que cumples la ley, normalmente no se anuncia y puede tener consecuencias regulatorias. La auditoría de certificación la contratas tú con un organismo de certificación y verifica que cumples un estándar voluntario como SQF o BRCGS; si fallas, no obtienes el certificado o se suspende el que tienes. Aun así, no todas las auditorías se anuncian: SQF exige una auditoría sin aviso por lo menos una vez cada tres años.',
+            "La inspección de la FDA verifica que cumples la ley, normalmente no se anuncia y puede tener consecuencias regulatorias. La auditoría de certificación la contratas tú con un organismo de certificación y verifica que cumples un estándar voluntario como SQF o BRCGS; una no conformidad crítica, una puntuación baja o no cerrar las no conformidades a tiempo pueden costarte el certificado. Aun así, no todas las auditorías se anuncian: SQF exige una auditoría sin aviso una vez cada tres años.",
         },
         en: {
           question: 'How is a certification audit different from an FDA inspection?',
           answer:
-            'An FDA inspection checks that you comply with the law, is usually unannounced and can have regulatory consequences. A certification audit is one you arrange with a certification body to check that you meet a voluntary standard such as SQF or BRCGS; if you fail, you do not get the certificate or the one you have is suspended. Even so, not every audit is announced: SQF requires an unannounced audit at least once every three years.',
+            "An FDA inspection checks that you comply with the law, is usually unannounced and can have regulatory consequences. A certification audit is one you arrange with a certification body to check that you meet a voluntary standard such as SQF or BRCGS; a critical nonconformity, a failing score or not closing nonconformities on time can cost you the certificate. Even so, not every audit is announced: SQF requires an unannounced audit once every three years.",
         },
         sources: [SRC.sqfCode, SRC.sqfFaq],
       },
@@ -297,12 +302,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué pasa el día de la auditoría?',
           answer:
-            'Suele empezar con una reunión de apertura para confirmar el alcance y la agenda. Luego el auditor recorre la planta y observa la operación, revisa documentos y registros, y entrevista al personal para confirmar que lo escrito es lo que se hace. Termina con una reunión de cierre donde presenta los hallazgos. Después recibes el informe con las no conformidades que debes corregir.',
+            "Suele empezar con una reunión de apertura para confirmar el alcance y la agenda. Luego el auditor recorre la planta y observa la operación, revisa documentos y registros, y entrevista al personal para confirmar que lo escrito es lo que se hace. Termina con una reunión de cierre donde presenta los hallazgos. Empieza a corregir desde ahí: en SQF, el plazo para cerrar las no conformidades cuenta desde el final de la auditoría, no desde que llega el informe.",
         },
         en: {
           question: 'What happens on audit day?',
           answer:
-            'It usually starts with an opening meeting to confirm scope and schedule. Then the auditor walks the plant and watches the operation, reviews documents and records, and interviews staff to confirm that what is written is what is done. It ends with a closing meeting where the findings are presented. Afterwards you receive the report with the nonconformities you must correct.',
+            "It usually starts with an opening meeting to confirm scope and schedule. Then the auditor walks the plant and watches the operation, reviews documents and records, and interviews staff to confirm that what is written is what is done. It ends with a closing meeting where the findings are presented. Start correcting from there: in SQF, the deadline to close nonconformities runs from the end of the audit, not from when the report arrives.",
         },
       },
       {
@@ -310,12 +315,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué documentos debo tener a mano cuando llega el auditor?',
           answer:
-            'Como mínimo: el plan de inocuidad con su análisis de peligros, los procedimientos (SOP), los registros de monitoreo (temperaturas, limpieza y sanitación), las acciones correctivas, la verificación (calibración y revisión de registros), la aprobación de suplidores, la capacitación del personal, el control de plagas y los informes de auditorías anteriores con su cierre. Lo que más se nota es poder encontrar cualquier registro en minutos, no en horas.',
+            "Como mínimo: el plan de inocuidad con su análisis de peligros, los procedimientos (SOP), los registros de monitoreo (temperaturas, limpieza y sanitación), las acciones correctivas, la verificación (calibración y revisión de registros), el control de alérgenos, la trazabilidad y el último simulacro de retiro, el monitoreo ambiental, la aprobación de suplidores, la capacitación del personal, el control de plagas, las auditorías internas, la revisión gerencial, los planes de fraude y defensa alimentaria, y los informes de auditorías anteriores con su cierre. Lo que más se nota es poder encontrar cualquier registro en minutos, no en horas.",
         },
         en: {
           question: 'Which documents should I have ready when the auditor arrives?',
           answer:
-            'At a minimum: the food safety plan with its hazard analysis, the procedures (SOPs), monitoring records (temperatures, cleaning and sanitation), corrective actions, verification (calibration and records review), supplier approval, staff training, pest control and previous audit reports with their close-out. What shows the most is being able to find any record in minutes, not hours.',
+            "At a minimum: the food safety plan with its hazard analysis, the procedures (SOPs), monitoring records (temperatures, cleaning and sanitation), corrective actions, verification (calibration and records review), allergen control, traceability and your latest mock recall, environmental monitoring, supplier approval, staff training, pest control, internal audits, management review, food fraud and food defense plans, and previous audit reports with their close-out. What shows the most is being able to find any record in minutes, not hours.",
         },
         sources: [SRC.cfr117_190, SRC.sqfCode],
       },
@@ -324,14 +329,14 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué es una no conformidad menor, mayor o crítica, y cuánto tiempo tengo para cerrarla?',
           answer:
-            'En SQF, una no conformidad menor es una falla aislada o poco frecuente; una mayor es una falla de un elemento del sistema; y una crítica es una pérdida de control en un punto crítico, un programa de prerrequisitos u otro paso crítico. En la Edición 10 de SQF, las menores y mayores deben cerrarse, con su análisis de causa raíz, dentro de 40 días calendario después de la auditoría; una crítica hace fallar una auditoría inicial o suspende el certificado en una recertificación. Si te auditan bajo la Edición 9 o bajo BRCGS, confirma los plazos en las reglas de certificación de esa edición o estándar.',
+            "En SQF, una no conformidad menor es una falla aislada o poco frecuente; una mayor es una falla de un elemento del sistema; y una crítica es una pérdida de control en un punto crítico, un programa de prerrequisitos u otro paso crítico que probablemente cause un riesgo significativo para la salud pública o contaminación del producto. Una crítica hace fallar una auditoría inicial o suspende el certificado en una recertificación. Para cerrar las menores y mayores: bajo la Edición 9, la que aplica hoy, normalmente tienes 30 días después de la auditoría, según lo que fije tu organismo de certificación; bajo la Edición 10 serán 40 días calendario desde el final de la auditoría, con evidencia del análisis de causa raíz. Si te auditan bajo BRCGS, confirma los plazos en sus reglas de certificación.",
         },
         en: {
           question: 'What is a minor, major or critical nonconformity, and how long do I have to close it?',
           answer:
-            'In SQF, a minor nonconformity is an isolated or infrequent failure; a major one is a failure of a system element; and a critical one is a loss of control at a critical control point, a prerequisite program or another critical step. Under SQF Edition 10, minor and major nonconformities must be closed, with their root cause analysis, within 40 calendar days of the audit; a critical one fails an initial audit or suspends the certificate at recertification. If you are audited under Edition 9 or BRCGS, confirm the deadlines in that edition’s or standard’s certification rules.',
+            "In SQF, a minor nonconformity is an isolated or infrequent failure; a major one is a failure of a system element; and a critical one is a loss of control at a critical control point, a prerequisite program or another critical step that is likely to cause a significant public health risk or product contamination. A critical one fails an initial audit or suspends the certificate at recertification. To close minors and majors: under Edition 9, which applies today, you typically have 30 days after the audit, as set by your certification body; under Edition 10 it will be 40 calendar days from the end of the audit, with evidence of the root cause analysis. If you are audited under BRCGS, confirm the deadlines in its certification rules.",
         },
-        sources: [SRC.sqfCode, SRC.brcgs],
+        sources: [SRC.sqfCode, SRC.sqfCa, SRC.brcgs],
       },
       {
         id: 'causa-raiz',
@@ -352,12 +357,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué es la evaluación de vulnerabilidad al fraude alimentario?',
           answer:
-            'Es analizar qué materias primas, suplidores o productos son susceptibles a fraude, como sustituir un ingrediente por uno más barato, diluirlo, etiquetar mal el producto final o falsificarlo, y poner controles para reducir ese riesgo. A veces se le llama VACCP. SQF exige documentar, implementar y mantener los métodos, responsables y criterios para identificar la vulnerabilidad de la planta al fraude alimentario.',
+            "Es analizar qué materias primas, suplidores o productos son susceptibles a fraude, como sustituir un ingrediente por uno más barato, diluirlo, etiquetar mal el producto final o falsificarlo, y poner controles para reducir ese riesgo. A veces se le llama VACCP. SQF exige documentar, implementar y mantener los métodos, responsables y criterios para identificar la vulnerabilidad de la planta al fraude alimentario, y desarrollar e implementar un plan para mitigarlo.",
         },
         en: {
           question: 'What is a food fraud vulnerability assessment?',
           answer:
-            'It is analyzing which raw materials, suppliers or products are susceptible to fraud, such as substituting a cheaper ingredient, diluting it, mislabeling the finished product or counterfeiting it, and putting controls in place to reduce that risk. It is sometimes called VACCP. SQF requires documenting, implementing and maintaining the methods, responsibilities and criteria for identifying the site’s vulnerability to food fraud.',
+            "It is analyzing which raw materials, suppliers or products are susceptible to fraud, such as substituting a cheaper ingredient, diluting it, mislabeling the finished product or counterfeiting it, and putting controls in place to reduce that risk. It is sometimes called VACCP. SQF requires documenting, implementing and maintaining the methods, responsibilities and criteria for identifying the site's vulnerability to food fraud, and developing and implementing a plan to mitigate it.",
         },
         sources: [SRC.sqfCode],
       },
@@ -373,12 +378,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Qué piden Walmart y Sam’s Club en inocuidad a sus suplidores?',
           answer:
-            'Walmart publica sus requisitos de inocuidad para sus operaciones en Estados Unidos y Puerto Rico, que también cubren a Sam’s Club. Para productos de marca privada, cada planta debe estar certificada cada año bajo un estándar reconocido por GFSI. Para marcas nacionales se requiere una auditoría anual de inocuidad aprobada, y la certificación GFSI se recomienda; las inspecciones de la FDA o del estado no sustituyen esa auditoría.',
+            "Walmart publica sus requisitos de inocuidad para sus operaciones en Estados Unidos y Puerto Rico, que también cubren a Sam’s Club. Para productos de marca privada, cada planta debe estar certificada cada año bajo un estándar reconocido por GFSI. Para marcas nacionales se requiere una auditoría anual de inocuidad aprobada, y la certificación GFSI se recomienda; las inspecciones de la FDA o del estado no sustituyen esa auditoría. Hay reglas distintas para productos frescos, carne molida, aves, mariscos, huevos, embutidos y bayas congeladas, y en varias de esas categorías la certificación GFSI es obligatoria también para marcas nacionales: revisa la página de tu categoría.",
         },
         en: {
           question: 'What do Walmart and Sam’s Club require from suppliers on food safety?',
           answer:
-            'Walmart publishes its food safety requirements for its U.S. and Puerto Rico operations, which also cover Sam’s Club. For private-brand products, every site must be certified each year to a GFSI-recognized standard. National brands need an approved annual food safety audit, and GFSI certification is encouraged; FDA or state inspections do not replace that audit.',
+            "Walmart publishes its food safety requirements for its U.S. and Puerto Rico operations, which also cover Sam’s Club. For private-brand products, every site must be certified each year to a GFSI-recognized standard. National brands need an approved annual food safety audit, and GFSI certification is encouraged; FDA or state inspections do not replace that audit. Fresh produce, ground beef, poultry, seafood, eggs, deli meats and frozen berries have their own rules, and several of them require GFSI certification even for national brands: check the page for your category.",
         },
         sources: [SRC.walmart, SRC.walmartPrivate, SRC.walmartNational],
       },
@@ -387,34 +392,27 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿Dónde encuentro los requisitos de inocuidad de Costco?',
           answer:
-            'Costco no publica sus requisitos en una página pública. Los detalla en su manual Food Safety & Quality Audit Expectations; pide la versión vigente a tu comprador de Costco o a un organismo de certificación aprobado por Costco.',
+            "Costco no tiene una página de requisitos en costco.com. Sus requisitos están en las Global Food Safety Audit Expectations de Costco (versión 3.0, vigente desde el 1 de septiembre de 2025), con un Costco Addendum. Azzule, la plataforma de auditorías de Costco, publica los documentos, también en español. Confirma la versión vigente con tu comprador de Costco o con una compañía auditora aprobada por Costco.",
         },
         en: {
           question: 'Where can I find Costco’s food safety requirements?',
           answer:
-            'Costco does not publish its requirements on a public page. They are in its Food Safety & Quality Audit Expectations manual; ask your Costco buyer or a Costco-approved certification body for the current version.',
+            "Costco has no requirements page on costco.com. Its requirements are in Costco’s Global Food Safety Audit Expectations (version 3.0, effective September 1, 2025), with a Costco Addendum. Azzule, Costco’s audit platform, hosts the documents, including in Spanish. Confirm the current version with your Costco buyer or a Costco-approved audit company.",
         },
+        sources: [SRC.costcoV3, SRC.costcoV3Es, SRC.costcoCcof],
       },
-    ],
-  },
-  {
-    id: 'puerto-rico',
-    es: 'Puerto Rico',
-    en: 'Puerto Rico',
-    items: [
       {
-        id: 'salud-pr',
+        id: 'cadenas-pr',
         es: {
-          question: '¿Qué agencia de Puerto Rico supervisa la higiene de los establecimientos de alimentos?',
+          question: "¿Qué piden las cadenas de Puerto Rico, como Pueblo, Econo, Selectos o Supermax?",
           answer:
-            'El Departamento de Salud, a través de la División de Salud Ambiental y su área de Higiene y Seguridad de Alimentos, que atiende las condiciones sanitarias e inspecciones de establecimientos de alimentos. Para licencias y permisos, comunícate directamente con el Departamento de Salud.',
+            "Cada cadena fija sus requisitos con sus suplidores, normalmente a través del comprador o del distribuidor. Antes de tu primera reunión, pregunta qué auditoría o certificación aceptan (por ejemplo, una auditoría de tercera parte o un certificado reconocido por GFSI), qué seguro de responsabilidad y qué documentos piden, y cómo manejan los retiros. Tener tus registros al día y tu plan de inocuidad listo te ahorra tiempo con cualquier cadena.",
         },
         en: {
-          question: 'Which Puerto Rico agency oversees hygiene at food establishments?',
+          question: "What do Puerto Rico chains such as Pueblo, Econo, Selectos or Supermax require?",
           answer:
-            'The Department of Health, through its Environmental Health Division and its Food Hygiene and Safety area, which handles sanitary conditions and inspections of food establishments. For licenses and permits, contact the Department of Health directly.',
+            "Each chain sets its requirements with its suppliers, usually through the buyer or the distributor. Before your first meeting, ask which audit or certification they accept (for example, a third-party audit or a GFSI-recognized certificate), what liability insurance and documents they need, and how they handle recalls. Keeping your records current and your food safety plan ready saves time with any chain.",
         },
-        sources: [SRC.saludPR],
       },
     ],
   },
