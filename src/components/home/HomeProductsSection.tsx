@@ -7,7 +7,7 @@ import { ALERTAS_URL } from "@/constants/links";
 const PLATFORM_SHOTS = ["tablero", "alertas", "lotes", "haccp", "suplidores", "ingredientes", "documentos", "acciones"] as const;
 type PlatformShot = (typeof PLATFORM_SHOTS)[number];
 // Languages that have their own screenshots (<shot>-en.webp, <shot>-en-960.webp). Spanish is the default
-// (<shot>.webp). Each screen is 2200x1203 (2x) plus a 960x525 version.
+// (<shot>.webp). Each screen is 2200x1202 (a 1100x601 layout at 2x) plus a 960x525 version.
 const SHOT_LANGUAGES: readonly string[] = ["en"];
 
 /** Showcase of the platform for plant owners, then Alertas PR (the free public site) as its own pill. */
@@ -79,7 +79,7 @@ export function HomeProductsSection() {
                     srcSet={`/img/platform/${id}${suffix}-960.webp 960w, /img/platform/${id}${suffix}.webp 2200w`}
                     sizes="(min-width: 1152px) 810px, 100vw"
                     width={2200}
-                    height={1203}
+                    height={1202}
                     loading="lazy"
                     decoding="async"
                     alt={on ? t(`home.products.scan.shots.${id}.alt`) : ""}
