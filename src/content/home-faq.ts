@@ -49,12 +49,12 @@ export const HOME_FAQ: BilingualFaq[] = [
     es: {
       question: '¿Mi equipo tiene que cambiar cómo trabaja?',
       answer:
-        'No. Diseñamos el sistema alrededor de cómo tu equipo ya trabaja, con una curva de aprendizaje baja y sin funciones que no vas a usar.',
+        'Muy poco. Diseñamos el sistema alrededor de cómo tu equipo ya trabaja, con una curva de aprendizaje baja y sin funciones que no vas a usar.',
     },
     en: {
       question: 'Does my team have to change how it works?',
       answer:
-        'No. We design the system around how your team already works, with a low learning curve and no features you will not use.',
+        'Very little. We design the system around how your team already works, with a low learning curve and no features you will not use.',
     },
   },
   {
@@ -73,12 +73,12 @@ export const HOME_FAQ: BilingualFaq[] = [
     es: {
       question: '¿Qué es Alertas PR?',
       answer:
-        'Alertas PR es un portal gratuito y público de Stratum PR que reúne en español los retiros de alimentos de la FDA que afectan a Puerto Rico. No requiere registrarse.',
+        "Alertas PR es un portal gratuito y público de Stratum PR que reúne en español los retiros de alimentos de la FDA y el USDA y los brotes que investiga el CDC, con un filtro para productos vendidos en Puerto Rico. Se puede usar sin registrarse, y hay alertas por email opcionales.",
     },
     en: {
       question: 'What is Alertas PR?',
       answer:
-        'Alertas PR is a free public portal by Stratum PR that collects, in Spanish, the FDA food recalls that affect Puerto Rico. No sign-up is required.',
+        "Alertas PR is a free public portal by Stratum PR that collects, in Spanish, FDA and USDA food recalls and CDC outbreak investigations, with a filter for products sold in Puerto Rico. No sign-up is needed to use it, and optional email alerts are available.",
     },
   },
 ];
