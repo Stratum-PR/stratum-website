@@ -123,8 +123,6 @@ const About = () => {
           </a>
           <a
             href={PLATFORM_URL}
-            target="_blank"
-            rel="noopener"
             className="inline-flex min-h-[44px] w-full items-center justify-center rounded-2xl border border-white/40 px-8 sm:w-auto py-4 font-telegraf text-lg font-semibold text-white transition-colors hover:bg-white/10"
           >
             {t("home.hero.cta.platform")}

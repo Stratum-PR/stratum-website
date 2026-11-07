@@ -72,8 +72,6 @@ export const HomeHeroSection = () => {
             </a>
             <a
               href={PLATFORM_URL}
-              target="_blank"
-              rel="noopener"
               className="inline-flex w-full items-center justify-center rounded-2xl border-[1.5px] border-primary px-6 py-4 sm:w-auto sm:px-7 lg:px-5 whitespace-nowrap font-telegraf text-lg lg:text-base font-semibold text-primary transition-colors hover:bg-primary/5"
             >
               {t("home.hero.cta.platform")}

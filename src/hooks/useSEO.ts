@@ -55,8 +55,8 @@ export const useSEO = (seoData: SEOData, pageName?: string, options?: UseSEOOpti
       trackPageView(pageName);
     }
 
-    // Scroll to top on route change for better UX
-    window.scrollTo(0, 0);
+    // Scroll to top on route change for better UX, unless the link targets a section (ScrollToTop handles it)
+    if (!location.hash) window.scrollTo(0, 0);
   }, [location.pathname, seoData, pageName]);
 };
 
