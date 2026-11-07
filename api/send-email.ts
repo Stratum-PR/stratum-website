@@ -14,8 +14,8 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import crypto from 'crypto';
 import { logger } from '../lib/logger.js';
 import { checkRateLimit } from '../lib/rateLimit.js';
-import { getWelcomeEmailTemplate } from '../src/utils/emailTemplates.js';
-import { getWelcomeEmailPlainText } from '../src/utils/emailPlainText.js';
+import { renderBrandedEmail } from '../lib/emailLayout.js';
+import { buildWelcomeEmail } from '../lib/welcomeEmail.js';
 
 const ALLOWED_UNAUTH_TYPES = ['welcome', 'contact'];
 
@@ -46,40 +46,48 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
-/** Server-built contact form confirmation (transactional, no marketing content). */
-function buildContactConfirmation(language: 'es' | 'en', rawName: unknown): { subject: string; html: string; text: string } {
+/** Server-built contact form confirmation (transactional, no marketing content), in the branded layout. */
+export function buildContactConfirmation(language: 'es' | 'en', rawName: unknown): { subject: string; html: string; text: string } {
   // Collapse control chars/newlines, trim, cap length
   const name = typeof rawName === 'string'
     ? rawName.replace(/[\u0000-\u001f\u007f]+/g, ' ').trim().slice(0, MAX_NAME_LENGTH)
     : '';
-  const safeName = escapeHtml(name);
+  const firstName = name.split(' ')[0] || '';
   const isEs = language === 'es';
   const subject = isEs ? 'Recibimos tu mensaje - Stratum PR' : 'We received your message - Stratum PR';
-  const greetingText = isEs ? (name ? `Hola ${name},` : 'Hola,') : (name ? `Hi ${name},` : 'Hi,');
-  const greetingHtml = isEs ? (safeName ? `Hola ${safeName},` : 'Hola,') : (safeName ? `Hi ${safeName},` : 'Hi,');
+  const heading = isEs
+    ? (firstName ? `Gracias, ${escapeHtml(firstName)}.` : 'Gracias por escribirnos.')
+    : (firstName ? `Thanks, ${escapeHtml(firstName)}.` : 'Thanks for writing to us.');
   const body = isEs
-    ? 'Gracias por escribirnos. Recibimos tu mensaje y te respondemos dentro de 2 días laborables.'
-    : "Thanks for writing to us. We received your message and we'll reply within 2 business days.";
+    ? 'Recibimos tu mensaje y te respondemos dentro de 2 días laborables.'
+    : "We received your message and we'll reply within 2 business days.";
   const urgentText = isEs
     ? 'Si es urgente, escríbenos a contact@stratumpr.com.'
     : "If it's urgent, email us at contact@stratumpr.com.";
-  const mailLink = '<a href="mailto:contact@stratumpr.com" style="color:#266AB2;">contact@stratumpr.com</a>';
-  const urgentHtml = isEs
-    ? `Si es urgente, escríbenos a ${mailLink}.`
-    : `If it&#39;s urgent, email us at ${mailLink}.`;
-  const html = `<!DOCTYPE html>
-<html lang="${isEs ? 'es' : 'en'}">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${subject}</title></head>
-<body style="margin:0;padding:0;background-color:#f5f5f5;">
-  <div style="max-width:560px;margin:0 auto;padding:32px 24px;background-color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;">
-    <p style="margin:0 0 16px;">${greetingHtml}</p>
-    <p style="margin:0 0 16px;">${escapeHtml(body)}</p>
-    <p style="margin:0 0 24px;">${urgentHtml}</p>
-    <p style="margin:0;">Stratum PR</p>
-  </div>
-</body>
-</html>`;
-  const text = `${greetingText}\n\n${body}\n\n${urgentText}\n\nStratum PR\n`;
+  const mailLink = '<a href="mailto:contact@stratumpr.com" style="color:#1E2B7E;font-weight:700;text-decoration:none;">contact@stratumpr.com</a>';
+  const urgentHtml = isEs ? `Si es urgente, escríbenos a ${mailLink}.` : `If it&#39;s urgent, email us at ${mailLink}.`;
+  const demoText = isEs
+    ? '¿Prefieres hablar? Agenda 30 minutos con nosotros, gratis.'
+    : 'Rather talk? Book 30 free minutes with us.';
+  const html = renderBrandedEmail({
+    lang: language,
+    preheader: body,
+    eyebrow: isEs ? 'Mensaje recibido' : 'Message received',
+    heading,
+    bodyHtml: `<p style="margin:0 0 14px;">${escapeHtml(body)}</p><p style="margin:0 0 14px;">${urgentHtml}</p><p style="margin:0 0 6px;color:#525252;">${escapeHtml(demoText)}</p>`,
+    cta: { label: isEs ? 'Agenda un demo' : 'Schedule a demo', href: 'https://calendly.com/admin-stratumpr/30min' },
+  });
+  const text = `${isEs ? (firstName ? `Gracias, ${firstName}.` : 'Gracias por escribirnos.') : (firstName ? `Thanks, ${firstName}.` : 'Thanks for writing to us.')}
+
+${body}
+
+${urgentText}
+
+${demoText} https://calendly.com/admin-stratumpr/30min
+
+— Stratum PR
+stratumpr.com
+`;
   return { subject, html, text };
 }
 
@@ -170,9 +178,10 @@ export default async function handler(
       const token = generateUnsubscribeToken(to);
       listUnsubscribeToken = token;
       toFinal = to;
-      subjectFinal = language === 'es' ? '¡Bienvenido a Stratum PR!' : 'Welcome to Stratum PR!';
-      htmlFinal = getWelcomeEmailTemplate({ email: to, language, unsubscribeToken: token });
-      textFinal = getWelcomeEmailPlainText({ email: to, language, unsubscribeToken: token });
+      const welcome = buildWelcomeEmail(to, language, token);
+      subjectFinal = welcome.subject;
+      htmlFinal = welcome.html;
+      textFinal = welcome.text;
       fromFinal = undefined; // server default (FROM_EMAIL) below
       replyToFinal = DEFAULT_REPLY_TO;
     } else {
