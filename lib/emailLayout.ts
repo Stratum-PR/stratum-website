@@ -22,9 +22,11 @@ export interface BrandedEmail {
   /** Inner HTML for the body; caller escapes any user input */
   bodyHtml: string;
   cta?: { label: string; href: string };
+  /** Extra footer line (e.g. why you got this email, unsubscribe and preference links) */
+  footerNoteHtml?: string;
 }
 
-export function renderBrandedEmail({ lang, preheader, eyebrow, heading, bodyHtml, cta }: BrandedEmail): string {
+export function renderBrandedEmail({ lang, preheader, eyebrow, heading, bodyHtml, cta, footerNoteHtml }: BrandedEmail): string {
   const isEs = lang === 'es';
   const footer = isEs
     ? 'Stratum PR LLC · Trujillo Alto, Puerto Rico'
@@ -67,6 +69,7 @@ export function renderBrandedEmail({ lang, preheader, eyebrow, heading, bodyHtml
     <tr><td style="padding:18px 40px;background:#FAFAF8;border-top:1px solid #ECEDF2;font-family:${FONT};font-size:12px;line-height:1.6;color:${MUTED};">
       ${footer}<br>
       <a href="${SITE}" style="color:${NAVY};text-decoration:none;font-weight:700;">stratumpr.com</a> · <a href="mailto:contact@stratumpr.com" style="color:${NAVY};text-decoration:none;">contact@stratumpr.com</a>
+      ${footerNoteHtml ? `<p style="margin:10px 0 0;font-size:12px;line-height:1.6;color:${MUTED};">${footerNoteHtml}</p>` : ''}
     </td></tr>
   </table>
 </td></tr>

@@ -15,8 +15,7 @@ import crypto from 'crypto';
 import { logger } from '../lib/logger.js';
 import { checkRateLimit } from '../lib/rateLimit.js';
 import { renderBrandedEmail } from '../lib/emailLayout.js';
-import { getWelcomeEmailTemplate } from '../src/utils/emailTemplates.js';
-import { getWelcomeEmailPlainText } from '../src/utils/emailPlainText.js';
+import { buildWelcomeEmail } from '../lib/welcomeEmail.js';
 
 const ALLOWED_UNAUTH_TYPES = ['welcome', 'contact'];
 
@@ -179,9 +178,10 @@ export default async function handler(
       const token = generateUnsubscribeToken(to);
       listUnsubscribeToken = token;
       toFinal = to;
-      subjectFinal = language === 'es' ? '¡Bienvenido a Stratum PR!' : 'Welcome to Stratum PR!';
-      htmlFinal = getWelcomeEmailTemplate({ email: to, language, unsubscribeToken: token });
-      textFinal = getWelcomeEmailPlainText({ email: to, language, unsubscribeToken: token });
+      const welcome = buildWelcomeEmail(to, language, token);
+      subjectFinal = welcome.subject;
+      htmlFinal = welcome.html;
+      textFinal = welcome.text;
       fromFinal = undefined; // server default (FROM_EMAIL) below
       replyToFinal = DEFAULT_REPLY_TO;
     } else {
