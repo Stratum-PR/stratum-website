@@ -5,8 +5,6 @@ import { LANDING_ROUTE } from "@/config/discoverable-routes";
 import { useEffect } from "react";
 import { HomeHeroSection } from "@/components/home/HomeHeroSection";
 import { HomeProblemSection } from "@/components/home/HomeProblemSection";
-import { HomeInsightsSection } from "@/components/home/HomeInsightsSection";
-import { HomeInspectorSection } from "@/components/home/HomeInspectorSection";
 import { HomePlanSection } from "@/components/home/HomePlanSection";
 import { HomeBeforeAfterSection } from "@/components/home/HomeBeforeAfterSection";
 import { HomeProductsSection } from "@/components/home/HomeProductsSection";
@@ -85,10 +83,8 @@ const Home = () => {
       <div>
         <HomeHeroSection />
         <HomeProblemSection />
-        <HomeInsightsSection />
-        <HomeInspectorSection />
-        <HomePlanSection />
         <HomeBeforeAfterSection />
+        <HomePlanSection />
         <HomeProductsSection />
         <HomeFinalCtaSection />
       </div>

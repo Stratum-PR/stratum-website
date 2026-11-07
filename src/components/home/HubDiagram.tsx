@@ -8,22 +8,24 @@ const ICONS = {
   users: '<path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1"/><path d="M16 4.5a3 3 0 0 1 0 5.8M21 20v-1a4 4 0 0 0-3-3.9"/>',
   truck: '<path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',
   box: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/>',
-  thermo: '<path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0z"/><path d="M12 11v6"/>',
+  checklist: '<path d="M10 6h10M10 12h10M10 18h10"/><path d="M3.5 6l1.5 1.5 2.5-3M3.5 12l1.5 1.5 2.5-3M3.5 18l1.5 1.5 2.5-3"/>',
   capa: '<path d="M9 3h6v3H9z"/><path d="M9 4.5H7a2 2 0 0 0-2 2V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6.5a2 2 0 0 0-2-2h-2"/><path d="M12 10v4M12 17.5h.01"/>',
   file: '<path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M9 13h6M9 17h6"/>',
   shield: '<path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
 };
 
 const NODES = [
-  { icon: "users", es: "Suplidores", en: "Suppliers", oldEs: "COAs por correo", oldEn: "COAs by email" },
+  { icon: "users", es: "Manejo de suplidores", en: "Supplier management", oldEs: "COAs por correo", oldEn: "COAs by email" },
   { icon: "truck", es: "Recibo", en: "Receiving", oldEs: "Recibo en papel", oldEn: "Paper receiving" },
-  { icon: "box", es: "Lotes", en: "Lots", oldEs: "Excel de lotes", oldEn: "Lots in Excel" },
-  { icon: "thermo", es: "Temperaturas", en: "Temperatures", oldEs: "Libreta de temperaturas", oldEn: "Temperature notebook" },
-  { icon: "capa", es: "Correctivas", en: "Corrective actions", oldEs: "Hallazgos en Excel", oldEn: "Findings in Excel" },
-  { icon: "file", es: "Documentos", en: "Documents", oldEs: "Documentos en Drive", oldEn: "Documents in Drive" },
-  { icon: "shield", es: "Auditorías", en: "Audits", oldEs: "Carpeta de auditoría", oldEn: "Audit binder" },
+  { icon: "box", es: "Trazabilidad de lotes", en: "Lot traceability", oldEs: "Excel de lotes", oldEn: "Lots in Excel" },
+  { icon: "checklist", es: "Plan HACCP digital", en: "Digital HACCP plan", oldEs: "HACCP en una carpeta", oldEn: "HACCP in a binder" },
+  { icon: "capa", es: "CAPAs automáticas", en: "Automated CAPAs", oldEs: "Hallazgos en Excel", oldEn: "Findings in Excel" },
+  { icon: "file", es: "Manejo de documentos", en: "Document management", oldEs: "Documentos en Drive", oldEn: "Documents in Drive" },
+  { icon: "shield", es: "Preparación para auditorías", en: "Audit preparation", oldEs: "Carpeta de auditoría", oldEn: "Audit binder" },
 ] as const;
 
+// "Before": pinned paper notes (corkboard feel). "After": clean cards with a colored icon tile.
+const PINS = ["red", "blue", "yellow", "green", "blue", "red", "green"] as const;
 const TONES = ["#1E2B7E", "#266AB2", "#5FA3DA", "#D9CF6E"]; // navy, blue, sky, sand
 const R = 40; // ring radius, % of the square stage
 const CUT = 0.42; // how far along node→center the broken "before" cable reaches
@@ -118,6 +120,7 @@ export function HubDiagram() {
           } as React.CSSProperties;
           return (
             <div key={nd.icon} className="hub-node" aria-hidden style={style}>
+              <span className={`hub-pin hub-pin-${PINS[i]}`} />
               <span className="hub-tile">
                 <svg viewBox="0 0 24 24" dangerouslySetInnerHTML={{ __html: ICONS[nd.icon] }} />
               </span>
@@ -129,10 +132,6 @@ export function HubDiagram() {
           );
         })}
       </div>
-      <p className="hub-caption" aria-hidden>
-        <span className="hub-cap-before">{t("home.result.hubBefore")}</span>
-        <span className="hub-cap-after">{t("home.result.hubAfter")}</span>
-      </p>
     </div>
   );
 }
