@@ -42,39 +42,29 @@ const About = () => {
 
       <section className="bg-topo px-4 pb-14 pt-24 text-white md:pb-20 md:pt-36" aria-labelledby="about-heading">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-5 font-telegraf text-sm font-medium uppercase tracking-[0.14em] text-[#E6E09E]">
-            {t("about.eyebrow")}
-          </p>
           <h1
             id="about-heading"
-            className="max-w-[18ch] font-telegraf text-[clamp(2.25rem,5.5vw,4rem)] font-bold leading-[1.04] tracking-[-0.03em]"
+            className="max-w-[18ch] md:max-w-none font-telegraf text-[clamp(2.25rem,5.5vw,4rem)] font-bold leading-[1.04] tracking-[-0.03em]"
           >
             {t("about.title")}
           </h1>
-          <p className="mt-5 max-w-2xl font-telegraf text-base leading-relaxed text-white/80 md:mt-7 md:text-xl">{t("home.guide.empathy")}</p>
-
+          <p className="mt-5 max-w-[34ch] font-telegraf text-lg leading-relaxed text-white/80 md:mt-7 md:text-xl">{t("about.subtitle")}</p>
         </div>
       </section>
 
       {/* Programs that back the company: a full-width light band so every logo reads in its own colors */}
-      <section className="border-b border-primary/10 bg-white px-4 py-10" aria-labelledby="programs-heading">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:flex-row md:justify-between">
-          <h2 id="programs-heading" className="font-telegraf text-xs font-bold uppercase tracking-[0.14em] text-neutral-500">
-            {t("about.programs.title")}
-          </h2>
-          <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-8 md:gap-x-12">
-            {PROGRAMS.map(({ src, alt, width, height, className }) => (
-              <li key={src}>
-                <img src={src} alt={alt} width={width} height={height} className={`w-auto ${className}`} loading="lazy" decoding="async" />
-              </li>
-            ))}
-          </ul>
-        </div>
+      <section className="border-b border-primary/10 bg-white px-4 py-10" aria-label={t("about.programs.title")}>
+        <ul className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-8 md:flex-nowrap md:justify-between md:gap-x-6">
+          {PROGRAMS.map(({ src, alt, width, height, className }) => (
+            <li key={src}>
+              <img src={src} alt={alt} width={width} height={height} className={`w-auto ${className}`} loading="lazy" decoding="async" />
+            </li>
+          ))}
+        </ul>
       </section>
 
-      <section className="bg-[#FAFAF8] px-4 py-14 md:py-28" aria-labelledby="founders-heading">
+      <section className="bg-[#FAFAF8] px-4 py-12 md:py-20" aria-labelledby="founders-heading">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-4 font-telegraf text-sm font-medium uppercase tracking-[0.14em] text-primary">{t("about.founders.eyebrow")}</p>
           <h2
             id="founders-heading"
             className="mb-8 max-w-[20ch] md:mb-14 font-telegraf text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-[#0b1215]"
