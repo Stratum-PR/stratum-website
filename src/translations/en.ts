@@ -65,7 +65,6 @@ export const enTranslations: Record<string, string> = {
   'home.products.title': 'This is your plant with Stratum.',
   'home.products.alerts.badge': 'Alertas PR · free for everyone',
   'home.products.alerts.title': 'Has your food been recalled?',
-  'home.products.alerts.body': 'FDA recalls that reach the island, in Spanish and with no sign-up.',
   'home.products.alerts.cta': 'See the alerts',
   'launch.new': 'New:',
   'launch.text': 'Alertas PR, food recalls in Puerto Rico, free for everyone.',
