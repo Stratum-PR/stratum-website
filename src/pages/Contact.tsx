@@ -1,4 +1,4 @@
-import { CalendarDays, Mail, MapPin } from "lucide-react";
+import { CalendarDays, Mail } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
@@ -32,11 +32,9 @@ const Contact = () => {
 
       <section className="bg-topo px-4 pb-10 pt-24 text-white md:pb-14 md:pt-32" aria-labelledby="contact-heading">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-4 font-telegraf text-sm font-medium uppercase tracking-[0.14em] text-[#E6E09E]">{t("contact.eyebrow")}</p>
           <h1 id="contact-heading" className="max-w-[16ch] font-telegraf text-[clamp(2.25rem,5vw,3.75rem)] font-bold leading-[1.05] tracking-[-0.03em]">
             {t("contact.title")}
           </h1>
-          <p className="mt-5 max-w-2xl font-telegraf text-lg leading-relaxed text-white/80">{t("contact.intro")}</p>
         </div>
       </section>
 
@@ -65,11 +63,6 @@ const Contact = () => {
               <h2 className="font-telegraf text-lg font-bold text-[#0b1215]">{t("contact.info.email")}</h2>
               <p className="mt-1 font-telegraf font-semibold text-primary">{CONTACT_EMAIL}</p>
             </a>
-            <div className={cardClass}>
-              <MapPin className="mb-3 h-6 w-6 text-primary" aria-hidden />
-              <h2 className="font-telegraf text-lg font-bold text-[#0b1215]">{t("contact.location.title")}</h2>
-              <p className="mt-1 font-telegraf text-neutral-600">{t("footer.location")}</p>
-            </div>
           </aside>
         </div>
       </div>

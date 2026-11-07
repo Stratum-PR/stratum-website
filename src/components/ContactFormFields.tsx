@@ -80,14 +80,15 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="company" className="font-telegraf font-medium text-sm">
-            {t('contact.form.company')}
+            {t('contact.form.company')} *
           </Label>
-          <Input 
-            id="company" 
-            name="company" 
-            type="text" 
-            value={formData.company} 
-            onChange={onChange} 
+          <Input
+            id="company"
+            name="company"
+            type="text"
+            value={formData.company}
+            onChange={onChange}
+            required
             className={`mt-1 font-telegraf h-12 text-base ${errors.company ? 'border-red-500' : ''}`} 
             placeholder={t('contact.form.company.placeholder')}
             maxLength={100} 
@@ -114,14 +115,15 @@ const ContactFormFields = ({ formData, errors, onChange }: ContactFormFieldsProp
       
       <div>
         <Label htmlFor="subject" className="font-telegraf font-medium text-sm">
-          {t('contact.form.subject')}
+          {t('contact.form.subject')} *
         </Label>
-        <Input 
-          id="subject" 
-          name="subject" 
-          type="text" 
-          value={formData.subject} 
-          onChange={onChange} 
+        <Input
+          id="subject"
+          name="subject"
+          type="text"
+          value={formData.subject}
+          onChange={onChange}
+          required
           className={`mt-1 font-telegraf h-12 text-base ${errors.subject ? 'border-red-500' : ''}`} 
           placeholder={t('contact.form.subject.placeholder')}
           maxLength={200} 
