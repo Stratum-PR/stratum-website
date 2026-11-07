@@ -136,17 +136,19 @@ export const HomeHeroSection = () => {
   }, [paused]);
 
   return (
-    // min-[1360px]:overflow-hidden: the photo bleeds to the viewport edge on wide screens; 100vw includes
-    // the scrollbar, so clip the few px that would otherwise add a horizontal scroll
-    <section className="bg-[#FAFAF8] min-[1360px]:overflow-hidden" aria-labelledby="hero-heading">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 pb-12 pt-24 sm:px-6 md:pt-28 lg:flex-row lg:gap-14 lg:px-8 lg:pb-20">
+    // From lg (1024px): the photo carousel fills the whole hero behind the text, under a navy gradient,
+    // with white text on the left (option C). Below lg: text on top, photo card below, as before.
+    <section
+      className="relative overflow-hidden bg-[#FAFAF8] lg:flex lg:min-h-[clamp(600px,calc(100svh_-_140px),820px)] lg:items-center lg:bg-primary"
+      aria-labelledby="hero-heading"
+    >
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 pb-12 pt-24 sm:px-6 md:pt-28 lg:w-full lg:items-start lg:px-8 lg:py-24">
         {/* min-w-0: the column keeps its share of the row, so a long rotating phrase never widens it
             (which re-wrapped the headline and moved the buttons and photo) */}
-        {/* From 1360px the text column grows with the headline instead of sharing the row 1.35:1 */}
-        <div className="w-full min-w-0 lg:flex-[1.35] min-[1360px]:w-[min(760px,calc(16.25vw_+_390px))] min-[1360px]:flex-none">
+        <div className="w-full min-w-0 lg:relative lg:z-10 lg:max-w-[780px]">
           <h1
             id="hero-heading"
-            className="mb-6 font-telegraf text-[clamp(2.25rem,4.6vw,3rem)] min-[1360px]:text-[clamp(3rem,calc(1.25vw_+_30px),3.75rem)] font-bold md:mb-8 leading-[1.1] tracking-tight text-primary"
+            className="mb-6 font-telegraf text-[clamp(2.25rem,4.6vw,3rem)] lg:text-[clamp(3rem,3.6vw,3.5rem)] font-bold md:mb-8 leading-[1.1] tracking-tight text-primary lg:text-white"
           >
             <span className="sr-only">{t("home.hero.title")}</span>
             <span className="block" aria-hidden>{t("home.hero.headline.line1")}</span>
@@ -158,13 +160,13 @@ export const HomeHeroSection = () => {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center rounded-2xl bg-primary px-6 py-4 sm:w-auto sm:px-9 lg:px-6 min-[1360px]:px-8 whitespace-nowrap font-telegraf text-lg lg:text-base min-[1360px]:text-lg font-semibold text-white transition-colors hover:bg-secondary"
+              className="inline-flex w-full items-center justify-center rounded-2xl bg-primary px-6 py-4 sm:w-auto sm:px-9 lg:px-8 whitespace-nowrap font-telegraf text-lg font-semibold text-white transition-colors hover:bg-secondary lg:bg-[#E6E09E] lg:text-primary lg:hover:bg-white"
             >
               {t("home.hero.cta.primary")}
             </a>
             <a
               href={PLATFORM_URL}
-              className="inline-flex w-full items-center justify-center rounded-2xl border-[1.5px] border-primary px-6 py-4 sm:w-auto sm:px-7 lg:px-5 min-[1360px]:px-7 whitespace-nowrap font-telegraf text-lg lg:text-base min-[1360px]:text-lg font-semibold text-primary transition-colors hover:bg-primary/5"
+              className="inline-flex w-full items-center justify-center rounded-2xl border-[1.5px] border-primary px-6 py-4 sm:w-auto sm:px-7 whitespace-nowrap font-telegraf text-lg font-semibold text-primary transition-colors hover:bg-primary/5 lg:border-white/60 lg:text-white lg:hover:bg-white/10"
             >
               {t("home.hero.cta.platform")}
             </a>
@@ -175,18 +177,17 @@ export const HomeHeroSection = () => {
           role="region"
           aria-roledescription={t("home.hero.carousel.role")}
           aria-label={t("home.hero.carousel.label")}
-          // From 1360px: a landscape frame that runs to the right edge of the viewport (text stays aligned with
-          // the header), sized to the window height, instead of a narrow portrait card in a 1152px box
-          className="relative h-[320px] w-full overflow-hidden rounded-3xl bg-[#dde2ea] shadow-[0_20px_50px_rgba(30,43,126,0.15)] sm:h-[420px] lg:h-[560px] lg:flex-1 min-[1360px]:h-[clamp(540px,calc(100svh_-_340px),640px)] min-[1360px]:mr-[calc(576px_-_50vw_-_2rem)] min-[1360px]:w-auto min-[1360px]:rounded-r-none"
+          // Below lg: a rounded photo card under the text. From lg: absolutely positioned to fill the section behind the text
+          className="relative h-[320px] w-full overflow-hidden rounded-3xl bg-[#dde2ea] shadow-[0_20px_50px_rgba(30,43,126,0.15)] sm:h-[420px] lg:absolute lg:inset-0 lg:z-0 lg:h-auto lg:rounded-none lg:bg-primary lg:shadow-none"
         >
           {HERO_PHOTOS.map(({ src, altKey }, i) => (
             <img
               key={src}
               src={src}
-              // 768/960px copies for phones and tablets; the frame is cropped by height (540-640px tall), so a
-              // 16:9 photo renders ~1000-1150px wide on desktop. 1600w is the largest source we have.
+              // 768/960px copies for phones and tablets; from lg the photo spans the full window width.
+              // 1600w is the largest source we have (wider screens upscale it slightly behind the overlay).
               srcSet={`${src.replace(".webp", "-768.webp")} 768w, ${src.replace(".webp", "-960.webp")} 960w, ${src} 1600w`}
-              sizes="(min-width: 1360px) 1150px, (min-width: 1024px) 1100px, 100vw"
+              sizes="100vw"
               alt={t(altKey)}
               aria-hidden={i !== photoIndex}
               // Crossfade plus a slow zoom-out on the visible photo (Ken Burns); off for reduced motion
@@ -199,7 +200,12 @@ export const HomeHeroSection = () => {
               decoding="async"
             />
           ))}
-          <div className="absolute bottom-5 left-5 flex items-center gap-3">
+          {/* Navy gradient so the white headline stays readable over any photo (lg and up only) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(30,43,126,0.94)_0%,rgba(30,43,126,0.82)_40%,rgba(30,43,126,0.25)_72%,rgba(30,43,126,0.05)_100%)] lg:block"
+          />
+          <div className="absolute bottom-5 left-5 z-10 flex items-center gap-3 lg:bottom-8 lg:left-auto lg:right-8">
             <button
               type="button"
               onClick={() => setPaused((p) => !p)}
