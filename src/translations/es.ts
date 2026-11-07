@@ -65,7 +65,6 @@ export const esTranslations: Record<string, string> = {
   'home.products.title': 'Así se ve tu planta con Stratum.',
   'home.products.alerts.badge': 'Alertas PR · gratis para todos',
   'home.products.alerts.title': '¿Lo que comes ha tenido un retiro?',
-  'home.products.alerts.body': 'Los retiros de la FDA que llegan a la isla, en español y sin registrarte.',
   'home.products.alerts.cta': 'Ver las alertas',
   'launch.new': 'Nuevo:',
   'launch.text': 'Alertas PR, los retiros de alimentos en Puerto Rico, gratis para todos.',

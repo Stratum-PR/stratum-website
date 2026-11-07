@@ -168,15 +168,11 @@ export function HomeProblemSection() {
           <p className="border-y border-white/20 py-4 font-telegraf text-base leading-relaxed text-[#e6e9f5] md:py-5 md:text-lg">
             {t("home.problem.body")}
           </p>
-          {/* Desktop: the answer sits in this column, filling the space next to the corkboard */}
-          <div className="mt-8 hidden lg:block">
-            <AnswerStrip stacked />
-          </div>
         </div>
       </div>
 
-      {/* Phones and tablets: the answer comes after the corkboard */}
-      <div className="mx-auto mt-12 max-w-6xl px-4 sm:px-6 md:mt-16 lg:hidden">
+      {/* Answer to the question above, full width under the corkboard */}
+      <div className="mx-auto mt-12 max-w-6xl px-4 sm:px-6 md:mt-16 lg:px-8">
         <AnswerStrip />
       </div>
     </section>

@@ -86,7 +86,6 @@ export function HomeProductsSection() {
                 {t("home.products.alerts.badge")}
               </p>
               <h3 className="font-telegraf text-[clamp(1.375rem,2.4vw,1.75rem)] font-bold leading-tight">{t("home.products.alerts.title")}</h3>
-              <p className="mt-1.5 font-telegraf text-base leading-relaxed text-white/80">{t("home.products.alerts.body")}</p>
             </div>
             <a
               href={ALERTAS_URL}
