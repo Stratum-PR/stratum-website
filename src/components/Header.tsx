@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Link } from "@/components/LocalizedLink";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { LanguageButtons, LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizedPath } from "@/i18n/paths";
 import { HEADER_ACTION_BUTTON_CLASS } from "@/constants/headerActions";
 
 import { ALERTAS_URL, CALENDLY_URL } from "@/constants/links";
@@ -14,7 +16,7 @@ export const Header = () => {
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   const touchHandledRef = useRef(false);
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // external: opens in a new tab; plain: an <a> (in-page anchor) rather than a router Link
   const navigation: { name: string; href: string; external?: boolean; plain?: boolean }[] = [
@@ -42,8 +44,10 @@ export const Header = () => {
       </Link>
     );
 
-  const isActive = (path: string) =>
-    path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
+  const isActive = (path: string) => {
+    const here = localizedPath(path, language);
+    return path === "/" ? location.pathname === here : location.pathname.startsWith(here);
+  };
 
   const closeMenu = () => {
     setIsMenuClosing(true);

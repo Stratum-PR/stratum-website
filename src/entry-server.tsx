@@ -20,6 +20,12 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import Unsubscribe from "./pages/Unsubscribe";
 import EmailPreferences from "./pages/EmailPreferences";
+import Plantillas from "./pages/Plantillas";
+import Plantilla from "./pages/Plantilla";
+import Glosario from "./pages/Glosario";
+import Industrias from "./pages/Industrias";
+import Industria from "./pages/Industria";
+import InspeccionesFda from "./pages/InspeccionesFda";
 import NotFound from "./pages/NotFound";
 
 export { ALL_PAGE_ROUTES, getPublicBaseUrl } from "./config/discoverable-routes";
@@ -37,6 +43,12 @@ const pages: Pages = {
   Cookies,
   Unsubscribe,
   EmailPreferences,
+  Plantillas,
+  Plantilla,
+  Glosario,
+  Industrias,
+  Industria,
+  InspeccionesFda,
   NotFound,
 };
 

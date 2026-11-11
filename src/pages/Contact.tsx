@@ -1,6 +1,7 @@
 import { CalendarDays, Mail } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteUrl } from "@/i18n/paths";
 import { PageMeta } from "@/components/PageMeta";
 import { CONTACT_ROUTE } from "@/config/discoverable-routes";
 import { CALENDLY_URL } from "@/constants/links";
@@ -13,7 +14,7 @@ const Contact = () => {
   const contactJsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    url: "https://www.stratumpr.com/contact",
+    url: siteUrl("/contact", language),
     name: CONTACT_ROUTE.title,
     inLanguage: language === "es" ? "es-PR" : "en-US",
     mainEntity: { "@id": "https://www.stratumpr.com/#organization" },

@@ -9,6 +9,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getPublicBaseUrl, safePathForUrl, DEFAULT_OG_IMAGE, type DiscoverableRoute } from '@/config/discoverable-routes';
+import { englishPathOf, spanishPathOf, languageOfPath } from '@/i18n/paths';
 
 export interface PageMetaProps {
   route: DiscoverableRoute;
@@ -27,9 +28,13 @@ function resolveImageUrl(image: string): string {
 
 export function PageMeta({ route, image, jsonLd }: PageMetaProps) {
   const baseUrl = getPublicBaseUrl();
-  const canonicalUrl = baseUrl + safePathForUrl(route.path);
-  const ogImage = image != null ? resolveImageUrl(image) : resolveImageUrl(DEFAULT_OG_IMAGE);
   const { language } = useLanguage();
+  // Pages pass their Spanish route; each language has its own address (src/i18n/paths.ts)
+  const esPath = languageOfPath(route.path) === 'en' ? spanishPathOf(route.path) ?? route.path : route.path;
+  const enPath = englishPathOf(esPath);
+  const path = language === 'en' && enPath ? enPath : esPath;
+  const canonicalUrl = baseUrl + safePathForUrl(path);
+  const ogImage = image != null ? resolveImageUrl(image) : resolveImageUrl(DEFAULT_OG_IMAGE);
   const title = language === 'en' && route.titleEn ? route.titleEn : route.title;
   const description = language === 'en' && route.descriptionEn ? route.descriptionEn : route.description;
 
@@ -40,6 +45,9 @@ export function PageMeta({ route, image, jsonLd }: PageMetaProps) {
       <meta property="og:locale" content={language === 'en' ? 'en_US' : 'es_PR'} />
       <meta name="description" content={description} />
       <link rel="canonical" href={canonicalUrl} />
+      {enPath && <link rel="alternate" hrefLang="es-PR" href={baseUrl + safePathForUrl(esPath)} />}
+      {enPath && <link rel="alternate" hrefLang="en-US" href={baseUrl + safePathForUrl(enPath)} />}
+      {enPath && <link rel="alternate" hrefLang="x-default" href={baseUrl + safePathForUrl(esPath)} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />

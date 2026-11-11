@@ -1,4 +1,5 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "@/components/LocalizedLink";
 import { ChevronLeft, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
@@ -25,7 +26,7 @@ const Pregunta = () => {
   const { item, category } = page;
   const route = FAQ_PAGE_ROUTES.find((r) => r.path === page.path)!;
   const { lead, detail } = splitAnswer(item[lang].answer);
-  const url = getPublicBaseUrl() + page.path;
+  const url = getPublicBaseUrl() + (lang === "en" ? page.enPath : page.path);
   const related = FAQ_PAGES.filter((p) => p.category.id === category.id && p.slug !== page.slug);
 
   const jsonLd = JSON.stringify({
@@ -48,8 +49,8 @@ const Pregunta = () => {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Stratum PR", item: "https://www.stratumpr.com/" },
-          { "@type": "ListItem", position: 2, name: lang === "es" ? "Preguntas" : "Questions", item: "https://www.stratumpr.com/preguntas" },
+          { "@type": "ListItem", position: 1, name: "Stratum PR", item: `https://www.stratumpr.com${lang === "en" ? "/en" : "/"}` },
+          { "@type": "ListItem", position: 2, name: lang === "es" ? "Preguntas" : "Questions", item: `https://www.stratumpr.com${lang === "en" ? "/en/faq" : "/preguntas"}` },
           { "@type": "ListItem", position: 3, name: item[lang].question, item: url },
         ],
       },
@@ -98,7 +99,7 @@ const Pregunta = () => {
                 ))}
               </ul>
               <p className="mt-3 font-telegraf text-xs text-neutral-500">
-                {c.verified} {FAQ_VERIFIED_ON[lang]}.
+                {c.verified} {(category.verifiedOn ?? FAQ_VERIFIED_ON)[lang]}.
               </p>
             </div>
           )}

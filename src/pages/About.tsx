@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteUrl } from "@/i18n/paths";
 import { PageMeta } from "@/components/PageMeta";
 import OptimizedImage from "@/components/OptimizedImage";
 import { ABOUT_ROUTE } from "@/config/discoverable-routes";
@@ -24,7 +25,7 @@ const About = () => {
   const aboutJsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    url: "https://www.stratumpr.com/about",
+    url: siteUrl("/about", language),
     name: ABOUT_ROUTE.title,
     inLanguage: language === "es" ? "es-PR" : "en-US",
     mainEntity: {

@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link } from "@/components/LocalizedLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ServicesCTA = () => {
