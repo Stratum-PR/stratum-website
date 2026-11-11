@@ -370,7 +370,7 @@ export const GUIDES: Guide[] = [
       },
     ],
     sources: [
-      SRC.ftr, SRC.ftl, SRC.ftrDate, SRC.ftrMeeting2026, SRC.frDocket, SRC.cfr1_1305, SRC.cfr1_1315,
+      SRC.ftr, SRC.ftl, SRC.ftrDate, SRC.frDocket, SRC.cfr1_1305, SRC.cfr1_1315,
       SRC.cfr1_1340, SRC.cfr1_1345, SRC.cfr1_1350, SRC.cfr1_1455,
     ],
     verifiedOn: '11 de noviembre de 2026',
