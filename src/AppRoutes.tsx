@@ -57,6 +57,17 @@ export function AppRoutes({ pages, fallback }: { pages: Pages; fallback: ReactNo
         <Route path="/cookies" element={page(pages.Cookies)} />
         <Route path="/unsubscribe" element={page(pages.Unsubscribe)} />
         <Route path="/email-preferences" element={page(pages.EmailPreferences)} />
+        {/* English twins (src/i18n/paths.ts): the same pages, in English */}
+        <Route path="/en" element={page(pages.Home)} />
+        <Route path="/en/about" element={page(pages.About)} />
+        <Route path="/en/contact" element={page(pages.Contact)} />
+        <Route path="/en/self-assessment" element={page(pages.Autoevaluacion)} />
+        <Route path="/en/faq" element={page(pages.Preguntas)} />
+        <Route path="/en/faq/:slug" element={page(pages.Pregunta)} />
+        <Route path="/en/guides/:slug" element={page(pages.Guia)} />
+        <Route path="/en/privacy" element={page(pages.Privacy)} />
+        <Route path="/en/terms" element={page(pages.Terms)} />
+        <Route path="/en/cookies" element={page(pages.Cookies)} />
         <Route path="*" element={page(pages.NotFound)} />
       </Route>
     </Routes>

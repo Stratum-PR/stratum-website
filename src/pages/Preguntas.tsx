@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "@/components/LocalizedLink";
 import { ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { localizedPath, siteUrl } from "@/i18n/paths";
 import { PageMeta } from "@/components/PageMeta";
 import { GUIDE_ROUTES, PREGUNTAS_ROUTE } from "@/config/discoverable-routes";
 import { FAQ_CATEGORIES } from "@/content/compliance-faq";
@@ -19,12 +21,12 @@ const Preguntas = () => {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: lang === "es" ? "es-PR" : "en-US",
-    url: "https://www.stratumpr.com/preguntas",
+    url: siteUrl("/preguntas", lang),
     mainEntity: FAQ_CATEGORIES.flatMap((c) =>
       c.items.map((item) => ({
         "@type": "Question",
         name: item[lang].question,
-        url: `https://www.stratumpr.com${faqPathForId(item.id)}`,
+        url: siteUrl(faqPathForId(item.id), lang),
         acceptedAnswer: { "@type": "Answer", text: item[lang].answer },
       }))
     ),
@@ -36,7 +38,7 @@ const Preguntas = () => {
   // Old links to a question on this page (/preguntas#fsma204) now go to that question's own page
   useEffect(() => {
     const id = decodeURIComponent(window.location.hash.slice(1));
-    if (id && FAQ_SLUGS[id]) navigate(faqPathForId(id), { replace: true });
+    if (id && FAQ_SLUGS[id]) navigate(localizedPath(faqPathForId(id), lang), { replace: true });
   }, [navigate]);
 
   return (

@@ -1,5 +1,6 @@
 import { useSEO } from "@/hooks/useSEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteUrl } from "@/i18n/paths";
 import { PageMeta } from "@/components/PageMeta";
 import { LANDING_ROUTE } from "@/config/discoverable-routes";
 import { useEffect } from "react";
@@ -67,7 +68,7 @@ const Home = () => {
       structuredData: {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        url: "https://www.stratumpr.com/",
+        url: siteUrl("/", language),
         name: seoData.title,
         description: seoData.description,
         inLanguage: language === "es" ? "es-PR" : "en-US",

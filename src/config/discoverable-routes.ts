@@ -8,6 +8,7 @@
 
 import { FAQ_PAGES, metaDescription } from '../content/faq-pages';
 import { GUIDES } from '../content/guides';
+import { englishPathOf } from '../i18n/paths';
 
 export type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 
@@ -23,6 +24,10 @@ export interface DiscoverableRoute {
   noindex?: boolean;
   changefreq?: ChangeFreq;
   priority?: number;
+  /** Set on the English twins built by withEnglishTwins: 'en'. Spanish routes leave it unset. */
+  lang?: 'es' | 'en';
+  /** The same page in the other language (English path on a Spanish route and the reverse), for hreflang. */
+  alternate?: string;
 }
 
 const DEFAULT_BASE_URL = 'https://www.stratumpr.com';
@@ -213,8 +218,27 @@ export const GUIDE_ROUTES: DiscoverableRoute[] = GUIDES.filter((g) => g.status =
   priority: 0.8,
 }));
 
-/** Every page that is prerendered and (unless noindex) listed in the sitemap and llms.txt. */
-export const ALL_PAGE_ROUTES: DiscoverableRoute[] = [...DISCOVERABLE_ROUTES, ...FAQ_PAGE_ROUTES, ...GUIDE_ROUTES];
+/**
+ * Each Spanish route plus its English twin (/en/â€¦, src/i18n/paths.ts) when it has one and an English
+ * title: the twin is the same page in English, with its own title and description.
+ */
+export function withEnglishTwins(routes: DiscoverableRoute[]): DiscoverableRoute[] {
+  return routes.flatMap((r) => {
+    const en = englishPathOf(r.path);
+    if (!en || !r.titleEn || !r.descriptionEn) return [r];
+    return [
+      { ...r, alternate: en },
+      { ...r, path: en, title: r.titleEn, description: r.descriptionEn, lang: 'en' as const, alternate: r.path },
+    ];
+  });
+}
+
+/** Every page that is prerendered and (unless noindex) listed in the sitemap and llms.txt, in both languages. */
+export const ALL_PAGE_ROUTES: DiscoverableRoute[] = withEnglishTwins([
+  ...DISCOVERABLE_ROUTES,
+  ...FAQ_PAGE_ROUTES,
+  ...GUIDE_ROUTES,
+]);
 
 /** Route constants for use in pages and meta (keep in sync with DISCOVERABLE_ROUTES). */
 // Look routes up by path, never by position: removing a route must not shift the others

@@ -1,4 +1,5 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "@/components/LocalizedLink";
 import { ChevronLeft, ExternalLink } from "lucide-react";
 import { PageMeta } from "@/components/PageMeta";
 import { SoftCta } from "@/components/SoftCta";

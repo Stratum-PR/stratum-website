@@ -8,6 +8,7 @@
  */
 
 import * as fs from 'fs';
+import { englishPathOf } from '../src/i18n/paths';
 import * as path from 'path';
 import { execSync } from 'child_process';
 import {
@@ -60,12 +61,23 @@ export function indexableRoutes() {
 function writeSitemap(baseUrl: string): void {
   const now = lastModified();
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n';
 
   for (const route of indexableRoutes()) {
     const loc = baseUrl + safePathForUrl(route.path);
     xml += '  <url>\n';
     xml += `    <loc>${escapeXml(loc)}</loc>\n`;
+    // Both languages of a page list each other (hreflang), as the pages themselves do
+    if (route.alternate) {
+      const es = route.lang === 'en' ? route.alternate : route.path;
+      const en = route.lang === 'en' ? route.path : route.alternate;
+      xml += `    <xhtml:link rel="alternate" hreflang="es-PR" href="${escapeXml(baseUrl + safePathForUrl(es))}"/>
+`;
+      xml += `    <xhtml:link rel="alternate" hreflang="en-US" href="${escapeXml(baseUrl + safePathForUrl(en))}"/>
+`;
+      xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(baseUrl + safePathForUrl(es))}"/>
+`;
+    }
     xml += `    <lastmod>${now}</lastmod>\n`;
     if (route.changefreq) {
       xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
@@ -138,7 +150,7 @@ function writeLlmsTxt(baseUrl: string): void {
     ''
   );
   L.push(
-    'English: The site is in Spanish (es-PR) with an English version at the same URLs. The FAQ answers cite official sources (FDA, eCFR, SQFI, GFSI, BRCGS) and state when they were last verified. Contact: contact@stratumpr.com.',
+    'English: The site is in Spanish (es-PR) with an English version of every main page under /en (en-US), linked with hreflang. The FAQ answers cite official sources (FDA, eCFR, SQFI, GFSI, BRCGS) and state when they were last verified. Contact: contact@stratumpr.com.',
     ''
   );
 
@@ -150,11 +162,22 @@ function writeLlmsTxt(baseUrl: string): void {
   L.push('- [Alertas PR](https://alertas.stratumpr.com/): Retiros de alimentos que afectan a Puerto Rico, explicados en español. Gratis. / U.S. food recalls affecting Puerto Rico, in Spanish. Free.');
   L.push('');
 
-  L.push('## Preguntas frecuentes / FAQ (one page per question, with official sources)', '');
+  L.push('## Preguntas frecuentes (español, con fuentes oficiales)', '');
   for (const r of FAQ_PAGE_ROUTES) {
     const page = FAQ_PAGES.find((p) => p.path === r.path)!;
-    L.push(`- [${page.item.es.question}](${link(r.path)}): ${page.item.en.question}`);
+    L.push(`- [${page.item.es.question}](${link(r.path)})`);
   }
+  L.push('');
+
+  L.push('## English pages (for U.S. buyers and companies exporting to the U.S.)', '');
+  for (const p of ['/', '/about', '/autoevaluacion', '/preguntas', '/contact']) {
+    const r = main(p);
+    const en = englishPathOf(p);
+    if (en && r.titleEn) L.push(`- [${r.titleEn}](${link(en)}): ${r.descriptionEn ?? ''}`);
+  }
+  L.push('');
+  L.push('## FAQ in English (official sources)', '');
+  for (const page of FAQ_PAGES) L.push(`- [${page.item.en.question}](${link(page.enPath)})`);
   L.push('');
 
   const guides = GUIDE_ROUTES.filter((r) => !r.noindex);

@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Link } from "@/components/LocalizedLink";
 import { ArrowUpRight, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ALERTAS_URL } from "@/constants/links";
@@ -15,7 +16,7 @@ export const Footer = () => {
   const { t } = useLanguage();
   const { pathname } = useLocation();
   // Home shows a fixed mobile CTA bar; leave room so it never covers the last footer links
-  const hasStickyCta = pathname === "/";
+  const hasStickyCta = pathname === "/" || pathname === "/en";
   const currentYear = new Date().getFullYear();
 
   const columns: { title: string; links: FooterLink[] }[] = [
