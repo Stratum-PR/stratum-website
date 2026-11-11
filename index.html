@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-PR">
   <head>
     <meta charset="UTF-8" />
     <!-- Critical Meta Tags -->
@@ -62,6 +62,19 @@
       })();
     </script>
     
+    <!-- Launch bar: if the visitor closed it in the last 10 minutes, hide it before the prerendered page paints
+         (same key and window as src/components/LaunchBar.tsx) -->
+    <script>
+      try {
+        var hiddenAt = Number(localStorage.getItem('launchBarHiddenAt'));
+        if (hiddenAt > 0 && Date.now() - hiddenAt < 600000) {
+          document.documentElement.style.setProperty('--launch-bar-h', '0px');
+          document.documentElement.setAttribute('data-launch-hidden', '');
+        }
+      } catch (e) {}
+    </script>
+    <style>html[data-launch-hidden] #launch-bar { visibility: hidden; }</style>
+
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,16 +168,11 @@
     <!-- Primary Meta Tags -->
     <title>Stratum PR</title>
     <meta name="title" content="Stratum PR" />
-    <meta name="description" content="Technology for Puerto Rico food manufacturers: digital records, inventory and traceability so every inspection comes with peace of mind." />
+    <meta name="description" content="Tecnología para fabricantes de alimentos en Puerto Rico: registros digitales, inventario y trazabilidad para llegar a cada inspección con tranquilidad." />
     <meta name="keywords" content="food manufacturers Puerto Rico, fabricantes de alimentos Puerto Rico, FSMA, FSMA 204, food traceability, trazabilidad, FDA inspection, food safety software, Alertas PR, food recalls Puerto Rico" />
     <meta name="author" content="Stratum PR" />
-    <meta name="language" content="English" />
     <link rel="canonical" href="https://www.stratumpr.com/" />
 
-    <!-- Multilingual support -->
-    <link rel="alternate" hreflang="en" href="https://www.stratumpr.com/" />
-    <link rel="alternate" hreflang="es" href="https://www.stratumpr.com/" />
-    <link rel="alternate" hreflang="x-default" href="https://www.stratumpr.com/" />
     
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
@@ -178,7 +186,7 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Stratum PR: tecnología para fabricantes de alimentos en Puerto Rico" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="es_PR" />
     
     <!-- Apple / iMessage specific -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,7 +198,7 @@
     <meta name="twitter:site" content="@stratumpr" />
     <meta name="twitter:creator" content="@stratumpr" />
     <meta name="twitter:title" content="Stratum PR" />
-    <meta name="twitter:description" content="Technology for Puerto Rico food manufacturers: digital records, inventory and traceability so every inspection comes with peace of mind." />
+    <meta name="twitter:description" content="Tecnología para fabricantes de alimentos en Puerto Rico: registros digitales, inventario y trazabilidad para llegar a cada inspección con tranquilidad." />
     <meta name="twitter:image" content="https://www.stratumpr.com/img/StratumPR-Preview-Image.jpg" />
 
     <!-- Geo location -->
@@ -202,37 +210,48 @@
     <!-- Preload burger menu logos to prevent pop-in -->
 
 
-    <!-- Structured Data - JSON-LD -->
+    <!-- Structured Data - JSON-LD (Organization, WebSite, SoftwareApplication). Pages add their own blocks.
+         TODO(Jovaniel): confirm the platform's public product name ("Plataforma Stratum PR" for now). No price or rating: none is published. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "LocalBusiness",
-          "@id": "https://www.stratumpr.com/#business",
-          "name": "Stratum PR",
-          "alternateName": "Stratum Puerto Rico",
-          "description": "Technology for Puerto Rico food manufacturers: digital records, inventory and traceability so every inspection comes with peace of mind.",
-          "url": "https://www.stratumpr.com",
-          "logo": "https://www.stratumpr.com/web-app-manifest-512x512.png",
+          "@type": "Organization",
+          "@id": "https://www.stratumpr.com/#organization",
+          "name": "Stratum PR LLC",
+          "alternateName": "Stratum PR",
+          "description": "Tecnología para fabricantes de alimentos en Puerto Rico: registros digitales, inventario y trazabilidad para llegar a cada inspección con tranquilidad.",
+          "url": "https://www.stratumpr.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.stratumpr.com/web-app-manifest-512x512.png",
+            "width": 512,
+            "height": 512
+          },
           "email": "contact@stratumpr.com",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "contact@stratumpr.com",
+            "contactType": "customer service",
+            "areaServed": "PR",
+            "availableLanguage": [
+              "es",
+              "en"
+            ]
+          },
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Trujillo Alto",
             "addressRegion": "PR",
             "addressCountry": "US"
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 18.3547,
-            "longitude": -66.0074
-          },
           "areaServed": {
             "@type": "Place",
             "name": "Puerto Rico"
           },
           "foundingDate": "2025",
-          "founders": [
+          "founder": [
             {
               "@type": "Person",
               "name": "Jovaniel Rodriguez",
@@ -240,16 +259,42 @@
             },
             {
               "@type": "Person",
-              "name": "Genesis Rodriguez", 
+              "name": "Genesis Rodriguez",
               "jobTitle": "Co-Founder, Data Science"
             }
           ],
           "sameAs": [
-            "https://linkedin.com/company/stratumpr",
+            "https://www.linkedin.com/company/stratumpr",
+            "https://alertas.stratumpr.com/",
             "https://www.facebook.com/profile.php?id=61577145020919",
-            "https://www.instagram.com/stratum.pr/",
-            "https://alertas.stratumpr.com/"
+            "https://www.instagram.com/stratum.pr/"
           ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.stratumpr.com/#website",
+          "url": "https://www.stratumpr.com/",
+          "name": "Stratum PR",
+          "inLanguage": "es-PR",
+          "publisher": {
+            "@id": "https://www.stratumpr.com/#organization"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://www.stratumpr.com/#platform",
+          "name": "Plataforma Stratum PR",
+          "description": "Plataforma web para fabricantes de alimentos en Puerto Rico: registros de inocuidad digitales, inventario por lotes, trazabilidad hacia atrás y hacia adelante con exportación FSMA 204, plan HACCP y alertas de retiros de suplidores.",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "inLanguage": [
+            "es",
+            "en"
+          ],
+          "url": "https://www.stratumpr.com/#plataforma",
+          "provider": {
+            "@id": "https://www.stratumpr.com/#organization"
+          }
         }
       ]
     }

@@ -15,13 +15,8 @@ const Contact = () => {
     "@type": "ContactPage",
     url: "https://www.stratumpr.com/contact",
     name: CONTACT_ROUTE.title,
-    inLanguage: language === "es" ? "es" : "en",
-    mainEntity: {
-      "@type": "Organization",
-      name: "Stratum PR",
-      address: { "@type": "PostalAddress", addressLocality: "Trujillo Alto", addressRegion: "PR", addressCountry: "US" },
-      contactPoint: { "@type": "ContactPoint", email: CONTACT_EMAIL, contactType: "customer service", availableLanguage: ["es", "en"] },
-    },
+    inLanguage: language === "es" ? "es-PR" : "en-US",
+    mainEntity: { "@id": "https://www.stratumpr.com/#organization" },
   });
 
   const cardClass = "rounded-3xl border border-primary/10 bg-white p-5 md:p-6";

@@ -830,7 +830,9 @@ footer :focus-visible {
   background-size: auto, 900px auto;
 }
 
-/* Space taken by the temporary Alertas PR launch bar; LaunchBar.tsx sets it while the bar is shown */
+/* Space taken by the temporary Alertas PR launch bar. Starts at the bar's height because the
+   prerendered pages show the bar; index.html sets 0px early if the visitor closed it recently, and
+   LaunchBar.tsx keeps it in sync after that. Set back to 0px when the bar is removed. */
 :root {
-  --launch-bar-h: 0px;
+  --launch-bar-h: 2.25rem;
 }

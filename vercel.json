@@ -35,7 +35,6 @@
     { "source": "/newsupdates/:slug*", "destination": "/", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/app-shell.html" }
+    { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }

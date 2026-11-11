@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, startTransition, ReactNode } from 'react';
 import { translations } from '@/translations';
 import type { Language, LanguageContextType } from '@/types/language';
 
@@ -24,11 +24,17 @@ const readSavedLanguage = (): Language => {
 };
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  // Read synchronously so the first render is already in the right language (no English flash)
-  const [language, setLanguageState] = useState<Language>(readSavedLanguage);
+  // Starts in Spanish, like the prerendered HTML, so hydration matches. A saved English choice is
+  // applied right after, as a transition so it doesn't interrupt pages that are still hydrating.
+  const [language, setLanguageState] = useState<Language>('es');
 
   useEffect(() => {
-    document.documentElement.lang = language;
+    const saved = readSavedLanguage();
+    if (saved !== 'es') startTransition(() => setLanguageState(saved));
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = language === 'es' ? 'es-PR' : 'en-US';
   }, [language]);
 
   const setLanguage = (lang: Language) => {

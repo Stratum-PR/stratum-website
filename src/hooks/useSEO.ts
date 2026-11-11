@@ -16,39 +16,7 @@ export const useSEO = (seoData: SEOData, pageName?: string, options?: UseSEOOpti
       updateSEO(seoData);
     }
 
-    // Update hreflang tags dynamically
-    const updateHreflang = () => {
-      // Remove existing hreflang tags
-      const existingHreflangs = document.querySelectorAll('link[rel="alternate"][hreflang]');
-      existingHreflangs.forEach(tag => tag.remove());
-
-      // Detect language from content
-      const isSpanish = /[áéíóúñüÁÉÍÓÚÑÜ]/.test(seoData.title + seoData.description);
-      // Always use production domain for hreflang tags for SEO consistency
-      const currentUrl = `https://www.stratumpr.com${location.pathname}`;
-
-      // Add hreflang tags
-      const enLink = document.createElement('link');
-      enLink.setAttribute('rel', 'alternate');
-      enLink.setAttribute('hreflang', 'en');
-      enLink.setAttribute('href', currentUrl);
-      document.head.appendChild(enLink);
-
-      const esLink = document.createElement('link');
-      esLink.setAttribute('rel', 'alternate');
-      esLink.setAttribute('hreflang', 'es');
-      esLink.setAttribute('href', currentUrl);
-      document.head.appendChild(esLink);
-
-      // Add x-default
-      const defaultLink = document.createElement('link');
-      defaultLink.setAttribute('rel', 'alternate');
-      defaultLink.setAttribute('hreflang', 'x-default');
-      defaultLink.setAttribute('href', currentUrl);
-      document.head.appendChild(defaultLink);
-    };
-
-    updateHreflang();
+    // No hreflang: the site has one URL per page (the language switch only changes the text in the browser)
 
     // Page views are captured by PostHog (with consent) on each route change
 

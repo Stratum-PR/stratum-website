@@ -70,7 +70,7 @@ const Home = () => {
         url: "https://www.stratumpr.com/",
         name: seoData.title,
         description: seoData.description,
-        inLanguage: language === "es" ? "es" : "en",
+        inLanguage: language === "es" ? "es-PR" : "en-US",
       },
     },
     "home",

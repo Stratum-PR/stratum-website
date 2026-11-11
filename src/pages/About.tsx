@@ -26,7 +26,7 @@ const About = () => {
     "@type": "AboutPage",
     url: "https://www.stratumpr.com/about",
     name: ABOUT_ROUTE.title,
-    inLanguage: language === "es" ? "es" : "en",
+    inLanguage: language === "es" ? "es-PR" : "en-US",
     mainEntity: {
       "@type": "Organization",
       name: "Stratum PR",
