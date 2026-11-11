@@ -17,8 +17,6 @@
     }
   ],
   "redirects": [
-    { "source": "/en", "destination": "/", "permanent": true },
-    { "source": "/en/", "destination": "/", "permanent": true },
     { "source": "/es", "destination": "/", "permanent": true },
     { "source": "/es/", "destination": "/", "permanent": true },
     { "source": "/services", "destination": "/", "permanent": true },
