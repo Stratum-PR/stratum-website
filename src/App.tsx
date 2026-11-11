@@ -48,6 +48,12 @@ const pages: Pages = {
   Cookies: lazy(() => import("./pages/Cookies")),
   Unsubscribe: lazy(() => import("./pages/Unsubscribe")),
   EmailPreferences: lazy(() => import("./pages/EmailPreferences")),
+  Plantillas: lazy(() => import("./pages/Plantillas")),
+  Plantilla: lazy(() => import("./pages/Plantilla")),
+  Glosario: lazy(() => import("./pages/Glosario")),
+  Industrias: lazy(() => import("./pages/Industrias")),
+  Industria: lazy(() => import("./pages/Industria")),
+  InspeccionesFda: lazy(() => import("./pages/InspeccionesFda")),
   NotFound: lazy(() => import("./pages/NotFound")),
 };
 

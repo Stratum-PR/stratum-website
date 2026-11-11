@@ -6,9 +6,11 @@
  */
 import { FAQ_CATEGORIES, type FaqCategory, type FaqItem } from './compliance-faq';
 import { registerPathPairs } from '../i18n/paths';
+import { PR_FAQ_SLUGS } from './faq-puerto-rico';
 
 /** FAQ item id → URL slug (Spanish, descriptive). Every FAQ item must have one (checked at build). */
 export const FAQ_SLUGS: Record<string, string> = {
+  ...Object.fromEntries(Object.entries(PR_FAQ_SLUGS).map(([id, s]) => [id, s.es])),
   'que-registros': 'que-registros-de-inocuidad-debe-guardar-una-planta',
   'registro-valido': 'que-hace-valido-un-registro-ante-la-fda',
   retencion: 'cuanto-tiempo-guardar-registros-de-inocuidad',
@@ -42,6 +44,7 @@ export const FAQ_SLUGS: Record<string, string> = {
 
 /** FAQ item id → English URL slug, for /en/faq/<slug> (same rules: permanent once shipped). */
 export const FAQ_SLUGS_EN: Record<string, string> = {
+  ...Object.fromEntries(Object.entries(PR_FAQ_SLUGS).map(([id, s]) => [id, s.en])),
   'que-registros': 'food-safety-records-a-plant-must-keep',
   'registro-valido': 'what-makes-a-record-valid-for-fda',
   retencion: 'how-long-to-keep-food-safety-records',

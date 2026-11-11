@@ -33,6 +33,10 @@ export const Footer = () => {
       links: [
         { name: t("nav.questions"), href: "/preguntas" },
         { name: t("nav.selfcheck"), href: "/autoevaluacion" },
+        { name: t("footer.templates"), href: "/plantillas" },
+        { name: t("footer.inspections"), href: "/inspecciones-fda-puerto-rico" },
+        { name: t("footer.industries"), href: "/industrias" },
+        { name: t("footer.glossary"), href: "/glosario" },
         { name: t("nav.alerts"), href: ALERTAS_URL, external: true },
       ],
     },

@@ -8,6 +8,7 @@
  * November 7, 2026; re-check dates (SQF Edition 10, FSMA 204) before editing.
  */
 import { HOME_FAQ } from './home-faq';
+import { PR_FAQ_CATEGORY, PR_FAQ_VERIFIED_ON } from './faq-puerto-rico';
 
 export const FAQ_VERIFIED_ON = { es: '7 de noviembre de 2026', en: 'November 7, 2026' };
 
@@ -28,6 +29,8 @@ export interface FaqCategory {
   es: string;
   en: string;
   items: FaqItem[];
+  /** When this category's sources were last checked, if not FAQ_VERIFIED_ON */
+  verifiedOn?: { es: string; en: string };
 }
 
 const SRC = {
@@ -288,12 +291,12 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
         es: {
           question: '¿En qué se diferencia una auditoría de certificación de una inspección de la FDA?',
           answer:
-            "La inspección de la FDA verifica que cumples la ley, normalmente no se anuncia y puede tener consecuencias regulatorias. La auditoría de certificación la contratas tú con un organismo de certificación y verifica que cumples un estándar voluntario como SQF o BRCGS; una no conformidad crítica, una puntuación baja o no cerrar las no conformidades a tiempo pueden costarte el certificado. Aun así, no todas las auditorías se anuncian: SQF exige una auditoría sin aviso una vez cada tres años.",
+            "La inspección de la FDA verifica que cumples la ley y puede tener consecuencias regulatorias. La auditoría de certificación la contratas tú con un organismo de certificación y verifica que cumples un estándar voluntario como SQF o BRCGS; una no conformidad crítica, una puntuación baja o no cerrar las no conformidades a tiempo pueden costarte el certificado. Aun así, no todas las auditorías se anuncian: SQF exige una auditoría sin aviso una vez cada tres años.",
         },
         en: {
           question: 'How is a certification audit different from an FDA inspection?',
           answer:
-            "An FDA inspection checks that you comply with the law, is usually unannounced and can have regulatory consequences. A certification audit is one you arrange with a certification body to check that you meet a voluntary standard such as SQF or BRCGS; a critical nonconformity, a failing score or not closing nonconformities on time can cost you the certificate. Even so, not every audit is announced: SQF requires an unannounced audit once every three years.",
+            "An FDA inspection checks that you comply with the law and can have regulatory consequences. A certification audit is one you arrange with a certification body to check that you meet a voluntary standard such as SQF or BRCGS; a critical nonconformity, a failing score or not closing nonconformities on time can cost you the certificate. Even so, not every audit is announced: SQF requires an unannounced audit once every three years.",
         },
         sources: [SRC.sqfCode, SRC.sqfFaq],
       },
@@ -416,6 +419,7 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       },
     ],
   },
+  { ...PR_FAQ_CATEGORY, verifiedOn: PR_FAQ_VERIFIED_ON },
   {
     id: 'stratum',
     es: 'Sobre Stratum PR',

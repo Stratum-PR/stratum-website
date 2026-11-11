@@ -99,7 +99,7 @@ const Pregunta = () => {
                 ))}
               </ul>
               <p className="mt-3 font-telegraf text-xs text-neutral-500">
-                {c.verified} {FAQ_VERIFIED_ON[lang]}.
+                {c.verified} {(category.verifiedOn ?? FAQ_VERIFIED_ON)[lang]}.
               </p>
             </div>
           )}

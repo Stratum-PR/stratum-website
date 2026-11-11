@@ -20,6 +20,12 @@ export interface Pages {
   Cookies: ComponentType;
   Unsubscribe: ComponentType;
   EmailPreferences: ComponentType;
+  Plantillas: ComponentType;
+  Plantilla: ComponentType;
+  Glosario: ComponentType;
+  Industrias: ComponentType;
+  Industria: ComponentType;
+  InspeccionesFda: ComponentType;
   NotFound: ComponentType;
 }
 
@@ -57,7 +63,19 @@ export function AppRoutes({ pages, fallback }: { pages: Pages; fallback: ReactNo
         <Route path="/cookies" element={page(pages.Cookies)} />
         <Route path="/unsubscribe" element={page(pages.Unsubscribe)} />
         <Route path="/email-preferences" element={page(pages.EmailPreferences)} />
+        <Route path="/plantillas" element={page(pages.Plantillas)} />
+        <Route path="/plantillas/:slug" element={page(pages.Plantilla)} />
+        <Route path="/glosario" element={page(pages.Glosario)} />
+        <Route path="/industrias" element={page(pages.Industrias)} />
+        <Route path="/industrias/:slug" element={page(pages.Industria)} />
+        <Route path="/inspecciones-fda-puerto-rico" element={page(pages.InspeccionesFda)} />
         {/* English twins (src/i18n/paths.ts): the same pages, in English */}
+        <Route path="/en/templates" element={page(pages.Plantillas)} />
+        <Route path="/en/templates/:slug" element={page(pages.Plantilla)} />
+        <Route path="/en/glossary" element={page(pages.Glosario)} />
+        <Route path="/en/industries" element={page(pages.Industrias)} />
+        <Route path="/en/industries/:slug" element={page(pages.Industria)} />
+        <Route path="/en/fda-inspections-puerto-rico" element={page(pages.InspeccionesFda)} />
         <Route path="/en" element={page(pages.Home)} />
         <Route path="/en/about" element={page(pages.About)} />
         <Route path="/en/contact" element={page(pages.Contact)} />

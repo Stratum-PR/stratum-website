@@ -8,7 +8,11 @@
 
 import { FAQ_PAGES, metaDescription } from '../content/faq-pages';
 import { GUIDES } from '../content/guides';
-import { englishPathOf } from '../i18n/paths';
+import { TEMPLATES, TEMPLATES_INDEX_PATH } from '../content/templates';
+import { SECTORS, SECTORS_INDEX_PATH } from '../content/sectors';
+import { GLOSSARY_PATH } from '../content/glossary';
+import { INSPECTIONS_PR_COPY, INSPECTIONS_PR_PATH } from '../content/fda-inspections-pr';
+import { englishPathOf, registerPathPairs } from '../i18n/paths';
 
 export type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 
@@ -208,10 +212,14 @@ export const FAQ_PAGE_ROUTES: DiscoverableRoute[] = FAQ_PAGES.map((p) => ({
 }));
 
 /** Guides (/guias/<slug>). Drafts are noindex and only exist when showDrafts() is on. */
+registerPathPairs(GUIDES.map((g) => [`/guias/${g.slug}`, `/en/guides/${g.en.slug}`] as const));
+
 export const GUIDE_ROUTES: DiscoverableRoute[] = GUIDES.filter((g) => g.status === 'published' || showDrafts()).map((g) => ({
   path: `/guias/${g.slug}`,
   title: g.metaTitle,
   description: g.description,
+  titleEn: g.en.metaTitle,
+  descriptionEn: g.en.description,
   indexable: g.status === 'published',
   noindex: g.status !== 'published',
   changefreq: 'monthly',
@@ -233,11 +241,84 @@ export function withEnglishTwins(routes: DiscoverableRoute[]): DiscoverableRoute
   });
 }
 
+registerPathPairs([
+  [TEMPLATES_INDEX_PATH.es, TEMPLATES_INDEX_PATH.en],
+  ...TEMPLATES.map((t) => [`${TEMPLATES_INDEX_PATH.es}/${t.slug.es}`, `${TEMPLATES_INDEX_PATH.en}/${t.slug.en}`] as const),
+  [SECTORS_INDEX_PATH.es, SECTORS_INDEX_PATH.en],
+  ...SECTORS.map((s) => [`${SECTORS_INDEX_PATH.es}/${s.slug.es}`, `${SECTORS_INDEX_PATH.en}/${s.slug.en}`] as const),
+  [GLOSSARY_PATH.es, GLOSSARY_PATH.en],
+]);
+
+/** Resources: free templates, glossary, FDA inspections in Puerto Rico, rules by industry. */
+export const RESOURCE_ROUTES: DiscoverableRoute[] = [
+  {
+    path: INSPECTIONS_PR_PATH.es,
+    title: INSPECTIONS_PR_COPY.es.metaTitle,
+    description: INSPECTIONS_PR_COPY.es.description,
+    titleEn: INSPECTIONS_PR_COPY.en.metaTitle,
+    descriptionEn: INSPECTIONS_PR_COPY.en.description,
+    indexable: true,
+    changefreq: 'monthly',
+    priority: 0.8,
+  },
+  {
+    path: TEMPLATES_INDEX_PATH.es,
+    title: 'Plantillas gratis de registros de inocuidad | Stratum PR',
+    description: 'Plantillas gratis para imprimir: monitoreo HACCP y de saneamiento, registros de recibo y envío FSMA 204 y simulacro de retiro, con fuentes de la FDA.',
+    titleEn: 'Free food safety record templates | Stratum PR',
+    descriptionEn: 'Free printable templates: HACCP and sanitation monitoring logs, FSMA 204 receiving and shipping KDE sheets, and a mock recall checklist, with FDA sources.',
+    indexable: true,
+    changefreq: 'monthly',
+    priority: 0.8,
+  },
+  ...TEMPLATES.map((t) => ({
+    path: `${TEMPLATES_INDEX_PATH.es}/${t.slug.es}`,
+    title: t.es.metaTitle,
+    description: t.es.description,
+    titleEn: t.en.metaTitle,
+    descriptionEn: t.en.description,
+    indexable: true,
+    changefreq: 'monthly' as const,
+    priority: 0.7,
+  })),
+  {
+    path: GLOSSARY_PATH.es,
+    title: 'Glosario de inocuidad alimentaria: FDA, FSMA y SQF | Stratum PR',
+    description: 'Qué significan KDE, CTE, PCQI, FSVP, HACCP, Formulario 483, recall y más: términos de la FDA, FSMA, USDA y SQF explicados en español, con la fuente oficial de cada uno.',
+    titleEn: 'Food safety glossary: FDA, FSMA and SQF terms | Stratum PR',
+    descriptionEn: 'What KDE, CTE, PCQI, FSVP, HACCP, Form 483, recall and more mean: FDA, FSMA, USDA and SQF terms explained in plain language, with the official source for each one.',
+    indexable: true,
+    changefreq: 'monthly',
+    priority: 0.7,
+  },
+  {
+    path: SECTORS_INDEX_PATH.es,
+    title: 'Reglas de inocuidad por industria en PR | Stratum PR',
+    description: 'Qué reglas federales de inocuidad aplican a tu planta en Puerto Rico según lo que produces: jugos, mariscos, acidificados, panaderías, café, carnes y almacenes.',
+    titleEn: 'Food safety rules by industry in PR | Stratum PR',
+    descriptionEn: 'Which federal food safety rules apply to your plant in Puerto Rico based on what you make: juice, seafood, acidified foods, bakery, coffee, meat, warehouses.',
+    indexable: true,
+    changefreq: 'monthly',
+    priority: 0.8,
+  },
+  ...SECTORS.map((s) => ({
+    path: `${SECTORS_INDEX_PATH.es}/${s.slug.es}`,
+    title: s.es.metaTitle,
+    description: s.es.description,
+    titleEn: s.en.metaTitle,
+    descriptionEn: s.en.description,
+    indexable: true,
+    changefreq: 'monthly' as const,
+    priority: 0.7,
+  })),
+];
+
 /** Every page that is prerendered and (unless noindex) listed in the sitemap and llms.txt, in both languages. */
 export const ALL_PAGE_ROUTES: DiscoverableRoute[] = withEnglishTwins([
   ...DISCOVERABLE_ROUTES,
   ...FAQ_PAGE_ROUTES,
   ...GUIDE_ROUTES,
+  ...RESOURCE_ROUTES,
 ]);
 
 /** Route constants for use in pages and meta (keep in sync with DISCOVERABLE_ROUTES). */

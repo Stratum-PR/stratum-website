@@ -2,34 +2,55 @@ import { useParams } from "react-router-dom";
 import { Link } from "@/components/LocalizedLink";
 import { ChevronLeft, ExternalLink } from "lucide-react";
 import { PageMeta } from "@/components/PageMeta";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { SoftCta } from "@/components/SoftCta";
 import { GUIDE_ROUTES, getPublicBaseUrl } from "@/config/discoverable-routes";
 import { GUIDES } from "@/content/guides";
 import NotFound from "./NotFound";
 
+const COPY = {
+  es: { back: "Preguntas y guías", sources: "Fuentes oficiales", verified: "Fuentes verificadas el" },
+  en: { back: "Questions and guides", sources: "Official sources", verified: "Sources verified on" },
+};
+
+const MONTHS: Record<string, string> = {
+  enero: "January", febrero: "February", marzo: "March", abril: "April", mayo: "May", junio: "June", julio: "July",
+  agosto: "August", septiembre: "September", octubre: "October", noviembre: "November", diciembre: "December",
+};
+
+/** "11 de noviembre de 2026" → "November 11, 2026" (the guides store the date in Spanish). */
+function englishDate(es: string): string {
+  const m = /^(\d{1,2}) de (\p{L}+) de (\d{4})$/u.exec(es.trim());
+  return m && MONTHS[m[2].toLowerCase()] ? `${MONTHS[m[2].toLowerCase()]} ${m[1]}, ${m[3]}` : es;
+}
+
 /**
- * A long-form guide (Spanish only) at /guias/<slug>. A guide with status 'draft' only exists in
+ * A long-form guide at /guias/<slug>, and in English at /en/guides/<en slug>. A guide with status 'draft' only exists in
  * builds with VITE_SHOW_DRAFTS=1 (GUIDE_ROUTES leaves it out otherwise), carries noindex and shows
  * a DRAFT banner with its open TODOs.
  */
 const Guia = () => {
   const { slug } = useParams();
-  const guide = GUIDES.find((g) => g.slug === slug);
-  const route = GUIDE_ROUTES.find((r) => r.path === `/guias/${slug}`);
+  const { language } = useLanguage();
+  const lang = language === "en" ? "en" : "es";
+  const c = COPY[lang];
+  const guide = GUIDES.find((g) => (lang === "en" ? g.en.slug : g.slug) === slug);
+  const route = guide && GUIDE_ROUTES.find((r) => r.path === `/guias/${guide.slug}`);
   if (!guide || !route) return <NotFound />;
 
-  const url = getPublicBaseUrl() + route.path;
+  const text = lang === "en" ? guide.en : guide;
+  const url = getPublicBaseUrl() + (lang === "en" ? `/en/guides/${guide.en.slug}` : route.path);
   const isDraft = guide.status !== "published";
 
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
     "@id": `${url}#article`,
-    headline: guide.title,
-    description: guide.description,
+    headline: text.title,
+    description: text.description,
     url,
     mainEntityOfPage: url,
-    inLanguage: "es-PR",
+    inLanguage: lang === "es" ? "es-PR" : "en-US",
     isPartOf: { "@id": "https://www.stratumpr.com/#website" },
     author: { "@id": "https://www.stratumpr.com/#organization" },
     publisher: { "@id": "https://www.stratumpr.com/#organization" },
@@ -58,18 +79,18 @@ const Guia = () => {
           <div className="mx-auto max-w-3xl">
             <Link to="/preguntas" className="mb-6 inline-flex items-center gap-1 font-telegraf text-sm text-white/80 underline-offset-2 hover:underline">
               <ChevronLeft className="h-4 w-4" aria-hidden />
-              Preguntas y guías
+              {c.back}
             </Link>
             <h1 id="guia-heading" className="font-telegraf text-[clamp(1.875rem,4.5vw,3rem)] font-bold leading-[1.1] tracking-[-0.02em]">
-              {guide.title}
+              {text.title}
             </h1>
           </div>
         </section>
 
-        <article lang="es-PR" className="mx-auto max-w-3xl px-4 py-12 md:py-16">
-          <p className="max-w-[68ch] font-telegraf text-lg font-medium leading-relaxed text-[#0b1215] md:text-xl">{guide.lead}</p>
+        <article lang={lang === "es" ? "es-PR" : "en-US"} className="mx-auto max-w-3xl px-4 py-12 md:py-16">
+          <p className="max-w-[68ch] font-telegraf text-lg font-medium leading-relaxed text-[#0b1215] md:text-xl">{text.lead}</p>
 
-          {guide.sections.map((s) => (
+          {text.sections.map((s) => (
             <section key={s.heading} className="mt-10">
               <h2 className="font-telegraf text-xl font-bold text-primary md:text-2xl">{s.heading}</h2>
               {s.paragraphs.map((p, i) => (
@@ -89,7 +110,7 @@ const Guia = () => {
 
           {guide.sources.length > 0 && (
             <div className="mt-12 border-t border-primary/10 pt-6">
-              <h2 className="mb-2 font-telegraf text-xs font-bold uppercase tracking-[0.1em] text-neutral-500">Fuentes oficiales</h2>
+              <h2 className="mb-2 font-telegraf text-xs font-bold uppercase tracking-[0.1em] text-neutral-500">{c.sources}</h2>
               <ul>
                 {guide.sources.map((s) => (
                   <li key={s.url}>
@@ -105,7 +126,9 @@ const Guia = () => {
                   </li>
                 ))}
               </ul>
-              <p className="mt-3 font-telegraf text-xs text-neutral-500">Fuentes verificadas el {guide.verifiedOn}.</p>
+              <p className="mt-3 font-telegraf text-xs text-neutral-500">
+                {c.verified} {lang === "en" ? englishDate(guide.verifiedOn) : guide.verifiedOn}.
+              </p>
             </div>
           )}
 

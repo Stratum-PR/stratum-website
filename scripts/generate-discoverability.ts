@@ -16,6 +16,7 @@ import {
   DISCOVERABLE_ROUTES,
   FAQ_PAGE_ROUTES,
   GUIDE_ROUTES,
+  RESOURCE_ROUTES,
   getPublicBaseUrl,
   safePathForUrl,
 } from '../src/config/discoverable-routes';
@@ -184,6 +185,20 @@ function writeLlmsTxt(baseUrl: string): void {
   if (guides.length > 0) {
     L.push('## Guías / Guides (Spanish)', '');
     for (const r of guides) L.push(`- [${r.title}](${link(r.path)}): ${r.description}`);
+    L.push('');
+  }
+
+  L.push('## Recursos / Resources (es + en)', '');
+  for (const r of RESOURCE_ROUTES) {
+    const en = englishPathOf(r.path);
+    L.push(`- [${r.title}](${link(r.path)}): ${r.description}${en && r.titleEn ? ` English: [${r.titleEn}](${link(en)})` : ''}`);
+  }
+  L.push('');
+
+  const guidesEn = GUIDE_ROUTES.filter((r) => !r.noindex && r.titleEn && englishPathOf(r.path));
+  if (guidesEn.length > 0) {
+    L.push('## Guides in English', '');
+    for (const r of guidesEn) L.push(`- [${r.titleEn}](${link(englishPathOf(r.path)!)}): ${r.descriptionEn ?? ''}`);
     L.push('');
   }
 
