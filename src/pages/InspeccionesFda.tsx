@@ -40,7 +40,7 @@ function AsOf({ lang, sources, note }: { lang: "es" | "en"; sources: Inspections
       {sources.map((s, i) => (
         <span key={s.id}>
           {i > 0 && "; "}
-          <a href={s.url} target="_blank" rel="noopener" className="text-secondary underline-offset-2 hover:underline">
+          <a href={s.url} target="_blank" rel="noopener" className="text-secondary underline underline-offset-2">
             {s.label[lang]}
           </a>
         </span>
@@ -287,7 +287,7 @@ const InspeccionesFda = () => {
                   {PR_TOP_CITED_SECTIONS.map((s) => (
                     <tr key={s.cfr} className="border-b border-primary/5 align-top last:border-0">
                       <th scope="row" className={`${td} whitespace-nowrap font-medium`}>
-                        <a href={s.ecfrUrl} target="_blank" rel="noopener" className="text-secondary underline-offset-2 hover:underline">
+                        <a href={s.ecfrUrl} target="_blank" rel="noopener" className="text-secondary underline underline-offset-2">
                           {s.cfr}
                         </a>
                       </th>
