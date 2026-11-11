@@ -665,7 +665,7 @@ export const SECTORS: Sector[] = [
       title: 'Inocuidad para torrefactores de café y productos secos en Puerto Rico: reglas de la FDA',
       metaTitle: 'Reglas de la FDA para café y productos secos | Stratum PR',
       description: 'Qué exige la FDA a quien tuesta, muele o empaca café y productos secos en Puerto Rico: registro, 21 CFR 117 y las exenciones de bajo riesgo para fincas.',
-      lead: 'Tostar, moler o empacar café para la venta es una actividad que, en general, exige registrar la planta con la FDA y cumplir con 21 CFR 117. La regla tiene exenciones limitadas para negocios pequeños o muy pequeños que operan en una finca (\"farm mixed-type facility\") y solo hacen ciertas actividades de bajo riesgo con café tostado, como empacar, moler o rotular. El tueste en sí no aparece en esa lista de bajo riesgo.',
+      lead: 'Tostar, moler o empacar café para la venta es una actividad que, en general, exige registrar la planta con la FDA y cumplir con 21 CFR 117. La regla tiene exenciones limitadas para negocios pequeños o muy pequeños que operan en una finca (\"farm mixed-type facility\") y solo hacen ciertas actividades de bajo riesgo con café tostado, como empacar, moler o rotular.',
       sections: [
         {
           heading: 'Qué aplica a una torrefactora o empacadora',
@@ -688,9 +688,8 @@ export const SECTORS: Sector[] = [
           ],
         },
         {
-          heading: 'El tueste y los demás productos secos',
+          heading: 'Otros productos secos',
           paragraphs: [
-            'El tueste del café no aparece entre las actividades de bajo riesgo de 21 CFR 117.5(h)(3); la lista solo menciona tostar productos horneados y hacer productos de cacao a partir de cacao tostado. Si tu finca tuesta café, revisa con cuidado si te aplica la exención antes de asumirla.',
             'Para otros productos secos, la regla distingue entre los productos secados sin más procesamiento (como pasas o legumbres secas) y los que tienen procesamiento adicional, como harinas de legumbres o frutas secas rebanadas (21 CFR 117.5(g)(2)(i) y (ii)). Los establecimientos que solo descascaran, secan, empacan o almacenan nueces sin tostarlas no están sujetos a la subparte B (21 CFR 117.5(k)(1)(v)).',
           ],
         },
@@ -711,7 +710,7 @@ export const SECTORS: Sector[] = [
       title: 'Food safety rules for coffee roasters and dry food makers in Puerto Rico',
       metaTitle: 'FDA rules for coffee and dry foods in PR | Stratum PR',
       description: 'What FDA requires of anyone roasting, grinding or packing coffee and dry foods in Puerto Rico: registration, 21 CFR 117 and low-risk farm exemptions.',
-      lead: 'Roasting, grinding or packing coffee for sale generally requires registering the plant with FDA and complying with 21 CFR 117. The rule has limited exemptions for small or very small businesses operating on a farm (a \"farm mixed-type facility\") that only do certain low-risk activities with roasted coffee, such as packing, grinding or labeling. Roasting itself is not on that low-risk list.',
+      lead: 'Roasting, grinding or packing coffee for sale generally requires registering the plant with FDA and complying with 21 CFR 117. The rule has limited exemptions for small or very small businesses operating on a farm (a \"farm mixed-type facility\") that only do certain low-risk activities with roasted coffee, such as packing, grinding or labeling.',
       sections: [
         {
           heading: 'What applies to a roaster or packer',
@@ -734,9 +733,8 @@ export const SECTORS: Sector[] = [
           ],
         },
         {
-          heading: 'Roasting and other dry foods',
+          heading: 'Other dry foods',
           paragraphs: [
-            'Roasting coffee is not among the low-risk activities in 21 CFR 117.5(h)(3); the list only mentions roasting baked goods and making cocoa products from roasted cocoa beans. If your farm roasts coffee, check carefully whether the exemption applies before assuming it does.',
             'For other dry foods, the rule distinguishes products dried without further processing (such as raisins or dried legumes) from those with additional processing, such as legume flours or sliced dried fruit (21 CFR 117.5(g)(2)(i) and (ii)). Establishments solely engaged in hulling, shelling, drying, packing or holding nuts without roasting them are not subject to subpart B (21 CFR 117.5(k)(1)(v)).',
           ],
         },

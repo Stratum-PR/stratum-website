@@ -104,14 +104,14 @@ export const PR_FAQ_CATEGORY: FaqCategory = {
       es: {
         question: '¿Cuándo es la fecha de cumplimiento de FSMA 204 (trazabilidad)?',
         answer:
-          "La FDA no hará cumplir la regla de trazabilidad antes del 20 de julio de 2028. La fecha original era el 20 de enero de 2026, pero el Congreso le ordenó a la FDA no hacerla cumplir antes del 20 de julio de 2028, y la FDA dice que cumplirá esa orden. La orden vino en la Continuing Appropriations, Agriculture, Legislative Branch, Military Construction and Veterans Affairs, and Extensions Act of 2026. Por separado, la FDA propuso el 7 de agosto de 2025 extender oficialmente la fecha 30 meses, hasta el 20 de julio de 2028; al 11 de noviembre de 2026, el Federal Register no muestra una regla final que adopte ese cambio. La regla en sí se publicó como regla final el 21 de noviembre de 2022. La FDA convocó una reunión pública virtual para el 6 de noviembre de 2026 sobre los retos de la trazabilidad por lote y posibles flexibilidades para cumplir, y acepta comentarios hasta el 6 de diciembre de 2026. La regla aplica a los alimentos de la Lista de Trazabilidad de la FDA.",
+          "La FDA no hará cumplir la regla de trazabilidad antes del 20 de julio de 2028. La fecha original era el 20 de enero de 2026, pero el Congreso le ordenó a la FDA no hacerla cumplir antes del 20 de julio de 2028, y la FDA dice que cumplirá esa orden. La orden vino en la Continuing Appropriations, Agriculture, Legislative Branch, Military Construction and Veterans Affairs, and Extensions Act of 2026. Por separado, la FDA propuso el 7 de agosto de 2025 extender oficialmente la fecha 30 meses, hasta el 20 de julio de 2028; al 11 de noviembre de 2026, el Federal Register no muestra una regla final que adopte ese cambio. La regla en sí se publicó como regla final el 21 de noviembre de 2022. La regla aplica a los alimentos de la Lista de Trazabilidad de la FDA.",
       },
       en: {
         question: 'What is the FSMA 204 compliance date?',
         answer:
-          "The FDA will not enforce the Food Traceability Rule before July 20, 2028. The original compliance date was January 20, 2026, but Congress directed the FDA not to enforce the rule before July 20, 2028, and the FDA says it intends to comply. The directive came in the Continuing Appropriations, Agriculture, Legislative Branch, Military Construction and Veterans Affairs, and Extensions Act of 2026. Separately, on August 7, 2025, the FDA proposed formally extending the compliance date by 30 months, to July 20, 2028; as of November 11, 2026, the Federal Register shows no final rule adopting that change. The rule itself was published as a final rule on November 21, 2022. The FDA scheduled a virtual public meeting for November 6, 2026 on lot-level traceability challenges and possible compliance flexibilities, with comments accepted through December 6, 2026. The rule covers foods on the FDA's Food Traceability List.",
+          "The FDA will not enforce the Food Traceability Rule before July 20, 2028. The original compliance date was January 20, 2026, but Congress directed the FDA not to enforce the rule before July 20, 2028, and the FDA says it intends to comply. The directive came in the Continuing Appropriations, Agriculture, Legislative Branch, Military Construction and Veterans Affairs, and Extensions Act of 2026. Separately, on August 7, 2025, the FDA proposed formally extending the compliance date by 30 months, to July 20, 2028; as of November 11, 2026, the Federal Register shows no final rule adopting that change. The rule itself was published as a final rule on November 21, 2022. The rule covers foods on the FDA's Food Traceability List.",
       },
-      sources: [SRC.ftr, SRC.ftrProposed, SRC.ftrMeeting, SRC.ftl],
+      sources: [SRC.ftr, SRC.ftrProposed, SRC.ftl],
     },
     {
       id: 'pr-pcqi',
@@ -140,20 +140,6 @@ export const PR_FAQ_CATEGORY: FaqCategory = {
           "Yes, if the plant manufactures, processes, packs or holds food for consumption in the United States and is not exempt. The FDA treats a Puerto Rico plant as a \"domestic facility,\" which must register before it starts operating and renew every two years. Renewal runs from October 1 through December 31 of each even-numbered year; this cycle closes December 31, 2026, and the FDA will consider the registration expired for any facility that does not renew by then. Registration is done online through FDA Industry Systems, has no fee and requires a unique facility identifier; the FDA accepts the DUNS number. Qualified facilities also submit their attestation during the same period. Farms, retail food establishments, restaurants, nonprofit food establishments that serve food directly to consumers, certain fishing vessels and plants regulated exclusively by the USDA throughout the entire facility do not have to register.",
       },
       sources: [SRC.cfr1_227, SRC.cfr1_230, SRC.cfr1_226, SRC.ffrRenewal2026, SRC.ffrOnline],
-    },
-    {
-      id: 'pr-fsvp',
-      es: {
-        question: '¿Se considera importado bajo FSVP un alimento hecho en Puerto Rico?',
-        answer:
-          "No. El programa de verificación de suplidores extranjeros (FSVP) es para alimentos de suplidores extranjeros, y la FDA trata a una planta en Puerto Rico como instalación doméstica. La guía de la FDA sobre FSVP (enero de 2023) explica que Puerto Rico es parte del territorio aduanero de los Estados Unidos. También indica que ni siquiera el alimento producido en territorios que están fuera de ese territorio aduanero, como Guam, está sujeto a FSVP cuando se envía a los estados, porque quien lo produce no es un suplidor extranjero. Lo que sí aplica en Puerto Rico es lo contrario: FSVP rige cuando alimentos de suplidores extranjeros se importan a cualquier parte del territorio aduanero, incluido Puerto Rico. Si tu empresa importa ingredientes o productos de otro país, puedes ser el importador bajo FSVP, que es el dueño o consignatario en los Estados Unidos del alimento ofrecido para importación. En ese caso, te toca analizar los peligros, evaluar al suplidor extranjero y verificarlo.",
-      },
-      en: {
-        question: 'Is food from Puerto Rico considered imported under FSVP?',
-        answer:
-          "No. The Foreign Supplier Verification Program (FSVP) covers food from foreign suppliers, and the FDA treats a Puerto Rico plant as a domestic facility. The FDA's FSVP guidance (January 2023) explains that Puerto Rico is part of the customs territory of the United States. It also states that even food produced in U.S. territories outside the customs territory, such as Guam, is not subject to FSVP when shipped into the customs territory, because the producer is not a foreign supplier. What does apply in Puerto Rico is the reverse: FSVP applies when food from foreign suppliers is imported into any part of the customs territory, including Puerto Rico. If your company imports ingredients or products from another country, you may be the FSVP importer, meaning the U.S. owner or consignee of the food offered for import. In that case, you are responsible for analyzing hazards, evaluating the foreign supplier and verifying it.",
-      },
-      sources: [SRC.fsvpGuidance, SRC.cfr1_500, SRC.cfr1_227, SRC.fsmaFaq],
     },
     {
       id: 'pr-fda-o-usda',
@@ -236,7 +222,6 @@ export const PR_FAQ_SLUGS: Record<string, { es: string; en: string }> = {
   'pr-fsma204-fecha': { es: 'fecha-de-cumplimiento-fsma-204', en: 'fsma-204-compliance-date' },
   'pr-pcqi': { es: 'que-es-un-pcqi-y-como-se-certifica', en: 'what-is-a-pcqi-and-how-to-get-certified' },
   'pr-registro-fda': { es: 'registro-de-planta-de-alimentos-con-la-fda', en: 'fda-food-facility-registration-puerto-rico' },
-  'pr-fsvp': { es: 'fsvp-alimentos-de-puerto-rico', en: 'is-puerto-rico-food-imported-under-fsvp' },
   'pr-fda-o-usda': { es: 'fda-o-usda-quien-regula-mi-producto', en: 'fda-or-usda-who-regulates-my-food-product' },
   'pr-certificacion-compradores': { es: 'certificacion-de-inocuidad-que-piden-los-compradores', en: 'food-safety-certifications-us-retailers-require' },
   'pr-483-carta-advertencia': { es: 'formulario-483-y-carta-de-advertencia-fda', en: 'fda-form-483-vs-warning-letter' },
@@ -246,7 +231,6 @@ export const PR_FAQ_SLUGS: Record<string, { es: string; en: string }> = {
 
 /** Claims left out because no primary source could be fetched on the verification date. */
 export const PR_FAQ_TODOS: string[] = [
-  'FSVP: no FDA text explicitly addresses food made in Puerto Rico and shipped to the mainland. The "No" answer rests on the FSVP guidance (Puerto Rico is in the customs territory, Q A.22; territory-produced food is not from a foreign supplier, Q A.24) plus 21 CFR 1.227 (Puerto Rico plants are domestic facilities). Consider confirming through the FSMA Technical Assistance Network.',
   'FSIS pages (fsis.usda.gov) returned 403 to automated fetches, so FSIS jurisdiction is cited from FDA pages and 9 CFR 417. Not stated: Siluriformes (catfish) jurisdiction, FSIS egg-product details, dual-jurisdiction plant rules (FSIS Directive 5730.1).',
   'FSMA 204: the August 7, 2025 proposed compliance-date extension had no final rule in the Federal Register as of November 11, 2026. Re-check docket FDA-2014-N-0053 before each edit, and update the November 6, 2026 meeting sentence once it is past.',
   'Labeling: net quantity of contents (21 CFR 101.105) could not be verified from the fetched text and is left out of the label checklist. The no-notice exemption for firms under 10 FTEs selling under 10,000 units is not on the FDA small business exemption page and is left out.',
