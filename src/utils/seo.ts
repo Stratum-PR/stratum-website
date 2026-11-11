@@ -31,7 +31,7 @@ export const updateSEO = (seoData: SEOData) => {
 
   // Update HTML lang attribute dynamically
   const isSpanish = /[áéíóúñüÁÉÍÓÚÑÜ]/.test(seoData.title + seoData.description);
-  document.documentElement.lang = isSpanish ? 'es' : 'en';
+  document.documentElement.lang = isSpanish ? 'es-PR' : 'en-US';
 
   // Update or create meta tags
   const updateMetaTag = (name: string, content: string, property?: boolean) => {

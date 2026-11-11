@@ -4,7 +4,9 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, isSsrBuild, isPreview }) => ({
+  // `vite preview` serves dist/ like Vercel does: each page's own prerendered file, 404.html otherwise
+  appType: isPreview ? 'mpa' : 'spa',
   server: {
     host: "localhost",
     port: 8080,
@@ -21,9 +23,14 @@ export default defineConfig(({ mode }) => ({
     },
     dedupe: ['react', 'react-dom'],
   },
+  // CommonJS packages whose named exports Node can't import directly: bundle them into the SSR build
+  ssr: {
+    noExternal: ['react-helmet-async'],
+  },
   build: {
     // Enable code splitting and optimize chunks
-    rollupOptions: {
+    // The SSR build (src/entry-server.tsx, for the prerender) keeps its dependencies external: no vendor chunks
+    rollupOptions: isSsrBuild ? {} : {
       output: {
         manualChunks: {
           // Separate vendor chunks for better caching

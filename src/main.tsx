@@ -1,25 +1,22 @@
 
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import React from 'react'
-import { SpeedInsights } from '@vercel/speed-insights/react'
 import { initAnalytics } from './lib/analytics'
 
 // PostHog only if the visitor already accepted in the consent banner
 initAnalytics()
 
-// Get the root container
 const container = document.getElementById("root")!;
-const root = createRoot(container);
+const app = <App />;
 
-// Render the app with React StrictMode and SpeedInsights
-root.render(
-  <React.StrictMode>
-    <App />
-    <SpeedInsights />
-  </React.StrictMode>
-);
+// Pages arrive prerendered (scripts/prerender.ts): hydrate them. In development (vite dev)
+// #root arrives empty: render from scratch.
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
 
 // Performance monitoring
 if ('performance' in window && 'measure' in window.performance) {

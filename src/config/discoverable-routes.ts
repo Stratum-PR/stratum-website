@@ -6,6 +6,9 @@
  * This data is served in sitemap, llms.txt, and meta tags.
  */
 
+import { FAQ_PAGES, metaDescription } from '../content/faq-pages';
+import { GUIDES } from '../content/guides';
+
 export type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
 
 export interface DiscoverableRoute {
@@ -176,6 +179,42 @@ export const DISCOVERABLE_ROUTES: DiscoverableRoute[] = [
     priority: 0.3,
   },
 ];
+
+/**
+ * Draft pages (guides with status 'draft') are only built and routed when VITE_SHOW_DRAFTS=1,
+ * for review in a local or preview build. Production builds leave them out entirely.
+ */
+export function showDrafts(): boolean {
+  const env = typeof import.meta !== 'undefined' ? (import.meta as { env?: Record<string, string> }).env : undefined;
+  if (env?.VITE_SHOW_DRAFTS != null) return env.VITE_SHOW_DRAFTS === '1';
+  return typeof process !== 'undefined' && process.env?.VITE_SHOW_DRAFTS === '1';
+}
+
+/** One page per FAQ question (/preguntas/<slug>). */
+export const FAQ_PAGE_ROUTES: DiscoverableRoute[] = FAQ_PAGES.map((p) => ({
+  path: p.path,
+  title: `${p.item.es.question} | Stratum PR`,
+  description: metaDescription(p.item.es.answer),
+  titleEn: `${p.item.en.question} | Stratum PR`,
+  descriptionEn: metaDescription(p.item.en.answer),
+  indexable: true,
+  changefreq: 'monthly',
+  priority: 0.7,
+}));
+
+/** Guides (/guias/<slug>). Drafts are noindex and only exist when showDrafts() is on. */
+export const GUIDE_ROUTES: DiscoverableRoute[] = GUIDES.filter((g) => g.status === 'published' || showDrafts()).map((g) => ({
+  path: `/guias/${g.slug}`,
+  title: g.metaTitle,
+  description: g.description,
+  indexable: g.status === 'published',
+  noindex: g.status !== 'published',
+  changefreq: 'monthly',
+  priority: 0.8,
+}));
+
+/** Every page that is prerendered and (unless noindex) listed in the sitemap and llms.txt. */
+export const ALL_PAGE_ROUTES: DiscoverableRoute[] = [...DISCOVERABLE_ROUTES, ...FAQ_PAGE_ROUTES, ...GUIDE_ROUTES];
 
 /** Route constants for use in pages and meta (keep in sync with DISCOVERABLE_ROUTES). */
 // Look routes up by path, never by position: removing a route must not shift the others

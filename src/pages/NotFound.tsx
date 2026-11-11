@@ -3,10 +3,11 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { logger } from "@/lib/logger";
+import { Helmet } from "react-helmet-async";
 
 const NotFound = () => {
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     logger.error(
@@ -16,6 +17,12 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
+    <>
+    <Helmet>
+      <html lang={language === "en" ? "en-US" : "es-PR"} />
+      <title>{language === "en" ? "Page not found | Stratum PR" : "Página no encontrada | Stratum PR"}</title>
+      <meta name="robots" content="noindex, follow" />
+    </Helmet>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">{t('notfound.title')}</h1>
@@ -25,6 +32,7 @@ const NotFound = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

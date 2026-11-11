@@ -35,7 +35,9 @@ export function PageMeta({ route, image, jsonLd }: PageMetaProps) {
 
   return (
     <Helmet>
+      <html lang={language === 'en' ? 'en-US' : 'es-PR'} />
       <title>{title}</title>
+      <meta property="og:locale" content={language === 'en' ? 'en_US' : 'es_PR'} />
       <meta name="description" content={description} />
       <link rel="canonical" href={canonicalUrl} />
       <meta property="og:title" content={title} />

@@ -34,9 +34,15 @@ const rememberHidden = () => {
  */
 export function LaunchBar() {
   const { t } = useLanguage();
-  const [visible, setVisible] = useState(() => !hiddenRecently());
+  // Starts visible, like the prerendered HTML, so hydration matches; the stored choice is applied
+  // before the first paint below (and index.html hides the bar even earlier, before React loads)
+  const [visible, setVisible] = useState(true);
   const [holding, setHolding] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (hiddenRecently()) setVisible(false);
+  }, []);
 
   // Reserve (or release) the space above the header before the browser paints
   useLayoutEffect(() => {
@@ -58,6 +64,7 @@ export function LaunchBar() {
   return (
     <div
       ref={barRef}
+      id="launch-bar"
       aria-hidden={!visible}
       onMouseEnter={() => setHolding(true)}
       onMouseLeave={() => setHolding(false)}

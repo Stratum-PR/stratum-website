@@ -1,6 +1,7 @@
 /**
  * Generate discoverability artifacts after Vite build: sitemap.xml, robots.txt,
- * ai-routes.json, llms.txt, content.json. Run with: npx tsx scripts/generate-discoverability.ts
+ * ai-routes.json, llms.txt, content.json. The page HTML itself is prerendered by
+ * scripts/prerender.ts. Run with: npx tsx scripts/generate-discoverability.ts
  *
  * Ensure VITE_PUBLIC_BASE_URL is set in env (or .env.production) for production;
  * otherwise fallback base URL is used.
@@ -8,12 +9,17 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { execSync } from 'child_process';
 import {
+  ALL_PAGE_ROUTES,
   DISCOVERABLE_ROUTES,
+  FAQ_PAGE_ROUTES,
+  GUIDE_ROUTES,
   getPublicBaseUrl,
   safePathForUrl,
 } from '../src/config/discoverable-routes';
 import { PAGE_CONTENT, FAQ_ENTRIES } from '../src/content/discoverable-content';
+import { FAQ_PAGES } from '../src/content/faq-pages';
 
 const DIST = path.join(process.cwd(), 'dist');
 
@@ -26,32 +32,37 @@ function escapeXml(s: string): string {
     .replace(/'/g, '&apos;');
 }
 
-/** ASCII-safe string for llms.txt (e.g. en-dash to -). */
-function toAsciiSafe(s: string): string {
-  return s
-    .replace(/\u2013/g, '-')
-    .replace(/\u2014/g, '-')
-    .replace(/\u2018/g, "'")
-    .replace(/\u2019/g, "'")
-    .replace(/\u201c/g, '"')
-    .replace(/\u201d/g, '"');
-}
-
 function ensureDist(): void {
   if (!fs.existsSync(DIST)) {
     fs.mkdirSync(DIST, { recursive: true });
   }
 }
 
+/**
+ * lastmod: the date of the last commit (stable across rebuilds of the same code), or today when
+ * git is unavailable (e.g. a build from an uploaded folder).
+ */
+function lastModified(): string {
+  try {
+    const d = execSync('git log -1 --format=%cs', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+  } catch {
+    // no git: fall through
+  }
+  return new Date().toISOString().split('T')[0];
+}
+
+/** Indexable pages: the sitemap, llms.txt and IndexNow list exactly these. */
+export function indexableRoutes() {
+  return ALL_PAGE_ROUTES.filter((r) => r.indexable !== false && !r.noindex);
+}
+
 function writeSitemap(baseUrl: string): void {
-  const now = new Date().toISOString().split('T')[0];
+  const now = lastModified();
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-  const indexable = DISCOVERABLE_ROUTES.filter(
-    (r) => r.indexable !== false && !r.noindex
-  );
-  for (const route of indexable) {
+  for (const route of indexableRoutes()) {
     const loc = baseUrl + safePathForUrl(route.path);
     xml += '  <url>\n';
     xml += `    <loc>${escapeXml(loc)}</loc>\n`;
@@ -96,7 +107,7 @@ function writeRobots(baseUrl: string): void {
 }
 
 function writeAiRoutes(baseUrl: string): void {
-  const routes = DISCOVERABLE_ROUTES.map((r) => ({
+  const routes = indexableRoutes().map((r) => ({
     path: safePathForUrl(r.path),
     url: baseUrl + safePathForUrl(r.path),
     title: r.title,
@@ -113,63 +124,53 @@ function writeAiRoutes(baseUrl: string): void {
 }
 
 function writeLlmsTxt(baseUrl: string): void {
-  const lines: string[] = [];
-  lines.push('# Stratum PR');
-  lines.push('');
+  const link = (p: string) => baseUrl + safePathForUrl(p);
+  const main = (p: string) => DISCOVERABLE_ROUTES.find((r) => r.path === p)!;
+  const L: string[] = [];
   // llms.txt format: an H1, a one-paragraph blockquote summary, then sections of Markdown link lists
-  lines.push(
-    toAsciiSafe(
-      '> Technology for Puerto Rico food manufacturers. Stratum PR digitizes records, inventory and traceability so plants are ready for every FDA inspection. Also runs Alertas PR, a free public portal of FDA food recalls affecting Puerto Rico. The site is in Spanish, with an English version.'
-    )
+  L.push('# Stratum PR', '');
+  L.push(
+    '> Stratum PR LLC is a Puerto Rico company that builds software for local food manufacturers: digital food safety records, lot inventory and traceability, so plants are ready for FDA inspections and customer audits (FSMA, SQF, BRCGS). It also runs Alertas PR, a free Spanish-language portal of U.S. food recalls that affect Puerto Rico.',
+    ''
   );
-  lines.push('');
-  lines.push('## Main links');
-  lines.push('');
-  for (const r of DISCOVERABLE_ROUTES) {
-    const url = baseUrl + safePathForUrl(r.path);
-    lines.push(`- [${toAsciiSafe(r.title)}](${url}): ${toAsciiSafe(r.description)}`);
-  }
-  lines.push('');
-  lines.push('## Products');
-  lines.push('');
-  lines.push('- [Alertas PR](https://alertas.stratumpr.com/): Free public portal, in Spanish, of the FDA food recalls affecting Puerto Rico.');
-  lines.push('');
-  lines.push('## Optional');
-  lines.push('');
-  lines.push(`- [Sitemap](${baseUrl}/sitemap.xml): Every public page of the site.`);
-  lines.push(`- [Page content as JSON](${baseUrl}/content.json): The same text as this file, structured by page.`);
-  lines.push('');
+  L.push(
+    'Español: Stratum PR LLC es una empresa de Puerto Rico que hace tecnología para fabricantes de alimentos locales: registros de inocuidad digitales, inventario por lotes y trazabilidad, para llegar listos a las inspecciones de la FDA y a las auditorías de clientes (FSMA, SQF, BRCGS). También publica Alertas PR, un portal gratis en español de los retiros de alimentos de EE. UU. que afectan a Puerto Rico. El sitio está en español, con versión en inglés en la misma dirección. Contacto: contact@stratumpr.com.',
+    ''
+  );
+  L.push(
+    'English: The site is in Spanish (es-PR) with an English version at the same URLs. The FAQ answers cite official sources (FDA, eCFR, SQFI, GFSI, BRCGS) and state when they were last verified. Contact: contact@stratumpr.com.',
+    ''
+  );
 
-  for (const r of DISCOVERABLE_ROUTES) {
-    const pathSafe = safePathForUrl(r.path);
-    lines.push(`## Page: ${pathSafe}`);
-    lines.push('');
-    lines.push(`URL: ${baseUrl}${pathSafe}`);
-    lines.push(`Title: ${toAsciiSafe(r.title)}`);
-    lines.push(`Description: ${toAsciiSafe(r.description)}`);
-    lines.push('');
-    const content = PAGE_CONTENT[r.path];
-    if (content?.sections?.length) {
-      for (const sec of content.sections) {
-        lines.push(`### ${toAsciiSafe(sec.heading)}`);
-        lines.push(toAsciiSafe(sec.body));
-        lines.push('');
-      }
-    }
-    lines.push('');
+  L.push('## Páginas principales / Main pages', '');
+  for (const p of ['/', '/about', '/autoevaluacion', '/preguntas', '/contact']) {
+    const r = main(p);
+    L.push(`- [${r.title}](${link(p)}): ${r.description}`);
+  }
+  L.push('- [Alertas PR](https://alertas.stratumpr.com/): Retiros de alimentos que afectan a Puerto Rico, explicados en español. Gratis. / U.S. food recalls affecting Puerto Rico, in Spanish. Free.');
+  L.push('');
+
+  L.push('## Preguntas frecuentes / FAQ (one page per question, with official sources)', '');
+  for (const r of FAQ_PAGE_ROUTES) {
+    const page = FAQ_PAGES.find((p) => p.path === r.path)!;
+    L.push(`- [${page.item.es.question}](${link(r.path)}): ${page.item.en.question}`);
+  }
+  L.push('');
+
+  const guides = GUIDE_ROUTES.filter((r) => !r.noindex);
+  if (guides.length > 0) {
+    L.push('## Guías / Guides (Spanish)', '');
+    for (const r of guides) L.push(`- [${r.title}](${link(r.path)}): ${r.description}`);
+    L.push('');
   }
 
-  if (FAQ_ENTRIES.length > 0) {
-    lines.push('## FAQ');
-    lines.push('');
-    for (const faq of FAQ_ENTRIES) {
-      lines.push(`Q: ${toAsciiSafe(faq.question)}`);
-      lines.push(`A: ${toAsciiSafe(faq.answer)}`);
-      lines.push('');
-    }
-  }
+  L.push('## Optional', '');
+  L.push(`- [Sitemap](${baseUrl}/sitemap.xml): Every public page of the site.`);
+  L.push(`- [Privacidad / Privacy](${link('/privacy')})`);
+  L.push(`- [Términos / Terms](${link('/terms')})`);
+  L.push('');
 
-  fs.writeFileSync(path.join(DIST, 'llms.txt'), lines.join('\n'), 'utf8');
+  fs.writeFileSync(path.join(DIST, 'llms.txt'), L.join('\n'), 'utf8');
   console.log('Wrote dist/llms.txt');
 }
 
@@ -214,87 +215,6 @@ function writeContentJson(baseUrl: string): void {
   console.log('Wrote dist/content.json');
 }
 
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-/** Replace exactly one match; fail the build if the template changed under us. */
-function replaceOnce(html: string, pattern: RegExp, replacement: string, what: string): string {
-  const matches = html.match(new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : pattern.flags + 'g'));
-  if (!matches || matches.length !== 1) {
-    throw new Error(`Static pages: expected one ${what} in dist/index.html, found ${matches?.length ?? 0}`);
-  }
-  return html.replace(pattern, replacement);
-}
-
-/**
- * Many AI crawlers (GPTBot, ClaudeBot, PerplexityBot…) do not run JavaScript, so the bare SPA
- * shell looks empty to them. For each public route, write dist/<route>/index.html with that
- * route's title, description and full text (plus the FAQ and its JSON-LD on the home page)
- * inside #root, visually hidden (.prerender) so browsers don't flash it. React replaces it on load. The untouched shell is kept as
- * dist/app-shell.html for every other URL (see the catch-all rewrite in vercel.json).
- */
-function writeStaticPages(baseUrl: string): void {
-  const shellPath = path.join(DIST, 'index.html');
-  const shell = fs.readFileSync(shellPath, 'utf8');
-  fs.writeFileSync(path.join(DIST, 'app-shell.html'), shell, 'utf8');
-
-  const routes = DISCOVERABLE_ROUTES.filter((r) => r.indexable !== false && !r.noindex);
-  const nav = routes
-    .map((r) => `<a href="${escapeHtml(safePathForUrl(r.path))}">${escapeHtml(r.title)}</a>`)
-    .concat('<a href="https://alertas.stratumpr.com/">Alertas PR</a>')
-    .join(' · ');
-
-  for (const r of routes) {
-    const pathSafe = safePathForUrl(r.path);
-    const url = baseUrl + pathSafe;
-    const title = escapeHtml(r.title);
-    const desc = escapeHtml(r.description);
-
-    let body = `<div class="prerender"><header><nav aria-label="Stratum PR">${nav}</nav></header><main><h1>${title}</h1><p>${desc}</p>`;
-    for (const sec of PAGE_CONTENT[r.path]?.sections ?? []) {
-      body += `<section><h2>${escapeHtml(sec.heading)}</h2><p>${escapeHtml(sec.body)}</p></section>`;
-    }
-    let headExtra = '';
-    if (r.path === '/preguntas' && FAQ_ENTRIES.length > 0) {
-      body += '<section><h2>Preguntas y respuestas · Questions and answers</h2>';
-      for (const faq of FAQ_ENTRIES) {
-        body += `<h3>${escapeHtml(faq.question)}</h3><p>${escapeHtml(faq.answer)}</p>`;
-      }
-      body += '</section>';
-      const faqLd = {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: FAQ_ENTRIES.map((f) => ({
-          '@type': 'Question',
-          name: f.question,
-          acceptedAnswer: { '@type': 'Answer', text: f.answer },
-        })),
-      };
-      headExtra = `<script type="application/ld+json">${JSON.stringify(faqLd).replace(/</g, '\\u003c')}</script>`;
-    }
-    body += '</main><footer><p>Stratum PR LLC · <a href="mailto:contact@stratumpr.com">contact@stratumpr.com</a> · <a href="/llms.txt">llms.txt</a></p></footer></div>';
-
-    let html = shell;
-    html = replaceOnce(html, /<title>[^<]*<\/title>/, `<title>${title}</title>`, '<title>');
-    html = replaceOnce(html, /<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${desc}" />`, 'meta description');
-    html = replaceOnce(html, /<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${escapeHtml(url)}" />`, 'canonical');
-    html = replaceOnce(html, /<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${escapeHtml(url)}" />`, 'og:url');
-    html = replaceOnce(html, /<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`, 'og:title');
-    html = replaceOnce(html, /<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${desc}" />`, 'og:description');
-    html = replaceOnce(html, /<div id="root"><\/div>/, `<div id="root">${body}</div>`, '#root');
-    // The readable copy is for crawlers that don't run JavaScript. Keep it in the HTML but visually
-    // hidden, so people don't see a flash of unstyled text before React replaces #root.
-    headExtra += '<style>.prerender{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}</style>';
-    if (headExtra) html = replaceOnce(html, /<\/head>/, `${headExtra}</head>`, '</head>');
-
-    const outDir = r.path === '/' ? DIST : path.join(DIST, pathSafe.replace(/^\//, ''));
-    fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
-  }
-  console.log(`Wrote ${routes.length} static pages with readable content (and dist/app-shell.html)`);
-}
-
 function main(): void {
   ensureDist();
   const baseUrl = getPublicBaseUrl();
@@ -306,7 +226,6 @@ function main(): void {
   writeLlmsTxt(baseUrl);
   writeContentJson(baseUrl);
   writeArdManifest();
-  writeStaticPages(baseUrl);
 
   console.log('Discoverability artifacts generated in dist/');
 }

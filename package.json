@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/free-port-8080.mjs && vite",
-    "build": "vite build && npx tsx scripts/generate-discoverability.ts",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && npx tsx scripts/generate-discoverability.ts && npx tsx scripts/prerender.ts",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -13,7 +13,9 @@
     "precommit": "node scripts/security/pre-commit.mjs",
     "security-check": "node scripts/security/pre-commit.mjs --scan",
     "security-history-scan": "node scripts/security/scan-history-for-secrets.mjs",
-    "verify-discoverability": "node scripts/verify-discoverability.mjs"
+    "verify-discoverability": "node scripts/verify-discoverability.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "indexnow": "node scripts/deploy.mjs --skip-deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
