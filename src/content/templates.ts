@@ -95,6 +95,8 @@ const SRC = {
   cfr1_1455: { label: '21 CFR 1.1455 (formato, 24 horas y retención / format, 24 hours, retention)', url: 'https://www.law.cornell.edu/cfr/text/21/1.1455' },
   ftl: { label: 'FDA: Food Traceability List', url: 'https://www.fda.gov/food/food-safety-modernization-act-fsma/food-traceability-list' },
   ftr: { label: 'FDA: Food Traceability Rule (FSMA 204)', url: 'https://www.fda.gov/food/food-safety-modernization-act-fsma/fsma-final-rule-requirements-additional-traceability-records-certain-foods' },
+  sqf9: { label: 'SQF Food Safety Code: Food Manufacturing, Edition 9, 2.6.3 (SQFI)', url: 'https://www.sqfi.com/docs/sqfilibraries/code-documents/edition-9/code-pdfs/20227fmin_foodmanufacturing_v3-2-final-w-links.pdf' },
+  sqf10: { label: 'SQF Food Safety Code: Food Manufacturing, Edition 10, 2.6.3 (SQFI)', url: 'https://www.sqfi.com/the-sqf-code/choose-your-code/library-of-codes/food-manufacturing' },
 } satisfies Record<string, TemplateSource>;
 
 // Notes shared by the two Part 117 monitoring logs (all from 117.305, 117.315, 117.165)
@@ -462,6 +464,8 @@ export const TEMPLATES: Template[] = [
         'El plan de retiro escrito debe incluir procedimientos que describan los pasos a seguir, y asignen la responsabilidad de seguirlos, para estas acciones según aplique a la planta: (1) notificar directamente a los consignatarios directos del alimento retirado, incluyendo cómo devolver o disponer del alimento afectado; (2) notificar al público sobre cualquier peligro del alimento cuando sea apropiado para proteger la salud pública; (3) realizar verificaciones de efectividad para confirmar que el retiro se lleva a cabo; y (4) disponer apropiadamente del alimento retirado, por ejemplo reprocesándolo, reelaborándolo, desviándolo a un uso que no presente un riesgo de inocuidad o destruyéndolo (21 CFR 117.139(b)).',
         'El plan de retiro es uno de los controles preventivos de la regla (21 CFR 117.135(c)(5)).',
         'El texto de 21 CFR 117.139 pide un plan escrito; no menciona simulacros. Practicarlo es una forma de comprobar que el plan funciona antes de necesitarlo.',
+        'Si tu planta está certificada en SQF (una certificación voluntaria que piden muchos compradores, no una ley), el Código SQF de Manufactura de Alimentos, Edición 9, exige que el sistema de retiro se revise, se pruebe y se verifique como efectivo por lo menos una vez al año. La prueba debe incluir los materiales que recibes (rastreo por lo menos un paso hacia atrás) y el producto terminado (por lo menos un paso hacia adelante), y hacerse con productos de distintos turnos. Debes guardar registros de las pruebas (cláusulas 2.6.3.2 y 2.6.3.3).',
+        'La Edición 10 del Código SQF de Manufactura de Alimentos mantiene la prueba anual y añade que debe incluir todos los componentes del programa de retiro (cláusula 2.6.3.2). Confirma con tu certificadora qué edición aplica a tu próxima auditoría.',
         'Los registros de la Parte 117 se guardan por lo menos 2 años después de la fecha en que se prepararon (21 CFR 117.315(a)(1)).',
       ],
       signoff: ['Coordinador del simulacro: firma y fecha', 'Revisado por: firma y fecha'],
@@ -499,18 +503,19 @@ export const TEMPLATES: Template[] = [
         'The written recall plan must include procedures that describe the steps to be taken, and assign responsibility for taking those steps, to perform these actions as appropriate to the facility: (1) directly notify the direct consignees of the food being recalled, including how to return or dispose of the affected food; (2) notify the public about any hazard presented by the food when appropriate to protect public health; (3) conduct effectiveness checks to verify that the recall is carried out; and (4) appropriately dispose of recalled food, for example through reprocessing, reworking, diverting to a use that does not present a safety concern, or destroying the food (21 CFR 117.139(b)).',
         'The recall plan is one of the rule\'s preventive controls (21 CFR 117.135(c)(5)).',
         'The text of 21 CFR 117.139 requires a written plan; it does not mention drills. Practicing it is a way to check the plan works before you need it.',
+        'If your facility is SQF certified (a voluntary certification many buyers ask for, not a law), the SQF Food Manufacturing Code, Edition 9, requires the withdrawal and recall system to be reviewed, tested and verified as effective at least once a year. The test must cover incoming materials (traced at least one step back) and finished product (at least one step forward), and use products from different shifts. Records of the tests must be kept (clauses 2.6.3.2 and 2.6.3.3).',
+        'Edition 10 of the SQF Food Manufacturing Code keeps the annual test and adds that it must include all components of the recall program (clause 2.6.3.2). Check with your certification body which edition applies to your next audit.',
         'Part 117 records are kept for at least 2 years after the date they were prepared (21 CFR 117.315(a)(1)).',
       ],
       signoff: ['Drill coordinator: signature and date', 'Reviewed by: signature and date'],
     },
-    sources: [SRC.cfr117_139, SRC.cfr117_135, SRC.cfr117_315],
+    sources: [SRC.cfr117_139, SRC.cfr117_135, SRC.cfr117_315, SRC.sqf9, SRC.sqf10],
   },
 ];
 
 /** Open items we could not verify against a primary source; nothing here appears on the pages. */
 export const TEMPLATES_TODOS: string[] = [
   'TODO(Jovaniel): FSMA 204 compliance date. The receiving/shipping pages state no date on purpose. guides.ts (verified 2026-11-11) says FDA will not enforce before July 20, 2028 per Congress and the formal extension is still a proposal; re-check federalregister.gov (docket FDA-2014-N-0053) before adding a date to these pages.',
-  'TODO(Jovaniel): SQF / GFSI mock recall frequency (e.g. an annual recall test) is not stated here because the SQF Code was not fetched for this page; verify in the SQF Food Manufacturing Code (Edition 9, and Edition 10 when audits start) before mentioning it.',
   'TODO(Jovaniel): FDA recall guidance (21 CFR part 7, subpart C, and the FDA recall guidance documents) was not fetched; the mock recall template relies only on 21 CFR 117.139. Consider adding part 7 effectiveness-check levels after verifying the text.',
   'TODO(Jovaniel): the templates do not say which facilities are subject to subpart C (registration under FD&C Act section 415, qualified facility status under 117.201); link to the PCHF FAQ page instead of restating it, or verify 117.1/117.7 text before adding.',
   'TODO(Jovaniel): have a PCQI review the column headers of the HACCP and sanitation logs (they are a generic starting point, not a validated plan) before promoting the pages.',
