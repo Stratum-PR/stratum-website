@@ -72,7 +72,7 @@ export const Header = () => {
       <div className="w-full h-full px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex items-center h-full">
           <Link to="/" className="flex items-center flex-shrink-0" aria-label="Stratum PR">
-            <img src="/img/stratum-logo-color.png" alt="Stratum" width={640} height={120} className="h-7 w-auto md:h-8" />
+            <img src="/img/stratum-logo-color.svg" alt="Stratum" width={958} height={180} className="h-7 w-auto md:h-8" />
           </Link>
 
           <nav className="hidden lg:flex flex-1 items-center justify-center gap-5 px-4 xl:gap-8 xl:px-6">

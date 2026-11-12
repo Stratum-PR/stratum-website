@@ -33,7 +33,7 @@ const ReportPrint = ({ lang, t, business, name, folio, issuedLong, issuedShort, 
   createPortal(
     <div className="report-print font-telegraf" aria-hidden>
       <header className="rp-top">
-        <img src="/img/stratum-logo-color.png" alt="Stratum" width={640} height={120} className="rp-logo" />
+        <img src="/img/stratum-logo-color.svg" alt="Stratum" width={958} height={180} className="rp-logo" />
         <div className="rp-meta">
           <b>{t("selfcheck.passport.title")}</b>
           <span>
