@@ -65,7 +65,7 @@ export const Footer = () => {
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-2 lg:col-span-6">
             <Link to="/" aria-label="Stratum PR">
-              <img src="/img/stratum-logo-white.png" alt="Stratum" width={640} height={120} className="h-8 w-auto" />
+              <img src="/img/stratum-logo-white.svg" alt="Stratum" width={958} height={180} className="h-8 w-auto" />
             </Link>
             <p className="mt-5 max-w-sm font-telegraf text-base leading-relaxed text-white/70">{t("footer.description")}</p>
             <div className="mt-6 flex items-center gap-2">

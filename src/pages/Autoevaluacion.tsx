@@ -434,7 +434,7 @@ const Autoevaluacion = () => {
               <article className="passport play font-telegraf" style={{ ["--pct" as string]: result.pct }} aria-label={t("selfcheck.passport.title")}>
                 <div className="passport-top">
                   <div className="flex items-center justify-between gap-3">
-                    <img src="/img/stratum-logo-white.png" alt="Stratum" width={640} height={120} className="h-6 w-auto" />
+                    <img src="/img/stratum-logo-white.svg" alt="Stratum" width={958} height={180} className="h-6 w-auto" />
                     <div className="text-right">
                       <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#E6E09E]">{t("selfcheck.passport.title")}</p>
                       <p className="text-xs text-white/60">

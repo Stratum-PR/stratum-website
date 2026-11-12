@@ -102,7 +102,7 @@ export function HubDiagram() {
           <circle className="hub-gear" cx="50" cy="50" r="14.5" />
         </svg>
         <div className="hub-core" aria-hidden>
-          <img src="/img/stratum-logo-white.png" alt="" width={640} height={120} />
+          <img src="/img/stratum-logo-white.svg" alt="" width={958} height={180} />
         </div>
         {NODES.map((nd, i) => {
           const { a } = POS[i];
