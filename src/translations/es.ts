@@ -314,7 +314,7 @@ export const esTranslations: Record<string, string> = {
   'home.plan.step3.body': 'Sabes en todo momento cómo está tu planta, sin tener que preguntar.',
 
   'home.lead.title': 'Descarga Gratis: Lista de Preparación Digital FSMA',
-  'home.lead.subtitle': 'Una autoevaluación simple para fabricantes de alimentos en Puerto Rico. Descubre si tu operación está lista para la próxima auditoría — o si vas a ciegas.',
+  'home.lead.subtitle': 'Una autoevaluación simple para fabricantes de alimentos. Descubre si tu operación está lista para la próxima auditoría — o si vas a ciegas.',
   'home.lead.cta': 'Descarga la Lista →',
 
   'home.story.content': '<p>En Stratum, sabemos que eres el tipo de dueño que quiere <strong>tener control de su operación — no estar enterrado bajo ella.</strong> Para manejar un negocio de manufactura de alimentos competitivo y en cumplimiento, necesitas <strong>sistemas digitales que rastreen inventario, gestionen documentación de cumplimiento y te den visibilidad en tiempo real de cómo va tu negocio.</strong> El problema es que <strong>la mayoría del software fue hecho para corporaciones enormes con presupuestos enormes</strong> — y te hace sentir que <strong>te quedas atrás solo porque no puedes pagar un departamento de TI de seis cifras.</strong></p><p>Creemos que <strong>cada fabricante de alimentos en Puerto Rico — ya sea una finca familiar o una planta en crecimiento — merece sistemas que trabajen tan duro como tú.</strong> Entendemos lo que es competir con empresas que tienen recursos que tú no tienes, y llevamos 16+ años construyendo el tipo de sistemas de datos que nivelan ese campo.</p><p>Por eso construimos <strong>herramientas digitales a la medida de cómo tu equipo ya trabaja</strong> — sin funciones infladas, sin curvas de aprendizaje empinadas, sin contratos multianuales.</p><p>Así funciona: <strong>primero, agendas una consulta gratis y nos cuentas sobre tu operación. Luego, diseñamos y demostramos un sistema a tu medida. Finalmente, sales en vivo — y empiezas a recuperar tus horas, tu dinero y tu tranquilidad.</strong></p><p><strong>Agenda tu consulta gratis hoy</strong> — para dejar de perder el sueño por auditorías, hojas de cálculo e inventario en el que no confías, y empezar a manejar el negocio que tu familia construyó con la confianza que merece.</p>',
@@ -335,7 +335,7 @@ export const esTranslations: Record<string, string> = {
   // Coming Soon Modal (descarga lista FSMA)
   'comingSoon.title': 'Lista Próximamente',
   'comingSoon.description': 'La Lista de Preparación Digital FSMA está casi lista. Únete al boletín para recibirla primero.',
-  'comingSoon.newsletter.description': 'Suscríbete para recibir la lista e información para fabricantes de alimentos en Puerto Rico:',
+  'comingSoon.newsletter.description': 'Suscríbete para recibir la lista e información para fabricantes de alimentos:',
   'comingSoon.newsletter.placeholder': 'Ingresa tu correo electrónico',
   'comingSoon.newsletter.button': 'Suscribirse',
   'comingSoon.newsletter.subscribing': 'Suscribiendo...',

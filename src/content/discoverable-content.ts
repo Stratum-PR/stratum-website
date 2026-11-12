@@ -20,7 +20,7 @@ export interface PageContentShape {
 export const PAGE_CONTENT: Record<string, PageContentShape> = {
   '/': {
     sections: [
-      { heading: 'Hero', body: 'Your plant, in control. Your product, safe. Stratum PR helps Puerto Rico food manufacturers leave paper behind and walk into every inspection with peace of mind.' },
+      { heading: 'Hero', body: 'Your plant, in control. Your product, safe. Stratum PR helps food manufacturers leave paper behind and walk into every inspection with peace of mind.' },
       { heading: 'The problem', body: 'Paper logs, spreadsheets and notes nobody can find when the inspector arrives. The worry of not knowing whether everything is in order, and of everything depending on one person. Competing against companies with full IT departments just for lack of tools.' },
       { heading: 'The plan', body: 'Three steps: a free 30-minute conversation about how your plant works; we design with you and you see a working demo with your processes before deciding; you run with every record captured and ready.' },
       { heading: 'Before and after', body: 'Before: logs in notebooks and spreadsheets, days preparing each audit, losses found at month end, everything depends on one person. With Stratum PR: everything in one system and searchable in seconds, documentation ready every day, errors caught when they happen, knowledge lives in the system.' },
