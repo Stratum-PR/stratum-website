@@ -150,9 +150,9 @@ const SRC = {
 
 // Registration facts shared by every FDA-regulated sector (21 CFR 1.225, 1.227, 1.230).
 const REG_ES =
-  "Toda planta en Puerto Rico que manufactura, procesa, empaca o almacena alimentos para consumo en Estados Unidos es una \"instalación doméstica\" para la FDA y debe registrarse antes de comenzar, aunque su producto no salga de la isla (21 CFR 1.225 y 1.227). El registro se renueva cada dos años, entre el 1 de octubre y el 31 de diciembre de cada año par (21 CFR 1.230), así que 2026 es año de renovación.";
+  "Toda planta en Puerto Rico que manufactura, procesa, empaca o almacena alimentos para consumo en Estados Unidos es una \"instalación doméstica\" para la FDA y debe registrarse antes de comenzar, aunque su producto no salga de la isla (21 CFR 1.225 y 1.227). El registro se renueva cada dos años, entre el 1 de octubre y el 31 de diciembre de cada año par (21 CFR 1.230).";
 const REG_EN =
-  "Every plant in Puerto Rico that manufactures, processes, packs or holds food for consumption in the United States is a \"domestic facility\" to FDA and must register before it starts, even if its product never leaves the island (21 CFR 1.225 and 1.227). Registration is renewed every other year, between October 1 and December 31 of each even-numbered year (21 CFR 1.230), so 2026 is a renewal year.";
+  "Every plant in Puerto Rico that manufactures, processes, packs or holds food for consumption in the United States is a \"domestic facility\" to FDA and must register before it starts, even if its product never leaves the island (21 CFR 1.225 and 1.227). Registration is renewed every other year, between October 1 and December 31 of each even-numbered year (21 CFR 1.230).";
 
 export const SECTORS: Sector[] = [
   // ---------------------------------------------------------------------------------------------
