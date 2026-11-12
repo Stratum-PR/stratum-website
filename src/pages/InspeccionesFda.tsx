@@ -113,6 +113,7 @@ const InspeccionesFda = () => {
         creator: org,
         publisher: org,
         isBasedOn: INSPECTIONS_PR_DATASET_URLS.dashboard,
+        license: "https://creativecommons.org/licenses/by/4.0/",
         temporalCoverage: `${PR_INSPECTIONS_TABLE_FY.from - 1}-10-01/${PR_INSPECTIONS_TABLE_FY.to}-09-30`,
         spatialCoverage: { "@type": "Place", name: "Puerto Rico" },
         dateModified: INSPECTIONS_PR_DATA_AS_OF.iso,
@@ -127,6 +128,7 @@ const InspeccionesFda = () => {
         creator: org,
         publisher: org,
         isBasedOn: INSPECTIONS_PR_DATASET_URLS.openfda,
+        license: "https://creativecommons.org/licenses/by/4.0/",
         temporalCoverage: `${PR_RECALLS_TABLE_YEARS.from}/${PR_RECALLS_TABLE_YEARS.to}`,
         spatialCoverage: { "@type": "Place", name: "Puerto Rico" },
         dateModified: INSPECTIONS_PR_DATA_AS_OF.iso,
@@ -425,6 +427,18 @@ const InspeccionesFda = () => {
             <p className="mt-3 max-w-[68ch] font-telegraf text-xs leading-relaxed text-neutral-500">{c.method}</p>
             <p className="mt-2 font-telegraf text-xs text-neutral-500">
               {c.dataAsOf} {INSPECTIONS_PR_DATA_AS_OF[lang]}.
+            </p>
+            <p className="mt-2 font-telegraf text-xs text-neutral-500">
+              {lang === "es" ? "Puedes usar estas tablas con la licencia " : "You can reuse these tables under "}
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/"
+                target="_blank"
+                rel="noopener license"
+                className="text-secondary underline-offset-2 hover:underline"
+              >
+                CC BY 4.0
+              </a>
+              {lang === "es" ? " si das crédito a Stratum. Los datos de la FDA son de dominio público." : " if you credit Stratum. The FDA source data is in the public domain."}
             </p>
           </div>
 
