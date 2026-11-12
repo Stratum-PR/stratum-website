@@ -19,6 +19,8 @@ export interface TemplateSource { label: string; url: string }
 export interface TemplateCopy {
   /** H1 */
   title: string;
+  /** Short name for the spreadsheet tab of the downloadable .xlsx (<= 31 chars, none of : \ / ? * [ ]) */
+  sheetName: string;
   /** <= 60 chars, ends with " | Stratum PR" */
   metaTitle: string;
   /** 140–160 chars */
@@ -59,6 +61,16 @@ export const TEMPLATES_INDEX_PATH: Record<TemplateLang, string> = { es: '/planti
 
 export function templatePath(t: Template, lang: TemplateLang): string {
   return lang === 'en' ? `/en/templates/${t.slug.en}` : `/plantillas/${t.slug.es}`;
+}
+
+export type TemplateFileType = 'pdf' | 'xlsx';
+
+/**
+ * Public path of a downloadable file. The files are generated at build time from this module by
+ * scripts/generate-template-files.ts (into dist/descargas and dist/downloads), never committed.
+ */
+export function templateDownloadPath(t: Template, lang: TemplateLang, type: TemplateFileType): string {
+  return lang === 'en' ? `/downloads/${t.slug.en}.${type}` : `/descargas/plantilla-${t.slug.es}.${type}`;
 }
 
 /** Finds a template by either language's slug. */
@@ -129,6 +141,7 @@ export const TEMPLATES: Template[] = [
     orientation: 'landscape',
     es: {
       title: 'Plantilla de registro de monitoreo HACCP y controles preventivos',
+      sheetName: 'Monitoreo HACCP',
       metaTitle: 'Plantilla registro de monitoreo HACCP | Stratum PR',
       description:
         'Plantilla gratis para imprimir: registro de monitoreo de un punto crítico de control o control preventivo, con lo que exigen 21 CFR 117.145 y 117.305.',
@@ -162,6 +175,7 @@ export const TEMPLATES: Template[] = [
     },
     en: {
       title: 'HACCP and preventive control monitoring log template',
+      sheetName: 'HACCP monitoring log',
       metaTitle: 'HACCP monitoring log template (free) | Stratum PR',
       description:
         'Free printable template: monitoring log for a critical control point or preventive control, built on what 21 CFR 117.145 and 117.305 require of records.',
@@ -202,6 +216,7 @@ export const TEMPLATES: Template[] = [
     orientation: 'landscape',
     es: {
       title: 'Plantilla de registro de monitoreo de saneamiento (SSOP)',
+      sheetName: 'Monitoreo de saneamiento',
       metaTitle: 'Plantilla registro de saneamiento SSOP | Stratum PR',
       description:
         'Plantilla gratis para imprimir: registro de monitoreo de controles de saneamiento (SSOP) por área y superficie, basado en 21 CFR 117.135(c)(3) y 117.145.',
@@ -235,6 +250,7 @@ export const TEMPLATES: Template[] = [
     },
     en: {
       title: 'Sanitation (SSOP) monitoring log template',
+      sheetName: 'Sanitation monitoring log',
       metaTitle: 'Sanitation SSOP monitoring log template | Stratum PR',
       description:
         'Free printable template: sanitation control (SSOP) monitoring log by area and surface, based on 21 CFR 117.135(c)(3) and 117.145 record requirements.',
@@ -275,6 +291,7 @@ export const TEMPLATES: Template[] = [
     orientation: 'landscape',
     es: {
       title: 'Plantilla FSMA 204: registro de recibo con los datos clave (KDE)',
+      sheetName: 'FSMA 204 - Recibo',
       metaTitle: 'Plantilla FSMA 204: registro de recibo (KDE) | Stratum PR',
       description:
         'Plantilla gratis para imprimir con los 8 datos clave (KDE) que exige 21 CFR 1.1345 al recibir un alimento de la Lista de Trazabilidad de la FDA (FSMA 204).',
@@ -306,6 +323,7 @@ export const TEMPLATES: Template[] = [
     },
     en: {
       title: 'FSMA 204 template: receiving log with key data elements (KDEs)',
+      sheetName: 'FSMA 204 receiving log',
       metaTitle: 'FSMA 204 receiving KDE log template | Stratum PR',
       description:
         'Free printable template with the 8 key data elements (KDEs) 21 CFR 1.1345 requires when you receive a food on FDA\'s Food Traceability List (FSMA 204).',
@@ -344,6 +362,7 @@ export const TEMPLATES: Template[] = [
     orientation: 'landscape',
     es: {
       title: 'Plantilla FSMA 204: registro de envío con los datos clave (KDE)',
+      sheetName: 'FSMA 204 - Envío',
       metaTitle: 'Plantilla FSMA 204: registro de envío (KDE) | Stratum PR',
       description:
         'Plantilla gratis para imprimir con los 8 datos clave (KDE) que exige 21 CFR 1.1340 al enviar un alimento de la Lista de Trazabilidad de la FDA (FSMA 204).',
@@ -374,6 +393,7 @@ export const TEMPLATES: Template[] = [
     },
     en: {
       title: 'FSMA 204 template: shipping log with key data elements (KDEs)',
+      sheetName: 'FSMA 204 shipping log',
       metaTitle: 'FSMA 204 shipping KDE log template | Stratum PR',
       description:
         'Free printable template with the 8 key data elements (KDEs) 21 CFR 1.1340 requires when you ship a food on FDA\'s Food Traceability List (FSMA 204).',
@@ -411,6 +431,7 @@ export const TEMPLATES: Template[] = [
     orientation: 'landscape',
     es: {
       title: 'Plantilla de simulacro de retiro de producto (recall)',
+      sheetName: 'Simulacro de retiro',
       metaTitle: 'Plantilla simulacro de retiro (recall) | Stratum PR',
       description:
         'Plantilla gratis para imprimir: lista para practicar tu plan de retiro de producto, organizada por las 4 acciones que exige 21 CFR 117.139 al plan escrito.',
@@ -447,6 +468,7 @@ export const TEMPLATES: Template[] = [
     },
     en: {
       title: 'Mock recall (recall drill) checklist template',
+      sheetName: 'Mock recall checklist',
       metaTitle: 'Mock recall checklist template (free) | Stratum PR',
       description:
         'Free printable template: checklist to practice your product recall plan, organized by the 4 actions 21 CFR 117.139 requires a written recall plan to cover.',

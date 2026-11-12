@@ -1,17 +1,20 @@
 import { Link } from "@/components/LocalizedLink";
-import { FileText } from "lucide-react";
+import { FileDown, FileSpreadsheet, FileText } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
 import { SoftCta } from "@/components/SoftCta";
 import { getPublicBaseUrl, type DiscoverableRoute } from "@/config/discoverable-routes";
-import { TEMPLATES, TEMPLATES_INDEX_PATH, TEMPLATES_VERIFIED_ON, templatePath } from "@/content/templates";
+import { TEMPLATES, TEMPLATES_INDEX_PATH, TEMPLATES_VERIFIED_ON, templateDownloadPath, templatePath } from "@/content/templates";
 
 const COPY = {
   es: {
     h1: "Plantillas gratis de registros de inocuidad",
     lead:
       "Formularios en blanco para imprimir y llenar a mano, escritos en español para las reglas federales de la FDA. Cada plantilla explica qué pide la regla, cómo usar la hoja y enlaza al texto oficial del reglamento.",
-    open: "Ver e imprimir",
+    open: "Ver plantilla",
+    pdf: "PDF",
+    xlsx: "Excel",
+    downloadLabel: "Descargar",
     verified: "Fuentes verificadas el",
     metaTitle: "Plantillas gratis de registros de inocuidad | Stratum PR",
     metaDescription:
@@ -22,7 +25,10 @@ const COPY = {
     h1: "Free food safety record templates",
     lead:
       "Blank forms to print and fill in by hand, written for FDA's federal rules in Spanish and English. Each template explains what the rule asks for, how to use the sheet, and links to the official regulatory text.",
-    open: "View and print",
+    open: "View template",
+    pdf: "PDF",
+    xlsx: "Excel",
+    downloadLabel: "Download",
     verified: "Sources verified on",
     metaTitle: "Free food safety record templates | Stratum PR",
     metaDescription:
@@ -98,18 +104,35 @@ const Plantillas = () => {
 
           <ul className="mt-10 space-y-4">
             {TEMPLATES.map((t) => (
-              <li key={t.id}>
-                <Link
-                  to={templatePath(t, lang)}
-                  className="group flex gap-4 rounded-2xl border border-primary/10 bg-white p-5 transition-colors hover:border-primary/30 md:p-6"
-                >
-                  <FileText className="mt-1 h-6 w-6 flex-none text-secondary" aria-hidden />
-                  <span>
+              <li key={t.id} className="flex gap-4 rounded-2xl border border-primary/10 bg-white p-5 transition-colors hover:border-primary/30 md:p-6">
+                <FileText className="mt-1 h-6 w-6 flex-none text-secondary" aria-hidden />
+                <div className="min-w-0">
+                  <Link to={templatePath(t, lang)} className="group block">
                     <span className="block font-telegraf text-lg font-bold text-primary group-hover:underline">{t[lang].title}</span>
                     <span className="mt-1 block font-telegraf text-sm leading-relaxed text-neutral-700">{t[lang].description}</span>
-                    <span className="mt-2 block font-telegraf text-sm font-medium text-secondary">{c.open} →</span>
-                  </span>
-                </Link>
+                  </Link>
+                  <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 font-telegraf text-sm font-medium">
+                    <Link to={templatePath(t, lang)} className="text-secondary underline-offset-2 hover:underline">
+                      {c.open} →
+                    </Link>
+                    {(["pdf", "xlsx"] as const).map((type) => {
+                      const href = templateDownloadPath(t, lang, type);
+                      const Icon = type === "pdf" ? FileDown : FileSpreadsheet;
+                      return (
+                        <a
+                          key={type}
+                          href={href}
+                          download={href.split("/").pop()}
+                          aria-label={`${c.downloadLabel} ${c[type]}: ${t[lang].title}`}
+                          className="inline-flex items-center gap-1.5 text-primary underline-offset-2 hover:underline"
+                        >
+                          <Icon className="h-4 w-4" aria-hidden />
+                          {c.downloadLabel} {c[type]}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
