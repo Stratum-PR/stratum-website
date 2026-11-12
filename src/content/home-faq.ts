@@ -13,12 +13,12 @@ export const HOME_FAQ: BilingualFaq[] = [
     es: {
       question: '¿Qué es Stratum PR?',
       answer:
-        'Stratum PR es una compañía puertorriqueña de datos y tecnología, con sede en Trujillo Alto. Ayudamos a los fabricantes de alimentos de Puerto Rico a reemplazar los registros en papel y las hojas de cálculo con sistemas digitales para cumplimiento, inventario y trazabilidad.',
+        'Stratum PR es una compañía puertorriqueña de datos y tecnología, con sede en Trujillo Alto. Ayudamos a los fabricantes de alimentos a reemplazar los registros en papel y las hojas de cálculo con sistemas digitales para cumplimiento, inventario y trazabilidad.',
     },
     en: {
       question: 'What is Stratum PR?',
       answer:
-        'Stratum PR is a Puerto Rican data and technology company based in Trujillo Alto. We help Puerto Rico food manufacturers replace paper logs and spreadsheets with digital systems for compliance, inventory and traceability.',
+        'Stratum PR is a Puerto Rican data and technology company based in Trujillo Alto. We help food manufacturers replace paper logs and spreadsheets with digital systems for compliance, inventory and traceability.',
     },
   },
   {

@@ -87,9 +87,9 @@ export const DISCOVERABLE_ROUTES: DiscoverableRoute[] = [
   {
     path: '/',
     title: 'Stratum PR — Tecnología para fabricantes de alimentos',
-    description: 'Tecnología para fabricantes de alimentos en Puerto Rico: registros digitales, inventario y trazabilidad para llegar a cada inspección con tranquilidad.',
+    description: 'Tecnología para fabricantes de alimentos: registros digitales, inventario y trazabilidad para llegar a cada inspección con tranquilidad.',
     titleEn: 'Stratum PR — Technology for food manufacturers',
-    descriptionEn: 'Technology for Puerto Rico food manufacturers: digital records, inventory and traceability so every inspection comes with peace of mind.',
+    descriptionEn: 'Technology for food manufacturers: digital records, inventory and traceability so every inspection comes with peace of mind.',
     indexable: true,
     changefreq: 'weekly',
     priority: 1.0,

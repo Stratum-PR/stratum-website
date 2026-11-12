@@ -42,16 +42,16 @@ const Home = () => {
   const seoData =
     language === "es"
       ? {
-          title: "Stratum PR — Tecnología para Fabricantes de Alimentos en Puerto Rico",
+          title: "Stratum PR — Tecnología para Fabricantes de Alimentos",
           description:
-            "Ayudamos a los fabricantes de alimentos de Puerto Rico a dejar el papel atrás: registros, inventario y trazabilidad digitales para llegar a cada inspección con tranquilidad.",
+            "Ayudamos a los fabricantes de alimentos a dejar el papel atrás: registros, inventario y trazabilidad digitales para llegar a cada inspección con tranquilidad.",
           keywords:
             "fabricantes de alimentos Puerto Rico, FSMA, FSMA 204, trazabilidad, inspección FDA, registros digitales, seguridad alimentaria",
         }
       : {
-          title: "Stratum PR — Technology for Puerto Rico Food Manufacturers",
+          title: "Stratum PR — Technology for Food Manufacturers",
           description:
-            "We help Puerto Rico food manufacturers leave paper behind: digital records, inventory and traceability so every inspection comes with peace of mind.",
+            "We help food manufacturers leave paper behind: digital records, inventory and traceability so every inspection comes with peace of mind.",
           keywords:
             "food manufacturer Puerto Rico, FSMA, FSMA 204, traceability, FDA inspection, digital records, food safety",
         };
