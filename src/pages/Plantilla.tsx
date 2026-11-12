@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Link } from "@/components/LocalizedLink";
-import { ChevronLeft, ExternalLink, Printer } from "lucide-react";
+import { ChevronLeft, ExternalLink, FileDown, FileSpreadsheet } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { PageMeta } from "@/components/PageMeta";
 import { SoftCta } from "@/components/SoftCta";
 import { getPublicBaseUrl, type DiscoverableRoute } from "@/config/discoverable-routes";
-import { TEMPLATES_INDEX_PATH, TEMPLATES_VERIFIED_ON, templateBySlug, templatePath } from "@/content/templates";
+import { TEMPLATES_INDEX_PATH, TEMPLATES_VERIFIED_ON, templateBySlug, templateDownloadPath, templatePath, type Template, type TemplateLang } from "@/content/templates";
 import NotFound from "./NotFound";
 
 const COPY = {
@@ -16,9 +16,10 @@ const COPY = {
     legal: "Qué dice la regla",
     sources: "Fuentes oficiales",
     verified: "Fuentes verificadas el",
-    form: "Formulario para imprimir",
-    print: "Imprimir / Print",
-    printHint: "Se imprime solo el formulario, en papel carta horizontal.",
+    form: "Vista previa del formulario",
+    downloadPdf: "Descargar PDF",
+    downloadXlsx: "Descargar Excel",
+    downloadHint: "PDF listo para imprimir en papel carta horizontal, con las instrucciones en la segunda página. Excel para llenarlo en la computadora.",
     company: "Empresa / planta",
     location: "Ubicación (dirección)",
     product: "Producto / área / línea",
@@ -33,9 +34,10 @@ const COPY = {
     legal: "What the rule says",
     sources: "Official sources",
     verified: "Sources verified on",
-    form: "Printable form",
-    print: "Imprimir / Print",
-    printHint: "Only the form prints, on landscape letter paper.",
+    form: "Form preview",
+    downloadPdf: "Download PDF",
+    downloadXlsx: "Download Excel",
+    downloadHint: "PDF ready to print on landscape letter paper, with the instructions on page two. Excel to fill in on a computer.",
     company: "Company / facility",
     location: "Location (address)",
     product: "Product / area / line",
@@ -46,20 +48,37 @@ const COPY = {
 };
 
 /**
- * Print rules: only #plantilla-form prints. Everything that is neither the form, inside it, nor
- * an ancestor of it is removed; ancestors lose their spacing and backgrounds. Static string, no
- * user input. Applies to the button and to Ctrl/Cmd+P alike.
+ * Download links to the PDF and Excel files that scripts/generate-template-files.ts builds into
+ * dist/ from templates.ts. Plain links (no JS), so they work prerendered and before hydration.
  */
-const printCss = (orientation: "portrait" | "landscape") => `
-@media print {
-  @page { size: letter ${orientation}; margin: 0.4in; }
-  body *:not(:has(#plantilla-form)):not(#plantilla-form):not(#plantilla-form *) { display: none !important; }
-  :has(> #plantilla-form), :has(#plantilla-form) { margin: 0 !important; padding: 0 !important; background: none !important; border: 0 !important; box-shadow: none !important; max-width: none !important; }
-  html, body { background: #fff !important; }
-  #plantilla-form { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  #plantilla-form thead { display: table-header-group; }
-  #plantilla-form tr { break-inside: avoid; }
-}`;
+const DownloadButtons = ({ template, lang, onDark = false }: { template: Template; lang: TemplateLang; onDark?: boolean }) => {
+  const c = COPY[lang];
+  const base =
+    "inline-flex items-center gap-2 rounded-xl px-5 py-3 font-telegraf text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2";
+  const primary = onDark ? "bg-white text-primary hover:bg-white/90" : "bg-primary text-white hover:bg-primary/90";
+  const secondary = onDark
+    ? "border border-white/60 text-white hover:bg-white/10"
+    : "border border-primary/30 bg-white text-primary hover:border-primary/60";
+  const pdf = templateDownloadPath(template, lang, "pdf");
+  const xlsx = templateDownloadPath(template, lang, "xlsx");
+  return (
+    <div className="flex flex-wrap gap-3">
+      <a href={pdf} download={pdf.split("/").pop()} type="application/pdf" className={`${base} ${primary}`}>
+        <FileDown className="h-4 w-4" aria-hidden />
+        {c.downloadPdf}
+      </a>
+      <a
+        href={xlsx}
+        download={xlsx.split("/").pop()}
+        type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        className={`${base} ${secondary}`}
+      >
+        <FileSpreadsheet className="h-4 w-4" aria-hidden />
+        {c.downloadXlsx}
+      </a>
+    </div>
+  );
+};
 
 /** One printable record template at /plantillas/<es slug> or /en/templates/<en slug>. */
 const Plantilla = () => {
@@ -122,8 +141,6 @@ const Plantilla = () => {
   return (
     <>
       <PageMeta route={route} jsonLd={jsonLd} />
-      {/* As raw HTML: React escapes > in text children on the server, which breaks the CSS and hydration */}
-      <style dangerouslySetInnerHTML={{ __html: printCss(template.orientation) }} />
       <div className="bg-[#FAFAF8]">
         <section className="bg-topo px-4 pb-10 pt-24 text-white md:pb-14 md:pt-32" aria-labelledby="plantilla-heading">
           <div className="mx-auto max-w-3xl">
@@ -134,6 +151,9 @@ const Plantilla = () => {
             <h1 id="plantilla-heading" className="font-telegraf text-[clamp(1.875rem,4.5vw,3rem)] font-bold leading-[1.1] tracking-[-0.02em]">
               {t.title}
             </h1>
+            <div className="mt-8">
+              <DownloadButtons template={template} lang={lang} onDark />
+            </div>
           </div>
         </section>
 
@@ -187,32 +207,25 @@ const Plantilla = () => {
 
         <section className="mx-auto max-w-6xl px-4" aria-labelledby="form-heading">
           <div className="mx-auto flex max-w-3xl flex-wrap items-end justify-between gap-3">
-            <div>
+            <div className="max-w-md">
               <h2 id="form-heading" className="font-telegraf text-xl font-bold text-primary md:text-2xl">
                 {c.form}
               </h2>
-              <p className="mt-1 font-telegraf text-sm text-neutral-500">{c.printHint}</p>
+              <p className="mt-1 font-telegraf text-sm text-neutral-500">{c.downloadHint}</p>
             </div>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 font-telegraf text-sm font-bold text-white transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
-            >
-              <Printer className="h-4 w-4" aria-hidden />
-              {c.print}
-            </button>
+            <DownloadButtons template={template} lang={lang} />
           </div>
 
           <div
             id="plantilla-form"
-            className="mt-6 rounded-2xl border border-neutral-200 bg-white p-4 font-telegraf text-[#0b1215] md:p-6 print:rounded-none print:border-0 print:p-0 print:text-[9pt]"
+            className="mt-6 rounded-2xl border border-neutral-200 bg-white p-4 font-telegraf text-[#0b1215] md:p-6"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-[#1e2b7e] pb-2">
-              <p className="text-base font-bold text-[#1e2b7e] print:text-[12pt]">{t.title}</p>
+              <p className="text-base font-bold text-[#1e2b7e]">{t.title}</p>
               <p className="text-xs text-neutral-600">{c.sheet}</p>
             </div>
 
-            <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2 print:grid-cols-4 print:text-[9pt]">
+            <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
               {[c.company, c.location, c.product, c.period].map((label) => (
                 <div key={label} className="flex items-end gap-2">
                   <dt className="whitespace-nowrap font-medium">{label}:</dt>
@@ -221,8 +234,8 @@ const Plantilla = () => {
               ))}
             </dl>
 
-            <div className="mt-4 overflow-x-auto print:overflow-visible">
-              <table className="w-full min-w-[56rem] border-collapse text-left text-xs print:min-w-0 print:text-[8pt]">
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full min-w-[56rem] border-collapse text-left text-xs">
                 <thead>
                   <tr>
                     <th scope="col" className="w-8 border border-neutral-400 bg-neutral-100 px-1.5 py-1.5 text-center font-bold">
@@ -237,7 +250,7 @@ const Plantilla = () => {
                 </thead>
                 <tbody>
                   {rows.map((first, i) => (
-                    <tr key={i} className="h-9 print:h-[0.36in]">
+                    <tr key={i} className="h-9">
                       <td className="border border-neutral-400 px-1.5 text-center text-neutral-500">{i + 1}</td>
                       {t.columns.map((col, j) => (
                         <td key={col} className="border border-neutral-400 px-1.5 py-1 align-top leading-tight">
@@ -250,7 +263,7 @@ const Plantilla = () => {
               </table>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-5 text-sm sm:grid-cols-2 print:mt-5 print:grid-cols-2 print:text-[9pt]">
+            <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-5 text-sm sm:grid-cols-2">
               {t.signoff.map((label) => (
                 <div key={label} className="flex items-end gap-2">
                   <span className="font-medium sm:whitespace-nowrap">{label}:</span>
@@ -259,7 +272,7 @@ const Plantilla = () => {
               ))}
             </div>
 
-            <p className="mt-4 text-[11px] text-neutral-500 print:text-[7pt]">
+            <p className="mt-4 text-[11px] text-neutral-500">
               {c.footer} {template.sources.slice(0, 3).map((s) => s.label.split(" (")[0]).join(" · ")}
             </p>
           </div>
