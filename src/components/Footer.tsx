@@ -10,7 +10,8 @@ const SOCIAL_LINKS = [
   { href: "https://linkedin.com/company/stratumpr", label: "LinkedIn", Icon: Linkedin },
 ] as const;
 
-type FooterLink = { name: string; href: string; external?: boolean };
+/** external: new tab, other site. staticPage: a finished HTML page in public/ (no /en twin), full page load. */
+type FooterLink = { name: string; href: string; external?: boolean; staticPage?: boolean };
 
 export const Footer = () => {
   const { t } = useLanguage();
@@ -37,6 +38,7 @@ export const Footer = () => {
         { name: t("footer.inspections"), href: "/inspecciones-fda-puerto-rico" },
         { name: t("footer.industries"), href: "/industrias" },
         { name: t("footer.glossary"), href: "/glosario" },
+        { name: t("footer.pulso"), href: "/pulso/", staticPage: true },
         { name: t("nav.alerts"), href: ALERTAS_URL, external: true },
       ],
     },
@@ -46,7 +48,11 @@ export const Footer = () => {
   const navLinkClass = `inline-flex min-h-[44px] items-center ${linkClass}`;
 
   const renderLink = (item: FooterLink) =>
-    item.external ? (
+    item.staticPage ? (
+      <a href={item.href} className={navLinkClass}>
+        {item.name}
+      </a>
+    ) : item.external ? (
       <a href={item.href} target="_blank" rel="noopener" className={`gap-1 ${navLinkClass}`}>
         {item.name}
         <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />

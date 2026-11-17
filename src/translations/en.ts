@@ -585,6 +585,7 @@ export const enTranslations: Record<string, string> = {
   'footer.inspections': 'FDA inspections in PR',
   'footer.industries': 'Rules by industry',
   'footer.glossary': 'Glossary',
+  'footer.pulso': 'Pulso Inocuidad PR (Spanish)',
   'footer.column.resources': 'Resources',
   'footer.column.connect': 'Connect',
   'footer.about': 'About Us',
