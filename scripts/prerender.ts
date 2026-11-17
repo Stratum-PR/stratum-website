@@ -14,6 +14,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { pathToFileURL } from 'url';
 import { createHash } from 'crypto';
+import { staticPages } from './static-pages';
 
 const DIST = path.join(process.cwd(), 'dist');
 const SSR_ENTRY = path.join(process.cwd(), 'dist-ssr', 'entry-server.js');
@@ -107,6 +108,10 @@ async function main(): Promise<void> {
     ),
     'utf8'
   );
+
+  for (const page of staticPages()) {
+    manifest[baseUrl + page.path] = createHash('sha256').update(fs.readFileSync(page.file)).digest('hex').slice(0, 16);
+  }
 
   fs.writeFileSync(path.join(DIST, 'indexnow-manifest.json'), JSON.stringify({ pages: manifest }, null, 2) + '\n', 'utf8');
 

@@ -22,6 +22,7 @@ import {
 } from '../src/config/discoverable-routes';
 import { PAGE_CONTENT, FAQ_ENTRIES } from '../src/content/discoverable-content';
 import { FAQ_PAGES } from '../src/content/faq-pages';
+import { staticPages } from './static-pages';
 
 const DIST = path.join(process.cwd(), 'dist');
 
@@ -86,6 +87,16 @@ function writeSitemap(baseUrl: string): void {
     if (route.priority !== undefined) {
       xml += `    <priority>${route.priority}</priority>\n`;
     }
+    xml += '  </url>\n';
+  }
+
+  // Static pages from public/ (the Pulso report): Spanish only, updated monthly
+  for (const page of staticPages()) {
+    xml += '  <url>\n';
+    xml += `    <loc>${escapeXml(baseUrl + safePathForUrl(page.path))}</loc>\n`;
+    xml += `    <lastmod>${now}</lastmod>\n`;
+    xml += '    <changefreq>monthly</changefreq>\n';
+    xml += `    <priority>${page.isIndex ? 0.8 : 0.7}</priority>\n`;
     xml += '  </url>\n';
   }
 
@@ -199,6 +210,13 @@ function writeLlmsTxt(baseUrl: string): void {
   if (guidesEn.length > 0) {
     L.push('## Guides in English', '');
     for (const r of guidesEn) L.push(`- [${r.titleEn}](${link(englishPathOf(r.path)!)}): ${r.descriptionEn ?? ''}`);
+    L.push('');
+  }
+
+  const pulso = staticPages().filter((p) => p.path.startsWith('/pulso/'));
+  if (pulso.length > 0) {
+    L.push('## Pulso Inocuidad PR (informe mensual en español / monthly report in Spanish)', '');
+    for (const p of pulso) L.push(`- [${p.title}](${link(p.path)})${p.description ? `: ${p.description}` : ''}`);
     L.push('');
   }
 
